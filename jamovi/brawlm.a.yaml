@@ -1,0 +1,44 @@
+---
+name:  BrawLM
+title: BrawStats:Linear Models
+menuGroup: BrawStats
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+
+    - name: IV
+      title: Independent Variable
+      type: Variables
+
+    - name: DV
+      title: Dependent Variable
+      type: Variable
+
+    - name: inferWhich
+      title: report
+      type: List
+      options:
+        - name: r
+          title: r
+        - name: p
+          title: p
+      default: r
+
+    - name: whichR
+      title: graph
+      type: List
+      options:
+        - name: Direct
+          title: Direct
+        - name: Unique
+          title: Unique
+        - name: Total
+          title: Total
+        - name: Full
+          title: Full Model
+      default: Unique
+
+...

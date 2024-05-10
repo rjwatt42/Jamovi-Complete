@@ -1,0 +1,34 @@
+---
+name:  BrawLM
+title: BrawStats:Linear Models
+jrs:   '1.1'
+
+items:
+    - name: graphPlot
+      title: ' '
+      type: Image
+      width:  500
+      height: 300
+      renderFun: .plotGraph
+
+    - name: reportPlot
+      title: ' '
+      type: Image
+      width:  500
+      height: 200
+      renderFun: .plotReport
+
+    - name: reportTable
+      title: ' '
+      type: Table
+      rows: 15
+      columns:
+      - name: AIC
+        type: number
+      - name: Rsqr
+        type: number
+      - name: model
+        type: text
+      visible: TRUE
+
+...

@@ -1,0 +1,25 @@
+---
+name:  BrawAn
+title: BrawStats:Analyze Data
+jrs:   '1.1'
+
+items:
+    - name: graphPlot
+      title: ' '
+      type: Image
+      width:  500
+      height: 300
+      renderFun: .plotGraph
+
+    - name: reportPlot
+      title: ' '
+      type: Image
+      width:  500
+      height: 200
+      renderFun: .plotReport
+
+    - name: debug
+      type: Preformatted
+      visible: FALSE
+
+...

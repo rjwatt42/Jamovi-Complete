@@ -1,0 +1,48 @@
+---
+name:  BrawSim
+title: BrawStats:Simulate Data
+jrs:   '1.1'
+
+items:
+    - name: graphPlot
+      title: ' '
+      type: Image
+      width:  600
+      height: 360
+      visible: TRUE
+      renderFun: .plotGraph
+
+    - name: reportPlot
+      title: ' '
+      type: Image
+      width:  600
+      height: 200
+      visible: TRUE
+      refs:
+      - brawstats
+      - book
+      renderFun: .plotReport
+
+    - name: debug
+      type: Preformatted
+      visible: FALSE
+
+    - name: sendSample
+      type: Output
+      measureType: nominal
+      varTitle: Sample
+      items: 3
+      clearWith:
+       - makeSampleBtn
+
+    - name: sendMultiple
+      type: Output
+      measureType: continuous
+      varTitle: "Mult"
+      items: 3
+      clearWith:
+       - makeMultipleBtn
+
+refs: brawstats
+      book
+...
