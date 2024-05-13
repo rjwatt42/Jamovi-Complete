@@ -19,14 +19,29 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         statusStore<-list(lastOutput="System",
                           showSampleType="Sample",
                           showInferParam="Basic",
+                          showInferDimension="1D",
                           showMultipleParam="Basic",
-                          showExploreParam="r"
+                          showMultipleDimension="1D",
+                          showExploreParam="r",
+                          showExploreDimension="1D"
         )
         braw.env$statusStore<<-statusStore
         braw.env$table<<-NULL
         braw.res$lm<<-NULL
       }
-      statusStore<-braw.env$statusStore
+      
+      if (is.null(braw.env$statusStore)) {
+        statusStore<-list(lastOutput="System",
+                          showSampleType="Sample",
+                          showInferParam="Basic",
+                          showInferDimension="1D",
+                          showMultipleParam="Basic",
+                          showMultipleDimension="1D",
+                          showExploreParam="r",
+                          showExploreDimension="1D"
+        )
+        braw.env$statusStore<<-statusStore
+      } else       statusStore<-braw.env$statusStore
       
       # get some display parameters for later
       makeSampleNow<-self$options$makeSampleBtn

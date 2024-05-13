@@ -6,6 +6,7 @@ import(pracma)
 import(mnormt)
 import(lme4)
 import(grDevices)
+import(stringr)
 export(BrawSimClass)
 export(BrawSimOptions)
 

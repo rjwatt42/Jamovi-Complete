@@ -13,8 +13,11 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             statusStore<-list(lastOutput="System",
                               showSampleType="Sample",
                               showInferParam="Basic",
+                              showInferDimension="1D",
                               showMultipleParam="Basic",
-                              showExploreParam="r"
+                              showMultipleDimension="1D",
+                              showExploreParam="r",
+                              showExploreDimension="1D"
             )
             braw.env$statusStore<<-statusStore
             braw.env$table<<-NULL

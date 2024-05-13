@@ -10,5 +10,5 @@ License: Creative Commons
 Encoding: UTF-8
 LazyData: true
 Imports: jmvcore (>= 2.3.4), R6, car, ggplot2, mnormt, pracma, lme4,
-        grDevices
-Built: R 4.3.2; ; 2024-05-10 20:26:14 UTC; unix
+        grDevices, stringr
+Built: R 4.3.2; ; 2024-05-13 21:04:42 UTC; unix

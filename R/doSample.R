@@ -269,8 +269,6 @@ doSample<-function(hypothesis=braw.def$hypothesis,design=braw.def$design,autoSho
           if (sum(iv==cases[i])<3) {
             problem<-TRUE
             errorText<-paste("Not enough samples with ", variables[useIV,]$name, "==", cases[i])
-            showModal(modalDialog(title=NULL,errorText))
-            showNotification(errorText)
             return(NULL)
           }
         }

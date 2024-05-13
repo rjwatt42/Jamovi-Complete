@@ -13,22 +13,25 @@ BrawAnClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         statusStore<-list(lastOutput="System",
                           showSampleType="Sample",
                           showInferParam="Basic",
+                          showInferDimension="1D",
                           showMultipleParam="Basic",
-                          showExploreParam="r"
+                          showMultipleDimension="1D",
+                          showExploreParam="r",
+                          showExploreDimension="1D"
         )
         braw.env$statusStore<<-statusStore
         braw.env$table<<-NULL
         braw.res$lm<<-NULL
       }
       
-      # debug information
-      # self$results$debug$setVisible(TRUE)
-      # self$results$debug$setContent(braw.env$graphicsSize)
-      
       if (is.null(self$options$IV) || is.null(self$options$DV)) {
         self$results$reportPlot$setState(NULL)
         return()
       }
+      
+      # debug information
+      # self$results$debug$setVisible(TRUE)
+      # self$results$debug$setContent((levels(self$data[[1]])))
       
       evidence<-makeEvidence(rInteractionOn=self$options$interaction=="yes",
                              ssqType=self$options$ssq,
