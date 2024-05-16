@@ -22,7 +22,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           showInferDimension="1D",
                           showMultipleParam="Basic",
                           showMultipleDimension="1D",
-                          showExploreParam="r",
+                          showExploreParam="Basic",
                           showExploreDimension="1D"
         )
         braw.env$statusStore<<-statusStore
@@ -37,7 +37,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           showInferDimension="1D",
                           showMultipleParam="Basic",
                           showMultipleDimension="1D",
-                          showExploreParam="r",
+                          showExploreParam="Basic",
                           showExploreDimension="1D"
         )
         braw.env$statusStore<<-statusStore
@@ -55,7 +55,29 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       whichShowMultipleOut<-self$options$whichShowMultiple
       
       makeExploreNow<-self$options$makeExploreBtn
-      typeExplore<-self$options$typeExplore
+      switch(self$options$exploreMode,
+             "hypothesisExplore"={
+               typeExplore<-self$options$hypothesisExploreList
+               minV<-as.numeric(self$options$exploreMinValH)
+               maxV<-as.numeric(self$options$exploreMaxValH)
+               xlog<-self$options$exploreXLogH
+               exploreNPoints<-as.numeric(self$options$exploreNPointsH)
+             },
+             "designExplore"={
+               typeExplore<-self$options$designExploreList
+               minV<-as.numeric(self$options$exploreMinValD)
+               maxV<-as.numeric(self$options$exploreMaxValD)
+               xlog<-self$options$exploreXLogD
+               exploreNPoints<-as.numeric(self$options$exploreNPointsD)
+             },
+             "analysisExplore"={
+               typeExplore<-self$options$analysisExploreList
+               minV<-as.numeric(self$options$exploreMinValA)
+               maxV<-as.numeric(self$options$exploreMaxValA)
+               xlog<-self$options$exploreXLogA
+               exploreNPoints<-as.numeric(self$options$exploreNPointsA)
+             }
+      )
       showExploreParam<-self$options$showExploreParam
       showExploreDimension<-self$options$showExploreDimension
       whichShowExploreOut<-self$options$whichShowExplore
@@ -122,7 +144,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                          rIVIV2DV<-self$options$EffectSize12,
                          Heteroscedasticity=self$options$Heteroscedasticity,
                          ResidDistr=self$options$Residuals,
-                         world=makeWorld(worldOn=self$options$WorldOn,
+                         world=makeWorld(worldOn=(self$options$WorldOn=="on"),
                                          populationPDF=self$options$WorldPDF,
                                          populationRZ = self$options$WorldRZ,
                                          populationPDFk = self$options$WorldLambda,
@@ -167,12 +189,10 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       
       # set up the explore variable
       oldX<-braw.def$explore
-      minV<-as.numeric(self$options$exploreMinVal)
-      maxV<-as.numeric(self$options$exploreMaxVal)
       explore<-makeExplore(exploreType=typeExplore,
-                           exploreNPoints=as.numeric(self$options$exploreNPoints),
+                           exploreNPoints=exploreNPoints,
                            minVal=minV,maxVal=maxV,
-                           xlog=self$options$exploreXLog)
+                           xlog=xlog)
       changedX<- !identical(oldX,explore)
       
       # oldM<-braw.def$metaAnalysis
@@ -194,7 +214,6 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       if (changedH || changedD) {
         braw.res$result<<-NULL
         braw.res$expected<<-NULL
-        braw.res$explore<<-NULL
         braw.res$explore<<-NULL
         braw.res$metaAnalysis<<-NULL
         outputNow<-"System"
@@ -240,7 +259,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       }
       
       # self$results$debug$setVisible(TRUE)
-      # self$results$debug$setContent(c(statusStore$showInferParam,showInferParam,outputNow1,outputNow2,outputNow3,outputNow))
+      # self$results$debug$setContent(c(self$options$planCollapse))
       
       # save everything for the next round      
       statusStore$showSampleType<-showSampleType

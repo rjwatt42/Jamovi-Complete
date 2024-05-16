@@ -6,8 +6,11 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
-            presetHypothesis = NULL,
-            presetDesign = NULL,
+            planOptions = NULL,
+            varOptions = "IV",
+            effectOptions = NULL,
+            presetHypothesis = "simple",
+            presetDesign = "simple",
             DVname = "DV",
             DVtype = "Interval",
             DVmu = 0,
@@ -45,7 +48,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             EffectSize12 = 0,
             Heteroscedasticity = 0,
             Residuals = "normal",
-            WorldOn = FALSE,
+            WorldOn = "off",
             WorldPDF = "Single",
             WorldRZ = NULL,
             WorldLambda = 0.3,
@@ -69,7 +72,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             ReplicationSign = "yes",
             alphaSig = 0.05,
             ssq = "Type3",
-            interaction = "no",
+            interaction = "yes",
             equalVar = "yes",
             Transform = "None",
             showHypothesisBtn = NULL,
@@ -86,13 +89,24 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             showMultipleParam = "Basic",
             showMultipleDimension = "1D",
             whichShowMultiple = "all",
-            exploreNPoints = 13,
-            exploreMinVal = "10",
-            exploreMaxVal = "250",
-            exploreXLog = FALSE,
+            exploreNPointsH = 13,
+            exploreNPointsD = 13,
+            exploreNPointsA = 13,
+            exploreMinValH = "-0.9",
+            exploreMaxValH = "0.9",
+            exploreMinValD = "10",
+            exploreMaxValD = "250",
+            exploreMinValA = "0.001",
+            exploreMaxValA = "0.5",
+            exploreXLogH = FALSE,
+            exploreXLogD = FALSE,
+            exploreXLogA = FALSE,
             numberExplores = 50,
             makeExploreBtn = NULL,
-            typeExplore = "n",
+            exploreMode = "designExplore",
+            hypothesisExploreList = NULL,
+            designExploreList = NULL,
+            analysisExploreList = NULL,
             showExploreParam = "Basic",
             exploreVar1 = "rs",
             exploreVar2 = "p",
@@ -105,20 +119,41 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 requiresData=FALSE,
                 ...)
 
+            private$..planOptions <- jmvcore::OptionList$new(
+                "planOptions",
+                planOptions,
+                options=list(
+                    "planH",
+                    "planD",
+                    "planA"))
+            private$..varOptions <- jmvcore::OptionList$new(
+                "varOptions",
+                varOptions,
+                options=list(
+                    "IV",
+                    "IV2",
+                    "DV"),
+                default="IV")
+            private$..effectOptions <- jmvcore::OptionList$new(
+                "effectOptions",
+                effectOptions,
+                options=list(
+                    "simple",
+                    "world"))
             private$..presetHypothesis <- jmvcore::OptionList$new(
                 "presetHypothesis",
                 presetHypothesis,
                 options=list(
-                    "custom",
                     "psych",
-                    "simple"))
+                    "simple"),
+                default="simple")
             private$..presetDesign <- jmvcore::OptionList$new(
                 "presetDesign",
                 presetDesign,
                 options=list(
-                    "custom",
                     "psych",
-                    "simple"))
+                    "simple"),
+                default="simple")
             private$..DVname <- jmvcore::OptionString$new(
                 "DVname",
                 DVname,
@@ -284,10 +319,13 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "uniform",
                     "cauchy"),
                 default="normal")
-            private$..WorldOn <- jmvcore::OptionBool$new(
+            private$..WorldOn <- jmvcore::OptionList$new(
                 "WorldOn",
                 WorldOn,
-                default=FALSE)
+                options=list(
+                    "off",
+                    "on"),
+                default="off")
             private$..WorldPDF <- jmvcore::OptionList$new(
                 "WorldPDF",
                 WorldPDF,
@@ -434,7 +472,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=list(
                     "no",
                     "yes"),
-                default="no")
+                default="yes")
             private$..equalVar <- jmvcore::OptionList$new(
                 "equalVar",
                 equalVar,
@@ -584,21 +622,53 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "total",
                     "all"),
                 default="all")
-            private$..exploreNPoints <- jmvcore::OptionNumber$new(
-                "exploreNPoints",
-                exploreNPoints,
+            private$..exploreNPointsH <- jmvcore::OptionNumber$new(
+                "exploreNPointsH",
+                exploreNPointsH,
                 default=13)
-            private$..exploreMinVal <- jmvcore::OptionString$new(
-                "exploreMinVal",
-                exploreMinVal,
+            private$..exploreNPointsD <- jmvcore::OptionNumber$new(
+                "exploreNPointsD",
+                exploreNPointsD,
+                default=13)
+            private$..exploreNPointsA <- jmvcore::OptionNumber$new(
+                "exploreNPointsA",
+                exploreNPointsA,
+                default=13)
+            private$..exploreMinValH <- jmvcore::OptionString$new(
+                "exploreMinValH",
+                exploreMinValH,
+                default="-0.9")
+            private$..exploreMaxValH <- jmvcore::OptionString$new(
+                "exploreMaxValH",
+                exploreMaxValH,
+                default="0.9")
+            private$..exploreMinValD <- jmvcore::OptionString$new(
+                "exploreMinValD",
+                exploreMinValD,
                 default="10")
-            private$..exploreMaxVal <- jmvcore::OptionString$new(
-                "exploreMaxVal",
-                exploreMaxVal,
+            private$..exploreMaxValD <- jmvcore::OptionString$new(
+                "exploreMaxValD",
+                exploreMaxValD,
                 default="250")
-            private$..exploreXLog <- jmvcore::OptionBool$new(
-                "exploreXLog",
-                exploreXLog,
+            private$..exploreMinValA <- jmvcore::OptionString$new(
+                "exploreMinValA",
+                exploreMinValA,
+                default="0.001")
+            private$..exploreMaxValA <- jmvcore::OptionString$new(
+                "exploreMaxValA",
+                exploreMaxValA,
+                default="0.5")
+            private$..exploreXLogH <- jmvcore::OptionBool$new(
+                "exploreXLogH",
+                exploreXLogH,
+                default=FALSE)
+            private$..exploreXLogD <- jmvcore::OptionBool$new(
+                "exploreXLogD",
+                exploreXLogD,
+                default=FALSE)
+            private$..exploreXLogA <- jmvcore::OptionBool$new(
+                "exploreXLogA",
+                exploreXLogA,
                 default=FALSE)
             private$..numberExplores <- jmvcore::OptionNumber$new(
                 "numberExplores",
@@ -607,33 +677,26 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..makeExploreBtn <- jmvcore::OptionAction$new(
                 "makeExploreBtn",
                 makeExploreBtn)
-            private$..typeExplore <- jmvcore::OptionList$new(
-                "typeExplore",
-                typeExplore,
+            private$..exploreMode <- jmvcore::OptionList$new(
+                "exploreMode",
+                exploreMode,
+                options=list(
+                    "hypothesisExplore",
+                    "designExplore",
+                    "analysisExplore"),
+                default="designExplore")
+            private$..hypothesisExploreList <- jmvcore::OptionList$new(
+                "hypothesisExploreList",
+                hypothesisExploreList,
                 options=list(
                     "rIV",
                     "rIVIV2",
                     "Heteroscedasticity",
+                    "blank1h",
                     "PDF",
                     "lambda",
                     "pNull",
-                    "blank1",
-                    "n",
-                    "Method",
-                    "Usage",
-                    "Dependence",
-                    "Outliers",
-                    "Cheating",
-                    "CheatingAmount",
-                    "blank2",
-                    "Power",
-                    "Keep",
-                    "Repeats",
-                    "blank3",
-                    "Alpha",
-                    "Transform",
-                    "Welch",
-                    "blank4",
+                    "blank2h",
                     "IVType",
                     "IVskew",
                     "IVkurtosis",
@@ -643,8 +706,30 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "DVType",
                     "DVskew",
                     "DVkurtosis",
-                    "DVprops"),
-                default="n")
+                    "DVprops"))
+            private$..designExploreList <- jmvcore::OptionList$new(
+                "designExploreList",
+                designExploreList,
+                options=list(
+                    "n",
+                    "Method",
+                    "Usage",
+                    "blank1d",
+                    "Dependence",
+                    "Outliers",
+                    "Cheating",
+                    "CheatingAmount",
+                    "blank2d",
+                    "Power",
+                    "Keep",
+                    "Repeats"))
+            private$..analysisExploreList <- jmvcore::OptionList$new(
+                "analysisExploreList",
+                analysisExploreList,
+                options=list(
+                    "Alpha",
+                    "Transform",
+                    "Welch"))
             private$..showExploreParam <- jmvcore::OptionList$new(
                 "showExploreParam",
                 showExploreParam,
@@ -713,6 +798,9 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..sendMultiple <- jmvcore::OptionOutput$new(
                 "sendMultiple")
 
+            self$.addOption(private$..planOptions)
+            self$.addOption(private$..varOptions)
+            self$.addOption(private$..effectOptions)
             self$.addOption(private$..presetHypothesis)
             self$.addOption(private$..presetDesign)
             self$.addOption(private$..DVname)
@@ -793,13 +881,24 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..showMultipleParam)
             self$.addOption(private$..showMultipleDimension)
             self$.addOption(private$..whichShowMultiple)
-            self$.addOption(private$..exploreNPoints)
-            self$.addOption(private$..exploreMinVal)
-            self$.addOption(private$..exploreMaxVal)
-            self$.addOption(private$..exploreXLog)
+            self$.addOption(private$..exploreNPointsH)
+            self$.addOption(private$..exploreNPointsD)
+            self$.addOption(private$..exploreNPointsA)
+            self$.addOption(private$..exploreMinValH)
+            self$.addOption(private$..exploreMaxValH)
+            self$.addOption(private$..exploreMinValD)
+            self$.addOption(private$..exploreMaxValD)
+            self$.addOption(private$..exploreMinValA)
+            self$.addOption(private$..exploreMaxValA)
+            self$.addOption(private$..exploreXLogH)
+            self$.addOption(private$..exploreXLogD)
+            self$.addOption(private$..exploreXLogA)
             self$.addOption(private$..numberExplores)
             self$.addOption(private$..makeExploreBtn)
-            self$.addOption(private$..typeExplore)
+            self$.addOption(private$..exploreMode)
+            self$.addOption(private$..hypothesisExploreList)
+            self$.addOption(private$..designExploreList)
+            self$.addOption(private$..analysisExploreList)
             self$.addOption(private$..showExploreParam)
             self$.addOption(private$..exploreVar1)
             self$.addOption(private$..exploreVar2)
@@ -809,6 +908,9 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..sendMultiple)
         }),
     active = list(
+        planOptions = function() private$..planOptions$value,
+        varOptions = function() private$..varOptions$value,
+        effectOptions = function() private$..effectOptions$value,
         presetHypothesis = function() private$..presetHypothesis$value,
         presetDesign = function() private$..presetDesign$value,
         DVname = function() private$..DVname$value,
@@ -889,13 +991,24 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         showMultipleParam = function() private$..showMultipleParam$value,
         showMultipleDimension = function() private$..showMultipleDimension$value,
         whichShowMultiple = function() private$..whichShowMultiple$value,
-        exploreNPoints = function() private$..exploreNPoints$value,
-        exploreMinVal = function() private$..exploreMinVal$value,
-        exploreMaxVal = function() private$..exploreMaxVal$value,
-        exploreXLog = function() private$..exploreXLog$value,
+        exploreNPointsH = function() private$..exploreNPointsH$value,
+        exploreNPointsD = function() private$..exploreNPointsD$value,
+        exploreNPointsA = function() private$..exploreNPointsA$value,
+        exploreMinValH = function() private$..exploreMinValH$value,
+        exploreMaxValH = function() private$..exploreMaxValH$value,
+        exploreMinValD = function() private$..exploreMinValD$value,
+        exploreMaxValD = function() private$..exploreMaxValD$value,
+        exploreMinValA = function() private$..exploreMinValA$value,
+        exploreMaxValA = function() private$..exploreMaxValA$value,
+        exploreXLogH = function() private$..exploreXLogH$value,
+        exploreXLogD = function() private$..exploreXLogD$value,
+        exploreXLogA = function() private$..exploreXLogA$value,
         numberExplores = function() private$..numberExplores$value,
         makeExploreBtn = function() private$..makeExploreBtn$value,
-        typeExplore = function() private$..typeExplore$value,
+        exploreMode = function() private$..exploreMode$value,
+        hypothesisExploreList = function() private$..hypothesisExploreList$value,
+        designExploreList = function() private$..designExploreList$value,
+        analysisExploreList = function() private$..analysisExploreList$value,
         showExploreParam = function() private$..showExploreParam$value,
         exploreVar1 = function() private$..exploreVar1$value,
         exploreVar2 = function() private$..exploreVar2$value,
@@ -904,6 +1017,9 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         sendSample = function() private$..sendSample$value,
         sendMultiple = function() private$..sendMultiple$value),
     private = list(
+        ..planOptions = NA,
+        ..varOptions = NA,
+        ..effectOptions = NA,
         ..presetHypothesis = NA,
         ..presetDesign = NA,
         ..DVname = NA,
@@ -984,13 +1100,24 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..showMultipleParam = NA,
         ..showMultipleDimension = NA,
         ..whichShowMultiple = NA,
-        ..exploreNPoints = NA,
-        ..exploreMinVal = NA,
-        ..exploreMaxVal = NA,
-        ..exploreXLog = NA,
+        ..exploreNPointsH = NA,
+        ..exploreNPointsD = NA,
+        ..exploreNPointsA = NA,
+        ..exploreMinValH = NA,
+        ..exploreMaxValH = NA,
+        ..exploreMinValD = NA,
+        ..exploreMaxValD = NA,
+        ..exploreMinValA = NA,
+        ..exploreMaxValA = NA,
+        ..exploreXLogH = NA,
+        ..exploreXLogD = NA,
+        ..exploreXLogA = NA,
         ..numberExplores = NA,
         ..makeExploreBtn = NA,
-        ..typeExplore = NA,
+        ..exploreMode = NA,
+        ..hypothesisExploreList = NA,
+        ..designExploreList = NA,
+        ..analysisExploreList = NA,
         ..showExploreParam = NA,
         ..exploreVar1 = NA,
         ..exploreVar2 = NA,
@@ -1081,6 +1208,9 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' BrawStats:Simulate Data
 #'
 #' 
+#' @param planOptions .
+#' @param varOptions .
+#' @param effectOptions .
 #' @param presetHypothesis .
 #' @param presetDesign .
 #' @param DVname .
@@ -1161,13 +1291,24 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param showMultipleParam .
 #' @param showMultipleDimension .
 #' @param whichShowMultiple .
-#' @param exploreNPoints .
-#' @param exploreMinVal .
-#' @param exploreMaxVal .
-#' @param exploreXLog .
+#' @param exploreNPointsH .
+#' @param exploreNPointsD .
+#' @param exploreNPointsA .
+#' @param exploreMinValH .
+#' @param exploreMaxValH .
+#' @param exploreMinValD .
+#' @param exploreMaxValD .
+#' @param exploreMinValA .
+#' @param exploreMaxValA .
+#' @param exploreXLogH .
+#' @param exploreXLogD .
+#' @param exploreXLogA .
 #' @param numberExplores .
 #' @param makeExploreBtn .
-#' @param typeExplore .
+#' @param exploreMode .
+#' @param hypothesisExploreList .
+#' @param designExploreList .
+#' @param analysisExploreList .
 #' @param showExploreParam .
 #' @param exploreVar1 .
 #' @param exploreVar2 .
@@ -1184,8 +1325,11 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 BrawSim <- function(
-    presetHypothesis,
-    presetDesign,
+    planOptions,
+    varOptions = "IV",
+    effectOptions,
+    presetHypothesis = "simple",
+    presetDesign = "simple",
     DVname = "DV",
     DVtype = "Interval",
     DVmu = 0,
@@ -1223,7 +1367,7 @@ BrawSim <- function(
     EffectSize12 = 0,
     Heteroscedasticity = 0,
     Residuals = "normal",
-    WorldOn = FALSE,
+    WorldOn = "off",
     WorldPDF = "Single",
     WorldRZ,
     WorldLambda = 0.3,
@@ -1247,7 +1391,7 @@ BrawSim <- function(
     ReplicationSign = "yes",
     alphaSig = 0.05,
     ssq = "Type3",
-    interaction = "no",
+    interaction = "yes",
     equalVar = "yes",
     Transform = "None",
     showHypothesisBtn,
@@ -1264,13 +1408,24 @@ BrawSim <- function(
     showMultipleParam = "Basic",
     showMultipleDimension = "1D",
     whichShowMultiple = "all",
-    exploreNPoints = 13,
-    exploreMinVal = "10",
-    exploreMaxVal = "250",
-    exploreXLog = FALSE,
+    exploreNPointsH = 13,
+    exploreNPointsD = 13,
+    exploreNPointsA = 13,
+    exploreMinValH = "-0.9",
+    exploreMaxValH = "0.9",
+    exploreMinValD = "10",
+    exploreMaxValD = "250",
+    exploreMinValA = "0.001",
+    exploreMaxValA = "0.5",
+    exploreXLogH = FALSE,
+    exploreXLogD = FALSE,
+    exploreXLogA = FALSE,
     numberExplores = 50,
     makeExploreBtn,
-    typeExplore = "n",
+    exploreMode = "designExplore",
+    hypothesisExploreList,
+    designExploreList,
+    analysisExploreList,
     showExploreParam = "Basic",
     exploreVar1 = "rs",
     exploreVar2 = "p",
@@ -1282,6 +1437,9 @@ BrawSim <- function(
 
 
     options <- BrawSimOptions$new(
+        planOptions = planOptions,
+        varOptions = varOptions,
+        effectOptions = effectOptions,
         presetHypothesis = presetHypothesis,
         presetDesign = presetDesign,
         DVname = DVname,
@@ -1362,13 +1520,24 @@ BrawSim <- function(
         showMultipleParam = showMultipleParam,
         showMultipleDimension = showMultipleDimension,
         whichShowMultiple = whichShowMultiple,
-        exploreNPoints = exploreNPoints,
-        exploreMinVal = exploreMinVal,
-        exploreMaxVal = exploreMaxVal,
-        exploreXLog = exploreXLog,
+        exploreNPointsH = exploreNPointsH,
+        exploreNPointsD = exploreNPointsD,
+        exploreNPointsA = exploreNPointsA,
+        exploreMinValH = exploreMinValH,
+        exploreMaxValH = exploreMaxValH,
+        exploreMinValD = exploreMinValD,
+        exploreMaxValD = exploreMaxValD,
+        exploreMinValA = exploreMinValA,
+        exploreMaxValA = exploreMaxValA,
+        exploreXLogH = exploreXLogH,
+        exploreXLogD = exploreXLogD,
+        exploreXLogA = exploreXLogA,
         numberExplores = numberExplores,
         makeExploreBtn = makeExploreBtn,
-        typeExplore = typeExplore,
+        exploreMode = exploreMode,
+        hypothesisExploreList = hypothesisExploreList,
+        designExploreList = designExploreList,
+        analysisExploreList = analysisExploreList,
         showExploreParam = showExploreParam,
         exploreVar1 = exploreVar1,
         exploreVar2 = exploreVar2,

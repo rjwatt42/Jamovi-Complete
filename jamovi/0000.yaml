@@ -14,21 +14,21 @@ description: |-
     ii.  data analysis
     iii. linear model tool
 analyses:
-  - title: 'BrawStats:Simulate Data'
+  - title: BrawStats:Simulate Data
     name: BrawSim
     ns: BrawStats
     menuGroup: BrawStats
-    menuTitle: 'BrawStats:Simulate Data'
+    menuTitle: BrawStats:Simulate Data
   - name: BrawAn
     ns: BrawStats
     menuGroup: BrawStats
-    menuTitle: 'BrawStats:Analyze Data'
-    title: 'BrawStats:Analyze Data'
+    menuTitle: BrawStats:Analyze Data
+    title: BrawStats:Analyze Data
   - name: BrawLM
     ns: BrawStats
     menuGroup: BrawStats
-    menuTitle: 'BrawStats:Linear Models'
-    title: 'BrawStats:Linear Models'
+    menuTitle: BrawStats:Linear Models
+    title: BrawStats:Linear Models
 usesNative: true
 minApp: 1.0.8
 

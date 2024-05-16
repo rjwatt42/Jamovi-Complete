@@ -6,27 +6,57 @@ version: '1.0.0'
 jas: '1.2'
 
 options:
+    - name: planOptions
+      title: ' '
+      type: List
+      options:
+      - name: planH
+        title: Hypothesis
+      - name: planD
+        title: Design
+      - name: planA
+        title: Analysis
+
+    - name: varOptions
+      title: ' '
+      type: List
+      options:
+      - name: IV
+        title: IV
+      - name: IV2
+        title: IV2
+      - name: DV
+        title: DV
+      default: IV
+      
+    - name: effectOptions
+      title: ' '
+      type: List
+      options:
+      - name: simple
+        title: simple
+      - name: world
+        title: world
+      
     - name: presetHypothesis
       title: Hypothesis
       type: List
       options:
-      - name: custom
-        title: custom
       - name: psych
         title: psychology
       - name: simple
         title: simple
-        
+      default: simple
+      
     - name: presetDesign
       title: Design
       type: List
       options:
-      - name: custom
-        title: custom
       - name: psych
         title: psychology
       - name: simple
         title: simple
+      default: simple
         
     - name: DVname
       title: Name
@@ -245,8 +275,13 @@ options:
       
     - name: WorldOn
       title: ' '
-      type: Bool
-      default: FALSE
+      type: List
+      options:
+      - name: off
+        title: off
+      - name: on
+        title: on
+      default: off
       
     - name: WorldPDF
       title: PDF
@@ -456,7 +491,7 @@ options:
         title: no
       - name: yes
         title: yes
-      default: no
+      default: yes
 
     - name: equalVar
       title: 'Equal variance'
@@ -743,22 +778,62 @@ options:
         title: all
       default: all
 
-    - name: exploreNPoints
-      title: 'no of points'
+    - name: exploreNPointsH
+      title: 'no of values'
+      type: Number
+      default: 13
+
+    - name: exploreNPointsD
+      title: 'no of values'
+      type: Number
+      default: 13
+
+    - name: exploreNPointsA
+      title: 'no of values'
       type: Number
       default: 13
       
-    - name: exploreMinVal
-      title: from
+    - name: exploreMinValH
+      title: '        '
+      type: String
+      default: "-0.9"
+      
+    - name: exploreMaxValH
+      title: to
+      type: String
+      default: "0.9"
+      
+    - name: exploreMinValD
+      title: '        '
       type: String
       default: "10"
       
-    - name: exploreMaxVal
+    - name: exploreMaxValD
       title: to
       type: String
       default: "250"
+      
+    - name: exploreMinValA
+      title: '        '
+      type: String
+      default: "0.001"
+      
+    - name: exploreMaxValA
+      title: to
+      type: String
+      default: "0.5"
 
-    - name: exploreXLog
+    - name: exploreXLogH
+      title: 'log scale'
+      type: Bool
+      default: FALSE
+
+    - name: exploreXLogD
+      title: 'log scale'
+      type: Bool
+      default: FALSE
+
+    - name: exploreXLogA
       title: 'log scale'
       type: Bool
       default: FALSE
@@ -772,8 +847,20 @@ options:
       title: 'explore'
       type: Action
 
-    - name: typeExplore
-      title: '='
+    - name: exploreMode
+      title: ""
+      type: List
+      options:
+        - name: hypothesisExplore
+          title: Hypothesis
+        - name: designExplore
+          title: Design
+        - name: analysisExplore
+          title: Analysis
+      default: designExplore
+
+    - name: hypothesisExploreList
+      title: ''
       type: List
       options:
         - name: rIV
@@ -781,47 +868,17 @@ options:
         - name: rIVIV2
           title: Covariation
         - name: Heteroscedasticity
-          title: -Hscedast
+          title: Hscedast
+        - name: blank1h
+          title: ' '
         - name: PDF
-          title: -worldPDF
+          title: worldPDF
         - name: lambda
-          title: -worldLambda
+          title: worldLambda
         - name: pNull
-          title: -worldPNull
-        - name: blank1
-          title: " "
-        - name: n
-          title: SampleSize
-        - name: Method
-          title: Method
-        - name: Usage
-          title: Usage
-        - name: Dependence
-          title: -Dependence
-        - name: Outliers
-          title: -Outliers
-        - name: Cheating
-          title: -Cheating
-        - name: CheatingAmount
-          title: -CheatAmount
-        - name: blank2
-          title: " "
-        - name: Power
-          title: ReplPower
-        - name: Keep
-          title: ReplDecision
-        - name: Repeats
-          title: ReplAttempts
-        - name: blank3
-          title: " "
-        - name: Alpha
-          title: Alpha
-        - name: Transform
-          title: Transform
-        - name: Welch
-          title: EqualVar
-        - name: blank4
-          title: " "
+          title: worldPNull
+        - name: blank2h
+          title: ' '
         - name: IVType
           title: IVType
         - name: IVskew
@@ -842,10 +899,49 @@ options:
           title: DVkurtosis
         - name: DVprops
           title: DVprops
-      default: n
+          
+    - name: designExploreList
+      title: ''
+      type: List
+      options:
+        - name: n
+          title: SampleSize
+        - name: Method
+          title: Method
+        - name: Usage
+          title: Usage
+        - name: blank1d
+          title: ' '
+        - name: Dependence
+          title: Dependence
+        - name: Outliers
+          title: Outliers
+        - name: Cheating
+          title: Cheating
+        - name: CheatingAmount
+          title: CheatAmount
+        - name: blank2d
+          title: ' '
+        - name: Power
+          title: ReplPower
+        - name: Keep
+          title: ReplDecision
+        - name: Repeats
+          title: ReplAttempts
+          
+    - name: analysisExploreList
+      title: ''
+      type: List
+      options:
+        - name: Alpha
+          title: Alpha
+        - name: Transform
+          title: Transform
+        - name: Welch
+          title: EqualVar
 
     - name: showExploreParam
-      title: ' show as:'
+      title: ''
       type: List
       options:
         - name: Basic
@@ -861,7 +957,6 @@ options:
         - name: Custom
           title: Custom
       default: Basic
-
 
     - name: exploreVar1
       title: ' show:'
