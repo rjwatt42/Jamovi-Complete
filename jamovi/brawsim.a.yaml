@@ -274,14 +274,9 @@ options:
       default: normal
       
     - name: WorldOn
-      title: ' '
-      type: List
-      options:
-      - name: off
-        title: off
-      - name: on
-        title: on
-      default: off
+      title: ''
+      type: Bool
+      default: false
       
     - name: WorldPDF
       title: PDF
@@ -404,15 +399,10 @@ options:
       default: 5
       
     - name: ReplicationOn
-      title: ' '
-      type: List
-      options:
-      - name: off
-        title: off
-      - name: on
-        title: on
-      default: off
-      
+      title: ''
+      type: Bool
+      default: false
+
     - name: ReplicationPower
       title: 'power'
       type: Number
@@ -515,50 +505,45 @@ options:
         title: Exp
       default: None
 
-    # - name: MetaAnalysisOn
-    #   title: ' '
-    #   type: List
-    #   options:
-    #   - name: off
-    #     title: off
-    #   - name: on
-    #     title: on
-    #   default: off
-    # 
-    # - name: MetaAnalysisType
-    #   title: ' '
-    #   type: List
-    #   options:
-    #   - name: random
-    #     title: random
-    #   - name: fixed
-    #     title: fixed
-    #   default: random
-    # 
-    # - name: MetaAnalysisNulls
-    #   title: 'include nulls'
-    #   type: List
-    #   options:
-    #   - name: yes
-    #     title: yes
-    #   - name: no
-    #     title: no
-    #   default: yes
-    # 
-    # - name: MetaAnalysisNStudies
-    #   title: 'no of studies'
-    #   type: Number
-    #   default: 10
-    # 
-    # - name: MetaAnalysisStudiesSig
-    #   title: ' '
-    #   type: List
-    #   options:
-    #   - name: all
-    #     title: all
-    #   - name: sigOnly
-    #     title: sigOnly
-    #   default: sigOnly
+    - name: MetaAnalysisOn
+      title: ''
+      type: Bool
+      default: false
+
+    - name: MetaAnalysisType
+      title: ' '
+      type: List
+      options:
+      - name: random
+        title: random
+      - name: fixed
+        title: fixed
+      default: random
+
+    - name: MetaAnalysisNulls
+      title: 'expect nulls'
+      type: List
+      options:
+      - name: yes
+        title: yes
+      - name: no
+        title: no
+      default: yes
+
+    - name: MetaAnalysisNStudies
+      title: 'no of studies'
+      type: Number
+      default: 10
+
+    - name: MetaAnalysisStudiesSig
+      title: ' '
+      type: List
+      options:
+      - name: all
+        title: all
+      - name: sigOnly
+        title: sigOnly
+      default: sigOnly
       
     - name: showHypothesisBtn
       title: 'show'
@@ -941,7 +926,7 @@ options:
           title: EqualVar
 
     - name: showExploreParam
-      title: ''
+      title: 'show as:'
       type: List
       options:
         - name: Basic

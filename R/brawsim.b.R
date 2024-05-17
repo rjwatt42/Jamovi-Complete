@@ -144,7 +144,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                          rIVIV2DV<-self$options$EffectSize12,
                          Heteroscedasticity=self$options$Heteroscedasticity,
                          ResidDistr=self$options$Residuals,
-                         world=makeWorld(worldOn=(self$options$WorldOn=="on"),
+                         world=makeWorld(worldOn=self$options$WorldOn,
                                          populationPDF=self$options$WorldPDF,
                                          populationRZ = self$options$WorldRZ,
                                          populationPDFk = self$options$WorldLambda,
@@ -166,7 +166,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                 sDependence=self$options$Dependence,
                                 sOutliers=self$options$Outliers,
                                 sCheating=self$options$Cheating,sCheatingAttempts=self$options$CheatingAttempts,
-                         Replication=makeReplication(On=(self$options$ReplicationOn=="on"),
+                         Replication=makeReplication(On=self$options$ReplicationOn,
                                                      Power=self$options$ReplicationPower,
                                                      Repeats=self$options$ReplicationAttempts,
                                                      Keep=self$options$ReplicationDecision,
@@ -195,20 +195,20 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                            xlog=xlog)
       changedX<- !identical(oldX,explore)
       
-      # oldM<-braw.def$metaAnalysis
-      # metaAnalysis<-makeMetaAnalysis(nstudies=self$options$MetaAnalysisNStudies,
-      #                            analysisType=self$options$MetaAnalysisType,
-      #                            modelPDF="All",
-      #                            sig_only=self$options$MetaAnalysisStudiesSig,
-      #                            includeNulls=self$options$MetaAnalysisNulls)
-      # changedM<- !identical(oldM,metaAnalysis)
+      oldM<-braw.def$metaAnalysis
+      metaAnalysis<-makeMetaAnalysis(nstudies=self$options$MetaAnalysisNStudies,
+                                 analysisType=self$options$MetaAnalysisType,
+                                 modelPDF="All",
+                                 sig_only=self$options$MetaAnalysisStudiesSig,
+                                 includeNulls=self$options$MetaAnalysisNulls=="yes")
+      changedM<- !identical(oldM,metaAnalysis)
       
       # store the option variables inside the braw package
       braw.def$hypothesis<<-hypothesis
       braw.def$design<<-design
       braw.def$evidence<<-evidence
       braw.def$explore<<-explore
-      # braw.def$metaAnalysis<<-metaAnalysis
+      braw.def$metaAnalysis<<-metaAnalysis
       
       # are any of the existing stored results now invalid?
       if (changedH || changedD) {
@@ -229,26 +229,34 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         braw.res$explore<<-NULL
         outputNow<-"System"
       }
-      # if (changedM) {
-      #   braw.res$metaAnalysis<<-NULL
-      #   outputNow<-"System"
-      # }
+      if (changedM) {
+        braw.res$metaAnalysis<<-NULL
+        outputNow<-"System"
+      }
       
       # now we start doing things
       # did we ask for a new sample?
-      newSample<-FALSE
       if (makeSampleNow) {
-        # make a sample
-        result<-doResult()
-        outputNow<-showSampleType
-        newSample<-TRUE
+        if (self$options$MetaAnalysisOn) {
+          metaResult<-doMetaAnalysis(1,NULL)
+          outputNow<-"MetaSingle"
+        } else {
+          # make a sample
+          result<-doResult()
+          outputNow<-showSampleType
+        }
       }
       
       # did we ask for new multiples?
       if (makeMultipleNow) {
         numberSamples<-self$options$numberSamples
-        expectedResult<-doExpected(nsims=numberSamples,expectedResult=braw.res$expected)
-        outputNow<-"Multiple"
+        if (self$options$MetaAnalysisOn) {
+          metaResult<-doMetaAnalysis(numberSamples,braw.res$metaAnalysis)
+          outputNow<-"MetaMultiple"
+        } else {
+          expectedResult<-doExpected(nsims=numberSamples,expectedResult=braw.res$expected)
+          outputNow<-"Multiple"
+        }
       }
       
       # did we ask for new explore?
@@ -296,6 +304,9 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                "Explore"={
                  self$results$graphPlot$setState(c(outputNow,showExploreParam,showExploreDimension,whichShowExploreOut))
                  # self$results$reportPlot$setState(c(outputNow,showExploreParam))
+               },
+               "MetaSingle"={
+                 self$results$graphPlot$setState(outputNow)
                },
                {
                  self$results$graphPlot$setState(outputNow)
@@ -355,6 +366,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                "Describe"  =outputGraph<-showDescription(),
                "Infer"     =outputGraph<-showInference(showType=image$state[2],dimension=image$state[3]),
                "Multiple"  =outputGraph<-showExpected(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),
+               "MetaSingle"  =outputGraph<-showMetaSingle(),
+               "MetaMultiple"  =outputGraph<-showMetaMultiple(),
                "Explore"   =outputGraph<-showExplore(showType=image$state[2],dimension=image$state[3],effectType=image$state[4])
         )
         print(outputGraph)

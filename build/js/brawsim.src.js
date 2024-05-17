@@ -3,7 +3,7 @@
 
 'use strict';
 
-const options = [{"name":"planOptions","title":" ","type":"List","options":[{"name":"planH","title":"Hypothesis"},{"name":"planD","title":"Design"},{"name":"planA","title":"Analysis"}]},{"name":"varOptions","title":" ","type":"List","options":[{"name":"IV","title":"IV"},{"name":"IV2","title":"IV2"},{"name":"DV","title":"DV"}],"default":"IV"},{"name":"effectOptions","title":" ","type":"List","options":[{"name":"simple","title":"simple"},{"name":"world","title":"world"}]},{"name":"presetHypothesis","title":"Hypothesis","type":"List","options":[{"name":"psych","title":"psychology"},{"name":"simple","title":"simple"}],"default":"simple"},{"name":"presetDesign","title":"Design","type":"List","options":[{"name":"psych","title":"psychology"},{"name":"simple","title":"simple"}],"default":"simple"},{"name":"DVname","title":"Name","type":"String","default":"DV"},{"name":"DVtype","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"DVmu","title":"mean","type":"Number","default":0},{"name":"DVsd","title":"sd","type":"Number","default":1},{"name":"DVskew","title":"skew","type":"Number","default":0},{"name":"DVkurt","title":"kurtosis","type":"Number","default":3},{"name":"DVnlevs","title":"no levels","type":"Number","default":7},{"name":"DViqr","title":"iqr","type":"Number","default":4},{"name":"DVncats","title":"no cases","type":"Number","default":2},{"name":"DVprops","title":"proportions","type":"String","default":"1,1"},{"name":"IVname","title":"Name","type":"String","default":"IV"},{"name":"IVtype","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"IVmu","title":"mean","type":"Number","default":0},{"name":"IVsd","title":"sd","type":"Number","default":1},{"name":"IVskew","title":"skew","type":"Number","default":0},{"name":"IVkurt","title":"kurtosis","type":"Number","default":3},{"name":"IVnlevs","title":"no levels","type":"Number","default":7},{"name":"IViqr","title":"iqr","type":"Number","default":4},{"name":"IVncats","title":"no cases","type":"Number","default":2},{"name":"IVprops","title":"proportions","type":"String","default":"1,1"},{"name":"IV2on","title":" ","type":"Bool","default":false},{"name":"IV2name","title":"Name","type":"String","default":"IV2"},{"name":"IV2type","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"IV2mu","title":"mean","type":"Number","default":0},{"name":"IV2sd","title":"sd","type":"Number","default":1},{"name":"IV2skew","title":"skew","type":"Number","default":0},{"name":"IV2kurt","title":"kurtosis","type":"Number","default":3},{"name":"IV2nlevs","title":"no levels","type":"Number","default":7},{"name":"IV2iqr","title":"iqr","type":"Number","default":4},{"name":"IV2ncats","title":"no cases","type":"Number","default":2},{"name":"IV2props","title":"proportions","type":"String","default":"1,1"},{"name":"EffectSize1","title":"IV->DV","type":"Number","default":0},{"name":"EffectSize2","title":"IV2->DV","type":"Number","default":0},{"name":"EffectSize3","title":"IV->IV2","type":"Number","default":0},{"name":"EffectSize12","title":"IV*IV2->DV","type":"Number","default":0},{"name":"Heteroscedasticity","title":"Heteroscedasticity","type":"Number","default":0},{"name":"Residuals","title":"Residuals","type":"List","options":[{"name":"normal","title":"normal"},{"name":"skewed","title":"skewed"},{"name":"uniform","title":"uniform"},{"name":"cauchy","title":"cauchy"}],"default":"normal"},{"name":"WorldOn","title":" ","type":"List","options":[{"name":"off","title":"off"},{"name":"on","title":"on"}],"default":"off"},{"name":"WorldPDF","title":"PDF","type":"List","options":[{"name":"Single","title":"Single"},{"name":"Double","title":"Double"},{"name":"Uniform","title":"Uniform"},{"name":"Gauss","title":"Gauss"},{"name":"Exp","title":"Exp"}],"default":"Single"},{"name":"WorldRZ","title":" ","type":"List","options":[{"name":"r","title":"r"},{"name":"z","title":"z"}]},{"name":"WorldLambda","title":"lambda","type":"Number","default":0.3},{"name":"WorldNullP","title":"p(null)","type":"Number","default":0.5},{"name":"SampleSize","title":"Sample Size","type":"Number","default":42},{"name":"SampleSpread","title":"variable?","type":"List","options":[{"name":"no","title":"no"},{"name":"yes","title":"yes"}],"default":"no"},{"name":"SampleGamma","title":" ","type":"Number","default":1.56},{"name":"SampleMethod","title":"Method","type":"List","options":[{"name":"Random","title":"Random"},{"name":"Stratified","title":"Stratified"},{"name":"Cluster","title":"Cluster"},{"name":"Convenience","title":"Convenience"}],"default":"Random"},{"name":"SampleUsage1","title":"Usage(IV)","type":"List","options":[{"name":"Between","title":"Between"},{"name":"Within","title":"Within"}],"default":"Between"},{"name":"SampleUsage2","title":"Usage(IV2)","type":"List","options":[{"name":"Between","title":"Between"},{"name":"Within","title":"Within"}],"default":"Between"},{"name":"Dependence","title":"Dependence","type":"Number","default":0},{"name":"Outliers","title":"Outliers","type":"Number","default":0},{"name":"Cheating","title":"Cheating","type":"List","options":[{"name":"None","title":"None"},{"name":"Grow","title":"Grow"},{"name":"Prune","title":"Prune"},{"name":"Replace","title":"Replace"},{"name":"Retry","title":"Retry"}],"default":"None"},{"name":"CheatingAttempts","title":"Attempts","type":"Number","default":5},{"name":"ReplicationOn","title":" ","type":"List","options":[{"name":"off","title":"off"},{"name":"on","title":"on"}],"default":"off"},{"name":"ReplicationPower","title":"power","type":"Number","default":0.8},{"name":"ReplicationPrior","title":"Prior","type":"List","options":[{"name":"None","title":"None"},{"name":"World","title":"World"},{"name":"Prior","title":"Prior"}],"default":"None"},{"name":"ReplicationAttempts","title":"Attempts","type":"Number","default":1},{"name":"ReplicationDecision","title":"Decision","type":"List","options":[{"name":"Cautious","title":"Cautious"},{"name":"Last","title":"Last"},{"name":"Median","title":"Median"},{"name":"SmallP","title":"SmallP"},{"name":"LargeN","title":"LargeN"}],"default":"Cautious"},{"name":"ReplicationAlpha","title":"alpha","type":"Number","default":0.05},{"name":"ReplicationSign","title":"same sign","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"alphaSig","title":"alpha","type":"Number","default":0.05},{"name":"ssq","title":"SSQ Type","type":"List","options":[{"name":"Type1","title":"Type1"},{"name":"Type2","title":"Type2"},{"name":"Type3","title":"Type3"}],"default":"Type3"},{"name":"interaction","title":"Interaction?","type":"List","options":[{"name":"no","title":"no"},{"name":"yes","title":"yes"}],"default":"yes"},{"name":"equalVar","title":"Equal variance","type":"List","options":[{"name":"no","title":"no"},{"name":"yes","title":"yes"}],"default":"yes"},{"name":"Transform","title":"Transform","type":"List","options":[{"name":"None","title":"None"},{"name":"Log","title":"Log"},{"name":"Exp","title":"Exp"}],"default":"None"},{"name":"showHypothesisBtn","title":"show","type":"Action"},{"name":"makeSampleBtn","type":"Action","title":"make","default":false},{"name":"numberSamples","title":"no of samples","type":"Number","default":100},{"name":"makeMultipleBtn","title":"make","type":"Action"},{"name":"singleVar1","title":" show:","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"rs"},{"name":"singleVar2","title":" &","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"p"},{"name":"multipleVar1","title":" show:","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"rs"},{"name":"multipleVar2","title":" &","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"p"},{"name":"showSampleType","title":" show:","type":"List","options":[{"name":"Sample","title":"Sample"},{"name":"Describe","title":"Describe"},{"name":"Infer","title":"Infer"}],"default":"Sample"},{"name":"showInferParam","title":" as:","type":"List","options":[{"name":"Basic","title":"Basic"},{"name":"Custom","title":"Custom"}],"default":"Basic"},{"name":"showInferDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"showMultipleParam","title":" show as:","type":"List","options":[{"name":"Basic","title":"Basic"},{"name":"NHST","title":"NHST"},{"name":"Hits","title":"Hits"},{"name":"Misses","title":"Misses"},{"name":"Custom","title":"Custom"}],"default":"Basic"},{"name":"showMultipleDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"whichShowMultiple","title":" ","type":"List","options":[{"name":"direct","title":"direct"},{"name":"unique","title":"unique"},{"name":"total","title":"total"},{"name":"all","title":"all"}],"default":"all"},{"name":"exploreNPointsH","title":"no of values","type":"Number","default":13},{"name":"exploreNPointsD","title":"no of values","type":"Number","default":13},{"name":"exploreNPointsA","title":"no of values","type":"Number","default":13},{"name":"exploreMinValH","title":"        ","type":"String","default":"-0.9"},{"name":"exploreMaxValH","title":"to","type":"String","default":"0.9"},{"name":"exploreMinValD","title":"        ","type":"String","default":"10"},{"name":"exploreMaxValD","title":"to","type":"String","default":"250"},{"name":"exploreMinValA","title":"        ","type":"String","default":"0.001"},{"name":"exploreMaxValA","title":"to","type":"String","default":"0.5"},{"name":"exploreXLogH","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogD","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogA","title":"log scale","type":"Bool","default":false},{"name":"numberExplores","title":"no of samples","type":"Number","default":50},{"name":"makeExploreBtn","title":"explore","type":"Action"},{"name":"exploreMode","title":"","type":"List","options":[{"name":"hypothesisExplore","title":"Hypothesis"},{"name":"designExplore","title":"Design"},{"name":"analysisExplore","title":"Analysis"}],"default":"designExplore"},{"name":"hypothesisExploreList","title":"","type":"List","options":[{"name":"rIV","title":"EffectSize"},{"name":"rIVIV2","title":"Covariation"},{"name":"Heteroscedasticity","title":"Hscedast"},{"name":"blank1h","title":" "},{"name":"PDF","title":"worldPDF"},{"name":"lambda","title":"worldLambda"},{"name":"pNull","title":"worldPNull"},{"name":"blank2h","title":" "},{"name":"IVType","title":"IVType"},{"name":"IVskew","title":"IVskew"},{"name":"IVkurtosis","title":"IVkurtosis"},{"name":"IVlevels","title":"IVlevels"},{"name":"IVcats","title":"IVcats"},{"name":"IVprops","title":"IVprops"},{"name":"DVType","title":"DVType"},{"name":"DVskew","title":"DVskew"},{"name":"DVkurtosis","title":"DVkurtosis"},{"name":"DVprops","title":"DVprops"}]},{"name":"designExploreList","title":"","type":"List","options":[{"name":"n","title":"SampleSize"},{"name":"Method","title":"Method"},{"name":"Usage","title":"Usage"},{"name":"blank1d","title":" "},{"name":"Dependence","title":"Dependence"},{"name":"Outliers","title":"Outliers"},{"name":"Cheating","title":"Cheating"},{"name":"CheatingAmount","title":"CheatAmount"},{"name":"blank2d","title":" "},{"name":"Power","title":"ReplPower"},{"name":"Keep","title":"ReplDecision"},{"name":"Repeats","title":"ReplAttempts"}]},{"name":"analysisExploreList","title":"","type":"List","options":[{"name":"Alpha","title":"Alpha"},{"name":"Transform","title":"Transform"},{"name":"Welch","title":"EqualVar"}]},{"name":"showExploreParam","title":"","type":"List","options":[{"name":"Basic","title":"Basic"},{"name":"p(sig)","title":"p(sig)"},{"name":"NHST","title":"NHST"},{"name":"Hits","title":"Hits"},{"name":"Misses","title":"Misses"},{"name":"Custom","title":"Custom"}],"default":"Basic"},{"name":"exploreVar1","title":" show:","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"rs"},{"name":"exploreVar2","title":" &","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"p"},{"name":"showExploreDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"whichShowExplore","title":" ","type":"List","options":[{"name":"direct","title":"direct"},{"name":"unique","title":"unique"},{"name":"total","title":"total"},{"name":"all","title":"all"}],"default":"all"},{"name":"sendSample","title":"sample","type":"Output","default":true},{"name":"sendMultiple","title":"multiple","type":"Output","default":true}];
+const options = [{"name":"planOptions","title":" ","type":"List","options":[{"name":"planH","title":"Hypothesis"},{"name":"planD","title":"Design"},{"name":"planA","title":"Analysis"}]},{"name":"varOptions","title":" ","type":"List","options":[{"name":"IV","title":"IV"},{"name":"IV2","title":"IV2"},{"name":"DV","title":"DV"}],"default":"IV"},{"name":"effectOptions","title":" ","type":"List","options":[{"name":"simple","title":"simple"},{"name":"world","title":"world"}]},{"name":"presetHypothesis","title":"Hypothesis","type":"List","options":[{"name":"psych","title":"psychology"},{"name":"simple","title":"simple"}],"default":"simple"},{"name":"presetDesign","title":"Design","type":"List","options":[{"name":"psych","title":"psychology"},{"name":"simple","title":"simple"}],"default":"simple"},{"name":"DVname","title":"Name","type":"String","default":"DV"},{"name":"DVtype","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"DVmu","title":"mean","type":"Number","default":0},{"name":"DVsd","title":"sd","type":"Number","default":1},{"name":"DVskew","title":"skew","type":"Number","default":0},{"name":"DVkurt","title":"kurtosis","type":"Number","default":3},{"name":"DVnlevs","title":"no levels","type":"Number","default":7},{"name":"DViqr","title":"iqr","type":"Number","default":4},{"name":"DVncats","title":"no cases","type":"Number","default":2},{"name":"DVprops","title":"proportions","type":"String","default":"1,1"},{"name":"IVname","title":"Name","type":"String","default":"IV"},{"name":"IVtype","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"IVmu","title":"mean","type":"Number","default":0},{"name":"IVsd","title":"sd","type":"Number","default":1},{"name":"IVskew","title":"skew","type":"Number","default":0},{"name":"IVkurt","title":"kurtosis","type":"Number","default":3},{"name":"IVnlevs","title":"no levels","type":"Number","default":7},{"name":"IViqr","title":"iqr","type":"Number","default":4},{"name":"IVncats","title":"no cases","type":"Number","default":2},{"name":"IVprops","title":"proportions","type":"String","default":"1,1"},{"name":"IV2on","title":" ","type":"Bool","default":false},{"name":"IV2name","title":"Name","type":"String","default":"IV2"},{"name":"IV2type","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"IV2mu","title":"mean","type":"Number","default":0},{"name":"IV2sd","title":"sd","type":"Number","default":1},{"name":"IV2skew","title":"skew","type":"Number","default":0},{"name":"IV2kurt","title":"kurtosis","type":"Number","default":3},{"name":"IV2nlevs","title":"no levels","type":"Number","default":7},{"name":"IV2iqr","title":"iqr","type":"Number","default":4},{"name":"IV2ncats","title":"no cases","type":"Number","default":2},{"name":"IV2props","title":"proportions","type":"String","default":"1,1"},{"name":"EffectSize1","title":"IV->DV","type":"Number","default":0},{"name":"EffectSize2","title":"IV2->DV","type":"Number","default":0},{"name":"EffectSize3","title":"IV->IV2","type":"Number","default":0},{"name":"EffectSize12","title":"IV*IV2->DV","type":"Number","default":0},{"name":"Heteroscedasticity","title":"Heteroscedasticity","type":"Number","default":0},{"name":"Residuals","title":"Residuals","type":"List","options":[{"name":"normal","title":"normal"},{"name":"skewed","title":"skewed"},{"name":"uniform","title":"uniform"},{"name":"cauchy","title":"cauchy"}],"default":"normal"},{"name":"WorldOn","title":"","type":"Bool","default":false},{"name":"WorldPDF","title":"PDF","type":"List","options":[{"name":"Single","title":"Single"},{"name":"Double","title":"Double"},{"name":"Uniform","title":"Uniform"},{"name":"Gauss","title":"Gauss"},{"name":"Exp","title":"Exp"}],"default":"Single"},{"name":"WorldRZ","title":" ","type":"List","options":[{"name":"r","title":"r"},{"name":"z","title":"z"}]},{"name":"WorldLambda","title":"lambda","type":"Number","default":0.3},{"name":"WorldNullP","title":"p(null)","type":"Number","default":0.5},{"name":"SampleSize","title":"Sample Size","type":"Number","default":42},{"name":"SampleSpread","title":"variable?","type":"List","options":[{"name":"no","title":"no"},{"name":"yes","title":"yes"}],"default":"no"},{"name":"SampleGamma","title":" ","type":"Number","default":1.56},{"name":"SampleMethod","title":"Method","type":"List","options":[{"name":"Random","title":"Random"},{"name":"Stratified","title":"Stratified"},{"name":"Cluster","title":"Cluster"},{"name":"Convenience","title":"Convenience"}],"default":"Random"},{"name":"SampleUsage1","title":"Usage(IV)","type":"List","options":[{"name":"Between","title":"Between"},{"name":"Within","title":"Within"}],"default":"Between"},{"name":"SampleUsage2","title":"Usage(IV2)","type":"List","options":[{"name":"Between","title":"Between"},{"name":"Within","title":"Within"}],"default":"Between"},{"name":"Dependence","title":"Dependence","type":"Number","default":0},{"name":"Outliers","title":"Outliers","type":"Number","default":0},{"name":"Cheating","title":"Cheating","type":"List","options":[{"name":"None","title":"None"},{"name":"Grow","title":"Grow"},{"name":"Prune","title":"Prune"},{"name":"Replace","title":"Replace"},{"name":"Retry","title":"Retry"}],"default":"None"},{"name":"CheatingAttempts","title":"Attempts","type":"Number","default":5},{"name":"ReplicationOn","title":"","type":"Bool","default":false},{"name":"ReplicationPower","title":"power","type":"Number","default":0.8},{"name":"ReplicationPrior","title":"Prior","type":"List","options":[{"name":"None","title":"None"},{"name":"World","title":"World"},{"name":"Prior","title":"Prior"}],"default":"None"},{"name":"ReplicationAttempts","title":"Attempts","type":"Number","default":1},{"name":"ReplicationDecision","title":"Decision","type":"List","options":[{"name":"Cautious","title":"Cautious"},{"name":"Last","title":"Last"},{"name":"Median","title":"Median"},{"name":"SmallP","title":"SmallP"},{"name":"LargeN","title":"LargeN"}],"default":"Cautious"},{"name":"ReplicationAlpha","title":"alpha","type":"Number","default":0.05},{"name":"ReplicationSign","title":"same sign","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"alphaSig","title":"alpha","type":"Number","default":0.05},{"name":"ssq","title":"SSQ Type","type":"List","options":[{"name":"Type1","title":"Type1"},{"name":"Type2","title":"Type2"},{"name":"Type3","title":"Type3"}],"default":"Type3"},{"name":"interaction","title":"Interaction?","type":"List","options":[{"name":"no","title":"no"},{"name":"yes","title":"yes"}],"default":"yes"},{"name":"equalVar","title":"Equal variance","type":"List","options":[{"name":"no","title":"no"},{"name":"yes","title":"yes"}],"default":"yes"},{"name":"Transform","title":"Transform","type":"List","options":[{"name":"None","title":"None"},{"name":"Log","title":"Log"},{"name":"Exp","title":"Exp"}],"default":"None"},{"name":"MetaAnalysisOn","title":"","type":"Bool","default":false},{"name":"MetaAnalysisType","title":" ","type":"List","options":[{"name":"random","title":"random"},{"name":"fixed","title":"fixed"}],"default":"random"},{"name":"MetaAnalysisNulls","title":"expect nulls","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"MetaAnalysisNStudies","title":"no of studies","type":"Number","default":10},{"name":"MetaAnalysisStudiesSig","title":" ","type":"List","options":[{"name":"all","title":"all"},{"name":"sigOnly","title":"sigOnly"}],"default":"sigOnly"},{"name":"showHypothesisBtn","title":"show","type":"Action"},{"name":"makeSampleBtn","type":"Action","title":"make","default":false},{"name":"numberSamples","title":"no of samples","type":"Number","default":100},{"name":"makeMultipleBtn","title":"make","type":"Action"},{"name":"singleVar1","title":" show:","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"rs"},{"name":"singleVar2","title":" &","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"p"},{"name":"multipleVar1","title":" show:","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"rs"},{"name":"multipleVar2","title":" &","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"p"},{"name":"showSampleType","title":" show:","type":"List","options":[{"name":"Sample","title":"Sample"},{"name":"Describe","title":"Describe"},{"name":"Infer","title":"Infer"}],"default":"Sample"},{"name":"showInferParam","title":" as:","type":"List","options":[{"name":"Basic","title":"Basic"},{"name":"Custom","title":"Custom"}],"default":"Basic"},{"name":"showInferDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"showMultipleParam","title":" show as:","type":"List","options":[{"name":"Basic","title":"Basic"},{"name":"NHST","title":"NHST"},{"name":"Hits","title":"Hits"},{"name":"Misses","title":"Misses"},{"name":"Custom","title":"Custom"}],"default":"Basic"},{"name":"showMultipleDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"whichShowMultiple","title":" ","type":"List","options":[{"name":"direct","title":"direct"},{"name":"unique","title":"unique"},{"name":"total","title":"total"},{"name":"all","title":"all"}],"default":"all"},{"name":"exploreNPointsH","title":"no of values","type":"Number","default":13},{"name":"exploreNPointsD","title":"no of values","type":"Number","default":13},{"name":"exploreNPointsA","title":"no of values","type":"Number","default":13},{"name":"exploreMinValH","title":"        ","type":"String","default":"-0.9"},{"name":"exploreMaxValH","title":"to","type":"String","default":"0.9"},{"name":"exploreMinValD","title":"        ","type":"String","default":"10"},{"name":"exploreMaxValD","title":"to","type":"String","default":"250"},{"name":"exploreMinValA","title":"        ","type":"String","default":"0.001"},{"name":"exploreMaxValA","title":"to","type":"String","default":"0.5"},{"name":"exploreXLogH","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogD","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogA","title":"log scale","type":"Bool","default":false},{"name":"numberExplores","title":"no of samples","type":"Number","default":50},{"name":"makeExploreBtn","title":"explore","type":"Action"},{"name":"exploreMode","title":"","type":"List","options":[{"name":"hypothesisExplore","title":"Hypothesis"},{"name":"designExplore","title":"Design"},{"name":"analysisExplore","title":"Analysis"}],"default":"designExplore"},{"name":"hypothesisExploreList","title":"","type":"List","options":[{"name":"rIV","title":"EffectSize"},{"name":"rIVIV2","title":"Covariation"},{"name":"Heteroscedasticity","title":"Hscedast"},{"name":"blank1h","title":" "},{"name":"PDF","title":"worldPDF"},{"name":"lambda","title":"worldLambda"},{"name":"pNull","title":"worldPNull"},{"name":"blank2h","title":" "},{"name":"IVType","title":"IVType"},{"name":"IVskew","title":"IVskew"},{"name":"IVkurtosis","title":"IVkurtosis"},{"name":"IVlevels","title":"IVlevels"},{"name":"IVcats","title":"IVcats"},{"name":"IVprops","title":"IVprops"},{"name":"DVType","title":"DVType"},{"name":"DVskew","title":"DVskew"},{"name":"DVkurtosis","title":"DVkurtosis"},{"name":"DVprops","title":"DVprops"}]},{"name":"designExploreList","title":"","type":"List","options":[{"name":"n","title":"SampleSize"},{"name":"Method","title":"Method"},{"name":"Usage","title":"Usage"},{"name":"blank1d","title":" "},{"name":"Dependence","title":"Dependence"},{"name":"Outliers","title":"Outliers"},{"name":"Cheating","title":"Cheating"},{"name":"CheatingAmount","title":"CheatAmount"},{"name":"blank2d","title":" "},{"name":"Power","title":"ReplPower"},{"name":"Keep","title":"ReplDecision"},{"name":"Repeats","title":"ReplAttempts"}]},{"name":"analysisExploreList","title":"","type":"List","options":[{"name":"Alpha","title":"Alpha"},{"name":"Transform","title":"Transform"},{"name":"Welch","title":"EqualVar"}]},{"name":"showExploreParam","title":"show as:","type":"List","options":[{"name":"Basic","title":"Basic"},{"name":"p(sig)","title":"p(sig)"},{"name":"NHST","title":"NHST"},{"name":"Hits","title":"Hits"},{"name":"Misses","title":"Misses"},{"name":"Custom","title":"Custom"}],"default":"Basic"},{"name":"exploreVar1","title":" show:","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"rs"},{"name":"exploreVar2","title":" &","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"p"},{"name":"showExploreDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"whichShowExplore","title":" ","type":"List","options":[{"name":"direct","title":"direct"},{"name":"unique","title":"unique"},{"name":"total","title":"total"},{"name":"all","title":"all"}],"default":"all"},{"name":"sendSample","title":"sample","type":"Output","default":true},{"name":"sendMultiple","title":"multiple","type":"Output","default":true}];
 
 const view = function() {
     
@@ -574,8 +574,14 @@ view.layout = ui.extend({
 																					margin: "none",
 																					controls: [
 																						{
-																							type: DefaultControls.ComboBox,
-																							typeName: 'ComboBox',
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "on?",
+																							margin: "none"
+																						},
+																						{
+																							type: DefaultControls.CheckBox,
+																							typeName: 'CheckBox',
 																							name: "WorldOn"
 																						},
 																						{
@@ -767,8 +773,14 @@ view.layout = ui.extend({
 																			margin: "none",
 																			controls: [
 																				{
-																					type: DefaultControls.ComboBox,
-																					typeName: 'ComboBox',
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "on?",
+																					margin: "none"
+																				},
+																				{
+																					type: DefaultControls.CheckBox,
+																					typeName: 'CheckBox',
 																					name: "ReplicationOn"
 																				},
 																				{
@@ -788,7 +800,7 @@ view.layout = ui.extend({
 																				{
 																					type: DefaultControls.ComboBox,
 																					typeName: 'ComboBox',
-																					name: "ReplicationDecision",
+																					name: "ReplicationPrior",
 																					margin: "none"
 																				}
 																			]
@@ -802,6 +814,12 @@ view.layout = ui.extend({
 																				{
 																					type: DefaultControls.ComboBox,
 																					typeName: 'ComboBox',
+																					name: "ReplicationDecision",
+																					margin: "none"
+																				},
+																				{
+																					type: DefaultControls.ComboBox,
+																					typeName: 'ComboBox',
 																					name: "ReplicationSign",
 																					margin: "none"
 																				},
@@ -811,12 +829,6 @@ view.layout = ui.extend({
 																					name: "ReplicationAlpha",
 																					margin: "none",
 																					format: FormatDef.number
-																				},
-																				{
-																					type: DefaultControls.ComboBox,
-																					typeName: 'ComboBox',
-																					name: "ReplicationPrior",
-																					margin: "none"
 																				}
 																			]
 																		}
@@ -985,6 +997,81 @@ view.layout = ui.extend({
 																	]
 																}
 															]
+														},
+														{
+															type: DefaultControls.CollapseBox,
+															typeName: 'CollapseBox',
+															label: "MetaAnalysis",
+															collapsed: true,
+															margin: "none",
+															controls: [
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "list",
+																	margin: "none",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "inline",
+																			margin: "none",
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "on?",
+																					margin: "none"
+																				},
+																				{
+																					type: DefaultControls.CheckBox,
+																					typeName: 'CheckBox',
+																					name: "MetaAnalysisOn"
+																				},
+																				{
+																					type: DefaultControls.ComboBox,
+																					typeName: 'ComboBox',
+																					name: "MetaAnalysisType",
+																					margin: "none"
+																				},
+																				{
+																					type: DefaultControls.ComboBox,
+																					typeName: 'ComboBox',
+																					name: "MetaAnalysisNulls",
+																					margin: "none"
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "inline",
+																			margin: "none",
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "source:",
+																					margin: "none"
+																				},
+																				{
+																					type: DefaultControls.TextBox,
+																					typeName: 'TextBox',
+																					name: "MetaAnalysisNStudies",
+																					margin: "none",
+																					format: FormatDef.number
+																				},
+																				{
+																					type: DefaultControls.ComboBox,
+																					typeName: 'ComboBox',
+																					name: "MetaAnalysisStudiesSig",
+																					margin: "none"
+																				}
+																			]
+																		}
+																	]
+																}
+															]
 														}
 													]
 												}
@@ -1032,7 +1119,8 @@ view.layout = ui.extend({
 						{
 							type: DefaultControls.ActionButton,
 							typeName: 'ActionButton',
-							name: "showHypothesisBtn"
+							name: "showHypothesisBtn",
+							maxWidth: 75
 						}
 					]
 				}
@@ -1094,7 +1182,8 @@ view.layout = ui.extend({
 						{
 							type: DefaultControls.ActionButton,
 							typeName: 'ActionButton',
-							name: "makeSampleBtn"
+							name: "makeSampleBtn",
+							maxWidth: 75
 						},
 						{
 							type: DefaultControls.ComboBox,
@@ -1188,7 +1277,8 @@ view.layout = ui.extend({
 						{
 							name: "makeMultipleBtn",
 							type: DefaultControls.ActionButton,
-							typeName: 'ActionButton'
+							typeName: 'ActionButton',
+							maxWidth: 75
 						},
 						{
 							name: "showMultipleParam",
@@ -1207,7 +1297,7 @@ view.layout = ui.extend({
 				{
 					type: DefaultControls.CollapseBox,
 					typeName: 'CollapseBox',
-					label: "Explore Parameters",
+					label: "Explore Plan",
 					collapsed: true,
 					margin: "none",
 					minWidth: 450,
@@ -1486,7 +1576,8 @@ view.layout = ui.extend({
 								{
 									name: "makeExploreBtn",
 									type: DefaultControls.ActionButton,
-									typeName: 'ActionButton'
+									typeName: 'ActionButton',
+									maxWidth: 75
 								},
 								{
 									type: DefaultControls.ComboBox,

@@ -147,7 +147,7 @@ yAxisLabel<-function(label){
          },
          "horz"={
            geom_text(data=axis,aes(x=x,y=y),label=label, parse = TRUE,
-                     hjust=0.5,vjust=-voff/1.5,
+                     hjust=0.5,vjust=-voff,
                      size=braw.env$labelSize*1.25*braw.env$plotLimits$fontScale,angle=90,fontface="bold")      
          }
   )
@@ -320,8 +320,6 @@ dataLegend<-function(data,title="title",fontsize=1.2) {
   
   fontsize<-fontsize*braw.env$labelSize
   names<-data$names
-  width<-max(nchar(names)+4)*0.003*fontsize
-  height<-(length(names)+1)*0.0125*fontsize
   width<-(max(nchar(names))*fontsize + 4*3.2)*braw.env$graphicsSize[1]/3200
   height<-(length(names)*fontsize + 1*3.2)*braw.env$graphicsSize[1]/800
   colours<-data$colours

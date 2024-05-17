@@ -7,6 +7,7 @@ import(mnormt)
 import(lme4)
 import(grDevices)
 import(stringr)
+import(NlcOptim)
 export(BrawSimClass)
 export(BrawSimOptions)
 
