@@ -550,6 +550,9 @@ children:
                                       - type: ComboBox
                                         name: MetaAnalysisNulls
                                         margin: none
+                                      - type: ComboBox
+                                        name: MetaAnalysisBias
+                                        margin: none
                                   - type: LayoutBox
                                     style: inline
                                     margin: none

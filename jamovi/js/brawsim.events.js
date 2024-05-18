@@ -65,14 +65,14 @@ const events =  {
       let presetH = ui.presetHypothesis.value();
       switch(presetH) {
         case "psych":
-          ui.WorldOn.setValue("on");
+          ui.WorldOn.setValue(true);
           ui.WorldPDF.setValue("Exp");
           ui.WorldRZ.setValue("z");
           ui.WorldLambda.setValue(0.3);
           ui.WorldNullP.setValue(0.75);
           break;
         case "simple":
-          ui.WorldOn.setValue("off");
+          ui.WorldOn.setValue(false);
           ui.rIV.setValue(0.3);
           break;
       }

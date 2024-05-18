@@ -78,6 +78,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             MetaAnalysisOn = FALSE,
             MetaAnalysisType = "random",
             MetaAnalysisNulls = "yes",
+            MetaAnalysisBias = "yes",
             MetaAnalysisNStudies = 10,
             MetaAnalysisStudiesSig = "sigOnly",
             showHypothesisBtn = NULL,
@@ -505,6 +506,13 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "yes",
                     "no"),
                 default="yes")
+            private$..MetaAnalysisBias <- jmvcore::OptionList$new(
+                "MetaAnalysisBias",
+                MetaAnalysisBias,
+                options=list(
+                    "yes",
+                    "no"),
+                default="yes")
             private$..MetaAnalysisNStudies <- jmvcore::OptionNumber$new(
                 "MetaAnalysisNStudies",
                 MetaAnalysisNStudies,
@@ -898,6 +906,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..MetaAnalysisOn)
             self$.addOption(private$..MetaAnalysisType)
             self$.addOption(private$..MetaAnalysisNulls)
+            self$.addOption(private$..MetaAnalysisBias)
             self$.addOption(private$..MetaAnalysisNStudies)
             self$.addOption(private$..MetaAnalysisStudiesSig)
             self$.addOption(private$..showHypothesisBtn)
@@ -1013,6 +1022,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         MetaAnalysisOn = function() private$..MetaAnalysisOn$value,
         MetaAnalysisType = function() private$..MetaAnalysisType$value,
         MetaAnalysisNulls = function() private$..MetaAnalysisNulls$value,
+        MetaAnalysisBias = function() private$..MetaAnalysisBias$value,
         MetaAnalysisNStudies = function() private$..MetaAnalysisNStudies$value,
         MetaAnalysisStudiesSig = function() private$..MetaAnalysisStudiesSig$value,
         showHypothesisBtn = function() private$..showHypothesisBtn$value,
@@ -1127,6 +1137,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..MetaAnalysisOn = NA,
         ..MetaAnalysisType = NA,
         ..MetaAnalysisNulls = NA,
+        ..MetaAnalysisBias = NA,
         ..MetaAnalysisNStudies = NA,
         ..MetaAnalysisStudiesSig = NA,
         ..showHypothesisBtn = NA,
@@ -1323,6 +1334,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param MetaAnalysisOn .
 #' @param MetaAnalysisType .
 #' @param MetaAnalysisNulls .
+#' @param MetaAnalysisBias .
 #' @param MetaAnalysisNStudies .
 #' @param MetaAnalysisStudiesSig .
 #' @param showHypothesisBtn .
@@ -1445,6 +1457,7 @@ BrawSim <- function(
     MetaAnalysisOn = FALSE,
     MetaAnalysisType = "random",
     MetaAnalysisNulls = "yes",
+    MetaAnalysisBias = "yes",
     MetaAnalysisNStudies = 10,
     MetaAnalysisStudiesSig = "sigOnly",
     showHypothesisBtn,
@@ -1562,6 +1575,7 @@ BrawSim <- function(
         MetaAnalysisOn = MetaAnalysisOn,
         MetaAnalysisType = MetaAnalysisType,
         MetaAnalysisNulls = MetaAnalysisNulls,
+        MetaAnalysisBias = MetaAnalysisBias,
         MetaAnalysisNStudies = MetaAnalysisNStudies,
         MetaAnalysisStudiesSig = MetaAnalysisStudiesSig,
         showHypothesisBtn = showHypothesisBtn,

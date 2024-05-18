@@ -530,6 +530,16 @@ options:
         title: no
       default: yes
 
+    - name: MetaAnalysisBias
+      title: 'expect bias'
+      type: List
+      options:
+      - name: yes
+        title: yes
+      - name: no
+        title: no
+      default: yes
+
     - name: MetaAnalysisNStudies
       title: 'no of studies'
       type: Number

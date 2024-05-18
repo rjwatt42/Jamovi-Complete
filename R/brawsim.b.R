@@ -199,8 +199,9 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       metaAnalysis<-makeMetaAnalysis(nstudies=self$options$MetaAnalysisNStudies,
                                  analysisType=self$options$MetaAnalysisType,
                                  modelPDF="All",
-                                 sig_only=self$options$MetaAnalysisStudiesSig,
-                                 includeNulls=self$options$MetaAnalysisNulls=="yes")
+                                 sigOnlySource=self$options$MetaAnalysisStudiesSig=="sigOnly",
+                                 includeNulls=self$options$MetaAnalysisNulls=="yes",
+                                 includeBias=self$options$MetaAnalysisBias=="yes")
       changedM<- !identical(oldM,metaAnalysis)
       
       # store the option variables inside the braw package
@@ -305,9 +306,6 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                  self$results$graphPlot$setState(c(outputNow,showExploreParam,showExploreDimension,whichShowExploreOut))
                  # self$results$reportPlot$setState(c(outputNow,showExploreParam))
                },
-               "MetaSingle"={
-                 self$results$graphPlot$setState(outputNow)
-               },
                {
                  self$results$graphPlot$setState(outputNow)
                  self$results$reportPlot$setState(outputNow)
@@ -385,6 +383,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                "Sample"    =outputGraph<-reportSample(),
                "Describe"  =outputGraph<-reportDescription(),
                "Infer"     =outputGraph<-reportInference(),
+               "MetaSingle"  =outputGraph<-reportMetaAnalysis(),
+               "MetaMultiple"  =outputGraph<-reportMetaAnalysis(),
                "Multiple"  =outputGraph<-reportExpected(showType=image$state[2]),
                "Explore"   =outputGraph<-reportExplore(showType=image$state[2])
         )
