@@ -14,7 +14,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
       # initialization code 
       if (!exists("braw.env")) {
-        BrawOpts(fontScale = 1.35,graphC="white",graphicsSize=17)
+        BrawOpts(fontScale = 1.5,graphC="white",graphicsSize=17)
         braw.env$graphicsSize<<-braw.env$graphicsSize*0.6
         statusStore<-list(lastOutput="System",
                           showSampleType="Sample",
@@ -204,12 +204,25 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                  includeBias=self$options$MetaAnalysisBias=="yes")
       changedM<- !identical(oldM,metaAnalysis)
       
+      oldP<-braw.def$possible
+      possible<-makePossible(typePossible=self$options$likelihoodType,
+                             UsePrior=self$options$likelihoodUsePrior,
+                             prior=makeWorld(worldOn=TRUE,
+                                             populationPDF=self$options$priorPDF,
+                                             populationRZ=self$options$priorRZ,
+                                             populationPDFk=self$options$priorLambda,
+                                             populationNullp=self$options$priorNullP)
+                             )
+      changedP<- !identical(oldP,possible)
+      
+      
       # store the option variables inside the braw package
       braw.def$hypothesis<<-hypothesis
       braw.def$design<<-design
       braw.def$evidence<<-evidence
       braw.def$explore<<-explore
       braw.def$metaAnalysis<<-metaAnalysis
+      braw.def$possible<<-possible
       
       # are any of the existing stored results now invalid?
       if (changedH || changedD) {
@@ -267,8 +280,9 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         outputNow<-"Explore"
       }
       
+      likelihoodCutaway<-(self$options$likelihoodCutaway=="cutaway")
       # self$results$debug$setVisible(TRUE)
-      # self$results$debug$setContent(c(self$options$planCollapse))
+      # self$results$debug$setContent(c(is.logical(likelihoodCutaway),likelihoodCutaway,self$options$likelihoodCutaway))
       
       # save everything for the next round      
       statusStore$showSampleType<-showSampleType
@@ -297,6 +311,10 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                "Infer"={
                  self$results$graphPlot$setState(c(outputNow,showInferParam,showInferDimension))
                  self$results$reportPlot$setState(c(outputNow,showInferParam))
+               },
+               "Likelihood"={
+                 possibleResult<-doPossible()
+                 self$results$graphPlot$setState(c(outputNow,likelihoodCutaway))
                },
                "Multiple"={
                  self$results$graphPlot$setState(c(outputNow,showMultipleParam,showMultipleDimension,whichShowMultipleOut))
@@ -363,6 +381,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                "Sample"    =outputGraph<-showSample(),
                "Describe"  =outputGraph<-showDescription(),
                "Infer"     =outputGraph<-showInference(showType=image$state[2],dimension=image$state[3]),
+               "Likelihood"=outputGraph<-showPossible(cutaway=as.logical(image$state[2])),
                "Multiple"  =outputGraph<-showExpected(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),
                "MetaSingle"  =outputGraph<-showMetaSingle(),
                "MetaMultiple"  =outputGraph<-showMetaMultiple(),

@@ -75,6 +75,13 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             interaction = "yes",
             equalVar = "yes",
             Transform = "None",
+            likelihoodType = "Populations",
+            likelihoodCutaway = "cutaway",
+            likelihoodUsePrior = "none",
+            priorPDF = "Exp",
+            priorRZ = "z",
+            priorLambda = 0.3,
+            priorNullP = 0,
             MetaAnalysisOn = FALSE,
             MetaAnalysisType = "random",
             MetaAnalysisNulls = "yes",
@@ -488,6 +495,53 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "Log",
                     "Exp"),
                 default="None")
+            private$..likelihoodType <- jmvcore::OptionList$new(
+                "likelihoodType",
+                likelihoodType,
+                options=list(
+                    "Samples",
+                    "Populations"),
+                default="Populations")
+            private$..likelihoodCutaway <- jmvcore::OptionList$new(
+                "likelihoodCutaway",
+                likelihoodCutaway,
+                options=list(
+                    "all",
+                    "cutaway"),
+                default="cutaway")
+            private$..likelihoodUsePrior <- jmvcore::OptionList$new(
+                "likelihoodUsePrior",
+                likelihoodUsePrior,
+                options=list(
+                    "none",
+                    "world",
+                    "prior"),
+                default="none")
+            private$..priorPDF <- jmvcore::OptionList$new(
+                "priorPDF",
+                priorPDF,
+                options=list(
+                    "Single",
+                    "Double",
+                    "Uniform",
+                    "Gauss",
+                    "Exp"),
+                default="Exp")
+            private$..priorRZ <- jmvcore::OptionList$new(
+                "priorRZ",
+                priorRZ,
+                options=list(
+                    "r",
+                    "z"),
+                default="z")
+            private$..priorLambda <- jmvcore::OptionNumber$new(
+                "priorLambda",
+                priorLambda,
+                default=0.3)
+            private$..priorNullP <- jmvcore::OptionNumber$new(
+                "priorNullP",
+                priorNullP,
+                default=0)
             private$..MetaAnalysisOn <- jmvcore::OptionBool$new(
                 "MetaAnalysisOn",
                 MetaAnalysisOn,
@@ -616,7 +670,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=list(
                     "Sample",
                     "Describe",
-                    "Infer"),
+                    "Infer",
+                    "Likelihood"),
                 default="Sample")
             private$..showInferParam <- jmvcore::OptionList$new(
                 "showInferParam",
@@ -903,6 +958,13 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..interaction)
             self$.addOption(private$..equalVar)
             self$.addOption(private$..Transform)
+            self$.addOption(private$..likelihoodType)
+            self$.addOption(private$..likelihoodCutaway)
+            self$.addOption(private$..likelihoodUsePrior)
+            self$.addOption(private$..priorPDF)
+            self$.addOption(private$..priorRZ)
+            self$.addOption(private$..priorLambda)
+            self$.addOption(private$..priorNullP)
             self$.addOption(private$..MetaAnalysisOn)
             self$.addOption(private$..MetaAnalysisType)
             self$.addOption(private$..MetaAnalysisNulls)
@@ -1019,6 +1081,13 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         interaction = function() private$..interaction$value,
         equalVar = function() private$..equalVar$value,
         Transform = function() private$..Transform$value,
+        likelihoodType = function() private$..likelihoodType$value,
+        likelihoodCutaway = function() private$..likelihoodCutaway$value,
+        likelihoodUsePrior = function() private$..likelihoodUsePrior$value,
+        priorPDF = function() private$..priorPDF$value,
+        priorRZ = function() private$..priorRZ$value,
+        priorLambda = function() private$..priorLambda$value,
+        priorNullP = function() private$..priorNullP$value,
         MetaAnalysisOn = function() private$..MetaAnalysisOn$value,
         MetaAnalysisType = function() private$..MetaAnalysisType$value,
         MetaAnalysisNulls = function() private$..MetaAnalysisNulls$value,
@@ -1134,6 +1203,13 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..interaction = NA,
         ..equalVar = NA,
         ..Transform = NA,
+        ..likelihoodType = NA,
+        ..likelihoodCutaway = NA,
+        ..likelihoodUsePrior = NA,
+        ..priorPDF = NA,
+        ..priorRZ = NA,
+        ..priorLambda = NA,
+        ..priorNullP = NA,
         ..MetaAnalysisOn = NA,
         ..MetaAnalysisType = NA,
         ..MetaAnalysisNulls = NA,
@@ -1331,6 +1407,13 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param interaction .
 #' @param equalVar .
 #' @param Transform .
+#' @param likelihoodType .
+#' @param likelihoodCutaway .
+#' @param likelihoodUsePrior .
+#' @param priorPDF .
+#' @param priorRZ .
+#' @param priorLambda .
+#' @param priorNullP .
 #' @param MetaAnalysisOn .
 #' @param MetaAnalysisType .
 #' @param MetaAnalysisNulls .
@@ -1454,6 +1537,13 @@ BrawSim <- function(
     interaction = "yes",
     equalVar = "yes",
     Transform = "None",
+    likelihoodType = "Populations",
+    likelihoodCutaway = "cutaway",
+    likelihoodUsePrior = "none",
+    priorPDF = "Exp",
+    priorRZ = "z",
+    priorLambda = 0.3,
+    priorNullP = 0,
     MetaAnalysisOn = FALSE,
     MetaAnalysisType = "random",
     MetaAnalysisNulls = "yes",
@@ -1572,6 +1662,13 @@ BrawSim <- function(
         interaction = interaction,
         equalVar = equalVar,
         Transform = Transform,
+        likelihoodType = likelihoodType,
+        likelihoodCutaway = likelihoodCutaway,
+        likelihoodUsePrior = likelihoodUsePrior,
+        priorPDF = priorPDF,
+        priorRZ = priorRZ,
+        priorLambda = priorLambda,
+        priorNullP = priorNullP,
         MetaAnalysisOn = MetaAnalysisOn,
         MetaAnalysisType = MetaAnalysisType,
         MetaAnalysisNulls = MetaAnalysisNulls,

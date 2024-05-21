@@ -278,6 +278,8 @@ braw.def$design<-makeDesign()
 braw.def$evidence<-makeEvidence()
 braw.def$metaAnalysis<-makeMetaAnalysis()
 braw.def$explore<-makeExplore()
+braw.def$possible<-makePossible(targetSample=0.3,
+                                hypothesis=braw.def$hypothesis,design=braw.def$design)
 
 braw.def<<-braw.def
 
@@ -286,6 +288,7 @@ braw.res$expected<-NULL
 braw.res$explore<-NULL 
 braw.res$metaResult<-NULL
 braw.res$metaMultiple<-NULL
+braw.res$possibleResult<-NULL
 
 braw.res<<-braw.res
 }
