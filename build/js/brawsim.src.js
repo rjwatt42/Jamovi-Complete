@@ -719,7 +719,8 @@ view.layout = ui.extend({
 																					typeName: 'TextBox',
 																					name: "SampleGamma",
 																					margin: "none",
-																					format: FormatDef.number
+																					format: FormatDef.number,
+																					enable: "(SampleSpread:yes)"
 																				}
 																			]
 																		},
@@ -747,12 +748,14 @@ view.layout = ui.extend({
 																					type: DefaultControls.ComboBox,
 																					typeName: 'ComboBox',
 																					name: "SampleUsage1",
+																					enable: "(IVtype:Categorical)",
 																					margin: "none"
 																				},
 																				{
 																					type: DefaultControls.ComboBox,
 																					typeName: 'ComboBox',
 																					name: "SampleUsage2",
+																					enable: "(IV2on && IV2type:Categorical)",
 																					margin: "none"
 																				}
 																			]

@@ -386,6 +386,7 @@ children:
                                         name: SampleGamma
                                         margin: none
                                         format: number
+                                        enable: (SampleSpread:yes)
                                   - type: LayoutBox
                                     style: inline
                                     margin: none
@@ -399,9 +400,11 @@ children:
                                     children:
                                       - type: ComboBox
                                         name: SampleUsage1
+                                        enable: (IVtype:Categorical)
                                         margin: none
                                       - type: ComboBox
                                         name: SampleUsage2
+                                        enable: (IV2on && IV2type:Categorical)
                                         margin: none
                           - type: CollapseBox
                             label: Replication
