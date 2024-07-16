@@ -943,6 +943,8 @@ options:
       options:
         - name: Basic
           title: Basic
+        - name: 'p(sig)'
+          title: 'p(sig)'
         - name: NHST
           title: NHST
         - name: Hits

@@ -399,12 +399,14 @@ doSample<-function(hypothesis=braw.def$hypothesis,design=braw.def$design,autoSho
       if (design$sDependence>0) {
         dependenceVal=0.1
         change<-round(n*design$sDependence/2)
-        ivr[1:change]<-ivr[change+(1:change)]+rnorm(change,0,1)*dependenceVal
-        if (!is.null(IV2)) {
-        iv2r[1:change]<-iv2r[change+(1:change)]+rnorm(change,0,1)*dependenceVal
-        iv12r[1:change]<-iv12r[change+(1:change)]+rnorm(change,0,1)*dependenceVal
+        if (change>0) {
+          ivr[1:change]<-ivr[change+(1:change)]+rnorm(change,0,1)*dependenceVal
+          if (!is.null(IV2)) {
+            iv2r[1:change]<-iv2r[change+(1:change)]+rnorm(change,0,1)*dependenceVal
+            iv12r[1:change]<-iv12r[change+(1:change)]+rnorm(change,0,1)*dependenceVal
+          }
+          residual[1:change]<-residual[change+(1:change)]+rnorm(change,0,1)*dependenceVal
         }
-        residual[1:change]<-residual[change+(1:change)]+rnorm(change,0,1)*dependenceVal
       }
       
       switch(IV$type,

@@ -776,6 +776,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 showMultipleParam,
                 options=list(
                     "Basic",
+                    "p(sig)",
                     "NHST",
                     "Hits",
                     "Misses",

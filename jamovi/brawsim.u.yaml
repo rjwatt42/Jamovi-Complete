@@ -1344,7 +1344,7 @@ children:
                     enable: (showExploreParam:Custom)
                   - type: ComboBox
                     name: showExploreDimension
-                    enable: (showExploreParam:Custom)
+                    enable: (showExploreParam:Basic || showExploreParam:Custom)
           - type: LayoutBox
             style: list
             margin: none
@@ -1443,6 +1443,91 @@ children:
   - type: Label
     label: Extra
     children:
+    - type: CollapseBox
+      collapsed: true
+      label: Display Options
+      margin: none
+      maxWidth: 330
+      children:
+      - type: LayoutBox
+        style: list
+        children:
+        - type: LayoutBox
+          style: inline
+          children:
+          - type: Label
+            label: 'Basic'
+            minWidth: 60
+          - type: Label
+            label: 'show sample effect size and p-value (1D or 2D)'
+        - type: LayoutBox
+          style: inline
+          children:
+          - type: Label
+            label: 'p(sig)'
+            minWidth: 60
+          - type: Label
+            label: 'show the probability of a significant result'
+        - type: LayoutBox
+          style: inline
+          children:
+          - type: Label
+            label: 'NHST'
+            minWidth: 60
+          - type: Label
+            label: 'show p-values for hypothesis and null hypothesis'
+        - type: LayoutBox
+          style: inline
+          children:
+          - type: Label
+            label: 'Hits'
+            minWidth: 60
+          - type: Label
+            label: 'show significant p-values for hypothesis and null hypothesis'
+        - type: LayoutBox
+          style: inline
+          children:
+          - type: Label
+            label: 'Misses'
+            minWidth: 60
+          - type: Label
+            label: 'show non-significant p-values for hypothesis and null hypothesis'
+        - type: LayoutBox
+          style: inline
+          children:
+          - type: Label
+            label: 'Custom'
+            minWidth: 60
+          - type: Label
+            label: 'show any two parameters chosen from menus above (1D or 2D)'
+            
+    - type: CollapseBox
+      collapsed: true
+      label: Using a World
+      margin: none
+      maxWidth: 330
+      children:
+      - type: LayoutBox
+        style: list
+        children:
+        - type: Label
+          label: 'In simple mode, BrawStats models a single hypothesis with a fixed effect.'
+        - type: Label
+          label: 'The hypothesis is always correct. This is, of course, unrealistic.'
+        - type: Label
+          label: ''
+        - type: Label
+          label: 'A world is a system that models an entire discipline.'
+        - type: Label
+          label: 'The population effect sizes for each sample is drawn at random from a'
+        - type: Label
+          label: 'distribution of possible values. The hypothesis has a probability of'
+        - type: Label
+          label: 'being wrong - rp is set to zero.'
+        - type: Label
+          label: 'Sample sizes are also drawn at random for each sample from a distribution of'
+        - type: Label
+          label: 'possible values.'
     - type: CollapseBox
       collapsed: true
       label: Nomenclature
