@@ -857,7 +857,7 @@ children:
               name: showInferParam
               enable: (showSampleType:Infer)
   - type: Label
-    label: '3. Expected'
+    label: '3. Many Samples'
     children:
       - type: Label
         label: 'By running many samples, we can see the range of outcomes to expect'
