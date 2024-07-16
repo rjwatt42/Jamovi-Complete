@@ -46,26 +46,6 @@ view.layout = ui.extend({
 					minWidth: 450,
 					controls: [
 						{
-							type: DefaultControls.LayoutBox,
-							typeName: 'LayoutBox',
-							style: "inline",
-							controls: [
-								{
-									type: DefaultControls.Label,
-									typeName: 'Label',
-									label: " ",
-									verticalAlignment: "center",
-									margin: "small",
-									minWidth: 2
-								},
-								{
-									type: DefaultControls.Label,
-									typeName: 'Label',
-									label: "- make each of these in turn"
-								}
-							]
-						},
-						{
 							name: "planOptions",
 							type: DefaultControls.ModeSelector,
 							typeName: 'ModeSelector',
@@ -1935,7 +1915,7 @@ view.layout = ui.extend({
 												{
 													type: DefaultControls.Label,
 													typeName: 'Label',
-													label: "Change the sampling method"
+													label: "Change the sampling method and repeat the samples"
 												}
 											]
 										},

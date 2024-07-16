@@ -18,16 +18,16 @@ children:
         margin: none
         minWidth: 450
         children:
-          - type: LayoutBox
-            style: inline
-            children:
-              - type: Label
-                label: ' '
-                verticalAlignment: center
-                margin: small
-                minWidth: 2
-              - type: Label
-                label: '- make each of these in turn'
+          # - type: LayoutBox
+          #   style: inline
+          #   children:
+          #     - type: Label
+          #       label: ' '
+          #       verticalAlignment: center
+          #       margin: small
+          #       minWidth: 2
+          #     - type: Label
+          #       label: '- make each of these in turn'
           - name: planOptions
             type: ModeSelector
             margin: none
@@ -1025,7 +1025,7 @@ children:
                         label: ' '
                         minWidth: 13
                       - type: Label
-                        label: Change the sampling method
+                        label: Change the sampling method and repeat the samples
                   - type: LayoutBox
                     style: inline
                     margin: none
