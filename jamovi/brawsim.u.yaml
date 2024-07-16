@@ -5,14 +5,28 @@ stage: 0
 compilerMode: tame
 children:
   - type: Label
-    label: Plan
+    label: '1. Make a Plan'
     children:
+      - type: Label
+        label: 'Start by making a research plan'
       - type: CollapseBox
         collapsed: true
         label: Plan
         margin: none
         minWidth: 450
         children:
+          - type: Label
+            label: "A plan has 3 parts: a hypothesis, a design and an analysis"
+          - type: LayoutBox
+            style: inline
+            children:
+            - type: Label
+              label: ' '
+              verticalAlignment: center
+              margin: small
+              minWidth: 2
+            - type: Label
+              label: '- make each of these in turn'
           - name: planOptions
             type: ModeSelector
             margin: none
@@ -32,26 +46,137 @@ children:
                         style: list
                         margin: none
                         children:
+                          - type: Label
+                            label: "A hypothesis has 2 components: variables and their effects"
                           - type: CollapseBox
                             collapsed: true
                             label: Variables
                             margin: none
                             children:
+                              - type: Label
+                                label: 'Define the DV and 1 or 2 IVs'
+                              - type: LayoutBox
+                                style: inline
+                                children:
+                                  - type: Label
+                                    label: ' '
+                                    verticalAlignment: center
+                                    margin: small
+                                    minWidth: 2
+                                  - type: Label
+                                    label: '- edit the form or choose a preset variable'
                               - type: ModeSelector
                                 name: varOptions
                                 margin: none
                                 children:
+                                  - type: Content
+                                    name: DV
+                                    children:
+                                      - type: LayoutBox
+                                        style: inline
+                                        margin: none
+                                        minWidth: 120
+                                        children:
+                                          - type: TextBox
+                                            name: DVname
+                                            format: string
+                                            margin: none
+                                            stretchFactor: 1
+                                      - type: LayoutBox
+                                        style: inline
+                                        margin: none
+                                        children:
+                                          - type: ComboBox
+                                            name: DVtype
+                                            margin: none
+                                      - type: LayoutBox
+                                        style: inline
+                                        margin: none
+                                        children:
+                                          - type: Label
+                                            label: ' '
+                                            verticalAlignment: center
+                                            margin: small
+                                            minWidth: 35
+                                          - type: TextBox
+                                            name: DVmu
+                                            format: number
+                                            enable: (DVtype:Interval)
+                                          - type: TextBox
+                                            name: DVsd
+                                            format: number
+                                            enable: (DVtype:Interval)
+                                          - type: TextBox
+                                            name: DVskew
+                                            format: number
+                                            enable: (DVtype:Interval)
+                                          - type: TextBox
+                                            name: DVkurt
+                                            format: number
+                                            enable: (DVtype:Interval)
+                                      - type: LayoutBox
+                                        style: inline
+                                        margin: none
+                                        children:
+                                          - type: Label
+                                            label: ' '
+                                            verticalAlignment: center
+                                            margin: small
+                                            minWidth: 35
+                                          - type: TextBox
+                                            name: DVnlevs
+                                            format: number
+                                            enable: (DVtype:Ordinal)
+                                          - type: TextBox
+                                            name: DViqr
+                                            format: number
+                                            enable: (DVtype:Ordinal)
+                                      - type: LayoutBox
+                                        style: inline
+                                        margin: none
+                                        children:
+                                          - type: Label
+                                            label: ' '
+                                            verticalAlignment: center
+                                            margin: small
+                                            minWidth: 35
+                                          - type: TextBox
+                                            name: DVncats
+                                            format: number
+                                            enable: (DVtype:Categorical)
+                                          - type: TextBox
+                                            name: DVcases
+                                            format: string
+                                            enable: (DVtype:Categorical)
+                                          - type: TextBox
+                                            name: DVprops
+                                            format: string
+                                            enable: (DVtype:Categorical)
+                                      - type: LayoutBox
+                                        style: inline
+                                        margin: none
+                                        children:
+                                          - type: ComboBox
+                                            name: presetDV
+                                            events:
+                                              change: ./BrawSim.events::onChange_presetDV
                                   - type: Content
                                     name: IV
                                     children:
                                       - type: LayoutBox
                                         style: inline
                                         margin: none
+                                        minWidth: 120
                                         children:
                                           - type: TextBox
                                             name: IVname
                                             format: string
-                                            margin: normal
+                                            margin: none
+                                            stretchFactor: 1
+                                      - type: LayoutBox
+                                        style: inline
+                                        margin: none
+                                        children:
                                           - type: ComboBox
                                             name: IVtype
                                             margin: none
@@ -111,9 +236,21 @@ children:
                                             format: number
                                             enable: (IVtype:Categorical)
                                           - type: TextBox
+                                            name: IVcases
+                                            format: string
+                                            enable: (IVtype:Categorical)
+                                          - type: TextBox
                                             name: IVprops
                                             format: string
                                             enable: (IVtype:Categorical)
+                                      - type: LayoutBox
+                                        style: inline
+                                        margin: none
+                                        children:
+                                          - type: ComboBox
+                                            name: presetIV
+                                            events:
+                                              change: ./BrawSim.events::onChange_presetIV
                                   - type: Content
                                     name: IV2
                                     children:
@@ -123,11 +260,21 @@ children:
                                           - type: CheckBox
                                             name: IV2on
                                             margin: none
+                                      - type: LayoutBox
+                                        style: inline
+                                        margin: none
+                                        minWidth: 120
+                                        children:
                                           - type: TextBox
                                             name: IV2name
                                             format: string
-                                            margin: normal
+                                            margin: none
+                                            stretchFactor: 1
                                             enable: (IV2on)
+                                      - type: LayoutBox
+                                        style: inline
+                                        margin: none
+                                        children:
                                           - type: ComboBox
                                             name: IV2type
                                             margin: none
@@ -188,87 +335,37 @@ children:
                                             format: number
                                             enable: (IV2on && IV2type:Categorical)
                                           - type: TextBox
+                                            name: IV2cases
+                                            format: string
+                                            enable: (IV2on && IV2type:Categorical)
+                                          - type: TextBox
                                             name: IV2props
                                             format: string
                                             enable: (IV2on && IV2type:Categorical)
-                                  - type: Content
-                                    name: DV
-                                    children:
                                       - type: LayoutBox
                                         style: inline
                                         margin: none
                                         children:
-                                          - type: TextBox
-                                            name: DVname
-                                            format: string
-                                            margin: normal
                                           - type: ComboBox
-                                            name: DVtype
-                                            margin: none
-                                      - type: LayoutBox
-                                        style: inline
-                                        margin: none
-                                        children:
-                                          - type: Label
-                                            label: ' '
-                                            verticalAlignment: center
-                                            margin: small
-                                            minWidth: 35
-                                          - type: TextBox
-                                            name: DVmu
-                                            format: number
-                                            enable: (DVtype:Interval)
-                                          - type: TextBox
-                                            name: DVsd
-                                            format: number
-                                            enable: (DVtype:Interval)
-                                          - type: TextBox
-                                            name: DVskew
-                                            format: number
-                                            enable: (DVtype:Interval)
-                                          - type: TextBox
-                                            name: DVkurt
-                                            format: number
-                                            enable: (DVtype:Interval)
-                                      - type: LayoutBox
-                                        style: inline
-                                        margin: none
-                                        children:
-                                          - type: Label
-                                            label: ' '
-                                            verticalAlignment: center
-                                            margin: small
-                                            minWidth: 35
-                                          - type: TextBox
-                                            name: DVnlevs
-                                            format: number
-                                            enable: (DVtype:Ordinal)
-                                          - type: TextBox
-                                            name: DViqr
-                                            format: number
-                                            enable: (DVtype:Ordinal)
-                                      - type: LayoutBox
-                                        style: inline
-                                        margin: none
-                                        children:
-                                          - type: Label
-                                            label: ' '
-                                            verticalAlignment: center
-                                            margin: small
-                                            minWidth: 35
-                                          - type: TextBox
-                                            name: DVncats
-                                            format: number
-                                            enable: (DVtype:Categorical)
-                                          - type: TextBox
-                                            name: DVprops
-                                            format: string
-                                            enable: (DVtype:Categorical)
+                                            name: presetIV2
+                                            events:
+                                              change: ./BrawSim.events::onChange_presetIV2
                           - type: CollapseBox
                             collapsed: true
                             label: Effects
                             margin: none
                             children:
+                              - type: Label
+                                label: 'set the effect each variable has on the others'
+                              - type: LayoutBox
+                                style: inline
+                                margin: none
+                                children:
+                                  - type: Label
+                                    label: ' '
+                                    minWidth: 2
+                                  - type: Label
+                                    label: '- these are r and range between -1 and +1'
                               - type: ModeSelector
                                 name: effectOptions
                                 margin: none
@@ -327,6 +424,14 @@ children:
                                           - type: TextBox
                                             name: WorldNullP
                                             format: number
+                                      - type: LayoutBox
+                                        style: inline
+                                        margin: none
+                                        children:
+                                          - type: ComboBox
+                                            name: presetHypothesis
+                                            events:
+                                              change: ./BrawSim.events::onChange_presetHypothesis
                           - type: CollapseBox
                             collapsed: true
                             label: Anomalies
@@ -343,10 +448,6 @@ children:
                                     name: Heteroscedasticity
                                     margin: none
                                     format: number
-                          - type: ComboBox
-                            name: presetHypothesis
-                            events:
-                              change: ./BrawSim.events::onChange_presetHypothesis
               - type: Content
                 name: planD
                 children:
@@ -362,6 +463,8 @@ children:
                         style: list
                         margin: none
                         children:
+                          - type: Label
+                            label: "A design requires decisions about sampling"
                           - type: CollapseBox
                             label: Sampling
                             collapsed: true
@@ -371,10 +474,17 @@ children:
                                 style: list
                                 margin: none
                                 children:
+                                  - type: Label
+                                    label: "Sampling has 3 elements: sample size, method and usage"
                                   - type: LayoutBox
                                     style: inline
                                     margin: none
                                     children:
+                                      - type: Label
+                                        label: ' '
+                                        verticalAlignment: center
+                                        margin: small
+                                        minWidth: 13
                                       - type: TextBox
                                         name: SampleSize
                                         margin: none
@@ -391,6 +501,11 @@ children:
                                     style: inline
                                     margin: none
                                     children:
+                                      - type: Label
+                                        label: ' '
+                                        verticalAlignment: center
+                                        margin: small
+                                        minWidth: 13
                                       - type: ComboBox
                                         name: SampleMethod
                                         margin: none
@@ -398,6 +513,11 @@ children:
                                     style: inline
                                     margin: none
                                     children:
+                                      - type: Label
+                                        label: ' '
+                                        verticalAlignment: center
+                                        margin: small
+                                        minWidth: 13
                                       - type: ComboBox
                                         name: SampleUsage1
                                         enable: (IVtype:Categorical)
@@ -406,49 +526,6 @@ children:
                                         name: SampleUsage2
                                         enable: (IV2on && IV2type:Categorical)
                                         margin: none
-                          - type: CollapseBox
-                            label: Replication
-                            collapsed: true
-                            margin: none
-                            children:
-                              - type: LayoutBox
-                                style: list
-                                margin: none
-                                children:
-                                  - type: LayoutBox
-                                    style: inline
-                                    margin: none
-                                    children:
-                                      - type: Label
-                                        label: on?
-                                        margin: none
-                                      - type: CheckBox
-                                        name: ReplicationOn
-                                      - type: TextBox
-                                        name: ReplicationPower
-                                        margin: none
-                                        format: number
-                                      - type: TextBox
-                                        name: ReplicationAttempts
-                                        margin: none
-                                        format: number
-                                      - type: ComboBox
-                                        name: ReplicationPrior
-                                        margin: none
-                                  - type: LayoutBox
-                                    style: inline
-                                    margin: none
-                                    children:
-                                      - type: ComboBox
-                                        name: ReplicationDecision
-                                        margin: none
-                                      - type: ComboBox
-                                        name: ReplicationSign
-                                        margin: none
-                                      - type: TextBox
-                                        name: ReplicationAlpha
-                                        margin: none
-                                        format: number
                           - type: CollapseBox
                             label: Anomalies
                             collapsed: true
@@ -504,24 +581,60 @@ children:
                         style: list
                         margin: none
                         children:
+                          - type: Label
+                            label: "An analysis involves decisions about: NHST and Likelihood (optional)"
                           - type: CollapseBox
-                            label: General
+                            label: Sample Effect Sizes
                             collapsed: true
                             margin: none
                             children:
+                              - type: Label
+                                label: "Choose which effect size to show:"
                               - type: LayoutBox
                                 style: inline
                                 margin: none
                                 children:
+                                  - type: Label
+                                    label: ' '
+                                    verticalAlignment: center
+                                    margin: small
+                                    minWidth: 13
+                                  - type: ComboBox
+                                    name: whichShowMultiple
+                                    enable: (IV2on)
+                          - type: CollapseBox
+                            label: NHST
+                            collapsed: true
+                            margin: none
+                            children:
+                              - type: Label
+                                label: "Null hypothesis test involves: alpha (0.05) and some assumptions"
+                              - type: LayoutBox
+                                style: inline
+                                margin: none
+                                children:
+                                  - type: Label
+                                    label: ' '
+                                    verticalAlignment: center
+                                    margin: small
+                                    minWidth: 13
                                   - type: TextBox
                                     name: alphaSig
                                     format: number
                                   - type: ComboBox
                                     name: Transform
+                                  - type: ComboBox
+                                    name: interaction
+                                    enable: (IV2on)
                               - type: LayoutBox
                                 style: inline
                                 margin: none
                                 children:
+                                  - type: Label
+                                    label: ' '
+                                    verticalAlignment: center
+                                    margin: small
+                                    minWidth: 13
                                   - type: ComboBox
                                     name: equalVar
                                     enable: (IVtype:Categorical && DVtype:Interval)
@@ -529,18 +642,22 @@ children:
                                     name: ssq
                                     format: number
                                     enable: (IV2on)
-                                  - type: ComboBox
-                                    name: interaction
-                                    enable: (IV2on)
                           - type: CollapseBox
                             label: Likelihood
                             collapsed: true
                             margin: none
                             children:
+                              - type: Label
+                                label: "These options control likelihood graphs"
                               - type: LayoutBox
                                 style: inline
                                 margin: none
                                 children:
+                                  - type: Label
+                                    label: ' '
+                                    verticalAlignment: center
+                                    margin: small
+                                    minWidth: 13
                                   - name: likelihoodType
                                     type: ComboBox
                                   - name: likelihoodCutaway
@@ -550,23 +667,96 @@ children:
                                 style: inline
                                 margin: none
                                 children:
+                                  - type: Label
+                                    label: ' '
+                                    verticalAlignment: center
+                                    margin: small
+                                    minWidth: 13
                                   - name: likelihoodUsePrior
                                     type: ComboBox
                                     enable: (likelihoodType:Populations)
                                   - name: priorPDF
                                     type: ComboBox
-                                    enable: (likelihoodType:Populations && likelihoodUsePrior:prior)
+                                    enable: >-
+                                      (likelihoodType:Populations &&
+                                      likelihoodUsePrior:prior)
                                   - name: priorRZ
                                     type: ComboBox
-                                    enable: (likelihoodType:Populations && likelihoodUsePrior:prior)
+                                    enable: >-
+                                      (likelihoodType:Populations &&
+                                      likelihoodUsePrior:prior)
                                   - type: TextBox
                                     name: priorLambda
                                     format: number
-                                    enable: (likelihoodType:Populations && likelihoodUsePrior:prior)
+                                    enable: >-
+                                      (likelihoodType:Populations &&
+                                      likelihoodUsePrior:prior)
                                   - name: priorNullP
                                     type: TextBox
-                                    enable: (likelihoodType:Populations && likelihoodUsePrior:prior)
+                                    enable: >-
+                                      (likelihoodType:Populations &&
+                                      likelihoodUsePrior:prior)
                                     format: number
+              - type: Content
+                name: planM
+                children:
+                  - type: LayoutBox
+                    style: inline
+                    children:
+                      - type: Label
+                        label: ' '
+                        verticalAlignment: center
+                        margin: small
+                        minWidth: 13
+                      - type: LayoutBox
+                        style: list
+                        margin: none
+                        children:
+                          - type: Label
+                            label: "Some more options"
+                          - type: CollapseBox
+                            label: Replication
+                            collapsed: true
+                            margin: none
+                            children:
+                              - type: LayoutBox
+                                style: list
+                                margin: none
+                                children:
+                                  - type: LayoutBox
+                                    style: inline
+                                    margin: none
+                                    children:
+                                      - type: Label
+                                        label: on?
+                                        margin: none
+                                      - type: CheckBox
+                                        name: ReplicationOn
+                                      - type: TextBox
+                                        name: ReplicationPower
+                                        margin: none
+                                        format: number
+                                      - type: TextBox
+                                        name: ReplicationAttempts
+                                        margin: none
+                                        format: number
+                                      - type: ComboBox
+                                        name: ReplicationPrior
+                                        margin: none
+                                  - type: LayoutBox
+                                    style: inline
+                                    margin: none
+                                    children:
+                                      - type: ComboBox
+                                        name: ReplicationDecision
+                                        margin: none
+                                      - type: ComboBox
+                                        name: ReplicationSign
+                                        margin: none
+                                      - type: TextBox
+                                        name: ReplicationAlpha
+                                        margin: none
+                                        format: number
                           - type: CollapseBox
                             label: MetaAnalysis
                             collapsed: true
@@ -608,21 +798,34 @@ children:
                                       - type: ComboBox
                                         name: MetaAnalysisStudiesSig
                                         margin: none
-      - type: LayoutBox
-        style: inline
-        children:
-          - type: ActionButton
-            name: showHypothesisBtn
-            maxWidth: 75
+          - type: LayoutBox
+            style: inline
+            children:
+            - type: ActionButton
+              name: showHypothesisBtn
+              maxWidth: 75
   - type: Label
-    label: Sample
+    label: '2. Make a Sample'
     children:
+      - type: Label
+        label: 'Then carry out the plan'
       - type: CollapseBox
-        label: Single Sample
+        label: Sample
         collapsed: true
         minWidth: 450
         margin: none
         children:
+          - type: Label
+            label: 'make a single sample and see the data and analysis'
+          - type: LayoutBox
+            style: inline
+            margin: none
+            children:
+              - type: Label
+                label: ' '
+                minWidth: 2
+              - type: Label
+                label: '- there are various display options to try'
           - type: LayoutBox
             style: inline
             children:
@@ -632,81 +835,174 @@ children:
                 minWidth: 165
               - type: ComboBox
                 name: singleVar1
-                enable: (showSampleType:Infer && showInferParam:Custom)
+                enable: ((showSampleType:Infer && showInferParam:Custom) || (showMultipleParam:Custom))
               - type: ComboBox
                 name: singleVar2
-                enable: (showSampleType:Infer && showInferParam:Custom)
+                enable: ((showSampleType:Infer && showInferParam:Custom) || (showMultipleParam:Custom))
               - type: ComboBox
                 name: showInferDimension
-                enable: >-
-                  (showSampleType:Infer && (showInferParam:Custom ||
-                  showInferParam:Basic))
-      - type: LayoutBox
-        style: inline
-        margin: none
-        children:
-          - type: ActionButton
-            name: makeSampleBtn
-            maxWidth: 75
-          - type: ComboBox
-            name: showSampleType
-          - type: ComboBox
-            name: showInferParam
-            enable: (showSampleType:Infer)
+                # enable: >-
+                #   ((showSampleType:Infer && (showInferParam:Custom ||
+                #   showInferParam:Basic)) || ())
+          - type: LayoutBox
+            style: inline
+            margin: none
+            children:
+            - type: ActionButton
+              name: makeSampleBtn
+              maxWidth: 75
+            - type: ComboBox
+              name: showSampleType
+            - type: ComboBox
+              name: showInferParam
+              enable: (showSampleType:Infer)
+  - type: Label
+    label: '3. Expected'
+    children:
+      - type: Label
+        label: 'By running many samples, we can see the range of outcomes to expect'
       - type: CollapseBox
         label: Multiple Samples
         collapsed: true
         margin: none
         minWidth: 450
         children:
+          - type: Label
+            label: 'make many samples to see the range of possible outcomes'
           - type: LayoutBox
             style: inline
             margin: none
+            children:
+              - type: Label
+                label: ' '
+                minWidth: 2
+              - type: Label
+                label: '- there are various display options to try'
+          - type: LayoutBox
+            style: inline
+            children:
+              - type: Label
+                label: ' '
+                margin: small
+                minWidth: 165
+              - type: ComboBox
+                name: multipleVar1
+                enable: (showMultipleParam:Custom)
+              - type: ComboBox
+                name: multipleVar2
+                enable: (showMultipleParam:Custom)
+              - type: ComboBox
+                name: showMultipleDimension
+                enable: (showMultipleParam:Custom || showMultipleParam:Basic)
+          - type: LayoutBox
+            style: inline
+            margin: none
+            children:
+            - name: makeMultipleBtn
+              type: ActionButton
+              maxWidth: 75
+            - type: LayoutBox
+              style: inline
+              children:
+              - name: numberSamples
+                type: TextBox
+                format: number
+              - type: LayoutBox
+                style: inline
+                children:
+                - name: showMultipleParam
+                  type: ComboBox
+          - type: CollapseBox
+            label: Suggestions
+            collapsed: true
+            margin: none
+            minWidth: 450
             children:
               - type: LayoutBox
                 style: inline
                 margin: none
                 children:
-                  - name: numberSamples
-                    type: TextBox
-                    format: number
+                  - type: Label
+                    label: ' '
+                    minWidth: 13
+                  - type: Label
+                    label: 'Change the sampling method'
               - type: LayoutBox
                 style: inline
+                margin: none
+                children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 30
+                      - type: Label
+                        label: '- do this with an effect size of r=0 to see false positives'
+              - type: LayoutBox
+                style: inline
+                margin: none
                 children:
                   - type: Label
                     label: ' '
-                    margin: small
                     minWidth: 13
-                  - type: ComboBox
-                    name: multipleVar1
-                    enable: (showMultipleParam:Custom)
-                  - type: ComboBox
-                    name: multipleVar2
-                    enable: (showMultipleParam:Custom)
-                  - type: ComboBox
-                    name: showMultipleDimension
-                    enable: (showMultipleParam:Custom || showMultipleParam:Basic)
-                  - name: whichShowMultiple
-                    type: ComboBox
-                    enable: (IV2on)
-      - type: LayoutBox
-        style: inline
-        margin: none
-        children:
-          - name: makeMultipleBtn
-            type: ActionButton
-            maxWidth: 75
-          - name: showMultipleParam
-            type: ComboBox
+                  - type: Label
+                    label: 'Change the types of the variables'
+              - type: LayoutBox
+                style: inline
+                margin: none
+                children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 30
+                      - type: Label
+                        label: '- do this with an effect size of r=0.3 to see misses'
+              - type: LayoutBox
+                style: inline
+                margin: none
+                children:
+                  - type: Label
+                    label: ' '
+                    minWidth: 13
+                  - type: Label
+                    label: 'Try and find a sample size that gives you 80% significant results'
+              - type: LayoutBox
+                style: inline
+                margin: none
+                children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 30
+                      - type: Label
+                        label: '- do this with an effect size of r=0.3 and then r=0.1'
   - type: Label
-    label: Explore
+    label: '4. Explore plan decisions'
     children:
+      - type: Label
+        label: 'Explore the decisions that are in the plan'
       - type: CollapseBox
-        label: Explore Plan
+        label: Explore
         collapsed: true
         margin: none
         minWidth: 450
         children:
+          - type: Label
+            label: "Explore by automatically varying any decision in the plan"
+          - type: LayoutBox
+            style: inline
+            margin: none
+            children:
+              - type: Label
+                label: ' '
+                minWidth: 2
+              - type: Label
+                label: "- in each case set the range and the number of values to explore"
+          - type: LayoutBox
+            style: inline
+            margin: none
+            children:
+              - type: Label
+                label: ' '
+                minWidth: 2
+              - type: Label
+                label: "- there are various display options to try"
           - type: LayoutBox
             style: inline
             margin: none
@@ -895,21 +1191,21 @@ children:
                   - name: whichShowExplore
                     type: ComboBox
                     enable: (IV2on)
-      - type: LayoutBox
-        style: list
-        margin: none
-        children:
           - type: LayoutBox
-            style: inline
+            style: list
             margin: none
             children:
+            - type: LayoutBox
+              style: inline
+              margin: none
+              children:
               - name: makeExploreBtn
                 type: ActionButton
                 maxWidth: 75
               - type: ComboBox
                 name: showExploreParam
   - type: Label
-    label: Send to Jamovi
+    label: Send Samples to Jamovi
     children:
       - type: LayoutBox
         style: inline

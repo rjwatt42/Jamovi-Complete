@@ -16,19 +16,129 @@ options:
         title: Design
       - name: planA
         title: Analysis
+      - name: planM
+        title: More
 
     - name: varOptions
       title: ' '
       type: List
       options:
+      - name: DV
+        title: DV
       - name: IV
         title: IV
       - name: IV2
         title: IV2
-      - name: DV
-        title: DV
-      default: IV
-      
+      default: DV
+            
+    - name: presetDV
+      title: 'Presets:'
+      type: List
+      options:
+      - name: Blank
+        title: ' '
+      - name: IQ
+        title: IQ
+      - name: Diligence
+        title: Diligence
+      - name: Perfectionism
+        title: Perfectionism
+      - name: Happiness
+        title: Happiness
+      - name: ExamGrade
+        title: ExamGrade
+      - name: RiskTaking
+        title: RiskTaking
+      - name: Interesting
+        title: Interesting
+      - name: Musician
+        title: Musician?
+      - name: Smoker
+        title: Smoker?
+      - name: RiskTaker
+        title: RiskTaker?
+      - name: Treatment
+        title: Treatment?
+      - name: Phase
+        title: Phase
+      - name: StudySubject
+        title: StudySubject
+      - name: BirthOrder
+        title: BirthOrder
+      default: Blank
+            
+    - name: presetIV
+      title: 'Presets:'
+      type: List
+      options:
+      - name: Blank
+        title: ' '
+      - name: IQ
+        title: IQ
+      - name: Diligence
+        title: Diligence
+      - name: Perfectionism
+        title: Perfectionism
+      - name: Happiness
+        title: Happiness
+      - name: ExamGrade
+        title: ExamGrade
+      - name: RiskTaking
+        title: RiskTaking
+      - name: Interesting
+        title: Interesting
+      - name: Musician
+        title: Musician?
+      - name: Smoker
+        title: Smoker?
+      - name: RiskTaker
+        title: RiskTaker?
+      - name: Treatment
+        title: Treatment?
+      - name: Phase
+        title: Phase
+      - name: StudySubject
+        title: StudySubject
+      - name: BirthOrder
+        title: BirthOrder
+      default: Blank
+            
+    - name: presetIV2
+      title: 'Presets:'
+      type: List
+      options:
+      - name: Blank
+        title: ' '
+      - name: IQ
+        title: IQ
+      - name: Diligence
+        title: Diligence
+      - name: Perfectionism
+        title: Perfectionism
+      - name: Happiness
+        title: Happiness
+      - name: ExamGrade
+        title: ExamGrade
+      - name: RiskTaking
+        title: RiskTaking
+      - name: Interesting
+        title: Interesting
+      - name: Musician
+        title: Musician?
+      - name: Smoker
+        title: Smoker?
+      - name: RiskTaker
+        title: RiskTaker?
+      - name: Treatment
+        title: Treatment?
+      - name: Phase
+        title: Phase
+      - name: StudySubject
+        title: StudySubject
+      - name: BirthOrder
+        title: BirthOrder
+      default: Blank
+
     - name: effectOptions
       title: ' '
       type: List
@@ -110,6 +220,11 @@ options:
       type: Number
       default: 2
 
+    - name: DVcases
+      title: 'cases'
+      type: String
+      default: "C1,C2"
+
     - name: DVprops
       title: proportions
       type: String
@@ -166,6 +281,11 @@ options:
       title: 'no cases'
       type: Number
       default: 2
+
+    - name: IVcases
+      title: 'cases'
+      type: String
+      default: "C1,C2"
 
     - name: IVprops
       title: proportions
@@ -228,6 +348,11 @@ options:
       title: 'no cases'
       type: Number
       default: 2
+
+    - name: IV2cases
+      title: 'cases'
+      type: String
+      default: "C1,C2"
 
     - name: IV2props
       title: proportions
@@ -319,7 +444,7 @@ options:
       default: 42
     
     - name: SampleSpread
-      title: variable? 
+      title: spread? 
       type: List
       options:
       - name: 'no'
@@ -626,10 +751,19 @@ options:
     - name: showHypothesisBtn
       title: 'show'
       type: Action
-
+# 
+#     - name: whichMake
+#       title: ' '
+#       type: List
+#       options:
+#         - name: Single
+#           title: Single
+#         - name: Multiple
+#           title: Multiple
+          
     - name: makeSampleBtn
       type: Action
-      title: make
+      title: single
       default: false
     
     - name: numberSamples
@@ -638,7 +772,7 @@ options:
       default: 100
 
     - name: makeMultipleBtn
-      title: 'make'
+      title: 'multiple'
       type: Action
 
     - name: singleVar1
@@ -1112,7 +1246,7 @@ options:
       default: all
       
     - name: sendSample
-      title: sample
+      title: single
       type: Output
       default: TRUE
       

@@ -61,6 +61,54 @@ const events =  {
           ui.exploreNPointsA.setValue(newRange.np);
   },
 
+    onChange_presetDV: function(ui) {
+      let presetDV = ui.presetDV.value();
+      let variable = makeVar(presetDV);
+          ui.DVname.setValue(variable.name);
+          ui.DVtype.setValue(variable.type);
+          ui.DVmu.setValue(variable.mu);
+          ui.DVsd.setValue(variable.sd);
+          ui.DVskew.setValue(variable.skew);
+          ui.DVkurt.setValue(variable.kurt);
+          ui.DVnlevs.setValue(variable.nlevs);
+          ui.DViqr.setValue(variable.iqr)
+          ui.DVncats.setValue(variable.ncats);
+          ui.DVcases.setValue(variable.cases)
+          ui.DVprops.setValue(variable.props);
+    },
+
+    onChange_presetIV: function(ui) {
+      let presetIV = ui.presetIV.value();
+      let variable = makeVar(presetIV);
+          ui.IVname.setValue(variable.name);
+          ui.IVtype.setValue(variable.type);
+          ui.IVmu.setValue(variable.mu);
+          ui.IVsd.setValue(variable.sd);
+          ui.IVskew.setValue(variable.skew);
+          ui.IVkurt.setValue(variable.kurt);
+          ui.IVnlevs.setValue(variable.nlevs);
+          ui.IViqr.setValue(variable.iqr)
+          ui.IVncats.setValue(variable.ncats);
+          ui.IVcases.setValue(variable.cases)
+          ui.IVprops.setValue(variable.props);
+    },
+
+    onChange_presetIV2: function(ui) {
+      let presetIV2 = ui.presetIV2.value();
+      let variable = makeVar(presetIV2);
+          ui.IV2name.setValue(variable.name);
+          ui.IV2type.setValue(variable.type);
+          ui.IV2mu.setValue(variable.mu);
+          ui.IV2sd.setValue(variable.sd);
+          ui.IV2skew.setValue(variable.skew);
+          ui.IV2kurt.setValue(variable.kurt);
+          ui.IV2nlevs.setValue(variable.nlevs);
+          ui.IV2iqr.setValue(variable.iqr)
+          ui.IV2ncats.setValue(variable.ncats);
+          ui.IV2cases.setValue(variable.cases)
+          ui.IV2props.setValue(variable.props);
+    },
+
     onChange_presetHypothesis: function(ui) {
       let presetH = ui.presetHypothesis.value();
       switch(presetH) {
@@ -91,6 +139,82 @@ const events =  {
           break;
       }
     }
+}
+
+let makeVar = function(name) {
+  switch (name) {
+    case "IQ":
+      var variable={name:"IQ",type:"Interval",mu:100,sd:15,skew:0,
+      kurt:3,nlevs:7,iqr:3,
+      ncats:2,cases:"C1,C2",props:"1,1"};
+      break;
+    case "Diligence":
+      var variable={name:"Diligence",type:"Interval",mu:0,sd:2,skew:0,
+      kurt:3,nlevs:7,iqr:3,
+      ncats:2,cases:"C1,C2",props:"1,1"};
+      break;
+    case "Perfectionism":
+      var variable={name:"Perfectionism",type:"Interval",mu:0,sd:2,skew:0,
+      kurt:3,nlevs:7,iqr:3,
+      ncats:2,cases:"C1,C2",props:"1,1"};
+      break;
+    case "Happiness":
+      var variable={name:"Happiness",type:"Interval",mu:50,sd:12,skew:0,
+      kurt:3,nlevs:7,iqr:3,
+      ncats:2,cases:"C1,C2",props:"1,1"};
+      break;
+    case "ExamGrade":
+      var variable={name:"ExamGrade",type:"Interval",mu:65,sd:10,skew:-0.5,
+      kurt:3,nlevs:7,iqr:3,
+      ncats:2,cases:"C1,C2",props:"1,1"};
+      break;
+    case "RiskTaking":
+      var variable={name:"RiskTaking",type:"Interval",mu:30,sd:6,skew:0.5,
+      kurt:3,nlevs:7,iqr:3,
+      ncats:2,cases:"C1,C2",props:"1,1"};
+      break;
+    case "Interesting":
+      var variable={name:"Interesting",type:"Interval",mu:10,sd:2,skew:0,
+      kurt:3,nlevs:7,iqr:3,
+      ncats:2,cases:"C1,C2",props:"1,1"};
+      break;
+    case "Musician":
+      var variable={name:"Musician?",type:"Categorical",mu:0,sd:1,skew:0,
+      kurt:3,nlevs:7,iqr:3,
+      ncats:2,cases:"yes,no",props:"1,1"};
+      break;
+    case "RiskTaker":
+      var variable={name:"RiskTaker?",type:"Categorical",mu:0,sd:1,skew:0,
+      kurt:3,nlevs:7,iqr:3,
+      ncats:2,cases:"yes,no",props:"1,1"};
+      break;
+    case "Smoker":
+      var variable={name:"Smoker?",type:"Categorical",mu:0,sd:1,skew:0,
+      kurt:3,nlevs:7,iqr:3,
+      ncats:2,cases:"yes,no",props:"1,1"};
+      break;
+    case "StudySubject":
+      var variable={name:"StudySubject",type:"Categorical",mu:0,sd:1,skew:0,
+      kurt:3,nlevs:7,iqr:3,
+      ncats:3,cases:"psych,phil,sports",props:"1.5,1,2"};
+      break;
+    case "BirthOrder":
+      var variable={name:"BirthOrder",type:"Categorical",mu:0,sd:1,skew:0,
+      kurt:3,nlevs:7,iqr:3,
+      ncats:4,cases:"first,middle,last,only",props:"1,0.4,0.6,0.2"};
+      break;
+    case "Treatment":
+      var variable={name:"Treatment?",type:"Categorical",mu:0,sd:1,skew:0,
+      kurt:3,nlevs:7,iqr:3,
+      ncats:2,cases:"yes,no",props:"1,1"};
+      break;
+    case "Phase":
+      var variable={name:"Phase",type:"Categorical",mu:0,sd:1,skew:0,
+      kurt:3,nlevs:7,iqr:3,
+      ncats:2,cases:"before,after",props:"1,1"};
+      break;
+  }
+  return variable;
 }
 
 let makeRange = function(min,max,xlog,np) {

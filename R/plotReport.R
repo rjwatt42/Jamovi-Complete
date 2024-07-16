@@ -1,14 +1,14 @@
 
-reportPlot<-function(outputText,nc,nr){
+reportPlot<-function(outputText,nc,nr,fontSize=0.85,maxRows=14){
 
   bg<-braw.env$plotColours$graphC
   margin=0.5
   colSpace=1.5
   
-  font_size=braw.env$labelSize*0.85
+  font_size=braw.env$labelSize*fontSize
   characterWidth=font_size/20
   
-  top=max(nr,14)
+  top=max(nr,maxRows)
   edge=80*characterWidth
 
   oT<-matrix(outputText,ncol=nc,byrow=TRUE)

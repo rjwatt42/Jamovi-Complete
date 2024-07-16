@@ -123,7 +123,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       # the hypothesis has IV, DV and effect
       DV<-makeVariable(self$options$DVname,self$options$DVtype,
                        mu=self$options$DVmu,sd=self$options$DVsd,skew=self$options$DVskew,kurtosis=self$options$DVkurt,
-                       ncats=self$options$DVncats,proportions=self$options$DVprops,
+                       ncats=self$options$DVncats,cases=self$options$DVcases,proportions=self$options$DVprops,
                        nlevs=self$options$DVnlevs,iqr=self$options$DViqr)
       IV<-makeVariable(self$options$IVname,self$options$IVtype,
                        mu=self$options$IVmu,sd=self$options$IVsd,skew=self$options$IVskew,kurtosis=self$options$IVkurt,
