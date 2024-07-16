@@ -969,7 +969,7 @@ children:
                 label: ' '
                 minWidth: 2
               - type: Label
-                label: '- there are various display options to try'
+                label: '- each time you press the button, more samples are added'
           - type: LayoutBox
             style: inline
             children:
