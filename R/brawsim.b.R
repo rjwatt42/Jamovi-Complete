@@ -76,11 +76,18 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                maxV<-as.numeric(self$options$exploreMaxValA)
                xlog<-self$options$exploreXLogA
                exploreNPoints<-as.numeric(self$options$exploreNPointsA)
+             },
+             "moreExplore"={
+               typeExplore<-self$options$moreExploreList
+               minV<-as.numeric(self$options$exploreMinValM)
+               maxV<-as.numeric(self$options$exploreMaxValM)
+               xlog<-self$options$exploreXLogM
+               exploreNPoints<-as.numeric(self$options$exploreNPointsM)
              }
       )
       showExploreParam<-self$options$showExploreParam
       showExploreDimension<-self$options$showExploreDimension
-      whichShowExploreOut<-self$options$whichShowExplore
+      whichShowExploreOut<-self$options$whichShowMultiple
       
       if (showExploreParam=="Custom") {
         showExploreParam<-paste0(self$options$exploreVar1,";",self$options$exploreVar2)
@@ -300,6 +307,10 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       # main results graphs/reports
       if (!is.null(outputNow))     
         switch(outputNow,
+               "System"={
+                 self$results$graphPlot$setState(outputNow)
+                 self$results$reportPlot$setState(NULL)
+               },
                "Sample"={
                  self$results$graphPlot$setState(outputNow)
                  self$results$reportPlot$setState(outputNow)

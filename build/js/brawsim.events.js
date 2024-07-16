@@ -30,6 +30,14 @@ const events =  {
               ui.exploreXLogA.setValue(newRange.xlog);
               ui.exploreNPointsA.setValue(newRange.np);
           break;
+        case "moreExplore":
+          value = ui.moreExploreList.value();
+          var newRange = updateRange(value);
+              ui.exploreMinValM.setValue(newRange.min);
+              ui.exploreMaxValM.setValue(newRange.max);
+              ui.exploreXLogM.setValue(newRange.xlog);
+              ui.exploreNPointsM.setValue(newRange.np);
+          break;
       };
       return;
   },
@@ -59,6 +67,14 @@ const events =  {
           ui.exploreMaxValA.setValue(newRange.max);
           ui.exploreXLogA.setValue(newRange.xlog);
           ui.exploreNPointsA.setValue(newRange.np);
+  },
+    onChange_moreExploreList: function(ui) {
+          let value = ui.moreExploreList.value();
+          let newRange = updateRange(value)
+          ui.exploreMinValM.setValue(newRange.min);
+          ui.exploreMaxValM.setValue(newRange.max);
+          ui.exploreXLogM.setValue(newRange.xlog);
+          ui.exploreNPointsM.setValue(newRange.np);
   },
 
     onChange_presetDV: function(ui) {
@@ -144,73 +160,73 @@ const events =  {
 let makeVar = function(name) {
   switch (name) {
     case "IQ":
-      var variable={name:"IQ",type:"Interval",mu:100,sd:15,skew:0,
-      kurt:3,nlevs:7,iqr:3,
+      var variable={name:"IQ",type:"Interval",mu:100,sd:15,skew:0,kurt:3,
+      nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "Diligence":
-      var variable={name:"Diligence",type:"Interval",mu:0,sd:2,skew:0,
-      kurt:3,nlevs:7,iqr:3,
+      var variable={name:"Diligence",type:"Interval",mu:0,sd:2,skew:0,kurt:3,
+      nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "Perfectionism":
-      var variable={name:"Perfectionism",type:"Interval",mu:0,sd:2,skew:0,
-      kurt:3,nlevs:7,iqr:3,
+      var variable={name:"Perfectionism",type:"Interval",mu:0,sd:2,skew:0,kurt:3,
+      nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "Happiness":
-      var variable={name:"Happiness",type:"Interval",mu:50,sd:12,skew:0,
-      kurt:3,nlevs:7,iqr:3,
+      var variable={name:"Happiness",type:"Interval",mu:50,sd:12,skew:0,kurt:3,
+      nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "ExamGrade":
-      var variable={name:"ExamGrade",type:"Interval",mu:65,sd:10,skew:-0.5,
-      kurt:3,nlevs:7,iqr:3,
+      var variable={name:"ExamGrade",type:"Interval",mu:55,sd:10,skew:-0.6,kurt:3,
+      nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "RiskTaking":
-      var variable={name:"RiskTaking",type:"Interval",mu:30,sd:6,skew:0.5,
-      kurt:3,nlevs:7,iqr:3,
+      var variable={name:"RiskTaking",type:"Interval",mu:30,sd:6,skew:0.5,kurt:3,
+      nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "Interesting":
-      var variable={name:"Interesting",type:"Interval",mu:10,sd:2,skew:0,
-      kurt:3,nlevs:7,iqr:3,
+      var variable={name:"Interesting",type:"Interval",mu:10,sd:2,skew:0,kurt:3,
+      nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "Musician":
-      var variable={name:"Musician?",type:"Categorical",mu:0,sd:1,skew:0,
-      kurt:3,nlevs:7,iqr:3,
+      var variable={name:"Musician?",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
+      nlevs:7,iqr:3,
       ncats:2,cases:"yes,no",props:"1,1"};
       break;
     case "RiskTaker":
-      var variable={name:"RiskTaker?",type:"Categorical",mu:0,sd:1,skew:0,
-      kurt:3,nlevs:7,iqr:3,
+      var variable={name:"RiskTaker?",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
+      nlevs:7,iqr:3,
       ncats:2,cases:"yes,no",props:"1,1"};
       break;
     case "Smoker":
-      var variable={name:"Smoker?",type:"Categorical",mu:0,sd:1,skew:0,
-      kurt:3,nlevs:7,iqr:3,
+      var variable={name:"Smoker?",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
+      nlevs:7,iqr:3,
       ncats:2,cases:"yes,no",props:"1,1"};
       break;
     case "StudySubject":
-      var variable={name:"StudySubject",type:"Categorical",mu:0,sd:1,skew:0,
-      kurt:3,nlevs:7,iqr:3,
+      var variable={name:"StudySubject",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
+      nlevs:7,iqr:3,
       ncats:3,cases:"psych,phil,sports",props:"1.5,1,2"};
       break;
     case "BirthOrder":
-      var variable={name:"BirthOrder",type:"Categorical",mu:0,sd:1,skew:0,
-      kurt:3,nlevs:7,iqr:3,
+      var variable={name:"BirthOrder",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
+      nlevs:7,iqr:3,
       ncats:4,cases:"first,middle,last,only",props:"1,0.4,0.6,0.2"};
       break;
     case "Treatment":
-      var variable={name:"Treatment?",type:"Categorical",mu:0,sd:1,skew:0,
-      kurt:3,nlevs:7,iqr:3,
+      var variable={name:"Treatment?",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
+      nlevs:7,iqr:3,
       ncats:2,cases:"yes,no",props:"1,1"};
       break;
     case "Phase":
-      var variable={name:"Phase",type:"Categorical",mu:0,sd:1,skew:0,
-      kurt:3,nlevs:7,iqr:3,
+      var variable={name:"Phase",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
+      nlevs:7,iqr:3,
       ncats:2,cases:"before,after",props:"1,1"};
       break;
   }

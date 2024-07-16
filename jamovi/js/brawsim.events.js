@@ -30,6 +30,14 @@ const events =  {
               ui.exploreXLogA.setValue(newRange.xlog);
               ui.exploreNPointsA.setValue(newRange.np);
           break;
+        case "moreExplore":
+          value = ui.moreExploreList.value();
+          var newRange = updateRange(value);
+              ui.exploreMinValM.setValue(newRange.min);
+              ui.exploreMaxValM.setValue(newRange.max);
+              ui.exploreXLogM.setValue(newRange.xlog);
+              ui.exploreNPointsM.setValue(newRange.np);
+          break;
       };
       return;
   },
@@ -59,6 +67,14 @@ const events =  {
           ui.exploreMaxValA.setValue(newRange.max);
           ui.exploreXLogA.setValue(newRange.xlog);
           ui.exploreNPointsA.setValue(newRange.np);
+  },
+    onChange_moreExploreList: function(ui) {
+          let value = ui.moreExploreList.value();
+          let newRange = updateRange(value)
+          ui.exploreMinValM.setValue(newRange.min);
+          ui.exploreMaxValM.setValue(newRange.max);
+          ui.exploreXLogM.setValue(newRange.xlog);
+          ui.exploreNPointsM.setValue(newRange.np);
   },
 
     onChange_presetDV: function(ui) {

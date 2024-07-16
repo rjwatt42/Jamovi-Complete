@@ -631,7 +631,7 @@ options:
       default: None
 
     - name: likelihoodType
-      title: 'Display'
+      title: 'possible'
       type: List
       options:
       - name: Samples
@@ -962,38 +962,29 @@ options:
         - name: 2D
           title: 2D
       default: 1D
-            
-    - name: whichShowMultiple
-      title: " "
-      type: List
-      options:
-      - name: direct
-        title: direct
-      - name: unique
-        title: unique
-      - name: total
-        title: total
-      - name: all
-        title: all
-      default: all
 
     - name: exploreNPointsH
-      title: 'no of values'
+      title: 'at'
       type: Number
       default: 13
 
     - name: exploreNPointsD
-      title: 'no of values'
+      title: 'at'
       type: Number
       default: 13
 
     - name: exploreNPointsA
-      title: 'no of values'
+      title: 'at'
+      type: Number
+      default: 13
+
+    - name: exploreNPointsM
+      title: 'at'
       type: Number
       default: 13
       
     - name: exploreMinValH
-      title: '        '
+      title: from
       type: String
       default: "-0.9"
       
@@ -1003,7 +994,7 @@ options:
       default: "0.9"
       
     - name: exploreMinValD
-      title: '        '
+      title: from
       type: String
       default: "10"
       
@@ -1013,7 +1004,17 @@ options:
       default: "250"
       
     - name: exploreMinValA
-      title: '        '
+      title: from
+      type: String
+      default: "0.001"
+      
+    - name: exploreMaxValM
+      title: to
+      type: String
+      default: "0.5"
+
+    - name: exploreMinValM
+      title: from
       type: String
       default: "0.001"
       
@@ -1037,6 +1038,11 @@ options:
       type: Bool
       default: FALSE
 
+    - name: exploreXLogM
+      title: 'log scale'
+      type: Bool
+      default: FALSE
+
     - name: numberExplores
       title: 'no of samples'
       type: Number
@@ -1056,10 +1062,12 @@ options:
           title: Design
         - name: analysisExplore
           title: Analysis
+        - name: moreExplore
+          title: More
       default: designExplore
 
     - name: hypothesisExploreList
-      title: ''
+      title: 'explore:'
       type: List
       options:
         - name: rIV
@@ -1100,7 +1108,7 @@ options:
           title: DVprops
           
     - name: designExploreList
-      title: ''
+      title: 'explore:'
       type: List
       options:
         - name: n
@@ -1119,17 +1127,9 @@ options:
           title: Cheating
         - name: CheatingAmount
           title: CheatAmount
-        - name: blank2d
-          title: ' '
-        - name: Power
-          title: ReplPower
-        - name: Keep
-          title: ReplDecision
-        - name: Repeats
-          title: ReplAttempts
-          
+
     - name: analysisExploreList
-      title: ''
+      title: 'explore:'
       type: List
       options:
         - name: Alpha
@@ -1138,6 +1138,17 @@ options:
           title: Transform
         - name: Welch
           title: EqualVar
+          
+    - name: moreExploreList
+      title: 'explore:'
+      type: List
+      options:
+        - name: Power
+          title: ReplPower
+        - name: Keep
+          title: ReplDecision
+        - name: Repeats
+          title: ReplAttempts
 
     - name: showExploreParam
       title: 'show as:'
@@ -1231,7 +1242,7 @@ options:
           title: 2D
       default: 1D
       
-    - name: whichShowExplore
+    - name: whichShowMultiple
       title: " "
       type: List
       options:
@@ -1254,5 +1265,19 @@ options:
       title: multiple
       type: Output
       default: TRUE
+
+    - name: nomenOptions
+      title: ' '
+      type: List
+      options:
+      - name: standard
+        title: standard
+      - name: power
+        title: power
+      - name: replication
+        title: replication
+      - name: symbols
+        title: symbols
+      default: standard
 
 ...

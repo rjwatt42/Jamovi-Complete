@@ -5,28 +5,29 @@ stage: 0
 compilerMode: tame
 children:
   - type: Label
-    label: '1. Make a Plan'
+    label: 1. Make a Plan
     children:
       - type: Label
-        label: 'Start by making a research plan'
+        label: >-
+          Start by making a research plan: a hypothesis, a design and an
+          analysis
+        maxHeight: 5
       - type: CollapseBox
         collapsed: true
         label: Plan
         margin: none
         minWidth: 450
         children:
-          - type: Label
-            label: "A plan has 3 parts: a hypothesis, a design and an analysis"
           - type: LayoutBox
             style: inline
             children:
-            - type: Label
-              label: ' '
-              verticalAlignment: center
-              margin: small
-              minWidth: 2
-            - type: Label
-              label: '- make each of these in turn'
+              - type: Label
+                label: ' '
+                verticalAlignment: center
+                margin: small
+                minWidth: 2
+              - type: Label
+                label: '- make each of these in turn'
           - name: planOptions
             type: ModeSelector
             margin: none
@@ -47,14 +48,16 @@ children:
                         margin: none
                         children:
                           - type: Label
-                            label: "A hypothesis has 2 components: variables and their effects"
+                            label: >-
+                              Specify variables and their effects
+                              (relationships)
                           - type: CollapseBox
                             collapsed: true
                             label: Variables
                             margin: none
                             children:
                               - type: Label
-                                label: 'Define the DV and 1 or 2 IVs'
+                                label: Define the DV and 1 or 2 IVs
                               - type: LayoutBox
                                 style: inline
                                 children:
@@ -64,7 +67,9 @@ children:
                                     margin: small
                                     minWidth: 2
                                   - type: Label
-                                    label: '- edit the form or choose a preset variable'
+                                    label: >-
+                                      - edit the form or choose a preset
+                                      variable
                               - type: ModeSelector
                                 name: varOptions
                                 margin: none
@@ -356,7 +361,7 @@ children:
                             margin: none
                             children:
                               - type: Label
-                                label: 'set the effect each variable has on the others'
+                                label: Set the effect each variable has on the others
                               - type: LayoutBox
                                 style: inline
                                 margin: none
@@ -431,7 +436,8 @@ children:
                                           - type: ComboBox
                                             name: presetHypothesis
                                             events:
-                                              change: ./BrawSim.events::onChange_presetHypothesis
+                                              change: >-
+                                                ./BrawSim.events::onChange_presetHypothesis
                           - type: CollapseBox
                             collapsed: true
                             label: Anomalies
@@ -464,7 +470,7 @@ children:
                         margin: none
                         children:
                           - type: Label
-                            label: "A design requires decisions about sampling"
+                            label: Decide how to sample from the population
                           - type: CollapseBox
                             label: Sampling
                             collapsed: true
@@ -475,7 +481,7 @@ children:
                                 margin: none
                                 children:
                                   - type: Label
-                                    label: "Sampling has 3 elements: sample size, method and usage"
+                                    label: Decide sample size, method and usage
                                   - type: LayoutBox
                                     style: inline
                                     margin: none
@@ -526,6 +532,14 @@ children:
                                         name: SampleUsage2
                                         enable: (IV2on && IV2type:Categorical)
                                         margin: none
+                                  - type: LayoutBox
+                                    style: inline
+                                    margin: none
+                                    children:
+                                    - type: ComboBox
+                                      name: presetDesign
+                                      events:
+                                        change: ./BrawSim.events::onChange_presetDesign
                           - type: CollapseBox
                             label: Anomalies
                             collapsed: true
@@ -562,10 +576,6 @@ children:
                                         name: CheatingAttempts
                                         margin: none
                                         format: number
-                          - type: ComboBox
-                            name: presetDesign
-                            events:
-                              change: ./BrawSim.events::onChange_presetDesign
               - type: Content
                 name: planA
                 children:
@@ -582,14 +592,16 @@ children:
                         margin: none
                         children:
                           - type: Label
-                            label: "An analysis involves decisions about: NHST and Likelihood (optional)"
+                            label: >-
+                              Make decisions about: Effect Sizes, NHST and
+                              Likelihood (optional)
                           - type: CollapseBox
                             label: Sample Effect Sizes
                             collapsed: true
                             margin: none
                             children:
                               - type: Label
-                                label: "Choose which effect size to show:"
+                                label: 'Choose which effect size to show:'
                               - type: LayoutBox
                                 style: inline
                                 margin: none
@@ -598,17 +610,21 @@ children:
                                     label: ' '
                                     verticalAlignment: center
                                     margin: small
-                                    minWidth: 13
-                                  - type: ComboBox
-                                    name: whichShowMultiple
-                                    enable: (IV2on)
+                                    minWidth: 2
+                                  - type: LayoutBox
+                                    margin: large
+                                    children:
+                                      - type: ComboBox
+                                        name: whichShowMultiple
                           - type: CollapseBox
                             label: NHST
                             collapsed: true
                             margin: none
                             children:
                               - type: Label
-                                label: "Null hypothesis test involves: alpha (0.05) and some assumptions"
+                                label: >-
+                                  Decide alpha, some analysis options and some
+                                  assumptions
                               - type: LayoutBox
                                 style: inline
                                 margin: none
@@ -621,6 +637,15 @@ children:
                                   - type: TextBox
                                     name: alphaSig
                                     format: number
+                              - type: LayoutBox
+                                style: inline
+                                margin: none
+                                children:
+                                  - type: Label
+                                    label: ' '
+                                    verticalAlignment: center
+                                    margin: small
+                                    minWidth: 13
                                   - type: ComboBox
                                     name: Transform
                                   - type: ComboBox
@@ -648,21 +673,7 @@ children:
                             margin: none
                             children:
                               - type: Label
-                                label: "These options control likelihood graphs"
-                              - type: LayoutBox
-                                style: inline
-                                margin: none
-                                children:
-                                  - type: Label
-                                    label: ' '
-                                    verticalAlignment: center
-                                    margin: small
-                                    minWidth: 13
-                                  - name: likelihoodType
-                                    type: ComboBox
-                                  - name: likelihoodCutaway
-                                    type: ComboBox
-                                    enable: (likelihoodType:Samples)
+                                label: Decide what prior to use
                               - type: LayoutBox
                                 style: inline
                                 margin: none
@@ -697,6 +708,22 @@ children:
                                       (likelihoodType:Populations &&
                                       likelihoodUsePrior:prior)
                                     format: number
+                              - type: Label
+                                label: Display
+                              - type: LayoutBox
+                                style: inline
+                                margin: none
+                                children:
+                                  - type: Label
+                                    label: ' '
+                                    verticalAlignment: center
+                                    margin: small
+                                    minWidth: 13
+                                  - name: likelihoodType
+                                    type: ComboBox
+                                  - name: likelihoodCutaway
+                                    type: ComboBox
+                                    enable: (likelihoodType:Samples)
               - type: Content
                 name: planM
                 children:
@@ -713,7 +740,7 @@ children:
                         margin: none
                         children:
                           - type: Label
-                            label: "Some more options"
+                            label: Some more options
                           - type: CollapseBox
                             label: Replication
                             collapsed: true
@@ -801,14 +828,15 @@ children:
           - type: LayoutBox
             style: inline
             children:
-            - type: ActionButton
-              name: showHypothesisBtn
-              maxWidth: 75
+              - type: ActionButton
+                name: showHypothesisBtn
+                maxWidth: 75
   - type: Label
-    label: '2. Make a Sample'
+    label: 2. Make a Sample
     children:
       - type: Label
-        label: 'Then carry out the plan'
+        label: 'Then carry out the plan: make a single sample'
+        maxHeight: 5
       - type: CollapseBox
         label: Sample
         collapsed: true
@@ -816,7 +844,9 @@ children:
         margin: none
         children:
           - type: Label
-            label: 'make a single sample and see the data and analysis'
+            label: >-
+              Inspect the data (Sample, Describe) and then the analysis (Infer,
+              Likelihood)
           - type: LayoutBox
             style: inline
             margin: none
@@ -835,32 +865,94 @@ children:
                 minWidth: 165
               - type: ComboBox
                 name: singleVar1
-                enable: ((showSampleType:Infer && showInferParam:Custom) || (showMultipleParam:Custom))
+                enable: >-
+                  ((showSampleType:Infer && showInferParam:Custom) ||
+                  (showMultipleParam:Custom))
               - type: ComboBox
                 name: singleVar2
-                enable: ((showSampleType:Infer && showInferParam:Custom) || (showMultipleParam:Custom))
+                enable: >-
+                  ((showSampleType:Infer && showInferParam:Custom) ||
+                  (showMultipleParam:Custom))
               - type: ComboBox
                 name: showInferDimension
-                # enable: >-
-                #   ((showSampleType:Infer && (showInferParam:Custom ||
-                #   showInferParam:Basic)) || ())
           - type: LayoutBox
             style: inline
             margin: none
             children:
-            - type: ActionButton
-              name: makeSampleBtn
-              maxWidth: 75
-            - type: ComboBox
-              name: showSampleType
-            - type: ComboBox
-              name: showInferParam
-              enable: (showSampleType:Infer)
+              - type: ActionButton
+                name: makeSampleBtn
+                maxWidth: 75
+              - type: ComboBox
+                name: showSampleType
+              - type: ComboBox
+                name: showInferParam
+                enable: (showSampleType:Infer)
+          - type: LayoutBox
+            style: inline
+            children:
+              - type: Label
+                label: ' '
+                margin: small
+                minWidth: 80
+              - type: CollapseBox
+                label: Suggestions
+                collapsed: true
+                margin: none
+                minWidth: 370
+                children:
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 13
+                      - type: Label
+                        label: Make a few samples to see how much they vary
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 30
+                      - type: Label
+                        label: '- you can watch any of the output graphs'
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 13
+                      - type: Label
+                        label: Change the variable types
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 30
+                      - type: Label
+                        label: '- you will see how the graphs depend on this'
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 30
+                      - type: Label
+                        label: >-
+                          - with the Infer output, you will see what test is
+                          used in each case
   - type: Label
-    label: '3. Many Samples'
+    label: 3. Many Samples
     children:
       - type: Label
-        label: 'By running many samples, we can see the range of outcomes to expect'
+        label: By running many samples, we can see the range of outcomes to expect
+        maxHeight: 5
       - type: CollapseBox
         label: Multiple Samples
         collapsed: true
@@ -868,7 +960,7 @@ children:
         minWidth: 450
         children:
           - type: Label
-            label: 'make many samples to see the range of possible outcomes'
+            label: 'choose how many samples: more is better but slower'
           - type: LayoutBox
             style: inline
             margin: none
@@ -898,85 +990,97 @@ children:
             style: inline
             margin: none
             children:
-            - name: makeMultipleBtn
-              type: ActionButton
-              maxWidth: 75
-            - type: LayoutBox
-              style: inline
-              children:
-              - name: numberSamples
-                type: TextBox
-                format: number
+              - name: makeMultipleBtn
+                type: ActionButton
+                maxWidth: 75
               - type: LayoutBox
                 style: inline
                 children:
-                - name: showMultipleParam
-                  type: ComboBox
-          - type: CollapseBox
-            label: Suggestions
-            collapsed: true
-            margin: none
-            minWidth: 450
+                  - name: numberSamples
+                    type: TextBox
+                    format: number
+                  - type: LayoutBox
+                    style: inline
+                    children:
+                      - name: showMultipleParam
+                        type: ComboBox
+          - type: LayoutBox
+            style: inline
             children:
-              - type: LayoutBox
-                style: inline
+              - type: Label
+                label: ' '
+                margin: small
+                minWidth: 80
+              - type: CollapseBox
+                label: Suggestions
+                collapsed: true
                 margin: none
+                minWidth: 370
                 children:
-                  - type: Label
-                    label: ' '
-                    minWidth: 13
-                  - type: Label
-                    label: 'Change the sampling method'
-              - type: LayoutBox
-                style: inline
-                margin: none
-                children:
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 13
+                      - type: Label
+                        label: Change the sampling method
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
                       - type: Label
                         label: ' '
                         minWidth: 30
                       - type: Label
-                        label: '- do this with an effect size of r=0 to see false positives'
-              - type: LayoutBox
-                style: inline
-                margin: none
-                children:
-                  - type: Label
-                    label: ' '
-                    minWidth: 13
-                  - type: Label
-                    label: 'Change the types of the variables'
-              - type: LayoutBox
-                style: inline
-                margin: none
-                children:
+                        label: >-
+                          - do this with an effect size of r=0 to see false
+                          positives
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 13
+                      - type: Label
+                        label: Change the types of the variables
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
                       - type: Label
                         label: ' '
                         minWidth: 30
                       - type: Label
                         label: '- do this with an effect size of r=0.3 to see misses'
-              - type: LayoutBox
-                style: inline
-                margin: none
-                children:
-                  - type: Label
-                    label: ' '
-                    minWidth: 13
-                  - type: Label
-                    label: 'Try and find a sample size that gives you 80% significant results'
-              - type: LayoutBox
-                style: inline
-                margin: none
-                children:
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 13
+                      - type: Label
+                        label: >-
+                          Try and find a sample size that gives you 80%
+                          significant results
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
                       - type: Label
                         label: ' '
                         minWidth: 30
                       - type: Label
                         label: '- do this with an effect size of r=0.3 and then r=0.1'
   - type: Label
-    label: '4. Explore plan decisions'
+    label: 4. Explore plan decisions
     children:
       - type: Label
-        label: 'Explore the decisions that are in the plan'
+        label: Explore the decisions that are in the plan
+        maxHeight: 5
       - type: CollapseBox
         label: Explore
         collapsed: true
@@ -984,7 +1088,7 @@ children:
         minWidth: 450
         children:
           - type: Label
-            label: "Explore by automatically varying any decision in the plan"
+            label: Explore will automatically vary decisions in the plan
           - type: LayoutBox
             style: inline
             margin: none
@@ -993,16 +1097,9 @@ children:
                 label: ' '
                 minWidth: 2
               - type: Label
-                label: "- in each case set the range and the number of values to explore"
-          - type: LayoutBox
-            style: inline
-            margin: none
-            children:
-              - type: Label
-                label: ' '
-                minWidth: 2
-              - type: Label
-                label: "- there are various display options to try"
+                label: >-
+                  - you can change the range and the number of values to
+                  explore
           - type: LayoutBox
             style: inline
             margin: none
@@ -1028,11 +1125,14 @@ children:
                             name: hypothesisExploreList
                             events:
                               change: ./BrawSim.events::onChange_hypothesisExploreList
+                      - type: LayoutBox
+                        style: inline
+                        margin: none
+                        children:
                           - type: TextBox
                             name: exploreMinValH
                             margin: none
                             format: string
-                            minWidth: 350
                             enable: >-
                               (!typeExplore:Keep && !typeExplore:Method &&
                               !typeExplore:Cheating && !typeExplore:Transform &&
@@ -1051,6 +1151,7 @@ children:
                             name: exploreNPointsH
                             margin: none
                             format: number
+                            suffix: points
                             enable: >-
                               (!typeExplore:Keep && !typeExplore:Method &&
                               !typeExplore:Cheating && !typeExplore:Transform &&
@@ -1075,11 +1176,14 @@ children:
                             name: designExploreList
                             events:
                               change: ./BrawSim.events::onChange_designExploreList
+                      - type: LayoutBox
+                        style: inline
+                        margin: none
+                        children:
                           - type: TextBox
                             name: exploreMinValD
                             margin: none
                             format: string
-                            minWidth: 350
                             enable: >-
                               (!typeExplore:Keep && !typeExplore:Method &&
                               !typeExplore:Cheating && !typeExplore:Transform &&
@@ -1098,6 +1202,7 @@ children:
                             name: exploreNPointsD
                             margin: none
                             format: number
+                            suffix: points
                             enable: >-
                               (!typeExplore:Keep && !typeExplore:Method &&
                               !typeExplore:Cheating && !typeExplore:Transform &&
@@ -1122,11 +1227,14 @@ children:
                             name: analysisExploreList
                             events:
                               change: ./BrawSim.events::onChange_analysisExploreList
+                      - type: LayoutBox
+                        style: inline
+                        margin: none
+                        children:
                           - type: TextBox
                             name: exploreMinValA
                             margin: none
                             format: string
-                            minWidth: 350
                             enable: >-
                               (!typeExplore:Keep && !typeExplore:Method &&
                               !typeExplore:Cheating && !typeExplore:Transform &&
@@ -1145,6 +1253,7 @@ children:
                             name: exploreNPointsA
                             margin: none
                             format: number
+                            suffix: points
                             enable: >-
                               (!typeExplore:Keep && !typeExplore:Method &&
                               !typeExplore:Cheating && !typeExplore:Transform &&
@@ -1152,6 +1261,57 @@ children:
                               !typeExplore:IVType && !typeExplore:DVType)
                           - type: CheckBox
                             name: exploreXLogA
+                            margin: none
+                            enable: >-
+                              (!typeExplore:Keep && !typeExplore:Method &&
+                              !typeExplore:Cheating && !typeExplore:Transform &&
+                              !typeExplore:Usage && !typeExplore:PDF &&
+                              !typeExplore:IVType && !typeExplore:DVType)
+                  - type: Content
+                    name: moreExplore
+                    children:
+                      - type: LayoutBox
+                        style: inline
+                        margin: none
+                        children:
+                          - type: ComboBox
+                            name: moreExploreList
+                            events:
+                              change: ./BrawSim.events::onChange_moreExploreList
+                      - type: LayoutBox
+                        style: inline
+                        margin: none
+                        children:
+                          - type: TextBox
+                            name: exploreMinValM
+                            margin: none
+                            format: string
+                            enable: >-
+                              (!typeExplore:Keep && !typeExplore:Method &&
+                              !typeExplore:Cheating && !typeExplore:Transform &&
+                              !typeExplore:Usage && !typeExplore:PDF &&
+                              !typeExplore:IVType && !typeExplore:DVType)
+                          - type: TextBox
+                            name: exploreMaxValM
+                            margin: none
+                            format: string
+                            enable: >-
+                              (!typeExplore:Keep && !typeExplore:Method &&
+                              !typeExplore:Cheating && !typeExplore:Transform &&
+                              !typeExplore:Usage && !typeExplore:PDF &&
+                              !typeExplore:IVType && !typeExplore:DVType)
+                          - type: TextBox
+                            name: exploreNPointsM
+                            margin: none
+                            format: number
+                            suffix: points
+                            enable: >-
+                              (!typeExplore:Keep && !typeExplore:Method &&
+                              !typeExplore:Cheating && !typeExplore:Transform &&
+                              !typeExplore:Usage && !typeExplore:PDF &&
+                              !typeExplore:IVType && !typeExplore:DVType)
+                          - type: CheckBox
+                            name: exploreXLogM
                             margin: none
                             enable: >-
                               (!typeExplore:Keep && !typeExplore:Method &&
@@ -1169,16 +1329,13 @@ children:
             style: inline
             margin: none
             children:
-              - name: numberExplores
-                type: TextBox
-                format: number
               - type: LayoutBox
                 style: inline
                 children:
                   - type: Label
                     label: ' '
                     margin: small
-                    minWidth: 13
+                    minWidth: 165
                   - type: ComboBox
                     name: exploreVar1
                     enable: (showExploreParam:Custom)
@@ -1188,25 +1345,274 @@ children:
                   - type: ComboBox
                     name: showExploreDimension
                     enable: (showExploreParam:Custom)
-                  - name: whichShowExplore
-                    type: ComboBox
-                    enable: (IV2on)
           - type: LayoutBox
             style: list
             margin: none
             children:
+              - type: LayoutBox
+                style: inline
+                margin: none
+                children:
+                  - name: makeExploreBtn
+                    type: ActionButton
+                    maxWidth: 75
+                  - type: LayoutBox
+                    style: inline
+                    children:
+                      - name: numberExplores
+                        type: TextBox
+                        format: number
+                      - type: LayoutBox
+                        style: inline
+                        children:
+                          - name: showExploreParam
+                            type: ComboBox
+          - type: LayoutBox
+            style: inline
+            children:
+              - type: Label
+                label: ' '
+                margin: small
+                minWidth: 80
+              - type: CollapseBox
+                label: Suggestions
+                collapsed: true
+                margin: none
+                minWidth: 370
+                children:
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 13
+                      - type: Label
+                        label: >-
+                          Explore sample size and display p(sig) with r=0.3 and
+                          then r=0
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 30
+                      - type: Label
+                        label: '- this is a power analysis'
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 13
+                      - type: Label
+                        label: >-
+                          Explore the variable types displaying p(sig) with
+                          r=0.3
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 30
+                      - type: Label
+                        label: '- what conclusion do you reach?'
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 13
+                      - type: Label
+                        label: >-
+                          Explore some of the sampling anomalies showing p(sig) with
+                          r=0.3 and r=0
+                  - type: LayoutBox
+                    style: inline
+                    margin: none
+                    children:
+                      - type: Label
+                        label: ' '
+                        minWidth: 30
+                      - type: Label
+                        label: '- how do sampling anomalies matter?'
+  - type: Label
+    label: Extra
+    children:
+    - type: CollapseBox
+      collapsed: true
+      label: Nomenclature
+      margin: none
+      maxWidth: 330
+      children:
+      - name: nomenOptions
+        type: ModeSelector
+        margin: none
+        children:
+        - type: Content
+          name: standard
+          children:
+          - type: LayoutBox
+            style: list
+            children:
             - type: LayoutBox
               style: inline
-              margin: none
               children:
-              - name: makeExploreBtn
-                type: ActionButton
-                maxWidth: 75
-              - type: ComboBox
-                name: showExploreParam
-  - type: Label
-    label: Send Samples to Jamovi
-    children:
+              - type: Label
+                label: rs
+                minWidth: 30
+              - type: Label
+                label: sample effect size
+                minWidth: 300
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: rp
+                minWidth: 30
+              - type: Label
+                label: population effect size
+                minWidth: 300
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: rmle
+                minWidth: 30
+              - type: Label
+                label: max-lk estimate of rp
+                minWidth: 300
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: re
+                minWidth: 30
+              - type: Label
+                label: sample error
+                minWidth: 300
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: n
+                minWidth: 30
+              - type: Label
+                label: sample size
+                minWidth: 300
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: p
+                minWidth: 30
+              - type: Label
+                label: p-value
+                minWidth: 300
+        - type: Content
+          name: power
+          children:
+          - type: LayoutBox
+            style: list
+            children:
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: ws
+                minWidth: 30
+              - type: Label
+                label: 'sample power (using rs: bad)'
+                minWidth: 300
+              - type: Label
+                label: wp
+                minWidth: 30
+              - type: Label
+                label: 'sample power (using rp: good)'
+                minWidth: 300
+              - type: Label
+                label: nw
+                minWidth: 30
+              - type: Label
+                label: 'required sample size from ws'
+                minWidth: 300
+        - type: Content
+          name: replication
+          children:
+          - type: LayoutBox
+            style: list
+            children:
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: ro
+                minWidth: 30
+              - type: Label
+                label: original sample effect size
+                minWidth: 300
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: no
+                minWidth: 30
+              - type: Label
+                label: original sample size
+                minWidth: 300
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: po
+                minWidth: 30
+              - type: Label
+                label: original p-value
+                minWidth: 300
+        - type: Content
+          name: symbols
+          children:
+          - type: LayoutBox
+            style: list
+            children:
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: circle
+                minWidth: 30
+              - type: Label
+                label: data point
+                minWidth: 300
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: square
+                minWidth: 30
+              - type: Label
+                label: sample effect size
+                minWidth: 300
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: triangle
+                minWidth: 30
+              - type: Label
+                label: metaAnalysis result
+                minWidth: 300
+  
+    - type: CollapseBox
+      collapsed: true
+      label: Send Samples to Jamovi
+      margin: none
+      maxWidth: 330
+      children:
       - type: LayoutBox
         style: inline
         margin: none
