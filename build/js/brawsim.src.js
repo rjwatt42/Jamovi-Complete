@@ -2595,184 +2595,436 @@ view.layout = ui.extend({
 					type: DefaultControls.CollapseBox,
 					typeName: 'CollapseBox',
 					collapsed: true,
-					label: "Display Options",
+					label: "Help Materials",
 					margin: "none",
 					maxWidth: 330,
 					controls: [
 						{
 							type: DefaultControls.LayoutBox,
 							typeName: 'LayoutBox',
-							style: "list",
+							style: "inline",
 							controls: [
 								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
-									controls: [
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: "Basic",
-											minWidth: 60
-										},
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: "show sample effect size and p-value (1D or 2D)"
-										}
-									]
+									type: DefaultControls.Label,
+									typeName: 'Label',
+									label: " ",
+									minWidth: 13
 								},
 								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
+									type: DefaultControls.CollapseBox,
+									typeName: 'CollapseBox',
+									collapsed: true,
+									label: "Effect Size Type",
+									margin: "none",
+									maxWidth: 330,
 									controls: [
 										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: "p(sig)",
-											minWidth: 60
-										},
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: "show the probability of a significant result"
-										}
-									]
-								},
-								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
-									controls: [
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: "NHST",
-											minWidth: 60
-										},
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: "show p-values for hypothesis and null hypothesis"
-										}
-									]
-								},
-								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
-									controls: [
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: "Hits",
-											minWidth: 60
-										},
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: "show significant p-values for hypothesis and null hypothesis"
-										}
-									]
-								},
-								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
-									controls: [
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: "Misses",
-											minWidth: 60
-										},
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: "show non-significant p-values for hypothesis and null hypothesis"
-										}
-									]
-								},
-								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
-									controls: [
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: "Custom",
-											minWidth: 60
-										},
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: "show any two parameters chosen from menus above (1D or 2D)"
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "list",
+											controls: [
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "An effect size measures the amount of variance transmitted from one variable to another."
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "In this sense, variance is equivalent to information."
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "With normalized effect sizes (-1 to 1), the value corresponds to"
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "the square root of the proportion of variance available that is actually transmitted."
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "When there is more than one IV, then there are 3 formulations. These are characterised"
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "by thinking in terms of a source variable, a destination variable and "
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "a link that joins only them. There may well be other routes between the source"
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "and destination via other variables and links."
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: " ",
+															minWidth: 30
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Direct",
+															minWidth: 60
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "the amount of variance transmitted through one direct link"
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: " ",
+															minWidth: 30
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Unique",
+															minWidth: 60
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "the amount of variance transmitted only by that source variable"
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: " ",
+															minWidth: 110
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "to that destination variable"
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: " ",
+															minWidth: 30
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Total",
+															minWidth: 60
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "the amount of variance transmitted summed over all possible routes"
+														}
+													]
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "The direct effect is equivalent to the coefficients in a linear model."
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "The unique effect is the effect of one IV on a DV when the effect of"
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: " ",
+															minWidth: 30
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "all other IVs are taken into account."
+														}
+													]
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "The total effect is what is measured when only one IV and DV are used."
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "Note that the total effect and the unique effect can be very different - ."
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: " ",
+															minWidth: 30
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "even to the point of having different signs."
+														}
+													]
+												}
+											]
 										}
 									]
 								}
 							]
-						}
-					]
-				},
-				{
-					type: DefaultControls.CollapseBox,
-					typeName: 'CollapseBox',
-					collapsed: true,
-					label: "Using a World",
-					margin: "none",
-					maxWidth: 330,
-					controls: [
+						},
 						{
 							type: DefaultControls.LayoutBox,
 							typeName: 'LayoutBox',
-							style: "list",
+							style: "inline",
 							controls: [
 								{
 									type: DefaultControls.Label,
 									typeName: 'Label',
-									label: "In simple mode, BrawStats models a single hypothesis with a fixed effect."
+									label: " ",
+									minWidth: 13
 								},
+								{
+									type: DefaultControls.CollapseBox,
+									typeName: 'CollapseBox',
+									collapsed: true,
+									label: "Display Options",
+									margin: "none",
+									maxWidth: 330,
+									controls: [
+										{
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "list",
+											controls: [
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Basic",
+															minWidth: 60
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "show sample effect size and p-value (1D or 2D)"
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "p(sig)",
+															minWidth: 60
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "show the probability of a significant result"
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "NHST",
+															minWidth: 60
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "show p-values for hypothesis and null hypothesis"
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Hits",
+															minWidth: 60
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "show significant p-values for hypothesis and null hypothesis"
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Misses",
+															minWidth: 60
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "show non-significant p-values for hypothesis and null hypothesis"
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Custom",
+															minWidth: 60
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "show any two parameters chosen from menus above (1D or 2D)"
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							type: DefaultControls.LayoutBox,
+							typeName: 'LayoutBox',
+							style: "inline",
+							controls: [
 								{
 									type: DefaultControls.Label,
 									typeName: 'Label',
-									label: "The hypothesis is always correct. This is, of course, unrealistic."
+									label: " ",
+									minWidth: 13
 								},
 								{
-									type: DefaultControls.Label,
-									typeName: 'Label',
-									label: ""
-								},
-								{
-									type: DefaultControls.Label,
-									typeName: 'Label',
-									label: "A world is a system that models an entire discipline."
-								},
-								{
-									type: DefaultControls.Label,
-									typeName: 'Label',
-									label: "The population effect sizes for each sample is drawn at random from a"
-								},
-								{
-									type: DefaultControls.Label,
-									typeName: 'Label',
-									label: "distribution of possible values. The hypothesis has a probability of"
-								},
-								{
-									type: DefaultControls.Label,
-									typeName: 'Label',
-									label: "being wrong - rp is set to zero."
-								},
-								{
-									type: DefaultControls.Label,
-									typeName: 'Label',
-									label: "Sample sizes are also drawn at random for each sample from a distribution of"
-								},
-								{
-									type: DefaultControls.Label,
-									typeName: 'Label',
-									label: "possible values."
+									type: DefaultControls.CollapseBox,
+									typeName: 'CollapseBox',
+									collapsed: true,
+									label: "Using a World",
+									margin: "none",
+									maxWidth: 330,
+									controls: [
+										{
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "list",
+											controls: [
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "In simple mode, BrawStats models a single hypothesis with a fixed effect."
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "The hypothesis is always correct. This is, of course, unrealistic."
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: ""
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "A world is a system that models an entire discipline."
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "The population effect sizes for each sample is drawn at random from a"
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "distribution of possible values. The hypothesis has a probability of"
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "being wrong - rp is set to zero."
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "Sample sizes are also drawn at random for each sample from a distribution of"
+												},
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "possible values."
+												}
+											]
+										}
+									]
 								}
 							]
 						}

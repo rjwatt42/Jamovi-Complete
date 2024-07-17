@@ -1445,89 +1445,203 @@ children:
     children:
     - type: CollapseBox
       collapsed: true
-      label: Display Options
+      label: Help Materials
       margin: none
       maxWidth: 330
       children:
       - type: LayoutBox
-        style: list
+        style: inline
         children:
-        - type: LayoutBox
-          style: inline
+        - type: Label
+          label: " "
+          minWidth: 13
+        - type: CollapseBox
+          collapsed: true
+          label: Effect Size Type
+          margin: none
+          maxWidth: 330
           children:
-          - type: Label
-            label: 'Basic'
-            minWidth: 60
-          - type: Label
-            label: 'show sample effect size and p-value (1D or 2D)'
-        - type: LayoutBox
-          style: inline
-          children:
-          - type: Label
-            label: 'p(sig)'
-            minWidth: 60
-          - type: Label
-            label: 'show the probability of a significant result'
-        - type: LayoutBox
-          style: inline
-          children:
-          - type: Label
-            label: 'NHST'
-            minWidth: 60
-          - type: Label
-            label: 'show p-values for hypothesis and null hypothesis'
-        - type: LayoutBox
-          style: inline
-          children:
-          - type: Label
-            label: 'Hits'
-            minWidth: 60
-          - type: Label
-            label: 'show significant p-values for hypothesis and null hypothesis'
-        - type: LayoutBox
-          style: inline
-          children:
-          - type: Label
-            label: 'Misses'
-            minWidth: 60
-          - type: Label
-            label: 'show non-significant p-values for hypothesis and null hypothesis'
-        - type: LayoutBox
-          style: inline
-          children:
-          - type: Label
-            label: 'Custom'
-            minWidth: 60
-          - type: Label
-            label: 'show any two parameters chosen from menus above (1D or 2D)'
-            
-    - type: CollapseBox
-      collapsed: true
-      label: Using a World
-      margin: none
-      maxWidth: 330
-      children:
+          - type: LayoutBox
+            style: list
+            children:
+            - type: Label
+              label: 'An effect size measures the amount of variance transmitted from one variable to another.'
+            - type: Label
+              label: 'In this sense, variance is equivalent to information.'
+            - type: Label
+              label: 'With normalized effect sizes (-1 to 1), the value corresponds to'
+            - type: Label
+              label: 'the square root of the proportion of variance available that is actually transmitted.'
+            - type: Label
+              label: 'When there is more than one IV, then there are 3 formulations. These are characterised'
+            - type: Label
+              label: 'by thinking in terms of a source variable, a destination variable and '
+            - type: Label
+              label: 'a link that joins only them. There may well be other routes between the source'
+            - type: Label
+              label: 'and destination via other variables and links.'
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: ' '
+                minWidth: 30
+              - type: Label
+                label: 'Direct'
+                minWidth: 60
+              - type: Label
+                label: 'the amount of variance transmitted through one direct link'
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: ' '
+                minWidth: 30
+              - type: Label
+                label: 'Unique'
+                minWidth: 60
+              - type: Label
+                label: 'the amount of variance transmitted only by that source variable'
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: ' '
+                minWidth: 110
+              - type: Label
+                label: 'to that destination variable'
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: ' '
+                minWidth: 30
+              - type: Label
+                label: 'Total'
+                minWidth: 60
+              - type: Label
+                label: 'the amount of variance transmitted summed over all possible routes'
+            - type: Label
+              label: 'The direct effect is equivalent to the coefficients in a linear model.'
+            - type: Label
+              label: 'The unique effect is the effect of one IV on a DV when the effect of'
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: ' '
+                minWidth: 30
+              - type: Label
+                label: 'all other IVs are taken into account.'
+            - type: Label
+              label: 'The total effect is what is measured when only one IV and DV are used.'
+            - type: Label
+              label: 'Note that the total effect and the unique effect can be very different - .'
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: ' '
+                minWidth: 30
+              - type: Label
+                label: 'even to the point of having different signs.'
       - type: LayoutBox
-        style: list
+        style: inline
         children:
         - type: Label
-          label: 'In simple mode, BrawStats models a single hypothesis with a fixed effect.'
+          label: " "
+          minWidth: 13
+        - type: CollapseBox
+          collapsed: true
+          label: Display Options
+          margin: none
+          maxWidth: 330
+          children:
+          - type: LayoutBox
+            style: list
+            children:
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: 'Basic'
+                minWidth: 60
+              - type: Label
+                label: 'show sample effect size and p-value (1D or 2D)'
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: 'p(sig)'
+                minWidth: 60
+              - type: Label
+                label: 'show the probability of a significant result'
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: 'NHST'
+                minWidth: 60
+              - type: Label
+                label: 'show p-values for hypothesis and null hypothesis'
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: 'Hits'
+                minWidth: 60
+              - type: Label
+                label: 'show significant p-values for hypothesis and null hypothesis'
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: 'Misses'
+                minWidth: 60
+              - type: Label
+                label: 'show non-significant p-values for hypothesis and null hypothesis'
+            - type: LayoutBox
+              style: inline
+              children:
+              - type: Label
+                label: 'Custom'
+                minWidth: 60
+              - type: Label
+                label: 'show any two parameters chosen from menus above (1D or 2D)'
+                
+      - type: LayoutBox
+        style: inline
+        children:
         - type: Label
-          label: 'The hypothesis is always correct. This is, of course, unrealistic.'
-        - type: Label
-          label: ''
-        - type: Label
-          label: 'A world is a system that models an entire discipline.'
-        - type: Label
-          label: 'The population effect sizes for each sample is drawn at random from a'
-        - type: Label
-          label: 'distribution of possible values. The hypothesis has a probability of'
-        - type: Label
-          label: 'being wrong - rp is set to zero.'
-        - type: Label
-          label: 'Sample sizes are also drawn at random for each sample from a distribution of'
-        - type: Label
-          label: 'possible values.'
+          label: " "
+          minWidth: 13
+        - type: CollapseBox
+          collapsed: true
+          label: Using a World
+          margin: none
+          maxWidth: 330
+          children:
+          - type: LayoutBox
+            style: list
+            children:
+            - type: Label
+              label: 'In simple mode, BrawStats models a single hypothesis with a fixed effect.'
+            - type: Label
+              label: 'The hypothesis is always correct. This is, of course, unrealistic.'
+            - type: Label
+              label: ''
+            - type: Label
+              label: 'A world is a system that models an entire discipline.'
+            - type: Label
+              label: 'The population effect sizes for each sample is drawn at random from a'
+            - type: Label
+              label: 'distribution of possible values. The hypothesis has a probability of'
+            - type: Label
+              label: 'being wrong - rp is set to zero.'
+            - type: Label
+              label: 'Sample sizes are also drawn at random for each sample from a distribution of'
+            - type: Label
+              label: 'possible values.'
     - type: CollapseBox
       collapsed: true
       label: Nomenclature
