@@ -166,7 +166,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       # set up the design variable
       oldD<-braw.def$design
       design<-makeDesign(sN=self$options$SampleSize,
-                         sNRand=self$options$SampleSpread=="yes",sNRandK=self$options$SampleGamma,
+                         sNRand=self$options$SampleSpreadOn,sNRandK=self$options$SampleGamma,
                          sMethod=makeSampling(self$options$SampleMethod),
                                 sIV1Use=self$options$SampleUsage1,
                                 sIV2Use=self$options$SampleUsage2,
@@ -182,6 +182,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                      PowerPrior=self$options$ReplicationPrior
                                                      )
                          )
+      if (design$sNRand) design$sN<-self$options$SampleSizeM
       changedD<- !identical(oldD,design)
       
       # set up the evidence variable

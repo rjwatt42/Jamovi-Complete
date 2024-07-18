@@ -11,9 +11,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             presetDV = "Blank",
             presetIV = "Blank",
             presetIV2 = "Blank",
-            effectOptions = NULL,
-            presetHypothesis = "simple",
-            presetDesign = "simple",
+            presetWorld = "simple",
             DVname = "DV",
             DVtype = "Interval",
             DVmu = 0,
@@ -60,7 +58,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             WorldLambda = 0.3,
             WorldNullP = 0.5,
             SampleSize = 42,
-            SampleSpread = "no",
+            SampleSizeM = 42,
+            SampleSpreadOn = FALSE,
             SampleGamma = 1.56,
             SampleMethod = "Random",
             SampleUsage1 = "Between",
@@ -134,7 +133,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             exploreVar1 = "rs",
             exploreVar2 = "p",
             showExploreDimension = "1D",
-            whichShowMultiple = "all",
+            whichShowMultiple = "direct",
             nomenOptions = "standard", ...) {
 
             super$initialize(
@@ -219,22 +218,9 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "StudySubject",
                     "BirthOrder"),
                 default="Blank")
-            private$..effectOptions <- jmvcore::OptionList$new(
-                "effectOptions",
-                effectOptions,
-                options=list(
-                    "simple",
-                    "world"))
-            private$..presetHypothesis <- jmvcore::OptionList$new(
-                "presetHypothesis",
-                presetHypothesis,
-                options=list(
-                    "psych",
-                    "simple"),
-                default="simple")
-            private$..presetDesign <- jmvcore::OptionList$new(
-                "presetDesign",
-                presetDesign,
+            private$..presetWorld <- jmvcore::OptionList$new(
+                "presetWorld",
+                presetWorld,
                 options=list(
                     "psych",
                     "simple"),
@@ -448,13 +434,14 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "SampleSize",
                 SampleSize,
                 default=42)
-            private$..SampleSpread <- jmvcore::OptionList$new(
-                "SampleSpread",
-                SampleSpread,
-                options=list(
-                    "no",
-                    "yes"),
-                default="no")
+            private$..SampleSizeM <- jmvcore::OptionNumber$new(
+                "SampleSizeM",
+                SampleSizeM,
+                default=42)
+            private$..SampleSpreadOn <- jmvcore::OptionBool$new(
+                "SampleSpreadOn",
+                SampleSpreadOn,
+                default=FALSE)
             private$..SampleGamma <- jmvcore::OptionNumber$new(
                 "SampleGamma",
                 SampleGamma,
@@ -979,7 +966,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "unique",
                     "total",
                     "all"),
-                default="all")
+                default="direct")
             private$..sendSample <- jmvcore::OptionOutput$new(
                 "sendSample")
             private$..sendMultiple <- jmvcore::OptionOutput$new(
@@ -999,9 +986,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..presetDV)
             self$.addOption(private$..presetIV)
             self$.addOption(private$..presetIV2)
-            self$.addOption(private$..effectOptions)
-            self$.addOption(private$..presetHypothesis)
-            self$.addOption(private$..presetDesign)
+            self$.addOption(private$..presetWorld)
             self$.addOption(private$..DVname)
             self$.addOption(private$..DVtype)
             self$.addOption(private$..DVmu)
@@ -1048,7 +1033,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..WorldLambda)
             self$.addOption(private$..WorldNullP)
             self$.addOption(private$..SampleSize)
-            self$.addOption(private$..SampleSpread)
+            self$.addOption(private$..SampleSizeM)
+            self$.addOption(private$..SampleSpreadOn)
             self$.addOption(private$..SampleGamma)
             self$.addOption(private$..SampleMethod)
             self$.addOption(private$..SampleUsage1)
@@ -1133,9 +1119,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         presetDV = function() private$..presetDV$value,
         presetIV = function() private$..presetIV$value,
         presetIV2 = function() private$..presetIV2$value,
-        effectOptions = function() private$..effectOptions$value,
-        presetHypothesis = function() private$..presetHypothesis$value,
-        presetDesign = function() private$..presetDesign$value,
+        presetWorld = function() private$..presetWorld$value,
         DVname = function() private$..DVname$value,
         DVtype = function() private$..DVtype$value,
         DVmu = function() private$..DVmu$value,
@@ -1182,7 +1166,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         WorldLambda = function() private$..WorldLambda$value,
         WorldNullP = function() private$..WorldNullP$value,
         SampleSize = function() private$..SampleSize$value,
-        SampleSpread = function() private$..SampleSpread$value,
+        SampleSizeM = function() private$..SampleSizeM$value,
+        SampleSpreadOn = function() private$..SampleSpreadOn$value,
         SampleGamma = function() private$..SampleGamma$value,
         SampleMethod = function() private$..SampleMethod$value,
         SampleUsage1 = function() private$..SampleUsage1$value,
@@ -1266,9 +1251,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..presetDV = NA,
         ..presetIV = NA,
         ..presetIV2 = NA,
-        ..effectOptions = NA,
-        ..presetHypothesis = NA,
-        ..presetDesign = NA,
+        ..presetWorld = NA,
         ..DVname = NA,
         ..DVtype = NA,
         ..DVmu = NA,
@@ -1315,7 +1298,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..WorldLambda = NA,
         ..WorldNullP = NA,
         ..SampleSize = NA,
-        ..SampleSpread = NA,
+        ..SampleSizeM = NA,
+        ..SampleSpreadOn = NA,
         ..SampleGamma = NA,
         ..SampleMethod = NA,
         ..SampleUsage1 = NA,
@@ -1481,9 +1465,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param presetDV .
 #' @param presetIV .
 #' @param presetIV2 .
-#' @param effectOptions .
-#' @param presetHypothesis .
-#' @param presetDesign .
+#' @param presetWorld .
 #' @param DVname .
 #' @param DVtype .
 #' @param DVmu .
@@ -1530,7 +1512,8 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param WorldLambda .
 #' @param WorldNullP .
 #' @param SampleSize .
-#' @param SampleSpread .
+#' @param SampleSizeM .
+#' @param SampleSpreadOn .
 #' @param SampleGamma .
 #' @param SampleMethod .
 #' @param SampleUsage1 .
@@ -1622,9 +1605,7 @@ BrawSim <- function(
     presetDV = "Blank",
     presetIV = "Blank",
     presetIV2 = "Blank",
-    effectOptions,
-    presetHypothesis = "simple",
-    presetDesign = "simple",
+    presetWorld = "simple",
     DVname = "DV",
     DVtype = "Interval",
     DVmu = 0,
@@ -1671,7 +1652,8 @@ BrawSim <- function(
     WorldLambda = 0.3,
     WorldNullP = 0.5,
     SampleSize = 42,
-    SampleSpread = "no",
+    SampleSizeM = 42,
+    SampleSpreadOn = FALSE,
     SampleGamma = 1.56,
     SampleMethod = "Random",
     SampleUsage1 = "Between",
@@ -1745,7 +1727,7 @@ BrawSim <- function(
     exploreVar1 = "rs",
     exploreVar2 = "p",
     showExploreDimension = "1D",
-    whichShowMultiple = "all",
+    whichShowMultiple = "direct",
     nomenOptions = "standard") {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
@@ -1758,9 +1740,7 @@ BrawSim <- function(
         presetDV = presetDV,
         presetIV = presetIV,
         presetIV2 = presetIV2,
-        effectOptions = effectOptions,
-        presetHypothesis = presetHypothesis,
-        presetDesign = presetDesign,
+        presetWorld = presetWorld,
         DVname = DVname,
         DVtype = DVtype,
         DVmu = DVmu,
@@ -1807,7 +1787,8 @@ BrawSim <- function(
         WorldLambda = WorldLambda,
         WorldNullP = WorldNullP,
         SampleSize = SampleSize,
-        SampleSpread = SampleSpread,
+        SampleSizeM = SampleSizeM,
+        SampleSpreadOn = SampleSpreadOn,
         SampleGamma = SampleGamma,
         SampleMethod = SampleMethod,
         SampleUsage1 = SampleUsage1,

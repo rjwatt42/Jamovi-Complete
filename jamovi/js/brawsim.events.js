@@ -125,8 +125,8 @@ const events =  {
           ui.IV2props.setValue(variable.props);
     },
 
-    onChange_presetHypothesis: function(ui) {
-      let presetH = ui.presetHypothesis.value();
+    onChange_presetWorld: function(ui) {
+      let presetH = ui.presetWorld.value();
       switch(presetH) {
         case "psych":
           ui.WorldOn.setValue(true);
@@ -134,24 +134,17 @@ const events =  {
           ui.WorldRZ.setValue("z");
           ui.WorldLambda.setValue(0.3);
           ui.WorldNullP.setValue(0.75);
-          break;
-        case "simple":
-          ui.WorldOn.setValue(false);
-          ui.rIV.setValue(0.3);
-          break;
-      }
-    },
-    onChange_presetDesign: function(ui) {
-      let presetD = ui.presetDesign.value();
-      switch(presetD) {
-        case "psych":
-          ui.SampleSize.setValue(52);
-          ui.SampleSpread.setValue("yes");
+          ui.SampleSpreadOn.setValue(true);
+          ui.SampleSizeM.setValue(52);
           ui.SampleGamma.setValue(1.56);
           break;
         case "simple":
-          ui.SampleSize.setValue(42);
-          ui.SampleSpread.setValue("no");
+          ui.WorldOn.setValue(true);
+          ui.WorldPDF.setValue("Single");
+          ui.WorldRZ.setValue("r");
+          ui.WorldLambda.setValue(0.3);
+          ui.WorldNullP.setValue(0.5);
+          ui.SampleSpreadOn.setValue(false);
           break;
       }
     }

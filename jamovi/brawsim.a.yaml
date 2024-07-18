@@ -139,16 +139,7 @@ options:
         title: BirthOrder
       default: Blank
 
-    - name: effectOptions
-      title: ' '
-      type: List
-      options:
-      - name: simple
-        title: simple
-      - name: world
-        title: world
-      
-    - name: presetHypothesis
+    - name: presetWorld
       title: 'Presets:'
       type: List
       options:
@@ -158,16 +149,6 @@ options:
         title: simple
       default: simple
       
-    - name: presetDesign
-      title: 'Presets:'
-      type: List
-      options:
-      - name: psych
-        title: psychology
-      - name: simple
-        title: simple
-      default: simple
-        
     - name: DVname
       title: Name
       type: String
@@ -404,7 +385,7 @@ options:
       default: false
       
     - name: WorldPDF
-      title: PDF
+      title: distribution
       type: List
       options:
       - name: Single
@@ -442,19 +423,19 @@ options:
       title: Sample Size 
       type: Number
       default: 42
+      
+    - name: SampleSizeM
+      title: Median n 
+      type: Number
+      default: 42
     
-    - name: SampleSpread
-      title: spread? 
-      type: List
-      options:
-      - name: 'no'
-        title: 'no'
-      - name: 'yes'
-        title: 'yes'
-      default: no
+    - name: SampleSpreadOn
+      title: ' '
+      type: Bool
+      default: false
     
     - name: SampleGamma
-      title: " " 
+      title: "spread" 
       type: Number
       default: 1.56
       
@@ -529,12 +510,12 @@ options:
       default: false
 
     - name: ReplicationPower
-      title: 'power'
+      title: 'sample target power'
       type: Number
       default: 0.8
       
     - name: ReplicationPrior
-      title: 'Prior'
+      title: 'prior'
       type: List
       options:
       - name: None
@@ -546,12 +527,12 @@ options:
       default: None
       
     - name: ReplicationAttempts
-      title: 'Attempts'
+      title: 'how many replications?'
       type: Number
       default: 1
       
     - name: ReplicationDecision
-      title: 'Decision'
+      title: 'decision'
       type: List
       options:
       - name: Cautious
@@ -567,7 +548,7 @@ options:
       default: Cautious
       
     - name: ReplicationAlpha
-      title: 'alpha'
+      title: 'rep alpha'
       type: Number
       default: 0.05
 
@@ -714,7 +695,7 @@ options:
       default: random
 
     - name: MetaAnalysisNulls
-      title: 'expect nulls'
+      title: 'nulls'
       type: List
       options:
       - name: yes
@@ -724,7 +705,7 @@ options:
       default: yes
 
     - name: MetaAnalysisBias
-      title: 'expect bias'
+      title: 'bias'
       type: List
       options:
       - name: yes
@@ -1256,7 +1237,7 @@ options:
         title: total
       - name: all
         title: all
-      default: all
+      default: direct
       
     - name: sendSample
       title: single
