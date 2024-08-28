@@ -523,7 +523,7 @@ options:
       - name: World
         title: World
       - name: Prior
-        title: Prior
+        title: Custom
       default: None
       
     - name: ReplicationAttempts
@@ -640,7 +640,7 @@ options:
       - name: world
         title: world
       - name: prior
-        title: prior
+        title: custom
       default: none
       
     - name: priorPDF
@@ -1107,7 +1107,7 @@ options:
         - name: Outliers
           title: Outliers
         - name: Cheating
-          title: Cheating
+          title: CheatMethod
         - name: CheatingAmount
           title: CheatAmount
 

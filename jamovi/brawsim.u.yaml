@@ -532,7 +532,7 @@ children:
                               Make decisions about: Effect Sizes, NHST and
                               Likelihood (optional)
                           - type: CollapseBox
-                            label: Sample Effect Sizes
+                            label: Describe
                             collapsed: true
                             margin: none
                             children:
@@ -553,7 +553,7 @@ children:
                                       - type: ComboBox
                                         name: whichShowMultiple
                           - type: CollapseBox
-                            label: NHST
+                            label: Infer
                             collapsed: true
                             margin: none
                             children:
@@ -915,15 +915,15 @@ children:
               - type: ComboBox
                 name: singleVar1
                 enable: >-
-                  ((showSampleType:Infer && showInferParam:Custom) ||
-                  (showMultipleParam:Custom))
+                  (showSampleType:Infer && showInferParam:Custom)
               - type: ComboBox
                 name: singleVar2
                 enable: >-
-                  ((showSampleType:Infer && showInferParam:Custom) ||
-                  (showMultipleParam:Custom))
+                  (showSampleType:Infer && showInferParam:Custom)
               - type: ComboBox
                 name: showInferDimension
+                enable: >-
+                  (showSampleType:Infer && (showInferParam:Basic || showInferParam:Custom))
           - type: LayoutBox
             style: inline
             margin: none
