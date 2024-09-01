@@ -1059,15 +1059,6 @@ options:
           title: Covariation
         - name: Heteroscedasticity
           title: Hscedast
-        - name: blank1h
-          title: ' '
-        - name: PDF
-          title: worldPDF
-        - name: lambda
-          title: worldLambda
-        - name: pNull
-          title: worldPNull
-        - name: blank2h
           title: ' '
         - name: IVType
           title: IVType
@@ -1087,9 +1078,18 @@ options:
           title: DVskew
         - name: DVkurtosis
           title: DVkurtosis
+        - name: DVcats
+          title: DVcats
         - name: DVprops
           title: DVprops
-          
+        - name: blank1h
+          title: ' '
+        - name: lambda
+          title: worldLambda
+        - name: pNull
+          title: worldPNull
+        - name: blank2h
+
     - name: designExploreList
       title: 'explore:'
       type: List
@@ -1121,6 +1121,8 @@ options:
           title: Transform
         - name: Welch
           title: EqualVar
+        - name: InteractionOn
+          title: InteractionOn
           
     - name: moreExploreList
       title: 'explore:'
