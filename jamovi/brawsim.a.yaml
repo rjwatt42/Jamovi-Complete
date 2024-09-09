@@ -1059,6 +1059,7 @@ options:
           title: Covariation
         - name: Heteroscedasticity
           title: Hscedast
+        - name: blank0h
           title: ' '
         - name: IVType
           title: IVType
@@ -1239,7 +1240,7 @@ options:
         title: total
       - name: all
         title: all
-      default: direct
+      default: all
       
     - name: sendSample
       title: single
@@ -1264,5 +1265,14 @@ options:
       - name: symbols
         title: symbols
       default: standard
+
+
+    - name: doProject1aBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject1bBtn
+      title: 'do it for me'
+      type: Action
 
 ...

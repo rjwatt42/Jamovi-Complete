@@ -134,12 +134,12 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                        nlevs=self$options$DVnlevs,iqr=self$options$DViqr)
       IV<-makeVariable(self$options$IVname,self$options$IVtype,
                        mu=self$options$IVmu,sd=self$options$IVsd,skew=self$options$IVskew,kurtosis=self$options$IVkurt,
-                       ncats=self$options$IVncats,proportions=self$options$IVprops,
+                       ncats=self$options$IVncats,cases=self$options$IVcases,proportions=self$options$IVprops,
                        nlevs=self$options$IVnlevs,iqr=self$options$IViqr)
       if (self$options$IV2on) {
         IV2<-makeVariable(self$options$IV2name,self$options$IV2type,
                           mu=self$options$IV2mu,sd=self$options$IV2sd,skew=self$options$IV2skew,kurtosis=self$options$IV2kurt,
-                          ncats=self$options$IV2ncats,proportions=self$options$IV2props,
+                          ncats=self$options$IV2ncats,cases=self$options$IV2cases,proportions=self$options$IV2props,
                           nlevs=self$options$IV2nlevs,iqr=self$options$IV2iqr)
       } else {
         IV2<-NULL

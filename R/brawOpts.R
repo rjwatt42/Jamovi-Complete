@@ -17,7 +17,7 @@ newBrawDev<-function(fontScale=1,height=1000,aspect=1) {
   print(startPlot(box="none",backC=braw.env$plotColours$graphC))
 }
 
-BrawOpts<-function(BW=FALSE,graphC="normal",fontScale=1,graphicsSize=dev.size("cm"),
+BrawOpts<-function(BW=FALSE,graphC="normal",fontScale=1,graphicsSize=c(16,10),
                    newDev=FALSE,height=576,aspect=1.736,timeLimit=Inf) {
   if (graphC=="white") graphC<-"#FFFFFF"
   if (graphC=="normal") graphC<-"#BFECFF"

@@ -147,6 +147,15 @@ const events =  {
           ui.SampleSpreadOn.setValue(false);
           break;
       }
+    },
+    
+    onChange_project1a: function(ui) {
+      ui.presetIV.setValue("RiskTaker")
+      ui.presetDV.setValue("ExamGrade")
+    },
+    
+    onChange_project1b: function(ui) {
+      ui.EffectSize1.setValue(0.3)
     }
 }
 
@@ -190,17 +199,17 @@ let makeVar = function(name) {
     case "Musician":
       var variable={name:"Musician?",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
       nlevs:7,iqr:3,
-      ncats:2,cases:"yes,no",props:"1,1"};
+      ncats:2,cases:"no,yes",props:"1,1"};
       break;
     case "RiskTaker":
       var variable={name:"RiskTaker?",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
       nlevs:7,iqr:3,
-      ncats:2,cases:"yes,no",props:"1,1"};
+      ncats:2,cases:"no,yes",props:"1,1"};
       break;
     case "Smoker":
       var variable={name:"Smoker?",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
       nlevs:7,iqr:3,
-      ncats:2,cases:"yes,no",props:"1,1"};
+      ncats:2,cases:"no,yes",props:"2,1"};
       break;
     case "StudySubject":
       var variable={name:"StudySubject",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
@@ -215,7 +224,7 @@ let makeVar = function(name) {
     case "Treatment":
       var variable={name:"Treatment?",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
       nlevs:7,iqr:3,
-      ncats:2,cases:"yes,no",props:"1,1"};
+      ncats:2,cases:"no,yes",props:"1,1"};
       break;
     case "Phase":
       var variable={name:"Phase",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
