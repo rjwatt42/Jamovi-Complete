@@ -18,7 +18,8 @@ newBrawDev<-function(fontScale=1,height=1000,aspect=1) {
 }
 
 BrawOpts<-function(BW=FALSE,graphC="normal",fontScale=1,graphicsSize=c(16,10),
-                   newDev=FALSE,height=576,aspect=1.736,timeLimit=Inf) {
+                   newDev=FALSE,height=576,aspect=1.736,timeLimit=Inf,
+                   reducedOutput=FALSE) {
   if (graphC=="white") graphC<-"#FFFFFF"
   if (graphC=="normal") graphC<-"#BFECFF"
   braw.env <- new.env(parent = emptyenv())
@@ -164,6 +165,8 @@ BrawOpts<-function(BW=FALSE,graphC="normal",fontScale=1,graphicsSize=c(16,10),
           
           braw.env$showTheoryHQ<-TRUE
           braw.env$showTheory<-TRUE
+          
+          braw.env$reducedOutput<-reducedOutput
           
           ##################################
           # default variables

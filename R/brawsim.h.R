@@ -136,7 +136,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             whichShowMultiple = "all",
             nomenOptions = "standard",
             doProject1aBtn = NULL,
-            doProject1bBtn = NULL, ...) {
+            doProject1bBtn = NULL,
+            doProject1cBtn = NULL, ...) {
 
             super$initialize(
                 package="BrawStats",
@@ -990,6 +991,9 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..doProject1bBtn <- jmvcore::OptionAction$new(
                 "doProject1bBtn",
                 doProject1bBtn)
+            private$..doProject1cBtn <- jmvcore::OptionAction$new(
+                "doProject1cBtn",
+                doProject1cBtn)
 
             self$.addOption(private$..planOptions)
             self$.addOption(private$..varOptions)
@@ -1124,6 +1128,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..nomenOptions)
             self$.addOption(private$..doProject1aBtn)
             self$.addOption(private$..doProject1bBtn)
+            self$.addOption(private$..doProject1cBtn)
         }),
     active = list(
         planOptions = function() private$..planOptions$value,
@@ -1258,7 +1263,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         sendMultiple = function() private$..sendMultiple$value,
         nomenOptions = function() private$..nomenOptions$value,
         doProject1aBtn = function() private$..doProject1aBtn$value,
-        doProject1bBtn = function() private$..doProject1bBtn$value),
+        doProject1bBtn = function() private$..doProject1bBtn$value,
+        doProject1cBtn = function() private$..doProject1cBtn$value),
     private = list(
         ..planOptions = NA,
         ..varOptions = NA,
@@ -1392,7 +1398,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..sendMultiple = NA,
         ..nomenOptions = NA,
         ..doProject1aBtn = NA,
-        ..doProject1bBtn = NA)
+        ..doProject1bBtn = NA,
+        ..doProject1cBtn = NA)
 )
 
 BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -1607,6 +1614,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param nomenOptions .
 #' @param doProject1aBtn .
 #' @param doProject1bBtn .
+#' @param doProject1cBtn .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$graphPlot} \tab \tab \tab \tab \tab an image \cr
@@ -1748,7 +1756,8 @@ BrawSim <- function(
     whichShowMultiple = "all",
     nomenOptions = "standard",
     doProject1aBtn,
-    doProject1bBtn) {
+    doProject1bBtn,
+    doProject1cBtn) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("BrawSim requires jmvcore to be installed (restart may be required)")
@@ -1885,7 +1894,8 @@ BrawSim <- function(
         whichShowMultiple = whichShowMultiple,
         nomenOptions = nomenOptions,
         doProject1aBtn = doProject1aBtn,
-        doProject1bBtn = doProject1bBtn)
+        doProject1bBtn = doProject1bBtn,
+        doProject1cBtn = doProject1cBtn)
 
     analysis <- BrawSimClass$new(
         options = options,

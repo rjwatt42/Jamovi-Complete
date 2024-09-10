@@ -155,7 +155,11 @@ const events =  {
     },
     
     onChange_project1b: function(ui) {
-      ui.EffectSize1.setValue(0.3)
+      ui.EffectSize1.setValue(0.5)
+    },
+    
+    onChange_project1c: function(ui) {
+      ui.makeSampleBtn.setValue(true)
     }
 }
 
