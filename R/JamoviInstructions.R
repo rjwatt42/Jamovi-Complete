@@ -235,7 +235,56 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
            output<-c(output,paste0("Then Jamovi does the graph for you."))
            output<-c(output,paste0("</div>"))
            }
-         })
+         },
+         "EffectSize"={
+           if (hypothesis$DV$type=="Categorical") {
+             menu="2 Outcomes"
+             optionsGroup="Model Fit"
+             options=c(paste0("Pseudo R2 ",to_char," McFadden's R2"))
+             warningLogistic="Take the square root of the R2 effect size."
+           } else {
+             menu="Linear Regression"
+             optionsGroup="Model Fit"
+             options=c(paste0("Fit Measures ",to_char," R"))
+             warningLogistic=""
+           }
+           
+           DVgoes="Dependent Variable"
+           if (hypothesis$IV$type=="Categorical") IVgoes="Factors"
+           else                                   IVgoes="Covariates"
+           if (!is.null(hypothesis$IV2)) {
+             if (hypothesis$IV2$type=="Categorical") IV2goes="Factors"
+             else                                   IV2goes="Covariates"
+           }
+           output<-c("<div style='border: 1px solid black; padding: 4px;'>")
+           output<-c(output,"Select the <b>Analyses</b> tab at the top of the window")
+           
+           output<-c(output,paste0("<ol><li>Press <b>","Regression","</b> on the ribbon beneath",
+                                   "<br> & choose <b>",menu,"</b> from the drop down menu</li>"))
+           
+           list1<-paste0("<ul><li><b style=color:red>",hypothesis$DV$name,"</b> to <b>",DVgoes,"</b></li>")
+           list1<-paste0(list1,"<li><b style=color:red>",hypothesis$IV$name,"</b> to <b>",IVgoes,"</b></li>")
+           if (!is.null(hypothesis$IV2))
+             list1<-paste0(list1,"<li><b>",hypothesis$IV2$name,"</b> to <b>",IV2goes,"</b></li>")
+           list1<-paste0(list1,"</ul>")
+           output<-c(output,paste0("<li>Now move",list1,"</li>"))
+           
+           if (!is.null(options)) {
+             if (!is.null(optionsGroup)) 
+               output<-c(output,paste0("<li>Select ",optionsGroup," options group and set"))
+             else 
+               output<-c(output,paste0("<li>Set the option "))
+             list2<-paste0("<ul>")
+             for (option in options)
+               list2<-paste0(list2,"<li>",option,"</li>")
+             list2<-paste0(list2,"</ul>")
+             output<-c(output,list2,paste0("</li>"))
+           }
+           output<-c(output,paste0("</ol>"))
+           output<-c(output,paste0("Then Jamovi shows the effect size. ",warningLogistic))
+           output<-c(output,paste0("</div>"))
+         }
+         )
   return(output)
 
 }

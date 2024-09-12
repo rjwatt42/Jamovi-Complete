@@ -245,7 +245,13 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         instructions<-makeInstructions(hypothesis,design,HelpType="Graph")
         self$results$JamoviInstructions$setContent(instructions)
       } 
-      if (!showJamoviNow1 && !showJamoviNow2) {
+      showJamoviNow3<-self$options$showJamovi3Btn
+      if (showJamoviNow3) {
+        self$results$JamoviInstructions$setVisible(TRUE)
+        instructions<-makeInstructions(hypothesis,design,HelpType="EffectSize")
+        self$results$JamoviInstructions$setContent(instructions)
+      } 
+      if (!showJamoviNow1 && !showJamoviNow2 && !showJamoviNow3) {
         self$results$JamoviInstructions$setVisible(FALSE)
       }
       
