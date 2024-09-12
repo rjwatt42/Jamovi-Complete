@@ -1255,6 +1255,10 @@ options:
       title: 'graph'
       type: Action
 
+    - name: showJamovi3Btn
+      title: 'effect size'
+      type: Action
+
     - name: nomenOptions
       title: ' '
       type: List

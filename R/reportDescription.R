@@ -122,18 +122,25 @@ reportDescription<-function(analysis=braw.res$result){
     outputText<-c(outputText,"!jAIC",paste(brawFormat(analysis$aic,digits=braw.env$report_precision),sep=""),rep("",nc-2))
   }  
   outputText<-c(outputText,rep("",nc))
-  outputText<-c(outputText,"\bEffect Size ","Normalized",rep("",nc-2))
+  if (evidence$McFaddens && DV$type=="Categorical") McF="McFaddens R2"
+  else McF=" "
+    outputText<-c(outputText,"\bEffect Size ","Normalized",McF,rep("",nc-3))
   
   switch (no_ivs,
           { analysis$rIVse<-r2se(analysis$rIV,analysis$nval)
+          if (evidence$McFaddens && DV$type=="Categorical") McF<-brawFormat(analysis$rIV^2,digits=braw.env$report_precision)
           outputText<-c(outputText,paste0("!j!i",IV$name," "),
                                    paste(brawFormat(analysis$rIV,digits=braw.env$report_precision),
                                                              " +/- ",brawFormat(analysis$rIVse,digits=braw.env$report_precision),
                                                              sep=""),
+                        McF,
+                        rep("",nc-3)
+          )
+          outputText<-c(outputText," ",
                         paste0("CI = (",brawFormat(analysis$rFullCI[1],digits=braw.env$report_precision),
                                ",",brawFormat(analysis$rFullCI[2],digits=braw.env$report_precision),
                                ")"),
-                        rep("",nc-3)
+                        rep(" ",nc-2)
           )
           },{
             outputText<-c(outputText," ","\b!jdirect","\b!junique","\b!jtotal",rep("",nc-4))

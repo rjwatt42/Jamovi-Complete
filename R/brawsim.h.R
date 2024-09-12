@@ -134,6 +134,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             whichShowMultiple = "all",
             showJamovi1Btn = NULL,
             showJamovi2Btn = NULL,
+            showJamovi3Btn = NULL,
             nomenOptions = "standard",
             doProject1aBtn = NULL,
             doProject1bBtn = NULL,
@@ -971,6 +972,9 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..showJamovi2Btn <- jmvcore::OptionAction$new(
                 "showJamovi2Btn",
                 showJamovi2Btn)
+            private$..showJamovi3Btn <- jmvcore::OptionAction$new(
+                "showJamovi3Btn",
+                showJamovi3Btn)
             private$..nomenOptions <- jmvcore::OptionList$new(
                 "nomenOptions",
                 nomenOptions,
@@ -1123,6 +1127,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..sendMultiple)
             self$.addOption(private$..showJamovi1Btn)
             self$.addOption(private$..showJamovi2Btn)
+            self$.addOption(private$..showJamovi3Btn)
             self$.addOption(private$..nomenOptions)
             self$.addOption(private$..doProject1aBtn)
             self$.addOption(private$..doProject1bBtn)
@@ -1260,6 +1265,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         sendMultiple = function() private$..sendMultiple$value,
         showJamovi1Btn = function() private$..showJamovi1Btn$value,
         showJamovi2Btn = function() private$..showJamovi2Btn$value,
+        showJamovi3Btn = function() private$..showJamovi3Btn$value,
         nomenOptions = function() private$..nomenOptions$value,
         doProject1aBtn = function() private$..doProject1aBtn$value,
         doProject1bBtn = function() private$..doProject1bBtn$value,
@@ -1396,6 +1402,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..sendMultiple = NA,
         ..showJamovi1Btn = NA,
         ..showJamovi2Btn = NA,
+        ..showJamovi3Btn = NA,
         ..nomenOptions = NA,
         ..doProject1aBtn = NA,
         ..doProject1bBtn = NA,
@@ -1617,6 +1624,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param whichShowMultiple .
 #' @param showJamovi1Btn .
 #' @param showJamovi2Btn .
+#' @param showJamovi3Btn .
 #' @param nomenOptions .
 #' @param doProject1aBtn .
 #' @param doProject1bBtn .
@@ -1762,6 +1770,7 @@ BrawSim <- function(
     whichShowMultiple = "all",
     showJamovi1Btn,
     showJamovi2Btn,
+    showJamovi3Btn,
     nomenOptions = "standard",
     doProject1aBtn,
     doProject1bBtn,
@@ -1901,6 +1910,7 @@ BrawSim <- function(
         whichShowMultiple = whichShowMultiple,
         showJamovi1Btn = showJamovi1Btn,
         showJamovi2Btn = showJamovi2Btn,
+        showJamovi3Btn = showJamovi3Btn,
         nomenOptions = nomenOptions,
         doProject1aBtn = doProject1aBtn,
         doProject1bBtn = doProject1bBtn,

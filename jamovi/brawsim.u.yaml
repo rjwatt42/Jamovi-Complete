@@ -1712,6 +1712,8 @@ children:
                 name: showJamovi1Btn
               - type: ActionButton
                 name: showJamovi2Btn
+              - type: ActionButton
+                name: showJamovi3Btn
       - type: CollapseBox
         collapsed: true
         label: Help Materials
