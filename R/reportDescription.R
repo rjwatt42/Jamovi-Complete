@@ -122,7 +122,7 @@ reportDescription<-function(analysis=braw.res$result){
     outputText<-c(outputText,"!jAIC",paste(brawFormat(analysis$aic,digits=braw.env$report_precision),sep=""),rep("",nc-2))
   }  
   outputText<-c(outputText,rep("",nc))
-  if (evidence$McFaddens && DV$type=="Categorical") McF="McFaddens R2"
+  if (evidence$McFaddens && DV$type=="Categorical") McF="McFaddens Pseudo-R2"
   else McF=" "
     outputText<-c(outputText,"\bEffect Size ","Normalized",McF,rep("",nc-3))
   
