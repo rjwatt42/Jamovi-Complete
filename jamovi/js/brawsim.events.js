@@ -159,7 +159,17 @@ const events =  {
     },
     
     onChange_project1c: function(ui) {
+      let BtnOn = ui.doProject1cBtn.value();
+      if (BtnOn==true) {
       ui.makeSampleBtn.setValue(true)
+      }
+    },
+    
+    onChange_project1d: function(ui) {
+      let BtnOn = ui.doProject1dBtn.value();
+      if (BtnOn==true) {
+      ui.showJamovi1Btn.setValue(true)
+      }
     }
 }
 

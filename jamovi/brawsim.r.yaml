@@ -4,6 +4,10 @@ title: BrawStats:Simulate Data
 jrs:   '1.1'
 
 items:
+    - name: JamoviInstructions
+      type: Html
+      visible: FALSE
+
     - name: graphPlot
       title: ' '
       type: Image
@@ -31,7 +35,7 @@ items:
       type: Output
       measureType: nominal
       varTitle: Sample
-      items: 3
+      items: 4
       clearWith:
        - makeSampleBtn
 

@@ -18,25 +18,25 @@ options:
         title: Analysis
       - name: planM
         title: More
-
-    - name: varOptions
-      title: ' '
-      type: List
-      options:
-      - name: DV
-        title: DV
-      - name: IV
-        title: IV
-      - name: IV2
-        title: IV2
-      default: DV
+# 
+# - name: varOptions
+#   title: ' '
+#   type: List
+#   options:
+#   - name: DV
+#     title: DV
+#   - name: IV
+#     title: IV
+#   - name: IV2
+#     title: IV2
+#   default: DV
             
     - name: presetDV
-      title: 'Presets:'
+      title: ''
       type: List
       options:
       - name: Blank
-        title: ' '
+        title: 'DV'
       - name: IQ
         title: IQ
       - name: Diligence
@@ -68,11 +68,11 @@ options:
       default: Blank
             
     - name: presetIV
-      title: 'Presets:'
+      title: ''
       type: List
       options:
       - name: Blank
-        title: ' '
+        title: 'IV'
       - name: IQ
         title: IQ
       - name: Diligence
@@ -104,11 +104,11 @@ options:
       default: Blank
             
     - name: presetIV2
-      title: 'Presets:'
+      title: ''
       type: List
       options:
-      - name: Blank
-        title: ' '
+      - name: none
+        title: 'none'
       - name: IQ
         title: IQ
       - name: Diligence
@@ -137,7 +137,7 @@ options:
         title: StudySubject
       - name: BirthOrder
         title: BirthOrder
-      default: Blank
+      default: none
 
     - name: presetWorld
       title: 'Presets:'
@@ -273,11 +273,6 @@ options:
       type: String
       default: "1,1"
 
-    - name: IV2on
-      title: ' '
-      type: Bool
-      default: FALSE
-      
     - name: IV2name
       title: Name
       type: String
@@ -600,7 +595,7 @@ options:
       default: yes
             
     - name: Transform
-      title: Transform
+      title: Transform the DV
       type: List
       options:
       - name: None
@@ -1252,6 +1247,14 @@ options:
       type: Output
       default: TRUE
 
+    - name: showJamovi1Btn
+      title: 'analysis'
+      type: Action
+
+    - name: showJamovi2Btn
+      title: 'graph'
+      type: Action
+
     - name: nomenOptions
       title: ' '
       type: List
@@ -1275,6 +1278,10 @@ options:
       type: Action
 
     - name: doProject1cBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject1dBtn
       title: 'do it for me'
       type: Action
 

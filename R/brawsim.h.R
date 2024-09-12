@@ -7,10 +7,9 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     public = list(
         initialize = function(
             planOptions = NULL,
-            varOptions = "DV",
             presetDV = "Blank",
             presetIV = "Blank",
-            presetIV2 = "Blank",
+            presetIV2 = "none",
             presetWorld = "simple",
             DVname = "DV",
             DVtype = "Interval",
@@ -34,7 +33,6 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             IVncats = 2,
             IVcases = "C1,C2",
             IVprops = "1,1",
-            IV2on = FALSE,
             IV2name = "IV2",
             IV2type = "Interval",
             IV2mu = 0,
@@ -134,10 +132,13 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             exploreVar2 = "p",
             showExploreDimension = "1D",
             whichShowMultiple = "all",
+            showJamovi1Btn = NULL,
+            showJamovi2Btn = NULL,
             nomenOptions = "standard",
             doProject1aBtn = NULL,
             doProject1bBtn = NULL,
-            doProject1cBtn = NULL, ...) {
+            doProject1cBtn = NULL,
+            doProject1dBtn = NULL, ...) {
 
             super$initialize(
                 package="BrawStats",
@@ -153,14 +154,6 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "planD",
                     "planA",
                     "planM"))
-            private$..varOptions <- jmvcore::OptionList$new(
-                "varOptions",
-                varOptions,
-                options=list(
-                    "DV",
-                    "IV",
-                    "IV2"),
-                default="DV")
             private$..presetDV <- jmvcore::OptionList$new(
                 "presetDV",
                 presetDV,
@@ -205,7 +198,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "presetIV2",
                 presetIV2,
                 options=list(
-                    "Blank",
+                    "none",
                     "IQ",
                     "Diligence",
                     "Perfectionism",
@@ -220,7 +213,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "Phase",
                     "StudySubject",
                     "BirthOrder"),
-                default="Blank")
+                default="none")
             private$..presetWorld <- jmvcore::OptionList$new(
                 "presetWorld",
                 presetWorld,
@@ -324,10 +317,6 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "IVprops",
                 IVprops,
                 default="1,1")
-            private$..IV2on <- jmvcore::OptionBool$new(
-                "IV2on",
-                IV2on,
-                default=FALSE)
             private$..IV2name <- jmvcore::OptionString$new(
                 "IV2name",
                 IV2name,
@@ -976,6 +965,12 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "sendSample")
             private$..sendMultiple <- jmvcore::OptionOutput$new(
                 "sendMultiple")
+            private$..showJamovi1Btn <- jmvcore::OptionAction$new(
+                "showJamovi1Btn",
+                showJamovi1Btn)
+            private$..showJamovi2Btn <- jmvcore::OptionAction$new(
+                "showJamovi2Btn",
+                showJamovi2Btn)
             private$..nomenOptions <- jmvcore::OptionList$new(
                 "nomenOptions",
                 nomenOptions,
@@ -994,9 +989,11 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..doProject1cBtn <- jmvcore::OptionAction$new(
                 "doProject1cBtn",
                 doProject1cBtn)
+            private$..doProject1dBtn <- jmvcore::OptionAction$new(
+                "doProject1dBtn",
+                doProject1dBtn)
 
             self$.addOption(private$..planOptions)
-            self$.addOption(private$..varOptions)
             self$.addOption(private$..presetDV)
             self$.addOption(private$..presetIV)
             self$.addOption(private$..presetIV2)
@@ -1023,7 +1020,6 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..IVncats)
             self$.addOption(private$..IVcases)
             self$.addOption(private$..IVprops)
-            self$.addOption(private$..IV2on)
             self$.addOption(private$..IV2name)
             self$.addOption(private$..IV2type)
             self$.addOption(private$..IV2mu)
@@ -1125,14 +1121,16 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..whichShowMultiple)
             self$.addOption(private$..sendSample)
             self$.addOption(private$..sendMultiple)
+            self$.addOption(private$..showJamovi1Btn)
+            self$.addOption(private$..showJamovi2Btn)
             self$.addOption(private$..nomenOptions)
             self$.addOption(private$..doProject1aBtn)
             self$.addOption(private$..doProject1bBtn)
             self$.addOption(private$..doProject1cBtn)
+            self$.addOption(private$..doProject1dBtn)
         }),
     active = list(
         planOptions = function() private$..planOptions$value,
-        varOptions = function() private$..varOptions$value,
         presetDV = function() private$..presetDV$value,
         presetIV = function() private$..presetIV$value,
         presetIV2 = function() private$..presetIV2$value,
@@ -1159,7 +1157,6 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         IVncats = function() private$..IVncats$value,
         IVcases = function() private$..IVcases$value,
         IVprops = function() private$..IVprops$value,
-        IV2on = function() private$..IV2on$value,
         IV2name = function() private$..IV2name$value,
         IV2type = function() private$..IV2type$value,
         IV2mu = function() private$..IV2mu$value,
@@ -1261,13 +1258,15 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         whichShowMultiple = function() private$..whichShowMultiple$value,
         sendSample = function() private$..sendSample$value,
         sendMultiple = function() private$..sendMultiple$value,
+        showJamovi1Btn = function() private$..showJamovi1Btn$value,
+        showJamovi2Btn = function() private$..showJamovi2Btn$value,
         nomenOptions = function() private$..nomenOptions$value,
         doProject1aBtn = function() private$..doProject1aBtn$value,
         doProject1bBtn = function() private$..doProject1bBtn$value,
-        doProject1cBtn = function() private$..doProject1cBtn$value),
+        doProject1cBtn = function() private$..doProject1cBtn$value,
+        doProject1dBtn = function() private$..doProject1dBtn$value),
     private = list(
         ..planOptions = NA,
-        ..varOptions = NA,
         ..presetDV = NA,
         ..presetIV = NA,
         ..presetIV2 = NA,
@@ -1294,7 +1293,6 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..IVncats = NA,
         ..IVcases = NA,
         ..IVprops = NA,
-        ..IV2on = NA,
         ..IV2name = NA,
         ..IV2type = NA,
         ..IV2mu = NA,
@@ -1396,16 +1394,20 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..whichShowMultiple = NA,
         ..sendSample = NA,
         ..sendMultiple = NA,
+        ..showJamovi1Btn = NA,
+        ..showJamovi2Btn = NA,
         ..nomenOptions = NA,
         ..doProject1aBtn = NA,
         ..doProject1bBtn = NA,
-        ..doProject1cBtn = NA)
+        ..doProject1cBtn = NA,
+        ..doProject1dBtn = NA)
 )
 
 BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "BrawSimResults",
     inherit = jmvcore::Group,
     active = list(
+        JamoviInstructions = function() private$.items[["JamoviInstructions"]],
         graphPlot = function() private$.items[["graphPlot"]],
         reportPlot = function() private$.items[["reportPlot"]],
         debug = function() private$.items[["debug"]],
@@ -1419,6 +1421,10 @@ BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 name="",
                 title="BrawStats:Simulate Data",
                 refs="brawstats book")
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="JamoviInstructions",
+                visible=FALSE))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="graphPlot",
@@ -1447,7 +1453,7 @@ BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 name="sendSample",
                 measureType="nominal",
                 varTitle="Sample",
-                items=3,
+                items=4,
                 clearWith=list(
                     "makeSampleBtn")))
             self$add(jmvcore::Output$new(
@@ -1484,7 +1490,6 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param planOptions .
-#' @param varOptions .
 #' @param presetDV .
 #' @param presetIV .
 #' @param presetIV2 .
@@ -1511,7 +1516,6 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param IVncats .
 #' @param IVcases .
 #' @param IVprops .
-#' @param IV2on .
 #' @param IV2name .
 #' @param IV2type .
 #' @param IV2mu .
@@ -1611,12 +1615,16 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param exploreVar2 .
 #' @param showExploreDimension .
 #' @param whichShowMultiple .
+#' @param showJamovi1Btn .
+#' @param showJamovi2Btn .
 #' @param nomenOptions .
 #' @param doProject1aBtn .
 #' @param doProject1bBtn .
 #' @param doProject1cBtn .
+#' @param doProject1dBtn .
 #' @return A results object containing:
 #' \tabular{llllll}{
+#'   \code{results$JamoviInstructions} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$graphPlot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$reportPlot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$debug} \tab \tab \tab \tab \tab a preformatted \cr
@@ -1627,10 +1635,9 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @export
 BrawSim <- function(
     planOptions,
-    varOptions = "DV",
     presetDV = "Blank",
     presetIV = "Blank",
-    presetIV2 = "Blank",
+    presetIV2 = "none",
     presetWorld = "simple",
     DVname = "DV",
     DVtype = "Interval",
@@ -1654,7 +1661,6 @@ BrawSim <- function(
     IVncats = 2,
     IVcases = "C1,C2",
     IVprops = "1,1",
-    IV2on = FALSE,
     IV2name = "IV2",
     IV2type = "Interval",
     IV2mu = 0,
@@ -1754,10 +1760,13 @@ BrawSim <- function(
     exploreVar2 = "p",
     showExploreDimension = "1D",
     whichShowMultiple = "all",
+    showJamovi1Btn,
+    showJamovi2Btn,
     nomenOptions = "standard",
     doProject1aBtn,
     doProject1bBtn,
-    doProject1cBtn) {
+    doProject1cBtn,
+    doProject1dBtn) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("BrawSim requires jmvcore to be installed (restart may be required)")
@@ -1765,7 +1774,6 @@ BrawSim <- function(
 
     options <- BrawSimOptions$new(
         planOptions = planOptions,
-        varOptions = varOptions,
         presetDV = presetDV,
         presetIV = presetIV,
         presetIV2 = presetIV2,
@@ -1792,7 +1800,6 @@ BrawSim <- function(
         IVncats = IVncats,
         IVcases = IVcases,
         IVprops = IVprops,
-        IV2on = IV2on,
         IV2name = IV2name,
         IV2type = IV2type,
         IV2mu = IV2mu,
@@ -1892,10 +1899,13 @@ BrawSim <- function(
         exploreVar2 = exploreVar2,
         showExploreDimension = showExploreDimension,
         whichShowMultiple = whichShowMultiple,
+        showJamovi1Btn = showJamovi1Btn,
+        showJamovi2Btn = showJamovi2Btn,
         nomenOptions = nomenOptions,
         doProject1aBtn = doProject1aBtn,
         doProject1bBtn = doProject1bBtn,
-        doProject1cBtn = doProject1cBtn)
+        doProject1cBtn = doProject1cBtn,
+        doProject1dBtn = doProject1dBtn)
 
     analysis <- BrawSimClass$new(
         options = options,

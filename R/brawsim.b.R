@@ -42,7 +42,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         )
         braw.env$statusStore<<-statusStore
       } else       statusStore<-braw.env$statusStore
-      
+
       # get some display parameters for later
       makeSampleNow<-self$options$makeSampleBtn
       showSampleType<-self$options$showSampleType
@@ -136,7 +136,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                        mu=self$options$IVmu,sd=self$options$IVsd,skew=self$options$IVskew,kurtosis=self$options$IVkurt,
                        ncats=self$options$IVncats,cases=self$options$IVcases,proportions=self$options$IVprops,
                        nlevs=self$options$IVnlevs,iqr=self$options$IViqr)
-      if (self$options$IV2on) {
+      if (self$options$presetIV2!="none") {
         IV2<-makeVariable(self$options$IV2name,self$options$IV2type,
                           mu=self$options$IV2mu,sd=self$options$IV2sd,skew=self$options$IV2skew,kurtosis=self$options$IV2kurt,
                           ncats=self$options$IV2ncats,cases=self$options$IV2cases,proportions=self$options$IV2props,
@@ -231,6 +231,24 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       braw.def$explore<<-explore
       braw.def$metaAnalysis<<-metaAnalysis
       braw.def$possible<<-possible
+
+      # now deal with a request for Jamovi instructions
+      showJamoviNow1<-self$options$showJamovi1Btn
+      if (showJamoviNow1) {
+        self$results$JamoviInstructions$setVisible(TRUE)
+        instructions<-makeInstructions(hypothesis,design,HelpType="Analysis")
+        self$results$JamoviInstructions$setContent(instructions)
+      } 
+      showJamoviNow2<-self$options$showJamovi2Btn
+      if (showJamoviNow2) {
+        self$results$JamoviInstructions$setVisible(TRUE)
+        instructions<-makeInstructions(hypothesis,design,HelpType="Graph")
+        self$results$JamoviInstructions$setContent(instructions)
+      } 
+      if (!showJamoviNow1 && !showJamoviNow2) {
+        self$results$JamoviInstructions$setVisible(FALSE)
+      }
+      
       
       # are any of the existing stored results now invalid?
       if (changedH || changedD) {
@@ -346,11 +364,11 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       # single result first
       if (!is.null(braw.res$result)) {
         if (is.null(IV2)) {
-          newVariables<-data.frame(braw.res$result$dv,braw.res$result$iv,braw.res$result$dv+NA)
-          names(newVariables)<-c(DV$name,IV$name,"-")
+          newVariables<-data.frame(braw.res$result$participant,braw.res$result$dv,braw.res$result$iv,braw.res$result$dv+NA)
+          names(newVariables)<-c("ID",DV$name,IV$name,"-")
         } else {
-          newVariables<-data.frame(braw.res$result$dv,braw.res$result$iv,braw.res$result$iv2)
-          names(newVariables)<-c(DV$name,IV$name,IV2$name)
+          newVariables<-data.frame(braw.res$result$participant,braw.res$result$dv,braw.res$result$iv,braw.res$result$iv2)
+          names(newVariables)<-c("ID",DV$name,IV$name,IV2$name)
         }
 
         keys<-1:length(newVariables)
