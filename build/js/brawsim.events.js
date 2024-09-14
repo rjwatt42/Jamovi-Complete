@@ -111,6 +111,7 @@ const events =  {
 
     onChange_presetIV2: function(ui) {
       let presetIV2 = ui.presetIV2.value();
+      if (presetIV2!="none") {
       let variable = makeVar(presetIV2);
           ui.IV2name.setValue(variable.name);
           ui.IV2type.setValue(variable.type);
@@ -123,6 +124,7 @@ const events =  {
           ui.IV2ncats.setValue(variable.ncats);
           ui.IV2cases.setValue(variable.cases)
           ui.IV2props.setValue(variable.props);
+      }
     },
 
     onChange_presetWorld: function(ui) {
@@ -175,6 +177,21 @@ const events =  {
 
 let makeVar = function(name) {
   switch (name) {
+    case "DV":
+      var variable={name:"DV",type:"Interval",mu:0,sd:1,skew:0,kurt:3,
+      nlevs:7,iqr:3,
+      ncats:2,cases:"C1,C2",props:"1,1"};
+      break;
+    case "IV":
+      var variable={name:"IV",type:"Interval",mu:0,sd:1,skew:0,kurt:3,
+      nlevs:7,iqr:3,
+      ncats:2,cases:"C1,C2",props:"1,1"};
+      break;
+    case "IV2":
+      var variable={name:"IV2",type:"Interval",mu:0,sd:1,skew:0,kurt:3,
+      nlevs:7,iqr:3,
+      ncats:2,cases:"C1,C2",props:"1,1"};
+      break;
     case "IQ":
       var variable={name:"IQ",type:"Interval",mu:100,sd:15,skew:0,kurt:3,
       nlevs:7,iqr:3,
