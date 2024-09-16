@@ -580,7 +580,6 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
           y50<-apply( showVals , 2 , quantile , probs = 0.50 , na.rm = TRUE ,names=FALSE)
           y38<-apply( showVals , 2 , quantile , probs = 0.50-quants/2 , na.rm = TRUE ,names=FALSE)
           y25<-apply( showVals , 2 , quantile , probs = 0.50-quants , na.rm = TRUE ,names=FALSE)
-          ysd<-apply( showVals , 2 , sd, na.rm = TRUE)
         }
 
         if (!isempty(y50)) {
@@ -608,8 +607,6 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
             g<-g+dataPolygon(data=pts2f,fill=col,alpha=0.4,colour=NA)
             g<-g+dataLine(data.frame(x=vals,y=y38),colour="white",alpha=0.6)
             g<-g+dataLine(data.frame(x=vals,y=y62),colour="white",alpha=0.6)
-            # g<-g+dataLine(data.frame(x=vals,y=ysd),colour="black",alpha=0.6)
-            
           }
           pts0f<-data.frame(x=vals,y=y50)
           g<-g+dataLine(data=pts0f)
