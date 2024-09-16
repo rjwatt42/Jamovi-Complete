@@ -172,6 +172,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                 sIV2Use=self$options$SampleUsage2,
                                 sDependence=self$options$Dependence,
                                 sOutliers=self$options$Outliers,
+                                sNonResponse=self$options$NonResponse,
                                 sCheating=self$options$Cheating,sCheatingAttempts=self$options$CheatingAttempts,
                          Replication=makeReplication(On=self$options$ReplicationOn,
                                                      Power=self$options$ReplicationPower,
@@ -358,7 +359,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                },
                "Explore"={
                  self$results$graphPlot$setState(c(outputNow,showExploreParam,showExploreDimension,whichShowExploreOut))
-                 # self$results$reportPlot$setState(c(outputNow,showExploreParam))
+                 self$results$reportPlot$setState(c(outputNow,showExploreParam))
                },
                {
                  self$results$graphPlot$setState(outputNow)

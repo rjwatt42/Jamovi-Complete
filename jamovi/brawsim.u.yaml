@@ -529,6 +529,10 @@ children:
                                         name: Outliers
                                         margin: none
                                         format: number
+                                      - type: TextBox
+                                        name: NonResponse
+                                        margin: none
+                                        format: number
                               - type: LayoutBox
                                 style: list
                                 margin: none

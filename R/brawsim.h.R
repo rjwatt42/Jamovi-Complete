@@ -64,6 +64,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             SampleUsage2 = "Between",
             Dependence = 0,
             Outliers = 0,
+            NonResponse = 0,
             Cheating = "None",
             CheatingAttempts = 5,
             ReplicationOn = FALSE,
@@ -469,6 +470,10 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..Outliers <- jmvcore::OptionNumber$new(
                 "Outliers",
                 Outliers,
+                default=0)
+            private$..NonResponse <- jmvcore::OptionNumber$new(
+                "NonResponse",
+                NonResponse,
                 default=0)
             private$..Cheating <- jmvcore::OptionList$new(
                 "Cheating",
@@ -882,6 +887,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "blank1d",
                     "Dependence",
                     "Outliers",
+                    "NonResponse",
+                    "blank1e",
                     "Cheating",
                     "CheatingAmount"))
             private$..analysisExploreList <- jmvcore::OptionList$new(
@@ -1055,6 +1062,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..SampleUsage2)
             self$.addOption(private$..Dependence)
             self$.addOption(private$..Outliers)
+            self$.addOption(private$..NonResponse)
             self$.addOption(private$..Cheating)
             self$.addOption(private$..CheatingAttempts)
             self$.addOption(private$..ReplicationOn)
@@ -1193,6 +1201,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         SampleUsage2 = function() private$..SampleUsage2$value,
         Dependence = function() private$..Dependence$value,
         Outliers = function() private$..Outliers$value,
+        NonResponse = function() private$..NonResponse$value,
         Cheating = function() private$..Cheating$value,
         CheatingAttempts = function() private$..CheatingAttempts$value,
         ReplicationOn = function() private$..ReplicationOn$value,
@@ -1330,6 +1339,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..SampleUsage2 = NA,
         ..Dependence = NA,
         ..Outliers = NA,
+        ..NonResponse = NA,
         ..Cheating = NA,
         ..CheatingAttempts = NA,
         ..ReplicationOn = NA,
@@ -1554,6 +1564,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param SampleUsage2 .
 #' @param Dependence .
 #' @param Outliers .
+#' @param NonResponse .
 #' @param Cheating .
 #' @param CheatingAttempts .
 #' @param ReplicationOn .
@@ -1700,6 +1711,7 @@ BrawSim <- function(
     SampleUsage2 = "Between",
     Dependence = 0,
     Outliers = 0,
+    NonResponse = 0,
     Cheating = "None",
     CheatingAttempts = 5,
     ReplicationOn = FALSE,
@@ -1840,6 +1852,7 @@ BrawSim <- function(
         SampleUsage2 = SampleUsage2,
         Dependence = Dependence,
         Outliers = Outliers,
+        NonResponse = NonResponse,
         Cheating = Cheating,
         CheatingAttempts = CheatingAttempts,
         ReplicationOn = ReplicationOn,

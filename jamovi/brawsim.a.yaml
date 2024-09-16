@@ -477,6 +477,11 @@ options:
       title: Outliers 
       type: Number
       default: 0
+    
+    - name: NonResponse
+      title: NonResponse 
+      type: Number
+      default: 0
       
     - name: Cheating
       title: Cheating
@@ -1102,6 +1107,10 @@ options:
           title: Dependence
         - name: Outliers
           title: Outliers
+        - name: NonResponse
+          title: NonResponse
+        - name: blank1e
+          title: ' '
         - name: Cheating
           title: CheatMethod
         - name: CheatingAmount
