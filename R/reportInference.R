@@ -67,7 +67,7 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova"){
     
     if (!(braw.env$reducedOutput && is.null(IV2))) {
       outputText<-c(outputText,rep("",nc))
-      outputText<-c(outputText," ",paste0("!j",sub("^","\b",colnames(anova))))
+      outputText<-c(outputText," ",paste0("!j",sub("Pr\\(","p\\(",sub("^","\b",colnames(anova)))),"")
       total_done<-FALSE
       
       for (i in 1:nrow(anova)){

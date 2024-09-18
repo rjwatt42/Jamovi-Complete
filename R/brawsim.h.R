@@ -1450,17 +1450,14 @@ BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 height=360,
                 visible=TRUE,
                 renderFun=".plotGraph"))
-            self$add(jmvcore::Image$new(
+            self$add(jmvcore::Html$new(
                 options=options,
                 name="reportPlot",
                 title=" ",
-                width=600,
-                height=200,
                 visible=TRUE,
                 refs=list(
                     "brawstats",
-                    "book"),
-                renderFun=".plotReport"))
+                    "book")))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="debug",
@@ -1645,7 +1642,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' \tabular{llllll}{
 #'   \code{results$JamoviInstructions} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$graphPlot} \tab \tab \tab \tab \tab an image \cr
-#'   \code{results$reportPlot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$reportPlot} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$debug} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$sendSample} \tab \tab \tab \tab \tab an output \cr
 #'   \code{results$sendMultiple} \tab \tab \tab \tab \tab an output \cr

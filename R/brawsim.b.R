@@ -14,7 +14,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
       # initialization code 
       if (!exists("braw.env")) {
-        BrawOpts(fontScale = 1.5,graphC="white",reducedOutput=TRUE)
+        BrawOpts(fontScale = 1.5,graphC="white",reducedOutput=TRUE,reportHTML=TRUE)
         braw.env$graphicsSize<<-braw.env$graphicsSize*0.6
         statusStore<-list(lastOutput="System",
                           showSampleType="Sample",
@@ -213,25 +213,12 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                  includeBias=self$options$MetaAnalysisBias=="yes")
       changedM<- !identical(oldM,metaAnalysis)
       
-      oldP<-braw.def$possible
-      possible<-makePossible(typePossible=self$options$likelihoodType,
-                             UsePrior=self$options$likelihoodUsePrior,
-                             prior=makeWorld(worldOn=TRUE,
-                                             populationPDF=self$options$priorPDF,
-                                             populationRZ=self$options$priorRZ,
-                                             populationPDFk=self$options$priorLambda,
-                                             populationNullp=self$options$priorNullP)
-                             )
-      changedP<- !identical(oldP,possible)
-      
-      
       # store the option variables inside the braw package
       braw.def$hypothesis<<-hypothesis
       braw.def$design<<-design
       braw.def$evidence<<-evidence
       braw.def$explore<<-explore
       braw.def$metaAnalysis<<-metaAnalysis
-      braw.def$possible<<-possible
 
       # now deal with a request for Jamovi instructions
       showJamoviNow1<-self$options$showJamovi1Btn
@@ -335,35 +322,45 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         switch(outputNow,
                "System"={
                  self$results$graphPlot$setState(outputNow)
-                 self$results$reportPlot$setState(NULL)
+                 self$results$reportPlot$setContent(reportPlot(NULL))
                },
                "Sample"={
                  self$results$graphPlot$setState(outputNow)
-                 self$results$reportPlot$setState(outputNow)
+                 self$results$reportPlot$setContent(reportSample())
                },
                "Describe"={
                  self$results$graphPlot$setState(outputNow)
-                 self$results$reportPlot$setState(outputNow)
+                 self$results$reportPlot$setContent(reportDescription())
                },
                "Infer"={
                  self$results$graphPlot$setState(c(outputNow,showInferParam,showInferDimension))
-                 self$results$reportPlot$setState(c(outputNow,showInferParam))
+                 self$results$reportPlot$setContent(reportInference())
                },
                "Likelihood"={
-                 possibleResult<-doPossible()
+                 possible<-makePossible(typePossible=self$options$likelihoodType,
+                                        targetSample=NULL,
+                                        UsePrior=self$options$likelihoodUsePrior,
+                                        prior=makeWorld(worldOn=TRUE,
+                                                        populationPDF=self$options$priorPDF,
+                                                        populationRZ=self$options$priorRZ,
+                                                        populationPDFk=self$options$priorLambda,
+                                                        populationNullp=self$options$priorNullP)
+                 )
+                 possibleResult<-doPossible(possible)
                  self$results$graphPlot$setState(c(outputNow,likelihoodCutaway))
+                 self$results$reportPlot$setContent(reportLikelihood())
                },
                "Multiple"={
                  self$results$graphPlot$setState(c(outputNow,showMultipleParam,showMultipleDimension,whichShowMultipleOut))
-                 self$results$reportPlot$setState(c(outputNow,showMultipleParam))
+                 self$results$reportPlot$setContent(reportExpected(showType=showMultipleParam))
                },
                "Explore"={
                  self$results$graphPlot$setState(c(outputNow,showExploreParam,showExploreDimension,whichShowExploreOut))
-                 self$results$reportPlot$setState(c(outputNow,showExploreParam))
+                 self$results$reportPlot$setContent(reportExplore(showType=showExploreParam))
                },
                {
                  self$results$graphPlot$setState(outputNow)
-                 self$results$reportPlot$setState(outputNow)
+                 self$results$reportPlot$setContent(NULL)
                }
         )
       

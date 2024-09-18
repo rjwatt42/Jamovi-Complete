@@ -18,14 +18,14 @@ items:
 
     - name: reportPlot
       title: ' '
-      type: Image
-      width:  600
-      height: 200
+      type: Html
+      # width:  600
+      # height: 200
       visible: TRUE
       refs:
       - brawstats
       - book
-      renderFun: .plotReport
+      # renderFun: .plotReport
 
     - name: debug
       type: Preformatted
