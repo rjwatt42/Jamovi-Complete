@@ -561,6 +561,16 @@ options:
       - name: no
         title: no
       default: yes
+
+    - name: ReplicationSigOriginal
+      title: 'significant original'
+      type: List
+      options:
+      - name: yes
+        title: yes
+      - name: no
+        title: no
+      default: yes
       
     - name: alphaSig
       title: 'alpha'
@@ -888,6 +898,8 @@ options:
       title: ' show:'
       type: List
       options:
+        - name: Compact
+          title: Compact
         - name: Sample
           title: Sample
         - name: Describe
@@ -896,7 +908,7 @@ options:
           title: Infer
         - name: Likelihood
           title: Likelihood
-      default: Sample
+      default: Compact
       
     - name: showInferParam
       title: ' as:'

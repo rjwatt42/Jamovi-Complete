@@ -178,7 +178,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                                      Power=self$options$ReplicationPower,
                                                      Repeats=self$options$ReplicationAttempts,
                                                      Keep=self$options$ReplicationDecision,
-                                                     forceSigOriginal=FALSE,forceSign=(self$options$ReplicationSign=="yes"),
+                                                     forceSigOriginal=self$options$ReplicationSigOriginal=="yes",forceSign=(self$options$ReplicationSign=="yes"),
                                                      RepAlpha=self$options$ReplicationAlpha,
                                                      PowerPrior=self$options$ReplicationPrior
                                                      )
@@ -261,7 +261,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       }
       if (changedX) {
         braw.res$explore<<-NULL
-        outputNow<-"System"
+        # outputNow<-"System"
       }
       if (changedM) {
         braw.res$metaAnalysis<<-NULL
@@ -323,6 +323,10 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                "System"={
                  self$results$graphPlot$setState(outputNow)
                  self$results$reportPlot$setContent(reportPlot(NULL))
+               },
+               "Compact"={
+                 self$results$graphPlot$setState("Describe")
+                 self$results$reportPlot$setContent(reportInference())
                },
                "Sample"={
                  self$results$graphPlot$setState(outputNow)

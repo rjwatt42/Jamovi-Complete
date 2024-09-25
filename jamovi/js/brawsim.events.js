@@ -157,7 +157,7 @@ const events =  {
     },
     
     onChange_project1b: function(ui) {
-      ui.EffectSize1.setValue(0.5)
+      ui.EffectSize1.setValue(0.3)
     },
     
     onChange_project1c: function(ui) {

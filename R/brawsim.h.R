@@ -74,6 +74,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             ReplicationDecision = "Cautious",
             ReplicationAlpha = 0.05,
             ReplicationSign = "yes",
+            ReplicationSigOriginal = "yes",
             alphaSig = 0.05,
             ssq = "Type3",
             interaction = "yes",
@@ -100,7 +101,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             singleVar2 = "p",
             multipleVar1 = "rs",
             multipleVar2 = "p",
-            showSampleType = "Sample",
+            showSampleType = "Compact",
             showInferParam = "Basic",
             showInferDimension = "1D",
             showMultipleParam = "Basic",
@@ -530,6 +531,13 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "yes",
                     "no"),
                 default="yes")
+            private$..ReplicationSigOriginal <- jmvcore::OptionList$new(
+                "ReplicationSigOriginal",
+                ReplicationSigOriginal,
+                options=list(
+                    "yes",
+                    "no"),
+                default="yes")
             private$..alphaSig <- jmvcore::OptionNumber$new(
                 "alphaSig",
                 alphaSig,
@@ -737,11 +745,12 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "showSampleType",
                 showSampleType,
                 options=list(
+                    "Compact",
                     "Sample",
                     "Describe",
                     "Infer",
                     "Likelihood"),
-                default="Sample")
+                default="Compact")
             private$..showInferParam <- jmvcore::OptionList$new(
                 "showInferParam",
                 showInferParam,
@@ -1072,6 +1081,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..ReplicationDecision)
             self$.addOption(private$..ReplicationAlpha)
             self$.addOption(private$..ReplicationSign)
+            self$.addOption(private$..ReplicationSigOriginal)
             self$.addOption(private$..alphaSig)
             self$.addOption(private$..ssq)
             self$.addOption(private$..interaction)
@@ -1211,6 +1221,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ReplicationDecision = function() private$..ReplicationDecision$value,
         ReplicationAlpha = function() private$..ReplicationAlpha$value,
         ReplicationSign = function() private$..ReplicationSign$value,
+        ReplicationSigOriginal = function() private$..ReplicationSigOriginal$value,
         alphaSig = function() private$..alphaSig$value,
         ssq = function() private$..ssq$value,
         interaction = function() private$..interaction$value,
@@ -1349,6 +1360,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..ReplicationDecision = NA,
         ..ReplicationAlpha = NA,
         ..ReplicationSign = NA,
+        ..ReplicationSigOriginal = NA,
         ..alphaSig = NA,
         ..ssq = NA,
         ..interaction = NA,
@@ -1571,6 +1583,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param ReplicationDecision .
 #' @param ReplicationAlpha .
 #' @param ReplicationSign .
+#' @param ReplicationSigOriginal .
 #' @param alphaSig .
 #' @param ssq .
 #' @param interaction .
@@ -1718,6 +1731,7 @@ BrawSim <- function(
     ReplicationDecision = "Cautious",
     ReplicationAlpha = 0.05,
     ReplicationSign = "yes",
+    ReplicationSigOriginal = "yes",
     alphaSig = 0.05,
     ssq = "Type3",
     interaction = "yes",
@@ -1744,7 +1758,7 @@ BrawSim <- function(
     singleVar2 = "p",
     multipleVar1 = "rs",
     multipleVar2 = "p",
-    showSampleType = "Sample",
+    showSampleType = "Compact",
     showInferParam = "Basic",
     showInferDimension = "1D",
     showMultipleParam = "Basic",
@@ -1859,6 +1873,7 @@ BrawSim <- function(
         ReplicationDecision = ReplicationDecision,
         ReplicationAlpha = ReplicationAlpha,
         ReplicationSign = ReplicationSign,
+        ReplicationSigOriginal = ReplicationSigOriginal,
         alphaSig = alphaSig,
         ssq = ssq,
         interaction = interaction,

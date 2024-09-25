@@ -745,10 +745,10 @@ children:
                                             children:
                                               - type: ComboBox
                                                 name: WorldPDF
-                                                enable: (WorldOn:true)
+                                                enable: (WorldOn)
                                               - type: ComboBox
                                                 name: WorldRZ
-                                                enable: (WorldOn:true)
+                                                enable: (WorldOn)
                                           - type: LayoutBox
                                             style: inline
                                             margin: none
@@ -756,11 +756,11 @@ children:
                                               - type: TextBox
                                                 name: WorldLambda
                                                 format: number
-                                                enable: (WorldOn:true)
+                                                enable: (WorldOn)
                                               - type: TextBox
                                                 name: WorldNullP
                                                 format: number
-                                                enable: (WorldOn:true)
+                                                enable: (WorldOn)
                                   - type: LayoutBox
                                     style: inline
                                     margin: none
@@ -782,12 +782,12 @@ children:
                                             name: SampleSizeM
                                             margin: none
                                             format: number
-                                            enable: (SampleSpreadOn:true)
+                                            enable: (SampleSpreadOn)
                                           - type: TextBox
                                             name: SampleGamma
                                             margin: none
                                             format: number
-                                            enable: (SampleSpreadOn:true)
+                                            enable: (SampleSpreadOn)
                           - type: CollapseBox
                             label: Replication
                             collapsed: true
@@ -833,6 +833,12 @@ children:
                                           - type: ComboBox
                                             name: ReplicationPrior
                                             margin: none
+                                      - type: LayoutBox
+                                        style: inline
+                                        margin: none
+                                        children:
+                                          - type: ComboBox
+                                            name: ReplicationSigOriginal
                                       - type: LayoutBox
                                         style: inline
                                         margin: none
@@ -1605,7 +1611,7 @@ children:
                                             label: ' '
                                             minWidth: 26
                                           - type: Label
-                                            label: 'IV->DV: 0.5'
+                                            label: 'IV->DV: 0.3'
                                       - type: LayoutBox
                                         style: inline
                                         children:
@@ -1635,22 +1641,6 @@ children:
                                     minWidth: 13
                                   - type: Label
                                     label: press the "single" button
-                              - type: LayoutBox
-                                style: inline
-                                children:
-                                  - type: Label
-                                    label: ' '
-                                    minWidth: 26
-                                  - type: Label
-                                    label: and try all the "show:" options
-                              - type: LayoutBox
-                                style: inline
-                                children:
-                                  - type: Label
-                                    label: ' '
-                                    minWidth: 26
-                                  - type: Label
-                                    label: focus on the "Infer" result
                               - type: LayoutBox
                                 style: inline
                                 children:
@@ -1695,7 +1685,7 @@ children:
                                     label: ' '
                                     minWidth: 13
                                   - type: Label
-                                    label: compare the results with BrawStats
+                                    label: follow the instructions
                           - name: doProject1dBtn
                             type: ActionButton
                             margin: none
