@@ -47,7 +47,7 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
              IVgoes="Variables"
              DVgoes="Variables"
              options=paste0("<b>Correlation Coefficients</b> ",to_char," <b>Pearson</b>")
-             graph="ScatterPlot"
+             if (HelpType=="Graph") menu="ScatterPlot"
              IVGraph="X-Axis"
              DVGraph="Y-Axis"
              graphOptions=paste0("<b>Regression Line</b> ",to_char," <b>Linear</b>")
@@ -58,7 +58,7 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
              IVgoes="Variables"
              DVgoes="Variables"
              options=paste0("<b>Correlation Coefficients</b> ",to_char," <b>Spearman</b>")
-             graph="ScatterPlot"
+             if (HelpType=="Graph") menu="ScatterPlot"
              IVGraph="X-Axis"
              DVGraph="Y-Axis"
              graphOptions=paste0("<b>Regression Line</b> ",to_char," <b>Linear</b>")
@@ -70,7 +70,7 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
              IVgoes="Grouping Variable"
              DVgoes="Dependent Variables"
              options=paste0("<b>Tests</b> ",to_char," <b>Student's</b>")
-             graph="Descriptives"
+             if (HelpType=="Graph") menu="Descriptives"
              IVGraph="Split by"
              DVGraph="Variables"
              graphOptions=paste0("<b>Box Plots</b> ",to_char," <b>Data</b>")
@@ -83,7 +83,7 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
              DVgoes="Dependent Variables"
              if (!repeated) 
                 options=paste0("<b>Variances</b> ",to_char," <b>Assume equal (Fisher's)</b>")
-             graph="Descriptives"
+             if (HelpType=="Graph") menu="Descriptives"
              IVGraph="Split by"
              DVGraph="Variables"
              graphOptions=paste0("<b>Box Plots</b> ",to_char," <b>Data</b>")
@@ -98,7 +98,7 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
                options=paste0("<b>Tests</b> ",to_char," <b>Wilcoxon rank</b>")
              else
                options=paste0("<b>Tests</b> ",to_char," <b>Mann-Whitney U</b>")
-             graph="Descriptives"
+             if (HelpType=="Graph") menu="Descriptives"
              IVGraph="Split by"
              DVGraph="Variables"
              graphOptions=paste0("<b>Box Plots</b> ",to_char," <b>Data</b>")
@@ -109,7 +109,7 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
              else menu="One-way ANOVA (Kruskal Wallace)"
              IVgoes="Grouping Variable"
              DVgoes="Dependent Variables"
-             graph="Descriptives"
+             if (HelpType=="Graph") menu="Descriptives"
              IVGraph="Split by"
              DVGraph="Variables"
              graphOptions=paste0("<b>Box Plots</b> ",to_char," <b>Data</b>")
@@ -124,7 +124,7 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
                paste0("<b>Fit Measures</b> ",to_char," <b>Overall model test</b>"),
                paste0("<b>Psuedo R<sup>2</sup></b> ",to_char," <b>McFadden's R<sup>2</sup></b>")
              )
-             graph="ScatterPlot"
+             if (HelpType=="Graph") menu="ScatterPlot"
              IVGraph="X-Axis"
              DVGraph="Y-Axis"
              graphOptions=paste0("<b>Regression Line</b> ",to_char," <b>Smooth</b>")
@@ -134,7 +134,7 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
              menu="Independent Samples"
              IVgoes="Rows"
              DVgoes="Columns"
-             graph="Pareto Chart"
+             if (HelpType=="Graph") menu="Pareto Chart"
              IVGraph="X-Axis"
              DVGraph="Counts"
              graphOptions=c()
@@ -157,7 +157,7 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
              else                                   IVgoes="Covariates"
              if (hypothesis$IV2$type=="Categorical") IV2goes="Factors"
              else                                    IV2goes="Covariates"
-             graph=c()
+             if (HelpType=="Graph") menu=c()
            },
            "generalizedLinear"={
              ribbon="Regression"
@@ -167,7 +167,7 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
              else                                   IVgoes="Covariates"
              if (hypothesis$IV2$type=="Categorical") IV2goes="Factors"
              else                                    IV2goes="Covariates"
-             graph=c()
+             if (HelpType=="Graph") menu=c()
            }
     )
     DVgoes="Dependent Variable"
@@ -177,14 +177,33 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
     else IV2goes="Covariates"
   }
   
+  if (HelpType=="EffectSize") {
+      if (hypothesis$DV$type=="Categorical") {
+        menu="2 Outcomes"
+        optionsGroup="Model Fit"
+        options=c(paste0("Pseudo R2 ",to_char," McFadden's R2"))
+        warningLogistic="Take the square root of the R2 effect size."
+      } else {
+        menu="Linear Regression"
+        optionsGroup="Model Fit"
+        options=c(paste0("Fit Measures ",to_char," R"))
+        warningLogistic=""
+      }
+    }
+  
+  output<-c("<div style='border: 1px solid black; padding: 4px;'>")
+  output<-c(output,paste0("<ol><li>Select the <b>Analyses</b> tab at the top of the window.",
+                          "<br>",
+                          " Just beneath this tab, you will see a set of icons for the different possible analyses:",
+                          " Exploration, T-Tests, ANOVA etc."
+  )
+  )
+  
+  output<-c(output,paste0("<li>Press the <b>",ribbon,"</b> icon",
+                          "<br> & choose <b>",menu,"</b> from the drop down menu</li>"))
+  
   switch(HelpType,
          "Analysis"={
-           output<-c("<div style='border: 1px solid black; padding: 4px;'>")
-           output<-c(output,"Select the <b>Analyses</b> tab at the top of the window")
-           
-           output<-c(output,paste0("<ol><li>Press <b>",ribbon,"</b> on the ribbon beneath",
-                                   "<br> & choose <b>",menu,"</b> from the drop down menu</li>"))
-           
            list1<-paste0("<ul><li><b style=color:red>",hypothesis$DV$name,"</b> to <b>",DVgoes,"</b></li>")
            list1<-paste0(list1,"<li><b style=color:red>",hypothesis$IV$name,"</b> to <b>",IVgoes,"</b></li>")
            if (!is.null(hypothesis$IV2))
@@ -209,17 +228,11 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
            output<-c(output,paste0("</div>"))
          },
          "Graph"={
-           if (is.null(graph)) {
+           if (is.null(menu)) {
              output<-c("<div style='border: 1px solid black; padding: 4px;'>")
              output<-c(output,"Equivalent graphs not available")
              output<-c(output,paste0("</div>"))
            } else {
-           output<-c("<div style='border: 1px solid black; padding: 4px;'>")
-           output<-c(output,"Select the <b>Analyses</b> tab at the top of the window")
-           
-           output<-c(output,paste0("<ol><li>Press <b>","Exploration","</b> on the ribbon beneath",
-                                   "<br> & choose <b>",graph,"</b> from the drop down menu</li>"))
-           
            list1<-paste0("<ul><li><b style=color:red>",hypothesis$DV$name,"</b> to <b>",DVGraph,"</b></li>")
            list1<-paste0(list1,"<li><b style=color:red>",hypothesis$IV$name,"</b> to <b>",IVGraph,"</b></li>")
            if (!is.null(hypothesis$IV2))
@@ -237,18 +250,6 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
            }
          },
          "EffectSize"={
-           if (hypothesis$DV$type=="Categorical") {
-             menu="2 Outcomes"
-             optionsGroup="Model Fit"
-             options=c(paste0("Pseudo R2 ",to_char," McFadden's R2"))
-             warningLogistic="Take the square root of the R2 effect size."
-           } else {
-             menu="Linear Regression"
-             optionsGroup="Model Fit"
-             options=c(paste0("Fit Measures ",to_char," R"))
-             warningLogistic=""
-           }
-           
            DVgoes="Dependent Variable"
            if (hypothesis$IV$type=="Categorical") IVgoes="Factors"
            else                                   IVgoes="Covariates"
@@ -256,12 +257,6 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
              if (hypothesis$IV2$type=="Categorical") IV2goes="Factors"
              else                                   IV2goes="Covariates"
            }
-           output<-c("<div style='border: 1px solid black; padding: 4px;'>")
-           output<-c(output,"Select the <b>Analyses</b> tab at the top of the window")
-           
-           output<-c(output,paste0("<ol><li>Press <b>","Regression","</b> on the ribbon beneath",
-                                   "<br> & choose <b>",menu,"</b> from the drop down menu</li>"))
-           
            list1<-paste0("<ul><li><b style=color:red>",hypothesis$DV$name,"</b> to <b>",DVgoes,"</b></li>")
            list1<-paste0(list1,"<li><b style=color:red>",hypothesis$IV$name,"</b> to <b>",IVgoes,"</b></li>")
            if (!is.null(hypothesis$IV2))

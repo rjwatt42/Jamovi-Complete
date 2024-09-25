@@ -1254,7 +1254,7 @@ options:
     - name: sendMultiple
       title: multiple
       type: Output
-      default: TRUE
+      default: FALSE
 
     - name: showJamovi1Btn
       title: 'analysis'

@@ -1960,18 +1960,12 @@ children:
                           from a distribution of
                       - type: Label
                         label: possible values.
-          - type: LayoutBox
-            style: inline
-            children:
-              - type: Label
-                label: ' '
-                minWidth: 13
-              - type: CollapseBox
-                collapsed: true
-                label: Nomenclature
-                margin: none
-                maxWidth: 330
-                children:
+      - type: CollapseBox
+        collapsed: true
+        label: Nomenclature
+        margin: none
+        maxWidth: 330
+        children:
                   - name: nomenOptions
                     type: ModeSelector
                     margin: none
@@ -2036,12 +2030,21 @@ children:
                                   - type: Label
                                     label: p-value
                                     minWidth: 300
-                  - type: Content
-                    name: power
-                    children:
-                      - type: LayoutBox
-                        style: list
+                              - type: LayoutBox
+                                style: inline
+                                children:
+                                  - type: Label
+                                    label: "LLR(rs/r0 | rs)"
+                                    minWidth: 30
+                                  - type: Label
+                                    label: "ratio of likelihoods of rp=rs vs rp=0, given rs"
+                                    minWidth: 300
+                      - type: Content
+                        name: power
                         children:
+                        - type: LayoutBox
+                          style: list
+                          children:
                           - type: LayoutBox
                             style: inline
                             children:
@@ -2069,12 +2072,12 @@ children:
                               - type: Label
                                 label: required sample size from ws
                                 minWidth: 300
-                  - type: Content
-                    name: replication
-                    children:
-                      - type: LayoutBox
-                        style: list
+                      - type: Content
+                        name: replication
                         children:
+                        - type: LayoutBox
+                          style: list
+                          children:
                           - type: LayoutBox
                             style: inline
                             children:
@@ -2102,12 +2105,12 @@ children:
                               - type: Label
                                 label: original p-value
                                 minWidth: 300
-                  - type: Content
-                    name: symbols
-                    children:
-                      - type: LayoutBox
-                        style: list
+                      - type: Content
+                        name: symbols
                         children:
+                        - type: LayoutBox
+                          style: list
+                          children:
                           - type: LayoutBox
                             style: inline
                             children:
