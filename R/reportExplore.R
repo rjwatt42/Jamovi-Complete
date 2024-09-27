@@ -334,8 +334,17 @@ reportExplore<-function(exploreResult=braw.res$explore,showType="rs",
     quantsMade<-TRUE
   } else quantsMade<-FALSE
 
+  exploreTypeShow<-explore$exploreType
+  if (is.element(explore$exploreType,c("rIV","rIV2","rIVIV2","rIVIV2DV"))) {
+    if (is.null(hypothesis$IV2)) {
+      exploreTypeShow<-"r[p]"
+    } else {
+      exploreTypeShow<-paste0("r[p](",gsub("^r","",explore$exploreType),")")
+    }
+  } else exploreTypeShow<-explore$exploreType
+  
   outputText<-rep("",nc+1)
-  outputText[1]<-paste0("!j\bExplore: ",explore$exploreType)
+  outputText[1]<-paste0("!j\bExplore: ",exploreTypeShow)
   outputText[3]<-paste("nsims = ",format(nrow(exploreResult$result$rval)),sep="")
 
   # if (showType=="NHST" || showType=="FDR;FMR") {
@@ -357,7 +366,8 @@ reportExplore<-function(exploreResult=braw.res$explore,showType="rs",
   if (explore$exploreType=="rIV" && braw.env$RZ=="z") {
     vals<-atanh(vals)
   }
-  outputText<-c(outputText,"",paste0("!j\b",explore$exploreType))
+  
+  outputText<-c(outputText,"",paste0("\b!j",exploreTypeShow))
   for (i in 1:length(use)) {
     if (is.numeric(vals[use[i]]))
       outputText<-c(outputText,paste0("!c\b",brawFormat(vals[use[i]],digits=braw.env$report_precision)," "))

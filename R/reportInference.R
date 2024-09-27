@@ -5,7 +5,7 @@
 #' @examples
 #' reportInference(analysis=doAnalysis())
 #' @export
-reportInference<-function(analysis=braw.res$result,analysisType="Anova"){
+reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowerN=TRUE){
   if (is.null(analysis)) analysis<-doResult(autoShow=FALSE)
   
   IV<-analysis$hypothesis$IV
@@ -78,6 +78,11 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova"){
         outputText<-c(outputText,paste0("!j",t_name),df,brawFormat(tval,digits=braw.env$report_precision),pvalText,
                       f2,rvalText,rep("",nc-6))
       }
+    }
+    
+    if (showPowerN) {
+      outputText<-c(outputText,rep("",nc))
+      outputText<-c(outputText,"n80=",ceil(rw2n(analysis$rIV,0.8,2)),rep("",nc-2))
     }
     
     if (!(braw.env$reducedOutput && is.null(IV2))) {
