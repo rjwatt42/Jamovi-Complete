@@ -202,6 +202,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 presetIV2,
                 options=list(
                     "none",
+                    "IV2",
                     "IQ",
                     "Diligence",
                     "Perfectionism",
@@ -869,6 +870,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=list(
                     "rIV",
                     "rIVIV2",
+                    "rIVIV2DV",
                     "Heteroscedasticity",
                     "blank0h",
                     "IVType",

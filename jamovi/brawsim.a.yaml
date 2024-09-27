@@ -109,6 +109,8 @@ options:
       options:
       - name: none
         title: 'none'
+      - name: IV2
+        title: IV2
       - name: IQ
         title: IQ
       - name: Diligence
@@ -1069,6 +1071,8 @@ options:
           title: EffectSize
         - name: rIVIV2
           title: Covariation
+        - name: rIVIV2DV
+          title: Interaction
         - name: Heteroscedasticity
           title: Hscedast
         - name: blank0h

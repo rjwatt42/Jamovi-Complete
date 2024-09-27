@@ -30,7 +30,7 @@ showSystem<-function(hypothesis=braw.def$hypothesis,design=braw.def$design) {
 #' @examples
 #' showHypothesis(hypothesis=makeHypothesis())
 #' @export
-showHypothesis<-function(hypothesis=braw.def$hypothesis,doWorld=TRUE,ygain=1,g=NULL) {
+showHypothesis<-function(hypothesis=braw.def$hypothesis,doWorld=TRUE,ygain=1,xgain=0.3,g=NULL) {
   IV<-hypothesis$IV
   IV2<-hypothesis$IV2
   DV<-hypothesis$DV
@@ -44,14 +44,14 @@ showHypothesis<-function(hypothesis=braw.def$hypothesis,doWorld=TRUE,ygain=1,g=N
     effect$rIV<-NULL
   } else xoff<-0.1
   switch(no_ivs,
-         { 
-           g<-showVariable(IV,plotArea=c(xoff,0.6*ygain,0.3,0.4*ygain),g)
-           g<-showVariable(DV,plotArea=c(xoff,0.0,0.3,0.4*ygain),g)
-           g<-showEffect(effect$rIV,showValue=!doWorld,plotArea=c(xoff,0.36*ygain,0.3,0.3*ygain),1,g)
-           if (doWorld) g<-showWorld(hypothesis,plotArea=c(xoff+0.15,0.3*ygain,0.275,0.38*ygain),g=g)
+         {  w<-xgain*0.85
+           g<-showVariable(IV,plotArea=c(xoff,0.6*ygain,w,0.4*ygain),g)
+           g<-showVariable(DV,plotArea=c(xoff,0.0,w,0.4*ygain),g)
+           g<-showEffect(effect$rIV,showValue=!doWorld,plotArea=c(xoff,0.36*ygain,w,0.3*ygain),1,g)
+           if (doWorld) g<-showWorld(hypothesis,plotArea=c(xoff+0.15,0.3*ygain,w*0.9,0.38*ygain),g=g)
          },
          {
-           w<-0.25
+           w<-xgain*0.25/0.3
            g<-showVariable(IV,plotArea=c(0.0,0.6*ygain,w,0.4*ygain),g)
            g<-showVariable(IV2,plotArea=c(w,0.6*ygain,w,0.4*ygain),g)
            g<-showVariable(DV,plotArea=c(w/2,0.0,w,0.4*ygain),g)
@@ -88,7 +88,7 @@ showWorld<-function(hypothesis=braw.def$hypothesis,plotArea=c(0,0,1,1),g=NULL) {
   range<-braw.env$r_range
   if (braw.env$RZ=="z"){range<-tanh(braw.env$z_range)}
 
-  g<-startPlot(xlim=c(-1,1)*range,ylim=c(0,1.05),box="x",g=g)
+  g<-startPlot(xlim=c(-1,1)*range,ylim=c(0,1.05),box="x",g=g,fontScale=1)
   # if (world$worldAbs) {
   #   rx<-seq(0,1,length.out=braw.env$worldNPoints)*range
   # } else {
@@ -149,7 +149,7 @@ showDesign<-function(design=braw.def$design,hypothesis=braw.def$hypothesis,plotA
   if (is.null(g))
     g<-ggplot()+coord_cartesian(xlim = c(0,1)+c(-1,1)*0.1, ylim = c(0,1)+c(-1,1)*0.1) + braw.env$blankTheme()
   g<-startPlot(xlim=binRange, ylim=c(0,1),
-               box="x",g=g)
+               box="x",g=g,fontScale=1)
   g<-g+xAxisTicks(nRange$ticks,10^nRange$ticks)+xAxisLabel(nRange$label)
   g<-g+dataPolygon(data=pts,fill=braw.env$plotColours$descriptionC)
   g<-g+dataLine(data=pts)

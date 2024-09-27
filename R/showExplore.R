@@ -55,7 +55,7 @@ trimExploreResult<-function(result,nullresult) {
 #'                        effectType="unique",whichEffect="All")
 #' @export
 showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension="1D",showTheory=FALSE,
-                      effectType="unique",whichEffect="All",quantileShow=0.5){
+                      effectType="unique",whichEffect="Mains",quantileShow=0.5){
 
   if (is.null(exploreResult)) exploreResult=doExplore()
 
@@ -223,7 +223,7 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
     if (is.null(hypothesis$IV2)) {
       exploreTypeShow<-bquote(bold(r[p]))
     } else {
-      exploreTypeShow<-bquote(bold(r[p](gsub("^r","",explore$exploreType))))
+      exploreTypeShow<-bquote(bold(r[p] ~ .(gsub("^r","",explore$exploreType))))
     }
   } else exploreTypeShow<-bquote(bold(.(explore$exploreType)))
   
