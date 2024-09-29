@@ -599,7 +599,7 @@ options:
         title: no
       - name: yes
         title: yes
-      default: yes
+      default: no
 
     - name: equalVar
       title: 'Equal variance'

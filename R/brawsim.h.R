@@ -77,7 +77,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             ReplicationSigOriginal = "yes",
             alphaSig = 0.05,
             ssq = "Type3",
-            interaction = "yes",
+            interaction = "no",
             equalVar = "yes",
             Transform = "None",
             likelihoodType = "Populations",
@@ -557,7 +557,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=list(
                     "no",
                     "yes"),
-                default="yes")
+                default="no")
             private$..equalVar <- jmvcore::OptionList$new(
                 "equalVar",
                 equalVar,
@@ -1736,7 +1736,7 @@ BrawSim <- function(
     ReplicationSigOriginal = "yes",
     alphaSig = 0.05,
     ssq = "Type3",
-    interaction = "yes",
+    interaction = "no",
     equalVar = "yes",
     Transform = "None",
     likelihoodType = "Populations",

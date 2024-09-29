@@ -577,7 +577,7 @@ children:
                                 margin: none
                                 children:
                                   - type: Label
-                                    label: 'Choose which effect size to show:'
+                                    label: 'Which type of effect size to show:'
                                   - type: ComboBox
                                     name: whichShowMultiple
                               - type: ComboBox
