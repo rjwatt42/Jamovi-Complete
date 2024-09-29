@@ -351,6 +351,12 @@ let makeRange = function(min,max,xlog,np) {
         case "Usage":
              var range={min:"",max:"",xlog:false,np:2};
           break;
+        case "IVRangeC":
+             var range={min:0.1,max:3,xlog:false,np:13}
+          break;
+        case "IVRangeE":
+             var range={min:-3,max:3,xlog:false,np:13}
+          break;
         case "Cheating":
              var range={min:"",max:"",xlog:false,np:6};
           break;

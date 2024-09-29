@@ -541,6 +541,26 @@ children:
                                     style: inline
                                     margin: none
                                     children:
+                                    - type: ComboBox
+                                      name: LimitRange
+                                    - type: TextBox
+                                      name: RangeMin
+                                      margin: none
+                                      format: number
+                                      enable: (LimitRange:yes)
+                                    - type: TextBox
+                                      name: RangeMax
+                                      margin: none
+                                      format: number
+                                      enable: (LimitRange:yes)
+                              - type: LayoutBox
+                                style: list
+                                margin: none
+                                children:
+                                  - type: LayoutBox
+                                    style: inline
+                                    margin: none
+                                    children:
                                       - type: ComboBox
                                         name: Cheating
                                         margin: none

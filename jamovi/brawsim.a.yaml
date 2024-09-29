@@ -485,6 +485,26 @@ options:
       type: Number
       default: 0
       
+    - name: LimitRange
+      title: Limit range?
+      type: List
+      options:
+      - name: yes
+        title: yes
+      - name: no
+        title: no
+      default: no
+        
+    - name: RangeMin
+      title: from
+      type: Number
+      default: -3
+      
+    - name: RangeMax
+      title: from
+      type: Number
+      default: 3
+      
     - name: Cheating
       title: Cheating
       type: List
@@ -1125,6 +1145,10 @@ options:
           title: Outliers
         - name: NonResponse
           title: NonResponse
+        - name: IVRangeC
+          title: IV RangeC
+        - name: IVRangeE
+          title: IV RangeE
         - name: blank1e
           title: ' '
         - name: Cheating

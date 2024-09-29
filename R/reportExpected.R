@@ -106,8 +106,8 @@ reportExpected<-function(expectedResult=braw.res$expected,showType="Basic",
     else {
       
       if (!is.null(IV2)){
-        if (effectTypes==1) outputText<-c(outputText,"!H!C "," ",effectType," ")
-        else outputText<-c(outputText,"!H!C "," ","direct"," "," ","unique"," "," ","total"," ")
+        if (effectTypes==1) outputText<-c(outputText,"!H!C ","!C ",effectType," ")
+        else outputText<-c(outputText,"!H!C ","!C ","direct"," "," ","unique"," "," ","total"," ")
       }
       
       outputText1<-c()

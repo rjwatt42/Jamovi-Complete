@@ -46,6 +46,8 @@ makeSampleVar<-function(design,n,MV){
   ivr=c()
   dvr_s<-c()
   dvr_m<-c()
+  nget<-n
+  if (design$sRangeOn) nget<-nget*10
   while (length(ivr)<n) {
     switch (design$sMethod$type,
             "Random"={

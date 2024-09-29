@@ -173,6 +173,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                 sDependence=self$options$Dependence,
                                 sOutliers=self$options$Outliers,
                                 sNonResponse=self$options$NonResponse,
+                                sRangeOn=self$options$LimitRange=="yes", sIVRange=c(self$options$RangeMin,self$options$RangeMax), 
                                 sCheating=self$options$Cheating,sCheatingAttempts=self$options$CheatingAttempts,
                          Replication=makeReplication(On=self$options$ReplicationOn,
                                                      Power=self$options$ReplicationPower,
