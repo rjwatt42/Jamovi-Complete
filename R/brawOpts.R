@@ -147,7 +147,7 @@ BrawOpts<-function(BW=FALSE,graphC="normal",fontScale=1,graphicsSize=c(16,10),
           braw.env$dist_zi<-0.05
           braw.env$dist_range<-4
           
-          braw.env$allScatter<-FALSE
+          braw.env$allScatter<-TRUE
           braw.env$showMedians<-FALSE
           braw.env$minN<-10
           braw.env$maxN<-250
