@@ -95,6 +95,8 @@ const events =  {
 
     onChange_presetIV: function(ui) {
       let presetIV = ui.presetIV.value();
+      let oldmu = ui.IVmu.value();
+      let oldsd = ui.IVsd.value();
       let variable = makeVar(presetIV);
           ui.IVname.setValue(variable.name);
           ui.IVtype.setValue(variable.type);
@@ -103,10 +105,12 @@ const events =  {
           ui.IVskew.setValue(variable.skew);
           ui.IVkurt.setValue(variable.kurt);
           ui.IVnlevs.setValue(variable.nlevs);
-          ui.IViqr.setValue(variable.iqr)
+          ui.IViqr.setValue(variable.iqr);
           ui.IVncats.setValue(variable.ncats);
           ui.IVcases.setValue(variable.cases)
           ui.IVprops.setValue(variable.props);
+          ui.RangeMin.setValue(variable.mu+variable.sd*(ui.RangeMin.value()-oldmu)/oldsd);
+          ui.RangeMax.setValue(variable.mu+variable.sd*(ui.RangeMax.value()-oldmu)/oldsd);
     },
 
     onChange_presetIV2: function(ui) {

@@ -501,7 +501,7 @@ options:
       default: -3
       
     - name: RangeMax
-      title: from
+      title: to
       type: Number
       default: 3
       
