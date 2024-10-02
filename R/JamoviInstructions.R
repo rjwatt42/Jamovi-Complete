@@ -1,6 +1,7 @@
 makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$design,HelpType="Analysis") {
   
   to_char="to"
+  in_char="in"
   # to_char="\u21D2"
   
   if (is.null(hypothesis$IV2)) {
@@ -46,22 +47,22 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
              menu="Correlation Matrix"
              IVgoes="Variables"
              DVgoes="Variables"
-             options=paste0("<b>Correlation Coefficients</b> ",to_char," <b>Pearson</b>")
+             options=paste("<b>Pearson</b>",in_char,"<b>Correlation Coefficients</b>")
              if (HelpType=="Graph") menu="ScatterPlot"
              IVGraph="X-Axis"
              DVGraph="Y-Axis"
-             graphOptions=paste0("<b>Regression Line</b> ",to_char," <b>Linear</b>")
+             graphOptions=paste("<b>Linear</b>",in_char,"<b>Regression Line</b>")
            },
            "correlationSpearman"={
              ribbon="Regression"
              menu="Correlation Matrix"
              IVgoes="Variables"
              DVgoes="Variables"
-             options=paste0("<b>Correlation Coefficients</b> ",to_char," <b>Spearman</b>")
+             options=paste("<b>Spearman</b>",in_char,"<b>Correlation Coefficients</b>")
              if (HelpType=="Graph") menu="ScatterPlot"
              IVGraph="X-Axis"
              DVGraph="Y-Axis"
-             graphOptions=paste0("<b>Regression Line</b> ",to_char," <b>Linear</b>")
+             graphOptions=paste("<b>Linear</b>",in_char,"<b>Regression Line</b>")
            },
            "t-test"={
              ribbon="T-Tests"
@@ -69,11 +70,11 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
              else menu="Independent Samples T-Test"
              IVgoes="Grouping Variable"
              DVgoes="Dependent Variables"
-             options=paste0("<b>Tests</b> ",to_char," <b>Student's</b>")
+             options=paste("<b>Student's</b>",in_char,"<b>Tests</b>")
              if (HelpType=="Graph") menu="Descriptives"
              IVGraph="Split by"
              DVGraph="Variables"
-             graphOptions=paste0("<b>Box Plots</b> ",to_char," <b>Data</b>")
+             graphOptions=paste("<b>Data</b>",in_char,"<b>Box Plots</b>")
            },
            "anova"={
              ribbon="ANOVA"
@@ -82,11 +83,11 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
              IVgoes="Grouping Variable"
              DVgoes="Dependent Variables"
              if (!repeated) 
-                options=paste0("<b>Variances</b> ",to_char," <b>Assume equal (Fisher's)</b>")
+                options=paste("<b>Assume equal (Fisher's)</b>",in_char,"<b>Variances</b>")
              if (HelpType=="Graph") menu="Descriptives"
              IVGraph="Split by"
              DVGraph="Variables"
-             graphOptions=paste0("<b>Box Plots</b> ",to_char," <b>Data</b>")
+             graphOptions=paste("<b>Data</b>",in_char,"<b>Box Plots</b>")
            },
            "u-test"={
              ribbon="T-Tests"
@@ -95,13 +96,13 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
              IVgoes="Grouping Variable"
              DVgoes="Dependent Variables"
              if (repeated)
-               options=paste0("<b>Tests</b> ",to_char," <b>Wilcoxon rank</b>")
+               options=paste("<b>Wilcoxon rank</b>",in_char,"<b>Tests</b>")
              else
-               options=paste0("<b>Tests</b> ",to_char," <b>Mann-Whitney U</b>")
+               options=paste("<b>Mann-Whitney U</b>",in_char,"<b>Tests</b>")
              if (HelpType=="Graph") menu="Descriptives"
              IVGraph="Split by"
              DVGraph="Variables"
-             graphOptions=paste0("<b>Box Plots</b> ",to_char," <b>Data</b>")
+             graphOptions=paste("<b>Data</b>",in_char,"<b>Box Plots</b>")
            },
            "kw-test"={
              ribbon="ANOVA"
@@ -112,7 +113,7 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
              if (HelpType=="Graph") menu="Descriptives"
              IVGraph="Split by"
              DVGraph="Variables"
-             graphOptions=paste0("<b>Box Plots</b> ",to_char," <b>Data</b>")
+             graphOptions=paste("<b>Data</b>",in_char,"<b>Box Plots</b>")
            },
            "logisticRegression"={
              ribbon="Regression"
@@ -121,13 +122,13 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
              DVgoes="Dependent Variable"
              optionsGroup="<b>Model Fit</b>"
              options=c(
-               paste0("<b>Fit Measures</b> ",to_char," <b>Overall model test</b>"),
-               paste0("<b>Psuedo R<sup>2</sup></b> ",to_char," <b>McFadden's R<sup>2</sup></b>")
+               paste("<b>Overall model test</b>",in_char,"<b>Fit Measures</b>"),
+               paste("<b>McFadden's R<sup>2</sup></b>",in_char,"<b>Psuedo R<sup>2</sup></b>")
              )
              if (HelpType=="Graph") menu="ScatterPlot"
              IVGraph="X-Axis"
              DVGraph="Y-Axis"
-             graphOptions=paste0("<b>Regression Line</b> ",to_char," <b>Smooth</b>")
+             graphOptions=paste("<b>Smooth</b>",in_char,"<b>Regression Line</b>")
            },
            "chisqr"={
              ribbon="Frequencies"
@@ -181,25 +182,23 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
       if (hypothesis$DV$type=="Categorical") {
         menu="2 Outcomes"
         optionsGroup="Model Fit"
-        options=c(paste0("Pseudo R2 ",to_char," McFadden's R2"))
-        warningLogistic="Take the square root of the R2 effect size."
+        options=c(paste("<b>McFadden's R<sup>2</sup></b>",in_char,"<b>Pseudo R<sup>2</sup></b>"))
+        warningLogistic="Take the square root of the R<sup>2</sup> effect size."
       } else {
         menu="Linear Regression"
         optionsGroup="Model Fit"
-        options=c(paste0("Fit Measures ",to_char," R"))
+        options=c(paste("<b>R</b>",in_char,"<b>Fit Measures</b>"))
         warningLogistic=""
       }
     }
   
   output<-c("<div style='border: none; padding: 4px;'>")
-  output<-c(output,paste0("<ol><li>Select the <b>Analyses</b> tab at the top of the window.",
-                          "<br>",
-                          " Just beneath this tab, you will see a set of icons for the different possible analyses:",
+  output<-c(output,paste0("At the top of the Jamovi app, you will see a set of icons for the different possible analyses:",
                           " Exploration, T-Tests, ANOVA etc."
   )
   )
   
-  output<-c(output,paste0("<li>Press the <b>",ribbon,"</b> icon",
+  output<-c(output,paste0("<ol><li>Press the <b>",ribbon,"</b> icon",
                           "<br> & choose <b>",menu,"</b> from the drop down menu</li>"))
   
   switch(HelpType,
@@ -207,13 +206,13 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
            list1<-paste0("<ul><li><b style=color:red>",hypothesis$DV$name,"</b> to <b>",DVgoes,"</b></li>")
            list1<-paste0(list1,"<li><b style=color:red>",hypothesis$IV$name,"</b> to <b>",IVgoes,"</b></li>")
            if (!is.null(hypothesis$IV2))
-             list1<-paste0(list1,"<li><b>",hypothesis$IV2$name,"</b> to <b>",IV2goes,"</b></li>")
+             list1<-paste0(list1,"<li><b style=color:red>",hypothesis$IV2$name,"</b> to <b>",IV2goes,"</b></li>")
            list1<-paste0(list1,"</ul>")
            output<-c(output,paste0("<li>Now move",list1,"</li>"))
            
            if (!is.null(options)) {
              if (!is.null(optionsGroup)) 
-                output<-c(output,paste0("<li>Select ",optionsGroup," options group and set"))
+                output<-c(output,paste0("<li>Select <b>",optionsGroup,"</b> options group and check"))
              else 
                 output<-c(output,paste0("<li>Set the option "))
              list2<-paste0("<ul>")
@@ -224,28 +223,31 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
            }
            
            output<-c(output,paste0("</ol>"))
-           output<-c(output,paste0("Then Jamovi does the analysis for you."))
+           output<-c(output,paste0("At this point Jamovi does the analysis for you."))
            output<-c(output,paste0("</div>"))
          },
          "Graph"={
            if (is.null(menu)) {
-             output<-c("<div style='border: 1px solid black; padding: 4px;'>")
              output<-c(output,"Equivalent graphs not available")
-             output<-c(output,paste0("</div>"))
            } else {
            list1<-paste0("<ul><li><b style=color:red>",hypothesis$DV$name,"</b> to <b>",DVGraph,"</b></li>")
            list1<-paste0(list1,"<li><b style=color:red>",hypothesis$IV$name,"</b> to <b>",IVGraph,"</b></li>")
            if (!is.null(hypothesis$IV2))
-             list1<-paste0(list1,"<li><b>",hypothesis$IV2$name,"</b> to <b>",IV2Graph,"</b></li>")
+             list1<-paste0(list1,"<li><b style=color:red>",hypothesis$IV2$name,"</b> to <b>",IV2Graph,"</b></li>")
            list1<-paste0(list1,"</ul>")
            output<-c(output,paste0("<li>Now move",list1,"</li>"))
            
            if (!is.null(graphOptions)) {
-             output<-c(output,paste0("<li>Set the option ",graphOptions,"</li>"))
+             output<-c(output,paste0("<li>Set the option "))
+             list2<-paste0("<ul>")
+             for (option in graphOptions)
+               list2<-paste0(list2,"<li>",option,"</li>")
+             list2<-paste0(list2,"</ul>")
+             output<-c(output,list2,paste0("</li>"))
            }
            
            output<-c(output,paste0("</ol>"))
-           output<-c(output,paste0("Then Jamovi does the graph for you."))
+           output<-c(output,paste0("Now Jamovi makes the graph for you."))
            output<-c(output,paste0("</div>"))
            }
          },
@@ -260,13 +262,13 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
            list1<-paste0("<ul><li><b style=color:red>",hypothesis$DV$name,"</b> to <b>",DVgoes,"</b></li>")
            list1<-paste0(list1,"<li><b style=color:red>",hypothesis$IV$name,"</b> to <b>",IVgoes,"</b></li>")
            if (!is.null(hypothesis$IV2))
-             list1<-paste0(list1,"<li><b>",hypothesis$IV2$name,"</b> to <b>",IV2goes,"</b></li>")
+             list1<-paste0(list1,"<li><b style=color:red>",hypothesis$IV2$name,"</b> to <b>",IV2goes,"</b></li>")
            list1<-paste0(list1,"</ul>")
            output<-c(output,paste0("<li>Now move",list1,"</li>"))
            
            if (!is.null(options)) {
              if (!is.null(optionsGroup)) 
-               output<-c(output,paste0("<li>Select ",optionsGroup," options group and set"))
+               output<-c(output,paste0("<li>Select <b>",optionsGroup,"</b> options group and set"))
              else 
                output<-c(output,paste0("<li>Set the option "))
              list2<-paste0("<ul>")

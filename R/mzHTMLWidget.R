@@ -78,19 +78,25 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                    script<-paste0(
                                      '<script>',
                                      'function openTab(evt, tabName) {',
-                                     'var i, tabcontent, tablinks;',
-                                     'tabcontent = document.getElementsByClassName("tabcontent");',
-                                     'for (i = 0; i < tabcontent.length; i++) {',
-                                     'tabcontent[i].style.display = "none";',
+                                     '  var tabState;',
+                                     '  if (tabName!="tabtitle") {',
+                                     '    tabState = document.getElementById(tabName).style.display;',
+                                     '    closeTabs(evt);',
+                                     '    if (tabState!="block") {',
+                                     '      document.getElementById(tabName).style.display = "block";',
+                                     '      evt.currentTarget.className += " active";',
+                                     '    }',
+                                     '  }',
                                      '}',
-                                     'tablinks = document.getElementsByClassName("tablinks");',
-                                     'for (i = 1; i < tablinks.length; i++) {',
-                                     'tablinks[i].className = tablinks[i].className.replace(" active", "");',
+                                     'function closeTabs(evt) {',
+                                     '  var i, tabcontent, tablinks;',
+                                     '    tabcontent = document.getElementsByClassName("tabcontent");',
+                                     '    tablinks = document.getElementsByClassName("tablinks");',
+                                     '    for (i = 0; i < tabcontent.length; i++) {',
+                                     '      tabcontent[i].style.display = "none";',
+                                     '      tablinks[i].className = tablinks[i].className.replace(" active", "");',
+                                     '    }',
                                      '}',
-                                     'document.getElementById(tabName).style.display = "block";',
-                                     'evt.currentTarget.className += " active";',
-                                     '}',
-                                     'document.getElementById("tabtitle").click();',
                                      '</script>'
                                    )
                                    
@@ -121,10 +127,10 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                        '.tab button:hover {',
                                          'background-color: #ddd;',
                                        '}',
-                                     
+
                                      # Create an active/current tablink class 
                                      '.tab button.active {',
-                                     'background-color: ',colours[1],';',
+                                     'background-color: ',colours[2],';',
                                      'color: white;',
                                      '}',
                                      
@@ -141,7 +147,7 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                    buttons<-''
                                    panels<-''
                                    buttons <- paste0(buttons,
-                                                     '  <button id="tabtitle" class="tablinks" onclick="openTab(event,\'',title,'\')">',
+                                                     '  <button id="tabtitle" class="tablinks" onclick="closeTabs(event)" style="background-color:',colours[1],';color:white;">',
                                                      title,
                                                      '</button>')
                                    panels <- paste0(panels,
