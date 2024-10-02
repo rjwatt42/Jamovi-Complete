@@ -2137,7 +2137,7 @@ children:
       - type: CollapseBox
         name: JamoviCollapse
         collapsed: true
-        label: Send Samples to Jamovi
+        label: Link to Jamovi
         margin: none
         maxWidth: 330
         children:
