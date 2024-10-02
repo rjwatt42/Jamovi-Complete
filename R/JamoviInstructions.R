@@ -191,7 +191,7 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
       }
     }
   
-  output<-c("<div style='border: 1px solid black; padding: 4px;'>")
+  output<-c("<div style='border: none; padding: 4px;'>")
   output<-c(output,paste0("<ol><li>Select the <b>Analyses</b> tab at the top of the window.",
                           "<br>",
                           " Just beneath this tab, you will see a set of icons for the different possible analyses:",
@@ -280,6 +280,8 @@ makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$desi
            output<-c(output,paste0("</div>"))
          }
          )
-  return(output)
+  
+  wholePanel<-paste0(output,collapse="")
+  return(wholePanel)
 
 }

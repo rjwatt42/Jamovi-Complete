@@ -5,8 +5,12 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
   "BrawSimClass",
   inherit = BrawSimBase,
   private = list(
+    .htmlwidget = NULL,  # Add instance for HTMLWidget
+    
     .init = function() {
+      private$.htmlwidget <- HTMLWidget$new() # Initialize the HTMLWidget instance 
     },
+    
     .run = function() {
       # debug information
       # self$results$debug$setVisible(TRUE)
@@ -223,29 +227,33 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       braw.def$metaAnalysis<<-metaAnalysis
 
       # now deal with a request for Jamovi instructions
-      showJamoviNow1<-self$options$showJamovi1Btn
-      if (showJamoviNow1) {
+      # showJamoviNow1<-self$options$showJamovi1Btn
+      if(self$options$showJamovi) {
         self$results$JamoviInstructions$setVisible(TRUE)
-        instructions<-makeInstructions(hypothesis,design,HelpType="Analysis")
-        self$results$JamoviInstructions$setContent(instructions)
-      } 
-      showJamoviNow2<-self$options$showJamovi2Btn
-      if (showJamoviNow2) {
-        self$results$JamoviInstructions$setVisible(TRUE)
-        instructions<-makeInstructions(hypothesis,design,HelpType="Graph")
-        self$results$JamoviInstructions$setContent(instructions)
-      } 
-      showJamoviNow3<-self$options$showJamovi3Btn
-      if (showJamoviNow3) {
-        self$results$JamoviInstructions$setVisible(TRUE)
-        instructions<-makeInstructions(hypothesis,design,HelpType="EffectSize")
-        self$results$JamoviInstructions$setContent(instructions)
-      } 
-      if (!showJamoviNow1 && !showJamoviNow2 && !showJamoviNow3) {
-        self$results$JamoviInstructions$setVisible(FALSE)
-      }
-      
-      
+        self$results$JamoviInstructions$setContent(
+          private$.htmlwidget$generate_tab(
+            title="Jamovi help",
+            tabs=c("Analysis","Graph","EffectSize"),
+            tabContents = c(
+              makeInstructions(hypothesis,design,HelpType="Analysis"),
+              makeInstructions(hypothesis,design,HelpType="Graph"),
+              makeInstructions(hypothesis,design,HelpType="EffectSize")
+            ),
+            colours=c("#3498db","#80CCFF")
+
+          )
+        )
+        # self$results$JamoviInstructions$setContent(
+        #   private$.htmlwidget$generate_accordion(
+        #     title=paste("Jamovi",self$options$showJamovi),
+        #     content = makeInstructions(hypothesis,design,HelpType=self$options$showJamovi)
+        #   )
+        # )
+      } else self$results$JamoviInstructions$setVisible(FALSE)
+        
+        # instructions<-makeInstructions(hypothesis,design,HelpType="Graph")
+        # self$results$JamoviInstructions$setContent(instructions)
+
       # are any of the existing stored results now invalid?
       if (changedH || changedD) {
         braw.res$result<<-NULL

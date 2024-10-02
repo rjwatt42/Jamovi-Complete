@@ -4,10 +4,6 @@ title: BrawStats:Simulate Data
 jrs:   '1.1'
 
 items:
-    - name: JamoviInstructions
-      type: Html
-      visible: FALSE
-
     - name: graphPlot
       title: ' '
       type: Image
@@ -26,6 +22,10 @@ items:
       - brawstats
       - book
       # renderFun: .plotReport
+
+    - name: JamoviInstructions
+      type: Html
+      visible: FALSE
 
     - name: debug
       type: Preformatted

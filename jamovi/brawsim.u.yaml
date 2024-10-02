@@ -43,30 +43,32 @@ children:
                             verticalAlignment: top
                             children:
                               - type: Label
-                                label: 'Define the DV and 1 or 2 IVs: choose a preset or edit.'
+                                label: >-
+                                  Define the DV and 1 or 2 IVs: choose a preset
+                                  or edit.
                               - type: LayoutBox
                                 style: inline
                                 margin: none
                                 children:
-                                - type: LayoutBox
-                                  style: inline
-                                  margin: none
-                                  minWidth: 140
-                                  horizontalAlignment: right
-                                  children:
-                                  - type: Label
-                                    label: 'DV:'
+                                  - type: LayoutBox
+                                    style: inline
                                     margin: none
-                                    minWidth: 25
-                                  - type: ComboBox
-                                    name: presetDV
-                                    events:
-                                      change: ./BrawSim.events::onChange_presetDV
-                                - type: CollapseBox
-                                  collapsed: true
-                                  label: Edit
-                                  margin: none
-                                  children:
+                                    minWidth: 140
+                                    horizontalAlignment: right
+                                    children:
+                                      - type: Label
+                                        label: 'DV:'
+                                        margin: none
+                                        minWidth: 25
+                                      - type: ComboBox
+                                        name: presetDV
+                                        events:
+                                          change: ./BrawSim.events::onChange_presetDV
+                                  - type: CollapseBox
+                                    collapsed: true
+                                    label: Edit
+                                    margin: none
+                                    children:
                                       - type: LayoutBox
                                         style: list
                                         margin: none
@@ -159,224 +161,224 @@ children:
                                 style: inline
                                 margin: none
                                 children:
-                                - type: LayoutBox
-                                  style: inline
-                                  margin: none
-                                  minWidth: 140
-                                  children:
-                                  - type: Label
-                                    label: 'IV:'
+                                  - type: LayoutBox
+                                    style: inline
                                     margin: none
-                                    minWidth: 25
-                                  - type: ComboBox
-                                    name: presetIV
-                                    events:
-                                      change: ./BrawSim.events::onChange_presetIV
-                                - type: CollapseBox
-                                  collapsed: true
-                                  label: Edit
-                                  margin: none
-                                  children:
-                                    - type: LayoutBox
-                                      style: list
-                                      margin: none
-                                      children:
-                                      - type: LayoutBox
-                                        style: inline
+                                    minWidth: 140
+                                    children:
+                                      - type: Label
+                                        label: 'IV:'
                                         margin: none
-                                        minWidth: 120
-                                        children:
-                                          - type: TextBox
-                                            name: IVname
-                                            format: string
-                                            margin: none
-                                            stretchFactor: 1
-                                          - type: ComboBox
-                                            name: IVtype
-                                            margin: none
-                                      - type: LayoutBox
-                                        style: inline
-                                        margin: none
-                                        children:
-                                          - type: Label
-                                            label: ' '
-                                            minWidth: 13
-                                          - type: TextBox
-                                            name: IVmu
-                                            format: number
-                                            enable: (IVtype:Interval)
-                                          - type: TextBox
-                                            name: IVsd
-                                            format: number
-                                            enable: (IVtype:Interval)
-                                      - type: LayoutBox
-                                        style: inline
-                                        margin: none
-                                        children:
-                                          - type: Label
-                                            label: ' '
-                                            minWidth: 13
-                                          - type: TextBox
-                                            name: IVskew
-                                            format: number
-                                            enable: (IVtype:Interval)
-                                          - type: TextBox
-                                            name: IVkurt
-                                            format: number
-                                            enable: (IVtype:Interval)
-                                      - type: LayoutBox
-                                        style: inline
-                                        margin: none
-                                        children:
-                                          - type: Label
-                                            label: ' '
-                                            minWidth: 13
-                                          - type: TextBox
-                                            name: IVnlevs
-                                            format: number
-                                            enable: (IVtype:Ordinal)
-                                          - type: TextBox
-                                            name: IViqr
-                                            format: number
-                                            enable: (IVtype:Ordinal)
-                                      - type: LayoutBox
-                                        style: inline
-                                        margin: none
-                                        children:
-                                          - type: Label
-                                            label: ' '
-                                            minWidth: 13
-                                          - type: TextBox
-                                            name: IVncats
-                                            format: number
-                                            enable: (IVtype:Categorical)
-                                          - type: TextBox
-                                            name: IVcases
-                                            format: string
-                                            enable: (IVtype:Categorical)
-                                      - type: LayoutBox
-                                        style: inline
-                                        margin: none
-                                        children:
-                                          - type: Label
-                                            label: ' '
-                                            minWidth: 13
-                                          - type: TextBox
-                                            name: IVprops
-                                            format: string
-                                            enable: (IVtype:Categorical)
-                              - type: LayoutBox
-                                style: inline
-                                margin: none
-                                children:
-                                - type: LayoutBox
-                                  style: inline
-                                  margin: none
-                                  minWidth: 140
-                                  children:
-                                    - type: Label
-                                      label: 'IV2:'
-                                      margin: none
-                                      minWidth: 25
-                                    - type: ComboBox
-                                      name: presetIV2
-                                      events:
-                                        change: ./BrawSim.events::onChange_presetIV2
-                                - type: CollapseBox
-                                  collapsed: true
-                                  label: Edit
-                                  margin: none
-                                  children:
+                                        minWidth: 25
+                                      - type: ComboBox
+                                        name: presetIV
+                                        events:
+                                          change: ./BrawSim.events::onChange_presetIV
+                                  - type: CollapseBox
+                                    collapsed: true
+                                    label: Edit
+                                    margin: none
+                                    children:
                                       - type: LayoutBox
                                         style: list
                                         margin: none
                                         children:
-                                        - type: LayoutBox
-                                          style: inline
-                                          margin: none
-                                          minWidth: 120
-                                          children:
-                                            - type: TextBox
-                                              name: IV2name
-                                              format: string
-                                              margin: none
-                                              stretchFactor: 1
-                                              enable: (!presetIV2:none)
-                                            - type: ComboBox
-                                              name: IV2type
-                                              margin: none
-                                              enable: (!presetIV2:none)
-                                        - type: LayoutBox
-                                          style: inline
-                                          margin: none
-                                          children:
-                                            - type: Label
-                                              label: ' '
-                                              minWidth: 13
-                                            - type: TextBox
-                                              name: IV2mu
-                                              format: number
-                                              enable: (!presetIV2:none && IV2type:Interval)
-                                            - type: TextBox
-                                              name: IV2sd
-                                              format: number
-                                              enable: (!presetIV2:none && IV2type:Interval)
-                                        - type: LayoutBox
-                                          style: inline
-                                          margin: none
-                                          children:
-                                            - type: Label
-                                              label: ' '
-                                              minWidth: 13
-                                            - type: TextBox
-                                              name: IV2skew
-                                              format: number
-                                              enable: (!presetIV2:none && IV2type:Interval)
-                                            - type: TextBox
-                                              name: IV2kurt
-                                              format: number
-                                              enable: (!presetIV2:none && IV2type:Interval)
-                                        - type: LayoutBox
-                                          style: inline
-                                          margin: none
-                                          children:
-                                            - type: Label
-                                              label: ' '
-                                              minWidth: 13
-                                            - type: TextBox
-                                              name: IV2nlevs
-                                              format: number
-                                              enable: (!presetIV2:none && IV2type:Ordinal)
-                                            - type: TextBox
-                                              name: IV2iqr
-                                              format: number
-                                              enable: (!presetIV2:none && IV2type:Ordinal)
-                                        - type: LayoutBox
-                                          style: inline
-                                          margin: none
-                                          children:
-                                            - type: Label
-                                              label: ' '
-                                              minWidth: 13
-                                            - type: TextBox
-                                              name: IV2ncats
-                                              format: number
-                                              enable: (!presetIV2:none && IV2type:Categorical)
-                                            - type: TextBox
-                                              name: IV2cases
-                                              format: string
-                                              enable: (!presetIV2:none && IV2type:Categorical)
-                                        - type: LayoutBox
-                                          style: inline
-                                          margin: none
-                                          children:
-                                            - type: Label
-                                              label: ' '
-                                              minWidth: 13
-                                            - type: TextBox
-                                              name: IV2props
-                                              format: string
-                                              enable: (!presetIV2:none && IV2type:Categorical)
+                                          - type: LayoutBox
+                                            style: inline
+                                            margin: none
+                                            minWidth: 120
+                                            children:
+                                              - type: TextBox
+                                                name: IVname
+                                                format: string
+                                                margin: none
+                                                stretchFactor: 1
+                                              - type: ComboBox
+                                                name: IVtype
+                                                margin: none
+                                          - type: LayoutBox
+                                            style: inline
+                                            margin: none
+                                            children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 13
+                                              - type: TextBox
+                                                name: IVmu
+                                                format: number
+                                                enable: (IVtype:Interval)
+                                              - type: TextBox
+                                                name: IVsd
+                                                format: number
+                                                enable: (IVtype:Interval)
+                                          - type: LayoutBox
+                                            style: inline
+                                            margin: none
+                                            children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 13
+                                              - type: TextBox
+                                                name: IVskew
+                                                format: number
+                                                enable: (IVtype:Interval)
+                                              - type: TextBox
+                                                name: IVkurt
+                                                format: number
+                                                enable: (IVtype:Interval)
+                                          - type: LayoutBox
+                                            style: inline
+                                            margin: none
+                                            children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 13
+                                              - type: TextBox
+                                                name: IVnlevs
+                                                format: number
+                                                enable: (IVtype:Ordinal)
+                                              - type: TextBox
+                                                name: IViqr
+                                                format: number
+                                                enable: (IVtype:Ordinal)
+                                          - type: LayoutBox
+                                            style: inline
+                                            margin: none
+                                            children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 13
+                                              - type: TextBox
+                                                name: IVncats
+                                                format: number
+                                                enable: (IVtype:Categorical)
+                                              - type: TextBox
+                                                name: IVcases
+                                                format: string
+                                                enable: (IVtype:Categorical)
+                                          - type: LayoutBox
+                                            style: inline
+                                            margin: none
+                                            children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 13
+                                              - type: TextBox
+                                                name: IVprops
+                                                format: string
+                                                enable: (IVtype:Categorical)
+                              - type: LayoutBox
+                                style: inline
+                                margin: none
+                                children:
+                                  - type: LayoutBox
+                                    style: inline
+                                    margin: none
+                                    minWidth: 140
+                                    children:
+                                      - type: Label
+                                        label: 'IV2:'
+                                        margin: none
+                                        minWidth: 25
+                                      - type: ComboBox
+                                        name: presetIV2
+                                        events:
+                                          change: ./BrawSim.events::onChange_presetIV2
+                                  - type: CollapseBox
+                                    collapsed: true
+                                    label: Edit
+                                    margin: none
+                                    children:
+                                      - type: LayoutBox
+                                        style: list
+                                        margin: none
+                                        children:
+                                          - type: LayoutBox
+                                            style: inline
+                                            margin: none
+                                            minWidth: 120
+                                            children:
+                                              - type: TextBox
+                                                name: IV2name
+                                                format: string
+                                                margin: none
+                                                stretchFactor: 1
+                                                enable: (!presetIV2:none)
+                                              - type: ComboBox
+                                                name: IV2type
+                                                margin: none
+                                                enable: (!presetIV2:none)
+                                          - type: LayoutBox
+                                            style: inline
+                                            margin: none
+                                            children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 13
+                                              - type: TextBox
+                                                name: IV2mu
+                                                format: number
+                                                enable: (!presetIV2:none && IV2type:Interval)
+                                              - type: TextBox
+                                                name: IV2sd
+                                                format: number
+                                                enable: (!presetIV2:none && IV2type:Interval)
+                                          - type: LayoutBox
+                                            style: inline
+                                            margin: none
+                                            children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 13
+                                              - type: TextBox
+                                                name: IV2skew
+                                                format: number
+                                                enable: (!presetIV2:none && IV2type:Interval)
+                                              - type: TextBox
+                                                name: IV2kurt
+                                                format: number
+                                                enable: (!presetIV2:none && IV2type:Interval)
+                                          - type: LayoutBox
+                                            style: inline
+                                            margin: none
+                                            children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 13
+                                              - type: TextBox
+                                                name: IV2nlevs
+                                                format: number
+                                                enable: (!presetIV2:none && IV2type:Ordinal)
+                                              - type: TextBox
+                                                name: IV2iqr
+                                                format: number
+                                                enable: (!presetIV2:none && IV2type:Ordinal)
+                                          - type: LayoutBox
+                                            style: inline
+                                            margin: none
+                                            children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 13
+                                              - type: TextBox
+                                                name: IV2ncats
+                                                format: number
+                                                enable: (!presetIV2:none && IV2type:Categorical)
+                                              - type: TextBox
+                                                name: IV2cases
+                                                format: string
+                                                enable: (!presetIV2:none && IV2type:Categorical)
+                                          - type: LayoutBox
+                                            style: inline
+                                            margin: none
+                                            children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 13
+                                              - type: TextBox
+                                                name: IV2props
+                                                format: string
+                                                enable: (!presetIV2:none && IV2type:Categorical)
                           - type: CollapseBox
                             collapsed: true
                             label: Effects
@@ -541,18 +543,18 @@ children:
                                     style: inline
                                     margin: none
                                     children:
-                                    - type: ComboBox
-                                      name: LimitRange
-                                    - type: TextBox
-                                      name: RangeMin
-                                      margin: none
-                                      format: number
-                                      enable: (LimitRange:yes)
-                                    - type: TextBox
-                                      name: RangeMax
-                                      margin: none
-                                      format: number
-                                      enable: (LimitRange:yes)
+                                      - type: ComboBox
+                                        name: LimitRange
+                                      - type: TextBox
+                                        name: RangeMin
+                                        margin: none
+                                        format: number
+                                        enable: (LimitRange:yes)
+                                      - type: TextBox
+                                        name: RangeMax
+                                        margin: none
+                                        format: number
+                                        enable: (LimitRange:yes)
                               - type: LayoutBox
                                 style: list
                                 margin: none
@@ -1714,22 +1716,6 @@ children:
                               change: ./BrawSim.events::onChange_project1d
       - type: CollapseBox
         collapsed: true
-        label: Jamovi Instructions
-        margin: none
-        maxWidth: 330
-        children:
-          - type: LayoutBox
-            style: inline
-            margin: none
-            children:
-              - type: ActionButton
-                name: showJamovi1Btn
-              - type: ActionButton
-                name: showJamovi2Btn
-              - type: ActionButton
-                name: showJamovi3Btn
-      - type: CollapseBox
-        collapsed: true
         label: Help Materials
         margin: none
         maxWidth: 330
@@ -1976,178 +1962,178 @@ children:
         margin: none
         maxWidth: 330
         children:
-                  - name: nomenOptions
-                    type: ModeSelector
-                    margin: none
+          - name: nomenOptions
+            type: ModeSelector
+            margin: none
+            children:
+              - type: Content
+                name: standard
+                children:
+                  - type: LayoutBox
+                    style: list
                     children:
-                      - type: Content
-                        name: standard
+                      - type: LayoutBox
+                        style: inline
                         children:
-                          - type: LayoutBox
-                            style: list
-                            children:
-                              - type: LayoutBox
-                                style: inline
-                                children:
-                                  - type: Label
-                                    label: rs
-                                    minWidth: 30
-                                  - type: Label
-                                    label: sample effect size
-                                    minWidth: 300
-                              - type: LayoutBox
-                                style: inline
-                                children:
-                                  - type: Label
-                                    label: rp
-                                    minWidth: 30
-                                  - type: Label
-                                    label: population effect size
-                                    minWidth: 300
-                              - type: LayoutBox
-                                style: inline
-                                children:
-                                  - type: Label
-                                    label: rmle
-                                    minWidth: 30
-                                  - type: Label
-                                    label: max-lk estimate of rp
-                                    minWidth: 300
-                              - type: LayoutBox
-                                style: inline
-                                children:
-                                  - type: Label
-                                    label: re
-                                    minWidth: 30
-                                  - type: Label
-                                    label: sample error
-                                    minWidth: 300
-                              - type: LayoutBox
-                                style: inline
-                                children:
-                                  - type: Label
-                                    label: 'n'
-                                    minWidth: 30
-                                  - type: Label
-                                    label: sample size
-                                    minWidth: 300
-                              - type: LayoutBox
-                                style: inline
-                                children:
-                                  - type: Label
-                                    label: p
-                                    minWidth: 30
-                                  - type: Label
-                                    label: p-value
-                                    minWidth: 300
-                              - type: LayoutBox
-                                style: inline
-                                children:
-                                  - type: Label
-                                    label: "LLR(rs/r0 | rs)"
-                                    minWidth: 30
-                                  - type: Label
-                                    label: "ratio of likelihoods of rp=rs vs rp=0, given rs"
-                                    minWidth: 300
-                      - type: Content
-                        name: power
+                          - type: Label
+                            label: rs
+                            minWidth: 30
+                          - type: Label
+                            label: sample effect size
+                            minWidth: 300
+                      - type: LayoutBox
+                        style: inline
                         children:
-                        - type: LayoutBox
-                          style: list
-                          children:
-                          - type: LayoutBox
-                            style: inline
-                            children:
-                              - type: Label
-                                label: ws
-                                minWidth: 30
-                              - type: Label
-                                label: 'sample power (using rs: bad)'
-                                minWidth: 300
-                          - type: LayoutBox
-                            style: inline
-                            children:
-                              - type: Label
-                                label: wp
-                                minWidth: 30
-                              - type: Label
-                                label: 'sample power (using rp: good)'
-                                minWidth: 300
-                          - type: LayoutBox
-                            style: inline
-                            children:
-                              - type: Label
-                                label: nw
-                                minWidth: 30
-                              - type: Label
-                                label: required sample size from ws
-                                minWidth: 300
-                      - type: Content
-                        name: replication
+                          - type: Label
+                            label: rp
+                            minWidth: 30
+                          - type: Label
+                            label: population effect size
+                            minWidth: 300
+                      - type: LayoutBox
+                        style: inline
                         children:
-                        - type: LayoutBox
-                          style: list
-                          children:
-                          - type: LayoutBox
-                            style: inline
-                            children:
-                              - type: Label
-                                label: ro
-                                minWidth: 30
-                              - type: Label
-                                label: original sample effect size
-                                minWidth: 300
-                          - type: LayoutBox
-                            style: inline
-                            children:
-                              - type: Label
-                                label: 'no'
-                                minWidth: 30
-                              - type: Label
-                                label: original sample size
-                                minWidth: 300
-                          - type: LayoutBox
-                            style: inline
-                            children:
-                              - type: Label
-                                label: po
-                                minWidth: 30
-                              - type: Label
-                                label: original p-value
-                                minWidth: 300
-                      - type: Content
-                        name: symbols
+                          - type: Label
+                            label: rmle
+                            minWidth: 30
+                          - type: Label
+                            label: max-lk estimate of rp
+                            minWidth: 300
+                      - type: LayoutBox
+                        style: inline
                         children:
-                        - type: LayoutBox
-                          style: list
-                          children:
-                          - type: LayoutBox
-                            style: inline
-                            children:
-                              - type: Label
-                                label: circle
-                                minWidth: 100
-                              - type: Label
-                                label: data point
-                                minWidth: 300
-                          - type: LayoutBox
-                            style: inline
-                            children:
-                              - type: Label
-                                label: square
-                                minWidth: 100
-                              - type: Label
-                                label: sample effect size
-                                minWidth: 300
-                          - type: LayoutBox
-                            style: inline
-                            children:
-                              - type: Label
-                                label: triangle
-                                minWidth: 100
-                              - type: Label
-                                label: metaAnalysis result
-                                minWidth: 300
+                          - type: Label
+                            label: re
+                            minWidth: 30
+                          - type: Label
+                            label: sample error
+                            minWidth: 300
+                      - type: LayoutBox
+                        style: inline
+                        children:
+                          - type: Label
+                            label: 'n'
+                            minWidth: 30
+                          - type: Label
+                            label: sample size
+                            minWidth: 300
+                      - type: LayoutBox
+                        style: inline
+                        children:
+                          - type: Label
+                            label: p
+                            minWidth: 30
+                          - type: Label
+                            label: p-value
+                            minWidth: 300
+                      - type: LayoutBox
+                        style: inline
+                        children:
+                          - type: Label
+                            label: LLR(rs/r0 | rs)
+                            minWidth: 30
+                          - type: Label
+                            label: ratio of likelihoods of rp=rs vs rp=0, given rs
+                            minWidth: 300
+              - type: Content
+                name: power
+                children:
+                  - type: LayoutBox
+                    style: list
+                    children:
+                      - type: LayoutBox
+                        style: inline
+                        children:
+                          - type: Label
+                            label: ws
+                            minWidth: 30
+                          - type: Label
+                            label: 'sample power (using rs: bad)'
+                            minWidth: 300
+                      - type: LayoutBox
+                        style: inline
+                        children:
+                          - type: Label
+                            label: wp
+                            minWidth: 30
+                          - type: Label
+                            label: 'sample power (using rp: good)'
+                            minWidth: 300
+                      - type: LayoutBox
+                        style: inline
+                        children:
+                          - type: Label
+                            label: nw
+                            minWidth: 30
+                          - type: Label
+                            label: required sample size from ws
+                            minWidth: 300
+              - type: Content
+                name: replication
+                children:
+                  - type: LayoutBox
+                    style: list
+                    children:
+                      - type: LayoutBox
+                        style: inline
+                        children:
+                          - type: Label
+                            label: ro
+                            minWidth: 30
+                          - type: Label
+                            label: original sample effect size
+                            minWidth: 300
+                      - type: LayoutBox
+                        style: inline
+                        children:
+                          - type: Label
+                            label: 'no'
+                            minWidth: 30
+                          - type: Label
+                            label: original sample size
+                            minWidth: 300
+                      - type: LayoutBox
+                        style: inline
+                        children:
+                          - type: Label
+                            label: po
+                            minWidth: 30
+                          - type: Label
+                            label: original p-value
+                            minWidth: 300
+              - type: Content
+                name: symbols
+                children:
+                  - type: LayoutBox
+                    style: list
+                    children:
+                      - type: LayoutBox
+                        style: inline
+                        children:
+                          - type: Label
+                            label: circle
+                            minWidth: 100
+                          - type: Label
+                            label: data point
+                            minWidth: 300
+                      - type: LayoutBox
+                        style: inline
+                        children:
+                          - type: Label
+                            label: square
+                            minWidth: 100
+                          - type: Label
+                            label: sample effect size
+                            minWidth: 300
+                      - type: LayoutBox
+                        style: inline
+                        children:
+                          - type: Label
+                            label: triangle
+                            minWidth: 100
+                          - type: Label
+                            label: metaAnalysis result
+                            minWidth: 300
       - type: CollapseBox
         name: JamoviCollapse
         collapsed: true
@@ -2163,3 +2149,5 @@ children:
                 name: sendSample
               - type: Output
                 name: sendMultiple
+              - type: CheckBox
+                name: showJamovi

@@ -1295,18 +1295,11 @@ options:
       title: multiple
       type: Output
       default: FALSE
-
-    - name: showJamovi1Btn
-      title: 'analysis'
-      type: Action
-
-    - name: showJamovi2Btn
-      title: 'graph'
-      type: Action
-
-    - name: showJamovi3Btn
-      title: 'effect size'
-      type: Action
+      
+    - name: showJamovi
+      title: instructions?
+      type: Bool
+      default: true
 
     - name: nomenOptions
       title: ' '
