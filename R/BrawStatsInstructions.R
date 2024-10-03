@@ -71,7 +71,7 @@ BrawInstructions <- function(HelpType="Plan") {
            ' </li>',
            '</ul>',
            '<br>')
-          extras<-c("Suggestions:")
+          extras<-c("Suggestions")
           extrasContent<-c(
             paste(
            '<ol style=margin:0px;>',
@@ -117,7 +117,7 @@ BrawInstructions <- function(HelpType="Plan") {
            '</ul>',
            'If you use NHST, Hits or Misses, then BrawStats will run equal number of the hypothesis you have planned and a null hypothesis. This is what would happen if your hypothesis has a 50:50 chance of being correct.',
            '<br><br>')
-         extras<-c("Suggestions:")
+         extras<-c("Suggestions")
          extrasContent<-c(
            paste(
            '<ol style=margin:0px;>',
@@ -169,7 +169,7 @@ BrawInstructions <- function(HelpType="Plan") {
            'If you use NHST, Hits or Misses, then BrawStats will run equal number of the hypothesis you have planned and a null hypothesis. This is what would happen if your hypothesis has a 50:50 chance of being correct.',
            '<br><br>')
          
-         extras<-c("Suggestions:")
+         extras<-c("Suggestions")
          extrasContent<-c(
            paste(
            '<ol style=margin:0px;>',
