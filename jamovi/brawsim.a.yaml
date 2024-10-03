@@ -1301,20 +1301,6 @@ options:
       type: Bool
       default: true
 
-    - name: nomenOptions
-      title: ' '
-      type: List
-      options:
-      - name: standard
-        title: standard
-      - name: power
-        title: power
-      - name: replication
-        title: replication
-      - name: symbols
-        title: symbols
-      default: standard
-
     - name: doProject1aBtn
       title: 'do it for me'
       type: Action

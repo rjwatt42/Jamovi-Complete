@@ -229,18 +229,31 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       # now deal with a request for Jamovi instructions
       # showJamoviNow1<-self$options$showJamovi1Btn
       if(self$options$showJamovi) {
+        self$results$BrawStatsInstructions$setVisible(TRUE)
+        self$results$BrawStatsInstructions$setContent(
+          private$.htmlwidget$generate_tab(
+            title="BrawStats Help",
+            tabs=c("Plan","Single Sample","Multiple Samples","Explore","Key"),
+            tabContents = c(
+              BrawInstructions("Plan"),
+              BrawInstructions("Single"),
+              BrawInstructions("Multiple"),
+              BrawInstructions("Explore"),
+              BrawInstructions("Key")
+            )
+          )
+        )
+        
         self$results$JamoviInstructions$setVisible(TRUE)
         self$results$JamoviInstructions$setContent(
           private$.htmlwidget$generate_tab(
-            title="Jamovi help",
+            title="Jamovi equivalent",
             tabs=c("Analysis","Graph","EffectSize"),
             tabContents = c(
-              makeInstructions(hypothesis,design,HelpType="Analysis"),
-              makeInstructions(hypothesis,design,HelpType="Graph"),
-              makeInstructions(hypothesis,design,HelpType="EffectSize")
-            ),
-            colours=c("#3498db","#80CCFF")
-
+              JamoviInstructions(hypothesis,design,HelpType="Analysis"),
+              JamoviInstructions(hypothesis,design,HelpType="Graph"),
+              JamoviInstructions(hypothesis,design,HelpType="EffectSize")
+            )
           )
         )
         # self$results$JamoviInstructions$setContent(

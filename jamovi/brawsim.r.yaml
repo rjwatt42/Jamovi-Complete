@@ -4,6 +4,10 @@ title: BrawStats:Simulate Data
 jrs:   '1.1'
 
 items:
+    - name: BrawStatsInstructions
+      type: Html
+      visible: FALSE
+
     - name: graphPlot
       title: ' '
       type: Image

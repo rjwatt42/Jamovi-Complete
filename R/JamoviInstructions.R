@@ -1,4 +1,4 @@
-makeInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$design,HelpType="Analysis") {
+JamoviInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$design,HelpType="Analysis") {
   
   to_char="to"
   in_char="in"

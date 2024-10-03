@@ -988,66 +988,6 @@ children:
               - type: ComboBox
                 name: showInferParam
                 enable: (showSampleType:Infer)
-          - type: LayoutBox
-            style: inline
-            children:
-              - type: Label
-                label: ' '
-                margin: small
-                minWidth: 80
-              - type: CollapseBox
-                label: Suggestions
-                collapsed: true
-                margin: none
-                minWidth: 370
-                children:
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 13
-                      - type: Label
-                        label: Make a few samples to see how much they vary
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 30
-                      - type: Label
-                        label: '- you can watch any of the output graphs'
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 13
-                      - type: Label
-                        label: Change the variable types
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 30
-                      - type: Label
-                        label: '- you will see how the graphs depend on this'
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 30
-                      - type: Label
-                        label: >-
-                          - with the Infer output, you will see what test is
-                          used in each case
       - type: CollapseBox
         label: Multiple Samples
         collapsed: true
@@ -1060,15 +1000,6 @@ children:
               expect
           - type: Label
             label: 'choose how many samples: more is better but slower'
-          - type: LayoutBox
-            style: inline
-            margin: none
-            children:
-              - type: Label
-                label: ' '
-                minWidth: 2
-              - type: Label
-                label: '- each time you press the button, more samples are added'
           - type: LayoutBox
             style: inline
             children:
@@ -1103,77 +1034,6 @@ children:
                     children:
                       - name: showMultipleParam
                         type: ComboBox
-          - type: LayoutBox
-            style: inline
-            children:
-              - type: Label
-                label: ' '
-                margin: small
-                minWidth: 80
-              - type: CollapseBox
-                label: Suggestions
-                collapsed: true
-                margin: none
-                minWidth: 370
-                children:
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 13
-                      - type: Label
-                        label: Change the sampling method and repeat the samples
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 30
-                      - type: Label
-                        label: >-
-                          - do this with an effect size of r=0 to see false
-                          positives
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 13
-                      - type: Label
-                        label: Change the types of the variables
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 30
-                      - type: Label
-                        label: '- do this with an effect size of r=0.3 to see misses'
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 13
-                      - type: Label
-                        label: >-
-                          Try and find a sample size that gives you 80%
-                          significant results
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 30
-                      - type: Label
-                        label: '- do this with an effect size of r=0.3 and then r=0.1'
   - type: Label
     label: 3. Explore plan decisions
     children:
@@ -1461,79 +1321,6 @@ children:
                         children:
                           - name: showExploreParam
                             type: ComboBox
-          - type: LayoutBox
-            style: inline
-            children:
-              - type: Label
-                label: ' '
-                margin: small
-                minWidth: 80
-              - type: CollapseBox
-                label: Suggestions
-                collapsed: true
-                margin: none
-                minWidth: 370
-                children:
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 13
-                      - type: Label
-                        label: >-
-                          Explore sample size and display p(sig) with r=0.3 and
-                          then r=0
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 30
-                      - type: Label
-                        label: '- this is a power analysis'
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 13
-                      - type: Label
-                        label: >-
-                          Explore the variable types displaying p(sig) with
-                          r=0.3
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 30
-                      - type: Label
-                        label: '- what conclusion do you reach?'
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 13
-                      - type: Label
-                        label: >-
-                          Explore some of the sampling anomalies showing p(sig)
-                          with r=0.3 and r=0
-                  - type: LayoutBox
-                    style: inline
-                    margin: none
-                    children:
-                      - type: Label
-                        label: ' '
-                        minWidth: 30
-                      - type: Label
-                        label: '- how do sampling anomalies matter?'
   - type: Label
     label: Extra
     children:
@@ -1714,426 +1501,178 @@ children:
                             maxWidth: 80
                             events:
                               change: ./BrawSim.events::onChange_project1d
-      - type: CollapseBox
-        collapsed: true
-        label: Help Materials
-        margin: none
-        maxWidth: 330
-        children:
-          - type: LayoutBox
-            style: inline
-            children:
-              - type: Label
-                label: ' '
-                minWidth: 13
-              - type: CollapseBox
-                collapsed: true
-                label: Effect Size Type
-                margin: none
-                maxWidth: 330
-                children:
-                  - type: LayoutBox
-                    style: list
-                    children:
-                      - type: Label
-                        label: >-
-                          An effect size measures the amount of variance
-                          transmitted from one variable to another.
-                      - type: Label
-                        label: In this sense, variance is equivalent to information.
-                      - type: Label
-                        label: >-
-                          With normalized effect sizes (-1 to 1), the value
-                          corresponds to
-                      - type: Label
-                        label: >-
-                          the square root of the proportion of variance
-                          available that is actually transmitted.
-                      - type: Label
-                        label: >-
-                          When there is more than one IV, then there are 3
-                          formulations. These are characterised
-                      - type: Label
-                        label: >-
-                          by thinking in terms of a source variable, a
-                          destination variable and 
-                      - type: Label
-                        label: >-
-                          a link that joins only them. There may well be other
-                          routes between the source
-                      - type: Label
-                        label: and destination via other variables and links.
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: ' '
-                            minWidth: 30
-                          - type: Label
-                            label: Direct
-                            minWidth: 60
-                          - type: Label
-                            label: >-
-                              the amount of variance transmitted through one
-                              direct link
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: ' '
-                            minWidth: 30
-                          - type: Label
-                            label: Unique
-                            minWidth: 60
-                          - type: Label
-                            label: >-
-                              the amount of variance transmitted only by that
-                              source variable
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: ' '
-                            minWidth: 110
-                          - type: Label
-                            label: to that destination variable
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: ' '
-                            minWidth: 30
-                          - type: Label
-                            label: Total
-                            minWidth: 60
-                          - type: Label
-                            label: >-
-                              the amount of variance transmitted summed over all
-                              possible routes
-                      - type: Label
-                        label: >-
-                          The direct effect is equivalent to the coefficients in
-                          a linear model.
-                      - type: Label
-                        label: >-
-                          The unique effect is the effect of one IV on a DV when
-                          the effect of
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: ' '
-                            minWidth: 30
-                          - type: Label
-                            label: all other IVs are taken into account.
-                      - type: Label
-                        label: >-
-                          The total effect is what is measured when only one IV
-                          and DV are used.
-                      - type: Label
-                        label: >-
-                          Note that the total effect and the unique effect can
-                          be very different - .
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: ' '
-                            minWidth: 30
-                          - type: Label
-                            label: even to the point of having different signs.
-          - type: LayoutBox
-            style: inline
-            children:
-              - type: Label
-                label: ' '
-                minWidth: 13
-              - type: CollapseBox
-                collapsed: true
-                label: Display Options
-                margin: none
-                maxWidth: 330
-                children:
-                  - type: LayoutBox
-                    style: list
-                    children:
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: Basic
-                            minWidth: 60
-                          - type: Label
-                            label: show sample effect size and p-value (1D or 2D)
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: p(sig)
-                            minWidth: 60
-                          - type: Label
-                            label: show the probability of a significant result
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: NHST
-                            minWidth: 60
-                          - type: Label
-                            label: show p-values for hypothesis and null hypothesis
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: Hits
-                            minWidth: 60
-                          - type: Label
-                            label: >-
-                              show significant p-values for hypothesis and null
-                              hypothesis
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: Misses
-                            minWidth: 60
-                          - type: Label
-                            label: >-
-                              show non-significant p-values for hypothesis and
-                              null hypothesis
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: Custom
-                            minWidth: 60
-                          - type: Label
-                            label: >-
-                              show any two parameters chosen from menus above
-                              (1D or 2D)
-          - type: LayoutBox
-            style: inline
-            children:
-              - type: Label
-                label: ' '
-                minWidth: 13
-              - type: CollapseBox
-                collapsed: true
-                label: Using a World
-                margin: none
-                maxWidth: 330
-                children:
-                  - type: LayoutBox
-                    style: list
-                    children:
-                      - type: Label
-                        label: >-
-                          In simple mode, BrawStats models a single hypothesis
-                          with a fixed effect.
-                      - type: Label
-                        label: >-
-                          The hypothesis is always correct. This is, of course,
-                          unrealistic.
-                      - type: Label
-                        label: ''
-                      - type: Label
-                        label: A world is a system that models an entire discipline.
-                      - type: Label
-                        label: >-
-                          The population effect sizes for each sample is drawn
-                          at random from a
-                      - type: Label
-                        label: >-
-                          distribution of possible values. The population effect
-                          size has a
-                      - type: Label
-                        label: >-
-                          probability of being set to zero. ie. the hypothesis
-                          is wrong.
-                      - type: Label
-                        label: >-
-                          Sample sizes are also drawn at random for each sample
-                          from a distribution of
-                      - type: Label
-                        label: possible values.
-      - type: CollapseBox
-        collapsed: true
-        label: Nomenclature
-        margin: none
-        maxWidth: 330
-        children:
-          - name: nomenOptions
-            type: ModeSelector
-            margin: none
-            children:
-              - type: Content
-                name: standard
-                children:
-                  - type: LayoutBox
-                    style: list
-                    children:
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: rs
-                            minWidth: 30
-                          - type: Label
-                            label: sample effect size
-                            minWidth: 300
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: rp
-                            minWidth: 30
-                          - type: Label
-                            label: population effect size
-                            minWidth: 300
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: rmle
-                            minWidth: 30
-                          - type: Label
-                            label: max-lk estimate of rp
-                            minWidth: 300
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: re
-                            minWidth: 30
-                          - type: Label
-                            label: sample error
-                            minWidth: 300
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: 'n'
-                            minWidth: 30
-                          - type: Label
-                            label: sample size
-                            minWidth: 300
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: p
-                            minWidth: 30
-                          - type: Label
-                            label: p-value
-                            minWidth: 300
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: LLR(rs/r0 | rs)
-                            minWidth: 30
-                          - type: Label
-                            label: ratio of likelihoods of rp=rs vs rp=0, given rs
-                            minWidth: 300
-              - type: Content
-                name: power
-                children:
-                  - type: LayoutBox
-                    style: list
-                    children:
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: ws
-                            minWidth: 30
-                          - type: Label
-                            label: 'sample power (using rs: bad)'
-                            minWidth: 300
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: wp
-                            minWidth: 30
-                          - type: Label
-                            label: 'sample power (using rp: good)'
-                            minWidth: 300
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: nw
-                            minWidth: 30
-                          - type: Label
-                            label: required sample size from ws
-                            minWidth: 300
-              - type: Content
-                name: replication
-                children:
-                  - type: LayoutBox
-                    style: list
-                    children:
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: ro
-                            minWidth: 30
-                          - type: Label
-                            label: original sample effect size
-                            minWidth: 300
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: 'no'
-                            minWidth: 30
-                          - type: Label
-                            label: original sample size
-                            minWidth: 300
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: po
-                            minWidth: 30
-                          - type: Label
-                            label: original p-value
-                            minWidth: 300
-              - type: Content
-                name: symbols
-                children:
-                  - type: LayoutBox
-                    style: list
-                    children:
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: circle
-                            minWidth: 100
-                          - type: Label
-                            label: data point
-                            minWidth: 300
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: square
-                            minWidth: 100
-                          - type: Label
-                            label: sample effect size
-                            minWidth: 300
-                      - type: LayoutBox
-                        style: inline
-                        children:
-                          - type: Label
-                            label: triangle
-                            minWidth: 100
-                          - type: Label
-                            label: metaAnalysis result
-                            minWidth: 300
+      # - type: CollapseBox
+      #   collapsed: true
+      #   label: Help Materials
+      #   margin: none
+      #   maxWidth: 330
+      #   children:
+      #     - type: LayoutBox
+      #       style: inline
+      #       children:
+      #         - type: Label
+      #           label: ' '
+      #           minWidth: 13
+      #         - type: CollapseBox
+      #           collapsed: true
+      #           label: Effect Size Type
+      #           margin: none
+      #           maxWidth: 330
+      #           children:
+      #             - type: LayoutBox
+      #               style: list
+      #               children:
+      #                 - type: Label
+      #                   label: >-
+      #                     An effect size measures the amount of variance
+      #                     transmitted from one variable to another.
+      #                 - type: Label
+      #                   label: In this sense, variance is equivalent to information.
+      #                 - type: Label
+      #                   label: >-
+      #                     With normalized effect sizes (-1 to 1), the value
+      #                     corresponds to
+      #                 - type: Label
+      #                   label: >-
+      #                     the square root of the proportion of variance
+      #                     available that is actually transmitted.
+      #                 - type: Label
+      #                   label: >-
+      #                     When there is more than one IV, then there are 3
+      #                     formulations. These are characterised
+      #                 - type: Label
+      #                   label: >-
+      #                     by thinking in terms of a source variable, a
+      #                     destination variable and 
+      #                 - type: Label
+      #                   label: >-
+      #                     a link that joins only them. There may well be other
+      #                     routes between the source
+      #                 - type: Label
+      #                   label: and destination via other variables and links.
+      #                 - type: LayoutBox
+      #                   style: inline
+      #                   children:
+      #                     - type: Label
+      #                       label: ' '
+      #                       minWidth: 30
+      #                     - type: Label
+      #                       label: Direct
+      #                       minWidth: 60
+      #                     - type: Label
+      #                       label: >-
+      #                         the amount of variance transmitted through one direct link
+      #                 - type: LayoutBox
+      #                   style: inline
+      #                   children:
+      #                     - type: Label
+      #                       label: ' '
+      #                       minWidth: 30
+      #                     - type: Label
+      #                       label: Unique
+      #                       minWidth: 60
+      #                     - type: Label
+      #                       label: >-
+      #                         the amount of variance transmitted only by that
+      #                         source variable
+      #                 - type: LayoutBox
+      #                   style: inline
+      #                   children:
+      #                     - type: Label
+      #                       label: ' '
+      #                       minWidth: 110
+      #                     - type: Label
+      #                       label: to that destination variable
+      #                 - type: LayoutBox
+      #                   style: inline
+      #                   children:
+      #                     - type: Label
+      #                       label: ' '
+      #                       minWidth: 30
+      #                     - type: Label
+      #                       label: Total
+      #                       minWidth: 60
+      #                     - type: Label
+      #                       label: >-
+      #                         the amount of variance transmitted summed over all
+      #                         possible routes
+      #                 - type: Label
+      #                   label: >-
+      #                     The direct effect is equivalent to the coefficients in
+      #                     a linear model.
+      #                 - type: Label
+      #                   label: >-
+      #                     The unique effect is the effect of one IV on a DV when
+      #                     the effect of
+      #                 - type: LayoutBox
+      #                   style: inline
+      #                   children:
+      #                     - type: Label
+      #                       label: ' '
+      #                       minWidth: 30
+      #                     - type: Label
+      #                       label: all other IVs are taken into account.
+      #                 - type: Label
+      #                   label: >-
+      #                     The total effect is what is measured when only one IV
+      #                     and DV are used.
+      #                 - type: Label
+      #                   label: >-
+      #                     Note that the total effect and the unique effect can
+      #                     be very different - .
+      #                 - type: LayoutBox
+      #                   style: inline
+      #                   children:
+      #                     - type: Label
+      #                       label: ' '
+      #                       minWidth: 30
+      #                     - type: Label
+      #                       label: even to the point of having different signs.
+          # - type: LayoutBox
+          #   style: inline
+          #   children:
+          #     - type: Label
+          #       label: ' '
+          #       minWidth: 13
+          #     - type: CollapseBox
+          #       collapsed: true
+          #       label: Using a World
+          #       margin: none
+          #       maxWidth: 330
+          #       children:
+          #         - type: LayoutBox
+          #           style: list
+          #           children:
+          #             - type: Label
+          #               label: >-
+          #                 In simple mode, BrawStats models a single hypothesis
+          #                 with a fixed effect.
+          #             - type: Label
+          #               label: >-
+          #                 The hypothesis is always correct. This is, of course,
+          #                 unrealistic.
+          #             - type: Label
+          #               label: ''
+          #             - type: Label
+          #               label: A world is a system that models an entire discipline.
+          #             - type: Label
+          #               label: >-
+          #                 The population effect sizes for each sample is drawn
+          #                 at random from a
+          #             - type: Label
+          #               label: >-
+          #                 distribution of possible values. The population effect
+          #                 size has a
+          #             - type: Label
+          #               label: >-
+          #                 probability of being set to zero. ie. the hypothesis
+          #                 is wrong.
+          #             - type: Label
+          #               label: >-
+          #                 Sample sizes are also drawn at random for each sample
+          #                 from a distribution of
+          #             - type: Label
+          #               label: possible values.
       - type: CollapseBox
         name: JamoviCollapse
         collapsed: true

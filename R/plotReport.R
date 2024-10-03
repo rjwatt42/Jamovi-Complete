@@ -47,7 +47,7 @@ reportPlot<-function(outputText,nc,nr,fontSize=0.85,maxRows=14,renderAsHTML=braw
           if (!doubleHeaderBottom)
             rowStyle<-paste0(rowStyle,"border-top:solid;border-top-color:",lineColour,";border-top-width:1px;")
           rowStyle<-paste0(rowStyle,"padding-top:0px;padding-bottom:0px;")
-          rowStyle<-paste0(rowStyle," bgcolor='",rowColour,"';")
+          # rowStyle<-paste0(rowStyle," bgcolor='",rowColour,"';")
           outputText[index+(1:nc)]<-sub("!H","",outputText[index+(1:nc)])
         } else 
           headerRow<-FALSE
@@ -115,7 +115,7 @@ reportPlot<-function(outputText,nc,nr,fontSize=0.85,maxRows=14,renderAsHTML=braw
               cellStyle<-paste0(cellStyle,"border-right:solid;border-right-color:#888888;border-right-width:1px;")
               outputText[index]<-sub("!r","",outputText[index])
             }
-            if (headerRow) cellStyle<-paste0(cellStyle,"color:white;")
+            # if (headerRow) cellStyle<-paste0(cellStyle,"color:white;")
             
             outputText[index]<-gsub("\\[([a-zA-Z0-9_+-]*)\\]","<sub>\\1</sub>",outputText[index])
             outputText[index]<-gsub("\\^([a-zA-Z0-9_+-]*)([a-zA-Z0-9_]*)","<sup>\\1</sup>",outputText[index])
