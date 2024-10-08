@@ -93,7 +93,7 @@ drawOrdinal<-function(var,plotArea=c(0,0,1,1),g){
 makedrawInterval<-function(var) {
   r<-seq(-braw.env$fullRange,braw.env$fullRange,length.out=braw.env$varNPoints)*var$sd+var$mu
   if (var$skew!=0 || var$kurtosis!=0) {
-    a<-f_johnson_M(var$mu,var$sd,var$skew,var$kurtosis)
+    a<-f_johnson_M(var$mu,var$sd,var$skew,var$kurtosis+3)
     dens<-f_Johnson_pdf(r,a$coef,a$type)
     dens[is.na(dens)]<-0
   } else {
@@ -124,7 +124,7 @@ drawInterval<-function(var,plotArea=c(0,0,1,1),g){
 #' @export
 showVariable<-function(variable=makeVariable(),sample=NULL,plotArea=NULL,g=NULL){
   if (is.null(g)) 
-    g<-ggplot()+braw.env$plotRect+braw.env$blankTheme()
+    g<-nullPlot()
   if (!is.null(plotArea)) braw.env$plotArea<-plotArea
   
   switch(variable$type,

@@ -47,6 +47,8 @@ plotLimits<-function(xlim,ylim,orientation,gaps=c(1,1,0,0),fontScale=1) {
          )
 }
 
+nullPlot<-function() return(ggplot()+braw.env$plotRect+braw.env$blankTheme())
+
 startPlot<-function(xlim=c(0,1),ylim=c(0,1),box="both",top=FALSE,tight=FALSE,backC=braw.env$plotColours$graphBack,orientation="horz",fontScale=NULL,g=NULL) {
   minGap<-0.05
   maxGap<-0.125
@@ -65,7 +67,7 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),box="both",top=FALSE,tight=FALSE,bac
   else gaps<-c(gaps,minGap,minGap)
   plotLimits(xlim = xlim, ylim = ylim,orientation=orientation,gaps,fontScale=fontScale)
 
-  if (is.null(g)) g<-ggplot()+braw.env$plotRect
+  if (is.null(g)) g<-nullPlot()
   back<-data.frame(x=xlim[c(1,2,2,1)],y=ylim[c(1,1,2,2)])
   xaxis<-data.frame(x=xlim,y=ylim[1])
   yaxis<-data.frame(x=xlim[1],y=ylim)

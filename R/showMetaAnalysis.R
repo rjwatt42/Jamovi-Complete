@@ -39,13 +39,13 @@ showMetaSingle<-function(metaResult=braw.res$metaResult,showTheory=FALSE) {
   
   d1<-metaResult$result$rIV
   d1n<-(metaResult$result$rpIV==0)
-  x<-plotAxis("rs",hypothesis$effect)
+  x<-plotAxis("rs",hypothesis)
   xlim<-x$lim
   disp1<-x$label
   if (all(d1>=0)) xlim[1]<-0
   
   d2<-metaResult$result$nval
-  y<-plotAxis("n",hypothesis$effect)
+  y<-plotAxis("n",hypothesis)
   disp2<-y$label
   ylim<-y$lim
   
@@ -55,9 +55,8 @@ showMetaSingle<-function(metaResult=braw.res$metaResult,showTheory=FALSE) {
   useNull<-(d2>ylim[1]) & (d2<ylim[2] & d1n)
   ptsNull<-data.frame(x=d1[useNull],y=d2[useNull])
   
-  g<-ggplot()+braw.env$plotRect
   assign("plotArea",c(0,0,1,1),braw.env)
-  g<-startPlot(xlim,ylim,box="both",top=FALSE,g=g)
+  g<-startPlot(xlim,ylim,box="both",top=FALSE,g=NULL)
   
   if (length(d1)>=1200) {
     nbins<-diff(ylim)/(2*IQR(d2[use])*length(d2[use])^(-0.33))*2
@@ -101,10 +100,9 @@ showMetaMultiple<-function(metaResult=braw.res$metaResult,showType="n-k") {
   if (is.null(metaResult)) metaResult<-doMetaAnalysis()
 
   if (metaResult$metaAnalysis$analysisType=="fixed") showType<-"S-k"
-  g<-ggplot()+braw.env$plotRect
   if (showType=="S-S") {
     braw.env$plotArea<-c(0,0,1,1)
-    g<-drawMeta(metaResult=metaResult,showType=showType,g=g)
+    g<-drawMeta(metaResult=metaResult,showType=showType,g=NULL)
   } else {
     if (metaResult$metaAnalysis$analysisType=="fixed") braw.env$plotArea<-c(0,0,1,1)
     else braw.env$plotArea<-c(0,0,0.48,1)
@@ -120,7 +118,7 @@ showMetaMultiple<-function(metaResult=braw.res$metaResult,showType="n-k") {
   print(g)
 }
 
-drawMeta<-function(metaResult=doMetaAnalysis(),whichMeta="Single",showType="n-k",g=ggplot()+braw.env$plotRect) {
+drawMeta<-function(metaResult=doMetaAnalysis(),whichMeta="Single",showType="n-k",g=NULL) {
   
   metaAnalysis<-metaResult$metaAnalysis
 
@@ -166,7 +164,7 @@ drawMeta<-function(metaResult=doMetaAnalysis(),whichMeta="Single",showType="n-k"
     y1<-y1[keep]
     x<-x[keep]
     
-    if (isempty(x)) {return(ggplot()+braw.env$blankTheme())}
+    if (isempty(x)) {return(nullPlot())}
     
     yticks<-c()
     useBest<-yS==best

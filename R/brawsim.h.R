@@ -16,7 +16,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             DVmu = 0,
             DVsd = 1,
             DVskew = 0,
-            DVkurt = 3,
+            DVkurt = 0,
             DVnlevs = 7,
             DViqr = 4,
             DVncats = 2,
@@ -27,7 +27,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             IVmu = 0,
             IVsd = 1,
             IVskew = 0,
-            IVkurt = 3,
+            IVkurt = 0,
             IVnlevs = 7,
             IViqr = 4,
             IVncats = 2,
@@ -38,7 +38,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             IV2mu = 0,
             IV2sd = 1,
             IV2skew = 0,
-            IV2kurt = 3,
+            IV2kurt = 0,
             IV2nlevs = 7,
             IV2iqr = 4,
             IV2ncats = 2,
@@ -252,7 +252,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..DVkurt <- jmvcore::OptionNumber$new(
                 "DVkurt",
                 DVkurt,
-                default=3)
+                default=0)
             private$..DVnlevs <- jmvcore::OptionNumber$new(
                 "DVnlevs",
                 DVnlevs,
@@ -300,7 +300,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..IVkurt <- jmvcore::OptionNumber$new(
                 "IVkurt",
                 IVkurt,
-                default=3)
+                default=0)
             private$..IVnlevs <- jmvcore::OptionNumber$new(
                 "IVnlevs",
                 IVnlevs,
@@ -348,7 +348,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..IV2kurt <- jmvcore::OptionNumber$new(
                 "IV2kurt",
                 IV2kurt,
-                default=3)
+                default=0)
             private$..IV2nlevs <- jmvcore::OptionNumber$new(
                 "IV2nlevs",
                 IV2nlevs,
@@ -786,11 +786,13 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 showMultipleParam,
                 options=list(
                     "Basic",
+                    "Custom",
                     "p(sig)",
                     "NHST",
                     "Hits",
                     "Misses",
-                    "Custom"),
+                    "DV",
+                    "Residuals"),
                 default="Basic")
             private$..showMultipleDimension <- jmvcore::OptionList$new(
                 "showMultipleDimension",
@@ -939,11 +941,13 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 showExploreParam,
                 options=list(
                     "Basic",
+                    "Custom",
                     "p(sig)",
                     "NHST",
                     "Hits",
                     "Misses",
-                    "Custom"),
+                    "DV",
+                    "Residuals"),
                 default="Basic")
             private$..exploreVar1 <- jmvcore::OptionList$new(
                 "exploreVar1",
@@ -1684,7 +1688,7 @@ BrawSim <- function(
     DVmu = 0,
     DVsd = 1,
     DVskew = 0,
-    DVkurt = 3,
+    DVkurt = 0,
     DVnlevs = 7,
     DViqr = 4,
     DVncats = 2,
@@ -1695,7 +1699,7 @@ BrawSim <- function(
     IVmu = 0,
     IVsd = 1,
     IVskew = 0,
-    IVkurt = 3,
+    IVkurt = 0,
     IVnlevs = 7,
     IViqr = 4,
     IVncats = 2,
@@ -1706,7 +1710,7 @@ BrawSim <- function(
     IV2mu = 0,
     IV2sd = 1,
     IV2skew = 0,
-    IV2kurt = 3,
+    IV2kurt = 0,
     IV2nlevs = 7,
     IV2iqr = 4,
     IV2ncats = 2,

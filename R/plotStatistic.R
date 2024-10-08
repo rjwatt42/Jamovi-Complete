@@ -8,6 +8,21 @@ collectData<-function(analysis,whichEffect) {
   ro<-cbind(analysis$roIV[use])
   po<-cbind(analysis$poIV[use])
   
+  iv.mn<-cbind(analysis$iv.mn[use])
+  iv.sd<-cbind(analysis$iv.sd[use])
+  iv.sk<-cbind(analysis$iv.sk[use])
+  iv.kt<-cbind(analysis$iv.kt[use])
+  
+  dv.mn<-cbind(analysis$dv.mn[use])
+  dv.sd<-cbind(analysis$dv.sd[use])
+  dv.sk<-cbind(analysis$dv.sk[use])
+  dv.kt<-cbind(analysis$dv.kt[use])
+  
+  rs.mn<-cbind(analysis$rs.mn[use])
+  rs.sd<-cbind(analysis$rs.sd[use])
+  rs.sk<-cbind(analysis$rs.sk[use])
+  rs.kt<-cbind(analysis$rs.kt[use])
+  
   if (all(is.na(analysis$rIV2))){
     rs<-cbind(analysis$rIV[use])
     ps<-cbind(analysis$pIV[use])
@@ -48,7 +63,10 @@ collectData<-function(analysis,whichEffect) {
   #   ps[ps<braw.env$min_p]<-braw.env$min_p
   #   po[po<braw.env$min_p]<-braw.env$min_p
   # }
-  out<-list(rs=rs,ps=ps,ns=ns,df1=df1,rp=rp,ro=ro,po=po)
+  out<-list(rs=rs,ps=ps,ns=ns,df1=df1,rp=rp,ro=ro,po=po,
+            iv.mn=iv.mn,iv.sd=iv.sd,iv.sk=iv.sk,iv.kt=iv.kt,
+            dv.mn=dv.mn,dv.sd=dv.sd,dv.sk=dv.sk,dv.kt=dv.kt,
+            rs.mn=rs.mn,rs.sd=rs.sd,rs.sk=rs.sk,rs.kt=rs.kt)
 }
 
 makeFiddle<-function(y,yd,orientation="horiz"){
@@ -59,10 +77,10 @@ makeFiddle<-function(y,yd,orientation="horiz"){
   for (i in 1:length(y)){
     found<-(abs(yz-y[i])<yd)
     if (any(found,na.rm=TRUE)) {
-      x_max<-max(xz[found])
+      x_max<-max(xz[found],na.rm=TRUE)
       x_which<-which.max(xz[found])
       y_at_max<-yz[found][x_which]
-      x_min<-min(xz[found])
+      x_min<-min(xz[found],na.rm=TRUE)
       x_which<-which.min(xz[found])
       y_at_min<-yz[found][x_which]
       if (orientation=="vert" && abs(x_min)<x_max) {
@@ -188,6 +206,9 @@ expected_hist<-function(vals,svals,valType,ylim,histGain,histGainrange){
   if (is.element(valType,c("ro","ci1","ci2"))) valType<-"rs"
   if (is.element(valType,c("e1","e2","po"))) valType<-"p"
   if (is.element(valType,c("wp","ws"))) valType<-"ws"
+  if (is.element(valType,c("iv.mn","iv.sd","iv.sk","iv.kt",
+                           "dv.mn","dv.sd","dv.sk","dv.kt",
+                           "rs.mn","rs.sd","rs.sk","rs.kt"))) valType<-"mn"
   
   switch (valType,
           "rs"=  { # ns is small
@@ -254,7 +275,13 @@ expected_hist<-function(vals,svals,valType,ylim,histGain,histGainrange){
           "nw"= { # ns is large
             target<-get_lowerEdge(vals,svals)
             bins<-getBins(vals,svals,target,NULL,braw.env$max_nw)
-          }
+          },
+          
+          "mn"=  { # ns is small
+            bins<-getBins(vals,NULL,NULL,NULL,NULL,fixed=TRUE)
+          },
+          
+          
   )
   use<-vals>=bins[1] & vals<bins[length(bins)]
   dens<-hist(vals[use],breaks=bins,plot=FALSE,warn.unused = FALSE,right=TRUE)
@@ -347,7 +374,7 @@ expected_plot<-function(g,pts,showType=NULL,analysis=NULL,IV=NULL,DV=NULL,
     }
     
     xr<-makeFiddle(pts$y1,2/40,orientation)*scale*scale
-    xr<-xr/max(c(1,abs(xr)))/1.5
+    xr<-xr/max(abs(xr))/1.5
     pts$x<-pts$x+xr
     gain<-7/max(7,sqrt(length(xr)))
     colgain<-1-min(1,sqrt(max(0,(length(xr)-50))/200))
@@ -403,8 +430,17 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
                  orientation="vert",whichEffect="Main 1",effectType="all",showTheory=TRUE,g=NULL){
 
   npct<-1
+  showSig<-TRUE
   labelSig<-TRUE
   labelNSig<-TRUE
+  
+  if (is.element(showType,c("iv.mn","iv.sd","iv.sk","iv.kt",
+                            "dv.mn","dv.sd","dv.sk","dv.kt",
+                            "rs.mn","rs.sd","rs.sk","rs.kt"))) {
+    # showSig<-FALSE
+    labelSig<-FALSE
+    labelNSig<-FALSE
+  }
   
   if (showType=="e1a") {
     showType<-"e1"
@@ -467,7 +503,7 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
          }
   )
   
-  yaxis<-plotAxis(showType,effect)
+  yaxis<-plotAxis(showType,hypothesis,design)
   ylim<-yaxis$lim
   ylabel<-yaxis$label
   ylines<-yaxis$lines
@@ -518,7 +554,19 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
             "ci1"={showVals<-r2ci(data$rs,data$ns,-1)},
             "ci2"={showVals<-r2ci(data$rs,data$ns,+1)},
             "e1"={showVals<-data$ps},
-            "e2"={showVals<-data$ps}
+            "e2"={showVals<-data$ps},
+            "iv.mn"=showVals<-data$iv.mn,
+            "iv.sd"=showVals<-data$iv.sd,
+            "iv.sk"=showVals<-data$iv.sk,
+            "iv.kt"=showVals<-data$iv.kt,
+            "dv.mn"=showVals<-data$dv.mn,
+            "dv.sd"=showVals<-data$dv.sd,
+            "dv.sk"=showVals<-data$dv.sk,
+            "dv.kt"=showVals<-data$dv.kt,
+            "rs.mn"=showVals<-data$rs.mn,
+            "rs.sd"=showVals<-data$rs.sd,
+            "rs.sk"=showVals<-data$rs.sk,
+            "rs.kt"=showVals<-data$rs.kt,
     )
     if (logScale) {
       showVals<-log10(showVals)
@@ -550,6 +598,7 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
       
       xdsig<-NULL
       xd<-NULL
+      histGain<-NA
       
       if (is.element(showType,c("p","e1","e2","po"))) {
         npt<-201
@@ -650,6 +699,104 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
                yv<-seq(braw.env$alphaSig,1/1.01,length.out=npt)
                xd<-fullRSamplingDist(yv,effectTheory$world,design,"wp",logScale=logScale,sigOnly=sigOnly)
              },
+             "iv.mn"={
+               var<-hypothesis$IV
+               n<-design$sN
+               yv<-seq(ylim[1],ylim[2],length.out=npt)
+               xd<-dnorm(yv,var$mu,var$sd/sqrt(n))
+             },
+             "iv.sd"={
+               var<-hypothesis$IV
+               n<-design$sN
+               yv<-seq(ylim[1],ylim[2],length.out=npt)
+               yvuse<-yv/var$sd
+               # xd<-exp(-n/2*yvuse^2+(n-2)*log(yv))
+               # xd<-exp(-n/2*yvuse^2+n*log(yv)-n*2/n*log(yv))
+               # xd<-exp(n*(-1/2*yvuse^2+log(yv)-2/n*log(yv)))
+               # xd<-exp(n*(-1/2*yvuse^2+log(yv)-2/n*log(yv)))
+               xd1<-exp(-1/2*yvuse^2+log(yv)-2/n*log(yv))
+               xd1<-xd1/max(xd1)
+               xd<-xd1^n
+               if (max(xd)==0) xd<-NULL # for n>1000 because of underflow
+             },
+             "iv.sk"={
+               n<-design$sN
+               yv<-seq(ylim[1],ylim[2],length.out=npt)
+               sksd<-sqrt(6*n*(n-1)/(n-2)/(n+1)/(n+3))
+               xd<-dnorm(yv,0,sksd)
+             },
+             "iv.kt"={
+               n<-design$sN
+               yv<-seq(ylim[1],ylim[2],length.out=npt)
+               ktsd<-sqrt(24*n*(n-2)*(n-3)/(n+1)^2/(n+3)/(n+5))
+               xd<-dnorm(yv,0,ktsd)
+             },
+             "dv.mn"={
+               var<-hypothesis$DV
+               n<-design$sN
+               yv<-seq(ylim[1],ylim[2],length.out=npt)
+               xd<-dnorm(yv,var$mu,var$sd/sqrt(n))
+             },
+             "dv.sd"={
+               var<-hypothesis$DV
+               n<-design$sN
+               yv<-seq(ylim[1],ylim[2],length.out=npt)
+               yvuse<-yv/var$sd
+               # xd<-exp(-n/2*yvuse^2+(n-2)*log(yv))
+               # xd<-exp(-n/2*yvuse^2+n*log(yv)-n*2/n*log(yv))
+               # xd<-exp(n*(-1/2*yvuse^2+log(yv)-2/n*log(yv)))
+               # xd<-exp(n*(-1/2*yvuse^2+log(yv)-2/n*log(yv)))
+               xd1<-exp(-1/2*yvuse^2+log(yv)-2/n*log(yv))
+               xd1<-xd1/max(xd1)
+               xd<-xd1^n
+               if (max(xd)==0) xd<-NULL # for n>1000 because of underflow
+             },
+             "dv.sk"={
+               n<-design$sN
+               yv<-seq(ylim[1],ylim[2],length.out=npt)
+               sksd<-sqrt(6*n*(n-1)/(n-2)/(n+1)/(n+3))
+               xd<-dnorm(yv,0,sksd)
+             },
+             "dv.kt"={
+               n<-design$sN
+               yv<-seq(ylim[1],ylim[2],length.out=npt)
+               ktsd<-sqrt(24*n*(n-2)*(n-3)/(n+1)^2/(n+3)/(n+5))
+               xd<-dnorm(yv,0,ktsd)
+             },
+             "rs.mn"={
+               var<-hypothesis$DV
+               n<-design$sN
+               yv<-seq(ylim[1],ylim[2],length.out=npt)
+               mnsd<-1/sqrt(n)*var$sd*sqrt(1-hypothesis$effect$rIV^2)
+               xd<-dnorm(yv,0,mnsd)
+             },
+             "rs.sd"={
+               var<-hypothesis$DV
+               n<-design$sN
+               yv<-seq(ylim[1],ylim[2],length.out=npt)
+               sdsd<-var$sd*sqrt(1-hypothesis$effect$rIV^2)
+               yvuse<-yv/sdsd
+               # xd<-exp(-n/2*yvuse^2+(n-2)*log(yv))
+               # xd<-exp(-n/2*yvuse^2+n*log(yv)-n*2/n*log(yv))
+               # xd<-exp(n*(-1/2*yvuse^2+log(yv)-2/n*log(yv)))
+               # xd<-exp(n*(-1/2*yvuse^2+log(yv)-2/n*log(yv)))
+               xd1<-exp(-1/2*yvuse^2+log(yv)-2/n*log(yv))
+               xd1<-xd1/max(xd1)
+               xd<-xd1^n
+               if (max(xd)==0) xd<-NULL # for n>1000 because of underflow
+             },
+             "rs.sk"={
+               n<-design$sN
+               yv<-seq(ylim[1],ylim[2],length.out=npt)
+               sksd<-sqrt(6*n*(n-1)/(n-2)/(n+1)/(n+3))
+               xd<-dnorm(yv,0,sksd)
+             },
+             "rs.kt"={
+               n<-design$sN
+               yv<-seq(ylim[1],ylim[2],length.out=npt)
+               ktsd<-sqrt(24*n*(n-2)*(n-3)/(n+1)^2/(n+3)/(n+5))
+               xd<-dnorm(yv,0,ktsd)
+             },
              { } # do nothing
       )
       if (is.element(showType,c("p","e1","e2","po"))) {
@@ -660,6 +807,7 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
         if (!labelSig) xd<-xdsig
       }
       
+      if (!is.null(xd)) {
       distMax<-0.8
 
       xd[is.na(xd)]<-0
@@ -688,9 +836,8 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
         g<-g+dataPolygon(data=ptsp,colour=NA,fill="white",alpha=theoryAlpha)
         g<-g+dataPath(data=ptsp,colour="black",linewidth=0.1)
       }
-    } else {
-      histGain<-NA
-    }
+      } 
+    } 
     
     # then the samples
     rvals<-c()
@@ -699,7 +846,11 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
       rvals<-data$rs[,i]
       pvals<-data$ps[,i]
       nvals<-data$ns
-      resSig<-isSignificant(braw.env$STMethod,pvals,rvals,nvals,data$df1,evidence)
+      if (showSig)
+        resSig<-isSignificant(braw.env$STMethod,pvals,rvals,nvals,data$df1,evidence)
+      else
+        resSig<-rep(FALSE,length(rvals))
+      
       if (sigOnly) {
         shvals<-shvals[resSig]
         rvals<-rvals[resSig]
@@ -974,4 +1125,6 @@ ps_plot<-function(analysis,disp,showTheory=TRUE,g=NULL){
   return(g)
 }
 
-
+var_plot<-function(analysis,disp,otheranalysis=NULL,orientation="vert",showTheory=TRUE,g=NULL){
+  g<-r_plot(analysis,showType=disp,showTheory=showTheory,g=g)
+}

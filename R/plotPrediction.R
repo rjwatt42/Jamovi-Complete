@@ -38,8 +38,7 @@ getAxisPrediction<-function(hypothesis) {
           }
   )
   
-  g<-ggplot()+braw.env$plotRect+braw.env$blankTheme()
-  g<-startPlot(xlim,ylim,g=g)
+  g<-startPlot(xlim,ylim,g=NULL)
   g<-g+xAxisTicks(xticks,xlabels)+xAxisLabel(bquote(bold(.(IV$name))))
   g<-g+yAxisTicks(yticks,ylabels)+yAxisLabel(bquote(bold(.(DV$name))))
   

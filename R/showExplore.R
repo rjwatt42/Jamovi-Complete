@@ -65,6 +65,8 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
            "Basic"=     {showType<-c("rs","p")},
            "Power"=     {showType<-c("ws","wp")},
            "CILimits"=  {showType<-c("ci1","ci2")},
+           "DV"= {showType<-c("dv.mn","dv.sd","dv.sk","dv.kt")},
+           "Residuals"= {showType<-c("rs.mn","rs.sd","rs.sk","rs.kt")},
            {}
     )
   }
@@ -123,8 +125,14 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
     plotXOffset<-matrix(0)+0.15
     plotWidth<-0.7
   } 
-  if (length(showType)>1) {
+  if (length(showType)==2) {
     plotXOffset<-matrix(c(0,0.5)+0.05,nrow=2,byrow=FALSE)
+    plotWidth<-0.475
+  }
+  if (length(showType)==4) {
+    plotXOffset<-matrix(c(0,  0.5, 0, 0.5)+0.05,nrow=4,byrow=FALSE)
+    plotYOffset<-matrix(c(0.5,0.5, 0, 0),nrow=1,byrow=TRUE)
+    plotHeight<-0.475
     plotWidth<-0.475
   }
   
@@ -164,11 +172,11 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
   else effectTypes<-effectType
   
   
-  g<-ggplot()+braw.env$plotRect+braw.env$blankTheme()
+  g<-NULL
   
   for (si in 1:length(showType)) {
     
-  yaxis<-plotAxis(showType[si],effect)
+  yaxis<-plotAxis(showType[si],hypothesis,design)
   ylim<-yaxis$lim
   ylabel<-yaxis$label
   ycols<-yaxis$cols
@@ -234,7 +242,10 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
     } else {
       useLabel<-""
     }
-    braw.env$plotArea<-c(plotXOffset[si,1],plotYOffset[1,yi],plotWidth,plotHeight)
+    if (length(whichEffects)==1)
+      braw.env$plotArea<-c(plotXOffset[si,1],plotYOffset[1,si],plotWidth,plotHeight)
+    else
+      braw.env$plotArea<-c(plotXOffset[si,1],plotYOffset[1,yi],plotWidth,plotHeight)
     # if (plotHeight==1) braw.env$plotArea<-c(plotXOffset[si,1],0,plotWidth,plotHeight)
     # else               braw.env$plotArea<-c(0.475*(si-1)+0.025*si,plotYOffset[1,whichEffect],plotWidth,plotHeight)
     g<-startPlot(xlim,ylim,box="Both",top=TRUE,tight=TRUE,g=g)
@@ -585,6 +596,42 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
                 showVals<-NULL
                 showMeans<-colMeans(result$dists==effect$world$populationPDF,na.rm=TRUE)
                 showSE<-sqrt(showMeans*(1-showMeans)/nrow(showVals))
+              },
+              "iv.mn"={
+                showVals<-result$iv$mn
+              },
+              "iv.sd"={
+                showVals<-result$iv$sd
+              },
+              "iv.sk"={
+                showVals<-result$iv$sk
+              },
+              "iv.kt"={
+                showVals<-result$iv$kt
+              },
+              "dv.mn"={
+                showVals<-result$dv$mn
+              },
+              "dv.sd"={
+                showVals<-result$dv$sd
+              },
+              "dv.sk"={
+                showVals<-result$dv$sk
+              },
+              "dv.kt"={
+                showVals<-result$dv$kt
+              },
+              "rs.mn"={
+                showVals<-result$rs$mn
+              },
+              "rs.sd"={
+                showVals<-result$rs$sd
+              },
+              "rs.sk"={
+                showVals<-result$rs$sk
+              },
+              "rs.kt"={
+                showVals<-result$rs$kt
               }
       )
       
@@ -777,6 +824,7 @@ showExplore2D<-function(exploreResult=braw.res$explore,showType=c("rs","p"),show
   explore<-exploreResult$explore
   hypothesis<-exploreResult$hypothesis
   effect<-hypothesis$effect
+  design<-exploreResult$design
   
   result<-trimExploreResult(exploreResult$result,exploreResult$nullresult)
   if (is.null(hypothesis$IV2)){
@@ -841,16 +889,16 @@ showExplore2D<-function(exploreResult=braw.res$explore,showType=c("rs","p"),show
     )
   }
 
-  g<-ggplot()+braw.env$plotRect+braw.env$blankTheme()
+  g<-NULL
   
-  xaxis<-plotAxis(showType[1],effect)
+  xaxis<-plotAxis(showType[1],hypothesis,design)
   xlim<-xaxis$lim
   xlabel<-xaxis$label
   xcols<-xaxis$cols
   xlines<-xaxis$lines
   xSecond<-NULL
   
-  yaxis<-plotAxis(showType[2],effect)
+  yaxis<-plotAxis(showType[2],hypothesis,design)
   ylim<-yaxis$lim
   ylabel<-yaxis$label
   ycols<-yaxis$cols

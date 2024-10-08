@@ -1,6 +1,4 @@
 plotSample<-function(IV,DV,effect,ivplot,dvplot,g=NULL) {
-  if (is.null(g)) 
-    g<-ggplot()+braw.env$plotRect+braw.env$blankTheme()
 
   # the population
   g<-plotPopulation(IV,DV,effect,alpha=1,g)

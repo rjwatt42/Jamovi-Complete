@@ -46,8 +46,6 @@ inspectMainGraph<-function(varName,result=braw.res$result,inspect=makeInspect(),
   inspect$n<-n
   
   # start
-  if (is.null(g)) 
-    g<-ggplot()+braw.env$plotRect+braw.env$blankTheme()
   if (!is.null(plotArea)) braw.env$plotArea<-plotArea
   
   switch (var$type,

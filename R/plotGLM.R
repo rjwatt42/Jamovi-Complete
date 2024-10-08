@@ -19,8 +19,7 @@ plotGLM<-function(DV,IVs,result,whichR) {
   if (length(r)>10) fontSize<-braw.env$labelSize
   
   braw.env$plotArea<-c(0,0,1,1)
-  g<-ggplot()+braw.env$plotRect+braw.env$blankTheme()
-  g<-startPlot(xlim=c(-1,1)*15,ylim=c(-1,1)*10,back="transparent",box="none",g=g)
+  g<-startPlot(xlim=c(-1,1)*15,ylim=c(-1,1)*10,back="transparent",box="none",g=NULL)
   g<-g+dataPolygon(data.frame(x=c(-1,-1,1,1)*14,y=c(-1,1,1,-1)*9),col=braw.env$plotColours$graphBack,fill=braw.env$plotColours$graphBack)
   
   g<-g+dataLabel(data.frame(x=0,y=0),label=bquote(bold(.(DV$name))),hjust=0.5,vjust=0.5,fontface="bold",size=1.25)

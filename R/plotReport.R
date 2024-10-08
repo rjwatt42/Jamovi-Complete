@@ -6,8 +6,6 @@ reportPlot<-function(outputText,nc,nr,fontSize=0.85,maxRows=14,renderAsHTML=braw
   indentSize="30px"
   lineColour="#446688"
   rowColour="#88BBFF"
-  rowColour="#3498db"
-  rowFontColour="#FFFFFF"
   cellPadding="padding:5px;padding-top:1px;padding-bottom:1px;"
   blankLineStyle="padding-top:20px;"
   
@@ -47,7 +45,7 @@ reportPlot<-function(outputText,nc,nr,fontSize=0.85,maxRows=14,renderAsHTML=braw
           if (!doubleHeaderBottom)
             rowStyle<-paste0(rowStyle,"border-top:solid;border-top-color:",lineColour,";border-top-width:1px;")
           rowStyle<-paste0(rowStyle,"padding-top:0px;padding-bottom:0px;")
-          # rowStyle<-paste0(rowStyle," bgcolor='",rowColour,"';")
+          rowStyle<-paste0(rowStyle," bgcolor='",rowColour,"';")
           outputText[index+(1:nc)]<-sub("!H","",outputText[index+(1:nc)])
         } else 
           headerRow<-FALSE
@@ -115,8 +113,7 @@ reportPlot<-function(outputText,nc,nr,fontSize=0.85,maxRows=14,renderAsHTML=braw
               cellStyle<-paste0(cellStyle,"border-right:solid;border-right-color:#888888;border-right-width:1px;")
               outputText[index]<-sub("!r","",outputText[index])
             }
-            # if (headerRow) cellStyle<-paste0(cellStyle,"color:white;")
-            
+
             outputText[index]<-gsub("\\[([a-zA-Z0-9_+-]*)\\]","<sub>\\1</sub>",outputText[index])
             outputText[index]<-gsub("\\^([a-zA-Z0-9_+-]*)([a-zA-Z0-9_]*)","<sup>\\1</sup>",outputText[index])
             
@@ -139,7 +136,7 @@ reportPlot<-function(outputText,nc,nr,fontSize=0.85,maxRows=14,renderAsHTML=braw
     return(paste0(preText,outputFront,outputBack))
   }
   
-  if (is.null(outputText)) return(ggplot()+braw.env$blankTheme())
+  if (is.null(outputText)) return(nullPlot())
   
   bg<-braw.env$plotColours$graphC
   margin=0.5
@@ -203,7 +200,7 @@ reportPlot<-function(outputText,nc,nr,fontSize=0.85,maxRows=14,renderAsHTML=braw
   outputText<-sub("!>","",outputText)
   
   pts<-data.frame(x=x_gap1,y=d$y)
-  g<-ggplot()
+  g<-nullPlot()
 
   for (i in 1:length(outputText)) {
     x<-x_gap1[i]+1
@@ -247,5 +244,5 @@ reportPlot<-function(outputText,nc,nr,fontSize=0.85,maxRows=14,renderAsHTML=braw
   
   g<-g+labs(x="  ",y="  ")+theme(legend.position = "none")
   g<-g+coord_cartesian(xlim = c(1-margin,edge+margin), ylim = c(1-margin,top+margin))
-  g+braw.env$blankTheme()
+  return(g)
 }

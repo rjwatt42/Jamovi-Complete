@@ -47,6 +47,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         braw.env$statusStore<<-statusStore
       } else       statusStore<-braw.env$statusStore
 
+
       # get some display parameters for later
       makeSampleNow<-self$options$makeSampleBtn
       showSampleType<-self$options$showSampleType

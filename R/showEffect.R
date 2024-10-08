@@ -35,8 +35,6 @@ drawArrow<-function(start,len,direction,ends,col="black",fill="white",width=0.08
 #' export
 showEffect<-function(r,t=1,showValue=TRUE,plotArea=NULL,g=NULL){
 
-  if (is.null(g))
-    g<-ggplot()+braw.env$plotRect+braw.env$blankTheme()
   if (!is.null(plotArea)) braw.env$plotArea<-plotArea
   
   g<-startPlot(xlim=c(-1,1),ylim=c(0,1),back="transparent",box="none",g=g,fontScale=1)

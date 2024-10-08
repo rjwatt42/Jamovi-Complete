@@ -186,7 +186,7 @@ options:
     - name: DVkurt
       title: kurtosis
       type: Number
-      default: 3
+      default: 0
 
     - name: DVnlevs
       title: 'no levels'
@@ -248,7 +248,7 @@ options:
     - name: IVkurt
       title: kurtosis
       type: Number
-      default: 3
+      default: 0
 
     - name: IVnlevs
       title: 'no levels'
@@ -295,7 +295,7 @@ options:
     - name: IV2mu
       title: mean
       type: Number
-      default: 0.
+      default: 0
     
     - name: IV2sd
       title: sd
@@ -305,12 +305,12 @@ options:
     - name: IV2skew
       title: skew
       type: Number
-      default: 0.
+      default: 0
     
     - name: IV2kurt
       title: kurtosis
       type: Number
-      default: 3
+      default: 0
 
     - name: IV2nlevs
       title: 'no levels'
@@ -958,6 +958,8 @@ options:
       options:
         - name: Basic
           title: Basic
+        - name: Custom
+          title: Custom
         - name: 'p(sig)'
           title: 'p(sig)'
         - name: NHST
@@ -966,8 +968,10 @@ options:
           title: Hits
         - name: Misses
           title: Misses
-        - name: Custom
-          title: Custom
+        - name: DV
+          title: DV
+        - name: Residuals
+          title: Residuals
       default: Basic
             
     - name: showMultipleDimension
@@ -1186,6 +1190,8 @@ options:
       options:
         - name: Basic
           title: Basic
+        - name: Custom
+          title: Custom
         - name: 'p(sig)'
           title: 'p(sig)'
         - name: NHST
@@ -1194,8 +1200,10 @@ options:
           title: Hits
         - name: Misses
           title: Misses
-        - name: Custom
-          title: Custom
+        - name: DV
+          title: DV
+        - name: Residuals
+          title: Residuals
       default: Basic
 
     - name: exploreVar1

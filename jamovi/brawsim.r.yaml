@@ -4,7 +4,7 @@ title: BrawStats:Simulate Data
 jrs:   '1.1'
 
 items:
-    - name: BrawStatsInstructions
+    - name: BrawStatsInstructions 
       type: Html
       visible: FALSE
 

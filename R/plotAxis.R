@@ -1,5 +1,7 @@
-plotAxis<-function(showType,effect) {
+plotAxis<-function(showType,hypothesis,design=NULL) {
+  fixedAxis=TRUE
   
+  effect<-hypothesis$effect
   explicitLog<-FALSE
   base_hue_r<-0.1
   base_hue_p<-0.15
@@ -290,6 +292,132 @@ plotAxis<-function(showType,effect) {
             ylim<-c(min(result$Ss),max(result$Ss))
             ylabel<-"S"
             ytick<-seq(ceil(min(result$Ss)),ceil(max(result$Ss)),1)
+          },
+          "iv.mn"={
+            var<-hypothesis$IV
+            if (fixedAxis) gain<-1/6.5 else gain<- 1/sqrt(design$sN)
+            l1<-5*var$sd*gain
+            l2<-floor(l1/0.5)*0.5
+            l3<-floor(l1/0.1)*0.1
+            ylim<-c(-l1,l1)+var$mu
+            yticks<-seq(-l2,l2,0.5)+var$mu
+            ymins<-seq(-l3,l3,0.1)+var$mu
+            ylabel<-"mean"
+          },
+          "iv.sd"={
+            var<-hypothesis$IV
+            if (fixedAxis) gain<-1/6.5 else gain<- 1/sqrt(design$sN)
+            l1<-5*var$sd*gain
+            l2<-floor(l1/0.5)*0.5
+            l3<-floor(l1/0.1)*0.1
+            ylim<-c(-l1,l1)+var$sd
+            yticks<-seq(-l2,l2,0.5)+var$sd
+            ymins<-seq(-l2,l3,0.1)+var$sd
+            ylabel<-"sd"
+          },
+          "iv.sk"={
+            if (fixedAxis) gain<-1/6.5 else gain<- 1/sqrt(design$sN)
+            l1<-2*5*gain
+            l2<-floor(l1/0.5)*0.5
+            l3<-floor(l1/0.1)*0.1
+            ylim<-c(-l1,l1)
+            yticks<-seq(-l2,l2,0.5)
+            ymins<-seq(-l3,l3,0.1)
+            ylabel<-"skew"
+          },
+          "iv.kt"={
+            if (fixedAxis) gain<-1/6.5 else gain<- 1/sqrt(design$sN)
+            l1<-3*5*gain
+            l2<-floor(l1/0.5)*0.5
+            l3<-floor(l1/0.1)*0.1
+            ylim<-c(-l1,l1)
+            yticks<-seq(-l2,l2,0.5)
+            ymins<-seq(-l3,l3,0.1)
+            ylabel<-"kurtosis"
+          },
+          "dv.mn"={
+            var<-hypothesis$DV
+            if (fixedAxis) gain<-1/6.5 else gain<- 1/sqrt(design$sN)
+            l1<-5*var$sd*gain
+            l2<-floor(l1/0.5)*0.5
+            l3<-floor(l1/0.1)*0.1
+            ylim<-c(-l1,l1)+var$mu
+            yticks<-seq(-l2,l2,0.5)+var$mu
+            ymins<-seq(-l3,l3,0.1)+var$mu
+            ylabel<-"mean"
+          },
+          "dv.sd"={
+            var<-hypothesis$DV
+            if (fixedAxis) gain<-1/6.5 else gain<- 1/sqrt(design$sN)
+            l1<-5*var$sd*gain
+            l2<-floor(l1/0.5)*0.5
+            l3<-floor(l1/0.1)*0.1
+            ylim<-c(-l1,l1)+var$sd
+            yticks<-seq(-l2,l2,0.5)+var$sd
+            ymins<-seq(-l2,l3,0.1)+var$sd
+            ylabel<-"sd"
+          },
+          "dv.sk"={
+            if (fixedAxis) gain<-1/6.5 else gain<- 1/sqrt(design$sN)
+            l1<-2*5*gain
+            l2<-floor(l1/0.5)*0.5
+            l3<-floor(l1/0.1)*0.1
+            ylim<-c(-l1,l1)
+            yticks<-seq(-l2,l2,0.5)
+            ymins<-seq(-l3,l3,0.1)
+            ylabel<-"skew"
+          },
+          "dv.kt"={
+            if (fixedAxis) gain<-1/6.5 else gain<- 1/sqrt(design$sN)
+            l1<-3*5*gain
+            l2<-floor(l1/0.5)*0.5
+            l3<-floor(l1/0.1)*0.1
+            ylim<-c(-l1,l1)
+            yticks<-seq(-l2,l2,0.5)
+            ymins<-seq(-l3,l3,0.1)
+            ylabel<-"kurtosis"
+          },
+          "rs.mn"={
+            var<-hypothesis$DV
+            if (fixedAxis) gain<-1/6.5 else gain<- 1/sqrt(design$sN)
+            l1<-5*var$sd*gain
+            l2<-floor(l1/0.5)*0.5
+            l3<-floor(l1/0.1)*0.1
+            ylim<-c(-l1,l1)+0
+            yticks<-seq(-l2,l2,0.5)+0
+            ymins<-seq(-l3,l3,0.1)+0
+            ylabel<-"mean"
+          },
+          "rs.sd"={
+            var<-hypothesis$DV
+            if (fixedAxis) gain<-1/6.5 else gain<- 1/sqrt(design$sN)
+            l1<-5*var$sd*gain
+            l2<-floor(l1/0.5)*0.5
+            l3<-floor(l1/0.1)*0.1
+            ylim<-c(-l1,l1)+var$sd
+            yticks<-seq(-l2,l2,0.5)+var$sd
+            ymins<-seq(-l2,l3,0.1)+var$sd
+            ylabel<-"sd"
+          },
+          "rs.sk"={
+            if (fixedAxis) gain<-1/6.5 else gain<- 1/sqrt(design$sN)
+            l1<-2*5*gain
+            l2<-floor(l1/0.5)*0.5
+            l3<-floor(l1/0.1)*0.1
+            ylim<-c(-l1,l1)
+            yticks<-seq(-l2,l2,0.5)
+            ymins<-seq(-l3,l3,0.1)
+            ylabel<-"skew"
+          },
+          "rs.kt"={
+            if (fixedAxis) gain<-1/6.5 else gain<- 1/sqrt(design$sN)
+            l1<-3*5*gain
+            l2<-floor(l1/0.5)*0.5
+            l3<-floor(l1/0.1)*0.1
+            ylim<-c(-l1,l1)
+            yticks<-seq(-l2,l2,0.5)
+            ymins<-seq(-l3,l3,0.1)
+            ylabel<-"kurtosis"
           }
   )
   

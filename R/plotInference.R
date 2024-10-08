@@ -61,7 +61,22 @@ plotInference<-function(analysis,otheranalysis=NULL,disp="rs",orientation="vert"
           "e1a"={g<-e1_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
           "e2a"={g<-e2_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
           "e1b"={g<-e1_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
-          "e2b"={g<-e2_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)}
+          "e2b"={g<-e2_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
+          
+          "iv.mn"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
+          "iv.sd"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
+          "iv.sk"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
+          "iv.kt"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
+          
+          "dv.mn"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
+          "dv.sd"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
+          "dv.sk"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
+          "dv.kt"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
+          
+          "rs.mn"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
+          "rs.sd"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
+          "rs.sk"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
+          "rs.kt"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)}
   )
   return(g)
 }
@@ -79,8 +94,8 @@ plot2Inference<-function(analysis,disp1,disp2,metaPlot=FALSE){
   nvals<-analysis$nval
   df1vals<-analysis$df1
 
-  xaxis<-plotAxis(disp1,analysis$hypothesis$effect)
-  yaxis<-plotAxis(disp2,analysis$hypothesis$effect)
+  xaxis<-plotAxis(disp1,analysis$hypothesis,analysis$design)
+  yaxis<-plotAxis(disp2,analysis$hypothesis,analysis$design)
   switch (disp1,
           "rs"={
             d1<-analysis$rIV
@@ -180,8 +195,7 @@ plot2Inference<-function(analysis,disp1,disp2,metaPlot=FALSE){
   
   pts<-data.frame(x=d1,y=d2)
   braw.env$plotArea<-c(0,0,1,1)
-  g<-ggplot()+braw.env$plotRect+braw.env$blankTheme()
-  g<-startPlot(xaxis$lim,yaxis$lim,box="both",top=FALSE,g=g)
+  g<-startPlot(xaxis$lim,yaxis$lim,box="both",top=FALSE,g=NULL)
   g<-g+xAxisTicks(logScale=xaxis$logScale)+xAxisLabel(xaxis$label)
   g<-g+yAxisTicks(logScale=yaxis$logScale)+yAxisLabel(yaxis$label)
 

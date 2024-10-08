@@ -36,7 +36,7 @@ showHypothesis<-function(hypothesis=braw.def$hypothesis,doWorld=TRUE,ygain=1,xga
   IV2<-hypothesis$IV2
   DV<-hypothesis$DV
   effect<-hypothesis$effect
-  if (is.null(IV) || is.null(DV)) {return(ggplot()+braw.env$blankTheme())}
+  if (is.null(IV) || is.null(DV)) {return(nullPlot())}
   if (is.null(IV2)) no_ivs<-1 else no_ivs<-2
     
   doWorld<-doWorld && effect$world$worldOn
@@ -81,9 +81,6 @@ showWorld<-function(hypothesis=braw.def$hypothesis,plotArea=c(0,0,1,1),g=NULL) {
                      populationPDFk=hypothesis$effect$rIV,populationNullp=0)
   }
     
-  if (is.null(g)) 
-    g<-ggplot()+coord_cartesian(xlim = c(0,1)+c(-1,1)*0.1, ylim = c(0, 1)+c(-1,1)*0.1)+braw.env$blankTheme()
-  
   braw.env$plotArea<-plotArea
 
   range<-braw.env$r_range
@@ -127,7 +124,7 @@ showWorld<-function(hypothesis=braw.def$hypothesis,plotArea=c(0,0,1,1),g=NULL) {
 #' showDesign(design=makeDesign())
 #' @export
 showDesign<-function(design=braw.def$design,hypothesis=braw.def$hypothesis,plotArea=c(0,0,1,1),g=NULL) {
-  nRange<-plotAxis("n")
+  nRange<-plotAxis("n",hypothesis)
   binRange<-nRange$lim
   
   nbin<-seq(binRange[1],binRange[2],length.out=braw.env$worldNPoints)
@@ -147,8 +144,6 @@ showDesign<-function(design=braw.def$design,hypothesis=braw.def$hypothesis,plotA
   pts=data.frame(x=log10(x),y=y)
   
   braw.env$plotArea<-plotArea
-  if (is.null(g))
-    g<-ggplot()+coord_cartesian(xlim = c(0,1)+c(-1,1)*0.1, ylim = c(0,1)+c(-1,1)*0.1) + braw.env$blankTheme()
   g<-startPlot(xlim=binRange, ylim=c(0,1),
                box="x",g=g,fontScale=1)
   g<-g+xAxisTicks(nRange$ticks,10^nRange$ticks)+xAxisLabel(nRange$label)
@@ -184,7 +179,7 @@ showPopulation <- function(hypothesis=braw.def$hypothesis) {
   IV2<-hypothesis$IV2
   DV<-hypothesis$DV
   effect<-hypothesis$effect
-  if (is.null(IV) || is.null(DV)) {return(ggplot()+braw.env$blankTheme())}
+  if (is.null(IV) || is.null(DV)) {return(nullPlot())}
   if (is.null(IV2)) no_ivs<-1 else no_ivs<-2
 
   switch (no_ivs,
@@ -222,7 +217,7 @@ showPrediction <- function(hypothesis=braw.def$hypothesis,design=braw.def$design
   IV2<-hypothesis$IV2
   DV<-hypothesis$DV
   effect<-hypothesis$effect
-  if (is.null(IV) || is.null(DV)) {return(ggplot()+braw.env$blankTheme())}
+  if (is.null(IV) || is.null(DV)) {return(nullPlot())}
   if (is.null(IV2)) no_ivs<-1 else no_ivs<-2
 
   switch (no_ivs,
@@ -312,9 +307,7 @@ showWorldSampling<-function(hypothesis=braw.def$hypothesis,design=braw.def$desig
   pts=data.frame(x=x,y=y)
   
   braw.env$plotArea<-plotArea
-  if (is.null(g))
-    g<-ggplot()+coord_cartesian(xlim = c(0,1)+c(-1,1)*0.1, ylim = c(0,1)+c(-1,1)*0.1) + braw.env$blankTheme()
-  
+
   g<-startPlot(xlim=c(-1,1), ylim=c(0,1.05),box="x",g=g)
   switch(braw.env$RZ,
          "r"={g<-g+xAxisTicks(seq(-1,1,0.5))+xAxisLabel(braw.env$rsLabel)},
