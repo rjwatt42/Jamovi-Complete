@@ -137,7 +137,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             exploreVar2 = "p",
             showExploreDimension = "1D",
             whichShowMultiple = "all",
-            showJamovi = TRUE,
+            showJamovi = FALSE,
+            showHTML = FALSE,
             doProject1aBtn = NULL,
             doProject1bBtn = NULL,
             doProject1cBtn = NULL,
@@ -1008,7 +1009,11 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..showJamovi <- jmvcore::OptionBool$new(
                 "showJamovi",
                 showJamovi,
-                default=TRUE)
+                default=FALSE)
+            private$..showHTML <- jmvcore::OptionBool$new(
+                "showHTML",
+                showHTML,
+                default=FALSE)
             private$..doProject1aBtn <- jmvcore::OptionAction$new(
                 "doProject1aBtn",
                 doProject1aBtn)
@@ -1156,6 +1161,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..sendSample)
             self$.addOption(private$..sendMultiple)
             self$.addOption(private$..showJamovi)
+            self$.addOption(private$..showHTML)
             self$.addOption(private$..doProject1aBtn)
             self$.addOption(private$..doProject1bBtn)
             self$.addOption(private$..doProject1cBtn)
@@ -1296,6 +1302,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         sendSample = function() private$..sendSample$value,
         sendMultiple = function() private$..sendMultiple$value,
         showJamovi = function() private$..showJamovi$value,
+        showHTML = function() private$..showHTML$value,
         doProject1aBtn = function() private$..doProject1aBtn$value,
         doProject1bBtn = function() private$..doProject1bBtn$value,
         doProject1cBtn = function() private$..doProject1cBtn$value,
@@ -1435,6 +1442,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..sendSample = NA,
         ..sendMultiple = NA,
         ..showJamovi = NA,
+        ..showHTML = NA,
         ..doProject1aBtn = NA,
         ..doProject1bBtn = NA,
         ..doProject1cBtn = NA,
@@ -1445,7 +1453,9 @@ BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "BrawSimResults",
     inherit = jmvcore::Group,
     active = list(
+        testHTML = function() private$.items[["testHTML"]],
         BrawStatsInstructions = function() private$.items[["BrawStatsInstructions"]],
+        graphHTML = function() private$.items[["graphHTML"]],
         graphPlot = function() private$.items[["graphPlot"]],
         reportPlot = function() private$.items[["reportPlot"]],
         JamoviInstructions = function() private$.items[["JamoviInstructions"]],
@@ -1462,7 +1472,16 @@ BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 refs="brawstats book")
             self$add(jmvcore::Html$new(
                 options=options,
+                name="testHTML",
+                visible=FALSE))
+            self$add(jmvcore::Html$new(
+                options=options,
                 name="BrawStatsInstructions",
+                visible=FALSE))
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="graphHTML",
+                title=" ",
                 visible=FALSE))
             self$add(jmvcore::Image$new(
                 options=options,
@@ -1661,13 +1680,16 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param showExploreDimension .
 #' @param whichShowMultiple .
 #' @param showJamovi .
+#' @param showHTML .
 #' @param doProject1aBtn .
 #' @param doProject1bBtn .
 #' @param doProject1cBtn .
 #' @param doProject1dBtn .
 #' @return A results object containing:
 #' \tabular{llllll}{
+#'   \code{results$testHTML} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$BrawStatsInstructions} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$graphHTML} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$graphPlot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$reportPlot} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$JamoviInstructions} \tab \tab \tab \tab \tab a html \cr
@@ -1809,7 +1831,8 @@ BrawSim <- function(
     exploreVar2 = "p",
     showExploreDimension = "1D",
     whichShowMultiple = "all",
-    showJamovi = TRUE,
+    showJamovi = FALSE,
+    showHTML = FALSE,
     doProject1aBtn,
     doProject1bBtn,
     doProject1cBtn,
@@ -1952,6 +1975,7 @@ BrawSim <- function(
         showExploreDimension = showExploreDimension,
         whichShowMultiple = whichShowMultiple,
         showJamovi = showJamovi,
+        showHTML = showHTML,
         doProject1aBtn = doProject1aBtn,
         doProject1bBtn = doProject1bBtn,
         doProject1cBtn = doProject1cBtn,

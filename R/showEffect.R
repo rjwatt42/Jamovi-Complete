@@ -43,8 +43,8 @@ showEffect<-function(r,t=1,showValue=TRUE,plotArea=NULL,g=NULL){
           {start=c(0,0.92)
           direction=0
           len=0.9
-          labelpts<-data.frame(x=0,y=0.5)
-          hjust<-1.3
+          labelpts<-data.frame(x=-0.1,y=0.5)
+          hjust<-1
           ends="last"
           fill=braw.env$plotColours$maineffectES},
           
@@ -82,17 +82,16 @@ showEffect<-function(r,t=1,showValue=TRUE,plotArea=NULL,g=NULL){
           ends="join"
           fill=braw.env$plotColours$interactionES}
   )
-  g<-g+drawArrow(start,len,direction,ends,fill=fill)
+  g<-addG(g,drawArrow(start,len,direction,ends,fill=fill))
   
   
   if (showValue && braw.env$simData && !is.null(r)) {
     if (t==1){
-      lbl=paste("rp=",as.character(r),sep="")
-      lbl=bquote(bold(r[p] ~ "=" ~ .(r)))
+      lbl=paste("r[p]=",as.character(r),sep="")
     }else{ 
       if (r==0) lbl<-"0.0" else lbl<-as.character(r)
     }
-    g<-g+dataText(data=labelpts, label = lbl, size=1, hjust=hjust)
+    g<-addG(g,dataText(data=labelpts, label = lbl, size=1, hjust=hjust, fontface="bold"))
   }
   
   return(g)

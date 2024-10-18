@@ -134,7 +134,7 @@ showInference<-function(analysis=braw.res$result,showType="Basic",dimension="1D"
         area.y<-c(1,1,1)*0.47
         area.off<-c(0.5,0)
       } 
-    }
+    } else whichEffect<-"Main 1"
 
     g1<-nullPlot()
     

@@ -29,8 +29,8 @@ plotAxis<-function(showType,hypothesis,design=NULL) {
            rmins<-seq(-1.5,1.5,0.1)
          }
   )
-  plabel<-bquote(bold(p))
-  polabel<-bquote(bold(p[o]))
+  plabel<-"p"
+  polabel<-"p[o]"
   switch(braw.env$pPlotScale,
          "log10"={
            plim<-c(-4,0)
@@ -38,8 +38,8 @@ plotAxis<-function(showType,hypothesis,design=NULL) {
            pmins<-log10(c(seq(1,10)/10000,seq(1,10)/1000,seq(1,10)/100,seq(1,10)/10))
            plines<-log10(c(0.05,0.01,0.005,0.001))
            if (explicitLog) {
-             plabel<-bquote(bold(log['10'](p)))
-             polabel<-bquote(bold(log['10'](p[o])))
+             plabel<-"log[10](p)"
+             polabel<-"log[10](p[o])"
            }
          },
          "linear"={
@@ -49,16 +49,16 @@ plotAxis<-function(showType,hypothesis,design=NULL) {
            plines<-c(0.05)
          }
          )
-  wslabel<-bquote(bold(w[s]))
-  wplabel<-bquote(bold(w[p]))
+  wslabel<-"w[s]"
+  wplabel<-"w[p]"
   switch (braw.env$wPlotScale,
           "log10"={
             wlim<-c(-2,0)
             wticks<-seq(-2,0,1)
             wmins<-log10(c(seq(1,10)/100,seq(1,10)/10))
             if (explicitLog) {
-              wslabel<-bquote(bold(log['10'](w[s])))
-              wplabel<-bquote(bold(log['10'](w[p])))
+              wslabel<-"log[10]w[s]"
+              wplabel<-"log[10]w[p]"
             }
             wlines<-log10(c(0.05,0.8))
           },
@@ -69,14 +69,14 @@ plotAxis<-function(showType,hypothesis,design=NULL) {
             wlines<-c(0.05,0.8)
           }
   )
-  nlabel<-bquote(bold(n))
+  nlabel<-"n"
   switch(braw.env$nPlotScale,
          "log10"={
            nlim<-log10(c(5,2000))
            nticks<-seq(1,3,1)
            nmins<-log10(c(seq(5,10),seq(1,10)*10,seq(1,10)*100))
            if (explicitLog) {
-             nlabel<-bquote(bold(log['10'](n)))
+             nlabel<-"log[10](n)"
            }
          },
          "linear"={
@@ -112,7 +112,7 @@ plotAxis<-function(showType,hypothesis,design=NULL) {
             ylim<-rlims
             yticks<-rticks
             ymins<-rmins
-            ylabel<-bquote(bold(r[e]))
+            ylabel<-'r[e]'
             use_cols<-c(hsv(base_hue_r,1,1),hsv(base_hue_r+hue_diff,1,1),hsv(base_hue_r+hue_diff*2,1,1))
             ylines<-c(0)
           },
@@ -120,7 +120,7 @@ plotAxis<-function(showType,hypothesis,design=NULL) {
             ylim<-rlims
             yticks<-rticks
             ymins<-rmins
-            ylabel<-bquote(bold(r[o]))
+            ylabel<-'r[o]'
             use_cols<-c(hsv(base_hue_r,1,1),hsv(base_hue_r+hue_diff,1,1),hsv(base_hue_r+hue_diff*2,1,1))
             ylines<-c(0,effect$rIV)
           },
@@ -142,22 +142,22 @@ plotAxis<-function(showType,hypothesis,design=NULL) {
           },
           "log(lrs)"={
             ylim<-c(0, braw.env$lrRange)
-            ylabel<-bquote(log[e](lr[s]))
+            ylabel<-'log[e](lr[s])'
             use_cols<-c(hsv(base_hue_r,1,1),hsv(base_hue_r+hue_diff,1,1),hsv(base_hue_r+hue_diff*2,1,1))
           },
           "log(lrd)"={
             ylim<-c(-braw.env$lrRange, braw.env$lrRange)
-            ylabel<-bquote(log[e](lr[d]))
+            ylabel<-'log[e](lr[d])'
             use_cols<-c(hsv(base_hue_r,1,1),hsv(base_hue_r+hue_diff,1,1),hsv(base_hue_r+hue_diff*2,1,1))
           },
           "e1d"={
             ylim<-c(-braw.env$lrRange, braw.env$lrRange)
-            ylabel<-bquote(log[e](lr[d]))
+            ylabel<-'log[e](lr[d])'
             use_cols<-c(hsv(base_hue_r,1,1),hsv(base_hue_r+hue_diff,1,1),hsv(base_hue_r+hue_diff*2,1,1))
           },
           "e2d"={
             ylim<-c(-braw.env$lrRange, braw.env$lrRange)
-            ylabel<-bquote(log[e](lr[d]))
+            ylabel<-'log[e](lr[d])'
             use_cols<-c(hsv(base_hue_r,1,1),hsv(base_hue_r+hue_diff,1,1),hsv(base_hue_r+hue_diff*2,1,1))
           },
           "ws"={
@@ -172,9 +172,9 @@ plotAxis<-function(showType,hypothesis,design=NULL) {
             ylim<-log10(c(5,2000))
             yticks<-seq(0,3,1)
             if (explicitLog)
-              ylabel<-bquote(bold(log['10'](n[w=80])))
+              ylabel<-'log[10](n[w=80])'
             else
-              ylabel<-bquote(bold(n[w=80]))
+              ylabel<-'n[w=80]'
             logScale<-TRUE
           },
           "n"={
@@ -188,9 +188,9 @@ plotAxis<-function(showType,hypothesis,design=NULL) {
             yticks<-nticks
             ymins<-nmins
             if (explicitLog)
-              ylabel<-bquote(bold(log['10'](no)))
+              ylabel<-"log[10](no)"
             else
-              ylabel<-bquote(bold(no))
+              ylabel<-"no"
           },
           "wp"={
             ylim<-wlim

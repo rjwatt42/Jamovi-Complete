@@ -906,18 +906,36 @@ doAnalysis<-function(sample=doSample(autoShow=FALSE),evidence=braw.def$evidence,
   analysis$test_val<-tval
   analysis$rCalc<-test2effectsize(t_name,tval,analysis$df1,analysis$df2)
   
-  analysis$iv.mn<-mean(iv1,na.rm=TRUE)
-  analysis$iv.sd<-sd(iv1,na.rm=TRUE)
-  analysis$iv.sk<-skewness(iv1,na.rm=TRUE)
-  analysis$iv.kt<-kurtosis(iv1,na.rm=TRUE)
-  analysis$dv.mn<-mean(dv,na.rm=TRUE)
-  analysis$dv.sd<-sd(dv,na.rm=TRUE)
-  analysis$dv.sk<-skewness(dv,na.rm=TRUE)
-  analysis$dv.kt<-kurtosis(dv,na.rm=TRUE)
-  analysis$rs.mn<-mean(residuals,na.rm=TRUE)
-  analysis$rs.sd<-sd(residuals,na.rm=TRUE)
-  analysis$rs.sk<-skewness(residuals,na.rm=TRUE)
-  analysis$rs.kt<-kurtosis(residuals,na.rm=TRUE)
+  if (IV$type=="Interval"){
+    analysis$iv.mn<-mean(iv1,na.rm=TRUE)
+    analysis$iv.sd<-sd(iv1,na.rm=TRUE)
+    analysis$iv.sk<-skewness(iv1,na.rm=TRUE)
+    analysis$iv.kt<-kurtosis(iv1,na.rm=TRUE)
+  } else {
+    analysis$iv.mn<-NA
+    analysis$iv.sd<-NA
+    analysis$iv.sk<-NA
+    analysis$iv.kt<-NA
+  }
+  if (DV$type=="Interval"){
+    analysis$dv.mn<-mean(dv,na.rm=TRUE)
+    analysis$dv.sd<-sd(dv,na.rm=TRUE)
+    analysis$dv.sk<-skewness(dv,na.rm=TRUE)
+    analysis$dv.kt<-kurtosis(dv,na.rm=TRUE)
+    analysis$rs.mn<-mean(residuals,na.rm=TRUE)
+    analysis$rs.sd<-sd(residuals,na.rm=TRUE)
+    analysis$rs.sk<-skewness(residuals,na.rm=TRUE)
+    analysis$rs.kt<-kurtosis(residuals,na.rm=TRUE)
+  } else {
+    analysis$dv.mn<-NA
+    analysis$dv.sd<-NA
+    analysis$dv.sk<-NA
+    analysis$dv.kt<-NA
+    analysis$rs.mn<-NA
+    analysis$rs.sd<-NA
+    analysis$rs.sk<-NA
+    analysis$rs.kt<-NA
+  }
   
   analysis$hypothesis<-hypothesis
   analysis$design<-design
@@ -926,8 +944,9 @@ doAnalysis<-function(sample=doSample(autoShow=FALSE),evidence=braw.def$evidence,
   analysis$Heteroscedasticity<-0
 
   if (autoShow) print(showDescription(analysis))
+  # braw.res$result<<-analysis
   
-  analysis
+  return(analysis)
   
 }
 

@@ -4,6 +4,8 @@ JamoviInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$de
   in_char="in"
   # to_char="\u21D2"
   
+  optionsGroup=NULL
+  options=c()
   if (is.null(hypothesis$IV2)) {
     switch(hypothesis$DV$type,
            "Interval"={
@@ -39,8 +41,6 @@ JamoviInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$de
              )
            }
     )
-    optionsGroup=c()
-    options=c()
     switch(test,
            "correlationPearson"={
              ribbon="Regression"

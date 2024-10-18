@@ -47,6 +47,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         braw.env$statusStore<<-statusStore
       } else       statusStore<-braw.env$statusStore
 
+      # self$results$testHTML$setVisible(TRUE)
+      # self$results$testHTML$setContent(makeSVG())
 
       # get some display parameters for later
       makeSampleNow<-self$options$makeSampleBtn
@@ -230,20 +232,37 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       # now deal with a request for Jamovi instructions
       # showJamoviNow1<-self$options$showJamovi1Btn
       if(self$options$showJamovi) {
+        assign("graphHTML",TRUE,braw.env)
         self$results$BrawStatsInstructions$setVisible(TRUE)
         self$results$BrawStatsInstructions$setContent(
-          private$.htmlwidget$generate_tab(
-            title="BrawStats Help",
-            tabs=c("Plan","Single Sample","Multiple Samples","Explore","Key"),
-            tabContents = c(
-              BrawInstructions("Plan"),
-              BrawInstructions("Single"),
-              BrawInstructions("Multiple"),
-              BrawInstructions("Explore"),
-              BrawInstructions("Key")
+          paste0(
+            private$.htmlwidget$generate_tab(
+              title="BrawStats Help",
+              tabs=c("Plan","Single Sample","Multiple Samples","Explore","Key"),
+              tabContents = c(
+                BrawInstructions("Plan"),
+                BrawInstructions("Single"),
+                BrawInstructions("Multiple"),
+                BrawInstructions("Explore"),
+                BrawInstructions("Key")
+              )
+            ),
+            private$.htmlwidget$generate_tab(
+              title="Plan",
+              tabs=c("Hypothesis","Design","Population","Expected"),
+              tabContents = c(
+                showHypothesis(),
+                addG(showDesign(plotArea=c(0.2,0.5,0.6,0.5)),showWorldSampling(plotArea=c(0.2,0,0.6,0.5))),
+                showPopulation(plotArea=c(0.2,0.2,0.6,0.6)),
+                showPrediction(plotArea=c(0.2,0.2,0.6,0.6))
+              ),
+              colours=c("#444444","#bbbbbb"),
+              plain=TRUE,
+              width=svgBoxX(),height=svgBoxY()
             )
           )
         )
+        assign("graphHTML",FALSE,braw.env)
         
         self$results$JamoviInstructions$setVisible(TRUE)
         self$results$JamoviInstructions$setContent(
@@ -257,12 +276,6 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             )
           )
         )
-        # self$results$JamoviInstructions$setContent(
-        #   private$.htmlwidget$generate_accordion(
-        #     title=paste("Jamovi",self$options$showJamovi),
-        #     content = makeInstructions(hypothesis,design,HelpType=self$options$showJamovi)
-        #   )
-        # )
       } else self$results$JamoviInstructions$setVisible(FALSE)
         
         # instructions<-makeInstructions(hypothesis,design,HelpType="Graph")
@@ -340,57 +353,65 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       
       braw.env$statusStore<<-statusStore
       
+      if (outputNow=="Likelihood") {
+      possible<-makePossible(typePossible=self$options$likelihoodType,
+                             targetSample=NULL,
+                             UsePrior=self$options$likelihoodUsePrior,
+                             prior=makeWorld(worldOn=TRUE,
+                                             populationPDF=self$options$priorPDF,
+                                             populationRZ=self$options$priorRZ,
+                                             populationPDFk=self$options$priorLambda,
+                                             populationNullp=self$options$priorNullP)
+      )
+      possibleResult<-doPossible(possible)
+      }
+      
       # what are we showing?
       # main results graphs/reports
-      if (!is.null(outputNow))     
+      if (!is.null(outputNow))  {   
+        if (self$options$showHTML) {
+          self$results$graphHTML$setVisible(TRUE)
+          self$results$graphPlot$setVisible(FALSE)
+          assign("graphHTML",TRUE,braw.env)
+          switch(outputNow,
+                 "System"= self$results$graphHTML$setContent(showSystem()),
+                 "Compact"= self$results$graphHTML$setContent(showDescription()),
+                 "Sample"= self$results$graphHTML$setContent(showSample()),
+                 "Describe"= self$results$graphHTML$setContent(showDescription()),
+                 "Infer"= self$results$graphHTML$setContent(showInference(showType=showInferParam,dimension=showInferDimension)),
+                 "Likelihood"=self$results$graphHTML$setContent(showLikelihood(cutaway=likelihoodCutaway)),
+                 "Multiple"= self$results$graphHTML$setContent(showExpected(showType=showMultipleParam,dimension=showMultipleDimension,effectType=whichShowMultipleOut)),
+                 "Explore"= self$results$graphHTML$setContent(showExplore(showType=showExploreParam,dimension=showExploreDimension,effectType=whichShowExploreOut)),
+                 self$results$reportPlot$graphHTML(NULL)
+          )
+        } else {
+          self$results$graphHTML$setVisible(FALSE)
+          self$results$graphPlot$setVisible(TRUE)
+          assign("graphHTML",FALSE,braw.env)
+          switch(outputNow,
+                 "System"= self$results$graphPlot$setState(outputNow),
+                 "Compact"= self$results$graphPlot$setState("Describe"),
+                 "Sample"= self$results$graphPlot$setState(outputNow),
+                 "Describe"= self$results$graphPlot$setState(outputNow),
+                 "Infer"= self$results$graphPlot$setState(c(outputNow,showInferParam,showInferDimension)),
+                 "Likelihood"= self$results$graphPlot$setState(c(outputNow,likelihoodCutaway)),
+                 "Multiple"= self$results$graphPlot$setState(c(outputNow,showMultipleParam,showMultipleDimension,whichShowMultipleOut)),
+                 "Explore"= self$results$graphPlot$setState(c(outputNow,showExploreParam,showExploreDimension,whichShowExploreOut)),
+                 self$results$graphPlot$setState(outputNow)
+          )
+        }
         switch(outputNow,
-               "System"={
-                 self$results$graphPlot$setState(outputNow)
-                 self$results$reportPlot$setContent(reportPlot(NULL))
-               },
-               "Compact"={
-                 self$results$graphPlot$setState("Describe")
-                 self$results$reportPlot$setContent(reportInference())
-               },
-               "Sample"={
-                 self$results$graphPlot$setState(outputNow)
-                 self$results$reportPlot$setContent(reportSample())
-               },
-               "Describe"={
-                 self$results$graphPlot$setState(outputNow)
-                 self$results$reportPlot$setContent(reportDescription())
-               },
-               "Infer"={
-                 self$results$graphPlot$setState(c(outputNow,showInferParam,showInferDimension))
-                 self$results$reportPlot$setContent(reportInference())
-               },
-               "Likelihood"={
-                 possible<-makePossible(typePossible=self$options$likelihoodType,
-                                        targetSample=NULL,
-                                        UsePrior=self$options$likelihoodUsePrior,
-                                        prior=makeWorld(worldOn=TRUE,
-                                                        populationPDF=self$options$priorPDF,
-                                                        populationRZ=self$options$priorRZ,
-                                                        populationPDFk=self$options$priorLambda,
-                                                        populationNullp=self$options$priorNullP)
-                 )
-                 possibleResult<-doPossible(possible)
-                 self$results$graphPlot$setState(c(outputNow,likelihoodCutaway))
-                 self$results$reportPlot$setContent(reportLikelihood())
-               },
-               "Multiple"={
-                 self$results$graphPlot$setState(c(outputNow,showMultipleParam,showMultipleDimension,whichShowMultipleOut))
-                 self$results$reportPlot$setContent(reportExpected(showType=showMultipleParam))
-               },
-               "Explore"={
-                 self$results$graphPlot$setState(c(outputNow,showExploreParam,showExploreDimension,whichShowExploreOut))
-                 self$results$reportPlot$setContent(reportExplore(showType=showExploreParam))
-               },
-               {
-                 self$results$graphPlot$setState(outputNow)
-                 self$results$reportPlot$setContent(NULL)
-               }
-        )
+             "System"= self$results$reportPlot$setContent(reportPlot(NULL)),
+             "Compact"= self$results$reportPlot$setContent(reportInference()),
+             "Sample"= self$results$reportPlot$setContent(reportSample()),
+             "Describe"= self$results$reportPlot$setContent(reportDescription()),
+             "Infer"= self$results$reportPlot$setContent(reportInference()),
+             "Likelihood"=self$results$reportPlot$setContent(reportLikelihood()),
+             "Multiple"= self$results$reportPlot$setContent(reportExpected(showType=showMultipleParam)),
+             "Explore"= self$results$reportPlot$setContent(reportExplore(showType=showExploreParam)),
+               self$results$reportPlot$setContent(NULL)
+      )
+      }
       
       # now we save any results to the Jamovi spreadsheet
       # single result first

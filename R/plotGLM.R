@@ -20,9 +20,9 @@ plotGLM<-function(DV,IVs,result,whichR) {
   
   braw.env$plotArea<-c(0,0,1,1)
   g<-startPlot(xlim=c(-1,1)*15,ylim=c(-1,1)*10,back="transparent",box="none",g=NULL)
-  g<-g+dataPolygon(data.frame(x=c(-1,-1,1,1)*14,y=c(-1,1,1,-1)*9),col=braw.env$plotColours$graphBack,fill=braw.env$plotColours$graphBack)
+  g<-addG(g,dataPolygon(data.frame(x=c(-1,-1,1,1)*14,y=c(-1,1,1,-1)*9),col=braw.env$plotColours$graphBack,fill=braw.env$plotColours$graphBack))
   
-  g<-g+dataLabel(data.frame(x=0,y=0),label=bquote(bold(.(DV$name))),hjust=0.5,vjust=0.5,fontface="bold",size=1.25)
+  g<-addG(g,dataLabel(data.frame(x=0,y=0),label=DV$name,hjust=0.5,vjust=0.5,fontface="bold",size=1.25))
   xStart<-4+nchar(DV$name)/2*(fontSize/14)
   arrowLength<-4-1
   yRange<-max(sum(r>0),sum(r<0))/2
@@ -45,9 +45,9 @@ plotGLM<-function(DV,IVs,result,whichR) {
         width<-0.1
       }
       colArrow<-desat(colArrow,gain=abs(r[use[i]])^0.5)
-      g<-g+dataLabel(data.frame(x=-xStart,y=y[i]),label=bquote(bold(.(IVs$name[use[i]]))),hjust=1,vjust=0.5,col=col,fill=fill,size=1.25,label.size=width*4)
+      g<-addG(g,dataLabel(data.frame(x=-xStart,y=y[i]),label=IVs$name[use[i]],hjust=1,vjust=0.5,col=col,fill=fill,size=1.25,label.size=width*4))
       direction<-atan2(y[i]*0.9,arrowLength+0.25)
-      g<-g+drawArrow(start=c(-xStart,y[i]),arrowLength,direction=90-direction*180/pi,width=width,ends="last",col=colArrow,fill=colArrow)
+      g<-addG(g,drawArrow(start=c(-xStart,y[i]),arrowLength,direction=90-direction*180/pi,width=width,ends="last",col=colArrow,fill=colArrow))
     }
   }
   
@@ -69,12 +69,12 @@ plotGLM<-function(DV,IVs,result,whichR) {
           width<-0.1
         }
       colArrow<-desat(colArrow,gain=abs(r[use[i]])^0.5)
-      g<-g+dataLabel(data.frame(x=xStart,y=y[i]),label=bquote(bold(.(IVs$name[use[i]]))),hjust=0,vjust=0.5,col=col,fill=fill,size=1.25,label.size=width*5)
+      g<-addG(g,dataLabel(data.frame(x=xStart,y=y[i]),label=IVs$name[use[i]],hjust=0,vjust=0.5,col=col,fill=fill,size=1.25,label.size=width*5))
       direction<-atan2(y[i]*0.9,arrowLength+0.25)
-      g<-g+drawArrow(start=c(xStart,y[i]),arrowLength,direction=-90+direction*180/pi,width=width,ends="last",col=colArrow,fill=colArrow)
+      g<-addG(g,drawArrow(start=c(xStart,y[i]),arrowLength,direction=-90+direction*180/pi,width=width,ends="last",col=colArrow,fill=colArrow))
     }
   }
-  g<-g+dataText(data.frame(x=0,y=-10),label=bquote(bold(r[model] ~ "=" ~ .(brawFormat(result$r.full,3)))),hjust=0.5)
+  g<-addG(g,dataText(data.frame(x=0,y=-10),label=paste0("r[model]=",brawFormat(result$r.full,3)),hjust=0.5))
   
   return(g)
 

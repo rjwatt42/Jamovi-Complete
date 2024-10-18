@@ -3,7 +3,7 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                  initialize = function() {
                                  },
 
-                                 generate_tab = function(title="Tab",tabs=c("1","2","3"),tabContents=c("a","b","c"),colours=c("#3498db","#80CCFF"),fontSize="12px") {
+                                 generate_tab = function(title="Tab",tabs=c("1","2","3"),tabContents=c("a","b","c"),colours=c("#3498db","#80CCFF"),fontSize="12px",plain=FALSE,width=550,height=400) {
                                    script<-paste0(
                                      '<script>',
                                      'function openTab(evt, tabName) {',
@@ -40,6 +40,8 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                        'border: none;',
                                        'background-color: inherit;',
                                        'border-bottom: solid ',colours[1],' 1px;',
+                                     'width: ',svgBoxX(),'px;',
+                                     'margin: none;',
                                        '}',
 
                                      # Style the buttons inside the tab 
@@ -68,13 +70,27 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                      'color: white;',
                                      '}',
                                      
+                                     # Style the null tab content 
+                                     '.tabnullcontent {',
+                                     'display: none;',
+                                     'padding: 0px 0px;',
+                                     'margin: 0px;',
+                                     'border: 1px solid ',colours[1],';',
+                                     'border-top: none;',
+                                     'width: ',width,'px;',
+                                     'height: 0px;',
+                                     '}',
+                                     
                                      # Style the tab content 
-                                       '.tabcontent {',
-                                         'display: none;',
-                                         'padding: 0px 0px;',
-                                         'border: 1px solid ',colours[1],';',
-                                         'border-top: none;',
-                                       '}',
+                                     '.tabcontent {',
+                                     'display: none;',
+                                     'padding: 0px 0px;',
+                                     'margin: 0px;',
+                                     'border: 1px solid ',colours[1],';',
+                                     'border-top: none;',
+                                     'width: ',width,'px;',
+                                     'height: ',height,'px;',
+                                     '}',
                                      '</style>'
                                    )
                                    
@@ -85,7 +101,7 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                                      title,
                                                      '</button>')
                                    panels <- paste0(panels,
-                                                    '  <div id="',title,'" class="tabcontent" style="display:block">',
+                                                    '  <div id="',title,'" class="tabcontent" style="display:none">',
                                                     '</div>')
                                    for (itab in 1:length(tabs)) {
                                      panelID<-paste0(title,'||',tabs[itab])
@@ -99,12 +115,18 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                                       '</div>')
                                    }
                                    buttons<-paste0('<div class="tab">',buttons,'</div>')
-                                   html_content <- paste0(
-                                     style,
-                                     buttons,
-                                     panels,
-                                     script
-                                   )
+                                   if (plain)
+                                     html_content <- paste0(
+                                       buttons,
+                                       panels
+                                     )
+                                   else
+                                     html_content <- paste0(
+                                       style,
+                                       buttons,
+                                       panels,
+                                       script
+                                     )
                                    return(html_content)
                                  }
                                  

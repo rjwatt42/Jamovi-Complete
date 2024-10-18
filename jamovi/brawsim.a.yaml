@@ -1307,7 +1307,12 @@ options:
     - name: showJamovi
       title: instructions?
       type: Bool
-      default: true
+      default: false
+      
+    - name: showHTML
+      title: HTML?
+      type: Bool
+      default: false
 
     - name: doProject1aBtn
       title: 'do it for me'

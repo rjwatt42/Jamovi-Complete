@@ -14,14 +14,14 @@
 showSystem<-function(hypothesis=braw.def$hypothesis,design=braw.def$design) {
   ygain<-0.95
   g<-NULL
-  g<-showHypothesis(hypothesis=hypothesis,doWorld=TRUE,ygain=ygain,g=g)
-  g<-showDesign(hypothesis=hypothesis,design=design,plotArea=c(0.525,0.5*ygain,0.45,0.525*ygain),g=g)
-  g<-showWorldSampling(hypothesis=hypothesis,design=design,sigOnly=FALSE,plotArea=c(0.525,0.0,0.45,0.525*ygain),g=g)
-  g<-g+geom_vline(xintercept=0.5,linetype="dotted")
-  g<-g+geom_text(data=data.frame(x=0.22,y=0.99),aes(x = x, y = y), label="Hypothesis",
-                 vjust=0,fontface="bold",size=1.3*braw.env$labelSize)
-  g<-g+geom_text(data=data.frame(x=0.75,y=0.99),aes(x = x, y = y), label="Design",
-                 vjust=0,fontface="bold",size=1.3*braw.env$labelSize)
+  g<-showHypothesis(hypothesis=hypothesis,doWorld=TRUE,plotArea=c(0.05,0.15,0.4,0.75),g=g)
+  g<-showDesign(hypothesis=hypothesis,design=design,plotArea=c(0.525,0.5,0.45,0.4),g=g)
+  g<-showWorldSampling(hypothesis=hypothesis,design=design,sigOnly=FALSE,plotArea=c(0.525,0.05,0.45,0.4),g=g)
+  
+  braw.env$plotArea<-c(0,0,1,0.95)
+  g<-addG(g,plotTitle("Hypothesis",fontface="bold",position="left"))
+  g<-addG(g,plotTitle("Design",fontface="bold",position="right"))
+  
   return(g)
 }
 
@@ -31,7 +31,7 @@ showSystem<-function(hypothesis=braw.def$hypothesis,design=braw.def$design) {
 #' @examples
 #' showHypothesis(hypothesis=makeHypothesis())
 #' @export
-showHypothesis<-function(hypothesis=braw.def$hypothesis,doWorld=TRUE,ygain=1,xgain=0.3,g=NULL) {
+showHypothesis<-function(hypothesis=braw.def$hypothesis,doWorld=TRUE,plotArea=c(0.25,0.0,0.5,1),g=NULL) {
   IV<-hypothesis$IV
   IV2<-hypothesis$IV2
   DV<-hypothesis$DV
@@ -40,29 +40,31 @@ showHypothesis<-function(hypothesis=braw.def$hypothesis,doWorld=TRUE,ygain=1,xga
   if (is.null(IV2)) no_ivs<-1 else no_ivs<-2
     
   doWorld<-doWorld && effect$world$worldOn
-  if (doWorld) {
-    xoff<-0.05
-    effect$rIV<-NULL
-  } else xoff<-0.1
+  if (doWorld) effect$rIV<-NULL
+  ygain<-plotArea[4]
+  yoff<-plotArea[2]
   switch(no_ivs,
-         {  w<-xgain*0.85
-           g<-showVariable(IV,plotArea=c(xoff,0.6*ygain,w,0.4*ygain),g=g)
-           g<-showVariable(DV,plotArea=c(xoff,0.0,w,0.4*ygain),g=g)
-           g<-showEffect(effect$rIV,showValue=!doWorld,plotArea=c(xoff,0.36*ygain,w,0.3*ygain),1,g)
-           if (doWorld) g<-showWorld(hypothesis,plotArea=c(xoff+0.15,0.3*ygain,w*0.9,0.38*ygain),g=g)
+         { xgain<-plotArea[3]/2
+           xoff<-plotArea[1]
+           g<-showVariable(IV,plotArea=c(xoff,yoff+0.65*ygain,xgain,0.35*ygain),g=g)
+           g<-showVariable(DV,plotArea=c(xoff,yoff,xgain,0.35*ygain),g=g)
+           g<-showEffect(effect$rIV,showValue=!doWorld,plotArea=c(xoff,yoff+0.35*ygain,xgain,0.3*ygain),1,g)
+           if (doWorld) g<-showWorld(hypothesis,plotArea=c(xoff+0.15,0.35*ygain,xgain*0.9,0.3*ygain),g=g)
          },
          {
-           w<-xgain*0.25/0.3
-           g<-showVariable(IV,plotArea=c(0.0,0.6*ygain,w,0.4*ygain),g=g)
-           g<-showVariable(IV2,plotArea=c(w,0.6*ygain,w,0.4*ygain),g=g)
-           g<-showVariable(DV,plotArea=c(w/2,0.0,w,0.4*ygain),g=g)
-           g<-showEffect(effect$rIV,2,showValue=!doWorld,plotArea=c(0,0.4*ygain,w,0.22*ygain),g)
-           g<-showEffect(effect$rIV2,3,showValue=!doWorld,plotArea=c(w,0.4*ygain,w,0.22*ygain),g)
-           g<-showEffect(effect$rIVIV2,4,showValue=!doWorld,plotArea=c(w/2,0.7*ygain,w,0.22*ygain),g)
-           g<-showEffect(effect$rIVIV2DV,5,showValue=!doWorld,plotArea=c(w/2,0.4*ygain,w,0.22*ygain),g)
+           xgain<-plotArea[3]/2
+           xoff<-plotArea[1]
+           g<-showVariable(IV,plotArea=c(xoff,yoff+0.6*ygain,xgain,0.4*ygain),g=g)
+           g<-showVariable(IV2,plotArea=c(xoff+xgain,yoff+0.6*ygain,xgain,0.4*ygain),g=g)
+           g<-showVariable(DV,plotArea=c(xoff+xgain/2,yoff,xgain,0.4*ygain),g=g)
+           g<-showEffect(effect$rIV,2,showValue=!doWorld,plotArea=c(xoff,yoff+0.4*ygain,xgain,0.22*ygain),g)
+           g<-showEffect(effect$rIV2,3,showValue=!doWorld,plotArea=c(xoff+xgain,yoff+0.4*ygain,xgain,0.22*ygain),g)
+           g<-showEffect(effect$rIVIV2,4,showValue=!doWorld,plotArea=c(xoff+xgain/2,yoff+0.7*ygain,xgain,0.22*ygain),g)
+           g<-showEffect(effect$rIVIV2DV,5,showValue=!doWorld,plotArea=c(xoff+xgain/2,yoff+0.4*ygain,xgain,0.22*ygain),g)
            wgain<-0.8
            if (doWorld) g<-showWorld(hypothesis,plotArea=c(xoff+0.27,0.3*ygain,0.275*wgain,0.38*wgain*ygain),g=g)
          })
+  braw.env$plotArea<-plotArea
   return(g)
 }
 
@@ -100,18 +102,18 @@ showWorld<-function(hypothesis=braw.def$hypothesis,plotArea=c(0,0,1,1),g=NULL) {
   }
   if (is.element(world$populationPDF,c("Single","Double"))) {
     rdens<-rdens/sum(rdens)*(1-world$populationNullp)
-    rdens[rx==0]<-world$populationNullp
+    rdens[rx==0]<-rdens[rx==0]+world$populationNullp
   } else 
     rdens<-rdens*(1-world$populationNullp)
   rdens<-rdens/max(rdens)
   rx<-c(rx[1],rx,rx[length(rx)])
   rdens<-c(0,rdens,0)
   pts=data.frame(x=rx,y=rdens)
-  g<-g+dataPolygon(pts,fill=braw.env$plotColours$descriptionC,colour=NA)
-  g<-g+dataLine(pts)
+  g<-addG(g,dataPolygon(pts,fill=braw.env$plotColours$descriptionC,colour=NA))
+  g<-addG(g,dataLine(pts))
   switch(braw.env$RZ,
-         "r"={ g<-g+xAxisTicks(seq(-1,1,0.5))+xAxisLabel(braw.env$rpLabel)},
-         "z"={ g<-g+xAxisTicks(seq(-2,2,1))+xAxisLabel(braw.env$zpLabel)}
+         "r"={ g<-addG(g,xAxisTicks(seq(-1,1,0.5)),xAxisLabel(braw.env$rpLabel))},
+         "z"={ g<-addG(g,xAxisTicks(seq(-2,2,1)),xAxisLabel(braw.env$zpLabel))}
   )
   
   return(g)
@@ -146,9 +148,9 @@ showDesign<-function(design=braw.def$design,hypothesis=braw.def$hypothesis,plotA
   braw.env$plotArea<-plotArea
   g<-startPlot(xlim=binRange, ylim=c(0,1),
                box="x",g=g,fontScale=1)
-  g<-g+xAxisTicks(nRange$ticks,10^nRange$ticks)+xAxisLabel(nRange$label)
-  g<-g+dataPolygon(data=pts,fill=braw.env$plotColours$descriptionC)
-  g<-g+dataLine(data=pts)
+  g<-addG(g,xAxisTicks(nRange$ticks,10^nRange$ticks),xAxisLabel(nRange$label))
+  g<-addG(g,dataPolygon(data=pts,fill=braw.env$plotColours$descriptionC))
+  g<-addG(g,dataLine(data=pts))
 
   if (design$Replication$On) {
     if (!hypothesis$effect$world$worldOn) {
@@ -161,8 +163,8 @@ showDesign<-function(design=braw.def$design,hypothesis=braw.def$hypothesis,plotA
     nRepDens<-fullRSamplingDist(nbin,hypothesis$effect$world,design,"nw",logScale=(braw.env$nPlotScale=="log10"),sigOnly=FALSE)
     y<-c(0,nRepDens,0)/max(nRepDens)*0.4
     pts=data.frame(x=log10(x),y=y)
-    g<-g+dataPolygon(data=pts,fill=braw.env$plotColours$replicationC,alpha=0.5)
-    g<-g+dataLine(data=pts)
+    g<-addG(g,dataPolygon(data=pts,fill=braw.env$plotColours$replicationC,alpha=0.5))
+    g<-addG(g,dataLine(data=pts))
   }
   return(g)
 }
@@ -174,7 +176,7 @@ showDesign<-function(design=braw.def$design,hypothesis=braw.def$hypothesis,plotA
 #' @examples
 #' showPopulation(hypothesis=makeHypothesis())
 #' @export
-showPopulation <- function(hypothesis=braw.def$hypothesis) {
+showPopulation <- function(hypothesis=braw.def$hypothesis,plotArea=c(0,0,1,1)) {
   IV<-hypothesis$IV
   IV2<-hypothesis$IV2
   DV<-hypothesis$DV
@@ -184,8 +186,9 @@ showPopulation <- function(hypothesis=braw.def$hypothesis) {
 
   switch (no_ivs,
           {
-            braw.env$plotArea<-c(0,0,1,1)
+            braw.env$plotArea<-plotArea
             g<-plotPopulation(IV,DV,effect)
+            g<-addG(g,plotTitle(paste0("r[p]=",brawFormat(effect$rIV))))
           },
           {
             effect1<-effect
@@ -194,11 +197,11 @@ showPopulation <- function(hypothesis=braw.def$hypothesis) {
             effect3<-effect
             effect3$rIV<-effect3$rIVIV2
 
-            braw.env$plotArea<-c(0,0,0.45,0.45)
+            braw.env$plotArea<-c(0,0,0.45,0.45)*plotArea[c(3,4,3,4)]+c(plotArea[c(1,2)],0,0)
             g<-plotPopulation(IV,IV2,effect3)
-            braw.env$plotArea<-c(0.55,0,0.45,0.45)
+            braw.env$plotArea<-c(0.55,0,0.45,0.45)*plotArea[c(3,4,3,4)]+c(plotArea[c(1,2)],0,0)
             g<-plotPopulation(IV,DV,effect1,g=g)
-            braw.env$plotArea<-c(0.55/2,0.55,0.45,0.45)
+            braw.env$plotArea<-c(0.55/2,0.55,0.45,0.45)*plotArea[c(3,4,3,4)]+c(plotArea[c(1,2)],0,0)
             g<-plotPopulation(IV2,DV,effect2,g=g)
           }
   )
@@ -212,7 +215,7 @@ showPopulation <- function(hypothesis=braw.def$hypothesis) {
 #' @examples
 #' showPrediction(hypothesis=makeHypothesis()=makeDesign(),evidence=makeEvidence())
 #' @export
-showPrediction <- function(hypothesis=braw.def$hypothesis,design=braw.def$design,evidence=makeEvidence()){
+showPrediction <- function(hypothesis=braw.def$hypothesis,design=braw.def$design,evidence=makeEvidence(),plotArea=c(0,0,1,1) ){
   IV<-hypothesis$IV
   IV2<-hypothesis$IV2
   DV<-hypothesis$DV
@@ -221,8 +224,9 @@ showPrediction <- function(hypothesis=braw.def$hypothesis,design=braw.def$design
   if (is.null(IV2)) no_ivs<-1 else no_ivs<-2
 
   switch (no_ivs,
-          { braw.env$plotArea<-c(0,0,1,1) 
+          { braw.env$plotArea<-plotArea 
             g<-plotPrediction(IV,IV2,DV,effect,design)
+            g<-addG(g,plotTitle(paste0("r[p]=",brawFormat(effect$rIV))))
           },
           {
             if (evidence$rInteractionOn==FALSE){
@@ -230,24 +234,26 @@ showPrediction <- function(hypothesis=braw.def$hypothesis,design=braw.def$design
               effect2<-effect
               effect2$rIV<-effect2$rIV2
 
-                braw.env$plotArea<-c(0,0,0.5,1) 
-                g<-plotPrediction(IV,NULL,DV,effect1,design)
-                braw.env$plotArea<-c(0,0.5,0.5,1) 
-                g<-plotPrediction(IV2,NULL,DV,effect2,design,g=g)
+                braw.env$plotArea<-c(0,0.25,0.5,0.5)*plotArea[c(3,4,3,4)]+c(plotArea[c(1,2)],0,0)
+                g1<-plotPrediction(IV,NULL,DV,effect1,design)
+                braw.env$plotArea<-c(0.5,0.25,0.5,0.5)*plotArea[c(3,4,3,4)]+c(plotArea[c(1,2)],0,0)
+                g2<-plotPrediction(IV2,NULL,DV,effect2,design)
+                g<-addG(g1,g2)
               
             } else{
               if (evidence$rInteractionOnly){
+                braw.env$plotArea<-plotArea 
                 g<-plotPrediction(IV,IV2,DV,effect,design)
               } else{
                 effect1<-effect
                 effect2<-effect
                 effect2$rIV<-effect2$rIV2
 
-                braw.env$plotArea<-c(0,0,0.5,0.5) 
+                braw.env$plotArea<-c(0,0,0.5,0.5)*plotArea[c(3,4,3,4)]+c(plotArea[c(1,2)],0,0)
                 g<-plotPrediction(IV,NULL,DV,effect1,design)
-                braw.env$plotArea<-c(0,0.5,0.5,0.5) 
+                braw.env$plotArea<-c(0,0.5,0.5,0.5)*plotArea[c(3,4,3,4)] +c(plotArea[c(1,2)],0,0)
                 g<-plotPrediction(IV2,NULL,DV,effect2,design,g=g)
-                braw.env$plotArea<-c(0.25,0.5,0.5,0.5) 
+                braw.env$plotArea<-c(0.25,0.5,0.5,0.5)*plotArea[c(3,4,3,4)] +c(plotArea[c(1,2)],0,0)
                 g<-plotPrediction(IV,IV2,DV,effect,design,g=g)
                 
               }
@@ -308,19 +314,19 @@ showWorldSampling<-function(hypothesis=braw.def$hypothesis,design=braw.def$desig
   
   braw.env$plotArea<-plotArea
 
-  g<-startPlot(xlim=c(-1,1), ylim=c(0,1.05),box="x",g=g)
+  g<-startPlot(xlim=c(-1,1), ylim=c(0,1.05),box="x",fontScale=1,g=g)
   switch(braw.env$RZ,
-         "r"={g<-g+xAxisTicks(seq(-1,1,0.5))+xAxisLabel(braw.env$rsLabel)},
-         "z"={g<-g+xAxisTicks(seq(-1,1,0.5))+xAxisLabel(braw.env$zsLabel)}
+         "r"={g<-addG(g,xAxisTicks(seq(-1,1,0.5)),xAxisLabel(braw.env$rsLabel))},
+         "z"={g<-addG(g,xAxisTicks(seq(-1,1,0.5)),xAxisLabel(braw.env$zsLabel))}
   )
-  g<-g+dataPolygon(data=pts,fill=braw.env$plotColours$descriptionC)
-  g<-g+dataLine(data=pts)
+  g<-addG(g,dataPolygon(data=pts,fill=braw.env$plotColours$descriptionC))
+  g<-addG(g,dataLine(data=pts))
   
   if (!is.na(dens1[1])) {
     y<-c(0,dens1,0)
     pts=data.frame(x=x,y=y)
-    g<-g+dataPolygon(data=pts,fill=braw.env$plotColours$replicationC,alpha=0.5)
-    g<-g+dataLine(data=pts)
+    g<-addG(g,dataPolygon(data=pts,fill=braw.env$plotColours$replicationC,alpha=0.5))
+    g<-addG(g,dataLine(data=pts))
     
   }
   return(g)

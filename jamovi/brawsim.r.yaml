@@ -4,9 +4,21 @@ title: BrawStats:Simulate Data
 jrs:   '1.1'
 
 items:
+    - name: testHTML
+      type: Html
+      visible: FALSE
+      
     - name: BrawStatsInstructions 
       type: Html
       visible: FALSE
+
+    - name: graphHTML
+      title: ' '
+      type: Html
+      # width:  600
+      # height: 360
+      visible: FALSE
+      # renderFun: .plotGraph
 
     - name: graphPlot
       title: ' '
