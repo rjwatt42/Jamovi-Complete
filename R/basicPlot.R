@@ -83,10 +83,9 @@ reSizeFont<-function(size) {
 
 plotLimits<-function(xlim,ylim,orientation="horz",gaps=c(1,1,0,0),fontScale=1) {
   if (is.null(fontScale)) {
-    ez<-1.5
+    ez<-3
     fontScale<-max(0.3,min(braw.env$plotArea[3:4]))^(1/ez)
-    gaps<-gaps*(fontScale/fontScale^ez)
-    fontScale<-fontScale*1.25
+    gaps<-gaps*(fontScale/fontScale^ez)*0.8
   }
   
   switch(orientation,
@@ -116,20 +115,20 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),box="Both",top=FALSE,tight=FALSE,
                     backC=braw.env$plotColours$graphBack,orientation="horz",fontScale=NULL,g=NULL) {
   fontScale<-NULL
   minGap<-0.025
-  maxGap<-0.1
-  yGap<-1.5
+  xGap<-0.125
+  yGap<-0.15
   if (tight) maxGap<-0.075
   switch(box,
-         "X"=gaps<-c(0,maxGap),
-         "x"=gaps<-c(minGap,maxGap),
-         "Y"=gaps<-c(maxGap*yGap,0),
-         "y"=gaps<-c(maxGap*yGap,minGap),
+         "X"=gaps<-c(0,xGap),
+         "x"=gaps<-c(minGap,xGap),
+         "Y"=gaps<-c(yGap,0),
+         "y"=gaps<-c(yGap,minGap),
          "both"=gaps<-c(minGap,minGap),
-         "Both"=gaps<-c(maxGap*yGap,maxGap),
+         "Both"=gaps<-c(yGap,xGap),
          "none"=gaps<-c(0,0),
          {gaps<-c(minGap,minGap)}
   )
-  if (top) gaps<-c(gaps,minGap,maxGap)
+  if (top) gaps<-c(gaps,minGap,xGap)
   else gaps<-c(gaps,minGap,minGap)
   if (svgBoxX()>svgBoxY()) gaps[c(1,3)]<-gaps[c(1,3)]*svgBoxY()/svgBoxX()
   plotLimits(xlim = xlim, ylim = ylim,orientation=orientation,gaps,fontScale=fontScale)
@@ -202,6 +201,38 @@ xAxisLabel<-function(label) {
          }
   )
 }
+xAxisTicks<-function(breaks=NULL,labels=NULL,logScale=FALSE,angle=0){
+  if (is.null(breaks)) {
+    breaks<-axisTicks(usr=braw.env$plotLimits$xlim, log=logScale, axp = NULL, nint = 5)
+  }
+  if (is.null(labels)) labels<-breaks
+  if (logScale) breaks<-log10(breaks)
+  # labels<-as.character(labels)
+  
+  mn<-5/max(5,max(nchar(labels)))
+  
+  voff<-braw.env$plotLimits$gap[2]
+  ticksBottom<-data.frame(x=reRangeX(breaks),y=rangeY(voff))
+  
+  switch(braw.env$plotLimits$orientation,
+         "vert"={
+           axisText(ticksBottom,label=labels, hjust=1.1, vjust=0.5, colour="black",size=mn,fontface="plain")
+           # geom_text(data=ticksTop,aes(x=x,y=y),label=labels,hjust=1.1,vjust=0.5,
+           #         size=mn)
+         },
+         "horz"={
+           if (angle==0) {
+             hjust=0.5
+           } else {
+             hjust=1.1
+             # mn<-mn*0.75
+           }
+           axisText(ticksBottom,label=labels, hjust=hjust, vjust=1, dy=-2, colour="black",size=mn,fontface="plain")
+           # geom_text(data=ticksTop,aes(x=x,y=y),label=labels,hjust=hjust,vjust=vjust,
+           #           size=reSizeFont(mn),angle=angle)
+         }
+  )
+}
 yAxisLabel<-function(label){
   voff<-braw.env$plotLimits$yAxisTickSize
   
@@ -217,15 +248,15 @@ yAxisLabel<-function(label){
 }
 yAxisTicks<-function(breaks=NULL,labels=NULL,logScale=FALSE){
   if (is.null(breaks)) {
-      breaks<-axisTicks(usr=braw.env$plotLimits$ylim, log=logScale, axp = NULL, nint = 7)
+      breaks<-axisTicks(usr=braw.env$plotLimits$ylim, log=logScale, axp = NULL, nint = 5)
   }
   
   if (is.null(labels)) labels<-breaks
   if (logScale) breaks<-log10(breaks)
   # labels<-as.character(labels)
   
-  ticks<-data.frame(x=rangeX(braw.env$plotLimits$gap[1]-0.005),y=reRangeY(breaks))
-  mn<-5/max(5,max(nchar(labels)))
+  ticks<-data.frame(x=rangeX(braw.env$plotLimits$gap[1]),y=reRangeY(breaks))
+  mn<-4/max(4,max(nchar(labels)))
 
   switch(braw.env$plotLimits$orientation,
          "vert"={
@@ -234,39 +265,9 @@ yAxisTicks<-function(breaks=NULL,labels=NULL,logScale=FALSE){
            #           size=reSizeFont(mn))
          },
          "horz"={
-           axisText(ticks,label=labels, hjust=1.0, vjust=0.5, colour="black",size=mn,fontface="plain")
+           axisText(ticks,label=labels, hjust=1.0, vjust=0.5, colour="black",size=mn,dx=-2,fontface="plain")
            # geom_text(data=ticks,aes(x=x,y=y),label=labels,hjust=1.1,vjust=0.5,
            #           size=reSizeFont(mn))
-         }
-  )
-}
-xAxisTicks<-function(breaks=NULL,labels=NULL,logScale=FALSE,angle=0){
-  if (is.null(breaks)) {
-      breaks<-axisTicks(usr=braw.env$plotLimits$xlim, log=logScale, axp = NULL, nint = 7)
-  }
-  if (is.null(labels)) labels<-breaks
-  if (logScale) breaks<-log10(breaks)
-  # labels<-as.character(labels)
-  
-  ticksBottom<-data.frame(x=reRangeX(breaks),y=rangeY(braw.env$plotLimits$gap[2]*0.66))
-  mn<-5/max(5,max(nchar(labels)))
-
-  switch(braw.env$plotLimits$orientation,
-         "vert"={
-           axisText(ticksBottom,label=labels, hjust=1.1, vjust=0.5, colour="black",size=mn,fontface="plain")
-             # geom_text(data=ticksTop,aes(x=x,y=y),label=labels,hjust=1.1,vjust=0.5,
-             #         size=mn)
-         },
-         "horz"={
-           if (angle==0) {
-             hjust=0.5
-           } else {
-             hjust=1.1
-             # mn<-mn*0.75
-           }
-             axisText(ticksBottom,label=labels, hjust=hjust, colour="black",size=mn,fontface="plain")
-           # geom_text(data=ticksTop,aes(x=x,y=y),label=labels,hjust=hjust,vjust=vjust,
-           #           size=reSizeFont(mn),angle=angle)
          }
   )
 }
@@ -335,7 +336,7 @@ dataText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,f
   g<-axisText(data,label, hjust=hjust, vjust=vjust, colour=colour,size=size,angle=angle,fontface=fontface)
   return(g)  
 }
-axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,fontface="plain") {
+axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,dx=0,dy=0,fontface="plain") {
   if (!braw.env$graphHTML) {
     parse<-FALSE
     mathlabel<-grepl("['^']{1}",label) | grepl("['[']{1}",label)
@@ -356,9 +357,9 @@ axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,f
     if (hjust>0.5) halign<-' text-anchor="end"' 
     
     if (fontface=="plain") fontface="normal"
-    valign<-' dominant-baseline="bottom"' 
+    valign<-' dominant-baseline="auto"' 
     if (vjust==0.5) valign<-' dominant-baseline="middle"'
-    if (vjust>0.5) valign<-' dominant-baseline="top"'
+    if (vjust>0.5) valign<-' dominant-baseline="hanging"'
     
     if (fontface=="plain") fontface="normal"
     
@@ -374,6 +375,8 @@ axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,f
                       thisLabel)
       thisLabel<-paste0(
                      '<tspan',halign,valign,
+                     ' dx=',dx,'px',
+                     ' dy=',-dy,'px',
                      '>',
                      thisLabel,
                      '</tspan>'

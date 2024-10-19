@@ -936,6 +936,8 @@ children:
               - type: ActionButton
                 name: showHypothesisBtn
                 maxWidth: 75
+              - type: ComboBox
+                name: showHypothesisChoice
   - type: Label
     label: 2. Make Data using the Plan
     children:

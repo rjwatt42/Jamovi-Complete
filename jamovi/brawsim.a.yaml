@@ -764,6 +764,20 @@ options:
     - name: showHypothesisBtn
       title: 'show'
       type: Action
+      
+    - name: showHypothesisChoice
+      title: ''
+      type: List
+      options:
+      - name: hypothesis
+        title: hypothesis
+      - name: design
+        title: design
+      - name: population
+        title: population
+      - name: prediction
+        title: prediction
+      default: hypothesis
 # 
 #     - name: whichMake
 #       title: ' '

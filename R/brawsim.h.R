@@ -97,6 +97,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             MetaAnalysisNStudies = 10,
             MetaAnalysisStudiesSig = "sigOnly",
             showHypothesisBtn = NULL,
+            showHypothesisChoice = "hypothesis",
             makeSampleBtn = FALSE,
             numberSamples = 100,
             makeMultipleBtn = NULL,
@@ -675,6 +676,15 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..showHypothesisBtn <- jmvcore::OptionAction$new(
                 "showHypothesisBtn",
                 showHypothesisBtn)
+            private$..showHypothesisChoice <- jmvcore::OptionList$new(
+                "showHypothesisChoice",
+                showHypothesisChoice,
+                options=list(
+                    "hypothesis",
+                    "design",
+                    "population",
+                    "prediction"),
+                default="hypothesis")
             private$..makeSampleBtn <- jmvcore::OptionAction$new(
                 "makeSampleBtn",
                 makeSampleBtn,
@@ -1118,6 +1128,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..MetaAnalysisNStudies)
             self$.addOption(private$..MetaAnalysisStudiesSig)
             self$.addOption(private$..showHypothesisBtn)
+            self$.addOption(private$..showHypothesisChoice)
             self$.addOption(private$..makeSampleBtn)
             self$.addOption(private$..numberSamples)
             self$.addOption(private$..makeMultipleBtn)
@@ -1259,6 +1270,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         MetaAnalysisNStudies = function() private$..MetaAnalysisNStudies$value,
         MetaAnalysisStudiesSig = function() private$..MetaAnalysisStudiesSig$value,
         showHypothesisBtn = function() private$..showHypothesisBtn$value,
+        showHypothesisChoice = function() private$..showHypothesisChoice$value,
         makeSampleBtn = function() private$..makeSampleBtn$value,
         numberSamples = function() private$..numberSamples$value,
         makeMultipleBtn = function() private$..makeMultipleBtn$value,
@@ -1399,6 +1411,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..MetaAnalysisNStudies = NA,
         ..MetaAnalysisStudiesSig = NA,
         ..showHypothesisBtn = NA,
+        ..showHypothesisChoice = NA,
         ..makeSampleBtn = NA,
         ..numberSamples = NA,
         ..makeMultipleBtn = NA,
@@ -1639,6 +1652,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param MetaAnalysisNStudies .
 #' @param MetaAnalysisStudiesSig .
 #' @param showHypothesisBtn .
+#' @param showHypothesisChoice .
 #' @param makeSampleBtn .
 #' @param numberSamples .
 #' @param makeMultipleBtn .
@@ -1791,6 +1805,7 @@ BrawSim <- function(
     MetaAnalysisNStudies = 10,
     MetaAnalysisStudiesSig = "sigOnly",
     showHypothesisBtn,
+    showHypothesisChoice = "hypothesis",
     makeSampleBtn = FALSE,
     numberSamples = 100,
     makeMultipleBtn,
@@ -1934,6 +1949,7 @@ BrawSim <- function(
         MetaAnalysisNStudies = MetaAnalysisNStudies,
         MetaAnalysisStudiesSig = MetaAnalysisStudiesSig,
         showHypothesisBtn = showHypothesisBtn,
+        showHypothesisChoice = showHypothesisChoice,
         makeSampleBtn = makeSampleBtn,
         numberSamples = numberSamples,
         makeMultipleBtn = makeMultipleBtn,

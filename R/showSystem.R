@@ -188,7 +188,7 @@ showPopulation <- function(hypothesis=braw.def$hypothesis,plotArea=c(0,0,1,1)) {
           {
             braw.env$plotArea<-plotArea
             g<-plotPopulation(IV,DV,effect)
-            g<-addG(g,plotTitle(paste0("r[p]=",brawFormat(effect$rIV))))
+            g<-addG(g,plotTitle(paste0("r[p]=",brawFormat(effect$rIV)),position="right",fontface="plain"))
           },
           {
             effect1<-effect
@@ -226,7 +226,7 @@ showPrediction <- function(hypothesis=braw.def$hypothesis,design=braw.def$design
   switch (no_ivs,
           { braw.env$plotArea<-plotArea 
             g<-plotPrediction(IV,IV2,DV,effect,design)
-            g<-addG(g,plotTitle(paste0("r[p]=",brawFormat(effect$rIV))))
+            g<-addG(g,plotTitle(paste0("r[p]=",brawFormat(effect$rIV)),position="right",fontface="plain"))
           },
           {
             if (evidence$rInteractionOn==FALSE){
