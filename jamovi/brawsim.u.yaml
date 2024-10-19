@@ -937,7 +937,7 @@ children:
                 name: showHypothesisBtn
                 maxWidth: 75
               - type: ComboBox
-                name: showHypothesisChoice
+                name: showHypothesisType
   - type: Label
     label: 2. Make Data using the Plan
     children:
@@ -1000,8 +1000,15 @@ children:
             label: >-
               By running many samples, we can see the range of outcomes to
               expect
-          - type: Label
-            label: 'choose how many samples: more is better but slower'
+          - type: LayoutBox
+            style: inline
+            margin: none
+            children:
+              - type: Label
+                label: ' '
+                minWidth: 2
+              - type: Label
+                label: '- choose how many samples: more is better but slower'
           - type: LayoutBox
             style: inline
             children:

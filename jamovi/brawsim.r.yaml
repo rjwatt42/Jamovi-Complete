@@ -10,23 +10,61 @@ items:
       
     - name: BrawStatsInstructions 
       type: Html
-      visible: FALSE
+      visible: TRUE
 
     - name: graphHTML
       title: ' '
       type: Html
       # width:  600
       # height: 360
-      visible: FALSE
+      visible: TRUE
+      # clearWith:
+      # - showHypothesisBtn
+      # - showHypothesisType
+      # - makeSampleBtn
+      # - showSampleType
+      # - showInferParam
+      # - singleVar1
+      # - singleVar2
+      # - showInferDimension
+      # - makeMultipleBtn
+      # - showMultipleParam
+      # - multipleVar1
+      # - multipleVar2
+      # - showMultipleDimension
+      # - makeExploreBtn
+      # - showExploreParam
+      # - exploreVar1
+      # - exploreVar2
+      # - showExploreDimension
       # renderFun: .plotGraph
 
     - name: graphPlot
       title: ' '
       type: Image
-      width:  600
-      height: 360
-      visible: TRUE
+      width:  550
+      height: 400
+      visible: FALSE
       renderFun: .plotGraph
+      clearWith:
+      - showHypothesisBtn
+      - showHypothesisType
+      - makeSampleBtn
+      - showSampleType
+      - showInferParam
+      - singleVar1
+      - singleVar2
+      - showInferDimension
+      - makeMultipleBtn
+      - showMultipleParam
+      - multipleVar1
+      - multipleVar2
+      - showMultipleDimension
+      - makeExploreBtn
+      - showExploreParam
+      - exploreVar1
+      - exploreVar2
+      - showExploreDimension
 
     - name: reportPlot
       title: ' '
@@ -34,6 +72,25 @@ items:
       # width:  600
       # height: 200
       visible: TRUE
+      clearWith:
+      - showHypothesisBtn
+      - showHypothesisType
+      - makeSampleBtn
+      - showSampleType
+      - showInferParam
+      - singleVar1
+      - singleVar2
+      - showInferDimension
+      - makeMultipleBtn
+      - showMultipleParam
+      - multipleVar1
+      - multipleVar2
+      - showMultipleDimension
+      - makeExploreBtn
+      - showExploreParam
+      - exploreVar1
+      - exploreVar2
+      - showExploreDimension
       refs:
       - brawstats
       - book
@@ -41,7 +98,7 @@ items:
 
     - name: JamoviInstructions
       type: Html
-      visible: FALSE
+      visible: TRUE
 
     - name: debug
       type: Preformatted

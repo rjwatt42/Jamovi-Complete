@@ -765,19 +765,15 @@ options:
       title: 'show'
       type: Action
       
-    - name: showHypothesisChoice
+    - name: showHypothesisType
       title: ''
       type: List
       options:
-      - name: hypothesis
-        title: hypothesis
-      - name: design
-        title: design
-      - name: population
-        title: population
+      - name: plan
+        title: plan
       - name: prediction
         title: prediction
-      default: hypothesis
+      default: plan
 # 
 #     - name: whichMake
 #       title: ' '
@@ -1326,7 +1322,7 @@ options:
     - name: showHTML
       title: HTML?
       type: Bool
-      default: false
+      default: true
 
     - name: doProject1aBtn
       title: 'do it for me'

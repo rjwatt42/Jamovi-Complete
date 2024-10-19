@@ -18,9 +18,10 @@ showSystem<-function(hypothesis=braw.def$hypothesis,design=braw.def$design) {
   g<-showDesign(hypothesis=hypothesis,design=design,plotArea=c(0.525,0.5,0.45,0.4),g=g)
   g<-showWorldSampling(hypothesis=hypothesis,design=design,sigOnly=FALSE,plotArea=c(0.525,0.05,0.45,0.4),g=g)
   
-  braw.env$plotArea<-c(0,0,1,0.95)
+  braw.env$plotArea<-c(0,0,0.5,0.95)
   g<-addG(g,plotTitle("Hypothesis",fontface="bold",position="left"))
-  g<-addG(g,plotTitle("Design",fontface="bold",position="right"))
+  braw.env$plotArea<-c(0.5,0,0.5,0.95)
+  g<-addG(g,plotTitle("Design",fontface="bold",position="left"))
   
   return(g)
 }
@@ -188,7 +189,7 @@ showPopulation <- function(hypothesis=braw.def$hypothesis,plotArea=c(0,0,1,1)) {
           {
             braw.env$plotArea<-plotArea
             g<-plotPopulation(IV,DV,effect)
-            g<-addG(g,plotTitle(paste0("r[p]=",brawFormat(effect$rIV)),position="right",fontface="plain"))
+            g<-addG(g,plotTitle(paste0("r[p]=",brawFormat(effect$rIV)),position="centre",size=1,fontface="plain"))
           },
           {
             effect1<-effect
@@ -225,8 +226,9 @@ showPrediction <- function(hypothesis=braw.def$hypothesis,design=braw.def$design
 
   switch (no_ivs,
           { braw.env$plotArea<-plotArea 
-            g<-plotPrediction(IV,IV2,DV,effect,design)
-            g<-addG(g,plotTitle(paste0("r[p]=",brawFormat(effect$rIV)),position="right",fontface="plain"))
+            g<-plotPopulation(IV,DV,effect)
+            g<-plotPrediction(IV,IV2,DV,effect,design,g=g)
+            g<-addG(g,plotTitle(paste0("r[p]=",brawFormat(effect$rIV)),position="centre",size=1,fontface="plain"))
           },
           {
             if (evidence$rInteractionOn==FALSE){

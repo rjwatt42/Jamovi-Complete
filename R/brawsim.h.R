@@ -97,7 +97,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             MetaAnalysisNStudies = 10,
             MetaAnalysisStudiesSig = "sigOnly",
             showHypothesisBtn = NULL,
-            showHypothesisChoice = "hypothesis",
+            showHypothesisType = "plan",
             makeSampleBtn = FALSE,
             numberSamples = 100,
             makeMultipleBtn = NULL,
@@ -139,7 +139,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             showExploreDimension = "1D",
             whichShowMultiple = "all",
             showJamovi = FALSE,
-            showHTML = FALSE,
+            showHTML = TRUE,
             doProject1aBtn = NULL,
             doProject1bBtn = NULL,
             doProject1cBtn = NULL,
@@ -676,15 +676,13 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..showHypothesisBtn <- jmvcore::OptionAction$new(
                 "showHypothesisBtn",
                 showHypothesisBtn)
-            private$..showHypothesisChoice <- jmvcore::OptionList$new(
-                "showHypothesisChoice",
-                showHypothesisChoice,
+            private$..showHypothesisType <- jmvcore::OptionList$new(
+                "showHypothesisType",
+                showHypothesisType,
                 options=list(
-                    "hypothesis",
-                    "design",
-                    "population",
+                    "plan",
                     "prediction"),
-                default="hypothesis")
+                default="plan")
             private$..makeSampleBtn <- jmvcore::OptionAction$new(
                 "makeSampleBtn",
                 makeSampleBtn,
@@ -1023,7 +1021,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..showHTML <- jmvcore::OptionBool$new(
                 "showHTML",
                 showHTML,
-                default=FALSE)
+                default=TRUE)
             private$..doProject1aBtn <- jmvcore::OptionAction$new(
                 "doProject1aBtn",
                 doProject1aBtn)
@@ -1128,7 +1126,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..MetaAnalysisNStudies)
             self$.addOption(private$..MetaAnalysisStudiesSig)
             self$.addOption(private$..showHypothesisBtn)
-            self$.addOption(private$..showHypothesisChoice)
+            self$.addOption(private$..showHypothesisType)
             self$.addOption(private$..makeSampleBtn)
             self$.addOption(private$..numberSamples)
             self$.addOption(private$..makeMultipleBtn)
@@ -1270,7 +1268,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         MetaAnalysisNStudies = function() private$..MetaAnalysisNStudies$value,
         MetaAnalysisStudiesSig = function() private$..MetaAnalysisStudiesSig$value,
         showHypothesisBtn = function() private$..showHypothesisBtn$value,
-        showHypothesisChoice = function() private$..showHypothesisChoice$value,
+        showHypothesisType = function() private$..showHypothesisType$value,
         makeSampleBtn = function() private$..makeSampleBtn$value,
         numberSamples = function() private$..numberSamples$value,
         makeMultipleBtn = function() private$..makeMultipleBtn$value,
@@ -1411,7 +1409,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..MetaAnalysisNStudies = NA,
         ..MetaAnalysisStudiesSig = NA,
         ..showHypothesisBtn = NA,
-        ..showHypothesisChoice = NA,
+        ..showHypothesisType = NA,
         ..makeSampleBtn = NA,
         ..numberSamples = NA,
         ..makeMultipleBtn = NA,
@@ -1490,32 +1488,70 @@ BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$add(jmvcore::Html$new(
                 options=options,
                 name="BrawStatsInstructions",
-                visible=FALSE))
+                visible=TRUE))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="graphHTML",
                 title=" ",
-                visible=FALSE))
+                visible=TRUE))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="graphPlot",
                 title=" ",
-                width=600,
-                height=360,
-                visible=TRUE,
-                renderFun=".plotGraph"))
+                width=550,
+                height=400,
+                visible=FALSE,
+                renderFun=".plotGraph",
+                clearWith=list(
+                    "showHypothesisBtn",
+                    "showHypothesisType",
+                    "makeSampleBtn",
+                    "showSampleType",
+                    "showInferParam",
+                    "singleVar1",
+                    "singleVar2",
+                    "showInferDimension",
+                    "makeMultipleBtn",
+                    "showMultipleParam",
+                    "multipleVar1",
+                    "multipleVar2",
+                    "showMultipleDimension",
+                    "makeExploreBtn",
+                    "showExploreParam",
+                    "exploreVar1",
+                    "exploreVar2",
+                    "showExploreDimension")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="reportPlot",
                 title=" ",
                 visible=TRUE,
+                clearWith=list(
+                    "showHypothesisBtn",
+                    "showHypothesisType",
+                    "makeSampleBtn",
+                    "showSampleType",
+                    "showInferParam",
+                    "singleVar1",
+                    "singleVar2",
+                    "showInferDimension",
+                    "makeMultipleBtn",
+                    "showMultipleParam",
+                    "multipleVar1",
+                    "multipleVar2",
+                    "showMultipleDimension",
+                    "makeExploreBtn",
+                    "showExploreParam",
+                    "exploreVar1",
+                    "exploreVar2",
+                    "showExploreDimension"),
                 refs=list(
                     "brawstats",
                     "book")))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="JamoviInstructions",
-                visible=FALSE))
+                visible=TRUE))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="debug",
@@ -1652,7 +1688,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param MetaAnalysisNStudies .
 #' @param MetaAnalysisStudiesSig .
 #' @param showHypothesisBtn .
-#' @param showHypothesisChoice .
+#' @param showHypothesisType .
 #' @param makeSampleBtn .
 #' @param numberSamples .
 #' @param makeMultipleBtn .
@@ -1805,7 +1841,7 @@ BrawSim <- function(
     MetaAnalysisNStudies = 10,
     MetaAnalysisStudiesSig = "sigOnly",
     showHypothesisBtn,
-    showHypothesisChoice = "hypothesis",
+    showHypothesisType = "plan",
     makeSampleBtn = FALSE,
     numberSamples = 100,
     makeMultipleBtn,
@@ -1847,7 +1883,7 @@ BrawSim <- function(
     showExploreDimension = "1D",
     whichShowMultiple = "all",
     showJamovi = FALSE,
-    showHTML = FALSE,
+    showHTML = TRUE,
     doProject1aBtn,
     doProject1bBtn,
     doProject1cBtn,
@@ -1949,7 +1985,7 @@ BrawSim <- function(
         MetaAnalysisNStudies = MetaAnalysisNStudies,
         MetaAnalysisStudiesSig = MetaAnalysisStudiesSig,
         showHypothesisBtn = showHypothesisBtn,
-        showHypothesisChoice = showHypothesisChoice,
+        showHypothesisType = showHypothesisType,
         makeSampleBtn = makeSampleBtn,
         numberSamples = numberSamples,
         makeMultipleBtn = makeMultipleBtn,
