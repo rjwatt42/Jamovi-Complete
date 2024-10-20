@@ -11,6 +11,8 @@ items:
     - name: BrawStatsInstructions 
       type: Html
       visible: TRUE
+      clearWith:
+      - showJamovi
 
     - name: graphHTML
       title: ' '
@@ -20,7 +22,6 @@ items:
       visible: TRUE
       # clearWith:
       # - showHypothesisBtn
-      # - showHypothesisType
       # - makeSampleBtn
       # - showSampleType
       # - showInferParam
@@ -48,7 +49,6 @@ items:
       renderFun: .plotGraph
       clearWith:
       - showHypothesisBtn
-      - showHypothesisType
       - makeSampleBtn
       - showSampleType
       - showInferParam
@@ -74,7 +74,6 @@ items:
       visible: TRUE
       clearWith:
       - showHypothesisBtn
-      - showHypothesisType
       - makeSampleBtn
       - showSampleType
       - showInferParam

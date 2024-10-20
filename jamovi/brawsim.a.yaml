@@ -764,16 +764,6 @@ options:
     - name: showHypothesisBtn
       title: 'show'
       type: Action
-      
-    - name: showHypothesisType
-      title: ''
-      type: List
-      options:
-      - name: plan
-        title: plan
-      - name: prediction
-        title: prediction
-      default: plan
 # 
 #     - name: whichMake
 #       title: ' '

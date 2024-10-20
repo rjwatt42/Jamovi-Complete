@@ -146,8 +146,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       
       # we pressed the "show" hypothesis button
       if (self$options$showHypothesisBtn) {
-      if (self$options$showHypothesisType=="plan") outputNow<-"System"
-      else outputNow<-"Prediction"}
+        outputNow<-"System"
+      }
       
       # are we asking for a different display of the current explore?
       if (!is.null(braw.res$explore)) {
@@ -297,9 +297,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         braw.res$expected<<-NULL
         braw.res$explore<<-NULL
         braw.res$metaAnalysis<<-NULL
-        if (self$options$showHypothesisType=="plan") outputNow<-"System"
-        else outputNow<-"Prediction"
-        
+        outputNow<-"System"
       }
       if (changedE) {
         braw.res$result<<-doAnalysis(sample=braw.res$result)
@@ -383,7 +381,6 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             assign("graphHTML",TRUE,braw.env)
           switch(outputNow,
                  "System"= self$results$graphHTML$setContent(showSystem()),
-                 "Prediction"= self$results$graphHTML$setContent(showPrediction()),
                  "Compact"= self$results$graphHTML$setContent(showDescription()),
                  "Sample"= self$results$graphHTML$setContent(showSample()),
                  "Describe"= self$results$graphHTML$setContent(showDescription()),
@@ -397,7 +394,6 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           assign("graphHTML",FALSE,braw.env)
           switch(outputNow,
                  "System"= self$results$graphPlot$setState(outputNow),
-                 "Prediction"= self$results$graphPlot$setContent(outputNow),
                  "Compact"= self$results$graphPlot$setState("Describe"),
                  "Sample"= self$results$graphPlot$setState(outputNow),
                  "Describe"= self$results$graphPlot$setState(outputNow),
@@ -410,7 +406,6 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         }
         switch(outputNow,
                "System"= self$results$reportPlot$setContent(reportPlot(NULL)),
-               "Prediction"= self$results$reportPlot$setContent(reportPlot(NULL)),
                "Compact"= self$results$reportPlot$setContent(reportInference()),
              "Sample"= self$results$reportPlot$setContent(reportSample()),
              "Describe"= self$results$reportPlot$setContent(reportDescription()),

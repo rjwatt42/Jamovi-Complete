@@ -11,17 +11,26 @@
 #' @examples
 #' showSystem(hypothesis=makeHypothesis(),design=makeDesign())
 #' @export
-showSystem<-function(hypothesis=braw.def$hypothesis,design=braw.def$design) {
+showSystem<-function(hypothesis=braw.def$hypothesis,design=braw.def$design,evidence=braw.def$evidence) {
   ygain<-0.95
   g<-NULL
-  g<-showHypothesis(hypothesis=hypothesis,doWorld=TRUE,plotArea=c(0.05,0.15,0.4,0.75),g=g)
-  g<-showDesign(hypothesis=hypothesis,design=design,plotArea=c(0.525,0.5,0.45,0.4),g=g)
-  g<-showWorldSampling(hypothesis=hypothesis,design=design,sigOnly=FALSE,plotArea=c(0.525,0.05,0.45,0.4),g=g)
+  if (is.null(hypothesis$IV2))
+    g<-showHypothesis(hypothesis=hypothesis,doWorld=TRUE,plotArea=c(0.0,0.1,0.45,0.75),g=g)
+  else
+    g<-showHypothesis(hypothesis=hypothesis,doWorld=TRUE,plotArea=c(0.0,0.1,0.33,0.75),g=g)
+  g<-showDesign(hypothesis=hypothesis,design=design,plotArea=c(0.33,0.3,0.33,0.4),g=g)
+  g<-showPrediction(hypothesis=hypothesis,design=design,evidence=evidence,plotArea=c(0.65,0.55,0.33,0.4),g=g)
+  g<-showWorldSampling(hypothesis=hypothesis,design=design,sigOnly=FALSE,plotArea=c(0.65,0.05,0.33,0.4),g=g)
   
-  braw.env$plotArea<-c(0,0,0.5,0.95)
-  g<-addG(g,plotTitle("Hypothesis",fontface="bold",position="left"))
-  braw.env$plotArea<-c(0.5,0,0.5,0.95)
-  g<-addG(g,plotTitle("Design",fontface="bold",position="left"))
+  braw.env$plotArea<-c(0,0,1,1)
+  g<-addG(g,axisText(data=data.frame(x=0.02,y=1),"Hypothesis",vjust=1,size=1.5,fontface="bold"))
+  g<-addG(g,axisText(data=data.frame(x=0.25,y=1.005),"\uff0b",vjust=1,size=2,fontface="plain"))
+  # g<-addG(g,axisPath(data=data.frame(x=c(0,0.33,0.33,0,0),y=c(0,0,1,1,0))))
+  g<-addG(g,axisText(data=data.frame(x=0.35,y=1),"Design",vjust=1,size=1.5,fontface="bold"))
+  g<-addG(g,axisText(data=data.frame(x=0.6,y=1.005),"\u21d2",vjust=1,size=2,fontface="plain"))
+  # g<-addG(g,axisPath(data=data.frame(x=0.33+c(0,0.33,0.33,0),y=c(0,0,1,1))))
+  g<-addG(g,axisText(data=data.frame(x=0.73,y=1),"Expected",vjust=1,size=1.5,fontface="bold"))
+  # g<-addG(g,axisPath(data=data.frame(x=0.66+c(0,0.33,0.33,0),y=c(0,0,1,1))))
   
   return(g)
 }
@@ -148,7 +157,7 @@ showDesign<-function(design=braw.def$design,hypothesis=braw.def$hypothesis,plotA
   
   braw.env$plotArea<-plotArea
   g<-startPlot(xlim=binRange, ylim=c(0,1),
-               box="x",g=g,fontScale=1)
+               gaps=c(0,1,1.2,1),box="x",g=g,fontScale=1)
   g<-addG(g,xAxisTicks(nRange$ticks,10^nRange$ticks),xAxisLabel(nRange$label))
   g<-addG(g,dataPolygon(data=pts,fill=braw.env$plotColours$descriptionC))
   g<-addG(g,dataLine(data=pts))
@@ -189,7 +198,7 @@ showPopulation <- function(hypothesis=braw.def$hypothesis,plotArea=c(0,0,1,1)) {
           {
             braw.env$plotArea<-plotArea
             g<-plotPopulation(IV,DV,effect)
-            g<-addG(g,plotTitle(paste0("r[p]=",brawFormat(effect$rIV)),position="centre",size=1,fontface="plain"))
+            # g<-addG(g,plotTitle(paste0("r[p]=",brawFormat(effect$rIV)),position="centre",size=1,fontface="plain"))
           },
           {
             effect1<-effect
@@ -216,7 +225,7 @@ showPopulation <- function(hypothesis=braw.def$hypothesis,plotArea=c(0,0,1,1)) {
 #' @examples
 #' showPrediction(hypothesis=makeHypothesis()=makeDesign(),evidence=makeEvidence())
 #' @export
-showPrediction <- function(hypothesis=braw.def$hypothesis,design=braw.def$design,evidence=makeEvidence(),plotArea=c(0,0,1,1) ){
+showPrediction <- function(hypothesis=braw.def$hypothesis,design=braw.def$design,evidence=makeEvidence(),plotArea=c(0,0,1,1),g=NULL ){
   IV<-hypothesis$IV
   IV2<-hypothesis$IV2
   DV<-hypothesis$DV
@@ -224,11 +233,12 @@ showPrediction <- function(hypothesis=braw.def$hypothesis,design=braw.def$design
   if (is.null(IV) || is.null(DV)) {return(nullPlot())}
   if (is.null(IV2)) no_ivs<-1 else no_ivs<-2
 
+  if (is.null(g)) g<-nullPlot()
   switch (no_ivs,
           { braw.env$plotArea<-plotArea 
-            g<-plotPopulation(IV,DV,effect)
+            g<-plotPopulation(IV,DV,effect,g=g)
             g<-plotPrediction(IV,IV2,DV,effect,design,g=g)
-            g<-addG(g,plotTitle(paste0("r[p]=",brawFormat(effect$rIV)),position="centre",size=1,fontface="plain"))
+            # g<-addG(g,plotTitle(paste0("r[p]=",brawFormat(effect$rIV)),position="centre",size=1,fontface="plain"))
           },
           {
             if (evidence$rInteractionOn==FALSE){
@@ -316,7 +326,7 @@ showWorldSampling<-function(hypothesis=braw.def$hypothesis,design=braw.def$desig
   
   braw.env$plotArea<-plotArea
 
-  g<-startPlot(xlim=c(-1,1), ylim=c(0,1.05),box="x",fontScale=1,g=g)
+  g<-startPlot(xlim=c(-1,1), ylim=c(0,1.05),top=TRUE,fontScale=1,g=g)
   switch(braw.env$RZ,
          "r"={g<-addG(g,xAxisTicks(seq(-1,1,0.5)),xAxisLabel(braw.env$rsLabel))},
          "z"={g<-addG(g,xAxisTicks(seq(-1,1,0.5)),xAxisLabel(braw.env$zsLabel))}

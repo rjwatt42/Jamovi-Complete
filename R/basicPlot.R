@@ -111,13 +111,15 @@ nullPlot<-function() {
   return(g)
 }
 
-startPlot<-function(xlim=c(0,1),ylim=c(0,1),box="Both",top=FALSE,tight=FALSE,
+startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="Both",top=FALSE,tight=FALSE,
                     backC=braw.env$plotColours$graphBack,orientation="horz",fontScale=NULL,g=NULL) {
   fontScale<-NULL
   minGap<-0.025
   xGap<-0.125
   yGap<-0.15
   if (tight) maxGap<-0.075
+  # gaps is left, bottom, right, top
+  if (is.null(gaps)) {
   switch(box,
          "X"=gaps<-c(0,xGap),
          "x"=gaps<-c(minGap,xGap),
@@ -130,6 +132,9 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),box="Both",top=FALSE,tight=FALSE,
   )
   if (top) gaps<-c(gaps,minGap,xGap)
   else gaps<-c(gaps,minGap,minGap)
+  } else {
+    gaps<-gaps*c(yGap,xGap,yGap,xGap)
+  }
   if (svgBoxX()>svgBoxY()) gaps[c(1,3)]<-gaps[c(1,3)]*svgBoxY()/svgBoxX()
   plotLimits(xlim = xlim, ylim = ylim,orientation=orientation,gaps,fontScale=fontScale)
   
@@ -168,24 +173,22 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),box="Both",top=FALSE,tight=FALSE,
 }
 
 plotTitle<-function(label,position="centre",size=1.25,fontface="bold") {
-  switch(position,
-         "left"={
-           data<-data.frame(x=reRangeX(braw.env$plotLimits$xlim[1]),y=rangeY(1-braw.env$plotLimits$gap[4]))
-           axisText(data,label,
-                    hjust=0,vjust=0,size=size,fontface=fontface)
-         },
-         "centre"={
-           data<-data.frame(x=reRangeX(mean(braw.env$plotLimits$xlim)),y=rangeY(1-braw.env$plotLimits$gap[4]))
-           axisText(data,label,
-                    hjust=0.5,vjust=0,size=size,fontface=fontface)
-         },
-         "right"={
-           data<-data.frame(x=reRangeX(braw.env$plotLimits$xlim[2]),y=rangeY(1-braw.env$plotLimits$gap[4]))
-           axisText(data,label,
-                     hjust=1,vjust=0,size=size,fontface=fontface)
-         },
-  )
-  
+  ypos<-1 # -braw.env$plotLimits$gap[4]
+    switch(position,
+           "left"={
+             data<-data.frame(x=(braw.env$plotLimits$gap[1]), y=ypos)
+             hjust<-0
+           },
+           "centre"={
+             data<-data.frame(x=(braw.env$plotLimits$gap[1]+(1-braw.env$plotLimits$gap[1]-braw.env$plotLimits$gap[3])/2),y=ypos)
+             hjust<-0.5
+           },
+           "right"={
+             data<-data.frame(x=(1-braw.env$plotLimits$gap[3]),y=ypos)
+             hjust<-1
+           },
+    )
+  axisText(rangeXY(data),label,hjust=hjust,vjust=1,size=size,fontface=fontface)
 }
 
 xAxisLabel<-function(label) {
