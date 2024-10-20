@@ -37,7 +37,7 @@ showEffect<-function(r,t=1,showValue=TRUE,plotArea=NULL,g=NULL){
 
   if (!is.null(plotArea)) braw.env$plotArea<-plotArea
   
-  g<-startPlot(xlim=c(-1,1),ylim=c(0,1),back="transparent",box="none",g=g,fontScale=1)
+  g<-startPlot(xlim=c(-1,1),ylim=c(0,1),back="transparent",box="none",g=g)
   
   switch (t,
           {start=c(0,0.92)

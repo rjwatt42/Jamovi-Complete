@@ -82,18 +82,17 @@ reSizeFont<-function(size) {
 }
 
 plotLimits<-function(xlim,ylim,orientation="horz",gaps=c(1,1,0,0),fontScale=1) {
-  if (is.null(fontScale)) {
-    ez<-3
-    fontScale<-max(0.3,min(braw.env$plotArea[3:4]))^(1/ez)
-  }
-  gaps<-gaps*fontScale*1.1
-  
+    ez<-2
+    fS<-1.2*fontScale*max(0.3,min(braw.env$plotArea[3:4]))^(1/ez)
+    magnification<-max(0.3,min(braw.env$plotArea[3:4]))^(1/ez)/max(0.3,min(braw.env$plotArea[3:4]))
+    gaps<-gaps*magnification
+    
   switch(orientation,
          "horz"={braw.env$plotLimits<-list(xlim=xlim,ylim=ylim,xsc=xlim,ysc=ylim,
-                                           orientation=orientation,gap=gaps,fontScale=fontScale,
+                                           orientation=orientation,gap=gaps,fontScale=fS,
                                            xAxisTickSize=5,yAxisTickSize=5)},
          "vert"={braw.env$plotLimits<-list(xlim=xlim,ylim=ylim,xsc=ylim,ysc=xlim,
-                                           orientation=orientation,gap=gaps[c(2,1,4,3)],fontScale=fontScale,
+                                           orientation=orientation,gap=gaps[c(2,1,4,3)],fontScale=fS,
                                            xAxisTickSize=5,yAxisTickSize=5)}
          )
 }
@@ -112,8 +111,7 @@ nullPlot<-function() {
 }
 
 startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="Both",top=FALSE,tight=FALSE,
-                    backC=braw.env$plotColours$graphBack,orientation="horz",fontScale=NULL,g=NULL) {
-  fontScale<-NULL
+                    backC=braw.env$plotColours$graphBack,orientation="horz",fontScale=1,g=NULL) {
   minGap<-0.025
   topGap<-0.1
   bottomGap<-0.1
@@ -240,8 +238,7 @@ xAxisTicks<-function(breaks=NULL,labels=NULL,logScale=FALSE,angle=0){
   )
 }
 yAxisLabel<-function(label){
-  voff<-braw.env$plotLimits$yAxisTickSize
-  
+
   axis<-data.frame(x=rangeX(0.035),y=reRangeY(mean(braw.env$plotLimits$ylim)))
   switch(braw.env$plotLimits$orientation,
          "vert"={
@@ -439,6 +436,7 @@ dataPoint<-function(data,shape=21,colour="black",fill="white",alpha=1,size=3) {
   axisPoint(data=data,shape=shape,colour=colour,fill=fill,alpha=alpha,size=size)
 }
 axisPoint<-function(data,shape=21,colour="black",fill="white",alpha=1,size=3) {
+  size<-size*braw.env$plotArea[4]
     if (!braw.env$graphHTML) {
     if (is.null(data$fill)) {
       g<-geom_point(data=data,aes(x=x,y=y),shape=shape,colour=colour,fill=fill,alpha=alpha,size=size)

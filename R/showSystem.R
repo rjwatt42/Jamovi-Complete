@@ -15,10 +15,10 @@ showSystem<-function(hypothesis=braw.def$hypothesis,design=braw.def$design,evide
   ygain<-0.95
   g<-NULL
   if (is.null(hypothesis$IV2))
-    g<-showHypothesis(hypothesis=hypothesis,doWorld=TRUE,plotArea=c(0.0,0.1,0.45,0.75),g=g)
+    g<-showHypothesis(hypothesis=hypothesis,doWorld=TRUE,plotArea=c(0.0,0.05,0.45,0.8),g=g)
   else
-    g<-showHypothesis(hypothesis=hypothesis,doWorld=TRUE,plotArea=c(0.0,0.1,0.33,0.75),g=g)
-  g<-showDesign(hypothesis=hypothesis,design=design,plotArea=c(0.33,0.3,0.33,0.4),g=g)
+    g<-showHypothesis(hypothesis=hypothesis,doWorld=TRUE,plotArea=c(0.0,0.05,0.33,0.8),g=g)
+  g<-showDesign(hypothesis=hypothesis,design=design,plotArea=c(0.33,0.3,0.33,0.33),g=g)
   g<-showPrediction(hypothesis=hypothesis,design=design,evidence=evidence,plotArea=c(0.65,0.55,0.33,0.4),g=g)
   g<-showWorldSampling(hypothesis=hypothesis,design=design,sigOnly=FALSE,plotArea=c(0.65,0.05,0.33,0.4),g=g)
   
@@ -98,7 +98,7 @@ showWorld<-function(hypothesis=braw.def$hypothesis,plotArea=c(0,0,1,1),g=NULL) {
   range<-braw.env$r_range
   if (braw.env$RZ=="z"){range<-tanh(braw.env$z_range)}
 
-  g<-startPlot(xlim=c(-1,1)*range,ylim=c(0,1.05),box="x",g=g,fontScale=1)
+  g<-startPlot(xlim=c(-1,1)*range,ylim=c(0,1.05),box="x",g=g)
   # if (world$worldAbs) {
   #   rx<-seq(0,1,length.out=braw.env$worldNPoints)*range
   # } else {
