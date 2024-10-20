@@ -85,8 +85,8 @@ plotLimits<-function(xlim,ylim,orientation="horz",gaps=c(1,1,0,0),fontScale=1) {
   if (is.null(fontScale)) {
     ez<-3
     fontScale<-max(0.3,min(braw.env$plotArea[3:4]))^(1/ez)
-    gaps<-gaps*(fontScale/fontScale^ez)*0.8
   }
+  gaps<-gaps*fontScale*1.1
   
   switch(orientation,
          "horz"={braw.env$plotLimits<-list(xlim=xlim,ylim=ylim,xsc=xlim,ysc=ylim,
@@ -115,27 +115,30 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="Both",top=FALSE,tight
                     backC=braw.env$plotColours$graphBack,orientation="horz",fontScale=NULL,g=NULL) {
   fontScale<-NULL
   minGap<-0.025
-  xGap<-0.125
-  yGap<-0.15
+  topGap<-0.1
+  bottomGap<-0.1
+  leftGap<-0.12
   if (tight) maxGap<-0.075
   # gaps is left, bottom, right, top
   if (is.null(gaps)) {
-  switch(box,
-         "X"=gaps<-c(0,xGap),
-         "x"=gaps<-c(minGap,xGap),
-         "Y"=gaps<-c(yGap,0),
-         "y"=gaps<-c(yGap,minGap),
-         "both"=gaps<-c(minGap,minGap),
-         "Both"=gaps<-c(yGap,xGap),
-         "none"=gaps<-c(0,0),
-         {gaps<-c(minGap,minGap)}
-  )
-  if (top) gaps<-c(gaps,minGap,xGap)
-  else gaps<-c(gaps,minGap,minGap)
+    switch(box,
+           "X"=gaps<-c(0,bottomGap),
+           "x"=gaps<-c(minGap,bottomGap),
+           "Y"=gaps<-c(leftGap,0),
+           "y"=gaps<-c(leftGap,minGap),
+           "both"=gaps<-c(minGap,minGap),
+           "Both"=gaps<-c(leftGap,bottomGap),
+           "none"=gaps<-c(0,0),
+           {gaps<-c(minGap,minGap)}
+    )
+    if (top) gaps<-c(gaps,minGap,topGap)
+    else gaps<-c(gaps,minGap,minGap)
   } else {
-    gaps<-gaps*c(yGap,xGap,yGap,xGap)
+    gaps<-gaps*c(leftGap,bottomGap,leftGap,bottomGap)
   }
-  if (svgBoxX()>svgBoxY()) gaps[c(1,3)]<-gaps[c(1,3)]*svgBoxY()/svgBoxX()
+  ratio<-svgBoxX()/svgBoxY()*braw.env$plotArea[3]/braw.env$plotArea[4]
+  if (ratio>1) gaps[c(1,3)]<-gaps[c(1,3)]/ratio
+  if (ratio<1) gaps[c(2,4)]<-gaps[c(2,4)]*ratio
   plotLimits(xlim = xlim, ylim = ylim,orientation=orientation,gaps,fontScale=fontScale)
   
   if (is.null(g)) g<-nullPlot()
@@ -173,7 +176,7 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="Both",top=FALSE,tight
 }
 
 plotTitle<-function(label,position="centre",size=1.25,fontface="bold") {
-  ypos<-1 # -braw.env$plotLimits$gap[4]
+  ypos<-1-braw.env$plotLimits$gap[4]
     switch(position,
            "left"={
              data<-data.frame(x=(braw.env$plotLimits$gap[1]), y=ypos)
@@ -188,7 +191,7 @@ plotTitle<-function(label,position="centre",size=1.25,fontface="bold") {
              hjust<-1
            },
     )
-  axisText(rangeXY(data),label,hjust=hjust,vjust=1,size=size,fontface=fontface)
+  axisText(rangeXY(data),label,hjust=hjust,vjust=0.0,size=size,fontface=fontface)
 }
 
 xAxisLabel<-function(label) {

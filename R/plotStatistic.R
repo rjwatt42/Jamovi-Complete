@@ -344,6 +344,11 @@ expected_plot<-function(g,pts,showType=NULL,analysis=NULL,IV=NULL,DV=NULL,
   }
   
   if (length(pts$y1)<=npointsMax) {
+    if (is.logical(pts$y2)) {
+      use<-rev(order(pts$y2))
+      pts<-pts[use,]
+    }
+    
     if (!is.null(analysis) && is.element(showType,c("rs","p")) && length(pts$y1)==1) {
       # if (is.null(analysis$hypothesis$IV2)) {
         if (showType=="rs"){
