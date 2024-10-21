@@ -1304,6 +1304,24 @@ options:
       type: Output
       default: FALSE
       
+    # - name: showHelp
+    #   title: help
+    #   type: List
+    #   options:
+    #   - name: none
+    #     title: none
+    #   - name: Plan
+    #     title: Plan
+    #   - name: Single
+    #     title: Single
+    #   - name: Multiple
+    #     title: Multiple
+    #   - name: Explore
+    #     title: Explore
+    #   - name: Key
+    #     title: Key
+    #   default: none
+      
     - name: showJamovi
       title: instructions?
       type: Bool

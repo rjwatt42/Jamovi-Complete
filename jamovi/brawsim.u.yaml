@@ -1699,3 +1699,5 @@ children:
                 name: showJamovi
               - type: CheckBox
                 name: showHTML
+              # - type: ComboBox
+              #   name: showHelp

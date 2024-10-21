@@ -385,7 +385,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                  "Sample"= self$results$graphHTML$setContent(showSample()),
                  "Describe"= self$results$graphHTML$setContent(showDescription()),
                  "Infer"= self$results$graphHTML$setContent(showInference(showType=showInferParam,dimension=showInferDimension)),
-                 "Likelihood"=self$results$graphHTML$setContent(showLikelihood(cutaway=likelihoodCutaway)),
+                 "Likelihood"=self$results$graphHTML$setContent(showPossible(cutaway=likelihoodCutaway)),
                  "Multiple"= self$results$graphHTML$setContent(showExpected(showType=showMultipleParam,dimension=showMultipleDimension,effectType=whichShowMultipleOut)),
                  "Explore"= self$results$graphHTML$setContent(showExplore(showType=showExploreParam,dimension=showExploreDimension,effectType=whichShowExploreOut)),
                  self$results$reportPlot$graphHTML(NULL)
