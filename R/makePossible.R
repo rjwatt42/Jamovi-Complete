@@ -17,7 +17,7 @@
 #' @export
 makePossible<-function(typePossible="Populations",targetSample=NULL,
                        UseSource="world",
-                       UsePrior="none",prior=getWorld("Psych"),targetPopulation=NULL,
+                       UsePrior="none",prior=getWorld("Psych"),targetPopulation=NA,
                        hypothesis=braw.def$hypothesis,design=braw.def$design,
                        simSlice=0.1,correction=TRUE,
                        possibleResult=NULL,appendSim=FALSE,possibleLength="10"

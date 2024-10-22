@@ -3,7 +3,7 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                  initialize = function() {
                                  },
 
-                                 generate_tab = function(title="Tab",tabs=c("1","2","3"),tabContents=c("a","b","c"),open=0,colours=c("#3498db","#80CCFF"),fontSize="12px",plain=FALSE,width=550,height=NULL) {
+                                 generate_tab = function(title="Tab",tabs=c("1","2","3"),tabContents=c("a","b","c"),colours=c("#3498db","#80CCFF"),fontSize="12px",plain=FALSE,width=550,height=NULL) {
                                    if (is.null(height)) ht<-'' else ht<-paste0('height: ',height,'px;')
                                    script<-paste0(
                                      '<script>',
@@ -111,9 +111,8 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                                        '  <button class="tablinks" onclick="openTab(event,\'',panelID,'\')">',
                                                        tabs[itab],
                                                        '</button>')
-                                     if (itab==open) display<-'style="display:block"' else display<-'style="display:none"' 
                                      panels <- paste0(panels,
-                                                      '  <div id="',panelID,'" class="tabcontent"',display,'>',
+                                                      '  <div id="',panelID,'" class="tabcontent">',
                                                       tabContents[itab],
                                                       '</div>')
                                    }
