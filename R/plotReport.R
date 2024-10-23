@@ -242,16 +242,16 @@ reportPlot<-function(outputText,nc,nr,fontSize=0.85,maxRows=14,renderAsHTML=braw
     mathlabel<-grepl("['^']{1}",label) || grepl("['[']{1}",label)
     if (any(mathlabel)) parse<-TRUE
     pts<-data.frame(x=x,y=top+1-y)
-    g<-addG(g,geom_label(data=pts,aes(x=x, y=y), label=label,fontface=fontface, 
+    g<-g+geom_label(data=pts,aes(x=x, y=y), label=label,fontface=fontface, 
                                          hjust=hjust, vjust=0, 
                                          size=font_size*sz, 
                                          col=col,fill=fill,
                                          parse=parse,
-                                         label.size=NA,label.padding=unit(0,"lines"))
+                                         label.size=NA,label.padding=unit(0,"lines")
     )
   }
   
-  g<-addG(g,labs(x="  ",y="  "))
-  g<-addG(g,coord_cartesian(xlim = c(1-margin,edge+margin), ylim = c(1-margin,top+margin)))
+  g<-g+labs(x="  ",y="  ")
+  g<-g+coord_cartesian(xlim = c(1-margin,edge+margin), ylim = c(1-margin,top+margin))
   return(g)
 }

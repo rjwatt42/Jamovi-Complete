@@ -372,7 +372,7 @@ axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,d
     labels<-""
     for (i in 1:length(x)) {
       thisLabel<-label[i]
-      thisLabel<-gsub('\\[([^ ]*)\\]',
+      thisLabel<-gsub('\\[([^ ]*?)\\]',
                       paste0('</tspan><tspan baseline-shift="sub" font-size="',
                              reSizeFont(size*3)*0.8,'">\\1</tspan><tspan>'),
                       thisLabel)
@@ -408,13 +408,16 @@ dataPath<-function(data,arrow=NULL,colour="black",linetype="solid",linewidth=0.2
   axisPath(data,arrow=arrow,colour=colour,linetype=linetype,linewidth=linewidth,alpha=alpha)
   }
 axisPath<-function(data,arrow=NULL,colour="black",linetype="solid",linewidth=0.25,alpha=1) {
-    if (!braw.env$graphHTML) {
+  if (!braw.env$graphHTML) {
     g<-geom_path(data=data,aes(x=x,y=y),arrow=arrow,colour=colour,alpha=alpha,
                  linetype=linetype,linewidth=linewidth)
   } else {
-    linestyle<-paste0(' fill="none" stroke="',colour,
-                      '" stroke-width="',linewidth,'"',
-                      '" stroke-opacity="',alpha,'"')
+    ls<-''
+    if (linetype=="dotted") ls<-' stroke-dasharray="2,2"'
+    linestyle<-paste0(' fill="none" stroke="',colour,'"',
+                      ls,
+                      ' stroke-width="',linewidth,'"',
+                      ' stroke-opacity="',alpha,'"')
     x<-svgX(data$x)
     y<-svgY(data$y)
     points<-' points="'
@@ -447,8 +450,8 @@ axisPoint<-function(data,shape=21,colour="black",fill="white",alpha=1,size=3) {
     x<-svgX(data$x)
     y<-svgY(data$y)
     if (length(x)==0) return("")
-    sz<-size*1.2
     if (shape==21) {
+      sz<-size*4/pi
       g<-""
       for (i in 1:length(x)) {
         g<-paste0(g,
@@ -462,10 +465,11 @@ axisPoint<-function(data,shape=21,colour="black",fill="white",alpha=1,size=3) {
       if (shape==22) tr="" 
       else           tr=paste0(' transform=rotate(45,',format(x[i]),',',format(y[i]),')')
       g<-""
+      sz<-size
       for (i in 1:length(x)) {
         g<-paste0(g,
-                  '<rect x="',format(x[i]-sz/2),'" y="',format(y[i]-sz/2),'"',
-                  ' width="',sz,'"',' height="',sz,'"',
+                  '<rect x="',format(x[i]-sz),'" y="',format(y[i]-sz),'"',
+                  ' width="',sz*2,'"',' height="',sz*2,'"',
                   ' rx="0" ry="0"',
                   ' fill="',fill,'"',
                   ' stroke="',colour,'" stroke-width="1"',
@@ -484,6 +488,7 @@ dataPolygon<-function(data,colour="black",fill="white",alpha=1,linewidth=0.25) {
 }
 axisPolygon<-function(data,colour="black",fill="white",alpha=1,linewidth=0.25) {
   if (!braw.env$graphHTML) {
+    if (colour=="none") colour=NA
     if (!is.null(data$ids)) {
     g<-geom_polygon(data=data,aes(x=x,y=y,group=ids,alpha=alpha*value),colour = colour, fill = fill,linewidth=linewidth)
   } else {
