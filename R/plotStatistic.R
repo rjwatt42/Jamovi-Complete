@@ -74,28 +74,37 @@ makeFiddle<-function(y,yd,orientation="horiz"){
   xz<-c()
   xd<-0.15
   
+  d<-0.05
   for (i in 1:length(y)){
-    found<-(abs(yz-y[i])<yd)
+    found<-(abs(reRangeY(yz)-reRangeY(y[i]))<d)
     if (any(found,na.rm=TRUE)) {
-      x_max<-max(xz[found],na.rm=TRUE)
-      x_which<-which.max(xz[found])
-      y_at_max<-yz[found][x_which]
-      x_min<-min(xz[found],na.rm=TRUE)
-      x_which<-which.min(xz[found])
-      y_at_min<-yz[found][x_which]
-      if (orientation=="vert" && abs(x_min)<x_max) {
-        x_inc<-sqrt(1-((y[i]-y_at_min)/yd)^2)
-        xz<-c(xz,x_min-x_inc*xd)
-        yz<-c(yz,y[i])
-      } else {
-        x_inc<-sqrt(1-((y[i]-y_at_max)/yd)^2)
-        xz<-c(xz,x_max+x_inc*xd)
-        yz<-c(yz,y[i])
-      }
+      xdiff<-sqrt(d^2-(reRangeY(yz[found])-reRangeY(y[i]))^2)
+      xpos1<-reRangeX(xz[found])+xdiff
+      xpos2<-reRangeX(xz[found])-xdiff
+      if (all(xpos1<reRangeX(0))) usex1<-reRangeX(0) else usex1<-max(xpos1)
+      if (all(xpos2>reRangeX(0))) usex2<-reRangeX(0) else usex2<-min(xpos2)
+      if (abs(usex1-reRangeX(0))<abs(usex2-reRangeX(0))) usex<-usex1 else usex<-usex2
+      usex<-re2RangeX(usex)
+      # x_max<-max(xz[found],na.rm=TRUE)
+      # x_which<-which.max(xz[found])
+      # y_at_max<-yz[found][x_which]
+      # x_min<-min(xz[found],na.rm=TRUE)
+      # x_which<-which.min(xz[found])
+      # y_at_min<-yz[found][x_which]
+      # if (orientation=="vert" && abs(x_min)<x_max) {
+      #   x_inc<-sqrt(1-((y[i]-y_at_min)/yd)^2)
+      #   xz<-c(xz,x_min-x_inc*xd)
+      #   yz<-c(yz,y[i])
+      # } else {
+      #   x_inc<-sqrt(1-((y[i]-y_at_max)/yd)^2)
+      #   xz<-c(xz,x_max+x_inc*xd)
+      #   yz<-c(yz,y[i])
+      # }
+      xz<-c(xz,usex)
     } else {
       xz<-c(xz,0)
-      yz<-c(yz,y[i])
     }
+    yz<-c(yz,y[i])
   }
   if (orientation=="horz") xz<-xz/2
   return(xz)
@@ -344,10 +353,17 @@ expected_plot<-function(g,pts,showType=NULL,analysis=NULL,IV=NULL,DV=NULL,
   }
   
   if (length(pts$y1)<=npointsMax) {
-    # if (is.logical(pts$y2)) {
-      # use<-rev(order(pts$y2))
-      # pts<-pts[use,]
-    # }
+    if (is.logical(pts$y2)) {
+      p1<-pts$y1[pts$y2]
+      p2<-pts$y1[!pts$y2]
+      if (!isempty(p1) && !isempty(p2)) {
+        doSort <- any(p1<max(p2) & p1>min(p2)) || any(p2<max(p1) & p2>min(p1))
+        if (doSort) {
+          use<-rev(order(pts$y2))
+          pts<-pts[use,]
+        }
+      }
+    }
     
     if (!is.null(analysis) && is.element(showType,c("rs","p")) && length(pts$y1)==1) {
       # if (is.null(analysis$hypothesis$IV2)) {
@@ -378,7 +394,7 @@ expected_plot<-function(g,pts,showType=NULL,analysis=NULL,IV=NULL,DV=NULL,
       # }
     }
     
-    xr<-makeFiddle(pts$y1,2/40,orientation)*scale*scale
+    xr<-makeFiddle(pts$y1,2/40/braw.env$plotArea[4],orientation)*scale*scale
     if (max(abs(xr))>0) xr<-xr/max(abs(xr))/1.5
     pts$x<-pts$x+xr
     gain<-7/max(7,sqrt(length(xr)))

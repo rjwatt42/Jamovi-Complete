@@ -43,6 +43,21 @@ reRangeX<-function(x) {
   x<-(x*(1-gap0)+gap1)*braw.env$plotArea[3]+braw.env$plotArea[1]
   return(x)
 }
+re2RangeX<-function(x) {
+  if (!is.null(braw.env$plotLimits)){
+    gap0<-braw.env$plotLimits$gap[1]+braw.env$plotLimits$gap[3]
+    gap1<-braw.env$plotLimits$gap[1]
+  } else {
+    gap0<-0
+    gap1<-0
+  }
+  # x<-(x*(1-gap0)+gap1)*braw.env$plotArea[3]+braw.env$plotArea[1]
+  x<-((x-braw.env$plotArea[1])/braw.env$plotArea[3]-gap1)/(1-gap0)
+  if (!is.null(braw.env$plotLimits)){
+    x<-x*diff(braw.env$plotLimits$xsc)+braw.env$plotLimits$xsc[1]
+  }
+  return(x)
+}
 rangeX<-function(x) {
   x<-x*braw.env$plotArea[3]+braw.env$plotArea[1]
   return(x)
@@ -372,7 +387,7 @@ axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,d
     labels<-""
     for (i in 1:length(x)) {
       thisLabel<-label[i]
-      thisLabel<-gsub('\\[([^ ]*?)\\]',
+      thisLabel<-gsub('\\[([^ ]*)\\]',
                       paste0('</tspan><tspan baseline-shift="sub" font-size="',
                              reSizeFont(size*3)*0.8,'">\\1</tspan><tspan>'),
                       thisLabel)
@@ -462,14 +477,14 @@ axisPoint<-function(data,shape=21,colour="black",fill="white",alpha=1,size=3) {
         )
       }
     } else {
+      sz<-size*3
       if (shape==22) tr="" 
       else           tr=paste0(' transform=rotate(45,',format(x[i]),',',format(y[i]),')')
       g<-""
-      sz<-size
       for (i in 1:length(x)) {
         g<-paste0(g,
-                  '<rect x="',format(x[i]-sz),'" y="',format(y[i]-sz),'"',
-                  ' width="',sz*2,'"',' height="',sz*2,'"',
+                  '<rect x="',format(x[i]-sz/2),'" y="',format(y[i]-sz/2),'"',
+                  ' width="',sz,'"',' height="',sz,'"',
                   ' rx="0" ry="0"',
                   ' fill="',fill,'"',
                   ' stroke="',colour,'" stroke-width="1"',
@@ -488,7 +503,7 @@ dataPolygon<-function(data,colour="black",fill="white",alpha=1,linewidth=0.25) {
 }
 axisPolygon<-function(data,colour="black",fill="white",alpha=1,linewidth=0.25) {
   if (!braw.env$graphHTML) {
-    if (colour=="none") colour=NA
+    if (!is.na(colour) && colour=="none") colour=NA
     if (!is.null(data$ids)) {
     g<-geom_polygon(data=data,aes(x=x,y=y,group=ids,alpha=alpha*value),colour = colour, fill = fill,linewidth=linewidth)
   } else {
@@ -506,6 +521,7 @@ axisPolygon<-function(data,colour="black",fill="white",alpha=1,linewidth=0.25) {
       for (i in seq(1,length(x),4)) {
         linestyle<-paste0(' fill="',fill,'" stroke="',colour,'"',
                           ' fill-opacity="',alpha*data$value[i],'"',
+                          ' stroke="',colour,'"',
                           ' stroke-width="',linewidth*2,'"',
                           ' stroke-opacity="',1,'"')
         points<-' points="'
