@@ -35,18 +35,20 @@ densityFunctionStats<-function(dens_r,rp){
 
 describePossibleSamples<-function(possibleResult) {
   
+  if (is.null(possibleResult$Sims$r)) return(NULL)
   pRho<-possibleResult$pRho
-  pRhogain<-possibleResult$pRhogain
+  if (is.null(pRho)) pRho<-0
+  pRhogain<-1
   
-  sr_effectR<-possibleResult$Sims$sSims
+  sr_effectR<-matrix(possibleResult$Sims$r,nrow=1)
   sSimDens<-c()
   if (!isempty(sr_effectR)) {
-    if (RZ=="z") {
+    if (braw.env$RZ=="z") {
       use_effects<-atanh(sr_effectR)
-      hist_range<-z_range
+      hist_range<-braw.env$z_range
     } else {
       use_effects<-sr_effectR
-      hist_range<-r_range
+      hist_range<-braw.env$r_range
     }
     binWidth<-2*IQR(use_effects)/length(use_effects)^(1/3)
     nbins=round(2/binWidth)
@@ -56,14 +58,10 @@ describePossibleSamples<-function(possibleResult) {
       h<-hist(use_effects[i,use_data],sSimBins,plot=FALSE)$counts
       sSimDens<-rbind(sSimDens,h*pRhogain[i]/(1-tanh(pRho[i])^2))
     }
-    
-    rsSim_ci=quantile(use_effects,c(0.025,0.975))
-    rsSim_peak=sSimBins[which.max(sSimDens)]+sSimBins[2]-sSimBins[1]
-    rsSim_sd<-sd(use_effects,na.rm=TRUE)
-    
+
     result<-list(sr_effectR=sr_effectR,
-                 sSimBins=sSimBins,sSimDens=sSimDens,
-                 rsSim_peak=rsSim_peak,rsSim_sd=rsSim_sd,rsSim_ci=rsSim_ci)
+                 sSimBins=sSimBins,sSimDens=sSimDens
+                 )
   } else {
     result<-NULL
   }
@@ -75,28 +73,26 @@ describePossiblePopulations<-function(possibleResult,possible) {
   
   sRho<-possibleResult$sRho
   
-  pr_effectR<-possibleResult$Sims$pSims
-  pr_effectRP<-possibleResult$Sims$pSimsP
-  pr_effectN<-possibleResult$Sims$pSimsN
+  pr_effectR<-possibleResult$Sims$r
+  pr_effectRP<-possibleResult$Sims$rp
+  pr_effectN<-possibleResult$Sims$n
   
   if (!isempty(pr_effectRP)) {
-    pr_effectW<-rn2w(pr_effectRP,pr_effectN)
-    
+
     # do this in z - for symmetry
     keep<-abs(atanh(pr_effectR)-sRho[1])<possible$simSlice
     pr_effectRP_slice<-pr_effectRP[keep]
-    pr_effectW_slice<-pr_effectW[keep]
-    
+
     if (braw.env$RZ=="z") {
       use_effectRP_slice<-atanh(pr_effectRP_slice)
       use_effectR<-atanh(pr_effectR)
       use_effectRP<-atanh(pr_effectRP)
-      hist_range<-z_range
+      hist_range<-braw.env$z_range
     } else {
       use_effectRP_slice<-pr_effectRP_slice
       use_effectR<-pr_effectR
       use_effectRP<-pr_effectRP
-      hist_range<-1
+      hist_range<-braw.env$r_range
     }
     
     if (possible$prior$populationPDF=="Single" || possible$prior$populationPDF=="Double") {
@@ -106,8 +102,7 @@ describePossiblePopulations<-function(possibleResult,possible) {
     }
     nbins=max(10,round(2/binWidth))
     pSimBins<-seq(-1,1,length.out=nbins+1)*hist_range
-    pSimBinsW<-seq(braw.env$w_range[1],braw.env$w_range[2],length.out=nbins+1)
-    
+
     keep<-abs(use_effectRP_slice)<hist_range
     pSimDens_slice<-hist(use_effectRP_slice[keep],pSimBins,plot=FALSE)$counts
     
@@ -117,22 +112,10 @@ describePossiblePopulations<-function(possibleResult,possible) {
     keep<-abs(use_effectR)<hist_range
     pSimDensR<-hist(use_effectR[keep],pSimBins,plot=FALSE)$counts
     
-    keep<-pr_effectW_slice>=braw.env$w_range[1] & pr_effectW_slice<=braw.env$w_range[2]
-    pSimDensW<-hist(pr_effectW_slice[keep],pSimBinsW,plot=FALSE)$counts
-    
-    rpSim_ci=quantile(use_effectRP_slice,c(0.025,0.975))
-    rpSim_peak=pSimBins[which.max(pSimDens_slice)]+pSimBins[2]-pSimBins[1]
-    rpSim_sd<-sd(use_effectRP_slice,na.rm=TRUE)
-    rpSimWaste<-sum(!keep)
-    wpSim_peak<-pSimBinsW[which.max(pSimDensW)]+pSimBinsW[2]-pSimBinsW[1]
-    wpSim_mean<-mean(pr_effectW_slice,na.rm=TRUE)
-    wpSimWaste<-sum(!keep)
-    
-    result<-list(pr_effectR=pr_effectR,pr_effectRP=pr_effectRP,pr_effectN=pr_effectN,pr_effectW=pr_effectW,
+    result<-list(pr_effectR=pr_effectR,pr_effectRP=pr_effectRP,
                  pSimBins=pSimBins,
-                 pSimDens_slice=pSimDens_slice,pSimDensRP=pSimDensRP,pSimDensR=pSimDensR,pSimDensW=pSimDensW,
-                 rpSim_ci=rpSim_ci,rpSim_peak=rpSim_peak,rpSim_sd=rpSim_sd,rpSimWaste=rpSimWaste,
-                 wpSim_peak=wpSim_peak,wpSim_mean=wpSim_mean,wpSimWaste=wpSimWaste
+                 pSimDens_slice=pSimDens_slice,
+                 pSimDensRP=pSimDensRP,pSimDensR=pSimDensR
     )
   } else {
     result<-NULL
@@ -150,7 +133,8 @@ describePossiblePopulations<-function(possibleResult,possible) {
 #'                        view="3D",axisScale=1,
 #'                        azimuth=30,elevation=5,distance=2)
 #' @export
-showPossible <- function(possibleResult=braw.res$possibleResult,
+showPossible <- function(possibleResult=NULL,
+                         showType="Populations",
                          cutaway=FALSE,walls=TRUE,showP=0,
                          view="3D",axisScale=1,
                          azimuth=60,elevation=15,distance=8){
@@ -174,7 +158,7 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
   colPdark=darken(colP,off=-0.67)
   colPlight=darken(colP,off=0.25)
   colPsim=darken(colP,off=-0.33)
-  
+
   colPop="#000000"
   colVline="#000000"
   
@@ -186,9 +170,8 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
   xylabelSize=1.1
   zlabelSize=0.7
   tickLabelSize<-0.6
-  textSize<-0.6
   
-  if (possible$type=="Samples") logZ<-FALSE else logZ<-FALSE 
+  if (showType=="Samples") logZ<-FALSE else logZ<-FALSE 
   if (logZ) wallHeight<-1 else wallHeight<-1.2
   magRange<-0.5
   
@@ -211,9 +194,10 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
           "prior"={possible$source<-possible$prior},
           "null"={possible$source<-list(worldOn=TRUE,populationPDF="Single",populationPDFk=0,populationRZ="r",populationNullp=0)}
   )
+  if (showType=="Samples") possible$UsePrior<-"hypothesis"
   # make the distribution        
   
-  switch (possible$type,
+  switch (showType,
           "Samples"={
             label.z<-"Probability Density"
             col=colP
@@ -243,27 +227,24 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
   priorSampDens_r_plus<-possibleResult$Theory$priorSampDens_r_plus
   
   # make the histograms
-  switch (possible$type,
-          "Samples"={
-            srAnalysis<-describePossibleSamples(possibleResult)
-            sSimBins<-srAnalysis$sSimBins
-            sSimDens<-srAnalysis$sSimDens
-          },
-          "Populations"={
-            prAnalysis<-describePossiblePopulations(possibleResult,possible)
-            pSimBins<-prAnalysis$pSimBins
-            pSimDens_slice<-prAnalysis$pSimDens_slice
-            pSimDensRP<-prAnalysis$pSimDensRP
-            pSimDensR<-prAnalysis$pSimDensR
-            
-            pSimBinsW<-prAnalysis$pSimBinsW
-            pSimDensW<-prAnalysis$pSimDensW
-          }
-  )
+  srAnalysis<-describePossibleSamples(possibleResult)
+  sSimBins<-srAnalysis$sSimBins
+  sSimDens<-srAnalysis$sSimDens
+  prAnalysis<-describePossiblePopulations(possibleResult,possible)
+  pSimBins<-prAnalysis$pSimBins
+  pSimDens_slice<-prAnalysis$pSimDens_slice
+  pSimDensRP<-prAnalysis$pSimDensRP
+  pSimDensR<-prAnalysis$pSimDensR
+  # switch (showType,
+  #         "Samples"={
+  #         },
+  #         "Populations"={
+  #         }
+  # )
   
   # make the back wall population distributions
   rpw<-rp
-  if (possible$type=="Samples") {
+  if (showType=="Samples") {
     rpw_dens<-possibleResult$Theory$sourcePopDens_r
   } else {
     rpw_dens<-possibleResult$Theory$priorPopDens_r
@@ -292,7 +273,7 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
   if (length(sourceRVals)<8) draw_lower_limit=0.000001
   else                       draw_lower_limit=0.01
   if (logZ) {
-    if (possible$type=="Samples") {
+    if (showType=="Samples") {
       zlim<-c(-2,0)
     } else {
       zlim<-c(-2,0)
@@ -309,7 +290,7 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
   }
   
   rpw_dens[rpw_dens>1 | is.na(rpw_dens)]<-1
-  # if (!(possible$type=="Populations" && possible$UsePrior=="none")) {
+  # if (!(showType=="Populations" && possible$UsePrior=="none")) {
     rsw_dens_plus<-rsw_dens_plus/max(rsw_dens,na.rm=TRUE)
     rsw_dens_null<-rsw_dens_null/max(rsw_dens,na.rm=TRUE)
   # }
@@ -487,12 +468,12 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
             # if (!cutaway && !is.null(possible$targetSample)) {
             #   lines(trans3d(x=xlim,y=c(0,0)+possible$targetSample,z=c(0,0)+zlim[1],pmat=mapping),col=colVline,lwd=1,lty=3)
             # }
-            if (possible$type=="Populations" && !is.null(possible$targetPopulation)) {
+            if (showType=="Populations" && !is.null(possible$targetPopulation)) {
               g<-addG(g,
                       dataPath(rotate3D(data.frame(x=c(0,0)+possible$targetPopulation,y=ylim,z=c(0,0)+zlim[1]),mapping),colour=colPop,linetype="dotted")
               )
             }
-            if (possible$type=="Samples" && !any(is.na(sourceRVals)) && length(sourceRVals)<8) {
+            if (showType=="Samples" && !any(is.na(sourceRVals)) && length(sourceRVals)<8) {
               for (s in sourceRVals)
                 g<-addG(g,
                         dataPath(rotate3D(data.frame(x=c(0,0)+s,y=ylim,z=c(0,0)+zlim[1]),mapping),colour=colVline,linetype="dotted")
@@ -552,7 +533,7 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
                         dataPolygon(rotate3D(data.frame(x=c(x[use[1]],x[use],x[use[length(use)]]),y=c(y[use[1]],y[use],y[use[length(use)]]),z=c(zlim[1],z[use],zlim[1])*wallHeight),mapping),fill=colP,alpha=0.25)
                 )
               }
-              if (possible$type=="Populations" && !is.null(possible$targetSample)) {
+              if (showType=="Populations" && !is.null(possible$targetSample)) {
                 # show peak likelihood on population back wall
                 if (rp_peak==0) colHere<-colNullS else colHere<-colDistS
                 dens_rp_peak<-approx(populationBackwall$rpw,populationBackwall$rpw_dens,rp_peak)$y
@@ -585,9 +566,12 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
                 ztotal[ztotal<zlim[1]]<-zlim[1]
               }
               use<- which((y>=ylim[1]) & (y<=ylim[2]))
-              # if (!(possible$type=="Populations" && possible$UsePrior=="none")) {
+              # if (!(showType=="Populations" && possible$UsePrior=="none")) {
               g<-addG(g,
-                      dataPolygon(rotate3D(data.frame(x=c(x[use[1]],x[use],x[use[length(use)]]),y=c(y[use[1]],y[use],y[use[length(use)]]),z=c(zlim[1],ztotal[use],zlim[1])*wallHeight),mapping),fill=colS,alpha=0.25)
+                      dataPolygon(rotate3D(data.frame(x=c(x[use[1]],x[use],x[use[length(use)]]),
+                                                      y=c(y[use[1]],y[use],y[use[length(use)]]),
+                                                      z=c(zlim[1],ztotal[use],zlim[1])*wallHeight),mapping),
+                                  fill=colS,alpha=0.25)
               )
                 # split into 2 parts  
                 if (possible$source$worldOn && possible$source$populationNullp>0){
@@ -662,9 +646,26 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
             # main distributions            
             theoryAlpha=0.8
             simAlpha<-1
-            switch (possible$type,
+            switch (showType,
                     "Samples"={
                       # draw simulations
+                      
+                      # sample wall
+                      if (!is.null(pSimDensR)) {
+                      x<-as.vector(matrix(c(pSimBins,pSimBins),2,byrow=TRUE))
+                      gainSim<-sum(pSimDensR)*diff(pSimBins[1:2])
+                      gainTheory<-sum(rsw_dens)*(rsw[2]-rsw[1])
+                      densS<-pSimDensR/(gainSim/gainTheory)
+                      if (max(densS)>1.2) {densS<-densS/max(densS)*1.2}
+                      yS<-c(0,as.vector(matrix(c(densS,densS),2,byrow=TRUE)),0)
+                      if (logZ) yS<-log10(yS)
+                      g<-addG(g,
+                              dataPolygon(rotate3D(data.frame(x=x*0+xlim[1],y=x,z=yS*wallHeight),
+                                                   mapping),fill=colSdark,alpha=0.25,colour="none")
+                      )
+                      }
+                      
+                      
                       if (length(sourceRVals)>1 && length(sourceRVals)<8) {
                         theoryAlpha<-0.45
                         simAlpha<-0.95
@@ -677,13 +678,13 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
                       if (!is.null(sSimDens)) {
                         theoryAlpha<-0.25
                         
-                        simgain<-mean(sourceSampDens_r)/mean(sSimDens)
+                        simgain<-mean(sourceSampDens_r_plus)/mean(sSimDens)
                         sSimDens<-sSimDens*simgain*pgain
                         if (cutaway) {
                           waste<-sum(sSimBins<=min(sRho))
                           use_s<-(waste):length(sSimBins)
-                          simBins<-simBins[use_s]
-                          simBins[1]<-min(sRho)
+                          sSimBins<-sSimBins[use_s]
+                          sSimBins[1]<-min(sRho)
                           use_s<-use_s[1:(length(use_s)-1)]
                         } else {
                           if (!is.matrix(sSimDens)) {
@@ -708,7 +709,10 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
                           z1[z1<zlim[1]]<-zlim[1]
                           use<-which(y1>=ylim[1] & y1<=ylim[2])
                           g<-addG(g,
-                                  dataPolygon(rotate3D(data.frame(x=rep(sourceRVals[i],length(use)),y=y1[use],z=z1[use]),mapping),fill=colSsim,alpha=simAlpha)
+                                  dataPolygon(rotate3D(data.frame(x=rep(sourceRVals[i],length(use)),
+                                                                  y=y1[use],
+                                                                  z=z1[use]),mapping),
+                                              fill=colSsim,alpha=simAlpha)
                           )
                         }
                         
@@ -723,6 +727,7 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
                             } 
 
                           r_use<-rs
+                          z_use[z_use<draw_lower_limit]<-0
                           while (length(z_use)>0 && any(z_use>0)) {
                             use1<-which(z_use>0)[1]
                             z_use<-z_use[use1:length(z_use)]
@@ -731,13 +736,16 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
                             rs_draw<-r_use[1:use2]
                             z_draw<-z_use[1:use2]
                             if (logZ) z_draw<-log10(z_draw)
-                            z_draw[z_draw<draw_lower_limit]<-NA
+                            # z_draw[z_draw<draw_lower_limit]<-0
                             use<-rs_draw>=ylim[1] & rs_draw<=ylim[2]
                             rs_use<-rs_draw[use]
                             if (sourceRVals[i]>=xlim[1] & sourceRVals[i]<=xlim[2]) {
+                              dL<-data.frame(x = rep(sourceRVals[i],length(rs_use)+2), 
+                                             y = c(rs_use[1],rs_use,rs_use[length(rs_use)]), 
+                                             z = c(zlim[1],z_draw[use],zlim[1]))
                               g<-addG(g,
-                                      dataPolygon(rotate3D(data.frame(x = rep(sourceRVals[i],length(rs_use)+2), y = c(rs_use[1],rs_use,rs_use[length(rs_use)]), z = c(zlim[1],z_draw[use],zlim[1])),mapping),fill=colP,alpha=theoryAlpha),
-                                      dataPath(rotate3D(data.frame(rep(sourceRVals[i],length(rs_use)+2), y = c(rs_use[1],rs_use,rs_use[length(rs_use)]), z = c(zlim[1],z_draw[use],zlim[1])),mapping),fill="#000000",alpha=theoryAlpha)
+                                      dataPolygon(rotate3D(dL,mapping),fill=colS,alpha=theoryAlpha),
+                                      dataPath(rotate3D(dL,mapping),alpha=theoryAlpha)
                               )
                             }
                             if (use2==length(z_use)) break
@@ -780,9 +788,9 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
                             cutZ<-c(cutZ,z)
                           }
                           for (si in 1:length(sRho)) {
-                            if (any(i==useVals) && (showP==0) && (cutaway || length(sourceRVals)<8) && z>=draw_lower_limit)  {
-                            # lines(trans3d(x=c(sourceRVals[i],sourceRVals[i]),y=c(sRho[si],sRho[si]),z=c(zlim[1],z),pmat=mapping),col="black", lwd=1)
-                            }
+                            # if (any(i==useVals) && (showP==0) && (cutaway || length(sourceRVals)<8) && z>=draw_lower_limit)  {
+                            #   lines(trans3d(x=c(sourceRVals[i],sourceRVals[i]),y=c(sRho[si],sRho[si]),z=c(zlim[1],z),pmat=mapping),col="black", lwd=1)
+                            # }
                             # connecting lines
                             if (!cutaway && doConnecting && length(sourceRVals)>5 && i<length(sourceRVals)) {
                               z1<-approx(rs,sourceSampDens_r_plus[i+1,],sRho[si])$y
@@ -821,6 +829,7 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
                         x<-as.vector(matrix(c(pSimBins,pSimBins),2,byrow=TRUE))
                         
                         # population wall
+                        if (sum(pSimDensRP>0)>1) {
                         gainSim<-sum(pSimDensRP)*diff(pSimBins[1:2])
                         gainTheory<-sum(rpw_dens)*diff(rpw[1:2])
                         densP<-pSimDensRP/(gainSim/gainTheory)
@@ -831,7 +840,8 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
                                 dataPolygon(rotate3D(data.frame(x=x,y=x*0+ylim[2],z=yP*wallHeight),
                                                      mapping),fill=colPdark,alpha=0.35,colour="none")
                         )
-
+                        }
+                        
                         # sample wall
                         gainSim<-sum(pSimDensR)*diff(pSimBins[1:2])
                         gainTheory<-sum(rsw_dens)*(rsw[2]-rsw[1])
@@ -853,10 +863,12 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
                         # if (max(dens)>1.2) {dens<-dens/max(dens)*1.2}
                         yRS<-c(0,as.vector(matrix(c(densRS,densRS),2,byrow=TRUE)),0)
                         if (logZ) yRS<-log10(yRS)
-                        g<-addG(g,
+                        if (sum(pSimDensRP>0)>1) {
+                          g<-addG(g,
                                 dataPolygon(rotate3D(data.frame(x=x,y=x*0+sRho[si],z=yRS),
                                                      mapping),fill=colPsim,colour=colPsim)
                         )
+                        }
                       }
                       # draw theory main distribution & lines
                       if (possible$showTheory){
@@ -939,7 +951,7 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
                                       dataText(rotate3D(data.frame(x=xlim[2],y=ylim[2],z=zlim[1]+xoff),
                                                         mapping),
                                                paste0(braw.env$RZ,"[s]=",brawFormat(sRho[1],digits=3)),
-                                               hjust=1,size=textSize,colour=colPdark)
+                                               hjust=1,size=0.8,colour=colPdark)
                               )
                               xoff<-xoff-diff(zlim)*0.085
                               llrA<-dnorm(atanh(sRho),mean=atanh(sRho),sd=1/sqrt(n-3))
@@ -949,7 +961,7 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
                                       dataText(rotate3D(data.frame(x=xlim[2],y=ylim[2],z=zlim[1]+xoff),
                                                         mapping),
                                                paste0("sLLR(",braw.env$RZ,"[s]/",braw.env$RZ,"[0])=",brawFormat(llr_0_rs,digits=3)),
-                                               hjust=1,size=textSize,colour=colPdark)
+                                               hjust=1,size=0.8,colour=colPdark)
                               )
                               if (possible$UsePrior!="none") {
                                 xoff<-xoff-diff(zlim)*0.085
@@ -974,7 +986,7 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
                                         dataText(rotate3D(data.frame(x=xlim[2],y=ylim[2],z=zlim[1]+xoff),
                                                           mapping),
                                                  paste0(braw.env$RZ,"[mle]=",brawFormat(rp_peak,digits=3)),
-                                                 hjust=1,size=textSize,colour=colPdark)
+                                                 hjust=1,size=0.8,colour=colPdark)
                                 )
                                 xoff<-xoff-diff(zlim)*0.085
                                 llr_0_mle<-log(approx(rs,colSums(priorSampDens_r_plus),sRho)$y/approx(rs,priorSampDens_r_null,sRho)$y)
@@ -982,7 +994,7 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
                                         dataText(rotate3D(data.frame(x=xlim[2],y=ylim[2],z=zlim[1]+xoff),
                                                           mapping),
                                                  paste0("dLLR(",braw.env$RZ,"[+]/",braw.env$RZ,"[0])=",brawFormat(llr_0_mle,digits=3)),
-                                                 hjust=1,size=textSize,colour=colPdark)
+                                                 hjust=1,size=0.8,colour=colPdark)
                                 )
                               }
                           }
@@ -1008,7 +1020,7 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
             par(bg=braw.env$plotColours$graphC,pin=c(1.33,1)*3,mar=c(5,5,1,1))
             
             # show the back wall
-            switch (possible$type,
+            switch (showType,
                     "Populations"={
                       rw<-rpw
                       rw_dens<-rpw_dens
@@ -1027,7 +1039,7 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
             
             rwd<-c(rw[1],rw,rw[length(rw)])
             rwd_dens<-c(0,rw_dens,0)
-            if (possible$type=="Samples") xlim<-ylim
+            if (showType=="Samples") xlim<-ylim
             plot(x=rwd,y=rwd_dens,xlab=xlabel,ylab=label.z,type="n",yaxt="n",font.lab=2, cex.lab=char3D,
                  xlim=xlim,ylim=zlim)
             axis(side = 2,  at=0, labels = FALSE, tck=-0.05)
@@ -1037,7 +1049,7 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
             rect(u[1], u[3], u[2], u[4], col=braw.env$plotColours$graphBack, border=NA)
             lines(xlim,c(0,0),col="black")
             
-            if (possible$type=="Populations") {
+            if (showType=="Populations") {
               # make the back wall
               polygon(x=rwd,y=rwd_dens,col=addTransparency(col,0.2))
               lines(x=rw,y=rw_dens,col=colDistS,lwd=2)
@@ -1051,7 +1063,7 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
             
             theoryAlpha=0.8
             # simulations
-            switch (possible$type,
+            switch (showType,
                     "Populations"={
                       if (!is.null(pSimDens_slice)) {
                         pSimDens_slice<-pSimDens_slice/max(pSimDens_slice)
@@ -1076,7 +1088,7 @@ showPossible <- function(possibleResult=braw.res$possibleResult,
             )
             
             if (possible$showTheory){
-              switch (possible$type,
+              switch (showType,
                       "Samples"={
                         if (!all(is.na(sourceSampDens_r_total))){
                           # main distributions

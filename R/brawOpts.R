@@ -281,6 +281,15 @@ BrawOpts<-function(BW=FALSE,graphC="normal",fontScale=1,graphicsSize=c(16,10),
           
 braw.env<<-braw.env          
 
+braw.res$result<-NULL 
+braw.res$expected<-NULL 
+braw.res$explore<-NULL 
+braw.res$metaResult<-NULL
+braw.res$metaMultiple<-NULL
+braw.res$possibleResult<-NULL
+
+braw.res<<-braw.res
+
 braw.def$IV<-makeVariable("IV")
 braw.def$IV2<-NULL
 braw.def$DV<-makeVariable("DV",cases="E1,E2")
@@ -291,19 +300,10 @@ braw.def$design<-makeDesign()
 braw.def$evidence<-makeEvidence()
 braw.def$metaAnalysis<-makeMetaAnalysis()
 braw.def$explore<-makeExplore()
-braw.def$possible<-makePossible(targetSample=0.3,
+braw.def$possible<-makePossible(targetSample=0.3,sims=NULL,
                                 hypothesis=braw.def$hypothesis,design=braw.def$design)
 
 braw.def<<-braw.def
-
-braw.res$result<-NULL 
-braw.res$expected<-NULL 
-braw.res$explore<-NULL 
-braw.res$metaResult<-NULL
-braw.res$metaMultiple<-NULL
-braw.res$possibleResult<-NULL
-
-braw.res<<-braw.res
 }
 
 setBrawEnv<-function(which,value) {

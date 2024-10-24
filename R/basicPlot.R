@@ -387,7 +387,7 @@ axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,d
     labels<-""
     for (i in 1:length(x)) {
       thisLabel<-label[i]
-      thisLabel<-gsub('\\[([^ ]*)\\]',
+      thisLabel<-gsub('\\[([^ ]*?)\\]',
                       paste0('</tspan><tspan baseline-shift="sub" font-size="',
                              reSizeFont(size*3)*0.8,'">\\1</tspan><tspan>'),
                       thisLabel)

@@ -944,8 +944,7 @@ doAnalysis<-function(sample=doSample(autoShow=FALSE),evidence=braw.def$evidence,
   analysis$Heteroscedasticity<-0
 
   if (autoShow) print(showDescription(analysis))
-  # braw.res$result<<-analysis
-  
+
   return(analysis)
   
 }

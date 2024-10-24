@@ -352,8 +352,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       # self$results$debug$setContent(c(is.logical(likelihoodCutaway),likelihoodCutaway,self$options$likelihoodCutaway))
       
       if (outputNow=="Likelihood") {
-      possible<-makePossible(typePossible=self$options$likelihoodType,
-                             UsePrior=self$options$likelihoodUsePrior,
+      possible<-makePossible(UsePrior=self$options$likelihoodUsePrior,
                              prior=makeWorld(worldOn=TRUE,
                                              populationPDF=self$options$priorPDF,
                                              populationRZ=self$options$priorRZ,
@@ -384,7 +383,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                  "Sample"= self$results$graphHTML$setContent(showSample()),
                  "Describe"= self$results$graphHTML$setContent(showDescription()),
                  "Infer"= self$results$graphHTML$setContent(showInference(showType=showInferParam,dimension=showInferDimension)),
-                 "Likelihood"=self$results$graphHTML$setContent(showPossible(cutaway=likelihoodCutaway)),
+                 "Likelihood"=self$results$graphHTML$setContent(showPossible(showType=self$options$likelihoodType,cutaway=likelihoodCutaway)),
                  "Multiple"= self$results$graphHTML$setContent(showExpected(showType=showMultipleParam,dimension=showMultipleDimension,effectType=whichShowMultipleOut)),
                  "Explore"= self$results$graphHTML$setContent(showExplore(showType=showExploreParam,dimension=showExploreDimension,effectType=whichShowExploreOut)),
                  self$results$reportPlot$graphHTML(NULL)
@@ -397,7 +396,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                  "Sample"= self$results$graphPlot$setState(outputNow),
                  "Describe"= self$results$graphPlot$setState(outputNow),
                  "Infer"= self$results$graphPlot$setState(c(outputNow,showInferParam,showInferDimension)),
-                 "Likelihood"= self$results$graphPlot$setState(c(outputNow,likelihoodCutaway)),
+                 "Likelihood"= self$results$graphPlot$setState(c(outputNow,self$options$likelihoodType,likelihoodCutaway)),
                  "Multiple"= self$results$graphPlot$setState(c(outputNow,showMultipleParam,showMultipleDimension,whichShowMultipleOut)),
                  "Explore"= self$results$graphPlot$setState(c(outputNow,showExploreParam,showExploreDimension,whichShowExploreOut)),
                  self$results$graphPlot$setState(outputNow)
@@ -478,7 +477,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                "Sample"    =outputGraph<-showSample(),
                "Describe"  =outputGraph<-showDescription(),
                "Infer"     =outputGraph<-showInference(showType=image$state[2],dimension=image$state[3]),
-               "Likelihood"=outputGraph<-showPossible(cutaway=as.logical(image$state[2])),
+               "Likelihood"=outputGraph<-showPossible(showType=image$state[2],cutaway=as.logical(image$state[3])),
                "Multiple"  =outputGraph<-showExpected(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),
                "MetaSingle"  =outputGraph<-showMetaSingle(),
                "MetaMultiple"  =outputGraph<-showMetaMultiple(),
