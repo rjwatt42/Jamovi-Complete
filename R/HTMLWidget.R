@@ -3,8 +3,12 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                  initialize = function() {
                                  },
 
-                                 generate_tab = function(title="Tab",tabs=c("1","2","3"),tabContents=c("a","b","c"),colours=c("#3498db","#80CCFF"),fontSize="12px",plain=FALSE,width=550,height=NULL) {
+                                 generate_tab = function(title="Tab",tabs=c("1","2","3"),tabContents=c("a","b","c"),colours=c("#3498db","#80CCFF"),fontSize="12px",plain=FALSE,width=550,height=NULL,open=0) {
                                    if (is.null(height)) ht<-'' else ht<-paste0('height: ',height,'px;')
+                                   if (open==0) openCode<-''
+                                   else openCode<-paste0(
+                                     'document.getElementById("',title,'||',tabs[open],'").style.display = "block";'
+                                   )
                                    script<-paste0(
                                      '<script>',
                                      'function openTab(evt, tabName) {',
@@ -31,7 +35,7 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                      '      }',
                                      '    }',
                                      '}',
-                                     'openTab(evt, "',paste0(title,tabs[2]),'") ',
+                                     openCode,
                                      '</script>'
                                    )
                                    
@@ -107,10 +111,17 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                                     '</div>')
                                    for (itab in 1:length(tabs)) {
                                      panelID<-paste0(title,'||',tabs[itab])
-                                     buttons <- paste0(buttons,
-                                                       '  <button class="tablinks" onclick="openTab(event,\'',panelID,'\')">',
-                                                       tabs[itab],
-                                                       '</button>')
+                                     if (itab==open) {
+                                       buttons <- paste0(buttons,
+                                                         '  <button class="tablinks active" onclick="openTab(event,\'',panelID,'\')" id="',paste0(panelID,"button"),'">',
+                                                         tabs[itab],
+                                                         '</button>')
+                                     } else {
+                                       buttons <- paste0(buttons,
+                                                         '  <button class="tablinks" onclick="openTab(event,\'',panelID,'\')" id="',paste0(panelID,"button"),'">',
+                                                         tabs[itab],
+                                                         '</button>')
+                                     }
                                      panels <- paste0(panels,
                                                       '  <div id="',panelID,'" class="tabcontent">',
                                                       tabContents[itab],

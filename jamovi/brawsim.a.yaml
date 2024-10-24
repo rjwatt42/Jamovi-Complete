@@ -1327,7 +1327,7 @@ options:
       type: Action
 
     - name: doProject1dBtn
-      title: 'do it for me'
+      title: 'show me'
       type: Action
 
 ...

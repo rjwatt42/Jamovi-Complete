@@ -23,7 +23,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
               BrawInstructions("Multiple"),
               BrawInstructions("Explore"),
               BrawInstructions("Key")
-            )
+            ),
+            open=0
           )
           # ,private$.htmlwidget$generate_tab(
           #   title="Plan",
@@ -281,7 +282,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
               JamoviInstructions(hypothesis,design,HelpType="Analysis"),
               JamoviInstructions(hypothesis,design,HelpType="Graph"),
               JamoviInstructions(hypothesis,design,HelpType="EffectSize")
-            )
+            ),
+            open=1
           )
         )
       } else {
