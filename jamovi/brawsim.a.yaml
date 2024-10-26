@@ -1067,7 +1067,7 @@ options:
     - name: numberExplores
       title: 'no of samples'
       type: Number
-      default: 50
+      default: 10
 
     - name: makeExploreBtn
       title: 'explore'

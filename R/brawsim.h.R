@@ -125,7 +125,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             exploreXLogD = FALSE,
             exploreXLogA = FALSE,
             exploreXLogM = FALSE,
-            numberExplores = 50,
+            numberExplores = 10,
             makeExploreBtn = NULL,
             exploreMode = "designExplore",
             hypothesisExploreList = NULL,
@@ -869,7 +869,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..numberExplores <- jmvcore::OptionNumber$new(
                 "numberExplores",
                 numberExplores,
-                default=50)
+                default=10)
             private$..makeExploreBtn <- jmvcore::OptionAction$new(
                 "makeExploreBtn",
                 makeExploreBtn)
@@ -1857,7 +1857,7 @@ BrawSim <- function(
     exploreXLogD = FALSE,
     exploreXLogA = FALSE,
     exploreXLogM = FALSE,
-    numberExplores = 50,
+    numberExplores = 10,
     makeExploreBtn,
     exploreMode = "designExplore",
     hypothesisExploreList,

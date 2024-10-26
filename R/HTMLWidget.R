@@ -46,7 +46,7 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                        'border: none;',
                                        'background-color: inherit;',
                                        'border-bottom: solid ',colours[1],' 1px;',
-                                     'width: ',svgBoxX(),'px;',
+                                     # 'width: ',svgBoxX(),'px;',
                                      'margin: none;',
                                        '}',
 

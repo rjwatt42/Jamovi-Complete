@@ -8,8 +8,7 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         .run = function() {
 
           if (!exists("braw.env")) {
-            BrawOpts(fontScale = 1.5,graphC="white",graphicsSize=17)
-            braw.env$graphicsSize<<-braw.env$graphicsSize*0.6
+            BrawOpts(fontScale = 1.5,graphC="white")
             statusStore<-list(lastOutput="System",
                               showSampleType="Sample",
                               showInferParam="Basic",

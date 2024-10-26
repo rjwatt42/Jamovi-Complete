@@ -52,7 +52,6 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       # initialization code 
       if (!exists("braw.env")) {
         BrawOpts(fontScale = 1.5,graphC="white",reducedOutput=TRUE,reportHTML=TRUE)
-        braw.env$graphicsSize<<-braw.env$graphicsSize*0.6
         statusStore<-list(lastOutput="System",
                           showSampleType="Sample",
                           showInferParam="Basic",
