@@ -368,6 +368,11 @@ showDescription<-function(analysis=braw.res$result,plotArea=c(0,0,1,1),g=NULL) {
     )
   }
   braw.env$newSampleDisplay<-old_newSampleDisplay
-  g<-addG(g,plotTitle(paste0("r[s]=",round(analysis$rIV,3)),position="right",size=0.7,fontface="plain"))
-  g
+  g<-addG(g,plotTitle(paste0("r[s]=",round(analysis$rIV,3)),position="right",size=1,fontface="plain"))
+  
+  if (braw.env$graphHTML && braw.env$autoShow) {
+    showHTML(g)
+    return(invisible(g))
+  }
+  else return(g)  
 }
