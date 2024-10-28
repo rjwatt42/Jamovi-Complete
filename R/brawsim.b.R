@@ -51,7 +51,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
       # initialization code 
       if (!exists("braw.env")) {
-        BrawOpts(fontScale = 1.5,graphC="white",reducedOutput=TRUE,reportHTML=TRUE,autoShow=FALSE)
+        BrawOpts(graphC="white",reducedOutput=TRUE,reportHTML=TRUE,autoShow=FALSE,fullGraphSize=0.5)
         statusStore<-list(lastOutput="System",
                           showSampleType="Sample",
                           showInferParam="Basic",
@@ -410,8 +410,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
              "Describe"= self$results$reportPlot$setContent(reportDescription()),
              "Infer"= self$results$reportPlot$setContent(reportInference()),
              "Likelihood"=self$results$reportPlot$setContent(reportLikelihood()),
-             "Multiple"= self$results$reportPlot$setContent(reportExpected(showType=showMultipleParam)),
-             "Explore"= self$results$reportPlot$setContent(reportExplore(showType=showExploreParam)),
+             "Multiple"= self$results$reportPlot$setContent(reportExpected(showType=showMultipleParam,reportStats=self$options$reportMultipleStats)),
+             "Explore"= self$results$reportPlot$setContent(reportExplore(showType=showExploreParam,reportStats=self$options$reportExploreStats)),
                self$results$reportPlot$setContent(NULL)
       )
       }

@@ -1013,7 +1013,7 @@ children:
               - type: Label
                 label: ' '
                 margin: small
-                minWidth: 165
+                minWidth: 78
               - type: ComboBox
                 name: multipleVar1
                 enable: (showMultipleParam:Custom)
@@ -1023,6 +1023,10 @@ children:
               - type: ComboBox
                 name: showMultipleDimension
                 enable: (showMultipleParam:Custom || showMultipleParam:Basic)
+                minWidth: 50
+              - type: ComboBox
+                name: reportMultipleStats
+                
           - type: LayoutBox
             style: inline
             margin: none
@@ -1296,7 +1300,7 @@ children:
                   - type: Label
                     label: ' '
                     margin: small
-                    minWidth: 165
+                    minWidth: 78
                   - type: ComboBox
                     name: exploreVar1
                     enable: (showExploreParam:Custom)
@@ -1306,6 +1310,9 @@ children:
                   - type: ComboBox
                     name: showExploreDimension
                     enable: (showExploreParam:Basic || showExploreParam:Custom)
+                    minWidth: 50
+                  - type: ComboBox
+                    name: reportExploreStats
           - type: LayoutBox
             style: list
             margin: none

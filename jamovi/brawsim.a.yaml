@@ -916,6 +916,16 @@ options:
           title: no
       default: p
 
+    - name: reportMultipleStats
+      title: ' '
+      type: List
+      options:
+      - name: Means
+        title: (Means)
+      - name: Medians
+        title: (Medians)
+      default: Medians
+      
     - name: showSampleType
       title: ' show:'
       type: List
@@ -1279,6 +1289,16 @@ options:
         - name: 2D
           title: 2D
       default: 1D
+
+    - name: reportExploreStats
+      title: ' '
+      type: List
+      options:
+      - name: Means
+        title: (Means)
+      - name: Medians
+        title: (Medians)
+      default: Medians
       
     - name: whichShowMultiple
       title: " "

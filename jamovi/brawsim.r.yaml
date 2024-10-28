@@ -85,11 +85,13 @@ items:
       - multipleVar1
       - multipleVar2
       - showMultipleDimension
+      - reportMultipleStats
       - makeExploreBtn
       - showExploreParam
       - exploreVar1
       - exploreVar2
       - showExploreDimension
+      - reportExploreStats
       refs:
       - brawstats
       - book

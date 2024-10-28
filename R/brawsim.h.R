@@ -104,6 +104,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             singleVar2 = "p",
             multipleVar1 = "rs",
             multipleVar2 = "p",
+            reportMultipleStats = "Medians",
             showSampleType = "Compact",
             showInferParam = "Basic",
             showInferDimension = "1D",
@@ -136,6 +137,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             exploreVar1 = "rs",
             exploreVar2 = "p",
             showExploreDimension = "1D",
+            reportExploreStats = "Medians",
             whichShowMultiple = "all",
             showJamovi = FALSE,
             showHTML = TRUE,
@@ -758,6 +760,13 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "po",
                     "no"),
                 default="p")
+            private$..reportMultipleStats <- jmvcore::OptionList$new(
+                "reportMultipleStats",
+                reportMultipleStats,
+                options=list(
+                    "Means",
+                    "Medians"),
+                default="Medians")
             private$..showSampleType <- jmvcore::OptionList$new(
                 "showSampleType",
                 showSampleType,
@@ -993,6 +1002,13 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "1D",
                     "2D"),
                 default="1D")
+            private$..reportExploreStats <- jmvcore::OptionList$new(
+                "reportExploreStats",
+                reportExploreStats,
+                options=list(
+                    "Means",
+                    "Medians"),
+                default="Medians")
             private$..whichShowMultiple <- jmvcore::OptionList$new(
                 "whichShowMultiple",
                 whichShowMultiple,
@@ -1125,6 +1141,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..singleVar2)
             self$.addOption(private$..multipleVar1)
             self$.addOption(private$..multipleVar2)
+            self$.addOption(private$..reportMultipleStats)
             self$.addOption(private$..showSampleType)
             self$.addOption(private$..showInferParam)
             self$.addOption(private$..showInferDimension)
@@ -1157,6 +1174,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..exploreVar1)
             self$.addOption(private$..exploreVar2)
             self$.addOption(private$..showExploreDimension)
+            self$.addOption(private$..reportExploreStats)
             self$.addOption(private$..whichShowMultiple)
             self$.addOption(private$..sendSample)
             self$.addOption(private$..sendMultiple)
@@ -1266,6 +1284,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         singleVar2 = function() private$..singleVar2$value,
         multipleVar1 = function() private$..multipleVar1$value,
         multipleVar2 = function() private$..multipleVar2$value,
+        reportMultipleStats = function() private$..reportMultipleStats$value,
         showSampleType = function() private$..showSampleType$value,
         showInferParam = function() private$..showInferParam$value,
         showInferDimension = function() private$..showInferDimension$value,
@@ -1298,6 +1317,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         exploreVar1 = function() private$..exploreVar1$value,
         exploreVar2 = function() private$..exploreVar2$value,
         showExploreDimension = function() private$..showExploreDimension$value,
+        reportExploreStats = function() private$..reportExploreStats$value,
         whichShowMultiple = function() private$..whichShowMultiple$value,
         sendSample = function() private$..sendSample$value,
         sendMultiple = function() private$..sendMultiple$value,
@@ -1406,6 +1426,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..singleVar2 = NA,
         ..multipleVar1 = NA,
         ..multipleVar2 = NA,
+        ..reportMultipleStats = NA,
         ..showSampleType = NA,
         ..showInferParam = NA,
         ..showInferDimension = NA,
@@ -1438,6 +1459,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..exploreVar1 = NA,
         ..exploreVar2 = NA,
         ..showExploreDimension = NA,
+        ..reportExploreStats = NA,
         ..whichShowMultiple = NA,
         ..sendSample = NA,
         ..sendMultiple = NA,
@@ -1529,11 +1551,13 @@ BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "multipleVar1",
                     "multipleVar2",
                     "showMultipleDimension",
+                    "reportMultipleStats",
                     "makeExploreBtn",
                     "showExploreParam",
                     "exploreVar1",
                     "exploreVar2",
-                    "showExploreDimension"),
+                    "showExploreDimension",
+                    "reportExploreStats"),
                 refs=list(
                     "brawstats",
                     "book")))
@@ -1684,6 +1708,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param singleVar2 .
 #' @param multipleVar1 .
 #' @param multipleVar2 .
+#' @param reportMultipleStats .
 #' @param showSampleType .
 #' @param showInferParam .
 #' @param showInferDimension .
@@ -1716,6 +1741,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param exploreVar1 .
 #' @param exploreVar2 .
 #' @param showExploreDimension .
+#' @param reportExploreStats .
 #' @param whichShowMultiple .
 #' @param showJamovi .
 #' @param showHTML .
@@ -1836,6 +1862,7 @@ BrawSim <- function(
     singleVar2 = "p",
     multipleVar1 = "rs",
     multipleVar2 = "p",
+    reportMultipleStats = "Medians",
     showSampleType = "Compact",
     showInferParam = "Basic",
     showInferDimension = "1D",
@@ -1868,6 +1895,7 @@ BrawSim <- function(
     exploreVar1 = "rs",
     exploreVar2 = "p",
     showExploreDimension = "1D",
+    reportExploreStats = "Medians",
     whichShowMultiple = "all",
     showJamovi = FALSE,
     showHTML = TRUE,
@@ -1979,6 +2007,7 @@ BrawSim <- function(
         singleVar2 = singleVar2,
         multipleVar1 = multipleVar1,
         multipleVar2 = multipleVar2,
+        reportMultipleStats = reportMultipleStats,
         showSampleType = showSampleType,
         showInferParam = showInferParam,
         showInferDimension = showInferDimension,
@@ -2011,6 +2040,7 @@ BrawSim <- function(
         exploreVar1 = exploreVar1,
         exploreVar2 = exploreVar2,
         showExploreDimension = showExploreDimension,
+        reportExploreStats = reportExploreStats,
         whichShowMultiple = whichShowMultiple,
         showJamovi = showJamovi,
         showHTML = showHTML,
