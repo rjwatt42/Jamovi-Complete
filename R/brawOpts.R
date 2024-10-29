@@ -236,22 +236,26 @@ BrawOpts<-function(BW=FALSE,graphC="normal",fontScale=1.5,graphicsSize=c(16,10),
                     Plabel<-paste0(Pchar,"^",Ptypechar)
                     Llabel<-paste0(Lchar,"^",Ltypechar)
                     
+                    nullSig<-paste0(Zchar,"^",nullChar,'sig')  # "Z+ +ve"
                     nullPositive<-paste0(Zchar,"^",nullChar,'+sig')  # "Z+ +ve"
-                    nullNS<-paste0(Zchar,"^",posChar,'ns')  # "Z+ -ve"
+                    nullNS<-paste0(Zchar,"^",nullChar,'ns ')  # "Z+ -ve"
                     nullNegative<-paste0(Zchar,"^",nullChar,'-sig')  # "Z+ -ve"
-                    nonNullPositive<-paste0(Zchar,"^",nullChar,'+sig')  # "Z+ +ve"
-                    nonNullNS<-paste0(Zchar,"^",posChar,'ns')  # "Z+ -ve"
+                    nonNullSig<-paste0(Zchar,"^",posChar,'sig')  # "Z+ +ve"
+                    nonNullPositive<-paste0(Zchar,"^",posChar,'+sig')  # "Z+ +ve"
+                    nonNullNS<-paste0(Zchar,"^",posChar,'ns ')  # "Z+ -ve"
                     nonNullNegative<-paste0(Zchar,"^",posChar,'-sig')  # "Z+ -ve"
                   },
                   "D"= {
                     Plabel<-paste0(Pchar,"[",Ptypechar,"]")
                     Llabel<-paste0(Lchar,"[",Ltypechar,"]")
 
+                    nullSig<-paste0(Zchar,"[",nullChar,"]",'sig')  # "Z+ +ve"
                     nullPositive<-paste0(Zchar,"[",nullChar,"]",'+sig')  # "Z+ +ve"
-                    nullNS<-paste0(Zchar,"[",posChar,"]",'ns')  # "Z+ -ve"
+                    nullNS<-paste0(Zchar,"[",nullChar,"]",'ns ')  # "Z+ -ve"
                     nullNegative<-paste0(Zchar,"[",nullChar,"]",'-sig')  # "Z+ -ve"
-                    nonNullPositive<-paste0(Zchar,"[",nullChar,"]",'+sig')  # "Z+ +ve"
-                    nonNullNS<-paste0(Zchar,"[",posChar,"]",'ns')  # "Z+ -ve"
+                    nonNullSig<-paste0(Zchar,"[",posChar,"]",'sig')  # "Z+ +ve"
+                    nonNullPositive<-paste0(Zchar,"[",posChar,"]",'+sig')  # "Z+ +ve"
+                    nonNullNS<-paste0(Zchar,"[",posChar,"]",'ns ')  # "Z+ -ve"
                     nonNullNegative<-paste0(Zchar,"[",posChar,"]",'-sig')  # "Z+ -ve"
                   }
           )
@@ -271,9 +275,11 @@ BrawOpts<-function(BW=FALSE,graphC="normal",fontScale=1.5,graphicsSize=c(16,10),
           braw.env$Plabel<-Plabel
           braw.env$Llabel<-Llabel
           
+          braw.env$nonNullSig<-nonNullSig
           braw.env$nonNullPositive<-nonNullPositive
           braw.env$nonNullNS<-nonNullNS
           braw.env$nonNullNegative<-nonNullNegative
+          braw.env$nullSig<-nullSig
           braw.env$nullPositive<-nullPositive
           braw.env$nullNS<-nullNS
           braw.env$nullNegative<-nullNegative
