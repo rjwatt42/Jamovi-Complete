@@ -393,16 +393,16 @@ dataLabel<-function(data,label, hjust=0, vjust=0, fill="white",colour="black",pa
              label.padding=unit(0.1, "lines"),label.size=label.size,
              size=reSizeFont(size),parse=parser)
   } else {
-    g<-dataText(data,label, hjust=hjust, vjust=vjust, colour=colour,fontface=fontface,size=size,background=TRUE)
+    g<-dataText(data,label, hjust=hjust, vjust=vjust, colour=colour,fontface=fontface,size=size,background=TRUE,fill=fill)
   }
   return(g)
 }
-dataText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,fontface="plain",background=FALSE) {
+dataText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,fontface="plain",background=FALSE,fill="white") {
   data<-reRangeXY(data)
-  g<-axisText(data,label, hjust=hjust, vjust=vjust, colour=colour,size=size,angle=angle,fontface=fontface,background=background)
+  g<-axisText(data,label, hjust=hjust, vjust=vjust, colour=colour,size=size,angle=angle,fontface=fontface,background=background,fill=fill)
   return(g)  
 }
-axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,dx=0,dy=0,fontface="plain",background=FALSE) {
+axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,dx=0,dy=0,fontface="plain",background=FALSE,fill="white") {
   if (!braw.env$graphHTML) {
     parse<-FALSE
     mathlabel<-grepl("['^']{1}",label) | grepl("['[']{1}",label)
@@ -433,6 +433,17 @@ axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,d
     y<-svgY(data$y)
     if (containsSubscript(label)) y<-y-0.025*braw.env$plotArea[4]*svgBoxY()
     labels<-""
+    
+    if (!background) filter<-'' else {
+      labels<-paste0(
+        '  <filter x="0" y="0" width="1" height="1" id="bg-',fill,'">',
+        '  <feFlood flood-color="',fill,'"/>',
+        '  <feComposite in="SourceGraphic" />',
+        '  </filter>'
+      )
+      filter<-paste0(' filter="url(#bg-',fill,')"')
+    }
+    
     for (i in 1:length(x)) {
       thisLabel<-label[i]
       thisLabel<-gsub('\\[([^ ]*?)\\]',
@@ -447,7 +458,7 @@ axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,d
                      thisLabel,
                      '</tspan>'
       )
-      if (background) filter<-'filter="url(#bg-text)"' else filter=''
+      
       labels<-paste0(labels,
                      '<text ',
                      filter,
