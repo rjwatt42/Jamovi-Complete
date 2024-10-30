@@ -10,29 +10,6 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     .init = function() {
       private$.htmlwidget <- HTMLWidget$new() # Initialize the HTMLWidget instance 
       
-      # self$results$BrawStatsInstructions$setContent(
-      #   paste0(
-      #     private$.htmlwidget$generate_tab(
-      #       title="BrawStats Help",
-      #       tabs=c("Plan","Single Sample","Multiple Samples","Explore","Key"),
-      #       tabContents = c(
-      #         BrawInstructions("Plan"),
-      #         BrawInstructions("Single"),
-      #         BrawInstructions("Multiple"),
-      #         BrawInstructions("Explore"),
-      #         BrawInstructions("Key")
-      #       ),
-      #       open=0
-      #     )
-      #   )
-      # )
-    },
-    
-    .run = function() {
-      # debug information
-      # self$results$debug$setVisible(TRUE)
-      # self$results$debug$setContent(c(self$options$showExploreBtn,is.null(dataStore$exploreResult)))
-
       # initialization code 
       if (!exists("braw.env")) {
         BrawOpts(graphC="white",reducedOutput=TRUE,reportHTML=TRUE,autoShow=FALSE,fullGraphSize=0.5)
@@ -47,28 +24,18 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           exploreMode="Design",
                           showJamovi=FALSE,
                           showHelp=FALSE,
-                          graphHTML=FALSE
+                          graphHTML=TRUE
         )
         braw.env$statusStore<<-statusStore
-        braw.env$table<<-NULL
-        braw.res$lm<<-NULL
       }
-      
-      if (is.null(braw.env$statusStore)) {
-        statusStore<-list(lastOutput="System",
-                          showSampleType="Sample",
-                          showInferParam="Basic",
-                          showInferDimension="1D",
-                          showMultipleParam="Basic",
-                          showMultipleDimension="1D",
-                          showExploreParam="Basic",
-                          showExploreDimension="1D",
-                          exploreMode="Design",
-                          showJamovi=FALSE,
-                          graphHTML=FALSE
-        )
-        braw.env$statusStore<<-statusStore
-      } else       statusStore<-braw.env$statusStore
+    },
+    
+    .run = function() {
+      # debug information
+      # self$results$debug$setVisible(TRUE)
+      # self$results$debug$setContent(c(self$options$showExploreBtn,is.null(dataStore$exploreResult)))
+
+      statusStore<-braw.env$statusStore
 
       if (self$options$showHelp) {
         if (!statusStore$showHelp) {
@@ -408,7 +375,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                    "Likelihood"=self$results$graphHTML$setContent(showPossible(showType=self$options$likelihoodType,cutaway=likelihoodCutaway)),
                    "Multiple"= self$results$graphHTML$setContent(showExpected(showType=showMultipleParam,dimension=showMultipleDimension,effectType=whichShowMultipleOut)),
                    "Explore"= self$results$graphHTML$setContent(showExplore(showType=showExploreParam,dimension=showExploreDimension,effectType=whichShowExploreOut)),
-                   self$results$reportPlot$graphHTML(NULL)
+                   self$results$graphHTML$setContent(NULL)
             )
             svgBox(300)
           } else {

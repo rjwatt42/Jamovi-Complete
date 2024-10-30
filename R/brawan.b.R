@@ -5,8 +5,8 @@ BrawAnClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
   "BrawAnClass",
   inherit = BrawAnBase,
   private = list(
-    .run = function() {
-      
+    .init = function() {
+      # initialization code 
       if (!exists("braw.env")) {
         BrawOpts(graphC="white",reducedOutput=TRUE,reportHTML=TRUE,autoShow=FALSE,fullGraphSize=0.5)
         statusStore<-list(lastOutput="System",
@@ -20,15 +20,18 @@ BrawAnClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           exploreMode="Design",
                           showJamovi=FALSE,
                           showHelp=FALSE,
-                          graphHTML=FALSE
+                          graphHTML=TRUE
         )
         braw.env$statusStore<<-statusStore
-        braw.env$table<<-NULL
-        braw.res$lm<<-NULL
       }
       
+    },
+    
+    .run = function() {
+      
       if (is.null(self$options$IV) || is.null(self$options$DV)) {
-        self$results$reportPlot$setState(NULL)
+        self$results$graphHTML$setContent(NULL)
+        self$results$reportPlot$setContent(NULL)
         return()
       }
       
@@ -46,9 +49,33 @@ BrawAnClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       sample<-readSample(self$data,DV=self$options$DV,IV=self$options$IV)
       result<-doAnalysis(sample,evidence=evidence)
       braw.res$result<<-result
+      outputNow<-self$options$show
       
-      self$results$reportPlot$setState(self$options$show)
-      self$results$graphPlot$setState(c(self$options$show,self$options$inferWhich))
+      svgBox(height=350)
+      if (is.element(outputNow,c("Compact","Describe"))) svgBox(height=300)
+      if (outputNow=="Likelihood") svgBox(aspect=1.5)
+      if (outputNow=="Infer" && is.element(showMultipleParam,c("Basic","Custom")) && showExploreDimension=="2D") svgBox(height=250)
+      if (outputNow=="Infer" && showExploreDimension=="1D") svgBox(aspect=1.6)
+      assign("graphHTML",TRUE,braw.env)
+      switch(outputNow,
+             "Compact"= self$results$graphHTML$setContent(showDescription()),
+             "Sample"= self$results$graphHTML$setContent(showSample()),
+             "Describe"= self$results$graphHTML$setContent(showDescription()),
+             "Infer"= self$results$graphHTML$setContent(showInference(showType=showInferParam,dimension=showInferDimension)),
+             "Likelihood"=self$results$graphHTML$setContent(showPossible(showType=self$options$likelihoodType,cutaway=likelihoodCutaway)),
+             self$results$reportPlot$graphHTML$setContent(NULL)
+      )
+      svgBox(300)
+      
+      switch(outputNow,
+             "Compact"= self$results$reportPlot$setContent(reportInference()),
+             "Sample"= self$results$reportPlot$setContent(reportSample()),
+             "Describe"= self$results$reportPlot$setContent(reportDescription()),
+             "Infer"= self$results$reportPlot$setContent(reportInference()),
+             "Likelihood"=self$results$reportPlot$setContent(reportLikelihood()),
+             self$results$reportPlot$setContent(NULL)
+      )
+      
     },
     
     .plotGraph=function(image, ...) {

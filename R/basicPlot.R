@@ -443,7 +443,7 @@ axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,d
     
     if (!background) filter<-'' else {
       labels<-paste0(
-        '  <filter x="0" y="0" width="1" height="1" id="bg-',fill,'">',
+        '  <filter x="-0.05" y="-0.025" width="1.1" height="1.05" id="bg-',fill,'">',
         '  <feFlood flood-color="',fill,'"/>',
         '  <feComposite in="SourceGraphic" />',
         '  </filter>'

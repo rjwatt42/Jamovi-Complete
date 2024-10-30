@@ -61,6 +61,7 @@ BrawLMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "BrawLMResults",
     inherit = jmvcore::Group,
     active = list(
+        graphHTML = function() private$.items[["graphHTML"]],
         graphPlot = function() private$.items[["graphPlot"]],
         reportPlot = function() private$.items[["reportPlot"]],
         reportTable = function() private$.items[["reportTable"]]),
@@ -71,20 +72,24 @@ BrawLMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="",
                 title="BrawStats:Linear Models")
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="graphHTML",
+                title=" ",
+                visible=TRUE))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="graphPlot",
                 title=" ",
                 width=500,
                 height=300,
-                renderFun=".plotGraph"))
-            self$add(jmvcore::Image$new(
+                renderFun=".plotGraph",
+                visible=FALSE))
+            self$add(jmvcore::Html$new(
                 options=options,
                 name="reportPlot",
                 title=" ",
-                width=500,
-                height=200,
-                renderFun=".plotReport"))
+                visible=TRUE))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="reportTable",
@@ -96,6 +101,9 @@ BrawLMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `type`="number"),
                     list(
                         `name`="Rsqr", 
+                        `type`="number"),
+                    list(
+                        `name`="r", 
                         `type`="number"),
                     list(
                         `name`="model", 
@@ -133,8 +141,9 @@ BrawLMBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param whichR .
 #' @return A results object containing:
 #' \tabular{llllll}{
+#'   \code{results$graphHTML} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$graphPlot} \tab \tab \tab \tab \tab an image \cr
-#'   \code{results$reportPlot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$reportPlot} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$reportTable} \tab \tab \tab \tab \tab a table \cr
 #' }
 #'

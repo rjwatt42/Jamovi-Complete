@@ -4,19 +4,25 @@ title: BrawStats:Analyze Data
 jrs:   '1.1'
 
 items:
+    - name: graphHTML
+      title: ' '
+      type: Html
+      # width:  600
+      # height: 360
+      visible: TRUE
+
     - name: graphPlot
       title: ' '
       type: Image
       width:  500
       height: 300
       renderFun: .plotGraph
+      visible: FALSE
 
     - name: reportPlot
       title: ' '
-      type: Image
-      width:  500
-      height: 200
-      renderFun: .plotReport
+      type: Html
+      visible: TRUE
 
     - name: debug
       type: Preformatted

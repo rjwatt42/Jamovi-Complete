@@ -70,13 +70,17 @@ options:
       title: Show
       type: List
       options:
+        - name: Compact
+          title: Compact
         - name: Sample
           title: Sample
         - name: Describe
           title: Describe
         - name: Infer
           title: Infer
-      default: Describe
+        - name: Likelihood
+          title: Likelihood
+      default: Compact
 
     - name: inferWhich
       title: Which Infer

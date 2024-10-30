@@ -5,28 +5,30 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     "BrawLMClass",
     inherit = BrawLMBase,
     private = list(
-        .run = function() {
+      .init = function() {
+        # initialization code 
+        if (!exists("braw.env")) {
+          BrawOpts(graphC="white",reducedOutput=TRUE,reportHTML=TRUE,autoShow=FALSE,fullGraphSize=0.5)
+          statusStore<-list(lastOutput="System",
+                            showSampleType="Sample",
+                            showInferParam="Basic",
+                            showInferDimension="1D",
+                            showMultipleParam="Basic",
+                            showMultipleDimension="1D",
+                            showExploreParam="Basic",
+                            showExploreDimension="1D",
+                            exploreMode="Design",
+                            showJamovi=FALSE,
+                            showHelp=FALSE,
+                            graphHTML=TRUE
+          )
+          braw.env$statusStore<<-statusStore
+        }
+        
+      },
+      
+      .run = function() {
 
-          if (!exists("braw.env")) {
-            BrawOpts(graphC="white",reducedOutput=TRUE,reportHTML=TRUE,autoShow=FALSE,fullGraphSize=0.5)
-            statusStore<-list(lastOutput="System",
-                              showSampleType="Sample",
-                              showInferParam="Basic",
-                              showInferDimension="1D",
-                              showMultipleParam="Basic",
-                              showMultipleDimension="1D",
-                              showExploreParam="Basic",
-                              showExploreDimension="1D",
-                              exploreMode="Design",
-                              showJamovi=FALSE,
-                              showHelp=FALSE,
-                              graphHTML=FALSE
-            )
-            braw.env$statusStore<<-statusStore
-            braw.env$table<<-NULL
-            braw.res$lm<<-NULL
-          }
-          
           if (is.null(self$options$IV) || is.null(self$options$DV)) {
             self$results$reportPlot$setState(NULL)
             return()
@@ -38,12 +40,17 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           result<-generalAnalysis(data,InteractionOn=FALSE)
           braw.res$lm<<-list(result=result,DV=list(name=self$options$DV),IVs=list(name=self$options$IV),
                              whichR=self$options$whichR,p_or_r=self$options$inferWhich)
-          self$results$graphPlot$setState(TRUE)
-          self$results$reportPlot$setState(TRUE)
+          
+          lm<-braw.res$lm
+          assign("graphHTML",TRUE,braw.env)
+          outputGraph<-plotGLM(DV=lm$DV,IVs=lm$IVs,lm$result,lm$whichR)
+          outputText<-reportGLM(DV=lm$DV,IVs=lm$IVs,lm$result,p_or_r=lm$p_or_r)
+          self$results$graphHTML$setContent(outputGraph)
+          self$results$reportPlot$setContent(outputText)
 
           tableOutput<-braw.env$table
-          tableOutput<-rbind(list(AIC=AIC(result$lmNormC),Rsqr=result$r.full[[1]]^2,
-                                  model=paste(self$options$DV,"=",paste(self$options$IV,collapse="+")) ),
+          tableOutput<-rbind(list(AIC=lm$result$aic,Rsqr=lm$result$r.full[[1]]^2,r=lm$result$r.full[[1]],
+                                  model=paste(lm$DV$name,"=",paste(lm$IVs$name,collapse="+")) ),
                              tableOutput
           )
           setBrawEnv("table",tableOutput)
@@ -60,29 +67,6 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             self$results$reportTable$setRow(rowNo=i,values=tableOutput[i,])
           self$results$reportTable$setState(tableOutput)
 
-        },
-        
-        .plotGraph=function(image, ...) {
-          
-          outputGraph <- image$state
-          if (!is.null(outputGraph)) {
-            result<-braw.res$lm
-            outputGraph<-plotGLM(DV=result$DV,IVs=result$IVs,result$result,result$whichR)
-            print(outputGraph)
-            return(TRUE)
-          } else return(FALSE)
-        },
-        
-        .plotReport=function(image, ...) {
-          
-          outputText <- image$state
-          if (!is.null(outputText)) {
-            result<-braw.res$lm
-            outputText<-reportGLM(DV=result$DV,IVs=result$IVs,result$result,p_or_r=result$p_or_r)
-            print(outputText)
-            return(TRUE)
-          } else return(FALSE)
-          
         }
     )
 )

@@ -13,7 +13,7 @@ BrawAnOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             interaction = "no",
             equalVar = "yes",
             Transform = "None",
-            show = "Describe",
+            show = "Compact",
             inferWhich = "2D", ...) {
 
             super$initialize(
@@ -66,10 +66,12 @@ BrawAnOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "show",
                 show,
                 options=list(
+                    "Compact",
                     "Sample",
                     "Describe",
-                    "Infer"),
-                default="Describe")
+                    "Infer",
+                    "Likelihood"),
+                default="Compact")
             private$..inferWhich <- jmvcore::OptionList$new(
                 "inferWhich",
                 inferWhich,
@@ -115,6 +117,7 @@ BrawAnResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "BrawAnResults",
     inherit = jmvcore::Group,
     active = list(
+        graphHTML = function() private$.items[["graphHTML"]],
         graphPlot = function() private$.items[["graphPlot"]],
         reportPlot = function() private$.items[["reportPlot"]],
         debug = function() private$.items[["debug"]]),
@@ -125,20 +128,24 @@ BrawAnResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="",
                 title="BrawStats:Analyze Data")
+            self$add(jmvcore::Html$new(
+                options=options,
+                name="graphHTML",
+                title=" ",
+                visible=TRUE))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="graphPlot",
                 title=" ",
                 width=500,
                 height=300,
-                renderFun=".plotGraph"))
-            self$add(jmvcore::Image$new(
+                renderFun=".plotGraph",
+                visible=FALSE))
+            self$add(jmvcore::Html$new(
                 options=options,
                 name="reportPlot",
                 title=" ",
-                width=500,
-                height=200,
-                renderFun=".plotReport"))
+                visible=TRUE))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="debug",
@@ -180,8 +187,9 @@ BrawAnBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param inferWhich .
 #' @return A results object containing:
 #' \tabular{llllll}{
+#'   \code{results$graphHTML} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$graphPlot} \tab \tab \tab \tab \tab an image \cr
-#'   \code{results$reportPlot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$reportPlot} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$debug} \tab \tab \tab \tab \tab a preformatted \cr
 #' }
 #'
@@ -195,7 +203,7 @@ BrawAn <- function(
     interaction = "no",
     equalVar = "yes",
     Transform = "None",
-    show = "Describe",
+    show = "Compact",
     inferWhich = "2D") {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
