@@ -10,38 +10,22 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     .init = function() {
       private$.htmlwidget <- HTMLWidget$new() # Initialize the HTMLWidget instance 
       
-      # assign("graphHTML",TRUE,braw.env)
-      # self$results$BrawStatsInstructions$setVisible(TRUE)
-      self$results$BrawStatsInstructions$setContent(
-        paste0(
-          private$.htmlwidget$generate_tab(
-            title="BrawStats Help",
-            tabs=c("Plan","Single Sample","Multiple Samples","Explore","Key"),
-            tabContents = c(
-              BrawInstructions("Plan"),
-              BrawInstructions("Single"),
-              BrawInstructions("Multiple"),
-              BrawInstructions("Explore"),
-              BrawInstructions("Key")
-            ),
-            open=0
-          )
-          # ,private$.htmlwidget$generate_tab(
-          #   title="Plan",
-          #   tabs=c("Hypothesis","Design","Population","Expected"),
-          #   tabContents = c(
-          #     showHypothesis(),
-          #     addG(showDesign(plotArea=c(0.2,0.5,0.6,0.5)),showWorldSampling(plotArea=c(0.2,0,0.6,0.5))),
-          #     showPopulation(plotArea=c(0.2,0.2,0.6,0.6)),
-          #     showPrediction(plotArea=c(0.2,0.2,0.6,0.6))
-          #   ),
-          #   colours=c("#444444","#bbbbbb"),
-          #   plain=TRUE,
-          #   width=svgBoxX(),height=svgBoxY()
-          # )
-        )
-      )
-      # assign("graphHTML",FALSE,braw.env)
+      # self$results$BrawStatsInstructions$setContent(
+      #   paste0(
+      #     private$.htmlwidget$generate_tab(
+      #       title="BrawStats Help",
+      #       tabs=c("Plan","Single Sample","Multiple Samples","Explore","Key"),
+      #       tabContents = c(
+      #         BrawInstructions("Plan"),
+      #         BrawInstructions("Single"),
+      #         BrawInstructions("Multiple"),
+      #         BrawInstructions("Explore"),
+      #         BrawInstructions("Key")
+      #       ),
+      #       open=0
+      #     )
+      #   )
+      # )
     },
     
     .run = function() {
@@ -62,6 +46,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           showExploreDimension="1D",
                           exploreMode="Design",
                           showJamovi=FALSE,
+                          showHelp=FALSE,
                           graphHTML=FALSE
         )
         braw.env$statusStore<<-statusStore
@@ -85,6 +70,33 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         braw.env$statusStore<<-statusStore
       } else       statusStore<-braw.env$statusStore
 
+      if (self$options$showHelp) {
+        if (!statusStore$showHelp) {
+          self$results$BrawStatsInstructions$setContent(
+            paste0(
+              private$.htmlwidget$generate_tab(
+                title="BrawStats Help",
+                tabs=c("Plan","Single Sample","Multiple Samples","Explore","Key"),
+                tabContents = c(
+                  BrawInstructions("Plan"),
+                  BrawInstructions("Single"),
+                  BrawInstructions("Multiple"),
+                  BrawInstructions("Explore"),
+                  BrawInstructions("Key")
+                ),
+                open=0
+              )
+            )
+          )
+          statusStore$showHelp<-TRUE
+        }
+      } else {
+        if (statusStore$showHelp) {
+        self$results$BrawStatsInstructions$setVisible(FALSE)
+        statusStore$showHelp<-FALSE
+        }
+      }
+      
       # get some display parameters for later
       makeSampleNow<-self$options$makeSampleBtn
       showSampleType<-self$options$showSampleType
@@ -377,18 +389,28 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       } 
       if (!is.null(outputNow))  {   
           if (self$options$showHTML) {
+            svgBox(height=350)
+            if (outputNow=="System") svgBox(aspect=1.5)
+            if (is.element(outputNow,c("Compact","Describe"))) svgBox(height=300)
+            if (outputNow=="Likelihood") svgBox(aspect=1.5)
+            if (is.element(outputNow,c("Infer","Multiple")) && is.element(showMultipleParam,c("Basic","Custom")) && showExploreDimension=="2D") svgBox(height=250)
+            if (is.element(outputNow,c("Infer","Multiple")) && showExploreDimension=="1D") svgBox(aspect=1.6)
+            if (outputNow=="Explore" && is.element(showExploreParam,c("Basic","Custom")) && showMultipleDimension=="2D") svgBox(height=250)
+            if (outputNow=="Explore" && is.element(showExploreParam,c("Basic","Custom")) && showExploreDimension=="1D") svgBox(aspect=1.6)
+            if (outputNow=="Explore" && showExploreParam=="NHST") svgBox(aspect=1.6)
             assign("graphHTML",TRUE,braw.env)
-          switch(outputNow,
-                 "System"= self$results$graphHTML$setContent(showSystem()),
-                 "Compact"= self$results$graphHTML$setContent(showDescription()),
-                 "Sample"= self$results$graphHTML$setContent(showSample()),
-                 "Describe"= self$results$graphHTML$setContent(showDescription()),
-                 "Infer"= self$results$graphHTML$setContent(showInference(showType=showInferParam,dimension=showInferDimension)),
-                 "Likelihood"=self$results$graphHTML$setContent(showPossible(showType=self$options$likelihoodType,cutaway=likelihoodCutaway)),
-                 "Multiple"= self$results$graphHTML$setContent(showExpected(showType=showMultipleParam,dimension=showMultipleDimension,effectType=whichShowMultipleOut)),
-                 "Explore"= self$results$graphHTML$setContent(showExplore(showType=showExploreParam,dimension=showExploreDimension,effectType=whichShowExploreOut)),
-                 self$results$reportPlot$graphHTML(NULL)
-          )
+            switch(outputNow,
+                   "System"= self$results$graphHTML$setContent(showSystem()),
+                   "Compact"= self$results$graphHTML$setContent(showDescription()),
+                   "Sample"= self$results$graphHTML$setContent(showSample()),
+                   "Describe"= self$results$graphHTML$setContent(showDescription()),
+                   "Infer"= self$results$graphHTML$setContent(showInference(showType=showInferParam,dimension=showInferDimension)),
+                   "Likelihood"=self$results$graphHTML$setContent(showPossible(showType=self$options$likelihoodType,cutaway=likelihoodCutaway)),
+                   "Multiple"= self$results$graphHTML$setContent(showExpected(showType=showMultipleParam,dimension=showMultipleDimension,effectType=whichShowMultipleOut)),
+                   "Explore"= self$results$graphHTML$setContent(showExplore(showType=showExploreParam,dimension=showExploreDimension,effectType=whichShowExploreOut)),
+                   self$results$reportPlot$graphHTML(NULL)
+            )
+            svgBox(300)
           } else {
           assign("graphHTML",FALSE,braw.env)
           switch(outputNow,

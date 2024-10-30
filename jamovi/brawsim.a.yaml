@@ -1329,6 +1329,11 @@ options:
       type: Bool
       default: false
       
+    - name: showHelp
+      title: help?
+      type: Bool
+      default: false
+      
     - name: showHTML
       title: HTML?
       type: Bool

@@ -140,6 +140,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             reportExploreStats = "Medians",
             whichShowMultiple = "all",
             showJamovi = FALSE,
+            showHelp = FALSE,
             showHTML = TRUE,
             doProject1aBtn = NULL,
             doProject1bBtn = NULL,
@@ -1026,6 +1027,10 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "showJamovi",
                 showJamovi,
                 default=FALSE)
+            private$..showHelp <- jmvcore::OptionBool$new(
+                "showHelp",
+                showHelp,
+                default=FALSE)
             private$..showHTML <- jmvcore::OptionBool$new(
                 "showHTML",
                 showHTML,
@@ -1179,6 +1184,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..sendSample)
             self$.addOption(private$..sendMultiple)
             self$.addOption(private$..showJamovi)
+            self$.addOption(private$..showHelp)
             self$.addOption(private$..showHTML)
             self$.addOption(private$..doProject1aBtn)
             self$.addOption(private$..doProject1bBtn)
@@ -1322,6 +1328,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         sendSample = function() private$..sendSample$value,
         sendMultiple = function() private$..sendMultiple$value,
         showJamovi = function() private$..showJamovi$value,
+        showHelp = function() private$..showHelp$value,
         showHTML = function() private$..showHTML$value,
         doProject1aBtn = function() private$..doProject1aBtn$value,
         doProject1bBtn = function() private$..doProject1bBtn$value,
@@ -1464,6 +1471,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..sendSample = NA,
         ..sendMultiple = NA,
         ..showJamovi = NA,
+        ..showHelp = NA,
         ..showHTML = NA,
         ..doProject1aBtn = NA,
         ..doProject1bBtn = NA,
@@ -1744,6 +1752,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param reportExploreStats .
 #' @param whichShowMultiple .
 #' @param showJamovi .
+#' @param showHelp .
 #' @param showHTML .
 #' @param doProject1aBtn .
 #' @param doProject1bBtn .
@@ -1898,6 +1907,7 @@ BrawSim <- function(
     reportExploreStats = "Medians",
     whichShowMultiple = "all",
     showJamovi = FALSE,
+    showHelp = FALSE,
     showHTML = TRUE,
     doProject1aBtn,
     doProject1bBtn,
@@ -2043,6 +2053,7 @@ BrawSim <- function(
         reportExploreStats = reportExploreStats,
         whichShowMultiple = whichShowMultiple,
         showJamovi = showJamovi,
+        showHelp = showHelp,
         showHTML = showHTML,
         doProject1aBtn = doProject1aBtn,
         doProject1bBtn = doProject1bBtn,

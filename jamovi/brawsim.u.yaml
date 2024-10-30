@@ -1688,21 +1688,50 @@ children:
           #             - type: Label
           #               label: possible values.
       - type: CollapseBox
-        name: JamoviCollapse
+        name: Settings
         collapsed: true
-        label: Link to Jamovi
+        label: Settings
         margin: none
         maxWidth: 330
         children:
-          - type: LayoutBox
-            style: inline
-            margin: none
-            children:
-              - type: Output
-                name: sendSample
-              - type: Output
-                name: sendMultiple
-              - type: CheckBox
-                name: showJamovi
-              - type: CheckBox
-                name: showHTML
+        - type: LayoutBox
+          style: inline
+          margin: none
+          children:
+          - type: Label
+            label: ' '
+            minWidth: 13
+          - type: Label
+            label: 'Link to Jamovi:'
+            maxWidth: 330
+          - type: Label
+            label: ' '
+            minWidth: 13
+          - type: Output
+            name: sendSample
+            minWidth: 100
+          - type: Output
+            name: sendMultiple
+            minWidth: 100
+          - type: CheckBox
+            name: showJamovi
+            minWidth: 100
+        - type: LayoutBox
+          style: inline
+          margin: none
+          children:
+          - type: Label
+            label: ' '
+            minWidth: 13
+          - type: Label
+            label: 'Other Options:'
+            maxWidth: 330
+          - type: Label
+            label: ' '
+            minWidth: 13
+          - type: CheckBox
+            name: showHelp
+            minWidth: 100
+          - type: CheckBox
+            name: showHTML
+            minWidth: 100

@@ -1,4 +1,10 @@
-
+svgBox<-function(height=NULL,aspect=1.3,fontScale=1.5) {
+  if (is.null(height) && is.null(aspect)) return(braw.env$plotSize)
+  if (is.null(height)) height<-braw.env$plotSize[2]
+    setBrawEnv("plotSize",c(aspect,1)*height)
+    setBrawEnv("labelSize",height/100*fontScale)
+    setBrawEnv("dotSize",height/100*fontScale*1.25)
+}
 svgBoxX<-function() {return(braw.env$plotSize[1])}
 svgBoxY<-function() {return(braw.env$plotSize[2])}
 svgX<-function(x) {return(x*svgBoxX())}
@@ -114,6 +120,7 @@ nullPlot<-function() {
   if (braw.env$graphHTML) {
     g<-paste0(
       '<svg width=',format(svgBoxX()),' height=',format(svgBoxY()),
+      ' margin:0; padding:0;',
       ' style=background-color:','"black"','',
       ' xmlns="http://www.w3.org/2000/svg">',
       '<defs>',

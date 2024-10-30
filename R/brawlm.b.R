@@ -8,15 +8,19 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         .run = function() {
 
           if (!exists("braw.env")) {
-            BrawOpts(fontScale = 1.5,graphC="white")
+            BrawOpts(graphC="white",reducedOutput=TRUE,reportHTML=TRUE,autoShow=FALSE,fullGraphSize=0.5)
             statusStore<-list(lastOutput="System",
                               showSampleType="Sample",
                               showInferParam="Basic",
                               showInferDimension="1D",
                               showMultipleParam="Basic",
                               showMultipleDimension="1D",
-                              showExploreParam="r",
-                              showExploreDimension="1D"
+                              showExploreParam="Basic",
+                              showExploreDimension="1D",
+                              exploreMode="Design",
+                              showJamovi=FALSE,
+                              showHelp=FALSE,
+                              graphHTML=FALSE
             )
             braw.env$statusStore<<-statusStore
             braw.env$table<<-NULL
