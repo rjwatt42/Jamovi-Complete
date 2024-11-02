@@ -2,7 +2,7 @@ prepareSample<-function(raw_data, doOrdinals=FALSE, maxOrdinal=9, header=c()){
   if (is.null(raw_data)) {return(NULL)}
   if (nrow(raw_data)==0) {return(NULL)}
 
-  waste<-raw_data=="#N/A"
+  waste<-(raw_data=="#N/A")
   raw_data[waste]<-NA
   
   if (is.null(header)) {

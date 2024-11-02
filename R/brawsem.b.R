@@ -36,10 +36,8 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             return()
           }
         dataFull<-prepareSample(self$data)
-        # self$results$debug$setContent(dataFull$data[1,])
-        # self$results$debug$setContent(c(self$options$Stage1,self$options$Stage2,self$options$Stage3))
-        # dataFull$data<-dataFull$data[c(self$options$Stage1,self$options$Stage2,self$options$Stage3)]
-        
+        # self$results$debug$setVisible(TRUE)
+
         stages<-list()
         stagesString<-""
         rawStages<-list(self$options$Stage1,
@@ -54,9 +52,6 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             stagesString<-paste0(stagesString,paste0("{",paste(sapply(stage,substr,1,2),collapse=","),"}"))
           }
         }
-        # self$results$debug$setVisible(TRUE)
-        # self$results$debug$setContent(stages)
-        # return()
         
         addSource<-self$options$addSource
         addDest<-self$options$addDest
@@ -102,6 +97,8 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                          varnames=dataFull$variables$name,
                          varcat=dataFull$variables$type=="Categorical"
         )
+        self$results$debug$setVisible(TRUE)
+        self$results$debug$setContent(as.numeric(unlist(model_data$data[1:3,])))
         
         st<-paste0(stagesString,addString,removeString)
         

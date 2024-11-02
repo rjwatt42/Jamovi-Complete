@@ -24,7 +24,7 @@ fit_sem_model<-function(pathmodel,model_data) {
   Bstart<-zeros(1,sum(sem$Bdesign!=0))
   LBstart<-c(Lstart, Bstart)
 
-  nan_action<-"pairwise.complete.obs" # "complete.obs"
+  nan_action<-"complete.obs" # "complete.obs"
   use<-1:n_obs
 
   L<-matrix(0,nloop,1)
@@ -206,7 +206,7 @@ get_ml_fitfcn<-function(LB,S,phi,psy,Ldesign,Bdesign,data,debug=FALSE) {
 
 get_Stheta<-function(L,B=NULL,phi=NULL,psy=NULL) {
   
-  nan_action<-"pairwise.complete.obs" # "complete.obs"
+  nan_action<-"complete.obs" # "complete.obs"
   
   if (is.null(B)) {
     sem=L;
@@ -285,7 +285,9 @@ path2sem<-function(pathmodel,model_data) {
       new_data<-cbind(new_data,nv)
       new_names<-c(new_names,full_varnames[iv])
     } else {
-      cases<-unique(full_data[,iv])
+      if (is.factor(full_data[,iv]))
+        cases<-levels(full_data[,iv])
+      else cases<-unique(full_data[,iv])
       cases<-cases[!is.na(cases)]
       nv<-zeros(nrow(full_data),length(cases)-1)
       nv[is.na(full_data[,iv]),]<-NA
@@ -495,7 +497,7 @@ sem_results<-function(pathmodel,sem) {
          'all'= depth<-length(stages)
   )
   
-  nan_action<-"pairwise.complete.obs" # "complete.obs"
+  nan_action<-"complete.obs" # "complete.obs"
   sem$covariance<-cov(sem$data,use=nan_action)
   sem$cov_model=get_Stheta(sem);
   
