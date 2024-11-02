@@ -42,7 +42,8 @@ BrawAnClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       evidence<-makeEvidence(rInteractionOn=self$options$interaction=="yes",
                              ssqType=self$options$ssq,
                              Welch=self$options$equalVar=="no",
-                             Transform=self$options$Transform
+                             Transform=self$options$Transform,
+                             caseOrder="AsStated"
       )
       braw.env$alphaSig<<-self$options$alphaSig
       

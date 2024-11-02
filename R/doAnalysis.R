@@ -401,7 +401,8 @@ generalAnalysis<-function(allData,InteractionOn,withins=FALSE,ssqType="Type3",ca
       switch (caseOrder,
               "Alphabetic"={ref=sort(levels(allData[,i]))[1]},
               "AsFound"={ref=as.numeric(allData[1,i])},
-              "Frequency"={ref=which.max(tabulate(match(allData[,i], levels(allData[,i]))))}
+              "Frequency"={ref=which.max(tabulate(match(allData[,i], levels(allData[,i]))))},
+              "AsStated"={ref=levels(allData[,i])[[1]]}
       )
       allData[,i]<-relevel(allData[,i],ref=ref)
       catVars<-c(catVars,TRUE)

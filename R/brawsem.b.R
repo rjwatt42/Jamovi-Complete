@@ -97,8 +97,8 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                          varnames=dataFull$variables$name,
                          varcat=dataFull$variables$type=="Categorical"
         )
-        self$results$debug$setVisible(TRUE)
-        self$results$debug$setContent(as.numeric(unlist(model_data$data[1:3,])))
+        # self$results$debug$setVisible(TRUE)
+        # self$results$debug$setContent(as.numeric(unlist(model_data$data[1:3,])))
         
         st<-paste0(stagesString,addString,removeString)
         
