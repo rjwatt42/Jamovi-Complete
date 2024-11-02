@@ -11,6 +11,7 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             Stage3 = NULL,
             Stage2 = NULL,
             Stage1 = NULL,
+            causalDirection = "down",
             Depth = "d1",
             addDest = NULL,
             addSource = NULL,
@@ -40,6 +41,13 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..Stage1 <- jmvcore::OptionVariables$new(
                 "Stage1",
                 Stage1)
+            private$..causalDirection <- jmvcore::OptionList$new(
+                "causalDirection",
+                causalDirection,
+                options=list(
+                    "up",
+                    "down"),
+                default="down")
             private$..Depth <- jmvcore::OptionList$new(
                 "Depth",
                 Depth,
@@ -72,6 +80,7 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..Stage3)
             self$.addOption(private$..Stage2)
             self$.addOption(private$..Stage1)
+            self$.addOption(private$..causalDirection)
             self$.addOption(private$..Depth)
             self$.addOption(private$..addDest)
             self$.addOption(private$..addSource)
@@ -86,6 +95,7 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         Stage3 = function() private$..Stage3$value,
         Stage2 = function() private$..Stage2$value,
         Stage1 = function() private$..Stage1$value,
+        causalDirection = function() private$..causalDirection$value,
         Depth = function() private$..Depth$value,
         addDest = function() private$..addDest$value,
         addSource = function() private$..addSource$value,
@@ -99,6 +109,7 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..Stage3 = NA,
         ..Stage2 = NA,
         ..Stage1 = NA,
+        ..causalDirection = NA,
         ..Depth = NA,
         ..addDest = NA,
         ..addSource = NA,
@@ -193,6 +204,7 @@ BrawSEMBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param Stage3 .
 #' @param Stage2 .
 #' @param Stage1 .
+#' @param causalDirection .
 #' @param Depth .
 #' @param addDest .
 #' @param addSource .
@@ -223,6 +235,7 @@ BrawSEM <- function(
     Stage3,
     Stage2,
     Stage1,
+    causalDirection = "down",
     Depth = "d1",
     addDest,
     addSource,
@@ -267,6 +280,7 @@ BrawSEM <- function(
         Stage3 = Stage3,
         Stage2 = Stage2,
         Stage1 = Stage1,
+        causalDirection = causalDirection,
         Depth = Depth,
         addDest = addDest,
         addSource = addSource,

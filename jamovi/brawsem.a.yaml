@@ -29,6 +29,16 @@ options:
       title: Stage 1
       type: Variables
 
+    - name: causalDirection
+      title: Direction
+      type: List
+      options:
+        - name: up
+          title: up
+        - name: down
+          title: down
+      default: down
+
     - name: Depth
       title: Depth
       type: List
@@ -41,7 +51,17 @@ options:
           title: all
       default: d1
 
-
+    # - name: addLinks
+    #   type: Array
+    #   default:
+    #   template:
+    #     type: Group
+    #     elements:
+    #       - name: addSource
+    #         type: Variable
+    #       - name: addDest
+    #         type: Variable
+      
     - name: addDest
       title: Add Dest
       type: Variables

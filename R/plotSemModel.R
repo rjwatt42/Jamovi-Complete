@@ -112,14 +112,17 @@ plotPathModel<-function(pathmodel) {
   
   # now draw variable names
   for (ni in 1:length(names)) {
+    fill="white"
+    if (is.element(names[ni],colnames(pathmodel$Bdesign)) && all(pathmodel$Bdesign[,names[ni]]==0)) fill<-"#FFAAAA"
+    if (!is.element(names[ni],rownames(pathmodel$Bdesign))) fill<-"#CCFF44"
     g<-addG(g,dataLabel(data.frame(x=xs[ni],y=ys[ni]),label=names[ni],
-                        size=fontSize,hjust=0.5,vjust=0.5,fontface="bold"))
+                        size=fontSize,hjust=0.5,vjust=0.5,fontface="bold",fill=fill))
   }
 
   # now summary result
   label<-paste0("AIC = ",brawFormat(pathmodel$eval$AIC),";  R^2 = ",brawFormat(pathmodel$eval$Rsquared),
                 ";  k = ",brawFormat(pathmodel$eval$k),";  n = ",brawFormat(pathmodel$eval$n))
-  g<-addG(g,dataText(data.frame(x=xlim[2]-diff(xlim)/30,y=ylim[1]+diff(ylim)/30),label,hjust=1,size=0.7))
+  g<-addG(g,dataLabel(data.frame(x=xlim[2]-diff(xlim)/30,y=ylim[1]+diff(ylim)/30),label,hjust=1,size=0.7))
   return(g)
 
 }

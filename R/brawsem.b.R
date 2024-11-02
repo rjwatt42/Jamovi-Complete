@@ -42,17 +42,22 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         
         stages<-list()
         stagesString<-""
-        for (stage in list(self$options$Stage5,
-                           self$options$Stage4,
-                           self$options$Stage3,
-                           self$options$Stage2,
-                           self$options$Stage1)) {
+        rawStages<-list(self$options$Stage1,
+                     self$options$Stage2,
+                     self$options$Stage3,
+                     self$options$Stage4,
+                     self$options$Stage5)
+        if (self$options$causalDirection=="up") rawStages<-rev(rawStages)
+        for (stage in rawStages) {
           if (!is.null(stage)) {
             stages<-c(stages,list(stage))
             stagesString<-paste0(stagesString,paste0("{",paste(sapply(stage,substr,1,2),collapse=","),"}"))
           }
         }
-
+        # self$results$debug$setVisible(TRUE)
+        # self$results$debug$setContent(stages)
+        # return()
+        
         addSource<-self$options$addSource
         addDest<-self$options$addDest
         add<-list()
@@ -97,14 +102,15 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                          varnames=dataFull$variables$name,
                          varcat=dataFull$variables$type=="Categorical"
         )
+        
+        st<-paste0(stagesString,addString,removeString)
+        
         sem<-fit_sem_model(pathmodel,model_data)
 
         assign("graphHTML",TRUE,braw.env)
           outputGraph<-plotPathModel(sem)
           self$results$graphHTML$setContent(outputGraph)
 
-          st<-paste0(stagesString,addString,removeString)
-          
           tableOutput<-braw.env$table
           tableOutput<-rbind(list(AIC=sem$eval$AIC,Rsqr=sem$eval$Rsquared,
                                   model=st

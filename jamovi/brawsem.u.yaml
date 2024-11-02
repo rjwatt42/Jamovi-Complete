@@ -21,6 +21,7 @@ children:
             - type: VariablesListBox
               name: Stage1
               isTarget: true
+              height: small
         - type: TargetLayoutBox
           label: ''
           margin: none
@@ -28,6 +29,7 @@ children:
             - type: VariablesListBox
               name: Stage2
               isTarget: true
+              height: small
         - type: TargetLayoutBox
           label: ''
           margin: none
@@ -35,6 +37,7 @@ children:
             - type: VariablesListBox
               name: Stage3
               isTarget: true
+              height: small
         - type: TargetLayoutBox
           label: ''
           margin: none
@@ -42,6 +45,7 @@ children:
             - type: VariablesListBox
               name: Stage4
               isTarget: true
+              height: small
         - type: TargetLayoutBox
           label: ''
           margin: none
@@ -49,12 +53,15 @@ children:
             - type: VariablesListBox
               name: Stage5
               isTarget: true
+              height: small
     - type: LayoutBox
       style: inline
       margin: large
       children:
         - type: ComboBox
           name: Depth
+        - type: ComboBox
+          name: causalDirection
 
   - type: CollapseBox
     collapsed: true
@@ -67,6 +74,26 @@ children:
       stretchFactor: 1
       children:
       - type: TargetLayoutBox
+        # children:
+        #   - type: ListBox
+        #     name: addLinks
+        #     templateName: addLinks-template
+        #     template:
+        #       type: LayoutBox
+        #       targetArea: true
+        #       children:
+        #         - type: VariablesListBox
+        #           fullRowSelect: true
+        #           isTarget: true
+        #           valueKey:
+        #             - addSource
+        #           ghostText: drag variable here
+        #         - type: VariablesListBox
+        #           fullRowSelect: true
+        #           isTarget: true
+        #           valueKey:
+        #             - addDest
+        #           ghostText: drag variable here
         label: 'Source:'
         margin: none
         children:

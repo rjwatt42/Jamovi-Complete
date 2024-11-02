@@ -267,6 +267,7 @@ path2sem<-function(pathmodel,model_data) {
   full_varnames<-model_data$varnames
   
   only_ivs<-pathmodel$path$only_ivs
+  only_dvs<-pathmodel$path$only_dvs
   within_stage<-pathmodel$path$within_stage
 
   switch(pathmodel$path$depth,
@@ -310,6 +311,10 @@ path2sem<-function(pathmodel,model_data) {
       change<-which(full_varnames[iv]==s)
       if (!isempty(change))
         only_ivs<-cbind(only_ivs[1:(change-1)],nn,only_ivs[(change+1):length(s)])
+      s<-only_dvs
+      change<-which(full_varnames[iv]==s)
+      if (!isempty(change))
+        only_dvs<-cbind(only_dvs[1:(change-1)],nn,only_dvs[(change+1):length(s)])
     }
   }
   full_varnames<-new_names
@@ -323,7 +328,7 @@ path2sem<-function(pathmodel,model_data) {
     for (iv in 1:length(dests)) {
       if (!isempty(dests[iv])){
         if (is.element(dests[iv],pathmodel$path$only_ivs))
-          exo_names<-rbind(exo_names,dests[iv])
+          exo_names<-c(exo_names,dests[iv])
         else
           endo_names<-rbind(endo_names,dests[iv])
       }
@@ -429,6 +434,11 @@ path2sem<-function(pathmodel,model_data) {
     }
   }
 
+  if (!isempty(only_dvs)) {
+    use<-is.element(unlist(only_dvs),colnames(Bdesign))
+    Bdesign[,unlist(only_dvs[use])]<-0
+  }
+  
   if (!is.null(pathmodel$path$remove) && !isempty(pathmodel$path$remove)) {
     for (iadd in 1:length(pathmodel$path$remove)) {
       dest<-pathmodel$path$remove[[iadd]][2]

@@ -3,7 +3,7 @@
 
 'use strict';
 
-const options = [{"name":"data","type":"Data"},{"name":"Stage5","title":"Stage 5","type":"Variables"},{"name":"Stage4","title":"Stage 4","type":"Variables"},{"name":"Stage3","title":"Stage 3","type":"Variables"},{"name":"Stage2","title":"Stage 3","type":"Variables"},{"name":"Stage1","title":"Stage 1","type":"Variables"},{"name":"Depth","title":"Depth","type":"List","options":[{"name":"d1","title":"d1"},{"name":"d2","title":"d2"},{"name":"all","title":"all"}],"default":"d1"},{"name":"addDest","title":"Add Dest","type":"Variables"},{"name":"addSource","title":"Add Source","type":"Variables"},{"name":"removeDest","title":"Add Dest","type":"Variables"},{"name":"removeSource","title":"Add Source","type":"Variables"},{"name":"onlySource","title":"only Source","type":"Variables"},{"name":"onlyDest","title":"only Dest","type":"Variables"}];
+const options = [{"name":"data","type":"Data"},{"name":"Stage5","title":"Stage 5","type":"Variables"},{"name":"Stage4","title":"Stage 4","type":"Variables"},{"name":"Stage3","title":"Stage 3","type":"Variables"},{"name":"Stage2","title":"Stage 3","type":"Variables"},{"name":"Stage1","title":"Stage 1","type":"Variables"},{"name":"causalDirection","title":"Direction","type":"List","options":[{"name":"up","title":"up"},{"name":"down","title":"down"}],"default":"down"},{"name":"Depth","title":"Depth","type":"List","options":[{"name":"d1","title":"d1"},{"name":"d2","title":"d2"},{"name":"all","title":"all"}],"default":"d1"},{"name":"addDest","title":"Add Dest","type":"Variables"},{"name":"addSource","title":"Add Source","type":"Variables"},{"name":"removeDest","title":"Add Dest","type":"Variables"},{"name":"removeSource","title":"Add Source","type":"Variables"},{"name":"onlySource","title":"only Source","type":"Variables"},{"name":"onlyDest","title":"only Dest","type":"Variables"}];
 
 const view = function() {
     
@@ -50,7 +50,8 @@ view.layout = ui.extend({
 									type: DefaultControls.VariablesListBox,
 									typeName: 'VariablesListBox',
 									name: "Stage1",
-									isTarget: true
+									isTarget: true,
+									height: "small"
 								}
 							]
 						},
@@ -64,7 +65,8 @@ view.layout = ui.extend({
 									type: DefaultControls.VariablesListBox,
 									typeName: 'VariablesListBox',
 									name: "Stage2",
-									isTarget: true
+									isTarget: true,
+									height: "small"
 								}
 							]
 						},
@@ -78,7 +80,8 @@ view.layout = ui.extend({
 									type: DefaultControls.VariablesListBox,
 									typeName: 'VariablesListBox',
 									name: "Stage3",
-									isTarget: true
+									isTarget: true,
+									height: "small"
 								}
 							]
 						},
@@ -92,7 +95,8 @@ view.layout = ui.extend({
 									type: DefaultControls.VariablesListBox,
 									typeName: 'VariablesListBox',
 									name: "Stage4",
-									isTarget: true
+									isTarget: true,
+									height: "small"
 								}
 							]
 						},
@@ -106,7 +110,8 @@ view.layout = ui.extend({
 									type: DefaultControls.VariablesListBox,
 									typeName: 'VariablesListBox',
 									name: "Stage5",
-									isTarget: true
+									isTarget: true,
+									height: "small"
 								}
 							]
 						}
@@ -122,6 +127,11 @@ view.layout = ui.extend({
 							type: DefaultControls.ComboBox,
 							typeName: 'ComboBox',
 							name: "Depth"
+						},
+						{
+							type: DefaultControls.ComboBox,
+							typeName: 'ComboBox',
+							name: "causalDirection"
 						}
 					]
 				}
