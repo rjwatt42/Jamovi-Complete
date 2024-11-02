@@ -1,0 +1,69 @@
+---
+name:  BrawSEM
+title: BrawStats:Path Models
+menuGroup: BrawStats
+version: '1.0.0'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+
+    - name: Stage5
+      title: Stage 5
+      type: Variables
+
+    - name: Stage4
+      title: "Stage 4"
+      type: Variables
+
+    - name: Stage3
+      title: Stage 3
+      type: Variables
+
+    - name: Stage2
+      title: Stage 3
+      type: Variables
+
+    - name: Stage1
+      title: Stage 1
+      type: Variables
+
+    - name: Depth
+      title: Depth
+      type: List
+      options:
+        - name: d1
+          title: d1
+        - name: d2
+          title: d2
+        - name: all
+          title: all
+      default: d1
+
+
+    - name: addDest
+      title: Add Dest
+      type: Variables
+
+    - name: addSource
+      title: Add Source
+      type: Variables
+
+    - name: removeDest
+      title: Add Dest
+      type: Variables
+
+    - name: removeSource
+      title: Add Source
+      type: Variables
+
+    - name: onlySource
+      title: only Source
+      type: Variables
+
+    - name: onlyDest
+      title: only Dest
+      type: Variables
+
+...

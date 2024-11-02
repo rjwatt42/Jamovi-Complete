@@ -1,0 +1,132 @@
+title: BrawStats:Path Models
+name: BrawSEM
+jus: '3.0'
+stage: 0
+compilerMode: tame
+children:
+  - type: CollapseBox
+    collapsed: true
+    label: Stages
+    margin: none
+    minWidth: 450
+    children:
+    - type: VariableSupplier
+      persistentItems: false
+      stretchFactor: 1
+      children:
+        - type: TargetLayoutBox
+          label: ''
+          margin: none
+          children:
+            - type: VariablesListBox
+              name: Stage1
+              isTarget: true
+        - type: TargetLayoutBox
+          label: ''
+          margin: none
+          children:
+            - type: VariablesListBox
+              name: Stage2
+              isTarget: true
+        - type: TargetLayoutBox
+          label: ''
+          margin: none
+          children:
+            - type: VariablesListBox
+              name: Stage3
+              isTarget: true
+        - type: TargetLayoutBox
+          label: ''
+          margin: none
+          children:
+            - type: VariablesListBox
+              name: Stage4
+              isTarget: true
+        - type: TargetLayoutBox
+          label: ''
+          margin: none
+          children:
+            - type: VariablesListBox
+              name: Stage5
+              isTarget: true
+    - type: LayoutBox
+      style: inline
+      margin: large
+      children:
+        - type: ComboBox
+          name: Depth
+
+  - type: CollapseBox
+    collapsed: true
+    label: Add
+    margin: none
+    minWidth: 450
+    children:
+    - type: VariableSupplier
+      persistentItems: true
+      stretchFactor: 1
+      children:
+      - type: TargetLayoutBox
+        label: 'Source:'
+        margin: none
+        children:
+          - type: VariablesListBox
+            name: addSource
+            isTarget: true
+      - type: TargetLayoutBox
+        label: 'Dest:'
+        margin: none
+        children:
+          - type: VariablesListBox
+            name: addDest
+            isTarget: true
+
+  - type: CollapseBox
+    collapsed: true
+    label: Remove
+    margin: none
+    minWidth: 450
+    children:
+    - type: VariableSupplier
+      persistentItems: true
+      stretchFactor: 1
+      children:
+      - type: TargetLayoutBox
+        label: 'Source:'
+        margin: none
+        children:
+          - type: VariablesListBox
+            name: removeSource
+            isTarget: true
+      - type: TargetLayoutBox
+        label: 'Dest:'
+        margin: none
+        children:
+          - type: VariablesListBox
+            name: removeDest
+            isTarget: true
+
+  - type: CollapseBox
+    collapsed: true
+    label: Isolate
+    margin: none
+    minWidth: 450
+    children:
+    - type: VariableSupplier
+      persistentItems: true
+      stretchFactor: 1
+      children:
+      - type: TargetLayoutBox
+        label: 'Only sources:'
+        margin: none
+        children:
+          - type: VariablesListBox
+            name: onlySource
+            isTarget: true
+      - type: TargetLayoutBox
+        label: 'Only dests:'
+        margin: none
+        children:
+          - type: VariablesListBox
+            name: onlyDest
+            isTarget: true

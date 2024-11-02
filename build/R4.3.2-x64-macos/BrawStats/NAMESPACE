@@ -17,3 +17,6 @@ export(BrawAnOptions)
 
 export(BrawLMClass)
 export(BrawLMOptions)
+
+export(BrawSEMClass)
+export(BrawSEMOptions)
