@@ -1,4 +1,4 @@
-drawArrow<-function(start,len,direction,ends,col="black",fill="white",width=0.08,position="start") {
+drawArrow<-function(start,len,direction,ends,col="black",fill="white",width=0.08,position="start",finAngle=45) {
   if (position=="centre") {
     start<-c(
       start[1]-len/2*sin((direction-90)/(180/pi)),
@@ -6,8 +6,8 @@ drawArrow<-function(start,len,direction,ends,col="black",fill="white",width=0.08
     )
   }
   d=width
-  dx=d*cos(45/(180/pi)) 
-  dy=d*sin(45/(180/pi))
+  dx=d*cos(finAngle/(180/pi)) 
+  dy=d*sin(finAngle/(180/pi))
   longSidex=(2*dx+d/2)
   longSidey=dy*2.5
   switch (ends,
