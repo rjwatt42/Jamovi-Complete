@@ -5,15 +5,23 @@ drawArrow<-function(start,len,direction,ends,col="black",fill="white",width=0.1,
       start[2]-len/2*cos((direction-90)/(180/pi))
     )
   }
-  d=width*sin(finAngle/(180/pi))
-  dx=d*cos(finAngle/(180/pi)) 
-  dy=d*sin(finAngle/(180/pi))
+  finAngle<-finAngle/(180/pi)
+  d=width*sin(finAngle)
+  dx=d*cos(finAngle) 
+  dy=d*sin(finAngle)
   longSidex=(2*dx+d/2)
   longSidey=dy*2.5
   switch (ends,
           "last"={
             arrow_x<-cumsum(c(0, d/2,0,dx,dx,-longSidex,-longSidex,dx,dx,0,d/2))
             arrow_y<-cumsum(c(0, 0,len-longSidey,-dy,dy,longSidey,-longSidey,-dy,dy,-(len-longSidey),0))
+            # r<-width*2.5
+            # arrow_x<-c(r*sin(finAngle),-width*sin(finAngle),r*sin(finAngle)-width*sin(finAngle)-width/2,0,-width/2)
+            # arrow_x<-c(arrow_x,rev(arrow_x))
+            # arrow_y<-c(r*cos(finAngle),0,(r*sin(finAngle)-width*sin(finAngle)-width/2)/tan(finAngle),len-r*cos(finAngle)+(r*sin(finAngle)-width*sin(finAngle)-width/2)/tan(finAngle),0)
+            # arrow_y<-c(arrow_y,-rev(arrow_y))
+            # arrow_x<-cumsum(arrow_x)
+            # arrow_y<-cumsum(arrow_y)
           },
           "both"={
             arrow_x<-cumsum(c(0,  longSidex,-dx,-dx,0,              dx,dx,-longSidex,-longSidex,dx,dx,0,               -dx,-dx,longSidex))
