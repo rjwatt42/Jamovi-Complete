@@ -21,20 +21,22 @@ items:
       type: Preformatted
       visible: FALSE
 
-    - name: reportPlot
+    - name: reportHTML
       title: ' '
       type: Html
       visible: TRUE
 
-    - name: reportTable
+    - name: reportTableSEM
       title: ' '
       type: Table
-      rows: 15
+      rows: 1
       columns:
       - name: AIC
         type: number
       - name: Rsqr
         # title: r^2
+        type: number
+      - name: r
         type: number
       - name: model
         type: text

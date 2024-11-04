@@ -24,7 +24,9 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           exploreMode="Design",
                           showJamovi=FALSE,
                           showHelp=FALSE,
-                          graphHTML=TRUE
+                          graphHTML=TRUE,
+                          nrowTableLM=1,
+                          nrowTableSEM=1
         )
         braw.env$statusStore<<-statusStore
       }

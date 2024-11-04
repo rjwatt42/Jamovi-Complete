@@ -178,6 +178,7 @@ const events =  {
       ui.showJamovi.setValue(true)
       }
     }
+    
 }
 
 let makeVar = function(name) {

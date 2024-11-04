@@ -17,6 +17,7 @@ options:
       title: Dependent Variable
       type: Variable
       
+      
     - name: alphaSig
       title: 'alpha'
       type: Number
@@ -55,7 +56,7 @@ options:
       default: yes
             
     - name: Transform
-      title: Transform
+      title: Transform the DV
       type: List
       options:
       - name: None
@@ -66,7 +67,76 @@ options:
         title: Exp
       default: None
 
-    - name: show
+    - name: likelihoodType
+      title: 'possible'
+      type: List
+      options:
+      - name: Samples
+        title: Samples
+      - name: Populations
+        title: Populations
+      default: Populations
+        
+    - name: likelihoodCutaway
+      title: ''
+      type: List
+      options:
+      - name: all
+        title: all
+      - name: cutaway
+        title: cutaway
+      default: cutaway
+        
+    - name: likelihoodUsePrior
+      title: 'prior'
+      type: List
+      options:
+      - name: none
+        title: none
+      - name: world
+        title: world
+      - name: prior
+        title: custom
+      default: none
+      
+    - name: priorPDF
+      title: PDF
+      type: List
+      options:
+      - name: Single
+        title: Single
+      - name: Double
+        title: Double
+      - name: Uniform
+        title: Uniform
+      - name: Gauss
+        title: Gauss
+      - name: Exp
+        title: Exp
+      default: Exp
+      
+    - name: priorRZ
+      title: ' '
+      type: List
+      options:
+      - name: r
+        title: r
+      - name: z
+        title: z
+      default: z
+
+    - name: priorLambda
+      title: 'lambda'
+      type: Number
+      default: 0.3
+
+    - name: priorNullP
+      title: 'p(null)'
+      type: Number
+      default: 0.0
+      
+
+    - name: showSampleType
       title: Show
       type: List
       options:
@@ -82,16 +152,88 @@ options:
           title: Likelihood
       default: Compact
 
-    - name: inferWhich
-      title: Which Infer
+    - name: singleVar1
+      title: ' show:'
       type: List
       options:
-        - name: r
-          title: r
+        - name: rs
+          title: rs
+        - name: rp
+          title: rp
+        - name: re
+          title: re
         - name: p
           title: p
+        - name: n
+          title: n
+        - name: blank1
+          title: " "
+        - name: ws
+          title: ws
+        - name: wp
+          title: wp
+        - name: nw
+          title: nw
+        - name: blank2
+          title: " "
+        - name: ro
+          title: ro
+        - name: po
+          title: po
+        - name: no
+          title: no
+      default: rs
+
+    - name: singleVar2
+      title: ' &'
+      type: List
+      options:
+        - name: rs
+          title: rs
+        - name: rp
+          title: rp
+        - name: re
+          title: re
+        - name: p
+          title: p
+        - name: n
+          title: n
+        - name: blank1
+          title: " "
+        - name: ws
+          title: ws
+        - name: wp
+          title: wp
+        - name: nw
+          title: nw
+        - name: blank2
+          title: " "
+        - name: ro
+          title: ro
+        - name: po
+          title: po
+        - name: no
+          title: no
+      default: p
+
+    - name: showInferParam
+      title: ' as:'
+      type: List
+      options:
+        - name: Basic
+          title: Basic
+        - name: Custom
+          title: Custom
+      default: Basic
+                  
+    - name: showInferDimension
+      title: ''
+      type: List
+      options:
+        - name: 1D
+          title: 1D
         - name: 2D
           title: 2D
-      default: 2D
+      default: 1D
 
 ...

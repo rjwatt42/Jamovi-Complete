@@ -64,7 +64,7 @@ BrawLMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         graphHTML = function() private$.items[["graphHTML"]],
         graphPlot = function() private$.items[["graphPlot"]],
         reportPlot = function() private$.items[["reportPlot"]],
-        reportTable = function() private$.items[["reportTable"]]),
+        reportTableLM = function() private$.items[["reportTableLM"]]),
     private = list(),
     public=list(
         initialize=function(options) {
@@ -92,9 +92,9 @@ BrawLMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 visible=TRUE))
             self$add(jmvcore::Table$new(
                 options=options,
-                name="reportTable",
+                name="reportTableLM",
                 title=" ",
-                rows=15,
+                rows=1,
                 columns=list(
                     list(
                         `name`="AIC", 
@@ -144,14 +144,14 @@ BrawLMBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$graphHTML} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$graphPlot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$reportPlot} \tab \tab \tab \tab \tab a html \cr
-#'   \code{results$reportTable} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$reportTableLM} \tab \tab \tab \tab \tab a table \cr
 #' }
 #'
 #' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
 #'
-#' \code{results$reportTable$asDF}
+#' \code{results$reportTableLM$asDF}
 #'
-#' \code{as.data.frame(results$reportTable)}
+#' \code{as.data.frame(results$reportTableLM)}
 #'
 #' @export
 BrawLM <- function(

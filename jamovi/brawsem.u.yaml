@@ -4,56 +4,92 @@ jus: '3.0'
 stage: 0
 compilerMode: tame
 children:
-  - type: CollapseBox
-    collapsed: true
-    label: Stages
-    margin: none
-    minWidth: 450
+  - type: Label
+    label: 'Layout:'
+  # - type: LayoutBox
+  #   margin: none
+    minWidth: 600
     children:
     - type: VariableSupplier
       persistentItems: false
+      minWidth: 300
       stretchFactor: 1
       children:
         - type: TargetLayoutBox
           label: ''
           margin: none
           children:
+          - type: LayoutBox
+            style: inline
+            children:
             - type: VariablesListBox
               name: Stage1
+              ghostText: stage 1
               isTarget: true
               height: small
+              minWidth: 200
+            - type: CheckBox
+              name: Stage1On
         - type: TargetLayoutBox
           label: ''
           margin: none
           children:
+          - type: LayoutBox
+            style: inline
+            children:
             - type: VariablesListBox
               name: Stage2
+              ghostText: stage 2
               isTarget: true
               height: small
+              minWidth: 200
+            - type: CheckBox
+              name: Stage2On
         - type: TargetLayoutBox
           label: ''
           margin: none
           children:
+          - type: LayoutBox
+            style: inline
+            children:
             - type: VariablesListBox
               name: Stage3
+              ghostText: stage 3
               isTarget: true
               height: small
+              minWidth: 200
+            - type: CheckBox
+              name: Stage3On
         - type: TargetLayoutBox
           label: ''
           margin: none
           children:
+          - type: LayoutBox
+            style: inline
+            children:
             - type: VariablesListBox
               name: Stage4
+              ghostText: stage 4
               isTarget: true
               height: small
+              minWidth: 200
+            - type: CheckBox
+              name: Stage4On
         - type: TargetLayoutBox
           label: ''
           margin: none
           children:
+          - type: LayoutBox
+            style: inline
+            children:
             - type: VariablesListBox
               name: Stage5
+              ghostText: stage 5
               isTarget: true
               height: small
+              minWidth: 200
+            - type: CheckBox
+              name: Stage5On
     - type: LayoutBox
       style: inline
       margin: large
@@ -63,97 +99,116 @@ children:
         - type: ComboBox
           name: causalDirection
 
-  - type: CollapseBox
-    collapsed: true
-    label: Add
-    margin: none
-    minWidth: 450
+  - type: Label
+    label: 'Links:'
+  # - type: LayoutBox
+  #   margin: none
+    minWidth: 600
     children:
-    - type: VariableSupplier
-      persistentItems: true
-      stretchFactor: 1
+    - type: CollapseBox
+      collapsed: true
+      label: Add
+      margin: none
+      minWidth: 450
       children:
-      - type: TargetLayoutBox
-        # children:
-        #   - type: ListBox
-        #     name: addLinks
-        #     templateName: addLinks-template
-        #     template:
-        #       type: LayoutBox
-        #       targetArea: true
-        #       children:
-        #         - type: VariablesListBox
-        #           fullRowSelect: true
-        #           isTarget: true
-        #           valueKey:
-        #             - addSource
-        #           ghostText: drag variable here
-        #         - type: VariablesListBox
-        #           fullRowSelect: true
-        #           isTarget: true
-        #           valueKey:
-        #             - addDest
-        #           ghostText: drag variable here
-        label: 'Source:'
-        margin: none
+      - type: VariableSupplier
+        persistentItems: true
+        stretchFactor: 1
         children:
-          - type: VariablesListBox
-            name: addSource
-            isTarget: true
-      - type: TargetLayoutBox
-        label: 'Dest:'
-        margin: none
-        children:
-          - type: VariablesListBox
-            name: addDest
-            isTarget: true
+        - type: TargetLayoutBox
+          # children:
+          #   - type: ListBox
+          #     name: addLinks
+          #     templateName: addLinks-template
+          #     template:
+          #       type: LayoutBox
+          #       targetArea: true
+          #       children:
+          #         - type: VariablesListBox
+          #           fullRowSelect: true
+          #           isTarget: true
+          #           valueKey:
+          #             - addSource
+          #           ghostText: drag variable here
+          #         - type: VariablesListBox
+          #           fullRowSelect: true
+          #           isTarget: true
+          #           valueKey:
+          #             - addDest
+          #           ghostText: drag variable here
+          label: 'Source:'
+          margin: none
+          children:
+            - type: VariablesListBox
+              name: addSource
+              isTarget: true
+        - type: TargetLayoutBox
+          label: 'Dest:'
+          margin: none
+          children:
+            - type: VariablesListBox
+              name: addDest
+              isTarget: true
 
-  - type: CollapseBox
-    collapsed: true
-    label: Remove
-    margin: none
-    minWidth: 450
-    children:
-    - type: VariableSupplier
-      persistentItems: true
-      stretchFactor: 1
+    - type: CollapseBox
+      collapsed: true
+      label: Remove
+      margin: none
+      minWidth: 450
       children:
-      - type: TargetLayoutBox
-        label: 'Source:'
-        margin: none
+      - type: VariableSupplier
+        persistentItems: true
+        stretchFactor: 1
         children:
-          - type: VariablesListBox
-            name: removeSource
-            isTarget: true
-      - type: TargetLayoutBox
-        label: 'Dest:'
-        margin: none
+        - type: TargetLayoutBox
+          label: 'Source:'
+          margin: none
+          children:
+            - type: VariablesListBox
+              name: removeSource
+              isTarget: true
+        - type: TargetLayoutBox
+          label: 'Dest:'
+          margin: none
+          children:
+            - type: VariablesListBox
+              name: removeDest
+              isTarget: true
+  
+    - type: CollapseBox
+      collapsed: true
+      label: Isolate
+      margin: none
+      minWidth: 450
+      children:
+      - type: VariableSupplier
+        persistentItems: true
+        stretchFactor: 1
         children:
-          - type: VariablesListBox
-            name: removeDest
-            isTarget: true
+        - type: TargetLayoutBox
+          label: 'Only sources:'
+          margin: none
+          children:
+            - type: VariablesListBox
+              name: onlySource
+              isTarget: true
+        - type: TargetLayoutBox
+          label: 'Only dests:'
+          margin: none
+          children:
+            - type: VariablesListBox
+              name: onlyDest
+              isTarget: true
 
-  - type: CollapseBox
-    collapsed: true
-    label: Isolate
-    margin: none
-    minWidth: 450
+  - type: Label
+    label: 'Show:'
+  # - type: LayoutBox
+  #   margin: none
+    minWidth: 600
     children:
-    - type: VariableSupplier
-      persistentItems: true
-      stretchFactor: 1
+    - type: LayoutBox
+      style: inline
+      margin: large
       children:
-      - type: TargetLayoutBox
-        label: 'Only sources:'
-        margin: none
-        children:
-          - type: VariablesListBox
-            name: onlySource
-            isTarget: true
-      - type: TargetLayoutBox
-        label: 'Only dests:'
-        margin: none
-        children:
-          - type: VariablesListBox
-            name: onlyDest
-            isTarget: true
+        - type: ComboBox
+          name: ShowType

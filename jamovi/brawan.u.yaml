@@ -1,4 +1,4 @@
-title: 'BrawStats:Analyze Data'
+title: BrawStats:Analyze Data
 name: BrawAn
 jus: '3.0'
 stage: 0
@@ -15,7 +15,6 @@ children:
             name: DV
             maxItemCount: 1
             isTarget: true
-            
       - type: TargetLayoutBox
         label: Independent Variable
         children:
@@ -23,51 +22,177 @@ children:
             name: IV
             maxItemCount: 2
             isTarget: true
-            
   - type: CollapseBox
     collapsed: true
     label: Analysis
     margin: none
     minWidth: 200
     children:
-    - type: LayoutBox
-      children:
+      - type: LayoutBox
+        children:
+          - type: LayoutBox
+            style: inline
+            children:
+              - type: Label
+                label: ' '
+                verticalAlignment: center
+                margin: small
+                minWidth: 13
               - type: LayoutBox
-                style: inline
+                style: list
+                margin: none
                 children:
                   - type: Label
-                    label: ' '
-                    verticalAlignment: center
-                    margin: small
-                    minWidth: 13
-                  - type: LayoutBox
-                    style: inline
+                    label: >-
+                      Make decisions about: Effect Sizes, NHST and Likelihood
+                      (optional)
+                  - type: CollapseBox
+                    label: Describe
+                    collapsed: true
                     margin: none
                     children:
-                      - type: TextBox
-                        name: alphaSig
-                        format: number
+                      - type: LayoutBox
+                        style: inline
+                        margin: none
+                        children:
+                          - type: Label
+                            label: 'Which type of effect size to show:'
                       - type: ComboBox
                         name: Transform
                       - type: ComboBox
-                        name: equalVar
-                        enable: (IVtype:Categorical && DVtype:Interval)
-              - type: LayoutBox
-                style: inline
-                margin: none
-                children:
-                    - type: ComboBox
-                      name: ssq
-                      format: number
-                    - type: ComboBox
-                      name: interaction
+                        name: interaction
+                        enable: (!presetIV2:none)
+                  - type: CollapseBox
+                    label: Infer
+                    collapsed: true
+                    margin: none
+                    children:
+                      - type: Label
+                        label: >-
+                          Decide alpha, some analysis options and some
+                          assumptions
+                      - type: LayoutBox
+                        style: inline
+                        margin: none
+                        children:
+                          - type: Label
+                            label: ' '
+                            verticalAlignment: center
+                            margin: small
+                            minWidth: 13
+                          - type: TextBox
+                            name: alphaSig
+                            format: number
+                      - type: LayoutBox
+                        style: inline
+                        margin: none
+                        children:
+                          - type: Label
+                            label: ' '
+                            verticalAlignment: center
+                            margin: small
+                            minWidth: 13
+                      - type: LayoutBox
+                        style: inline
+                        margin: none
+                        children:
+                          - type: Label
+                            label: ' '
+                            verticalAlignment: center
+                            margin: small
+                            minWidth: 13
+                          - type: ComboBox
+                            name: equalVar
+                            enable: (IVtype:Categorical && DVtype:Interval)
+                          - type: ComboBox
+                            name: ssq
+                            format: number
+                            enable: (!presetIV2:none)
+                  - type: CollapseBox
+                    label: Likelihood
+                    collapsed: true
+                    margin: none
+                    children:
+                      - type: Label
+                        label: Decide what prior to use
+                      - type: LayoutBox
+                        style: inline
+                        margin: none
+                        children:
+                          - type: Label
+                            label: ' '
+                            verticalAlignment: center
+                            margin: small
+                            minWidth: 13
+                          - name: likelihoodUsePrior
+                            type: ComboBox
+                            enable: (likelihoodType:Populations)
+                          - name: priorPDF
+                            type: ComboBox
+                            enable: >-
+                              (likelihoodType:Populations &&
+                              likelihoodUsePrior:prior)
+                          - name: priorRZ
+                            type: ComboBox
+                            enable: >-
+                              (likelihoodType:Populations &&
+                              likelihoodUsePrior:prior)
+                          - type: TextBox
+                            name: priorLambda
+                            format: number
+                            enable: >-
+                              (likelihoodType:Populations &&
+                              likelihoodUsePrior:prior)
+                          - name: priorNullP
+                            type: TextBox
+                            enable: >-
+                              (likelihoodType:Populations &&
+                              likelihoodUsePrior:prior)
+                            format: number
+                      - type: Label
+                        label: Display
+                      - type: LayoutBox
+                        style: inline
+                        margin: none
+                        children:
+                          - type: Label
+                            label: ' '
+                            verticalAlignment: center
+                            margin: small
+                            minWidth: 13
+                          - name: likelihoodType
+                            type: ComboBox
+                          - name: likelihoodCutaway
+                            type: ComboBox
+                            enable: (likelihoodType:Samples)
   - type: LayoutBox
-    style: inline
+    style: list
     margin: large
     children:
-      - type: ComboBox
-        name: show
-      - type: ComboBox
-        name: inferWhich
-        enable: '(show:Infer)'
-        
+      - type: LayoutBox
+        style: inline
+        children:
+          - type: Label
+            label: ' '
+            margin: small
+            minWidth: 100
+          - type: ComboBox
+            name: singleVar1
+            enable: (showSampleType:Infer && showInferParam:Custom)
+          - type: ComboBox
+            name: singleVar2
+            enable: (showSampleType:Infer && showInferParam:Custom)
+          - type: ComboBox
+            name: showInferDimension
+            enable: >-
+              (showSampleType:Infer && (showInferParam:Basic ||
+              showInferParam:Custom))
+      - type: LayoutBox
+        style: inline
+        margin: none
+        children:
+          - type: ComboBox
+            name: showSampleType
+          - type: ComboBox
+            name: showInferParam
+            enable: (showSampleType:Infer)

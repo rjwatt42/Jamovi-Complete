@@ -20,7 +20,9 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                             exploreMode="Design",
                             showJamovi=FALSE,
                             showHelp=FALSE,
-                            graphHTML=TRUE
+                            graphHTML=TRUE,
+                            nrowTableLM=1,
+                            nrowTableSEM=1
           )
           braw.env$statusStore<<-statusStore
         }
@@ -29,8 +31,11 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       
       .run = function() {
 
+        statusStore<-braw.env$statusStore
+        
           if (is.null(self$options$IV) || is.null(self$options$DV)) {
-            self$results$reportPlot$setState(NULL)
+            self$results$graphHTML$setContent(nullPlot())
+            self$results$reportPlot$setContent(nullPlot())
             return()
           }
           
@@ -48,12 +53,12 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           self$results$graphHTML$setContent(outputGraph)
           self$results$reportPlot$setContent(outputText)
 
-          tableOutput<-braw.env$table
+          tableOutput<-braw.env$tableLM
           tableOutput<-rbind(list(AIC=lm$result$aic,Rsqr=lm$result$r.full[[1]]^2,r=lm$result$r.full[[1]],
                                   model=paste(lm$DV$name,"=",paste(lm$IVs$name,collapse="+")) ),
                              tableOutput
           )
-          setBrawEnv("table",tableOutput)
+          setBrawEnv("tableLM",tableOutput)
           
           ne<-nrow(tableOutput)
           if (ne>15) {
@@ -63,10 +68,21 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             use<-1:ne
           }
           
-          for (i in use) 
-            self$results$reportTable$setRow(rowNo=i,values=tableOutput[i,])
-          self$results$reportTable$setState(tableOutput)
-
+          for (i in 1:length(use))
+            if (i>1) {
+              self$results$reportTableLM$addRow(i,values=tableOutput[use[i],])
+              statusStore$nrowTableLM<-statusStore$nrowTableLM+1
+            }
+          else  self$results$reportTableLM$setRow(rowNo=i,values=tableOutput[use[i],])
+          
+          self$results$reportTableLM$setState(tableOutput)
+          a<-which.min(tableOutput[,1])
+          self$results$reportTableLM$addFormat(rowNo=a,col=1,format=Cell.NEGATIVE)
+          a<-which.max(tableOutput[,2])
+          self$results$reportTableLM$addFormat(rowNo=a,col=2,format=Cell.NEGATIVE)
+          
+          braw.env$statusStore<<-statusStore
+          
         }
     )
 )

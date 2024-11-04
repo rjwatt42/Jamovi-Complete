@@ -22,10 +22,10 @@ items:
       type: Html
       visible: TRUE
 
-    - name: reportTable
+    - name: reportTableLM
       title: ' '
       type: Table
-      rows: 15
+      rows: 1
       columns:
       - name: AIC
         type: number

@@ -20,7 +20,9 @@ BrawAnClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           exploreMode="Design",
                           showJamovi=FALSE,
                           showHelp=FALSE,
-                          graphHTML=TRUE
+                          graphHTML=TRUE,
+                          nrowTableLM=1,
+                          nrowTableSEM=1
         )
         braw.env$statusStore<<-statusStore
       }
@@ -30,8 +32,8 @@ BrawAnClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     .run = function() {
       
       if (is.null(self$options$IV) || is.null(self$options$DV)) {
-        self$results$graphHTML$setContent(NULL)
-        self$results$reportPlot$setContent(NULL)
+        self$results$graphHTML$setContent(nullPlot())
+        self$results$reportPlot$setContent(nullPlot())
         return()
       }
       
@@ -50,13 +52,29 @@ BrawAnClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       sample<-readSample(self$data,DV=self$options$DV,IV=self$options$IV)
       result<-doAnalysis(sample,evidence=evidence)
       braw.res$result<<-result
-      outputNow<-self$options$show
-      
+      outputNow<-self$options$showSampleType
+
+      showInferParam<-self$options$showInferParam
+      showInferDimension<-self$options$showInferDimension
+      if (showInferParam=="Custom") {
+        showInferParam<-paste0(self$options$singleVar1,";",self$options$singleVar2)
+      } 
+      if (outputNow=="Likelihood") {
+        possible<-makePossible(UsePrior=self$options$likelihoodUsePrior,
+                               prior=makeWorld(worldOn=TRUE,
+                                               populationPDF=self$options$priorPDF,
+                                               populationRZ=self$options$priorRZ,
+                                               populationPDFk=self$options$priorLambda,
+                                               populationNullp=self$options$priorNullP)
+        )
+        possibleResult<-doPossible(possible)
+      }
+
       svgBox(height=350)
       if (is.element(outputNow,c("Compact","Describe"))) svgBox(height=300)
       if (outputNow=="Likelihood") svgBox(aspect=1.5)
-      if (outputNow=="Infer" && is.element(showMultipleParam,c("Basic","Custom")) && showExploreDimension=="2D") svgBox(height=250)
-      if (outputNow=="Infer" && showExploreDimension=="1D") svgBox(aspect=1.6)
+      if (outputNow=="Infer" && is.element(showInferParam,c("Basic","Custom")) && showInferDimension=="2D") svgBox(height=250)
+      if (outputNow=="Infer" && showInferDimension=="1D") svgBox(aspect=1.6)
       assign("graphHTML",TRUE,braw.env)
       switch(outputNow,
              "Compact"= self$results$graphHTML$setContent(showDescription()),

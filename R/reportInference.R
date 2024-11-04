@@ -80,7 +80,10 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowe
                       f2,rvalText,rep("",nc-6))
       }
     }
-
+    outputText<-c(outputText,rep("",nc))
+    outputText<-c(outputText,"R^2",paste(brawFormat(analysis$rFull^2,digits=braw.env$report_precision),sep=""),rep("",nc-2))
+    outputText<-c(outputText,"AIC",paste(brawFormat(analysis$aic,digits=braw.env$report_precision),sep=""),rep("",nc-2))
+    
     if (!(braw.env$reducedOutput && is.null(IV2))) {
       outputText<-c(outputText,"!H!C ",paste0(sub("Pr\\(","p\\(",sub("^","",colnames(anova)))),"","")
       total_done<-FALSE

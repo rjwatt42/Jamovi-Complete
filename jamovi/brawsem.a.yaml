@@ -29,6 +29,31 @@ options:
       title: Stage 1
       type: Variables
 
+    - name: Stage5On
+      title: ''
+      type: Bool
+      default: true
+
+    - name: Stage4On
+      title: ''
+      type: Bool
+      default: true
+
+    - name: Stage3On
+      title: ''
+      type: Bool
+      default: true
+
+    - name: Stage2On
+      title: ''
+      type: Bool
+      default: true
+
+    - name: Stage1On
+      title: ''
+      type: Bool
+      default: true
+
     - name: causalDirection
       title: Direction
       type: List
@@ -51,6 +76,16 @@ options:
           title: all
       default: d1
 
+    - name: ShowType
+      title: ''
+      type: List
+      options:
+      - name: CF
+        title: coefficients
+      - name: ES
+        title: effect sizes
+      - name: cov
+        title: covariance
     # - name: addLinks
     #   type: Array
     #   default:

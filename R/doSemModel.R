@@ -11,7 +11,6 @@ fit_sem_model<-function(pathmodel,model_data) {
   pathLocalModel<-matrix(0,n_stages,m_stages)
   sem<-path2sem(pathmodel,model_data)
 
-  n_obs<-nrow(sem$data)
   P<-sem$P
   Q<-sem$Q
 
@@ -25,6 +24,9 @@ fit_sem_model<-function(pathmodel,model_data) {
   LBstart<-c(Lstart, Bstart)
 
   nan_action<-"complete.obs" # "complete.obs"
+  useRow<-rowSums(is.na(sem$data[,c(sem$endogenous, sem$exogenous)]))==0
+  sem$data<-sem$data[useRow,]
+  n_obs<-nrow(sem$data)
   use<-1:n_obs
 
   L<-matrix(0,nloop,1)
@@ -93,10 +95,10 @@ fit_sem_model<-function(pathmodel,model_data) {
   Y[is.na(Y)]<-0
   X<-t(sem$data[,(P+1):ncol(sem$data)])
   X[is.na(X)]<-0
-  Z<-B%*%Y+L%*%X
+  Ypredicted<-B%*%Y+L%*%X
   Yactual<-Y-matrix(rep(rowMeans(Y),ncol(Y)),ncol=ncol(Y))
-  Zactual<-Z-matrix(rep(rowMeans(Z),ncol(Z)),ncol=ncol(Z))
-  error<-t(Yactual-Zactual)
+  Ypredicted<-Ypredicted-matrix(rep(rowMeans(Ypredicted),ncol(Ypredicted)),ncol=ncol(Ypredicted))
+  error<-t(Yactual-Ypredicted)
   Rsquared<-1-var(error)/var(t(Yactual))
 
 
@@ -534,18 +536,19 @@ sem_results<-function(pathmodel,sem) {
   L=sem$Lresult; L[is.na(L)]=0;
   Y=t(sem$data[,1:P]); Y[is.na(Y)]=0;
   X=t(sem$data[,(P+1):ncol(sem$data)]); X[is.na(X)]=0;
-  Z=B%*%Y+L%*%X;
+  Ypredicted=B%*%Y+L%*%X;
   Yactual=Y-rowMeans(Y)
-  Zactual=Z-rowMeans(Z)
-  error=t(Yactual-Zactual)
+  Ypredicted=Ypredicted-rowMeans(Ypredicted)
+  error=t(Yactual-Ypredicted)
   Rsquared=1-sum(diag(var(error)))/sum(diag(var(t(Y))))
   #
   k=(P+Q); n=n_obs;
   Resid2=sum(error^2);
   AIC=k+n*(log(2*pi*sum(error^2)/(n-k))+1);
-  AICc=AIC+(2*k*k+2*k)/(n_obs-k-1);
+  llr<-exp((2*k-AIC)/2)
+  AICc=AIC+(2*k*k+2*k)/(n-k-1);
   BIC=k*log(n)+AIC-2*k;
-  CAIC=k*(log(n_obs)+1)+AIC-2*k;
+  CAIC=k*(log(n)+1)+AIC-2*k;
   # 
   sem$stats<-list(model_chisqr=model_chisqr,
                  model_chi_df=model_chi_df,
@@ -558,6 +561,7 @@ sem_results<-function(pathmodel,sem) {
   sem$eval<-list(Rsquared=Rsquared,
                  k=k,
                  n=n,
+                 llr=llr,
                  AIC=AIC,
                  AICc=AICc,
                  BIC=BIC,

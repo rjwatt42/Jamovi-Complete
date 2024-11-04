@@ -11,8 +11,14 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             Stage3 = NULL,
             Stage2 = NULL,
             Stage1 = NULL,
+            Stage5On = TRUE,
+            Stage4On = TRUE,
+            Stage3On = TRUE,
+            Stage2On = TRUE,
+            Stage1On = TRUE,
             causalDirection = "down",
             Depth = "d1",
+            ShowType = NULL,
             addDest = NULL,
             addSource = NULL,
             removeDest = NULL,
@@ -41,6 +47,26 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..Stage1 <- jmvcore::OptionVariables$new(
                 "Stage1",
                 Stage1)
+            private$..Stage5On <- jmvcore::OptionBool$new(
+                "Stage5On",
+                Stage5On,
+                default=TRUE)
+            private$..Stage4On <- jmvcore::OptionBool$new(
+                "Stage4On",
+                Stage4On,
+                default=TRUE)
+            private$..Stage3On <- jmvcore::OptionBool$new(
+                "Stage3On",
+                Stage3On,
+                default=TRUE)
+            private$..Stage2On <- jmvcore::OptionBool$new(
+                "Stage2On",
+                Stage2On,
+                default=TRUE)
+            private$..Stage1On <- jmvcore::OptionBool$new(
+                "Stage1On",
+                Stage1On,
+                default=TRUE)
             private$..causalDirection <- jmvcore::OptionList$new(
                 "causalDirection",
                 causalDirection,
@@ -56,6 +82,13 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "d2",
                     "all"),
                 default="d1")
+            private$..ShowType <- jmvcore::OptionList$new(
+                "ShowType",
+                ShowType,
+                options=list(
+                    "CF",
+                    "ES",
+                    "cov"))
             private$..addDest <- jmvcore::OptionVariables$new(
                 "addDest",
                 addDest)
@@ -80,8 +113,14 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..Stage3)
             self$.addOption(private$..Stage2)
             self$.addOption(private$..Stage1)
+            self$.addOption(private$..Stage5On)
+            self$.addOption(private$..Stage4On)
+            self$.addOption(private$..Stage3On)
+            self$.addOption(private$..Stage2On)
+            self$.addOption(private$..Stage1On)
             self$.addOption(private$..causalDirection)
             self$.addOption(private$..Depth)
+            self$.addOption(private$..ShowType)
             self$.addOption(private$..addDest)
             self$.addOption(private$..addSource)
             self$.addOption(private$..removeDest)
@@ -95,8 +134,14 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         Stage3 = function() private$..Stage3$value,
         Stage2 = function() private$..Stage2$value,
         Stage1 = function() private$..Stage1$value,
+        Stage5On = function() private$..Stage5On$value,
+        Stage4On = function() private$..Stage4On$value,
+        Stage3On = function() private$..Stage3On$value,
+        Stage2On = function() private$..Stage2On$value,
+        Stage1On = function() private$..Stage1On$value,
         causalDirection = function() private$..causalDirection$value,
         Depth = function() private$..Depth$value,
+        ShowType = function() private$..ShowType$value,
         addDest = function() private$..addDest$value,
         addSource = function() private$..addSource$value,
         removeDest = function() private$..removeDest$value,
@@ -109,8 +154,14 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..Stage3 = NA,
         ..Stage2 = NA,
         ..Stage1 = NA,
+        ..Stage5On = NA,
+        ..Stage4On = NA,
+        ..Stage3On = NA,
+        ..Stage2On = NA,
+        ..Stage1On = NA,
         ..causalDirection = NA,
         ..Depth = NA,
+        ..ShowType = NA,
         ..addDest = NA,
         ..addSource = NA,
         ..removeDest = NA,
@@ -126,8 +177,8 @@ BrawSEMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         graphHTML = function() private$.items[["graphHTML"]],
         graphPlot = function() private$.items[["graphPlot"]],
         debug = function() private$.items[["debug"]],
-        reportPlot = function() private$.items[["reportPlot"]],
-        reportTable = function() private$.items[["reportTable"]]),
+        reportHTML = function() private$.items[["reportHTML"]],
+        reportTableSEM = function() private$.items[["reportTableSEM"]]),
     private = list(),
     public=list(
         initialize=function(options) {
@@ -154,20 +205,23 @@ BrawSEMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 visible=FALSE))
             self$add(jmvcore::Html$new(
                 options=options,
-                name="reportPlot",
+                name="reportHTML",
                 title=" ",
                 visible=TRUE))
             self$add(jmvcore::Table$new(
                 options=options,
-                name="reportTable",
+                name="reportTableSEM",
                 title=" ",
-                rows=15,
+                rows=1,
                 columns=list(
                     list(
                         `name`="AIC", 
                         `type`="number"),
                     list(
                         `name`="Rsqr", 
+                        `type`="number"),
+                    list(
+                        `name`="r", 
                         `type`="number"),
                     list(
                         `name`="model", 
@@ -204,8 +258,14 @@ BrawSEMBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param Stage3 .
 #' @param Stage2 .
 #' @param Stage1 .
+#' @param Stage5On .
+#' @param Stage4On .
+#' @param Stage3On .
+#' @param Stage2On .
+#' @param Stage1On .
 #' @param causalDirection .
 #' @param Depth .
+#' @param ShowType .
 #' @param addDest .
 #' @param addSource .
 #' @param removeDest .
@@ -217,15 +277,15 @@ BrawSEMBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$graphHTML} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$graphPlot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$debug} \tab \tab \tab \tab \tab a preformatted \cr
-#'   \code{results$reportPlot} \tab \tab \tab \tab \tab a html \cr
-#'   \code{results$reportTable} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$reportHTML} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$reportTableSEM} \tab \tab \tab \tab \tab a table \cr
 #' }
 #'
 #' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
 #'
-#' \code{results$reportTable$asDF}
+#' \code{results$reportTableSEM$asDF}
 #'
-#' \code{as.data.frame(results$reportTable)}
+#' \code{as.data.frame(results$reportTableSEM)}
 #'
 #' @export
 BrawSEM <- function(
@@ -235,8 +295,14 @@ BrawSEM <- function(
     Stage3,
     Stage2,
     Stage1,
+    Stage5On = TRUE,
+    Stage4On = TRUE,
+    Stage3On = TRUE,
+    Stage2On = TRUE,
+    Stage1On = TRUE,
     causalDirection = "down",
     Depth = "d1",
+    ShowType,
     addDest,
     addSource,
     removeDest,
@@ -280,8 +346,14 @@ BrawSEM <- function(
         Stage3 = Stage3,
         Stage2 = Stage2,
         Stage1 = Stage1,
+        Stage5On = Stage5On,
+        Stage4On = Stage4On,
+        Stage3On = Stage3On,
+        Stage2On = Stage2On,
+        Stage1On = Stage1On,
         causalDirection = causalDirection,
         Depth = Depth,
+        ShowType = ShowType,
         addDest = addDest,
         addSource = addSource,
         removeDest = removeDest,

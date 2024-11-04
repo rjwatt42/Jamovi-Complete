@@ -13,8 +13,18 @@ BrawAnOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             interaction = "no",
             equalVar = "yes",
             Transform = "None",
-            show = "Compact",
-            inferWhich = "2D", ...) {
+            likelihoodType = "Populations",
+            likelihoodCutaway = "cutaway",
+            likelihoodUsePrior = "none",
+            priorPDF = "Exp",
+            priorRZ = "z",
+            priorLambda = 0.3,
+            priorNullP = 0,
+            showSampleType = "Compact",
+            singleVar1 = "rs",
+            singleVar2 = "p",
+            showInferParam = "Basic",
+            showInferDimension = "1D", ...) {
 
             super$initialize(
                 package="BrawStats",
@@ -62,9 +72,56 @@ BrawAnOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "Log",
                     "Exp"),
                 default="None")
-            private$..show <- jmvcore::OptionList$new(
-                "show",
-                show,
+            private$..likelihoodType <- jmvcore::OptionList$new(
+                "likelihoodType",
+                likelihoodType,
+                options=list(
+                    "Samples",
+                    "Populations"),
+                default="Populations")
+            private$..likelihoodCutaway <- jmvcore::OptionList$new(
+                "likelihoodCutaway",
+                likelihoodCutaway,
+                options=list(
+                    "all",
+                    "cutaway"),
+                default="cutaway")
+            private$..likelihoodUsePrior <- jmvcore::OptionList$new(
+                "likelihoodUsePrior",
+                likelihoodUsePrior,
+                options=list(
+                    "none",
+                    "world",
+                    "prior"),
+                default="none")
+            private$..priorPDF <- jmvcore::OptionList$new(
+                "priorPDF",
+                priorPDF,
+                options=list(
+                    "Single",
+                    "Double",
+                    "Uniform",
+                    "Gauss",
+                    "Exp"),
+                default="Exp")
+            private$..priorRZ <- jmvcore::OptionList$new(
+                "priorRZ",
+                priorRZ,
+                options=list(
+                    "r",
+                    "z"),
+                default="z")
+            private$..priorLambda <- jmvcore::OptionNumber$new(
+                "priorLambda",
+                priorLambda,
+                default=0.3)
+            private$..priorNullP <- jmvcore::OptionNumber$new(
+                "priorNullP",
+                priorNullP,
+                default=0)
+            private$..showSampleType <- jmvcore::OptionList$new(
+                "showSampleType",
+                showSampleType,
                 options=list(
                     "Compact",
                     "Sample",
@@ -72,14 +129,56 @@ BrawAnOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "Infer",
                     "Likelihood"),
                 default="Compact")
-            private$..inferWhich <- jmvcore::OptionList$new(
-                "inferWhich",
-                inferWhich,
+            private$..singleVar1 <- jmvcore::OptionList$new(
+                "singleVar1",
+                singleVar1,
                 options=list(
-                    "r",
+                    "rs",
+                    "rp",
+                    "re",
                     "p",
+                    "n",
+                    "blank1",
+                    "ws",
+                    "wp",
+                    "nw",
+                    "blank2",
+                    "ro",
+                    "po",
+                    "no"),
+                default="rs")
+            private$..singleVar2 <- jmvcore::OptionList$new(
+                "singleVar2",
+                singleVar2,
+                options=list(
+                    "rs",
+                    "rp",
+                    "re",
+                    "p",
+                    "n",
+                    "blank1",
+                    "ws",
+                    "wp",
+                    "nw",
+                    "blank2",
+                    "ro",
+                    "po",
+                    "no"),
+                default="p")
+            private$..showInferParam <- jmvcore::OptionList$new(
+                "showInferParam",
+                showInferParam,
+                options=list(
+                    "Basic",
+                    "Custom"),
+                default="Basic")
+            private$..showInferDimension <- jmvcore::OptionList$new(
+                "showInferDimension",
+                showInferDimension,
+                options=list(
+                    "1D",
                     "2D"),
-                default="2D")
+                default="1D")
 
             self$.addOption(private$..IV)
             self$.addOption(private$..DV)
@@ -88,8 +187,18 @@ BrawAnOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..interaction)
             self$.addOption(private$..equalVar)
             self$.addOption(private$..Transform)
-            self$.addOption(private$..show)
-            self$.addOption(private$..inferWhich)
+            self$.addOption(private$..likelihoodType)
+            self$.addOption(private$..likelihoodCutaway)
+            self$.addOption(private$..likelihoodUsePrior)
+            self$.addOption(private$..priorPDF)
+            self$.addOption(private$..priorRZ)
+            self$.addOption(private$..priorLambda)
+            self$.addOption(private$..priorNullP)
+            self$.addOption(private$..showSampleType)
+            self$.addOption(private$..singleVar1)
+            self$.addOption(private$..singleVar2)
+            self$.addOption(private$..showInferParam)
+            self$.addOption(private$..showInferDimension)
         }),
     active = list(
         IV = function() private$..IV$value,
@@ -99,8 +208,18 @@ BrawAnOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         interaction = function() private$..interaction$value,
         equalVar = function() private$..equalVar$value,
         Transform = function() private$..Transform$value,
-        show = function() private$..show$value,
-        inferWhich = function() private$..inferWhich$value),
+        likelihoodType = function() private$..likelihoodType$value,
+        likelihoodCutaway = function() private$..likelihoodCutaway$value,
+        likelihoodUsePrior = function() private$..likelihoodUsePrior$value,
+        priorPDF = function() private$..priorPDF$value,
+        priorRZ = function() private$..priorRZ$value,
+        priorLambda = function() private$..priorLambda$value,
+        priorNullP = function() private$..priorNullP$value,
+        showSampleType = function() private$..showSampleType$value,
+        singleVar1 = function() private$..singleVar1$value,
+        singleVar2 = function() private$..singleVar2$value,
+        showInferParam = function() private$..showInferParam$value,
+        showInferDimension = function() private$..showInferDimension$value),
     private = list(
         ..IV = NA,
         ..DV = NA,
@@ -109,8 +228,18 @@ BrawAnOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..interaction = NA,
         ..equalVar = NA,
         ..Transform = NA,
-        ..show = NA,
-        ..inferWhich = NA)
+        ..likelihoodType = NA,
+        ..likelihoodCutaway = NA,
+        ..likelihoodUsePrior = NA,
+        ..priorPDF = NA,
+        ..priorRZ = NA,
+        ..priorLambda = NA,
+        ..priorNullP = NA,
+        ..showSampleType = NA,
+        ..singleVar1 = NA,
+        ..singleVar2 = NA,
+        ..showInferParam = NA,
+        ..showInferDimension = NA)
 )
 
 BrawAnResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -183,8 +312,18 @@ BrawAnBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param interaction .
 #' @param equalVar .
 #' @param Transform .
-#' @param show .
-#' @param inferWhich .
+#' @param likelihoodType .
+#' @param likelihoodCutaway .
+#' @param likelihoodUsePrior .
+#' @param priorPDF .
+#' @param priorRZ .
+#' @param priorLambda .
+#' @param priorNullP .
+#' @param showSampleType .
+#' @param singleVar1 .
+#' @param singleVar2 .
+#' @param showInferParam .
+#' @param showInferDimension .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$graphHTML} \tab \tab \tab \tab \tab a html \cr
@@ -203,8 +342,18 @@ BrawAn <- function(
     interaction = "no",
     equalVar = "yes",
     Transform = "None",
-    show = "Compact",
-    inferWhich = "2D") {
+    likelihoodType = "Populations",
+    likelihoodCutaway = "cutaway",
+    likelihoodUsePrior = "none",
+    priorPDF = "Exp",
+    priorRZ = "z",
+    priorLambda = 0.3,
+    priorNullP = 0,
+    showSampleType = "Compact",
+    singleVar1 = "rs",
+    singleVar2 = "p",
+    showInferParam = "Basic",
+    showInferDimension = "1D") {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("BrawAn requires jmvcore to be installed (restart may be required)")
@@ -226,8 +375,18 @@ BrawAn <- function(
         interaction = interaction,
         equalVar = equalVar,
         Transform = Transform,
-        show = show,
-        inferWhich = inferWhich)
+        likelihoodType = likelihoodType,
+        likelihoodCutaway = likelihoodCutaway,
+        likelihoodUsePrior = likelihoodUsePrior,
+        priorPDF = priorPDF,
+        priorRZ = priorRZ,
+        priorLambda = priorLambda,
+        priorNullP = priorNullP,
+        showSampleType = showSampleType,
+        singleVar1 = singleVar1,
+        singleVar2 = singleVar2,
+        showInferParam = showInferParam,
+        showInferDimension = showInferDimension)
 
     analysis <- BrawAnClass$new(
         options = options,
