@@ -140,7 +140,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             reportExploreStats = "Medians",
             whichShowMultiple = "all",
             showJamovi = FALSE,
-            showHelp = FALSE,
+            showHelp = TRUE,
             showHTML = TRUE,
             doProject1aBtn = NULL,
             doProject1bBtn = NULL,
@@ -1030,7 +1030,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..showHelp <- jmvcore::OptionBool$new(
                 "showHelp",
                 showHelp,
-                default=FALSE)
+                default=TRUE)
             private$..showHTML <- jmvcore::OptionBool$new(
                 "showHTML",
                 showHTML,
@@ -1907,7 +1907,7 @@ BrawSim <- function(
     reportExploreStats = "Medians",
     whichShowMultiple = "all",
     showJamovi = FALSE,
-    showHelp = FALSE,
+    showHelp = TRUE,
     showHTML = TRUE,
     doProject1aBtn,
     doProject1bBtn,

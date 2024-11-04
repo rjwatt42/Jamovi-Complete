@@ -98,8 +98,9 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         
         assign("graphHTML",TRUE,braw.env)
         if (length(stages)<2) {
-          self$results$graphHTML$setContent(nullPlot())
-          self$results$reportPlot$setContent(nullPlot())
+          self$results$graphSEM$setContent(nullPlot())
+          self$results$reportSEM$setContent(nullPlot())
+          self$results$reportTableSEM$setContent(nullPlot())
           return()
         }
         
@@ -118,13 +119,14 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         sem<-fit_sem_model(pathmodel,model_data)
 
           outputGraph<-plotPathModel(sem)
-          self$results$graphHTML$setContent(outputGraph)
+          self$results$graphSEM$setContent(outputGraph)
 
           outputReport<-reportPathModel(sem,self$options$ShowType)
-          self$results$reportHTML$setContent(outputReport)
+          self$results$reportSEM$setContent(outputReport)
           
           tableOutput<-braw.env$tableSEM
-          tableOutput<-rbind(list(AIC=sem$eval$AIC,Rsqr=sem$eval$Rsquared,r=sqrt(sem$eval$Rsquared),
+          tableOutput<-rbind(list(AIC=sem$eval$AIC,AICc=sem$eval$AICc,BIC=sem$eval$BIC,
+                                  Rsqr=sem$eval$Rsquared,r=sqrt(sem$eval$Rsquared),
                                   model=st
                                   ),
                              tableOutput
@@ -147,11 +149,12 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             else  self$results$reportTableSEM$setRow(rowNo=i,values=tableOutput[use[i],])
 
           self$results$reportTableSEM$setState(tableOutput)
-          a<-which.min(tableOutput[,1])
-          self$results$reportTableSEM$addFormat(rowNo=a,col=1,format=Cell.NEGATIVE)
-          a<-which.max(tableOutput[,2])
-          self$results$reportTableSEM$addFormat(rowNo=a,col=2,format=Cell.NEGATIVE)
           
+          for (col in 1:4) {
+            a<-which.min(tableOutput[,col])
+            self$results$reportTableSEM$addFormat(rowNo=a,col=col,format=Cell.NEGATIVE)
+          }
+
           braw.env$statusStore<<-statusStore
           
         }

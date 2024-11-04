@@ -11,4 +11,4 @@ Encoding: UTF-8
 LazyData: true
 Imports: jmvcore (>= 2.3.4), R6, car, ggplot2, mnormt, pracma, lme4,
         grDevices, stringr, NlcOptim, abind
-Built: R 4.3.2; ; 2024-11-04 17:15:30 UTC; unix
+Built: R 4.4.1; ; 2024-11-04 17:37:04 UTC; unix

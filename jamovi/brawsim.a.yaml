@@ -1332,7 +1332,7 @@ options:
     - name: showHelp
       title: help?
       type: Bool
-      default: false
+      default: true
       
     - name: showHTML
       title: HTML?

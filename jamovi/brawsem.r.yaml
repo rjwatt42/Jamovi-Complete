@@ -4,7 +4,7 @@ title: BrawStats:Path Models
 jrs:   '1.1'
 
 items:
-    - name: graphHTML
+    - name: graphSEM
       title: ' '
       type: Html
       visible: TRUE
@@ -21,7 +21,7 @@ items:
       type: Preformatted
       visible: FALSE
 
-    - name: reportHTML
+    - name: reportSEM
       title: ' '
       type: Html
       visible: TRUE
@@ -32,6 +32,10 @@ items:
       rows: 1
       columns:
       - name: AIC
+        type: number
+      - name: AICc
+        type: number
+      - name: BIC
         type: number
       - name: Rsqr
         # title: r^2

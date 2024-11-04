@@ -174,10 +174,10 @@ BrawSEMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "BrawSEMResults",
     inherit = jmvcore::Group,
     active = list(
-        graphHTML = function() private$.items[["graphHTML"]],
+        graphSEM = function() private$.items[["graphSEM"]],
         graphPlot = function() private$.items[["graphPlot"]],
         debug = function() private$.items[["debug"]],
-        reportHTML = function() private$.items[["reportHTML"]],
+        reportSEM = function() private$.items[["reportSEM"]],
         reportTableSEM = function() private$.items[["reportTableSEM"]]),
     private = list(),
     public=list(
@@ -188,7 +188,7 @@ BrawSEMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 title="BrawStats:Path Models")
             self$add(jmvcore::Html$new(
                 options=options,
-                name="graphHTML",
+                name="graphSEM",
                 title=" ",
                 visible=TRUE))
             self$add(jmvcore::Image$new(
@@ -205,7 +205,7 @@ BrawSEMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 visible=FALSE))
             self$add(jmvcore::Html$new(
                 options=options,
-                name="reportHTML",
+                name="reportSEM",
                 title=" ",
                 visible=TRUE))
             self$add(jmvcore::Table$new(
@@ -216,6 +216,12 @@ BrawSEMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 columns=list(
                     list(
                         `name`="AIC", 
+                        `type`="number"),
+                    list(
+                        `name`="AICc", 
+                        `type`="number"),
+                    list(
+                        `name`="BIC", 
                         `type`="number"),
                     list(
                         `name`="Rsqr", 
@@ -274,10 +280,10 @@ BrawSEMBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param onlyDest .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$graphHTML} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$graphSEM} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$graphPlot} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$debug} \tab \tab \tab \tab \tab a preformatted \cr
-#'   \code{results$reportHTML} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$reportSEM} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$reportTableSEM} \tab \tab \tab \tab \tab a table \cr
 #' }
 #'
