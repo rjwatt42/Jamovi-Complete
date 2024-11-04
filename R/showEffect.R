@@ -1,11 +1,11 @@
-drawArrow<-function(start,len,direction,ends,col="black",fill="white",width=0.08,position="start",finAngle=45) {
+drawArrow<-function(start,len,direction,ends,col="black",fill="white",width=0.1,position="start",finAngle=45) {
   if (position=="centre") {
     start<-c(
       start[1]-len/2*sin((direction-90)/(180/pi)),
       start[2]-len/2*cos((direction-90)/(180/pi))
     )
   }
-  d=width
+  d=width*sin(finAngle/(180/pi))
   dx=d*cos(finAngle/(180/pi)) 
   dy=d*sin(finAngle/(180/pi))
   longSidex=(2*dx+d/2)
