@@ -62,7 +62,7 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           
           ne<-nrow(tableOutput)
           if (ne>15) {
-            use1<-which.min(tableOutput$AIC[15:ne])
+            use1<-which.min(tableOutput$[15:ne,1])
             use<-c(1:14,use1)
           } else {
             use<-1:ne

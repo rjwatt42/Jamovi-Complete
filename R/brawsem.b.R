@@ -100,7 +100,7 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         if (length(stages)<2) {
           self$results$graphSEM$setContent(nullPlot())
           self$results$reportSEM$setContent(nullPlot())
-          self$results$reportTableSEM$setContent(nullPlot())
+          # self$results$reportTableSEM$setContent(nullPlot())
           return()
         }
         
@@ -111,8 +111,6 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                          varnames=dataFull$variables$name,
                          varcat=dataFull$variables$type=="Categorical"
         )
-        # self$results$debug$setVisible(TRUE)
-        # self$results$debug$setContent(as.numeric(unlist(model_data$data[1:3,])))
         
         st<-paste0(stagesString,addString,removeString)
         
@@ -132,15 +130,17 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                              tableOutput
           )
           setBrawEnv("tableSEM",tableOutput)
-
+          # self$results$debug$setVisible(TRUE)
+          # self$results$debug$setContent(tableOutput[,1])
+          
           ne<-nrow(tableOutput)
           if (ne>15) {
-            use1<-which.min(tableOutput$AIC[15:ne])
-            use<-c(1:14,use1)
+            use1<-which.min(tableOutput[15:ne,1])
+            use<-c(1:14,use1[1])
           } else {
             use<-1:ne
           }
-
+          
           for (i in 1:length(use))
             if (i>1) {
               self$results$reportTableSEM$addRow(i,values=tableOutput[use[i],])
