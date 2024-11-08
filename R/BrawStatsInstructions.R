@@ -2,6 +2,38 @@ BrawInstructions <- function(HelpType="Plan") {
   
 
   switch(HelpType,
+         "Overview"={
+           output<-c(
+             '<b>Plan</b> some research - make a hypothesis, a design and prepare an analysis.',
+             '<ul style=margin:0px;>',
+             '<li> What type of variables are you going to use - Interval, Ordinal or Categorical?',
+             '<li> How big is the effect expected to be?',
+             '<li> What size of sample will you use?',
+             '<li> How will you obtain the sample?',
+             '</ul>',
+             '<br>',
+             'Make a <b>Single Sample</b> of data, inspect it and analyse it.',
+             '<ul style=margin:0px;>',
+             '<li> See how the graphs depend on the type of variables you used.',
+             '<li> Compare the sample effect size with the population effect size.',
+             '<li> Did you get a statistically significant result?',
+             '</ul>',
+             '<br>',
+             'Use <b>Multiple Samples</b> to see how variable the possible results of your plan are.',
+             '<ul style=margin:0px;>',
+             '<li> How often does your plan produce a significant result?',
+             '<li> What parts of the plan have the biggest effect on that outcome?',
+             '</ul>',
+             '<br>',
+             'Then <b>Explore</b> what happens when you cary parts of your plan.',
+             '<ul style=margin:0px;>',
+             '<li> How often does the probability of a significant result vary with sample size?',
+             '<li> What happens when the hypothesis is for an effect size of zero?',
+             '</ul>',
+             '<br>'
+           )
+           extras<-c()
+         },
          "Plan"={
            output<-c(
            'A <b>Plan</b> proposes 3 parts - hypothesis, design and analysis.',

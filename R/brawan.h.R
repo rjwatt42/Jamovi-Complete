@@ -23,8 +23,8 @@ BrawAnOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             showSampleType = "Compact",
             singleVar1 = "rs",
             singleVar2 = "p",
-            showInferParam = "Basic",
-            showInferDimension = "1D", ...) {
+            showInferDimension = "1D",
+            showHTML = TRUE, ...) {
 
             super$initialize(
                 package="BrawStats",
@@ -165,13 +165,6 @@ BrawAnOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "po",
                     "no"),
                 default="p")
-            private$..showInferParam <- jmvcore::OptionList$new(
-                "showInferParam",
-                showInferParam,
-                options=list(
-                    "Basic",
-                    "Custom"),
-                default="Basic")
             private$..showInferDimension <- jmvcore::OptionList$new(
                 "showInferDimension",
                 showInferDimension,
@@ -179,6 +172,10 @@ BrawAnOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "1D",
                     "2D"),
                 default="1D")
+            private$..showHTML <- jmvcore::OptionBool$new(
+                "showHTML",
+                showHTML,
+                default=TRUE)
 
             self$.addOption(private$..IV)
             self$.addOption(private$..DV)
@@ -197,8 +194,8 @@ BrawAnOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..showSampleType)
             self$.addOption(private$..singleVar1)
             self$.addOption(private$..singleVar2)
-            self$.addOption(private$..showInferParam)
             self$.addOption(private$..showInferDimension)
+            self$.addOption(private$..showHTML)
         }),
     active = list(
         IV = function() private$..IV$value,
@@ -218,8 +215,8 @@ BrawAnOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         showSampleType = function() private$..showSampleType$value,
         singleVar1 = function() private$..singleVar1$value,
         singleVar2 = function() private$..singleVar2$value,
-        showInferParam = function() private$..showInferParam$value,
-        showInferDimension = function() private$..showInferDimension$value),
+        showInferDimension = function() private$..showInferDimension$value,
+        showHTML = function() private$..showHTML$value),
     private = list(
         ..IV = NA,
         ..DV = NA,
@@ -238,17 +235,17 @@ BrawAnOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..showSampleType = NA,
         ..singleVar1 = NA,
         ..singleVar2 = NA,
-        ..showInferParam = NA,
-        ..showInferDimension = NA)
+        ..showInferDimension = NA,
+        ..showHTML = NA)
 )
 
 BrawAnResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "BrawAnResults",
     inherit = jmvcore::Group,
     active = list(
-        graphHTML = function() private$.items[["graphHTML"]],
-        graphPlot = function() private$.items[["graphPlot"]],
-        reportPlot = function() private$.items[["reportPlot"]],
+        anGraphHTML = function() private$.items[["anGraphHTML"]],
+        anGraph = function() private$.items[["anGraph"]],
+        anReport = function() private$.items[["anReport"]],
         debug = function() private$.items[["debug"]]),
     private = list(),
     public=list(
@@ -259,20 +256,20 @@ BrawAnResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 title="BrawStats:Analyze Data")
             self$add(jmvcore::Html$new(
                 options=options,
-                name="graphHTML",
+                name="anGraphHTML",
                 title=" ",
                 visible=TRUE))
             self$add(jmvcore::Image$new(
                 options=options,
-                name="graphPlot",
+                name="anGraph",
                 title=" ",
                 width=500,
                 height=300,
-                renderFun=".plotGraph",
+                renderFun=".anPlotGraph",
                 visible=FALSE))
             self$add(jmvcore::Html$new(
                 options=options,
-                name="reportPlot",
+                name="anReport",
                 title=" ",
                 visible=TRUE))
             self$add(jmvcore::Preformatted$new(
@@ -322,13 +319,13 @@ BrawAnBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param showSampleType .
 #' @param singleVar1 .
 #' @param singleVar2 .
-#' @param showInferParam .
 #' @param showInferDimension .
+#' @param showHTML .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$graphHTML} \tab \tab \tab \tab \tab a html \cr
-#'   \code{results$graphPlot} \tab \tab \tab \tab \tab an image \cr
-#'   \code{results$reportPlot} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$anGraphHTML} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$anGraph} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$anReport} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$debug} \tab \tab \tab \tab \tab a preformatted \cr
 #' }
 #'
@@ -352,8 +349,8 @@ BrawAn <- function(
     showSampleType = "Compact",
     singleVar1 = "rs",
     singleVar2 = "p",
-    showInferParam = "Basic",
-    showInferDimension = "1D") {
+    showInferDimension = "1D",
+    showHTML = TRUE) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("BrawAn requires jmvcore to be installed (restart may be required)")
@@ -385,8 +382,8 @@ BrawAn <- function(
         showSampleType = showSampleType,
         singleVar1 = singleVar1,
         singleVar2 = singleVar2,
-        showInferParam = showInferParam,
-        showInferDimension = showInferDimension)
+        showInferDimension = showInferDimension,
+        showHTML = showHTML)
 
     analysis <- BrawAnClass$new(
         options = options,

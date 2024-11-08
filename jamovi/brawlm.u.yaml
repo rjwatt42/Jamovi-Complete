@@ -4,6 +4,9 @@ jus: '3.0'
 stage: 0
 compilerMode: tame
 children:
+- type: Label
+  label: "Layout:"
+  children:
   - type: VariableSupplier
     persistentItems: false
     stretchFactor: 1
@@ -23,11 +26,19 @@ children:
             name: IV
             isTarget: true
             
-  - type: LayoutBox
-    style: inline
+  - type: Label
+    label: 'Show:'
     margin: large
     children:
+    - type: LayoutBox
+      style: inline
+      children:
       - type: ComboBox
         name: whichR
       - type: ComboBox
         name: inferWhich
+    - type: LayoutBox
+      style: inline
+      children:
+      - type: CheckBox
+        name: showHTML

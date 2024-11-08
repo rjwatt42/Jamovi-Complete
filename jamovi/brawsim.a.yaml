@@ -446,6 +446,8 @@ options:
           title: Stratified
         - name: Cluster
           title: Cluster
+        - name: Snowball
+          title: Snowball
         - name: Convenience
           title: Convenience
       default: Random
@@ -788,7 +790,7 @@ options:
       title: 'multiple'
       type: Action
 
-    - name: singleVar1
+    - name: inferVar1
       title: ' show:'
       type: List
       options:
@@ -820,7 +822,7 @@ options:
           title: no
       default: rs
 
-    - name: singleVar2
+    - name: inferVar2
       title: ' &'
       type: List
       options:
@@ -852,79 +854,91 @@ options:
           title: no
       default: p
 
-    - name: multipleVar1
-      title: ' show:'
-      type: List
-      options:
-        - name: rs
-          title: rs
-        - name: rp
-          title: rp
-        - name: re
-          title: re
-        - name: p
-          title: p
-        - name: n
-          title: n
-        - name: blank1
-          title: " "
-        - name: ws
-          title: ws
-        - name: wp
-          title: wp
-        - name: nw
-          title: nw
-        - name: blank2
-          title: " "
-        - name: ro
-          title: ro
-        - name: po
-          title: po
-        - name: no
-          title: no
-      default: rs
-
-    - name: multipleVar2
-      title: ' &'
-      type: List
-      options:
-        - name: rs
-          title: rs
-        - name: rp
-          title: rp
-        - name: re
-          title: re
-        - name: p
-          title: p
-        - name: n
-          title: n
-        - name: blank1
-          title: " "
-        - name: ws
-          title: ws
-        - name: wp
-          title: wp
-        - name: nw
-          title: nw
-        - name: blank2
-          title: " "
-        - name: ro
-          title: ro
-        - name: po
-          title: po
-        - name: no
-          title: no
-      default: p
-
-    - name: reportMultipleStats
-      title: ' '
-      type: List
-      options:
-      - name: Means
-        title: (Means)
-      - name: Medians
-        title: (Medians)
-      default: Medians
+    # - name: multipleVar1
+    #   title: ' show:'
+    #   type: List
+    #   options:
+    #     - name: rs
+    #       title: rs
+    #     - name: rp
+    #       title: rp
+    #     - name: re
+    #       title: re
+    #     - name: p
+    #       title: p
+    #     - name: n
+    #       title: n
+    #     - name: blank1
+    #       title: " "
+    #     - name: ws
+    #       title: ws
+    #     - name: wp
+    #       title: wp
+    #     - name: nw
+    #       title: nw
+    #     - name: blank2
+    #       title: " "
+    #     - name: ro
+    #       title: ro
+    #     - name: po
+    #       title: po
+    #     - name: no
+    #       title: no
+    #   default: rs
+    # 
+    # - name: multipleVar2
+    #   title: ' &'
+    #   type: List
+    #   options:
+    #     - name: rs
+    #       title: rs
+    #     - name: rp
+    #       title: rp
+    #     - name: re
+    #       title: re
+    #     - name: p
+    #       title: p
+    #     - name: n
+    #       title: n
+    #     - name: blank1
+    #       title: " "
+    #     - name: ws
+    #       title: ws
+    #     - name: wp
+    #       title: wp
+    #     - name: nw
+    #       title: nw
+    #     - name: blank2
+    #       title: " "
+    #     - name: ro
+    #       title: ro
+    #     - name: po
+    #       title: po
+    #     - name: no
+    #       title: no
+    #   default: p
+    # 
+    # - name: reportMultipleStats
+    #   title: ' '
+    #   type: List
+    #   options:
+    #   - name: Means
+    #     title: (Means)
+    #   - name: Medians
+    #     title: (Medians)
+    #   default: Medians
+    #   
+    # - name: showSample
+    #   title: 'samples as:'
+    #   type: List
+    #   options: 
+    #   - name: unsorted
+    #     title: unsorted
+    #   - name: sorted
+    #     title: sorted
+    #   - name: piled
+    #     title: piled
+    #   default: piled
       
     - name: showSampleType
       title: ' show:'
@@ -932,6 +946,8 @@ options:
       options:
         - name: Compact
           title: Compact
+        - name: Variables
+          title: Variables
         - name: Sample
           title: Sample
         - name: Describe
@@ -942,16 +958,6 @@ options:
           title: Likelihood
       default: Compact
       
-    - name: showInferParam
-      title: ' as:'
-      type: List
-      options:
-        - name: Basic
-          title: Basic
-        - name: Custom
-          title: Custom
-      default: Basic
-                  
     - name: showInferDimension
       title: ''
       type: List
@@ -962,14 +968,22 @@ options:
           title: 2D
       default: 1D
 
+    - name: reportInferStats
+      title: ' '
+      type: List
+      options:
+      - name: Means
+        title: (Means)
+      - name: Medians
+        title: (Medians)
+      default: Medians
+
     - name: showMultipleParam
       title: ' show as:'
       type: List
       options:
         - name: Basic
           title: Basic
-        - name: Custom
-          title: Custom
         - name: 'p(sig)'
           title: 'p(sig)'
         - name: NHST
@@ -983,7 +997,7 @@ options:
         - name: Residuals
           title: Residuals
       default: Basic
-            
+
     - name: showMultipleDimension
       title: ''
       type: List
@@ -995,22 +1009,22 @@ options:
       default: 1D
 
     - name: exploreNPointsH
-      title: 'at'
+      title: 'using'
       type: Number
       default: 13
 
     - name: exploreNPointsD
-      title: 'at'
+      title: 'using'
       type: Number
       default: 13
 
     - name: exploreNPointsA
-      title: 'at'
+      title: 'using'
       type: Number
       default: 13
 
     - name: exploreNPointsM
-      title: 'at'
+      title: 'using'
       type: Number
       default: 13
       
@@ -1200,8 +1214,6 @@ options:
       options:
         - name: Basic
           title: Basic
-        - name: Custom
-          title: Custom
         - name: 'p(sig)'
           title: 'p(sig)'
         - name: NHST
@@ -1216,70 +1228,70 @@ options:
           title: Residuals
       default: Basic
 
-    - name: exploreVar1
-      title: ' show:'
-      type: List
-      options:
-        - name: rs
-          title: rs
-        - name: rp
-          title: rp
-        - name: re
-          title: re
-        - name: p
-          title: p
-        - name: n
-          title: n
-        - name: blank1
-          title: " "
-        - name: ws
-          title: ws
-        - name: wp
-          title: wp
-        - name: nw
-          title: nw
-        - name: blank2
-          title: " "
-        - name: ro
-          title: ro
-        - name: po
-          title: po
-        - name: no
-          title: no
-      default: rs
+    # - name: exploreVar1
+    #   title: ' show:'
+    #   type: List
+    #   options:
+    #     - name: rs
+    #       title: rs
+    #     - name: rp
+    #       title: rp
+    #     - name: re
+    #       title: re
+    #     - name: p
+    #       title: p
+    #     - name: n
+    #       title: n
+    #     - name: blank1
+    #       title: " "
+    #     - name: ws
+    #       title: ws
+    #     - name: wp
+    #       title: wp
+    #     - name: nw
+    #       title: nw
+    #     - name: blank2
+    #       title: " "
+    #     - name: ro
+    #       title: ro
+    #     - name: po
+    #       title: po
+    #     - name: no
+    #       title: no
+    #   default: rs
+    # 
+    # - name: exploreVar2
+    #   title: ' &'
+    #   type: List
+    #   options:
+    #     - name: rs
+    #       title: rs
+    #     - name: rp
+    #       title: rp
+    #     - name: re
+    #       title: re
+    #     - name: p
+    #       title: p
+    #     - name: n
+    #       title: n
+    #     - name: blank1
+    #       title: " "
+    #     - name: ws
+    #       title: ws
+    #     - name: wp
+    #       title: wp
+    #     - name: nw
+    #       title: nw
+    #     - name: blank2
+    #       title: " "
+    #     - name: ro
+    #       title: ro
+    #     - name: po
+    #       title: po
+    #     - name: no
+    #       title: no
+    #   default: p
 
-    - name: exploreVar2
-      title: ' &'
-      type: List
-      options:
-        - name: rs
-          title: rs
-        - name: rp
-          title: rp
-        - name: re
-          title: re
-        - name: p
-          title: p
-        - name: n
-          title: n
-        - name: blank1
-          title: " "
-        - name: ws
-          title: ws
-        - name: wp
-          title: wp
-        - name: nw
-          title: nw
-        - name: blank2
-          title: " "
-        - name: ro
-          title: ro
-        - name: po
-          title: po
-        - name: no
-          title: no
-      default: p
-                  
     - name: showExploreDimension
       title: ''
       type: List
@@ -1289,16 +1301,16 @@ options:
         - name: 2D
           title: 2D
       default: 1D
-
-    - name: reportExploreStats
-      title: ' '
-      type: List
-      options:
-      - name: Means
-        title: (Means)
-      - name: Medians
-        title: (Medians)
-      default: Medians
+    # 
+    # - name: reportExploreStats
+    #   title: ' '
+    #   type: List
+    #   options:
+    #   - name: Means
+    #     title: (Means)
+    #   - name: Medians
+    #     title: (Medians)
+    #   default: Medians
       
     - name: whichShowMultiple
       title: " "
@@ -1353,6 +1365,55 @@ options:
 
     - name: doProject1dBtn
       title: 'show me'
+      type: Action
+
+
+    - name: doProject2aBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject2bBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject2cBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject2dBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject3aBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject3bBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject3cBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject3dBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject4aBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject4bBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject4cBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject4dBtn
+      title: 'do it for me'
       type: Action
 
 ...

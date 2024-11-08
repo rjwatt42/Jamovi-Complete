@@ -4,20 +4,20 @@ title: BrawStats:Linear Models
 jrs:   '1.1'
 
 items:
-    - name: graphHTML
+    - name: lmGraphHTML
       title: ' '
       type: Html
       visible: TRUE
       
-    - name: graphPlot
+    - name: lmGraph
       title: ' '
       type: Image
       width:  500
       height: 300
-      renderFun: .plotGraph
+      renderFun: .lmPlotGraph
       visible: FALSE
 
-    - name: reportPlot
+    - name: lmReport
       title: ' '
       type: Html
       visible: TRUE

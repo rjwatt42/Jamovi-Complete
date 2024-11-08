@@ -4,8 +4,8 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                  },
 
                                  generate_tab = function(title="Tab",tabs=c("1","2","3"),tabContents=c("a","b","c"),
-                                                         titleTab="Click on the tabs for specific help.",
-                                                         colours=c("#3498db","#80CCFF"),fontSize="12px",plain=FALSE,width=550,height=NULL,open=0) {
+                                                         titleTab="",
+                                                         colours=c("#3498db","#888","#888"),fontSize="12px",plain=FALSE,width=550,height=NULL,open=0) {
                                    if (is.null(height)) ht<-'' else ht<-paste0('height: ',height,'px;')
                                    if (open==0) openCode<-''
                                    else openCode<-paste0(
@@ -47,7 +47,7 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                        '.tab {overflow: hidden;',
                                        'border: none;',
                                        'background-color: inherit;',
-                                       'border-bottom: solid ',colours[1],' 1px;',
+                                       'border-bottom: solid ',colours[3],' 1px;',
                                        'width: ',width+2,'px;',
                                      'margin: none;',
                                        '}',
@@ -63,8 +63,9 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                      'margin: 0px 1px;',
                                      'transition: 0.3s;',
                                      'font-size: ',fontSize,';',
-                                     '  border-top-left-radius: 4px;',
-                                     '  border-top-right-radius: 4px;',
+                                     'font-weight: normal;',
+                                     'border-top-left-radius: 4px;',
+                                     'border-top-right-radius: 4px;',
                                      '}',
 
                                      # Change background color of buttons on hover 
@@ -83,7 +84,7 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                      'display: none;',
                                      'padding: 0px 0px;',
                                      'margin: 0px;',
-                                     'border: 1px solid ',colours[1],';',
+                                     'border: 1px solid ',colours[3],';',
                                      'border-top: none;',
                                      'width: ',width,'px;',
                                      'height: 0px;',
@@ -94,7 +95,7 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                      'display: none;',
                                      'padding: 0px 0px;',
                                      'margin: 0px;',
-                                     'border: 1px solid ',colours[1],';',
+                                     'border: 1px solid ',colours[3],';',
                                      'border-top: none;',
                                      'width: ',width,'px;',
                                      ht,
@@ -105,13 +106,19 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                    buttons<-''
                                    panels<-''
                                    buttons <- paste0(buttons,
-                                                     '  <button id="tabtitle" class="tablinks" onclick="closeTabs(event,\'',title,'\')" style="background-color:',colours[1],';color:white;cursor:default;">',
+                                                     '  <button id="tabtitle" class="tablinks" onclick="closeTabs(event,\'',title,'\')"',
+                                                        ' style="background-color:white;color:black;cursor:default;font-weight: 500;font-size:15px;">',
                                                      title,
                                                      '</button>')
-                                   panels <- paste0(panels,
-                                                    '  <div id="',title,'" class="tabcontent" style="display:block">',
-                                                    titleTab,
-                                                    '</div>')
+                                   if (nchar(titleTab)>0)
+                                     panels <- paste0(panels,
+                                                      '  <div id="',title,'" class="tabcontent" style="display:block">',
+                                                      titleTab,
+                                                      '</div>')
+                                   else
+                                     panels <- paste0(panels,
+                                                      '  <div id="',title,'" class="tabcontent" style="display:none">',
+                                                      '</div>')
                                    for (itab in 1:length(tabs)) {
                                      panelID<-paste0(title,'||',tabs[itab])
                                      if (itab==open) {

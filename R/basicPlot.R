@@ -7,8 +7,8 @@ svgBox<-function(height=NULL,aspect=1.3,fontScale=1.5) {
 }
 svgBoxX<-function() {return(braw.env$plotSize[1])}
 svgBoxY<-function() {return(braw.env$plotSize[2])}
-svgX<-function(x) {return(x*svgBoxX())}
-svgY<-function(y) {return((1-y)*svgBoxY())}
+svgX<-function(x) {return(x*(svgBoxX()-20)+10)}
+svgY<-function(y) {return((1-y)*(svgBoxY()-20)+10)}
 
 addG<-function(g,...) {
   if (braw.env$graphHTML) {
@@ -98,7 +98,8 @@ reOrientXY<-function(data,orientation=braw.env$plotLimits$orientation) {
   return(data)
 }
 reSizeFont<-function(size) {
-  size*braw.env$plotLimits$fontScale
+  if (braw.env$graphHTML) return(size*braw.env$plotLimits$fontScale*3.5)
+  else return(size*braw.env$plotLimits$fontScale*1.5)
 }
 
 plotLimits<-function(xlim,ylim,orientation="horz",gaps=c(1,1,0,0),fontScale=1) {
@@ -122,13 +123,7 @@ nullPlot<-function() {
       '<svg width=',format(svgBoxX()),' height=',format(svgBoxY()),
       ' margin:0; padding:0;',
       ' style=background-color:','"black"','',
-      ' xmlns="http://www.w3.org/2000/svg">',
-      '<defs>',
-      '  <filter x="0" y="0" width="1" height="1" id="bg-text">',
-      '  <feFlood flood-color="white"/>',
-      '  <feComposite in="SourceGraphic" />',
-      '  </filter>',
-      '  </defs>'
+      ' xmlns="http://www.w3.org/2000/svg">'
     )
   } else {
     g<-ggplot()+braw.env$plotRect+braw.env$blankTheme()
@@ -332,8 +327,6 @@ yAxisTicks<-function(breaks=NULL,labels=NULL,logScale=FALSE,angle=0,size=NULL){
   switch(braw.env$plotLimits$orientation,
          "vert"={
            axisText(ticks,label=labels, hjust=0.5, vjust=1.1, colour="black",size=size,fontface="plain")
-           # geom_text(data=ticks,aes(x=x,y=y),label=labels,hjust=0.5,vjust=1.1,
-           #           size=reSizeFont(mn))
          },
          "horz"={
            if (angle==0) {
@@ -342,8 +335,6 @@ yAxisTicks<-function(breaks=NULL,labels=NULL,logScale=FALSE,angle=0,size=NULL){
              hjust=1.1
            }
            axisText(ticks,label=labels, hjust=hjust, vjust=0.5, colour="black",size=size,dx=-2,fontface="plain")
-           # geom_text(data=ticks,aes(x=x,y=y),label=labels,hjust=1.1,vjust=0.5,
-           #           size=reSizeFont(mn))
          }
   )
 }
@@ -458,11 +449,11 @@ axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,d
       thisLabel<-label[i]
       thisLabel<-gsub('\\[([^ ]*?)\\]',
                       paste0('</tspan><tspan baseline-shift="sub" font-size="',
-                             reSizeFont(size*3)*0.8,'">\\1</tspan><tspan>'),
+                             reSizeFont(size)*0.8,'">\\1</tspan><tspan>'),
                       thisLabel)
       thisLabel<-gsub('\\^([^ ]*?) ',
                       paste0('</tspan><tspan baseline-shift="super" font-size="',
-                             reSizeFont(size*3)*0.8,'">\\1</tspan><tspan>'),
+                             reSizeFont(size)*0.8,'">\\1</tspan><tspan>'),
                       thisLabel)
       thisLabel<-paste0(
                      '<tspan',halign,valign,
@@ -481,7 +472,7 @@ axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,d
                      ' fill="',colour,'"',
                      ' text-anchor="middle"', valign,
                      ' transform="rotate(',-angle,',',x[1],',',y[1],')"',
-                     ' font-size="',reSizeFont(size*3),'"',
+                     ' font-size="',reSizeFont(size),'"',
                      ' font-weight="',fontface,'"',
                      ' font-family="Arial, Helvetica, sans-serif"',
                      '>',
@@ -532,6 +523,7 @@ dataPoint<-function(data,shape=21,colour="black",fill="white",alpha=1,size=3) {
 axisPoint<-function(data,shape=21,colour="black",fill="white",alpha=1,size=3) {
   size<-size*braw.env$plotArea[4]*0.75
     if (!braw.env$graphHTML) {
+      size<-size*1.5
     if (is.null(data$fill)) {
       g<-geom_point(data=data,aes(x=x,y=y),shape=shape,colour=colour,fill=fill,alpha=alpha,size=size*0.9)
     } else {

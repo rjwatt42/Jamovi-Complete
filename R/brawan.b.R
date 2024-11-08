@@ -10,7 +10,7 @@ BrawAnClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       if (!exists("braw.env")) {
         BrawOpts(graphC="white",reducedOutput=TRUE,reportHTML=TRUE,autoShow=FALSE,fullGraphSize=0.5)
         statusStore<-list(lastOutput="System",
-                          showSampleType="Sample",
+                          showSampleType="Variables",
                           showInferParam="Basic",
                           showInferDimension="1D",
                           showMultipleParam="Basic",
@@ -18,9 +18,6 @@ BrawAnClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           showExploreParam="Basic",
                           showExploreDimension="1D",
                           exploreMode="Design",
-                          showJamovi=FALSE,
-                          showHelp=FALSE,
-                          graphHTML=TRUE,
                           nrowTableLM=1,
                           nrowTableSEM=1
         )
@@ -31,9 +28,23 @@ BrawAnClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     
     .run = function() {
       
+      if (self$options$showHTML)  {
+        assign("graphHTML",TRUE,braw.env)
+        self$results$anGraph$setVisible(FALSE)
+        self$results$anGraphHTML$setVisible(TRUE)
+      } else   {
+        assign("graphHTML",FALSE,braw.env)
+        self$results$anGraph$setVisible(TRUE)
+        self$results$anGraphHTML$setVisible(FALSE)
+      }
+      
       if (is.null(self$options$IV) || is.null(self$options$DV)) {
-        self$results$graphHTML$setContent(nullPlot())
-        self$results$reportPlot$setContent(nullPlot())
+        if (self$options$showHTML)  {
+          self$results$anGraphHTML$setContent(nullPlot())
+        } else {
+          self$results$anGraph$setContent(NULL)
+        }
+        self$results$anReport$setContent(nullPlot())
         return()
       }
       
@@ -54,11 +65,8 @@ BrawAnClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       braw.res$result<<-result
       outputNow<-self$options$showSampleType
 
-      showInferParam<-self$options$showInferParam
       showInferDimension<-self$options$showInferDimension
-      if (showInferParam=="Custom") {
-        showInferParam<-paste0(self$options$singleVar1,";",self$options$singleVar2)
-      } 
+      showInferParam<-paste0(self$options$singleVar1,";",self$options$singleVar2)
       if (outputNow=="Likelihood") {
         possible<-makePossible(UsePrior=self$options$likelihoodUsePrior,
                                prior=makeWorld(worldOn=TRUE,
@@ -70,60 +78,82 @@ BrawAnClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         possibleResult<-doPossible(possible)
       }
 
-      svgBox(height=350)
-      if (is.element(outputNow,c("Compact","Describe"))) svgBox(height=300)
-      if (outputNow=="Likelihood") svgBox(aspect=1.5)
-      if (outputNow=="Infer" && is.element(showInferParam,c("Basic","Custom")) && showInferDimension=="2D") svgBox(height=250)
-      if (outputNow=="Infer" && showInferDimension=="1D") svgBox(aspect=1.6)
-      assign("graphHTML",TRUE,braw.env)
-      switch(outputNow,
-             "Compact"= self$results$graphHTML$setContent(showDescription()),
-             "Sample"= self$results$graphHTML$setContent(showSample()),
-             "Describe"= self$results$graphHTML$setContent(showDescription()),
-             "Infer"= self$results$graphHTML$setContent(showInference(showType=showInferParam,dimension=showInferDimension)),
-             "Likelihood"=self$results$graphHTML$setContent(showPossible(showType=self$options$likelihoodType,cutaway=likelihoodCutaway)),
-             self$results$reportPlot$graphHTML$setContent(NULL)
-      )
-      svgBox(300)
-      
-      switch(outputNow,
-             "Compact"= self$results$reportPlot$setContent(reportInference()),
-             "Sample"= self$results$reportPlot$setContent(reportSample()),
-             "Describe"= self$results$reportPlot$setContent(reportDescription()),
-             "Infer"= self$results$reportPlot$setContent(reportInference()),
-             "Likelihood"=self$results$reportPlot$setContent(reportLikelihood()),
-             self$results$reportPlot$setContent(NULL)
-      )
+      if (self$options$showHTML) {
+        svgBox(height=350,aspect=1.5)
+        # if (outputNow=="System") svgBox(aspect=1.5)
+        # if (is.element(outputNow,c("Compact","Describe"))) svgBox(height=300)
+        # if (outputNow=="Likelihood") svgBox(aspect=1.5)
+        # if (is.element(outputNow,c("Infer","Multiple")) && is.element(showMultipleParam,c("Basic","Custom")) && showMultipleDimension=="2D") svgBox(height=250)
+        # if (is.element(outputNow,c("Infer","Multiple")) && showMultipleDimension=="1D") svgBox(aspect=1.6)
+        # if (outputNow=="Explore" && is.element(showExploreParam,c("Basic","Custom")) && showExploreDimension=="2D") svgBox(height=250)
+        # if (outputNow=="Explore" && is.element(showExploreParam,c("Basic","Custom")) && showExploreDimension=="1D") svgBox(aspect=1.6)
+        # if (outputNow=="Explore" && showExploreParam=="NHST") svgBox(aspect=1.6)
+        assign("graphHTML",TRUE,braw.env)
+        if (!is.null(braw.res$result))
+          switch(self$options$showSampleType,
+                 "Compact"= graphSample<-showDescription(),
+                 "Variables" = graphSample<-showMarginals(style=self$options$showSample),
+                 "Sample"= graphSample<-showMarginals(style=self$options$showSample),
+                 "Describe"= graphSample<-showDescription(),
+                 "Infer"= graphSample<-showInference(showType=showInferParam,dimension=showInferDimension),
+                 "Likelihood"=graphSample<-showPossible(showType=self$options$likelihoodType,cutaway=likelihoodCutaway)
+          )
+        else graphSample<-nullPlot()
+        self$results$anGraphHTML$setContent(graphSample)
+      } else {
+        assign("graphHTML",FALSE,braw.env)
+        
+        switch(outputNow,
+               "System"= self$results$anGraph$setState(outputNow),
+               "Compact"= self$results$anGraph$setState("Describe"),
+               "Sample"= self$results$anGraph$setState(outputNow),
+               "Describe"= self$results$anGraph$setState(outputNow),
+               "Infer"= self$results$anGraph$setState(c(outputNow,showInferParam,showInferDimension)),
+               "Likelihood"= self$results$anGraph$setState(c(outputNow,self$options$likelihoodType,likelihoodCutaway)),
+               "Multiple"= self$results$anGraph$setState(c(outputNow,showMultipleParam,showMultipleDimension,whichShowMultipleOut)),
+               "Explore"= self$results$anGraph$setState(c(outputNow,showExploreParam,showExploreDimension,whichShowExploreOut)),
+               self$results$anGraph$setState(outputNow)
+        )
+        
+        switch(outputNow,
+               "System"= self$results$anReport$setContent(reportPlot(NULL)),
+               "Compact"= self$results$anReport$setContent(reportInference()),
+               "Sample"= self$results$anReport$setContent(reportSample()),
+               "Describe"= self$results$anReport$setContent(reportDescription()),
+               "Infer"= self$results$anReport$setContent(reportInference()),
+               "Likelihood"=self$results$anReport$setContent(reportLikelihood()),
+               "Multiple"= self$results$anReport$setContent(reportExpected(showType=showMultipleParam,reportStats=self$options$reportInferStats)),
+               "Explore"= self$results$anReport$setContent(reportExplore(showType=showExploreParam,reportStats=self$options$reportInferStats)),
+               self$results$anReport$setContent(NULL)
+        )
+      }
       
     },
     
-    .plotGraph=function(image, ...) {
+    .anPlotGraph=function(image, ...) {
       
       outputGraph <- image$state[1]
       if (!is.null(outputGraph)) {
-        switch(self$options$show,
-               "Sample"=   outputGraph<-showSample(),
-               "Describe"= outputGraph<-showDescription(),
-               "Infer"=    outputGraph<-showInference(showType=image$state[2])
+        switch(outputGraph,
+               "System"    =outputGraph<-showSystem(),
+               "Hypothesis"=outputGraph<-showHypothesis(),
+               "Design"    =outputGraph<-showDesign(),
+               "Population"=outputGraph<-showPopulation(),
+               "Prediction"=outputGraph<-showPrediction(),
+               "Sample"    =outputGraph<-showMarginals(style="unsorted"),
+               "Describe"  =outputGraph<-showDescription(),
+               "Infer"     =outputGraph<-showInference(showType=image$state[2],dimension=image$state[3]),
+               "Likelihood"=outputGraph<-showPossible(showType=image$state[2],cutaway=as.logical(image$state[3])),
+               "Multiple"  =outputGraph<-showExpected(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),
+               "MetaSingle"  =outputGraph<-showMetaSingle(),
+               "MetaMultiple"  =outputGraph<-showMetaMultiple(),
+               "Explore"   =outputGraph<-showExplore(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),
+               "LM" =outputGraph<-plotGLM(DV=braw.res$lm$DV,IVs=braw.res$lm$IVs,braw.res$lm$result,braw.res$lm$whichR),
+               "SEM" =outputGraph<-plotPathModel(braw.res$sem)
         )
         print(outputGraph)
         return(TRUE)
       } else return(FALSE)
-    },
-    
-    .plotReport=function(image, ...) {
-      
-      outputText <- image$state
-      if (!is.null(outputText)) {
-        switch(self$options$show,
-               "Sample"=   outputText<-reportSample(),
-               "Describe"= outputText<-reportDescription(),
-               "Infer"=    outputText<-reportInference()
-        )
-        print(outputText)
-        return(TRUE)
-      } else return(FALSE)
-      
     }
       )
   )

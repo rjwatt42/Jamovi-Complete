@@ -153,7 +153,7 @@ options:
       default: Compact
 
     - name: singleVar1
-      title: ' show:'
+      title: ' '
       type: List
       options:
         - name: rs
@@ -216,16 +216,6 @@ options:
           title: no
       default: p
 
-    - name: showInferParam
-      title: ' as:'
-      type: List
-      options:
-        - name: Basic
-          title: Basic
-        - name: Custom
-          title: Custom
-      default: Basic
-                  
     - name: showInferDimension
       title: ''
       type: List
@@ -236,4 +226,8 @@ options:
           title: 2D
       default: 1D
 
+    - name: showHTML
+      title: HTML?
+      type: Bool
+      default: true
 ...

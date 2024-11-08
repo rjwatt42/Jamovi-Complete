@@ -18,9 +18,6 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                             showExploreParam="Basic",
                             showExploreDimension="1D",
                             exploreMode="Design",
-                            showJamovi=FALSE,
-                            showHelp=FALSE,
-                            graphHTML=TRUE,
                             nrowTableLM=1,
                             nrowTableSEM=1
           )
@@ -32,6 +29,16 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       .run = function() {
 
         statusStore<-braw.env$statusStore
+        
+        if (self$options$showHTML)  {
+          assign("graphHTML",TRUE,braw.env)
+          self$results$semGraph$setVisible(FALSE)
+          self$results$semGraphHTML$setVisible(TRUE)
+        } else   {
+          assign("graphHTML",FALSE,braw.env)
+          self$results$semGraph$setVisible(TRUE)
+          self$results$semGraphHTML$setVisible(FALSE)
+        }
         
         stages<-list()
         stagesString<-""
@@ -96,11 +103,13 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                    )
         )
         
-        assign("graphHTML",TRUE,braw.env)
         if (length(stages)<2) {
-          self$results$graphSEM$setContent(nullPlot())
+          if (self$options$showHTML) {
+            self$results$semGraphHTML$setContent(nullPlot())
+          } else {
+            self$results$semGraph$SetState(NULL)
+          }
           self$results$reportSEM$setContent(nullPlot())
-          # self$results$reportTableSEM$setContent(nullPlot())
           return()
         }
         
@@ -115,13 +124,18 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         st<-paste0(stagesString,addString,removeString)
         
         sem<-fit_sem_model(pathmodel,model_data)
-
-          outputGraph<-plotPathModel(sem)
-          self$results$graphSEM$setContent(outputGraph)
+        
+        outputGraph<-plotPathModel(sem)
+        if (self$options$showHTML) {
+          self$results$semGraphHTML$setContent(outputGraph)
 
           outputReport<-reportPathModel(sem,self$options$ShowType)
           self$results$reportSEM$setContent(outputReport)
-          
+        } else {
+          assign("sem",sem,braw.res)
+          self$results$semGraph$setState("SEM")
+        }
+        
           tableOutput<-braw.env$tableSEM
           tableOutput<-rbind(list(AIC=sem$eval$AIC,AICc=sem$eval$AICc,BIC=sem$eval$BIC,
                                   Rsqr=sem$eval$Rsquared,r=sqrt(sem$eval$Rsquared),
@@ -157,6 +171,34 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
           braw.env$statusStore<<-statusStore
           
+        },
+      
+      
+      .semPlotGraph=function(image, ...) {
+        outputGraph <- image$state[1]
+        if (!is.null(outputGraph)) {
+          switch(outputGraph,
+                 "System"    =outputGraph<-showSystem(),
+                 "Hypothesis"=outputGraph<-showHypothesis(),
+                 "Design"    =outputGraph<-showDesign(),
+                 "Population"=outputGraph<-showPopulation(),
+                 "Prediction"=outputGraph<-showPrediction(),
+                 "Sample"    =outputGraph<-showMarginals(style="unsorted"),
+                 "Describe"  =outputGraph<-showDescription(),
+                 "Infer"     =outputGraph<-showInference(showType=image$state[2],dimension=image$state[3]),
+                 "Likelihood"=outputGraph<-showPossible(showType=image$state[2],cutaway=as.logical(image$state[3])),
+                 "Multiple"  =outputGraph<-showExpected(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),
+                 "MetaSingle"  =outputGraph<-showMetaSingle(),
+                 "MetaMultiple"  =outputGraph<-showMetaMultiple(),
+                 "Explore"   =outputGraph<-showExplore(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),
+                 "LM" =outputGraph<-plotGLM(DV=braw.res$lm$DV,IVs=braw.res$lm$IVs,braw.res$lm$result,braw.res$lm$whichR),
+                 "SEM" =outputGraph<-plotPathModel(braw.res$sem)
+          )
+          print(outputGraph)
+          return(TRUE)
+        } else {
+          return(FALSE)
         }
+      }
     )
 )

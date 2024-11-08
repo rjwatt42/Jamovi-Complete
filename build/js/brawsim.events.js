@@ -155,8 +155,12 @@ const events =  {
       }
     },
     
+    onChange_Single: function(ui) {
+      ui.whichGraph.setValue("Single")
+    },
+    
     onChange_project1a: function(ui) {
-      ui.presetIV.setValue("RiskTaker")
+      ui.presetIV.setValue("RiskTaker?")
       ui.presetDV.setValue("ExamGrade")
     },
     
@@ -177,8 +181,100 @@ const events =  {
       if (BtnOn==true) {
       ui.showJamovi.setValue(true)
       }
-    }
+    },
     
+    onChange_project2a: function(ui) {
+      ui.presetIV.setValue("Perfectionism")
+      ui.presetDV.setValue("ExamGrade")
+      ui.EffectSize1.setValue(0.3)
+    },
+    
+    onChange_project2b: function(ui) {
+      let BtnOn = ui.doProject2bBtn.value();
+      if (BtnOn==true) {
+        ui.showSampleType.setValue("Variables")
+      ui.makeSampleBtn.setValue(true)
+      }
+    },
+    
+    onChange_project2c: function(ui) {
+      let BtnOn = ui.doProject2cBtn.value();
+      if (BtnOn==true) {
+        ui.showSampleType.setValue("Sample")
+      ui.makeSampleBtn.setValue(true)
+      }
+    },
+    
+    onChange_project2d: function(ui) {
+      let BtnOn = ui.doProject2dBtn.value();
+      if (BtnOn==true) {
+        ui.SampleMethod.setValue("Convenience")
+      }
+    },
+    
+    onChange_project3a: function(ui) {
+      ui.presetIV.setValue("Happiness")
+      ui.presetDV.setValue("ExamGrade")
+      ui.EffectSize1.setValue(0.3)
+    },
+    
+    onChange_project3b: function(ui) {
+      let BtnOn = ui.doProject3bBtn.value();
+      if (BtnOn==true) {
+        ui.showSampleType.setValue("Describe")
+      ui.makeSampleBtn.setValue(true)
+      }
+    },
+    
+    onChange_project3c: function(ui) {
+      let BtnOn = ui.doProject3cBtn.value();
+      if (BtnOn==true) {
+        ui.SampleSize.setValue(500)
+      ui.makeSampleBtn.setValue(true)
+      }
+    },
+    
+    onChange_project3d: function(ui) {
+      let BtnOn = ui.doProject3dBtn.value();
+      if (BtnOn==true) {
+        ui.SampleSize.setValue(42)
+        ui.EffectSize1.setValue(0.0)
+      ui.makeMultipleBtn.setValue(true)
+      }
+    },
+    
+    onChange_project4a: function(ui) {
+      ui.presetIV.setValue("RiskTaking")
+      ui.presetDV.setValue("ExamGrade")
+      ui.EffectSize1.setValue(0.3)
+    },
+    
+    onChange_project4b: function(ui) {
+      let BtnOn = ui.doProject4bBtn.value();
+      if (BtnOn==true) {
+        ui.showSampleType.setValue("Infer")
+        ui.showInferDimension.setValue("1D")
+      ui.makeSampleBtn.setValue(true)
+      }
+    },
+    
+    onChange_project4c: function(ui) {
+      let BtnOn = ui.doProject4cBtn.value();
+      if (BtnOn==true) {
+        ui.showSampleType.setValue("Infer")
+        ui.showInferDimension.setValue("2D")
+      ui.makeSampleBtn.setValue(true)
+      }
+    },
+    
+    onChange_project4d: function(ui) {
+      let BtnOn = ui.doProject4dBtn.value();
+      if (BtnOn==true) {
+        ui.showSampleType.setValue("Infer")
+        ui.showInferDimension.setValue("1D")
+      ui.makeMultipleBtn.setValue(true)
+      }
+    }
 }
 
 let makeVar = function(name) {

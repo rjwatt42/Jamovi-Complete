@@ -4,17 +4,17 @@ title: BrawStats:Path Models
 jrs:   '1.1'
 
 items:
-    - name: graphSEM
+    - name: semGraphHTML
       title: ' '
       type: Html
       visible: TRUE
       
-    - name: graphPlot
+    - name: semGraph
       title: ' '
       type: Image
       width:  500
       height: 300
-      renderFun: .plotGraph
+      renderFun: .semPlotGraph
       visible: FALSE
 
     - name: debug

@@ -4,21 +4,19 @@ title: BrawStats:Simulate Data
 jrs:   '1.1'
 
 items:
-    - name: testHTML
-      type: Html
-      visible: FALSE
+    # - name: testHTML
+    #   type: Html
+    #   visible: FALSE
       
     - name: BrawStatsInstructions 
       type: Html
-      visible: TRUE
+      visible: FALSE
       clearWith:
       - showJamovi
 
-    - name: graphHTML
+    - name: simGraphHTML
       title: ' '
       type: Html
-      # width:  600
-      # height: 360
       visible: TRUE
       # clearWith:
       # - showHypothesisBtn
@@ -38,15 +36,14 @@ items:
       # - exploreVar1
       # - exploreVar2
       # - showExploreDimension
-      # renderFun: .plotGraph
 
-    - name: graphPlot
+    - name: simGraph
       title: ' '
       type: Image
       width:  550
       height: 400
       visible: FALSE
-      renderFun: .plotGraph
+      renderFun: .plotSimGraph
       clearWith:
       - showHypothesisBtn
       - makeSampleBtn
@@ -66,12 +63,12 @@ items:
       - exploreVar2
       - showExploreDimension
 
-    - name: reportPlot
+    - name: simReport
       title: ' '
       type: Html
       # width:  600
       # height: 200
-      visible: TRUE
+      visible: FALSE
       clearWith:
       - showHypothesisBtn
       - makeSampleBtn
@@ -97,10 +94,10 @@ items:
       - book
       # renderFun: .plotReport
 
-    - name: JamoviInstructions
-      type: Html
-      visible: TRUE
-
+    # - name: JamoviInstructions
+    #   type: Html
+    #   visible: FALSE
+    # 
     - name: debug
       type: Preformatted
       visible: FALSE

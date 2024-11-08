@@ -18,9 +18,6 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                             showExploreParam="Basic",
                             showExploreDimension="1D",
                             exploreMode="Design",
-                            showJamovi=FALSE,
-                            showHelp=FALSE,
-                            graphHTML=TRUE,
                             nrowTableLM=1,
                             nrowTableSEM=1
           )
@@ -33,12 +30,26 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
         statusStore<-braw.env$statusStore
         
-          if (is.null(self$options$IV) || is.null(self$options$DV)) {
-            self$results$graphHTML$setContent(nullPlot())
-            self$results$reportPlot$setContent(nullPlot())
-            return()
+        if (self$options$showHTML)  {
+          assign("graphHTML",TRUE,braw.env)
+          self$results$lmGraph$setVisible(FALSE)
+          self$results$lmGraphHTML$setVisible(TRUE)
+        } else   {
+          assign("graphHTML",FALSE,braw.env)
+          self$results$lmGraph$setVisible(TRUE)
+          self$results$lmGraphHTML$setVisible(FALSE)
+        }
+        
+        if (is.null(self$options$IV) || is.null(self$options$DV)) {
+          if (self$options$showHTML) {
+            self$results$lmGraphHTML$setContent(nullPlot())
+          } else {
+            self$results$lmGraph$setContent(NULL)
           }
-          
+          self$results$lmReport$setContent(nullPlot())
+          return()
+        }
+        
           dataFull<-prepareSample(self$data)
           data<-dataFull$data[c("participant",self$options$DV,self$options$IV)]
 
@@ -47,12 +58,19 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                              whichR=self$options$whichR,p_or_r=self$options$inferWhich)
           
           lm<-braw.res$lm
-          assign("graphHTML",TRUE,braw.env)
-          outputGraph<-plotGLM(DV=lm$DV,IVs=lm$IVs,lm$result,lm$whichR)
+          if (self$options$showHTML)    assign("graphHTML",TRUE,braw.env)
+          else             assign("graphHTML",FALSE,braw.env)
+          
+          if (self$options$showHTML) {
+            outputGraph<-plotGLM(DV=lm$DV,IVs=lm$IVs,lm$result,lm$whichR)
+            self$results$lmGraphHTML$setContent(outputGraph)
+          } else {
+            assign("lm",lm,braw.res)
+            self$results$lmGraph$setState("LM")
+          }
           outputText<-reportGLM(DV=lm$DV,IVs=lm$IVs,lm$result,p_or_r=lm$p_or_r)
-          self$results$graphHTML$setContent(outputGraph)
-          self$results$reportPlot$setContent(outputText)
-
+          self$results$lmReport$setContent(outputText)
+          
           tableOutput<-braw.env$tableLM
           tableOutput<-rbind(list(AIC=lm$result$aic,Rsqr=lm$result$r.full[[1]]^2,r=lm$result$r.full[[1]],
                                   model=paste(lm$DV$name,"=",paste(lm$IVs$name,collapse="+")) ),
@@ -83,6 +101,34 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           
           braw.env$statusStore<<-statusStore
           
+      },
+      
+      
+      .lmPlotGraph=function(image, ...) {
+        outputGraph <- image$state[1]
+        if (!is.null(outputGraph)) {
+          switch(outputGraph,
+                 "System"    =outputGraph<-showSystem(),
+                 "Hypothesis"=outputGraph<-showHypothesis(),
+                 "Design"    =outputGraph<-showDesign(),
+                 "Population"=outputGraph<-showPopulation(),
+                 "Prediction"=outputGraph<-showPrediction(),
+                 "Sample"    =outputGraph<-showMarginals(style="unsorted"),
+                 "Describe"  =outputGraph<-showDescription(),
+                 "Infer"     =outputGraph<-showInference(showType=image$state[2],dimension=image$state[3]),
+                 "Likelihood"=outputGraph<-showPossible(showType=image$state[2],cutaway=as.logical(image$state[3])),
+                 "Multiple"  =outputGraph<-showExpected(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),
+                 "MetaSingle"  =outputGraph<-showMetaSingle(),
+                 "MetaMultiple"  =outputGraph<-showMetaMultiple(),
+                 "Explore"   =outputGraph<-showExplore(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),
+                 "LM" =outputGraph<-plotGLM(DV=braw.res$lm$DV,IVs=braw.res$lm$IVs,braw.res$lm$result,braw.res$lm$whichR),
+                 "SEM" =outputGraph<-plotPathModel(braw.res$sem)
+          )
+          print(outputGraph)
+          return(TRUE)
+        } else {
+          return(FALSE)
         }
+      }
     )
 )

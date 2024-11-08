@@ -100,14 +100,11 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             makeSampleBtn = FALSE,
             numberSamples = 100,
             makeMultipleBtn = NULL,
-            singleVar1 = "rs",
-            singleVar2 = "p",
-            multipleVar1 = "rs",
-            multipleVar2 = "p",
-            reportMultipleStats = "Medians",
+            inferVar1 = "rs",
+            inferVar2 = "p",
             showSampleType = "Compact",
-            showInferParam = "Basic",
             showInferDimension = "1D",
+            reportInferStats = "Medians",
             showMultipleParam = "Basic",
             showMultipleDimension = "1D",
             exploreNPointsH = 13,
@@ -134,10 +131,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             analysisExploreList = NULL,
             moreExploreList = NULL,
             showExploreParam = "Basic",
-            exploreVar1 = "rs",
-            exploreVar2 = "p",
             showExploreDimension = "1D",
-            reportExploreStats = "Medians",
             whichShowMultiple = "all",
             showJamovi = FALSE,
             showHelp = TRUE,
@@ -145,7 +139,19 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             doProject1aBtn = NULL,
             doProject1bBtn = NULL,
             doProject1cBtn = NULL,
-            doProject1dBtn = NULL, ...) {
+            doProject1dBtn = NULL,
+            doProject2aBtn = NULL,
+            doProject2bBtn = NULL,
+            doProject2cBtn = NULL,
+            doProject2dBtn = NULL,
+            doProject3aBtn = NULL,
+            doProject3bBtn = NULL,
+            doProject3cBtn = NULL,
+            doProject3dBtn = NULL,
+            doProject4aBtn = NULL,
+            doProject4bBtn = NULL,
+            doProject4cBtn = NULL,
+            doProject4dBtn = NULL, ...) {
 
             super$initialize(
                 package="BrawStats",
@@ -453,6 +459,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "Random",
                     "Stratified",
                     "Cluster",
+                    "Snowball",
                     "Convenience"),
                 default="Random")
             private$..SampleUsage1 <- jmvcore::OptionList$new(
@@ -689,9 +696,9 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..makeMultipleBtn <- jmvcore::OptionAction$new(
                 "makeMultipleBtn",
                 makeMultipleBtn)
-            private$..singleVar1 <- jmvcore::OptionList$new(
-                "singleVar1",
-                singleVar1,
+            private$..inferVar1 <- jmvcore::OptionList$new(
+                "inferVar1",
+                inferVar1,
                 options=list(
                     "rs",
                     "rp",
@@ -707,9 +714,9 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "po",
                     "no"),
                 default="rs")
-            private$..singleVar2 <- jmvcore::OptionList$new(
-                "singleVar2",
-                singleVar2,
+            private$..inferVar2 <- jmvcore::OptionList$new(
+                "inferVar2",
+                inferVar2,
                 options=list(
                     "rs",
                     "rp",
@@ -725,66 +732,17 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "po",
                     "no"),
                 default="p")
-            private$..multipleVar1 <- jmvcore::OptionList$new(
-                "multipleVar1",
-                multipleVar1,
-                options=list(
-                    "rs",
-                    "rp",
-                    "re",
-                    "p",
-                    "n",
-                    "blank1",
-                    "ws",
-                    "wp",
-                    "nw",
-                    "blank2",
-                    "ro",
-                    "po",
-                    "no"),
-                default="rs")
-            private$..multipleVar2 <- jmvcore::OptionList$new(
-                "multipleVar2",
-                multipleVar2,
-                options=list(
-                    "rs",
-                    "rp",
-                    "re",
-                    "p",
-                    "n",
-                    "blank1",
-                    "ws",
-                    "wp",
-                    "nw",
-                    "blank2",
-                    "ro",
-                    "po",
-                    "no"),
-                default="p")
-            private$..reportMultipleStats <- jmvcore::OptionList$new(
-                "reportMultipleStats",
-                reportMultipleStats,
-                options=list(
-                    "Means",
-                    "Medians"),
-                default="Medians")
             private$..showSampleType <- jmvcore::OptionList$new(
                 "showSampleType",
                 showSampleType,
                 options=list(
                     "Compact",
+                    "Variables",
                     "Sample",
                     "Describe",
                     "Infer",
                     "Likelihood"),
                 default="Compact")
-            private$..showInferParam <- jmvcore::OptionList$new(
-                "showInferParam",
-                showInferParam,
-                options=list(
-                    "Basic",
-                    "Custom"),
-                default="Basic")
             private$..showInferDimension <- jmvcore::OptionList$new(
                 "showInferDimension",
                 showInferDimension,
@@ -792,12 +750,18 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "1D",
                     "2D"),
                 default="1D")
+            private$..reportInferStats <- jmvcore::OptionList$new(
+                "reportInferStats",
+                reportInferStats,
+                options=list(
+                    "Means",
+                    "Medians"),
+                default="Medians")
             private$..showMultipleParam <- jmvcore::OptionList$new(
                 "showMultipleParam",
                 showMultipleParam,
                 options=list(
                     "Basic",
-                    "Custom",
                     "p(sig)",
                     "NHST",
                     "Hits",
@@ -952,7 +916,6 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 showExploreParam,
                 options=list(
                     "Basic",
-                    "Custom",
                     "p(sig)",
                     "NHST",
                     "Hits",
@@ -960,42 +923,6 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "DV",
                     "Residuals"),
                 default="Basic")
-            private$..exploreVar1 <- jmvcore::OptionList$new(
-                "exploreVar1",
-                exploreVar1,
-                options=list(
-                    "rs",
-                    "rp",
-                    "re",
-                    "p",
-                    "n",
-                    "blank1",
-                    "ws",
-                    "wp",
-                    "nw",
-                    "blank2",
-                    "ro",
-                    "po",
-                    "no"),
-                default="rs")
-            private$..exploreVar2 <- jmvcore::OptionList$new(
-                "exploreVar2",
-                exploreVar2,
-                options=list(
-                    "rs",
-                    "rp",
-                    "re",
-                    "p",
-                    "n",
-                    "blank1",
-                    "ws",
-                    "wp",
-                    "nw",
-                    "blank2",
-                    "ro",
-                    "po",
-                    "no"),
-                default="p")
             private$..showExploreDimension <- jmvcore::OptionList$new(
                 "showExploreDimension",
                 showExploreDimension,
@@ -1003,13 +930,6 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "1D",
                     "2D"),
                 default="1D")
-            private$..reportExploreStats <- jmvcore::OptionList$new(
-                "reportExploreStats",
-                reportExploreStats,
-                options=list(
-                    "Means",
-                    "Medians"),
-                default="Medians")
             private$..whichShowMultiple <- jmvcore::OptionList$new(
                 "whichShowMultiple",
                 whichShowMultiple,
@@ -1047,6 +967,42 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..doProject1dBtn <- jmvcore::OptionAction$new(
                 "doProject1dBtn",
                 doProject1dBtn)
+            private$..doProject2aBtn <- jmvcore::OptionAction$new(
+                "doProject2aBtn",
+                doProject2aBtn)
+            private$..doProject2bBtn <- jmvcore::OptionAction$new(
+                "doProject2bBtn",
+                doProject2bBtn)
+            private$..doProject2cBtn <- jmvcore::OptionAction$new(
+                "doProject2cBtn",
+                doProject2cBtn)
+            private$..doProject2dBtn <- jmvcore::OptionAction$new(
+                "doProject2dBtn",
+                doProject2dBtn)
+            private$..doProject3aBtn <- jmvcore::OptionAction$new(
+                "doProject3aBtn",
+                doProject3aBtn)
+            private$..doProject3bBtn <- jmvcore::OptionAction$new(
+                "doProject3bBtn",
+                doProject3bBtn)
+            private$..doProject3cBtn <- jmvcore::OptionAction$new(
+                "doProject3cBtn",
+                doProject3cBtn)
+            private$..doProject3dBtn <- jmvcore::OptionAction$new(
+                "doProject3dBtn",
+                doProject3dBtn)
+            private$..doProject4aBtn <- jmvcore::OptionAction$new(
+                "doProject4aBtn",
+                doProject4aBtn)
+            private$..doProject4bBtn <- jmvcore::OptionAction$new(
+                "doProject4bBtn",
+                doProject4bBtn)
+            private$..doProject4cBtn <- jmvcore::OptionAction$new(
+                "doProject4cBtn",
+                doProject4cBtn)
+            private$..doProject4dBtn <- jmvcore::OptionAction$new(
+                "doProject4dBtn",
+                doProject4dBtn)
 
             self$.addOption(private$..planOptions)
             self$.addOption(private$..presetDV)
@@ -1142,14 +1098,11 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..makeSampleBtn)
             self$.addOption(private$..numberSamples)
             self$.addOption(private$..makeMultipleBtn)
-            self$.addOption(private$..singleVar1)
-            self$.addOption(private$..singleVar2)
-            self$.addOption(private$..multipleVar1)
-            self$.addOption(private$..multipleVar2)
-            self$.addOption(private$..reportMultipleStats)
+            self$.addOption(private$..inferVar1)
+            self$.addOption(private$..inferVar2)
             self$.addOption(private$..showSampleType)
-            self$.addOption(private$..showInferParam)
             self$.addOption(private$..showInferDimension)
+            self$.addOption(private$..reportInferStats)
             self$.addOption(private$..showMultipleParam)
             self$.addOption(private$..showMultipleDimension)
             self$.addOption(private$..exploreNPointsH)
@@ -1176,10 +1129,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..analysisExploreList)
             self$.addOption(private$..moreExploreList)
             self$.addOption(private$..showExploreParam)
-            self$.addOption(private$..exploreVar1)
-            self$.addOption(private$..exploreVar2)
             self$.addOption(private$..showExploreDimension)
-            self$.addOption(private$..reportExploreStats)
             self$.addOption(private$..whichShowMultiple)
             self$.addOption(private$..sendSample)
             self$.addOption(private$..sendMultiple)
@@ -1190,6 +1140,18 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..doProject1bBtn)
             self$.addOption(private$..doProject1cBtn)
             self$.addOption(private$..doProject1dBtn)
+            self$.addOption(private$..doProject2aBtn)
+            self$.addOption(private$..doProject2bBtn)
+            self$.addOption(private$..doProject2cBtn)
+            self$.addOption(private$..doProject2dBtn)
+            self$.addOption(private$..doProject3aBtn)
+            self$.addOption(private$..doProject3bBtn)
+            self$.addOption(private$..doProject3cBtn)
+            self$.addOption(private$..doProject3dBtn)
+            self$.addOption(private$..doProject4aBtn)
+            self$.addOption(private$..doProject4bBtn)
+            self$.addOption(private$..doProject4cBtn)
+            self$.addOption(private$..doProject4dBtn)
         }),
     active = list(
         planOptions = function() private$..planOptions$value,
@@ -1286,14 +1248,11 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         makeSampleBtn = function() private$..makeSampleBtn$value,
         numberSamples = function() private$..numberSamples$value,
         makeMultipleBtn = function() private$..makeMultipleBtn$value,
-        singleVar1 = function() private$..singleVar1$value,
-        singleVar2 = function() private$..singleVar2$value,
-        multipleVar1 = function() private$..multipleVar1$value,
-        multipleVar2 = function() private$..multipleVar2$value,
-        reportMultipleStats = function() private$..reportMultipleStats$value,
+        inferVar1 = function() private$..inferVar1$value,
+        inferVar2 = function() private$..inferVar2$value,
         showSampleType = function() private$..showSampleType$value,
-        showInferParam = function() private$..showInferParam$value,
         showInferDimension = function() private$..showInferDimension$value,
+        reportInferStats = function() private$..reportInferStats$value,
         showMultipleParam = function() private$..showMultipleParam$value,
         showMultipleDimension = function() private$..showMultipleDimension$value,
         exploreNPointsH = function() private$..exploreNPointsH$value,
@@ -1320,10 +1279,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         analysisExploreList = function() private$..analysisExploreList$value,
         moreExploreList = function() private$..moreExploreList$value,
         showExploreParam = function() private$..showExploreParam$value,
-        exploreVar1 = function() private$..exploreVar1$value,
-        exploreVar2 = function() private$..exploreVar2$value,
         showExploreDimension = function() private$..showExploreDimension$value,
-        reportExploreStats = function() private$..reportExploreStats$value,
         whichShowMultiple = function() private$..whichShowMultiple$value,
         sendSample = function() private$..sendSample$value,
         sendMultiple = function() private$..sendMultiple$value,
@@ -1333,7 +1289,19 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         doProject1aBtn = function() private$..doProject1aBtn$value,
         doProject1bBtn = function() private$..doProject1bBtn$value,
         doProject1cBtn = function() private$..doProject1cBtn$value,
-        doProject1dBtn = function() private$..doProject1dBtn$value),
+        doProject1dBtn = function() private$..doProject1dBtn$value,
+        doProject2aBtn = function() private$..doProject2aBtn$value,
+        doProject2bBtn = function() private$..doProject2bBtn$value,
+        doProject2cBtn = function() private$..doProject2cBtn$value,
+        doProject2dBtn = function() private$..doProject2dBtn$value,
+        doProject3aBtn = function() private$..doProject3aBtn$value,
+        doProject3bBtn = function() private$..doProject3bBtn$value,
+        doProject3cBtn = function() private$..doProject3cBtn$value,
+        doProject3dBtn = function() private$..doProject3dBtn$value,
+        doProject4aBtn = function() private$..doProject4aBtn$value,
+        doProject4bBtn = function() private$..doProject4bBtn$value,
+        doProject4cBtn = function() private$..doProject4cBtn$value,
+        doProject4dBtn = function() private$..doProject4dBtn$value),
     private = list(
         ..planOptions = NA,
         ..presetDV = NA,
@@ -1429,14 +1397,11 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..makeSampleBtn = NA,
         ..numberSamples = NA,
         ..makeMultipleBtn = NA,
-        ..singleVar1 = NA,
-        ..singleVar2 = NA,
-        ..multipleVar1 = NA,
-        ..multipleVar2 = NA,
-        ..reportMultipleStats = NA,
+        ..inferVar1 = NA,
+        ..inferVar2 = NA,
         ..showSampleType = NA,
-        ..showInferParam = NA,
         ..showInferDimension = NA,
+        ..reportInferStats = NA,
         ..showMultipleParam = NA,
         ..showMultipleDimension = NA,
         ..exploreNPointsH = NA,
@@ -1463,10 +1428,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..analysisExploreList = NA,
         ..moreExploreList = NA,
         ..showExploreParam = NA,
-        ..exploreVar1 = NA,
-        ..exploreVar2 = NA,
         ..showExploreDimension = NA,
-        ..reportExploreStats = NA,
         ..whichShowMultiple = NA,
         ..sendSample = NA,
         ..sendMultiple = NA,
@@ -1476,19 +1438,29 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..doProject1aBtn = NA,
         ..doProject1bBtn = NA,
         ..doProject1cBtn = NA,
-        ..doProject1dBtn = NA)
+        ..doProject1dBtn = NA,
+        ..doProject2aBtn = NA,
+        ..doProject2bBtn = NA,
+        ..doProject2cBtn = NA,
+        ..doProject2dBtn = NA,
+        ..doProject3aBtn = NA,
+        ..doProject3bBtn = NA,
+        ..doProject3cBtn = NA,
+        ..doProject3dBtn = NA,
+        ..doProject4aBtn = NA,
+        ..doProject4bBtn = NA,
+        ..doProject4cBtn = NA,
+        ..doProject4dBtn = NA)
 )
 
 BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "BrawSimResults",
     inherit = jmvcore::Group,
     active = list(
-        testHTML = function() private$.items[["testHTML"]],
         BrawStatsInstructions = function() private$.items[["BrawStatsInstructions"]],
-        graphHTML = function() private$.items[["graphHTML"]],
-        graphPlot = function() private$.items[["graphPlot"]],
-        reportPlot = function() private$.items[["reportPlot"]],
-        JamoviInstructions = function() private$.items[["JamoviInstructions"]],
+        simGraphHTML = function() private$.items[["simGraphHTML"]],
+        simGraph = function() private$.items[["simGraph"]],
+        simReport = function() private$.items[["simReport"]],
         debug = function() private$.items[["debug"]],
         sendSample = function() private$.items[["sendSample"]],
         sendMultiple = function() private$.items[["sendMultiple"]]),
@@ -1502,27 +1474,23 @@ BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 refs="brawstats book")
             self$add(jmvcore::Html$new(
                 options=options,
-                name="testHTML",
-                visible=FALSE))
-            self$add(jmvcore::Html$new(
-                options=options,
                 name="BrawStatsInstructions",
-                visible=TRUE,
+                visible=FALSE,
                 clearWith=list(
                     "showJamovi")))
             self$add(jmvcore::Html$new(
                 options=options,
-                name="graphHTML",
+                name="simGraphHTML",
                 title=" ",
                 visible=TRUE))
             self$add(jmvcore::Image$new(
                 options=options,
-                name="graphPlot",
+                name="simGraph",
                 title=" ",
                 width=550,
                 height=400,
                 visible=FALSE,
-                renderFun=".plotGraph",
+                renderFun=".plotSimGraph",
                 clearWith=list(
                     "showHypothesisBtn",
                     "makeSampleBtn",
@@ -1543,9 +1511,9 @@ BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "showExploreDimension")))
             self$add(jmvcore::Html$new(
                 options=options,
-                name="reportPlot",
+                name="simReport",
                 title=" ",
-                visible=TRUE,
+                visible=FALSE,
                 clearWith=list(
                     "showHypothesisBtn",
                     "makeSampleBtn",
@@ -1569,10 +1537,6 @@ BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 refs=list(
                     "brawstats",
                     "book")))
-            self$add(jmvcore::Html$new(
-                options=options,
-                name="JamoviInstructions",
-                visible=TRUE))
             self$add(jmvcore::Preformatted$new(
                 options=options,
                 name="debug",
@@ -1712,14 +1676,11 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param makeSampleBtn .
 #' @param numberSamples .
 #' @param makeMultipleBtn .
-#' @param singleVar1 .
-#' @param singleVar2 .
-#' @param multipleVar1 .
-#' @param multipleVar2 .
-#' @param reportMultipleStats .
+#' @param inferVar1 .
+#' @param inferVar2 .
 #' @param showSampleType .
-#' @param showInferParam .
 #' @param showInferDimension .
+#' @param reportInferStats .
 #' @param showMultipleParam .
 #' @param showMultipleDimension .
 #' @param exploreNPointsH .
@@ -1746,10 +1707,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param analysisExploreList .
 #' @param moreExploreList .
 #' @param showExploreParam .
-#' @param exploreVar1 .
-#' @param exploreVar2 .
 #' @param showExploreDimension .
-#' @param reportExploreStats .
 #' @param whichShowMultiple .
 #' @param showJamovi .
 #' @param showHelp .
@@ -1758,14 +1716,24 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param doProject1bBtn .
 #' @param doProject1cBtn .
 #' @param doProject1dBtn .
+#' @param doProject2aBtn .
+#' @param doProject2bBtn .
+#' @param doProject2cBtn .
+#' @param doProject2dBtn .
+#' @param doProject3aBtn .
+#' @param doProject3bBtn .
+#' @param doProject3cBtn .
+#' @param doProject3dBtn .
+#' @param doProject4aBtn .
+#' @param doProject4bBtn .
+#' @param doProject4cBtn .
+#' @param doProject4dBtn .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$testHTML} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$BrawStatsInstructions} \tab \tab \tab \tab \tab a html \cr
-#'   \code{results$graphHTML} \tab \tab \tab \tab \tab a html \cr
-#'   \code{results$graphPlot} \tab \tab \tab \tab \tab an image \cr
-#'   \code{results$reportPlot} \tab \tab \tab \tab \tab a html \cr
-#'   \code{results$JamoviInstructions} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$simGraphHTML} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$simGraph} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$simReport} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$debug} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$sendSample} \tab \tab \tab \tab \tab an output \cr
 #'   \code{results$sendMultiple} \tab \tab \tab \tab \tab an output \cr
@@ -1867,14 +1835,11 @@ BrawSim <- function(
     makeSampleBtn = FALSE,
     numberSamples = 100,
     makeMultipleBtn,
-    singleVar1 = "rs",
-    singleVar2 = "p",
-    multipleVar1 = "rs",
-    multipleVar2 = "p",
-    reportMultipleStats = "Medians",
+    inferVar1 = "rs",
+    inferVar2 = "p",
     showSampleType = "Compact",
-    showInferParam = "Basic",
     showInferDimension = "1D",
+    reportInferStats = "Medians",
     showMultipleParam = "Basic",
     showMultipleDimension = "1D",
     exploreNPointsH = 13,
@@ -1901,10 +1866,7 @@ BrawSim <- function(
     analysisExploreList,
     moreExploreList,
     showExploreParam = "Basic",
-    exploreVar1 = "rs",
-    exploreVar2 = "p",
     showExploreDimension = "1D",
-    reportExploreStats = "Medians",
     whichShowMultiple = "all",
     showJamovi = FALSE,
     showHelp = TRUE,
@@ -1912,7 +1874,19 @@ BrawSim <- function(
     doProject1aBtn,
     doProject1bBtn,
     doProject1cBtn,
-    doProject1dBtn) {
+    doProject1dBtn,
+    doProject2aBtn,
+    doProject2bBtn,
+    doProject2cBtn,
+    doProject2dBtn,
+    doProject3aBtn,
+    doProject3bBtn,
+    doProject3cBtn,
+    doProject3dBtn,
+    doProject4aBtn,
+    doProject4bBtn,
+    doProject4cBtn,
+    doProject4dBtn) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("BrawSim requires jmvcore to be installed (restart may be required)")
@@ -2013,14 +1987,11 @@ BrawSim <- function(
         makeSampleBtn = makeSampleBtn,
         numberSamples = numberSamples,
         makeMultipleBtn = makeMultipleBtn,
-        singleVar1 = singleVar1,
-        singleVar2 = singleVar2,
-        multipleVar1 = multipleVar1,
-        multipleVar2 = multipleVar2,
-        reportMultipleStats = reportMultipleStats,
+        inferVar1 = inferVar1,
+        inferVar2 = inferVar2,
         showSampleType = showSampleType,
-        showInferParam = showInferParam,
         showInferDimension = showInferDimension,
+        reportInferStats = reportInferStats,
         showMultipleParam = showMultipleParam,
         showMultipleDimension = showMultipleDimension,
         exploreNPointsH = exploreNPointsH,
@@ -2047,10 +2018,7 @@ BrawSim <- function(
         analysisExploreList = analysisExploreList,
         moreExploreList = moreExploreList,
         showExploreParam = showExploreParam,
-        exploreVar1 = exploreVar1,
-        exploreVar2 = exploreVar2,
         showExploreDimension = showExploreDimension,
-        reportExploreStats = reportExploreStats,
         whichShowMultiple = whichShowMultiple,
         showJamovi = showJamovi,
         showHelp = showHelp,
@@ -2058,7 +2026,19 @@ BrawSim <- function(
         doProject1aBtn = doProject1aBtn,
         doProject1bBtn = doProject1bBtn,
         doProject1cBtn = doProject1cBtn,
-        doProject1dBtn = doProject1dBtn)
+        doProject1dBtn = doProject1dBtn,
+        doProject2aBtn = doProject2aBtn,
+        doProject2bBtn = doProject2bBtn,
+        doProject2cBtn = doProject2cBtn,
+        doProject2dBtn = doProject2dBtn,
+        doProject3aBtn = doProject3aBtn,
+        doProject3bBtn = doProject3bBtn,
+        doProject3cBtn = doProject3cBtn,
+        doProject3dBtn = doProject3dBtn,
+        doProject4aBtn = doProject4aBtn,
+        doProject4bBtn = doProject4bBtn,
+        doProject4cBtn = doProject4cBtn,
+        doProject4dBtn = doProject4dBtn)
 
     analysis <- BrawSimClass$new(
         options = options,

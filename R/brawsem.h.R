@@ -24,7 +24,8 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             removeDest = NULL,
             removeSource = NULL,
             onlySource = NULL,
-            onlyDest = NULL, ...) {
+            onlyDest = NULL,
+            showHTML = TRUE, ...) {
 
             super$initialize(
                 package="BrawStats",
@@ -107,6 +108,10 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..onlyDest <- jmvcore::OptionVariables$new(
                 "onlyDest",
                 onlyDest)
+            private$..showHTML <- jmvcore::OptionBool$new(
+                "showHTML",
+                showHTML,
+                default=TRUE)
 
             self$.addOption(private$..Stage5)
             self$.addOption(private$..Stage4)
@@ -127,6 +132,7 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..removeSource)
             self$.addOption(private$..onlySource)
             self$.addOption(private$..onlyDest)
+            self$.addOption(private$..showHTML)
         }),
     active = list(
         Stage5 = function() private$..Stage5$value,
@@ -147,7 +153,8 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         removeDest = function() private$..removeDest$value,
         removeSource = function() private$..removeSource$value,
         onlySource = function() private$..onlySource$value,
-        onlyDest = function() private$..onlyDest$value),
+        onlyDest = function() private$..onlyDest$value,
+        showHTML = function() private$..showHTML$value),
     private = list(
         ..Stage5 = NA,
         ..Stage4 = NA,
@@ -167,15 +174,16 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..removeDest = NA,
         ..removeSource = NA,
         ..onlySource = NA,
-        ..onlyDest = NA)
+        ..onlyDest = NA,
+        ..showHTML = NA)
 )
 
 BrawSEMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "BrawSEMResults",
     inherit = jmvcore::Group,
     active = list(
-        graphSEM = function() private$.items[["graphSEM"]],
-        graphPlot = function() private$.items[["graphPlot"]],
+        semGraphHTML = function() private$.items[["semGraphHTML"]],
+        semGraph = function() private$.items[["semGraph"]],
         debug = function() private$.items[["debug"]],
         reportSEM = function() private$.items[["reportSEM"]],
         reportTableSEM = function() private$.items[["reportTableSEM"]]),
@@ -188,16 +196,16 @@ BrawSEMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 title="BrawStats:Path Models")
             self$add(jmvcore::Html$new(
                 options=options,
-                name="graphSEM",
+                name="semGraphHTML",
                 title=" ",
                 visible=TRUE))
             self$add(jmvcore::Image$new(
                 options=options,
-                name="graphPlot",
+                name="semGraph",
                 title=" ",
                 width=500,
                 height=300,
-                renderFun=".plotGraph",
+                renderFun=".semPlotGraph",
                 visible=FALSE))
             self$add(jmvcore::Preformatted$new(
                 options=options,
@@ -278,10 +286,11 @@ BrawSEMBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param removeSource .
 #' @param onlySource .
 #' @param onlyDest .
+#' @param showHTML .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$graphSEM} \tab \tab \tab \tab \tab a html \cr
-#'   \code{results$graphPlot} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$semGraphHTML} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$semGraph} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$debug} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$reportSEM} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$reportTableSEM} \tab \tab \tab \tab \tab a table \cr
@@ -314,7 +323,8 @@ BrawSEM <- function(
     removeDest,
     removeSource,
     onlySource,
-    onlyDest) {
+    onlyDest,
+    showHTML = TRUE) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("BrawSEM requires jmvcore to be installed (restart may be required)")
@@ -365,7 +375,8 @@ BrawSEM <- function(
         removeDest = removeDest,
         removeSource = removeSource,
         onlySource = onlySource,
-        onlyDest = onlyDest)
+        onlyDest = onlyDest,
+        showHTML = showHTML)
 
     analysis <- BrawSEMClass$new(
         options = options,

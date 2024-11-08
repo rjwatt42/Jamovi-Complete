@@ -202,13 +202,12 @@ children:
 
   - type: Label
     label: 'Show:'
-  # - type: LayoutBox
-  #   margin: none
-    minWidth: 600
     children:
     - type: LayoutBox
-      style: inline
+      style: list
       margin: large
       children:
         - type: ComboBox
           name: ShowType
+        - type: CheckBox
+          name: showHTML

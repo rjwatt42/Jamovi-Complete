@@ -9,7 +9,8 @@ BrawLMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             IV = NULL,
             DV = NULL,
             inferWhich = "r",
-            whichR = "Unique", ...) {
+            whichR = "Unique",
+            showHTML = TRUE, ...) {
 
             super$initialize(
                 package="BrawStats",
@@ -39,31 +40,38 @@ BrawLMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "Total",
                     "Full"),
                 default="Unique")
+            private$..showHTML <- jmvcore::OptionBool$new(
+                "showHTML",
+                showHTML,
+                default=TRUE)
 
             self$.addOption(private$..IV)
             self$.addOption(private$..DV)
             self$.addOption(private$..inferWhich)
             self$.addOption(private$..whichR)
+            self$.addOption(private$..showHTML)
         }),
     active = list(
         IV = function() private$..IV$value,
         DV = function() private$..DV$value,
         inferWhich = function() private$..inferWhich$value,
-        whichR = function() private$..whichR$value),
+        whichR = function() private$..whichR$value,
+        showHTML = function() private$..showHTML$value),
     private = list(
         ..IV = NA,
         ..DV = NA,
         ..inferWhich = NA,
-        ..whichR = NA)
+        ..whichR = NA,
+        ..showHTML = NA)
 )
 
 BrawLMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "BrawLMResults",
     inherit = jmvcore::Group,
     active = list(
-        graphHTML = function() private$.items[["graphHTML"]],
-        graphPlot = function() private$.items[["graphPlot"]],
-        reportPlot = function() private$.items[["reportPlot"]],
+        lmGraphHTML = function() private$.items[["lmGraphHTML"]],
+        lmGraph = function() private$.items[["lmGraph"]],
+        lmReport = function() private$.items[["lmReport"]],
         reportTableLM = function() private$.items[["reportTableLM"]]),
     private = list(),
     public=list(
@@ -74,20 +82,20 @@ BrawLMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 title="BrawStats:Linear Models")
             self$add(jmvcore::Html$new(
                 options=options,
-                name="graphHTML",
+                name="lmGraphHTML",
                 title=" ",
                 visible=TRUE))
             self$add(jmvcore::Image$new(
                 options=options,
-                name="graphPlot",
+                name="lmGraph",
                 title=" ",
                 width=500,
                 height=300,
-                renderFun=".plotGraph",
+                renderFun=".lmPlotGraph",
                 visible=FALSE))
             self$add(jmvcore::Html$new(
                 options=options,
-                name="reportPlot",
+                name="lmReport",
                 title=" ",
                 visible=TRUE))
             self$add(jmvcore::Table$new(
@@ -139,11 +147,12 @@ BrawLMBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param DV .
 #' @param inferWhich .
 #' @param whichR .
+#' @param showHTML .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$graphHTML} \tab \tab \tab \tab \tab a html \cr
-#'   \code{results$graphPlot} \tab \tab \tab \tab \tab an image \cr
-#'   \code{results$reportPlot} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$lmGraphHTML} \tab \tab \tab \tab \tab a html \cr
+#'   \code{results$lmGraph} \tab \tab \tab \tab \tab an image \cr
+#'   \code{results$lmReport} \tab \tab \tab \tab \tab a html \cr
 #'   \code{results$reportTableLM} \tab \tab \tab \tab \tab a table \cr
 #' }
 #'
@@ -159,7 +168,8 @@ BrawLM <- function(
     IV,
     DV,
     inferWhich = "r",
-    whichR = "Unique") {
+    whichR = "Unique",
+    showHTML = TRUE) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("BrawLM requires jmvcore to be installed (restart may be required)")
@@ -177,7 +187,8 @@ BrawLM <- function(
         IV = IV,
         DV = DV,
         inferWhich = inferWhich,
-        whichR = whichR)
+        whichR = whichR,
+        showHTML = showHTML)
 
     analysis <- BrawLMClass$new(
         options = options,

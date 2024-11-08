@@ -4,22 +4,22 @@ title: BrawStats:Analyze Data
 jrs:   '1.1'
 
 items:
-    - name: graphHTML
+    - name: anGraphHTML
       title: ' '
       type: Html
       # width:  600
       # height: 360
       visible: TRUE
 
-    - name: graphPlot
+    - name: anGraph
       title: ' '
       type: Image
       width:  500
       height: 300
-      renderFun: .plotGraph
+      renderFun: .anPlotGraph
       visible: FALSE
 
-    - name: reportPlot
+    - name: anReport
       title: ' '
       type: Html
       visible: TRUE

@@ -41,4 +41,9 @@ options:
           title: Full Model
       default: Unique
 
+    - name: showHTML
+      title: HTML?
+      type: Bool
+      default: true
+
 ...

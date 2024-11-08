@@ -120,5 +120,10 @@ options:
     - name: onlyDest
       title: only Dest
       type: Variables
+      
+    - name: showHTML
+      title: HTML?
+      type: Bool
+      default: true
 
 ...

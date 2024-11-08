@@ -181,7 +181,7 @@ reportDescription<-function(analysis=braw.res$result){
               ss<-c()
               cases<-levels(analysis$iv)
               if (braw.env$reportGroupMeans) {
-                outputText<-c(outputText,"!H!C")
+                outputText<-c(outputText,"!H!CCases")
                 for (i in 1:IV$ncats){
                   outputText<-c(outputText,IV$cases[i])
                 }

@@ -537,6 +537,7 @@ reportExplore<-function(exploreResult=braw.res$explore,showType="rs",
     }
   }
   }
+  outputText<-c(outputText,rep("",nc))
   nr=length(outputText)/nc
   reportPlot(outputText,nc,nr)        
   
