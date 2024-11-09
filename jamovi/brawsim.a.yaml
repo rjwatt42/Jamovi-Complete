@@ -1416,4 +1416,40 @@ options:
       title: 'do it for me'
       type: Action
 
+    - name: doProject5aBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject5bBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject5cBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject5dBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject5eBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject6aBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject6bBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject6cBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject6dBtn
+      title: 'do it for me'
+      type: Action
+
 ...

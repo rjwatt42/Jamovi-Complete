@@ -10,7 +10,7 @@ items:
       
     - name: BrawStatsInstructions 
       type: Html
-      visible: FALSE
+      visible: TRUE
       clearWith:
       - showJamovi
 

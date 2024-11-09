@@ -49,7 +49,7 @@ getAxisPrediction<-function(hypothesis,g=NULL) {
 }
 
 plotParParPrediction<-function(g,IV,DV,rho,n,offset=1,range=NULL){
-  if (is.null(range)) range<-c(-1,1)*braw.env$fullRange
+  fullrange<-c(-1,1)*braw.env$fullRange
   if (offset==1) {
     col<- braw.env$plotColours$descriptionC
     xoff=0
@@ -60,7 +60,7 @@ plotParParPrediction<-function(g,IV,DV,rho,n,offset=1,range=NULL){
     xoff=-0.25+off*0.5
   }
   
-  x<-seq(range[1],range[2],length.out=braw.env$varNPoints)
+  x<-seq(fullrange[1],fullrange[2],length.out=braw.env$varNPoints)
   y<-x*rho
   se<-sqrt((1+x^2)/n)*qnorm(0.975)
   y_lower<-y-se
@@ -70,6 +70,14 @@ plotParParPrediction<-function(g,IV,DV,rho,n,offset=1,range=NULL){
   
   x<-x*IV$sd+IV$mu
   y<-y*DV$sd+DV$mu
+  
+  if (!is.null(range)) {
+    use<-(x>=range[1]) & (x<=range[2])
+    x<-x[use]
+    y<-y[use]
+    yv_lower<-yv_lower[use]
+    yv_upper<-yv_upper[use]
+  }
   xv<-c(x,rev(x))
   
   pts2<-data.frame(x=x,y=y)

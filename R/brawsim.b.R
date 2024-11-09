@@ -33,6 +33,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     .run = function() {
       # debug information
       # braw.env$counter<<-braw.env$counter+1
+      
       # self$results$debug$setVisible(TRUE)
       # self$results$debug$setContent(c(self$results$simGraph$visible,self$results$simGraphHTML$visible))
 
@@ -347,7 +348,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             # if (outputNow=="Explore" && is.element(showExploreParam,c("Basic","Custom")) && showExploreDimension=="1D") svgBox(aspect=1.6)
             # if (outputNow=="Explore" && showExploreParam=="NHST") svgBox(aspect=1.6)
             assign("graphHTML",TRUE,braw.env)
-            graphSystem<-showSystem()
+            graphSystem<-paste0(showSystem(),reportSystem())
             if (!is.null(braw.res$result))
               switch(self$options$showSampleType,
                      "Compact"= graphSingle<-paste0(showDescription(),reportInference()),

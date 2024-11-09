@@ -374,6 +374,10 @@ showDescription<-function(analysis=braw.res$result,plotArea=c(0,0,1,1),g=NULL) {
       analysis1$hypothesis$IV2<-NULL
       analysis2<-analysis
       analysis2$hypothesis$IV<-analysis2$hypothesis$IV2
+      analysis2$iv<-analysis2$iv2
+      analysis2$ivplot<-analysis2$iv2plot
+      analysis2$rIV<-analysis2$rIV2
+      
       analysis2$hypothesis$IV2<-NULL
       
       braw.env$plotArea<-c(0,0.25,0.45,0.5)*plotArea[c(3,4,3,4)]+c(plotArea[c(1,2)],0,0)
@@ -384,7 +388,7 @@ showDescription<-function(analysis=braw.res$result,plotArea=c(0,0,1,1),g=NULL) {
               "Categorical"=g<-plotCatDescription(analysis1,g=g)
       )
       braw.env$plotArea<-c(0.55,0.25,0.45,0.5)*plotArea[c(3,4,3,4)] +c(plotArea[c(1,2)],0,0)
-      g<-getAxisPrediction(analysis1$hypothesis,g=g) 
+      g<-getAxisPrediction(analysis2$hypothesis,g=g) 
       switch (analysis$hypothesis$DV$type,
               "Interval"=g<-plotParDescription(analysis2,g=g),
               "Ordinal"=g<-plotParDescription(analysis2,g=g),
