@@ -3012,8 +3012,34 @@ children:
                 label: ' '
                 minWidth: 13
               - type: Label
+                label: 'Help system:'
+                minWidth: 90
+                maxWidth: 90
+              - type: Label
+                label: ' '
+                minWidth: 13
+              - type: CheckBox
+                name: brawHelp
+                minWidth: 100
+              - type: CheckBox
+                name: jamoviHelp
+                minWidth: 100
+              - type: CheckBox
+                name: demoHelp
+                minWidth: 100
+              - type: ComboBox
+                name: demoWhich
+          - type: LayoutBox
+            style: inline
+            margin: none
+            children:
+              - type: Label
+                label: ' '
+                minWidth: 13
+              - type: Label
                 label: 'Link to Jamovi:'
-                maxWidth: 330
+                minWidth: 90
+                maxWidth: 90
               - type: Label
                 label: ' '
                 minWidth: 13
@@ -3022,9 +3048,6 @@ children:
                 minWidth: 100
               - type: Output
                 name: sendMultiple
-                minWidth: 100
-              - type: CheckBox
-                name: jamoviHelp
                 minWidth: 100
           - type: LayoutBox
             style: inline
@@ -3035,19 +3058,11 @@ children:
                 minWidth: 13
               - type: Label
                 label: 'Other Options:'
-                maxWidth: 330
+                minWidth: 90
+                maxWidth: 90
               - type: Label
                 label: ' '
                 minWidth: 13
               - type: CheckBox
                 name: showHTML
                 minWidth: 100
-              - type: CheckBox
-                name: brawHelp
-                minWidth: 100
-              - type: CheckBox
-                name: demoHelp
-                minWidth: 100
-              - type: ComboBox
-                name: demoWhich
-

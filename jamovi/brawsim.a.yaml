@@ -1339,7 +1339,7 @@ options:
       default: FALSE
       
     - name: jamoviHelp
-      title: instructions?
+      title: Jamovi help?
       type: Bool
       default: false
       
