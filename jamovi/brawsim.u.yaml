@@ -1352,7 +1352,7 @@ children:
                                 children:
                                   - type: LayoutBox
                                     style: list
-                                    minWidth: 400
+                                    minWidth: 370
                                     children:
                                       - type: Label
                                         label: Choose the variables
@@ -1402,7 +1402,7 @@ children:
                                 children:
                                   - type: LayoutBox
                                     style: list
-                                    minWidth: 400
+                                    minWidth: 370
                                     children:
                                       - type: Label
                                         label: Set the effect size
@@ -1433,11 +1433,11 @@ children:
                                                     minWidth: 26
                                                   - type: Label
                                                     label: 'IV->DV: 0.3'
-                          - name: doProject1aBtn
+                          - name: doProject1sBtn
                             type: ActionButton
                             margin: none
                             events:
-                              change: ./BrawSim.events::onChange_project1a
+                              change: ./BrawSim.events::onChange_project1s
                             maxWidth: 80
                       - type: Label
                         label: Steps
@@ -1447,7 +1447,7 @@ children:
                             children:
                               - type: LayoutBox
                                 style: list
-                                minWidth: 400
+                                minWidth: 370
                                 children:
                                   - type: Label
                                     label: 1. go to Data - Single Sample
@@ -1465,18 +1465,18 @@ children:
                                       - type: Label
                                         label: ' '
                                         minWidth: 26
-                              - name: doProject1cBtn
+                              - name: doProject1aBtn
                                 type: ActionButton
                                 margin: none
                                 maxWidth: 80
                                 events:
-                                  change: ./BrawSim.events::onChange_project1c
+                                  change: ./BrawSim.events::onChange_project1a
                           - type: LayoutBox
                             style: inline
                             children:
                               - type: LayoutBox
                                 style: list
-                                minWidth: 400
+                                minWidth: 370
                                 children:
                                   - type: Label
                                     label: 2. analyse the data in Jamovi
@@ -1504,12 +1504,66 @@ children:
                                         minWidth: 13
                                       - type: Label
                                         label: follow the instructions
-                              - name: doProject1dBtn
+                              - name: doProject1bBtn
                                 type: ActionButton
                                 margin: none
                                 maxWidth: 80
                                 events:
-                                  change: ./BrawSim.events::onChange_project1d
+                                  change: ./BrawSim.events::onChange_project1b
+                          - type: LayoutBox
+                            style: inline
+                            children:
+                              - type: LayoutBox
+                                style: list
+                                minWidth: 370
+                                children:
+                                  - type: Label
+                                    label: 3. some others to try
+                                  - type: LayoutBox
+                                    style: inline
+                                    children:
+                                      - type: Label
+                                        label: ' '
+                                        minWidth: 13
+                                      - type: Label
+                                        label: try some other variables
+                                  - type: LayoutBox
+                                    style: inline
+                                    children:
+                                      - type: Label
+                                        label: ' '
+                                        minWidth: 13
+                                      - type: Label
+                                        label: press the "single" button
+                                  - type: LayoutBox
+                                    style: inline
+                                    children:
+                                      - type: Label
+                                        label: ' '
+                                        minWidth: 26
+                              - type: LayoutBox
+                                style: list
+                                minWidth: 80
+                                maxWidth: 80
+                                margin: none
+                                children:
+                                  - name: doProject1cLst
+                                    type: ComboBox
+                                    margin: none
+                                    minWidth: 80
+                                    maxWidth: 80
+                                  - name: doProject1cLstA
+                                    type: ComboBox
+                                    margin: none
+                                    minWidth: 80
+                                    maxWidth: 80
+                                  - type: ActionButton
+                                    name: doProject1cBtn
+                                    margin: none
+                                    minWidth: 80
+                                    maxWidth: 80
+                                    events:
+                                      change: ./BrawSim.events::onChange_project1c
           - type: LayoutBox
             style: inline
             children:
@@ -1536,7 +1590,7 @@ children:
                                 children:
                                   - type: LayoutBox
                                     style: list
-                                    minWidth: 400
+                                    minWidth: 370
                                     children:
                                       - type: LayoutBox
                                         style: inline
@@ -1562,7 +1616,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 1. make a sample
@@ -1605,7 +1659,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 2. repeat this
@@ -1648,7 +1702,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: >-
@@ -1714,7 +1768,7 @@ children:
                                 children:
                                   - type: LayoutBox
                                     style: list
-                                    minWidth: 400
+                                    minWidth: 370
                                     children:
                                       - type: LayoutBox
                                         style: inline
@@ -1740,7 +1794,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 1. make a sample
@@ -1791,7 +1845,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 2. repeat with a bigger sample size
@@ -1834,7 +1888,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: '3. set the effect size to zero:'
@@ -1900,7 +1954,7 @@ children:
                                 children:
                                   - type: LayoutBox
                                     style: list
-                                    minWidth: 400
+                                    minWidth: 370
                                     children:
                                       - type: LayoutBox
                                         style: inline
@@ -1926,7 +1980,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 1. make a sample
@@ -1977,7 +2031,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 2. repeat this with a 2D graph of the results
@@ -2020,7 +2074,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 4. do the same thing but with Multiple Samples
@@ -2092,7 +2146,7 @@ children:
                                 children:
                                   - type: LayoutBox
                                     style: list
-                                    minWidth: 400
+                                    minWidth: 370
                                     children:
                                       - type: LayoutBox
                                         style: inline
@@ -2118,7 +2172,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 1. make multiple samples
@@ -2161,7 +2215,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 2. repeat this with other sample sizes
@@ -2218,7 +2272,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 3. do the same thing but with Explore
@@ -2273,7 +2327,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 4. now change the hypothesis effect size
@@ -2357,7 +2411,7 @@ children:
                                 children:
                                   - type: LayoutBox
                                     style: list
-                                    minWidth: 400
+                                    minWidth: 370
                                     children:
                                       - type: LayoutBox
                                         style: inline
@@ -2400,7 +2454,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 1. change main effect 1
@@ -2473,7 +2527,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 2. change main effect 2
@@ -2536,7 +2590,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 3. change the interaction
@@ -2620,7 +2674,7 @@ children:
                                 children:
                                   - type: LayoutBox
                                     style: list
-                                    minWidth: 400
+                                    minWidth: 370
                                     children:
                                       - type: LayoutBox
                                         style: inline
@@ -2663,7 +2717,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 1. set up the interaction as on/off
@@ -2744,7 +2798,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 2. set up the interaction as +/- switch
@@ -2846,7 +2900,7 @@ children:
                                 children:
                                   - type: LayoutBox
                                     style: list
-                                    minWidth: 400
+                                    minWidth: 370
                                     children:
                                       - type: LayoutBox
                                         style: inline
@@ -2889,7 +2943,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 1. the result of covariation
@@ -2945,7 +2999,7 @@ children:
                         children:
                           - type: LayoutBox
                             style: list
-                            minWidth: 400
+                            minWidth: 370
                             children:
                               - type: Label
                                 label: 2. varying the amount of covariation
@@ -3013,6 +3067,7 @@ children:
                 minWidth: 13
               - type: Label
                 label: 'Help system:'
+                horizontalAlignment: right
                 minWidth: 90
                 maxWidth: 90
               - type: Label
@@ -3040,6 +3095,7 @@ children:
                 label: 'Link to Jamovi:'
                 minWidth: 90
                 maxWidth: 90
+                horizontalAlignment: right
               - type: Label
                 label: ' '
                 minWidth: 13
@@ -3060,6 +3116,7 @@ children:
                 label: 'Other Options:'
                 minWidth: 90
                 maxWidth: 90
+                horizontalAlignment: right
               - type: Label
                 label: ' '
                 minWidth: 13

@@ -159,27 +159,39 @@ const events =  {
       ui.whichGraph.setValue("Single")
     },
     
-    onChange_project1a: function(ui) {
-      let BtnOn = ui.doProject1aBtn.value();
+    onChange_project1s: function(ui) {
+      let BtnOn = ui.doProject1sBtn.value();
       if (BtnOn==true) {
+      ui.presetDV.setValue("ExamGrade")
+      ui.presetIV.setValue("RiskTaker")
       defaultSetUp(ui)
       ui.demoWhich.setValue("d1")
       ui.showHypothesisBtn.setValue(true)
       }
     },
     
-    onChange_project1c: function(ui) {
-      let BtnOn = ui.doProject1cBtn.value();
+    onChange_project1a: function(ui) {
+      let BtnOn = ui.doProject1aBtn.value();
       if (BtnOn==true) {
         ui.showSampleType.setValue("Compact")
         ui.makeSampleBtn.setValue(true)
       }
     },
     
-    onChange_project1d: function(ui) {
-      let BtnOn = ui.doProject1dBtn.value();
+    onChange_project1b: function(ui) {
+      let BtnOn = ui.doProject1bBtn.value();
       if (BtnOn==true) {
       ui.jamoviHelp.setValue(true)
+      }
+    },
+    
+    onChange_project1c: function(ui) {
+      let BtnOn = ui.doProject1cBtn.value();
+      if (BtnOn==true) {
+        let variable = ui.doProject1cLst.value();
+        ui.presetIV.setValue(variable)
+        ui.showSampleType.setValue("Compact")
+        ui.makeSampleBtn.setValue(true)
       }
     },
     

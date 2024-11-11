@@ -47,6 +47,8 @@ options:
         title: Happiness
       - name: ExamGrade
         title: ExamGrade
+      - name: ExamPass
+        title: ExamPass?
       - name: RiskTaking
         title: RiskTaking
       - name: Interesting
@@ -1376,20 +1378,62 @@ options:
       default: d1
       
     - name: showHTML
-      title: HTML?
+      title: HTML graphics?
       type: Bool
       default: true
 
-    - name: doProject1aBtn
+    - name: doProject1sBtn
       title: 'set up for me'
       type: Action
 
-    - name: doProject1cBtn
+    - name: doProject1aBtn
       title: 'do it for me'
       type: Action
 
-    - name: doProject1dBtn
+    - name: doProject1bBtn
       title: 'show me'
+      type: Action
+
+    - name: doProject1cLst
+      title: 'IV:'
+      type: List
+      options:
+      - name: IQ
+        title: IQ
+      - name: Diligence
+        title: Diligence
+      - name: Perfectionism
+        title: Perfectionism
+      - name: Happiness
+        title: Happiness
+      - name: RiskTaking
+        title: RiskTaking
+      - name: Interesting
+        title: Interesting
+      - name: Musician
+        title: Musician?
+      - name: Smoker
+        title: Smoker?
+      - name: RiskTaker
+        title: RiskTaker?
+      - name: StudySubject
+        title: StudySubject
+      - name: BirthOrder
+        title: BirthOrder
+      default: Perfectionism
+
+    - name: doProject1cLstA
+      title: 'DV:'
+      type: List
+      options:
+      - name: ExamGrade
+        title: ExamGrade
+      - name: ExamPass
+        title: ExamPass?
+      default: ExamGrade
+
+    - name: doProject1cBtn
+      title: 'do it'
       type: Action
 
 

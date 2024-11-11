@@ -138,9 +138,12 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             demoHelp = TRUE,
             demoWhich = "d1",
             showHTML = TRUE,
+            doProject1sBtn = NULL,
             doProject1aBtn = NULL,
+            doProject1bBtn = NULL,
+            doProject1cLst = "Perfectionism",
+            doProject1cLstA = "ExamGrade",
             doProject1cBtn = NULL,
-            doProject1dBtn = NULL,
             doProject2aBtn = NULL,
             doProject2bBtn = NULL,
             doProject2cBtn = NULL,
@@ -205,6 +208,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "Perfectionism",
                     "Happiness",
                     "ExamGrade",
+                    "ExamPass",
                     "RiskTaking",
                     "Interesting",
                     "Musician",
@@ -1001,15 +1005,41 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "showHTML",
                 showHTML,
                 default=TRUE)
+            private$..doProject1sBtn <- jmvcore::OptionAction$new(
+                "doProject1sBtn",
+                doProject1sBtn)
             private$..doProject1aBtn <- jmvcore::OptionAction$new(
                 "doProject1aBtn",
                 doProject1aBtn)
+            private$..doProject1bBtn <- jmvcore::OptionAction$new(
+                "doProject1bBtn",
+                doProject1bBtn)
+            private$..doProject1cLst <- jmvcore::OptionList$new(
+                "doProject1cLst",
+                doProject1cLst,
+                options=list(
+                    "IQ",
+                    "Diligence",
+                    "Perfectionism",
+                    "Happiness",
+                    "RiskTaking",
+                    "Interesting",
+                    "Musician",
+                    "Smoker",
+                    "RiskTaker",
+                    "StudySubject",
+                    "BirthOrder"),
+                default="Perfectionism")
+            private$..doProject1cLstA <- jmvcore::OptionList$new(
+                "doProject1cLstA",
+                doProject1cLstA,
+                options=list(
+                    "ExamGrade",
+                    "ExamPass"),
+                default="ExamGrade")
             private$..doProject1cBtn <- jmvcore::OptionAction$new(
                 "doProject1cBtn",
                 doProject1cBtn)
-            private$..doProject1dBtn <- jmvcore::OptionAction$new(
-                "doProject1dBtn",
-                doProject1dBtn)
             private$..doProject2aBtn <- jmvcore::OptionAction$new(
                 "doProject2aBtn",
                 doProject2aBtn)
@@ -1348,9 +1378,12 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..demoHelp)
             self$.addOption(private$..demoWhich)
             self$.addOption(private$..showHTML)
+            self$.addOption(private$..doProject1sBtn)
             self$.addOption(private$..doProject1aBtn)
+            self$.addOption(private$..doProject1bBtn)
+            self$.addOption(private$..doProject1cLst)
+            self$.addOption(private$..doProject1cLstA)
             self$.addOption(private$..doProject1cBtn)
-            self$.addOption(private$..doProject1dBtn)
             self$.addOption(private$..doProject2aBtn)
             self$.addOption(private$..doProject2bBtn)
             self$.addOption(private$..doProject2cBtn)
@@ -1526,9 +1559,12 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         demoHelp = function() private$..demoHelp$value,
         demoWhich = function() private$..demoWhich$value,
         showHTML = function() private$..showHTML$value,
+        doProject1sBtn = function() private$..doProject1sBtn$value,
         doProject1aBtn = function() private$..doProject1aBtn$value,
+        doProject1bBtn = function() private$..doProject1bBtn$value,
+        doProject1cLst = function() private$..doProject1cLst$value,
+        doProject1cLstA = function() private$..doProject1cLstA$value,
         doProject1cBtn = function() private$..doProject1cBtn$value,
-        doProject1dBtn = function() private$..doProject1dBtn$value,
         doProject2aBtn = function() private$..doProject2aBtn$value,
         doProject2bBtn = function() private$..doProject2bBtn$value,
         doProject2cBtn = function() private$..doProject2cBtn$value,
@@ -1703,9 +1739,12 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..demoHelp = NA,
         ..demoWhich = NA,
         ..showHTML = NA,
+        ..doProject1sBtn = NA,
         ..doProject1aBtn = NA,
+        ..doProject1bBtn = NA,
+        ..doProject1cLst = NA,
+        ..doProject1cLstA = NA,
         ..doProject1cBtn = NA,
-        ..doProject1dBtn = NA,
         ..doProject2aBtn = NA,
         ..doProject2bBtn = NA,
         ..doProject2cBtn = NA,
@@ -2008,9 +2047,12 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param demoHelp .
 #' @param demoWhich .
 #' @param showHTML .
+#' @param doProject1sBtn .
 #' @param doProject1aBtn .
+#' @param doProject1bBtn .
+#' @param doProject1cLst .
+#' @param doProject1cLstA .
 #' @param doProject1cBtn .
-#' @param doProject1dBtn .
 #' @param doProject2aBtn .
 #' @param doProject2bBtn .
 #' @param doProject2cBtn .
@@ -2195,9 +2237,12 @@ BrawSim <- function(
     demoHelp = TRUE,
     demoWhich = "d1",
     showHTML = TRUE,
+    doProject1sBtn,
     doProject1aBtn,
+    doProject1bBtn,
+    doProject1cLst = "Perfectionism",
+    doProject1cLstA = "ExamGrade",
     doProject1cBtn,
-    doProject1dBtn,
     doProject2aBtn,
     doProject2bBtn,
     doProject2cBtn,
@@ -2375,9 +2420,12 @@ BrawSim <- function(
         demoHelp = demoHelp,
         demoWhich = demoWhich,
         showHTML = showHTML,
+        doProject1sBtn = doProject1sBtn,
         doProject1aBtn = doProject1aBtn,
+        doProject1bBtn = doProject1bBtn,
+        doProject1cLst = doProject1cLst,
+        doProject1cLstA = doProject1cLstA,
         doProject1cBtn = doProject1cBtn,
-        doProject1dBtn = doProject1dBtn,
         doProject2aBtn = doProject2aBtn,
         doProject2bBtn = doProject2bBtn,
         doProject2cBtn = doProject2cBtn,

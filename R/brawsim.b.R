@@ -336,25 +336,26 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         exploreResult<-doExplore(nsims=numberExplores,exploreResult=braw.res$explore)
         outputNow<-"Explore"
       }
-      
-      likelihoodCutaway<-(self$options$likelihoodCutaway=="cutaway")
 
-      if (outputNow=="Likelihood") {
-      possible<-makePossible(UsePrior=self$options$likelihoodUsePrior,
-                             prior=makeWorld(worldOn=TRUE,
-                                             populationPDF=self$options$priorPDF,
-                                             populationRZ=self$options$priorRZ,
-                                             populationPDFk=self$options$priorLambda,
-                                             populationNullp=self$options$priorNullP)
-      )
-      possibleResult<-doPossible(possible)
-      }
       # self$results$debug$setVisible(TRUE)
       # self$results$debug$setContent(outRep)
       
       # what are we showing?
       # main results graphs/reports
-      if (!is.null(outputNow))  {   
+      if (!is.null(outputNow))  { 
+        
+        if (outputNow=="Likelihood") {
+          possible<-makePossible(UsePrior=self$options$likelihoodUsePrior,
+                                 prior=makeWorld(worldOn=TRUE,
+                                                 populationPDF=self$options$priorPDF,
+                                                 populationRZ=self$options$priorRZ,
+                                                 populationPDFk=self$options$priorLambda,
+                                                 populationNullp=self$options$priorNullP)
+          )
+          possibleResult<-doPossible(possible)
+          likelihoodCutaway<-(self$options$likelihoodCutaway=="cutaway")
+        }
+        
           if (self$options$showHTML) {
             svgBox(height=350,aspect=1.5)
             # if (outputNow=="System") svgBox(aspect=1.5)
