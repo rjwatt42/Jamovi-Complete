@@ -3,7 +3,7 @@
 
 'use strict';
 
-const options = [{"name":"planOptions","title":" ","type":"List","options":[{"name":"planH","title":"Hypothesis"},{"name":"planD","title":"Design"},{"name":"planA","title":"Analysis"},{"name":"planM","title":"More"}]},{"name":"presetDV","title":"","type":"List","options":[{"name":"Blank","title":"DV"},{"name":"IQ","title":"IQ"},{"name":"Diligence","title":"Diligence"},{"name":"Perfectionism","title":"Perfectionism"},{"name":"Happiness","title":"Happiness"},{"name":"ExamGrade","title":"ExamGrade"},{"name":"RiskTaking","title":"RiskTaking"},{"name":"Interesting","title":"Interesting"},{"name":"Musician","title":"Musician?"},{"name":"Smoker","title":"Smoker?"},{"name":"RiskTaker","title":"RiskTaker?"},{"name":"Treatment","title":"Treatment?"},{"name":"Phase","title":"Phase"},{"name":"StudySubject","title":"StudySubject"},{"name":"BirthOrder","title":"BirthOrder"}],"default":"Blank"},{"name":"presetIV","title":"","type":"List","options":[{"name":"Blank","title":"IV"},{"name":"IQ","title":"IQ"},{"name":"Diligence","title":"Diligence"},{"name":"Perfectionism","title":"Perfectionism"},{"name":"Happiness","title":"Happiness"},{"name":"ExamGrade","title":"ExamGrade"},{"name":"RiskTaking","title":"RiskTaking"},{"name":"Interesting","title":"Interesting"},{"name":"Musician","title":"Musician?"},{"name":"Smoker","title":"Smoker?"},{"name":"RiskTaker","title":"RiskTaker?"},{"name":"Treatment","title":"Treatment?"},{"name":"Phase","title":"Phase"},{"name":"StudySubject","title":"StudySubject"},{"name":"BirthOrder","title":"BirthOrder"}],"default":"Blank"},{"name":"presetIV2","title":"","type":"List","options":[{"name":"none","title":"none"},{"name":"IV2","title":"IV2"},{"name":"IQ","title":"IQ"},{"name":"Diligence","title":"Diligence"},{"name":"Perfectionism","title":"Perfectionism"},{"name":"Happiness","title":"Happiness"},{"name":"ExamGrade","title":"ExamGrade"},{"name":"RiskTaking","title":"RiskTaking"},{"name":"Interesting","title":"Interesting"},{"name":"Musician","title":"Musician?"},{"name":"Smoker","title":"Smoker?"},{"name":"RiskTaker","title":"RiskTaker?"},{"name":"Treatment","title":"Treatment?"},{"name":"Phase","title":"Phase"},{"name":"StudySubject","title":"StudySubject"},{"name":"BirthOrder","title":"BirthOrder"}],"default":"none"},{"name":"presetWorld","title":"Presets:","type":"List","options":[{"name":"psych","title":"psychology"},{"name":"simple","title":"simple"}],"default":"simple"},{"name":"DVname","title":"Name","type":"String","default":"DV"},{"name":"DVtype","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"DVmu","title":"mean","type":"Number","default":0},{"name":"DVsd","title":"sd","type":"Number","default":1},{"name":"DVskew","title":"skew","type":"Number","default":0},{"name":"DVkurt","title":"kurtosis","type":"Number","default":0},{"name":"DVnlevs","title":"no levels","type":"Number","default":7},{"name":"DViqr","title":"iqr","type":"Number","default":4},{"name":"DVncats","title":"no cases","type":"Number","default":2},{"name":"DVcases","title":"cases","type":"String","default":"C1,C2"},{"name":"DVprops","title":"proportions","type":"String","default":"1,1"},{"name":"IVname","title":"Name","type":"String","default":"IV"},{"name":"IVtype","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"IVmu","title":"mean","type":"Number","default":0},{"name":"IVsd","title":"sd","type":"Number","default":1},{"name":"IVskew","title":"skew","type":"Number","default":0},{"name":"IVkurt","title":"kurtosis","type":"Number","default":0},{"name":"IVnlevs","title":"no levels","type":"Number","default":7},{"name":"IViqr","title":"iqr","type":"Number","default":4},{"name":"IVncats","title":"no cases","type":"Number","default":2},{"name":"IVcases","title":"cases","type":"String","default":"C1,C2"},{"name":"IVprops","title":"proportions","type":"String","default":"1,1"},{"name":"IV2name","title":"Name","type":"String","default":"IV2"},{"name":"IV2type","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"IV2mu","title":"mean","type":"Number","default":0},{"name":"IV2sd","title":"sd","type":"Number","default":1},{"name":"IV2skew","title":"skew","type":"Number","default":0},{"name":"IV2kurt","title":"kurtosis","type":"Number","default":0},{"name":"IV2nlevs","title":"no levels","type":"Number","default":7},{"name":"IV2iqr","title":"iqr","type":"Number","default":4},{"name":"IV2ncats","title":"no cases","type":"Number","default":2},{"name":"IV2cases","title":"cases","type":"String","default":"C1,C2"},{"name":"IV2props","title":"proportions","type":"String","default":"1,1"},{"name":"EffectSize1","title":"IV->DV","type":"Number","default":0},{"name":"EffectSize2","title":"IV2->DV","type":"Number","default":0},{"name":"EffectSize3","title":"IV->IV2","type":"Number","default":0},{"name":"EffectSize12","title":"IV*IV2->DV","type":"Number","default":0},{"name":"Heteroscedasticity","title":"Heteroscedasticity","type":"Number","default":0},{"name":"Residuals","title":"Residuals","type":"List","options":[{"name":"normal","title":"normal"},{"name":"skewed","title":"skewed"},{"name":"uniform","title":"uniform"},{"name":"cauchy","title":"cauchy"}],"default":"normal"},{"name":"WorldOn","title":"","type":"Bool","default":false},{"name":"WorldPDF","title":"distribution","type":"List","options":[{"name":"Single","title":"Single"},{"name":"Double","title":"Double"},{"name":"Uniform","title":"Uniform"},{"name":"Gauss","title":"Gauss"},{"name":"Exp","title":"Exp"}],"default":"Single"},{"name":"WorldRZ","title":" ","type":"List","options":[{"name":"r","title":"r"},{"name":"z","title":"z"}]},{"name":"WorldLambda","title":"lambda","type":"Number","default":0.3},{"name":"WorldNullP","title":"p(null)","type":"Number","default":0.5},{"name":"SampleSize","title":"Sample Size","type":"Number","default":42},{"name":"SampleSizeM","title":"Median n","type":"Number","default":42},{"name":"SampleSpreadOn","title":" ","type":"Bool","default":false},{"name":"SampleGamma","title":"spread","type":"Number","default":1.56},{"name":"SampleMethod","title":"Method","type":"List","options":[{"name":"Random","title":"Random"},{"name":"Stratified","title":"Stratified"},{"name":"Cluster","title":"Cluster"},{"name":"Snowball","title":"Snowball"},{"name":"Convenience","title":"Convenience"}],"default":"Random"},{"name":"SampleUsage1","title":"Usage(IV)","type":"List","options":[{"name":"Between","title":"Between"},{"name":"Within","title":"Within"}],"default":"Between"},{"name":"SampleUsage2","title":"Usage(IV2)","type":"List","options":[{"name":"Between","title":"Between"},{"name":"Within","title":"Within"}],"default":"Between"},{"name":"Dependence","title":"Dependence","type":"Number","default":0},{"name":"Outliers","title":"Outliers","type":"Number","default":0},{"name":"NonResponse","title":"NonResponse","type":"Number","default":0},{"name":"LimitRange","title":"Limit range?","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"no"},{"name":"RangeMin","title":"from","type":"Number","default":-3},{"name":"RangeMax","title":"to","type":"Number","default":3},{"name":"Cheating","title":"Cheating","type":"List","options":[{"name":"None","title":"None"},{"name":"Grow","title":"Grow"},{"name":"Prune","title":"Prune"},{"name":"Replace","title":"Replace"},{"name":"Retry","title":"Retry"}],"default":"None"},{"name":"CheatingAttempts","title":"Attempts","type":"Number","default":5},{"name":"ReplicationOn","title":"","type":"Bool","default":false},{"name":"ReplicationPower","title":"sample target power","type":"Number","default":0.8},{"name":"ReplicationPrior","title":"prior","type":"List","options":[{"name":"None","title":"None"},{"name":"World","title":"World"},{"name":"Prior","title":"Custom"}],"default":"None"},{"name":"ReplicationAttempts","title":"how many replications?","type":"Number","default":1},{"name":"ReplicationDecision","title":"decision","type":"List","options":[{"name":"Cautious","title":"Cautious"},{"name":"Last","title":"Last"},{"name":"Median","title":"Median"},{"name":"SmallP","title":"SmallP"},{"name":"LargeN","title":"LargeN"}],"default":"Cautious"},{"name":"ReplicationAlpha","title":"rep alpha","type":"Number","default":0.05},{"name":"ReplicationSign","title":"same sign","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"ReplicationSigOriginal","title":"significant original","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"alphaSig","title":"alpha","type":"Number","default":0.05},{"name":"ssq","title":"SSQ Type","type":"List","options":[{"name":"Type1","title":"Type1"},{"name":"Type2","title":"Type2"},{"name":"Type3","title":"Type3"}],"default":"Type3"},{"name":"interaction","title":"Interaction?","type":"List","options":[{"name":"no","title":"no"},{"name":"yes","title":"yes"}],"default":"no"},{"name":"equalVar","title":"Equal variance","type":"List","options":[{"name":"no","title":"no"},{"name":"yes","title":"yes"}],"default":"yes"},{"name":"Transform","title":"Transform the DV","type":"List","options":[{"name":"None","title":"None"},{"name":"Log","title":"Log"},{"name":"Exp","title":"Exp"}],"default":"None"},{"name":"likelihoodType","title":"possible","type":"List","options":[{"name":"Samples","title":"Samples"},{"name":"Populations","title":"Populations"}],"default":"Populations"},{"name":"likelihoodCutaway","title":"","type":"List","options":[{"name":"all","title":"all"},{"name":"cutaway","title":"cutaway"}],"default":"cutaway"},{"name":"likelihoodUsePrior","title":"prior","type":"List","options":[{"name":"none","title":"none"},{"name":"world","title":"world"},{"name":"prior","title":"custom"}],"default":"none"},{"name":"priorPDF","title":"PDF","type":"List","options":[{"name":"Single","title":"Single"},{"name":"Double","title":"Double"},{"name":"Uniform","title":"Uniform"},{"name":"Gauss","title":"Gauss"},{"name":"Exp","title":"Exp"}],"default":"Exp"},{"name":"priorRZ","title":" ","type":"List","options":[{"name":"r","title":"r"},{"name":"z","title":"z"}],"default":"z"},{"name":"priorLambda","title":"lambda","type":"Number","default":0.3},{"name":"priorNullP","title":"p(null)","type":"Number","default":0},{"name":"MetaAnalysisOn","title":"","type":"Bool","default":false},{"name":"MetaAnalysisType","title":" ","type":"List","options":[{"name":"random","title":"random"},{"name":"fixed","title":"fixed"}],"default":"random"},{"name":"MetaAnalysisNulls","title":"nulls","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"MetaAnalysisBias","title":"bias","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"MetaAnalysisNStudies","title":"no of studies","type":"Number","default":10},{"name":"MetaAnalysisStudiesSig","title":" ","type":"List","options":[{"name":"all","title":"all"},{"name":"sigOnly","title":"sigOnly"}],"default":"sigOnly"},{"name":"showHypothesisBtn","title":"show","type":"Action"},{"name":"makeSampleBtn","type":"Action","title":"single","default":false},{"name":"numberSamples","title":"no of samples","type":"Number","default":100},{"name":"makeMultipleBtn","title":"multiple","type":"Action"},{"name":"inferVar1","title":" show:","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"rs"},{"name":"inferVar2","title":" &","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"p"},{"name":"showSampleType","title":" show:","type":"List","options":[{"name":"Compact","title":"Compact"},{"name":"Variables","title":"Variables"},{"name":"Sample","title":"Sample"},{"name":"Describe","title":"Describe"},{"name":"Infer","title":"Infer"},{"name":"Likelihood","title":"Likelihood"}],"default":"Compact"},{"name":"showInferDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"reportInferStats","title":" ","type":"List","options":[{"name":"Means","title":"(Means)"},{"name":"Medians","title":"(Medians)"}],"default":"Medians"},{"name":"showMultipleParam","title":" show as:","type":"List","options":[{"name":"Basic","title":"Basic"},{"name":"p(sig)","title":"p(sig)"},{"name":"NHST","title":"NHST"},{"name":"Hits","title":"Hits"},{"name":"Misses","title":"Misses"},{"name":"DV","title":"DV"},{"name":"Residuals","title":"Residuals"}],"default":"Basic"},{"name":"showMultipleDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"exploreNPointsH","title":"using","type":"Number","default":13},{"name":"exploreNPointsD","title":"using","type":"Number","default":13},{"name":"exploreNPointsA","title":"using","type":"Number","default":13},{"name":"exploreNPointsM","title":"using","type":"Number","default":13},{"name":"exploreMinValH","title":"from","type":"String","default":"-0.9"},{"name":"exploreMaxValH","title":"to","type":"String","default":"0.9"},{"name":"exploreMinValD","title":"from","type":"String","default":"10"},{"name":"exploreMaxValD","title":"to","type":"String","default":"250"},{"name":"exploreMinValA","title":"from","type":"String","default":"0.001"},{"name":"exploreMaxValM","title":"to","type":"String","default":"0.5"},{"name":"exploreMinValM","title":"from","type":"String","default":"0.001"},{"name":"exploreMaxValA","title":"to","type":"String","default":"0.5"},{"name":"exploreXLogH","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogD","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogA","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogM","title":"log scale","type":"Bool","default":false},{"name":"numberExplores","title":"no of samples","type":"Number","default":10},{"name":"makeExploreBtn","title":"explore","type":"Action"},{"name":"exploreMode","title":"","type":"List","options":[{"name":"hypothesisExplore","title":"Hypothesis"},{"name":"designExplore","title":"Design"},{"name":"analysisExplore","title":"Analysis"},{"name":"moreExplore","title":"More"}],"default":"designExplore"},{"name":"hypothesisExploreList","title":"explore:","type":"List","options":[{"name":"rIV","title":"EffectSize"},{"name":"rIVIV2","title":"Covariation"},{"name":"rIVIV2DV","title":"Interaction"},{"name":"Heteroscedasticity","title":"Hscedast"},{"name":"blank0h","title":" "},{"name":"IVType","title":"IVType"},{"name":"IVskew","title":"IVskew"},{"name":"IVkurtosis","title":"IVkurtosis"},{"name":"IVlevels","title":"IVlevels"},{"name":"IVcats","title":"IVcats"},{"name":"IVprops","title":"IVprops"},{"name":"DVType","title":"DVType"},{"name":"DVskew","title":"DVskew"},{"name":"DVkurtosis","title":"DVkurtosis"},{"name":"DVcats","title":"DVcats"},{"name":"DVprops","title":"DVprops"},{"name":"blank1h","title":" "},{"name":"lambda","title":"worldLambda"},{"name":"pNull","title":"worldPNull"},{"name":"blank2h"}]},{"name":"designExploreList","title":"explore:","type":"List","options":[{"name":"n","title":"SampleSize"},{"name":"Method","title":"Method"},{"name":"Usage","title":"Usage"},{"name":"blank1d","title":" "},{"name":"Dependence","title":"Dependence"},{"name":"Outliers","title":"Outliers"},{"name":"NonResponse","title":"NonResponse"},{"name":"IVRangeC","title":"IV RangeC"},{"name":"IVRangeE","title":"IV RangeE"},{"name":"blank1e","title":" "},{"name":"Cheating","title":"CheatMethod"},{"name":"CheatingAmount","title":"CheatAmount"}]},{"name":"analysisExploreList","title":"explore:","type":"List","options":[{"name":"Alpha","title":"Alpha"},{"name":"Transform","title":"Transform"},{"name":"Welch","title":"EqualVar"},{"name":"InteractionOn","title":"InteractionOn"}]},{"name":"moreExploreList","title":"explore:","type":"List","options":[{"name":"Power","title":"ReplPower"},{"name":"Keep","title":"ReplDecision"},{"name":"Repeats","title":"ReplAttempts"}]},{"name":"showExploreParam","title":"show as:","type":"List","options":[{"name":"Basic","title":"Basic"},{"name":"p(sig)","title":"p(sig)"},{"name":"NHST","title":"NHST"},{"name":"Hits","title":"Hits"},{"name":"Misses","title":"Misses"},{"name":"DV","title":"DV"},{"name":"Residuals","title":"Residuals"}],"default":"Basic"},{"name":"showExploreDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"whichShowMultiple","title":" ","type":"List","options":[{"name":"direct","title":"direct"},{"name":"unique","title":"unique"},{"name":"total","title":"total"},{"name":"all","title":"all"}],"default":"all"},{"name":"sendSample","title":"single","type":"Output","default":true},{"name":"sendMultiple","title":"multiple","type":"Output","default":false},{"name":"showJamovi","title":"instructions?","type":"Bool","default":false},{"name":"showHelp","title":"help?","type":"Bool","default":true},{"name":"showHTML","title":"HTML?","type":"Bool","default":true},{"name":"doProject1aBtn","title":"do it for me","type":"Action"},{"name":"doProject1bBtn","title":"do it for me","type":"Action"},{"name":"doProject1cBtn","title":"do it for me","type":"Action"},{"name":"doProject1dBtn","title":"show me","type":"Action"},{"name":"doProject2aBtn","title":"do it for me","type":"Action"},{"name":"doProject2bBtn","title":"do it for me","type":"Action"},{"name":"doProject2cBtn","title":"do it for me","type":"Action"},{"name":"doProject2dBtn","title":"do it for me","type":"Action"},{"name":"doProject3aBtn","title":"do it for me","type":"Action"},{"name":"doProject3bBtn","title":"do it for me","type":"Action"},{"name":"doProject3cBtn","title":"do it for me","type":"Action"},{"name":"doProject3dBtn","title":"do it for me","type":"Action"},{"name":"doProject4aBtn","title":"do it for me","type":"Action"},{"name":"doProject4bBtn","title":"do it for me","type":"Action"},{"name":"doProject4cBtn","title":"do it for me","type":"Action"},{"name":"doProject4dBtn","title":"do it for me","type":"Action"},{"name":"doProject5aBtn","title":"do it for me","type":"Action"},{"name":"doProject5bBtn","title":"do it for me","type":"Action"},{"name":"doProject5cBtn","title":"do it for me","type":"Action"},{"name":"doProject5dBtn","title":"do it for me","type":"Action"},{"name":"doProject5eBtn","title":"do it for me","type":"Action"},{"name":"doProject6aBtn","title":"do it for me","type":"Action"},{"name":"doProject6bBtn","title":"do it for me","type":"Action"},{"name":"doProject6cBtn","title":"do it for me","type":"Action"},{"name":"doProject6dBtn","title":"do it for me","type":"Action"}];
+const options = [{"name":"planOptions","title":" ","type":"List","options":[{"name":"planH","title":"Hypothesis"},{"name":"planD","title":"Design"},{"name":"planA","title":"Analysis"},{"name":"planM","title":"More"}]},{"name":"presetDV","title":"","type":"List","options":[{"name":"Blank","title":"DV"},{"name":"IQ","title":"IQ"},{"name":"Diligence","title":"Diligence"},{"name":"Perfectionism","title":"Perfectionism"},{"name":"Happiness","title":"Happiness"},{"name":"ExamGrade","title":"ExamGrade"},{"name":"RiskTaking","title":"RiskTaking"},{"name":"Interesting","title":"Interesting"},{"name":"Musician","title":"Musician?"},{"name":"Smoker","title":"Smoker?"},{"name":"RiskTaker","title":"RiskTaker?"},{"name":"Treatment","title":"Treatment?"},{"name":"Phase","title":"Phase"},{"name":"StudySubject","title":"StudySubject"},{"name":"BirthOrder","title":"BirthOrder"}],"default":"Blank"},{"name":"presetIV","title":"","type":"List","options":[{"name":"Blank","title":"IV"},{"name":"IQ","title":"IQ"},{"name":"Diligence","title":"Diligence"},{"name":"Perfectionism","title":"Perfectionism"},{"name":"Happiness","title":"Happiness"},{"name":"ExamGrade","title":"ExamGrade"},{"name":"RiskTaking","title":"RiskTaking"},{"name":"Interesting","title":"Interesting"},{"name":"Musician","title":"Musician?"},{"name":"Smoker","title":"Smoker?"},{"name":"RiskTaker","title":"RiskTaker?"},{"name":"Treatment","title":"Treatment?"},{"name":"Phase","title":"Phase"},{"name":"StudySubject","title":"StudySubject"},{"name":"BirthOrder","title":"BirthOrder"}],"default":"Blank"},{"name":"presetIV2","title":"","type":"List","options":[{"name":"none","title":"none"},{"name":"IV2","title":"IV2"},{"name":"IQ","title":"IQ"},{"name":"Diligence","title":"Diligence"},{"name":"Perfectionism","title":"Perfectionism"},{"name":"Happiness","title":"Happiness"},{"name":"ExamGrade","title":"ExamGrade"},{"name":"RiskTaking","title":"RiskTaking"},{"name":"Interesting","title":"Interesting"},{"name":"Musician","title":"Musician?"},{"name":"Smoker","title":"Smoker?"},{"name":"RiskTaker","title":"RiskTaker?"},{"name":"Treatment","title":"Treatment?"},{"name":"Phase","title":"Phase"},{"name":"StudySubject","title":"StudySubject"},{"name":"BirthOrder","title":"BirthOrder"}],"default":"none"},{"name":"presetWorld","title":"Presets:","type":"List","options":[{"name":"psych","title":"psychology"},{"name":"simple","title":"simple"}],"default":"simple"},{"name":"DVname","title":"Name","type":"String","default":"DV"},{"name":"DVtype","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"DVmu","title":"mean","type":"Number","default":0},{"name":"DVsd","title":"sd","type":"Number","default":1},{"name":"DVskew","title":"skew","type":"Number","default":0},{"name":"DVkurt","title":"kurtosis","type":"Number","default":0},{"name":"DVnlevs","title":"no levels","type":"Number","default":7},{"name":"DViqr","title":"iqr","type":"Number","default":4},{"name":"DVncats","title":"no cases","type":"Number","default":2},{"name":"DVcases","title":"cases","type":"String","default":"C1,C2"},{"name":"DVprops","title":"proportions","type":"String","default":"1,1"},{"name":"IVname","title":"Name","type":"String","default":"IV"},{"name":"IVtype","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"IVmu","title":"mean","type":"Number","default":0},{"name":"IVsd","title":"sd","type":"Number","default":1},{"name":"IVskew","title":"skew","type":"Number","default":0},{"name":"IVkurt","title":"kurtosis","type":"Number","default":0},{"name":"IVnlevs","title":"no levels","type":"Number","default":7},{"name":"IViqr","title":"iqr","type":"Number","default":4},{"name":"IVncats","title":"no cases","type":"Number","default":2},{"name":"IVcases","title":"cases","type":"String","default":"C1,C2"},{"name":"IVprops","title":"proportions","type":"String","default":"1,1"},{"name":"IV2name","title":"Name","type":"String","default":"IV2"},{"name":"IV2type","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"IV2mu","title":"mean","type":"Number","default":0},{"name":"IV2sd","title":"sd","type":"Number","default":1},{"name":"IV2skew","title":"skew","type":"Number","default":0},{"name":"IV2kurt","title":"kurtosis","type":"Number","default":0},{"name":"IV2nlevs","title":"no levels","type":"Number","default":7},{"name":"IV2iqr","title":"iqr","type":"Number","default":4},{"name":"IV2ncats","title":"no cases","type":"Number","default":2},{"name":"IV2cases","title":"cases","type":"String","default":"C1,C2"},{"name":"IV2props","title":"proportions","type":"String","default":"1,1"},{"name":"EffectSize1","title":"IV->DV","type":"Number","default":0},{"name":"EffectSize2","title":"IV2->DV","type":"Number","default":0},{"name":"EffectSize3","title":"IV->IV2","type":"Number","default":0},{"name":"EffectSize12","title":"IV*IV2->DV","type":"Number","default":0},{"name":"Heteroscedasticity","title":"Heteroscedasticity","type":"Number","default":0},{"name":"Residuals","title":"Residuals","type":"List","options":[{"name":"normal","title":"normal"},{"name":"skewed","title":"skewed"},{"name":"uniform","title":"uniform"},{"name":"cauchy","title":"cauchy"}],"default":"normal"},{"name":"WorldOn","title":"","type":"Bool","default":false},{"name":"WorldPDF","title":"distribution","type":"List","options":[{"name":"Single","title":"Single"},{"name":"Double","title":"Double"},{"name":"Uniform","title":"Uniform"},{"name":"Gauss","title":"Gauss"},{"name":"Exp","title":"Exp"}],"default":"Single"},{"name":"WorldRZ","title":" ","type":"List","options":[{"name":"r","title":"r"},{"name":"z","title":"z"}]},{"name":"WorldLambda","title":"lambda","type":"Number","default":0.3},{"name":"WorldNullP","title":"p(null)","type":"Number","default":0.5},{"name":"SampleSize","title":"Sample Size","type":"Number","default":42},{"name":"SampleSizeM","title":"Median n","type":"Number","default":42},{"name":"SampleSpreadOn","title":" ","type":"Bool","default":false},{"name":"SampleGamma","title":"spread","type":"Number","default":1.56},{"name":"SampleMethod","title":"Method","type":"List","options":[{"name":"Random","title":"Random"},{"name":"Stratified","title":"Stratified"},{"name":"Cluster","title":"Cluster"},{"name":"Snowball","title":"Snowball"},{"name":"Convenience","title":"Convenience"}],"default":"Random"},{"name":"SampleUsage1","title":"Usage(IV)","type":"List","options":[{"name":"Between","title":"Between"},{"name":"Within","title":"Within"}],"default":"Between"},{"name":"SampleUsage2","title":"Usage(IV2)","type":"List","options":[{"name":"Between","title":"Between"},{"name":"Within","title":"Within"}],"default":"Between"},{"name":"Dependence","title":"Dependence","type":"Number","default":0},{"name":"Outliers","title":"Outliers","type":"Number","default":0},{"name":"NonResponse","title":"NonResponse","type":"Number","default":0},{"name":"LimitRange","title":"Limit range?","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"no"},{"name":"RangeMin","title":"from","type":"Number","default":-3},{"name":"RangeMax","title":"to","type":"Number","default":3},{"name":"Cheating","title":"Cheating","type":"List","options":[{"name":"None","title":"None"},{"name":"Grow","title":"Grow"},{"name":"Prune","title":"Prune"},{"name":"Replace","title":"Replace"},{"name":"Retry","title":"Retry"}],"default":"None"},{"name":"CheatingAttempts","title":"Attempts","type":"Number","default":5},{"name":"ReplicationOn","title":"","type":"Bool","default":false},{"name":"ReplicationPower","title":"sample target power","type":"Number","default":0.8},{"name":"ReplicationPrior","title":"prior","type":"List","options":[{"name":"None","title":"None"},{"name":"World","title":"World"},{"name":"Prior","title":"Custom"}],"default":"None"},{"name":"ReplicationAttempts","title":"how many replications?","type":"Number","default":1},{"name":"ReplicationDecision","title":"decision","type":"List","options":[{"name":"Cautious","title":"Cautious"},{"name":"Last","title":"Last"},{"name":"Median","title":"Median"},{"name":"SmallP","title":"SmallP"},{"name":"LargeN","title":"LargeN"}],"default":"Cautious"},{"name":"ReplicationAlpha","title":"rep alpha","type":"Number","default":0.05},{"name":"ReplicationSign","title":"same sign","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"ReplicationSigOriginal","title":"significant original","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"alphaSig","title":"alpha","type":"Number","default":0.05},{"name":"ssq","title":"SSQ Type","type":"List","options":[{"name":"Type1","title":"Type1"},{"name":"Type2","title":"Type2"},{"name":"Type3","title":"Type3"}],"default":"Type3"},{"name":"interaction","title":"Interaction?","type":"List","options":[{"name":"no","title":"no"},{"name":"yes","title":"yes"}],"default":"no"},{"name":"equalVar","title":"Equal variance","type":"List","options":[{"name":"no","title":"no"},{"name":"yes","title":"yes"}],"default":"yes"},{"name":"Transform","title":"Transform the DV","type":"List","options":[{"name":"None","title":"None"},{"name":"Log","title":"Log"},{"name":"Exp","title":"Exp"}],"default":"None"},{"name":"likelihoodType","title":"possible","type":"List","options":[{"name":"Samples","title":"Samples"},{"name":"Populations","title":"Populations"}],"default":"Populations"},{"name":"likelihoodCutaway","title":"","type":"List","options":[{"name":"all","title":"all"},{"name":"cutaway","title":"cutaway"}],"default":"cutaway"},{"name":"likelihoodUsePrior","title":"prior","type":"List","options":[{"name":"none","title":"none"},{"name":"world","title":"world"},{"name":"prior","title":"custom"}],"default":"none"},{"name":"priorPDF","title":"PDF","type":"List","options":[{"name":"Single","title":"Single"},{"name":"Double","title":"Double"},{"name":"Uniform","title":"Uniform"},{"name":"Gauss","title":"Gauss"},{"name":"Exp","title":"Exp"}],"default":"Exp"},{"name":"priorRZ","title":" ","type":"List","options":[{"name":"r","title":"r"},{"name":"z","title":"z"}],"default":"z"},{"name":"priorLambda","title":"lambda","type":"Number","default":0.3},{"name":"priorNullP","title":"p(null)","type":"Number","default":0},{"name":"MetaAnalysisOn","title":"","type":"Bool","default":false},{"name":"MetaAnalysisType","title":" ","type":"List","options":[{"name":"random","title":"random"},{"name":"fixed","title":"fixed"}],"default":"random"},{"name":"MetaAnalysisNulls","title":"nulls","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"MetaAnalysisBias","title":"bias","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"MetaAnalysisNStudies","title":"no of studies","type":"Number","default":10},{"name":"MetaAnalysisStudiesSig","title":" ","type":"List","options":[{"name":"all","title":"all"},{"name":"sigOnly","title":"sigOnly"}],"default":"sigOnly"},{"name":"showHypothesisBtn","title":"show","type":"Action"},{"name":"makeSampleBtn","type":"Action","title":"single","default":false},{"name":"numberSamples","title":"no of samples","type":"Number","default":100},{"name":"makeMultipleBtn","title":"multiple","type":"Action"},{"name":"inferVar1","title":" show:","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"rs"},{"name":"inferVar2","title":" &","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"p"},{"name":"showSampleType","title":" show:","type":"List","options":[{"name":"Compact","title":"Compact"},{"name":"Variables","title":"Variables"},{"name":"Sample","title":"Sample"},{"name":"Describe","title":"Describe"},{"name":"Infer","title":"Infer"},{"name":"Likelihood","title":"Likelihood"}],"default":"Compact"},{"name":"showInferDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"reportInferStats","title":" ","type":"List","options":[{"name":"Means","title":"(Means)"},{"name":"Medians","title":"(Medians)"}],"default":"Medians"},{"name":"showMultipleParam","title":" show as:","type":"List","options":[{"name":"Basic","title":"Basic"},{"name":"p(sig)","title":"p(sig)"},{"name":"NHST","title":"NHST"},{"name":"Hits","title":"Hits"},{"name":"Misses","title":"Misses"},{"name":"DV","title":"DV"},{"name":"Residuals","title":"Residuals"}],"default":"Basic"},{"name":"showMultipleDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"exploreNPointsH","title":"using","type":"Number","default":13},{"name":"exploreNPointsD","title":"using","type":"Number","default":13},{"name":"exploreNPointsA","title":"using","type":"Number","default":13},{"name":"exploreNPointsM","title":"using","type":"Number","default":13},{"name":"exploreMinValH","title":"from","type":"String","default":"-0.9"},{"name":"exploreMaxValH","title":"to","type":"String","default":"0.9"},{"name":"exploreMinValD","title":"from","type":"String","default":"10"},{"name":"exploreMaxValD","title":"to","type":"String","default":"250"},{"name":"exploreMinValA","title":"from","type":"String","default":"0.001"},{"name":"exploreMaxValM","title":"to","type":"String","default":"0.5"},{"name":"exploreMinValM","title":"from","type":"String","default":"0.001"},{"name":"exploreMaxValA","title":"to","type":"String","default":"0.5"},{"name":"exploreXLogH","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogD","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogA","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogM","title":"log scale","type":"Bool","default":false},{"name":"numberExplores","title":"no of samples","type":"Number","default":10},{"name":"makeExploreBtn","title":"explore","type":"Action"},{"name":"exploreMode","title":"","type":"List","options":[{"name":"hypothesisExplore","title":"Hypothesis"},{"name":"designExplore","title":"Design"},{"name":"analysisExplore","title":"Analysis"},{"name":"moreExplore","title":"More"}],"default":"designExplore"},{"name":"hypothesisExploreList","title":"explore:","type":"List","options":[{"name":"rIV","title":"EffectSize"},{"name":"rIVIV2","title":"Covariation"},{"name":"rIVIV2DV","title":"Interaction"},{"name":"Heteroscedasticity","title":"Hscedast"},{"name":"blank0h","title":" "},{"name":"IVType","title":"IVType"},{"name":"IVskew","title":"IVskew"},{"name":"IVkurtosis","title":"IVkurtosis"},{"name":"IVlevels","title":"IVlevels"},{"name":"IVcats","title":"IVcats"},{"name":"IVprops","title":"IVprops"},{"name":"DVType","title":"DVType"},{"name":"DVskew","title":"DVskew"},{"name":"DVkurtosis","title":"DVkurtosis"},{"name":"DVcats","title":"DVcats"},{"name":"DVprops","title":"DVprops"},{"name":"blank1h","title":" "},{"name":"lambda","title":"worldLambda"},{"name":"pNull","title":"worldPNull"},{"name":"blank2h"}]},{"name":"designExploreList","title":"explore:","type":"List","options":[{"name":"n","title":"SampleSize"},{"name":"Method","title":"Method"},{"name":"Usage","title":"Usage"},{"name":"blank1d","title":" "},{"name":"Dependence","title":"Dependence"},{"name":"Outliers","title":"Outliers"},{"name":"NonResponse","title":"NonResponse"},{"name":"IVRangeC","title":"IV RangeC"},{"name":"IVRangeE","title":"IV RangeE"},{"name":"blank1e","title":" "},{"name":"Cheating","title":"CheatMethod"},{"name":"CheatingAmount","title":"CheatAmount"}]},{"name":"analysisExploreList","title":"explore:","type":"List","options":[{"name":"Alpha","title":"Alpha"},{"name":"Transform","title":"Transform"},{"name":"Welch","title":"EqualVar"},{"name":"InteractionOn","title":"InteractionOn"}]},{"name":"moreExploreList","title":"explore:","type":"List","options":[{"name":"Power","title":"ReplPower"},{"name":"Keep","title":"ReplDecision"},{"name":"Repeats","title":"ReplAttempts"}]},{"name":"showExploreParam","title":"show as:","type":"List","options":[{"name":"Basic1","title":"Basic1"},{"name":"Basic2","title":"Basic2"},{"name":"p(sig)","title":"p(sig)"},{"name":"NHST","title":"NHST"},{"name":"Hits","title":"Hits"},{"name":"Misses","title":"Misses"},{"name":"DV","title":"DV"},{"name":"Residuals","title":"Residuals"}],"default":"Basic2"},{"name":"showExploreDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"whichShowMultiple","title":" ","type":"List","options":[{"name":"direct","title":"direct"},{"name":"unique","title":"unique"},{"name":"total","title":"total"},{"name":"all","title":"all"}],"default":"all"},{"name":"sendSample","title":"single","type":"Output","default":true},{"name":"sendMultiple","title":"multiple","type":"Output","default":false},{"name":"jamoviHelp","title":"instructions?","type":"Bool","default":false},{"name":"brawHelp","title":"Main help?","type":"Bool","default":true},{"name":"demoHelp","title":"Demo help?","type":"Bool","default":true},{"name":"demoWhich","title":"","type":"List","options":[{"name":"d1","title":"d1"},{"name":"d2","title":"d2"},{"name":"d3","title":"d3"},{"name":"d4","title":"d4"},{"name":"d5","title":"d5"},{"name":"d6","title":"d6"},{"name":"d7","title":"d7"},{"name":"d8","title":"d8"}],"default":"d1"},{"name":"showHTML","title":"HTML?","type":"Bool","default":true},{"name":"doProject1aBtn","title":"set up for me","type":"Action"},{"name":"doProject1cBtn","title":"do it for me","type":"Action"},{"name":"doProject1dBtn","title":"show me","type":"Action"},{"name":"doProject2aBtn","title":"set up for me","type":"Action"},{"name":"doProject2bBtn","title":"do it for me","type":"Action"},{"name":"doProject2cBtn","title":"do it for me","type":"Action"},{"name":"doProject2dBtn","title":"do it for me","type":"Action"},{"name":"doProject3aBtn","title":"set up for me","type":"Action"},{"name":"doProject3bBtn","title":"do it for me","type":"Action"},{"name":"doProject3cBtn","title":"do it for me","type":"Action"},{"name":"doProject3dBtn","title":"do it for me","type":"Action"},{"name":"doProject4aBtn","title":"set up for me","type":"Action"},{"name":"doProject4bBtn","title":"do it for me","type":"Action"},{"name":"doProject4cBtn","title":"do it for me","type":"Action"},{"name":"doProject4dBtn","title":"do it for me","type":"Action"},{"name":"doProject5sBtn","title":"set up for me","type":"Action"},{"name":"doProject5aBtn","title":"do it for me","type":"Action"},{"name":"doProject5bBtn","title":"do it","type":"Action"},{"name":"doProject5bLst","title":"n:","type":"List","options":[{"name":"n21","title":"21"},{"name":"n42","title":"42"},{"name":"n84","title":"84"},{"name":"n168","title":"168"},{"name":"n336","title":"336"}],"default":"n42"},{"name":"doProject5cBtn","title":"do it for me","type":"Action"},{"name":"doProject5dBtn","title":"do it","type":"Action"},{"name":"doProject5dLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doProject6aBtn","title":"do it","type":"Action"},{"name":"doProject6aLst","title":"hyp:","type":"List","options":[{"name":"iii","title":"i~i*i"},{"name":"ici","title":"i~c*i"},{"name":"iic","title":"i~i*c"},{"name":"icc","title":"i~c*c"}],"default":"iii"},{"name":"doProject6bBtn","title":"do it","type":"Action"},{"name":"doProject6bLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doProject6cBtn","title":"do it","type":"Action"},{"name":"doProject6cLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doProject6dBtn","title":"do it","type":"Action"},{"name":"doProject6dLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doProject7aBtn","title":"do it","type":"Action"},{"name":"doProject7aLst","title":"hyp:","type":"List","options":[{"name":"iii","title":"i~i*i"},{"name":"ici","title":"i~c*i"},{"name":"iic","title":"i~i*c"},{"name":"icc","title":"i~c*c"}],"default":"iii"},{"name":"doProject7bBtn","title":"do it","type":"Action"},{"name":"doProject7bLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doProject7cBtn","title":"do it","type":"Action"},{"name":"doProject7cLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doProject8aBtn","title":"do it","type":"Action"},{"name":"doProject8aLst","title":"hyp:","type":"List","options":[{"name":"iii","title":"i~i*i"},{"name":"ici","title":"i~c*i"},{"name":"iic","title":"i~i*c"},{"name":"icc","title":"i~c*c"}],"default":"iii"},{"name":"doProject8bBtn","title":"do it","type":"Action"},{"name":"doProject8bLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doProject8cBtn","title":"do it","type":"Action"},{"name":"doProject8cLst","title":"rs:","type":"List","options":[{"name":"direct","title":"direct"},{"name":"unique","title":"unique"},{"name":"total","title":"total"}],"default":"direct"}];
 
 const view = function() {
     
@@ -2421,33 +2421,124 @@ view.layout = ui.extend({
 													type: DefaultControls.LayoutBox,
 													typeName: 'LayoutBox',
 													style: "inline",
+													margin: "none",
 													controls: [
 														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "list",
-															minWidth: 400,
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Set up",
+															margin: "none",
 															controls: [
 																{
-																	type: DefaultControls.Label,
-																	typeName: 'Label',
-																	label: "1. go to Plan - Hypothesis - Variables"
-																},
-																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
 																	style: "inline",
+																	margin: "none",
 																	controls: [
 																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: " ",
-																			minWidth: 13
-																		},
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "choose these variables from the presets:"
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 400,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "Choose the variables"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: "- go to Plan/Hypothesis/Variables"
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "choose these variables from the presets:"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 26
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "IV: RiskTaker?"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 26
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "DV: ExamGrade"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 26
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				}
+																			]
 																		}
 																	]
 																},
@@ -2457,46 +2548,78 @@ view.layout = ui.extend({
 																	style: "inline",
 																	controls: [
 																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: " ",
-																			minWidth: 26
-																		},
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "IV: RiskTaker?"
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: " ",
-																			minWidth: 26
-																		},
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "DV: ExamGrade"
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: " ",
-																			minWidth: 26
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 400,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "Set the effect size"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: "- go to Plan/Hypothesis/Effects"
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "set the effect size:"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 26
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "IV->DV: 0.3"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				}
+																			]
 																		}
 																	]
 																}
@@ -2515,239 +2638,153 @@ view.layout = ui.extend({
 													]
 												},
 												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "Steps",
 													controls: [
 														{
 															type: DefaultControls.LayoutBox,
 															typeName: 'LayoutBox',
-															style: "list",
-															minWidth: 400,
+															style: "inline",
 															controls: [
-																{
-																	type: DefaultControls.Label,
-																	typeName: 'Label',
-																	label: "2. go to Plan - Hypothesis - Effects"
-																},
 																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "inline",
+																	style: "list",
+																	minWidth: 400,
 																	controls: [
+																		{
+																			type: DefaultControls.Label,
+																			typeName: 'Label',
+																			label: "1. go to Data - Single Sample"
+																		},
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "list",
+																			style: "inline",
 																			controls: [
 																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "set the effect size:"
-																						}
-																					]
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: " ",
+																					minWidth: 13
 																				},
 																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 26
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "IV->DV: 0.3"
-																						}
-																					]
-																				},
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "press the \"single\" button"
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "inline",
+																			controls: [
 																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 26
-																						}
-																					]
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: " ",
+																					minWidth: 26
 																				}
 																			]
 																		}
 																	]
+																},
+																{
+																	name: "doProject1cBtn",
+																	type: DefaultControls.ActionButton,
+																	typeName: 'ActionButton',
+																	margin: "none",
+																	maxWidth: 80,
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_project1c }
+																	]
 																}
 															]
 														},
-														{
-															name: "doProject1bBtn",
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															margin: "none",
-															maxWidth: 80,
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project1b }
-															]
-														}
-													]
-												},
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
 														{
 															type: DefaultControls.LayoutBox,
 															typeName: 'LayoutBox',
-															style: "list",
-															minWidth: 400,
+															style: "inline",
 															controls: [
 																{
-																	type: DefaultControls.Label,
-																	typeName: 'Label',
-																	label: "3. go to Data - Single Sample"
-																},
-																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "inline",
+																	style: "list",
+																	minWidth: 400,
 																	controls: [
 																		{
 																			type: DefaultControls.Label,
 																			typeName: 'Label',
-																			label: " ",
-																			minWidth: 13
+																			label: "2. analyse the data in Jamovi"
 																		},
 																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "press the \"single\" button"
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "inline",
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: " ",
+																					minWidth: 13
+																				},
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "go to Jamovi Instructions"
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "inline",
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: " ",
+																					minWidth: 26
+																				},
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "select the \"analysis\" tab"
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "inline",
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: " ",
+																					minWidth: 13
+																				},
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "follow the instructions"
+																				}
+																			]
 																		}
 																	]
 																},
 																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: " ",
-																			minWidth: 26
-																		}
+																	name: "doProject1dBtn",
+																	type: DefaultControls.ActionButton,
+																	typeName: 'ActionButton',
+																	margin: "none",
+																	maxWidth: 80,
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_project1d }
 																	]
 																}
-															]
-														},
-														{
-															name: "doProject1cBtn",
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															margin: "none",
-															maxWidth: 80,
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project1c }
-															]
-														}
-													]
-												},
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "list",
-															minWidth: 400,
-															controls: [
-																{
-																	type: DefaultControls.Label,
-																	typeName: 'Label',
-																	label: "4. analyse the data in Jamovi"
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: " ",
-																			minWidth: 13
-																		},
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "go to Jamovi Instructions"
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: " ",
-																			minWidth: 26
-																		},
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "select the \"analysis\" tab"
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: " ",
-																			minWidth: 13
-																		},
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "follow the instructions"
-																		}
-																	]
-																}
-															]
-														},
-														{
-															name: "doProject1dBtn",
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															margin: "none",
-															maxWidth: 80,
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project1d }
 															]
 														}
 													]
@@ -2780,7 +2817,77 @@ view.layout = ui.extend({
 										{
 											type: DefaultControls.LayoutBox,
 											typeName: 'LayoutBox',
-											style: "list",
+											style: "inline",
+											controls: [
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "Set up",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															controls: [
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 400,
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Choose two Interval variables"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Set the effect-size to 0.3"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												},
+												{
+													name: "doProject2aBtn",
+													type: DefaultControls.ActionButton,
+													typeName: 'ActionButton',
+													margin: "none",
+													events: [
+														{ execute: require('./BrawSim.events').onChange_project2a }
+													],
+													maxWidth: 80
+												}
+											]
+										},
+										{
+											type: DefaultControls.Label,
+											typeName: 'Label',
+											label: "Steps",
 											controls: [
 												{
 													type: DefaultControls.LayoutBox,
@@ -2796,100 +2903,7 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.Label,
 																	typeName: 'Label',
-																	label: "1. set up this Plan:"
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "list",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- choose two Interval variables"
-																						}
-																					]
-																				},
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- set the effect-size to 0.3"
-																						}
-																					]
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: " ",
-																			minWidth: 26
-																		}
-																	]
-																}
-															]
-														},
-														{
-															name: "doProject2aBtn",
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															margin: "none",
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project2a }
-															],
-															maxWidth: 80
-														}
-													]
-												},
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "list",
-															minWidth: 400,
-															controls: [
-																{
-																	type: DefaultControls.Label,
-																	typeName: 'Label',
-																	label: "2. make a sample"
+																	label: "1. make a sample"
 																},
 																{
 																	type: DefaultControls.LayoutBox,
@@ -2982,7 +2996,7 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.Label,
 																	typeName: 'Label',
-																	label: "3. repeat this"
+																	label: "2. repeat this"
 																},
 																{
 																	type: DefaultControls.LayoutBox,
@@ -3101,7 +3115,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "- and repeat steps 2 & 3 again"
+																							label: "- and repeat steps 1 & 2 again"
 																						}
 																					]
 																				},
@@ -3182,7 +3196,77 @@ view.layout = ui.extend({
 										{
 											type: DefaultControls.LayoutBox,
 											typeName: 'LayoutBox',
-											style: "list",
+											style: "inline",
+											controls: [
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "Set up",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															controls: [
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 400,
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Choose two Interval variables"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Set the effect-size to 0.3"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												},
+												{
+													name: "doProject3aBtn",
+													type: DefaultControls.ActionButton,
+													typeName: 'ActionButton',
+													margin: "none",
+													events: [
+														{ execute: require('./BrawSim.events').onChange_project3a }
+													],
+													maxWidth: 80
+												}
+											]
+										},
+										{
+											type: DefaultControls.Label,
+											typeName: 'Label',
+											label: "Steps",
 											controls: [
 												{
 													type: DefaultControls.LayoutBox,
@@ -3198,100 +3282,7 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.Label,
 																	typeName: 'Label',
-																	label: "1. set up this Plan:"
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "list",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- choose two Interval variables"
-																						}
-																					]
-																				},
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- set the effect-size to 0.3"
-																						}
-																					]
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: " ",
-																			minWidth: 26
-																		}
-																	]
-																}
-															]
-														},
-														{
-															name: "doProject3aBtn",
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															margin: "none",
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project3a }
-															],
-															maxWidth: 80
-														}
-													]
-												},
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "list",
-															minWidth: 400,
-															controls: [
-																{
-																	type: DefaultControls.Label,
-																	typeName: 'Label',
-																	label: "2. make a sample"
+																	label: "1. make a sample"
 																},
 																{
 																	type: DefaultControls.LayoutBox,
@@ -3335,7 +3326,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "   - noting the sample effect size"
+																							label: "   - noting rs, the sample effect size"
 																						}
 																					]
 																				},
@@ -3402,7 +3393,7 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.Label,
 																	typeName: 'Label',
-																	label: "3. repeat with a bigger sample size"
+																	label: "2. repeat with a bigger sample size"
 																},
 																{
 																	type: DefaultControls.LayoutBox,
@@ -3495,7 +3486,7 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.Label,
 																	typeName: 'Label',
-																	label: "4.set the effect size to zero:"
+																	label: "3. set the effect size to zero:"
 																},
 																{
 																	type: DefaultControls.LayoutBox,
@@ -3539,7 +3530,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "- notice sample r can be quite big"
+																							label: "- notice rs can be quite big even though rp=0"
 																						}
 																					]
 																				}
@@ -3602,7 +3593,77 @@ view.layout = ui.extend({
 										{
 											type: DefaultControls.LayoutBox,
 											typeName: 'LayoutBox',
-											style: "list",
+											style: "inline",
+											controls: [
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "Set up",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															controls: [
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 400,
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Choose two Interval variables"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Set the effect-size to 0.3"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												},
+												{
+													name: "doProject4aBtn",
+													type: DefaultControls.ActionButton,
+													typeName: 'ActionButton',
+													margin: "none",
+													events: [
+														{ execute: require('./BrawSim.events').onChange_project4a }
+													],
+													maxWidth: 80
+												}
+											]
+										},
+										{
+											type: DefaultControls.Label,
+											typeName: 'Label',
+											label: "Steps",
 											controls: [
 												{
 													type: DefaultControls.LayoutBox,
@@ -3618,100 +3679,7 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.Label,
 																	typeName: 'Label',
-																	label: "1. set up this Plan:"
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "list",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- choose two Interval variables"
-																						}
-																					]
-																				},
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- set the effect-size to 0.3"
-																						}
-																					]
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: " ",
-																			minWidth: 26
-																		}
-																	]
-																}
-															]
-														},
-														{
-															name: "doProject4aBtn",
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															margin: "none",
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project4a }
-															],
-															maxWidth: 80
-														}
-													]
-												},
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "list",
-															minWidth: 400,
-															controls: [
-																{
-																	type: DefaultControls.Label,
-																	typeName: 'Label',
-																	label: "2. make a sample"
+																	label: "1. make a sample"
 																},
 																{
 																	type: DefaultControls.LayoutBox,
@@ -3822,7 +3790,7 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.Label,
 																	typeName: 'Label',
-																	label: "3. repeat this with a 2D graph of the results"
+																	label: "2. repeat this with a 2D graph of the results"
 																},
 																{
 																	type: DefaultControls.LayoutBox,
@@ -4040,7 +4008,77 @@ view.layout = ui.extend({
 										{
 											type: DefaultControls.LayoutBox,
 											typeName: 'LayoutBox',
-											style: "list",
+											style: "inline",
+											controls: [
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "Set up",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															controls: [
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 400,
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Choose two Interval variables"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Set the effect-size to 0.3"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												},
+												{
+													name: "doProject5sBtn",
+													type: DefaultControls.ActionButton,
+													typeName: 'ActionButton',
+													margin: "none",
+													events: [
+														{ execute: require('./BrawSim.events').onChange_project5s }
+													],
+													maxWidth: 80
+												}
+											]
+										},
+										{
+											type: DefaultControls.Label,
+											typeName: 'Label',
+											label: "Steps",
 											controls: [
 												{
 													type: DefaultControls.LayoutBox,
@@ -4068,24 +4106,6 @@ view.layout = ui.extend({
 																			typeName: 'LayoutBox',
 																			style: "list",
 																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- using the previous plan"
-																						}
-																					]
-																				},
 																				{
 																					type: DefaultControls.LayoutBox,
 																					typeName: 'LayoutBox',
@@ -4167,7 +4187,7 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.Label,
 																	typeName: 'Label',
-																	label: "2. repeat this with a larger sample size"
+																	label: "2. repeat this with other sample sizes"
 																},
 																{
 																	type: DefaultControls.LayoutBox,
@@ -4193,7 +4213,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "- and then n=100"
+																							label: "- try several different values for n"
 																						}
 																					]
 																				},
@@ -4235,13 +4255,32 @@ view.layout = ui.extend({
 															]
 														},
 														{
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															name: "doProject5bBtn",
-															margin: "none",
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 80,
 															maxWidth: 80,
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project5b }
+															margin: "none",
+															controls: [
+																{
+																	name: "doProject5bLst",
+																	type: DefaultControls.ComboBox,
+																	typeName: 'ComboBox',
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80
+																},
+																{
+																	type: DefaultControls.ActionButton,
+																	typeName: 'ActionButton',
+																	name: "doProject5bBtn",
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80,
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_project5b }
+																	]
+																}
 															]
 														}
 													]
@@ -4397,7 +4436,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "- set the hypothesis effect size to 0.2"
+																							label: "- try a few different effect sizes"
 																						}
 																					]
 																				},
@@ -4415,7 +4454,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "- press \"explore\""
+																							label: "- what happens to n(80)?"
 																						}
 																					]
 																				},
@@ -4433,7 +4472,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "- what is the n(80) now?"
+																							label: "- note what happens when rp=0"
 																						}
 																					]
 																				}
@@ -4456,125 +4495,33 @@ view.layout = ui.extend({
 																}
 															]
 														},
-														{
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															name: "doProject5dBtn",
-															margin: "none",
-															maxWidth: 80,
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project5d }
-															]
-														}
-													]
-												},
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
 														{
 															type: DefaultControls.LayoutBox,
 															typeName: 'LayoutBox',
 															style: "list",
-															minWidth: 400,
+															minWidth: 80,
+															maxWidth: 80,
+															margin: "none",
 															controls: [
 																{
-																	type: DefaultControls.Label,
-																	typeName: 'Label',
-																	label: "5. how about the hypothesis of rp=0?"
+																	name: "doProject5dLst",
+																	type: DefaultControls.ComboBox,
+																	typeName: 'ComboBox',
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80
 																},
 																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "list",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- set the hypothesis effect size to 0.0"
-																						}
-																					]
-																				},
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- press \"explore\""
-																						}
-																					]
-																				},
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- what is the n(80) now?"
-																						}
-																					]
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: " ",
-																			minWidth: 26
-																		}
+																	type: DefaultControls.ActionButton,
+																	typeName: 'ActionButton',
+																	name: "doProject5dBtn",
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80,
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_project5d }
 																	]
 																}
-															]
-														},
-														{
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															name: "doProject5eBtn",
-															margin: "none",
-															maxWidth: 80,
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project5e }
 															]
 														}
 													]
@@ -4607,7 +4554,108 @@ view.layout = ui.extend({
 										{
 											type: DefaultControls.LayoutBox,
 											typeName: 'LayoutBox',
-											style: "list",
+											style: "inline",
+											controls: [
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "Set up",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															controls: [
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 400,
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Choose three variables variables"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Set all effect-sizes to 0.0"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Set sample size to 1000"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "list",
+													minWidth: 80,
+													maxWidth: 80,
+													margin: "none",
+													controls: [
+														{
+															name: "doProject6aLst",
+															type: DefaultControls.ComboBox,
+															typeName: 'ComboBox',
+															margin: "none",
+															minWidth: 80,
+															maxWidth: 80
+														},
+														{
+															type: DefaultControls.ActionButton,
+															typeName: 'ActionButton',
+															name: "doProject6aBtn",
+															margin: "none",
+															minWidth: 80,
+															maxWidth: 80,
+															events: [
+																{ execute: require('./BrawSim.events').onChange_project6a }
+															]
+														}
+													]
+												}
+											]
+										},
+										{
+											type: DefaultControls.Label,
+											typeName: 'Label',
+											label: "Steps",
 											controls: [
 												{
 													type: DefaultControls.LayoutBox,
@@ -4623,136 +4671,7 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.Label,
 																	typeName: 'Label',
-																	label: "1. make the hypothesis"
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "list",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- with 3 Interval variables"
-																						}
-																					]
-																				},
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- set all effect sizes to zero"
-																						}
-																					]
-																				},
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- set sample size 420"
-																						}
-																					]
-																				},
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- make a sample"
-																						}
-																					]
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: " ",
-																			minWidth: 26
-																		}
-																	]
-																}
-															]
-														},
-														{
-															name: "doProject6aBtn",
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															margin: "none",
-															maxWidth: 80,
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project6a }
-															]
-														}
-													]
-												},
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "list",
-															minWidth: 400,
-															controls: [
-																{
-																	type: DefaultControls.Label,
-																	typeName: 'Label',
-																	label: "2. change main effect 1"
+																	label: "1. change main effect 1"
 																},
 																{
 																	type: DefaultControls.LayoutBox,
@@ -4856,13 +4775,32 @@ view.layout = ui.extend({
 															]
 														},
 														{
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															name: "doProject6bBtn",
-															margin: "none",
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 80,
 															maxWidth: 80,
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project6b }
+															margin: "none",
+															controls: [
+																{
+																	name: "doProject6bLst",
+																	type: DefaultControls.ComboBox,
+																	typeName: 'ComboBox',
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80
+																},
+																{
+																	type: DefaultControls.ActionButton,
+																	typeName: 'ActionButton',
+																	name: "doProject6bBtn",
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80,
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_project6b }
+																	]
+																}
 															]
 														}
 													]
@@ -4881,7 +4819,7 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.Label,
 																	typeName: 'Label',
-																	label: "3. change main effect 2"
+																	label: "2. change main effect 2"
 																},
 																{
 																	type: DefaultControls.LayoutBox,
@@ -4907,7 +4845,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "- go to \"Explore\" and choose the \"Design\" tab"
+																							label: "- choose a value for it"
 																						}
 																					]
 																				},
@@ -4925,7 +4863,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "- press \"explore\""
+																							label: "- set others to zero"
 																						}
 																					]
 																				},
@@ -4943,7 +4881,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "- what is n(80) the sample size to give p(sig)=0.8 ?"
+																							label: "- make another sample"
 																						}
 																					]
 																				}
@@ -4967,13 +4905,32 @@ view.layout = ui.extend({
 															]
 														},
 														{
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															name: "doProject6cBtn",
-															margin: "none",
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 80,
 															maxWidth: 80,
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project6c }
+															margin: "none",
+															controls: [
+																{
+																	name: "doProject6cLst",
+																	type: DefaultControls.ComboBox,
+																	typeName: 'ComboBox',
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80
+																},
+																{
+																	type: DefaultControls.ActionButton,
+																	typeName: 'ActionButton',
+																	name: "doProject6cBtn",
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80,
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_project6c }
+																	]
+																}
 															]
 														}
 													]
@@ -4992,7 +4949,7 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.Label,
 																	typeName: 'Label',
-																	label: "4. change the interaction"
+																	label: "3. change the interaction"
 																},
 																{
 																	type: DefaultControls.LayoutBox,
@@ -5018,7 +4975,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "- set the hypothesis effect size to 0.2"
+																							label: "- choose a value for it"
 																						}
 																					]
 																				},
@@ -5036,7 +4993,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "- press \"explore\""
+																							label: "- set others to zero"
 																						}
 																					]
 																				},
@@ -5054,7 +5011,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "- what is the n(80) now?"
+																							label: "- make another sample"
 																						}
 																					]
 																				}
@@ -5078,13 +5035,853 @@ view.layout = ui.extend({
 															]
 														},
 														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 80,
+															maxWidth: 80,
+															margin: "none",
+															controls: [
+																{
+																	name: "doProject6dLst",
+																	type: DefaultControls.ComboBox,
+																	typeName: 'ComboBox',
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80
+																},
+																{
+																	type: DefaultControls.ActionButton,
+																	typeName: 'ActionButton',
+																	name: "doProject6dBtn",
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80,
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_project6d }
+																	]
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							type: DefaultControls.LayoutBox,
+							typeName: 'LayoutBox',
+							style: "inline",
+							controls: [
+								{
+									type: DefaultControls.Label,
+									typeName: 'Label',
+									label: " ",
+									minWidth: 13
+								},
+								{
+									type: DefaultControls.CollapseBox,
+									typeName: 'CollapseBox',
+									collapsed: true,
+									label: "7. Interactions as Moderators",
+									margin: "none",
+									minWidth: 230,
+									controls: [
+										{
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "inline",
+											controls: [
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "Set up",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															controls: [
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 400,
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Choose three variables variables"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Set all effect-sizes to 0.0"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Set sample size to 1000"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "list",
+													minWidth: 80,
+													maxWidth: 80,
+													margin: "none",
+													controls: [
+														{
+															name: "doProject7aLst",
+															type: DefaultControls.ComboBox,
+															typeName: 'ComboBox',
+															margin: "none",
+															minWidth: 80,
+															maxWidth: 80
+														},
+														{
 															type: DefaultControls.ActionButton,
 															typeName: 'ActionButton',
-															name: "doProject6dBtn",
+															name: "doProject7aBtn",
 															margin: "none",
+															minWidth: 80,
 															maxWidth: 80,
 															events: [
-																{ execute: require('./BrawSim.events').onChange_project6d }
+																{ execute: require('./BrawSim.events').onChange_project7a }
+															]
+														}
+													]
+												}
+											]
+										},
+										{
+											type: DefaultControls.Label,
+											typeName: 'Label',
+											label: "Steps",
+											controls: [
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 400,
+															controls: [
+																{
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "1. set up the interaction as on/off"
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- set Interaction effect size"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- set M1 to same value"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- make a sample"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- notice how the effect of M1 is on for some and off for others"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "remain close to zero"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.Label,
+																			typeName: 'Label',
+																			label: " ",
+																			minWidth: 26
+																		}
+																	]
+																}
+															]
+														},
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 80,
+															maxWidth: 80,
+															margin: "none",
+															controls: [
+																{
+																	name: "doProject7bLst",
+																	type: DefaultControls.ComboBox,
+																	typeName: 'ComboBox',
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80
+																},
+																{
+																	type: DefaultControls.ActionButton,
+																	typeName: 'ActionButton',
+																	name: "doProject7bBtn",
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80,
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_project7b }
+																	]
+																}
+															]
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 400,
+															controls: [
+																{
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "2. set up the interaction as +/- switch"
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- set Interaction effect size"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- set M1 & M2 to zero"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- make a sample"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- notice how the effect of M1 is +ve for some and -ve for others"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "remain close to zero"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.Label,
+																			typeName: 'Label',
+																			label: " ",
+																			minWidth: 26
+																		}
+																	]
+																}
+															]
+														},
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 80,
+															maxWidth: 80,
+															margin: "none",
+															controls: [
+																{
+																	name: "doProject7cLst",
+																	type: DefaultControls.ComboBox,
+																	typeName: 'ComboBox',
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80
+																},
+																{
+																	type: DefaultControls.ActionButton,
+																	typeName: 'ActionButton',
+																	name: "doProject7cBtn",
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80,
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_project7c }
+																	]
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							type: DefaultControls.LayoutBox,
+							typeName: 'LayoutBox',
+							style: "inline",
+							controls: [
+								{
+									type: DefaultControls.Label,
+									typeName: 'Label',
+									label: " ",
+									minWidth: 13
+								},
+								{
+									type: DefaultControls.CollapseBox,
+									typeName: 'CollapseBox',
+									collapsed: true,
+									label: "8. Covariation",
+									margin: "none",
+									minWidth: 230,
+									controls: [
+										{
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "inline",
+											controls: [
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "Set up",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															controls: [
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 400,
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Choose three variables variables"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Set M1 & M2 effect-sizes to 0.5"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Set sample size to 1000"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "list",
+													minWidth: 80,
+													maxWidth: 80,
+													margin: "none",
+													controls: [
+														{
+															name: "doProject8aLst",
+															type: DefaultControls.ComboBox,
+															typeName: 'ComboBox',
+															margin: "none",
+															minWidth: 80,
+															maxWidth: 80
+														},
+														{
+															type: DefaultControls.ActionButton,
+															typeName: 'ActionButton',
+															name: "doProject8aBtn",
+															margin: "none",
+															minWidth: 80,
+															maxWidth: 80,
+															events: [
+																{ execute: require('./BrawSim.events').onChange_project8a }
+															]
+														}
+													]
+												}
+											]
+										},
+										{
+											type: DefaultControls.Label,
+											typeName: 'Label',
+											label: "Steps",
+											controls: [
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 400,
+															controls: [
+																{
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "1. the result of covariation"
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- make a sample"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "'- can you see any indication of the covariation?'"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.Label,
+																			typeName: 'Label',
+																			label: " ",
+																			minWidth: 26
+																		}
+																	]
+																}
+															]
+														},
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 80,
+															maxWidth: 80,
+															margin: "none",
+															controls: [
+																{
+																	name: "doProject8bLst",
+																	type: DefaultControls.ComboBox,
+																	typeName: 'ComboBox',
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80
+																},
+																{
+																	type: DefaultControls.ActionButton,
+																	typeName: 'ActionButton',
+																	name: "doProject8bBtn",
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80,
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_project8b }
+																	]
+																}
+															]
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 400,
+															controls: [
+																{
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "2. varying the amount of covariation"
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- use the \"Explore\" function"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- look at direct, unique and total effect sizes"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.Label,
+																			typeName: 'Label',
+																			label: " ",
+																			minWidth: 26
+																		}
+																	]
+																}
+															]
+														},
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 80,
+															maxWidth: 80,
+															margin: "none",
+															controls: [
+																{
+																	type: DefaultControls.ComboBox,
+																	typeName: 'ComboBox',
+																	name: "doProject8cLst",
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80,
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_project8cLst }
+																	]
+																},
+																{
+																	type: DefaultControls.ActionButton,
+																	typeName: 'ActionButton',
+																	name: "doProject8cBtn",
+																	margin: "none",
+																	minWidth: 80,
+																	maxWidth: 80,
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_project8c }
+																	]
+																}
 															]
 														}
 													]
@@ -5145,7 +5942,7 @@ view.layout = ui.extend({
 								{
 									type: DefaultControls.CheckBox,
 									typeName: 'CheckBox',
-									name: "showJamovi",
+									name: "jamoviHelp",
 									minWidth: 100
 								}
 							]
@@ -5177,14 +5974,25 @@ view.layout = ui.extend({
 								{
 									type: DefaultControls.CheckBox,
 									typeName: 'CheckBox',
-									name: "showHelp",
+									name: "showHTML",
 									minWidth: 100
 								},
 								{
 									type: DefaultControls.CheckBox,
 									typeName: 'CheckBox',
-									name: "showHTML",
+									name: "brawHelp",
 									minWidth: 100
+								},
+								{
+									type: DefaultControls.CheckBox,
+									typeName: 'CheckBox',
+									name: "demoHelp",
+									minWidth: 100
+								},
+								{
+									type: DefaultControls.ComboBox,
+									typeName: 'ComboBox',
+									name: "demoWhich"
 								}
 							]
 						}

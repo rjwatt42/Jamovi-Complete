@@ -65,7 +65,7 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
            "Power"=     {showType<-c("ws","wp")},
            "CILimits"=  {showType<-c("ci1","ci2")},
            "DV"= {showType<-c("dv.mn","dv.sd","dv.sk","dv.kt")},
-           "Residuals"= {showType<-c("rs.mn","rs.sd","rs.sk","rs.kt")},
+           "Residuals"= {showType<-c("rd.mn","rd.sd","rd.sk","rd.kt")},
            {}
     )
   }
@@ -649,16 +649,16 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
               "dv.kt"={
                 showVals<-result$dv$kt
               },
-              "rs.mn"={
+              "rd.mn"={
                 showVals<-result$rs$mn
               },
-              "rs.sd"={
+              "rd.sd"={
                 showVals<-result$rs$sd
               },
-              "rs.sk"={
+              "rd.sk"={
                 showVals<-result$rs$sk
               },
-              "rs.kt"={
+              "rd.kt"={
                 showVals<-result$rs$kt
               }
       )

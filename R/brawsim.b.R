@@ -19,7 +19,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           showInferDimension="1D",
                           showMultipleParam="Basic",
                           showMultipleDimension="1D",
-                          showExploreParam="Basic",
+                          showExploreParam="Basic1",
                           showExploreDimension="1D",
                           exploreMode="Design",
                           nrowTableLM=1,
@@ -32,13 +32,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     
     .run = function() {
       # debug information
-      # braw.env$counter<<-braw.env$counter+1
-      
-      # self$results$debug$setVisible(TRUE)
-      # self$results$debug$setContent(c(self$results$simGraph$visible,self$results$simGraphHTML$visible))
 
       statusStore<-braw.env$statusStore
-      
       if (self$options$showHTML) {
         if (self$results$simGraph$visible) self$results$simGraph$setVisible(FALSE)
         if (self$results$simReport$visible) self$results$simReport$setVisible(FALSE)
@@ -64,6 +59,23 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         open=0
       )
       
+      demoHelp<-private$.htmlwidget$generate_tab(
+        title="Demos Help:",
+        # titleTab="Click on the tabs for specific help.",
+        tabs=c("1","2","3","4","5","6","7","8"),
+        tabContents = c(
+          demoInstructions("1"),
+          demoInstructions("2"),
+          demoInstructions("3"),
+          demoInstructions("4"),
+          demoInstructions("5"),
+          demoInstructions("6"),
+          demoInstructions("7"),
+          demoInstructions("8")
+        ),
+        open=which(self$options$demoWhich==c("d1","d2","d3","d4","d5","d6","d7","d8"))
+      )
+
       # get some display parameters for later
       makeSampleNow<-self$options$makeSampleBtn
       showSampleType<-self$options$showSampleType
@@ -109,7 +121,10 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       showExploreDimension<-self$options$showExploreDimension
       whichShowExploreOut<-self$options$whichShowMultiple
       
-      if (is.element(showExploreParam,c("Basic","Custom"))) {
+      if (is.element(showExploreParam,c("Basic1"))) {
+        showExploreParam<-self$options$inferVar1
+      } 
+      if (is.element(showExploreParam,c("Basic2","Custom"))) {
         showExploreParam<-paste0(self$options$inferVar1,";",self$options$inferVar2)
       } 
       if (is.element(showMultipleParam,c("Basic","Custom"))) {
@@ -118,34 +133,34 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       showInferParam<-paste0(self$options$inferVar1,";",self$options$inferVar2)
 
       # unless we have done something, we will make the same output as last time
-      outputNow<-statusStore$lastOutput
-      
+      outputNow<-NULL
+
       # we pressed the "show" hypothesis button
       if (self$options$showHypothesisBtn) {
         outputNow<-"System"
       }
-      
+
       # are we asking for a different display of the current explore?
-      if (!is.null(braw.res$explore)) {
+      if (!is.null(braw.res$explore) && statusStore$lastOutput=="Explore") {
         if (showExploreParam != statusStore$showExploreParam ||
             showExploreDimension != statusStore$showInferDimension)
           outputNow<-"Explore"
       }
       # or expected?
-      if (!is.null(braw.res$expected)) {
+      if (!is.null(braw.res$expected) && statusStore$lastOutput=="Multiple") {
         if (showMultipleParam != statusStore$showMultipleParam ||
             showMultipleDimension != statusStore$showInferDimension)
           outputNow<-"Multiple"
       }
       # or result?
-      if (!is.null(braw.res$result)) {
+      if (!is.null(braw.res$result) && is.element(statusStore$lastOutput,c("Compact","Sample","Describe","Infer","Variables","Likelihood"))) {
         if (showInferParam != statusStore$showInferParam ||
             showInferDimension != statusStore$showInferDimension)
           outputNow<-"Infer"
         if (showSampleType != statusStore$showSampleType)
           outputNow<-showSampleType
       }
-      
+
       # make all the standard things we need
       # the hypothesis has IV, DV and effect
       DV<-makeVariable(self$options$DVname,self$options$DVtype,
@@ -255,10 +270,11 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         open=0
       )
       help<-""
-      if (self$options$showHelp) help<-paste0(help,brawHelp)
-      if (self$options$showJamovi) help<-paste0(help,jamoviHelp)
+      if (self$options$brawHelp) help<-paste0(help,brawHelp)
+      if (self$options$jamoviHelp) help<-paste0(help,jamoviHelp)
+      if (self$options$demoHelp) help<-paste0(help,demoHelp)
       
-      if (self$options$showHelp || self$options$showJamovi) {
+      if (self$options$brawHelp || self$options$jamoviHelp || self$options$demoHelp) {
         self$results$BrawStatsInstructions$setContent(help)
         if (!self$results$BrawStatsInstructions$visible) self$results$BrawStatsInstructions$setVisible(TRUE)
       } else {
@@ -274,21 +290,21 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         outputNow<-"System"
       }
       if (changedE) {
-        braw.res$result<<-doAnalysis(sample=braw.res$result)
+        if (!is.null(braw.res$result) && is.element(statusStore$lastOutput,c("Compact","Sample","Describe","Infer","Variables","Likelihood"))) {
+          braw.res$result<<-doAnalysis(sample=braw.res$result)
+          outputNow<-showSampleType
+        }
         braw.res$expected<<-NULL
         braw.res$explore<<-NULL
         braw.res$metaAnalysis<<-NULL
-        outputNow<-showSampleType
       }
       if (changedX) {
         braw.res$explore<<-NULL
-        # outputNow<-"System"
       }
       if (changedM) {
         braw.res$metaAnalysis<<-NULL
-        outputNow<-"System"
       }
-      
+
       # now we start doing things
       # did we ask for a new sample?
       if (makeSampleNow) {
@@ -301,7 +317,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           outputNow<-showSampleType
         }
       }
-      
+
       # did we ask for new multiples?
       if (makeMultipleNow) {
         numberSamples<-self$options$numberSamples
@@ -333,6 +349,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       )
       possibleResult<-doPossible(possible)
       }
+      # self$results$debug$setVisible(TRUE)
+      # self$results$debug$setContent(outRep)
       
       # what are we showing?
       # main results graphs/reports
@@ -366,7 +384,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             else graphMultiple<-nullPlot()
             if (!is.null(braw.res$explore))
               graphExplore<-paste0(showExplore(showType=showExploreParam,dimension=showExploreDimension,effectType=whichShowExploreOut),
-                                   reportExplore(showType=showExploreParam,reportStats=self$options$reportInferStats)
+                                   reportExplore(showType=showExploreParam,effectType=whichShowExploreOut,reportStats=self$options$reportInferStats)
                                    )
             else graphExplore<-nullPlot()
             switch(outputNow,

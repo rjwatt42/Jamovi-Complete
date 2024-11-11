@@ -18,10 +18,10 @@ collectData<-function(analysis,whichEffect) {
   dv.sk<-cbind(analysis$dv.sk[use])
   dv.kt<-cbind(analysis$dv.kt[use])
   
-  rs.mn<-cbind(analysis$rs.mn[use])
-  rs.sd<-cbind(analysis$rs.sd[use])
-  rs.sk<-cbind(analysis$rs.sk[use])
-  rs.kt<-cbind(analysis$rs.kt[use])
+  rd.mn<-cbind(analysis$rd.mn[use])
+  rd.sd<-cbind(analysis$rd.sd[use])
+  rd.sk<-cbind(analysis$rd.sk[use])
+  rd.kt<-cbind(analysis$rd.kt[use])
   
   if (all(is.na(analysis$rIV2))){
     rs<-cbind(analysis$rIV[use])
@@ -66,7 +66,7 @@ collectData<-function(analysis,whichEffect) {
   out<-list(rs=rs,ps=ps,ns=ns,df1=df1,rp=rp,ro=ro,po=po,
             iv.mn=iv.mn,iv.sd=iv.sd,iv.sk=iv.sk,iv.kt=iv.kt,
             dv.mn=dv.mn,dv.sd=dv.sd,dv.sk=dv.sk,dv.kt=dv.kt,
-            rs.mn=rs.mn,rs.sd=rs.sd,rs.sk=rs.sk,rs.kt=rs.kt)
+            rd.mn=rd.mn,rd.sd=rd.sd,rd.sk=rd.sk,rd.kt=rd.kt)
 }
 
 makeFiddle<-function(y,yd,orientation="horiz"){
@@ -217,7 +217,7 @@ expected_hist<-function(vals,svals,valType,ylim,histGain,histGainrange){
   if (is.element(valType,c("wp","ws"))) valType<-"ws"
   if (is.element(valType,c("iv.mn","iv.sd","iv.sk","iv.kt",
                            "dv.mn","dv.sd","dv.sk","dv.kt",
-                           "rs.mn","rs.sd","rs.sk","rs.kt"))) valType<-"mn"
+                           "rd.mn","rd.sd","rd.sk","rd.kt"))) valType<-"mn"
   
   switch (valType,
           "rs"=  { # ns is small
@@ -458,7 +458,7 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
   
   if (is.element(showType,c("iv.mn","iv.sd","iv.sk","iv.kt",
                             "dv.mn","dv.sd","dv.sk","dv.kt",
-                            "rs.mn","rs.sd","rs.sk","rs.kt"))) {
+                            "rd.mn","rd.sd","rd.sk","rd.kt"))) {
     # showSig<-FALSE
     labelSig<-FALSE
     labelNSig<-FALSE
@@ -590,10 +590,10 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
             "dv.sd"=showVals<-data$dv.sd,
             "dv.sk"=showVals<-data$dv.sk,
             "dv.kt"=showVals<-data$dv.kt,
-            "rs.mn"=showVals<-data$rs.mn,
-            "rs.sd"=showVals<-data$rs.sd,
-            "rs.sk"=showVals<-data$rs.sk,
-            "rs.kt"=showVals<-data$rs.kt,
+            "rd.mn"=showVals<-data$rd.mn,
+            "rd.sd"=showVals<-data$rd.sd,
+            "rd.sk"=showVals<-data$rd.sk,
+            "rd.kt"=showVals<-data$rd.kt,
     )
     if (logScale) {
       showVals<-log10(showVals)
@@ -790,14 +790,14 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
                ktsd<-sqrt(24*n*(n-2)*(n-3)/(n+1)^2/(n+3)/(n+5))
                xd<-dnorm(yv,0,ktsd)
              },
-             "rs.mn"={
+             "rd.mn"={
                var<-hypothesis$DV
                n<-design$sN
                yv<-seq(ylim[1],ylim[2],length.out=npt)
                mnsd<-1/sqrt(n)*var$sd*sqrt(1-hypothesis$effect$rIV^2)
                xd<-dnorm(yv,0,mnsd)
              },
-             "rs.sd"={
+             "rd.sd"={
                var<-hypothesis$DV
                n<-design$sN
                yv<-seq(ylim[1],ylim[2],length.out=npt)
@@ -812,13 +812,13 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
                xd<-xd1^n
                if (max(xd)==0) xd<-NULL # for n>1000 because of underflow
              },
-             "rs.sk"={
+             "rd.sk"={
                n<-design$sN
                yv<-seq(ylim[1],ylim[2],length.out=npt)
                sksd<-sqrt(6*n*(n-1)/(n-2)/(n+1)/(n+3))
                xd<-dnorm(yv,0,sksd)
              },
-             "rs.kt"={
+             "rd.kt"={
                n<-design$sN
                yv<-seq(ylim[1],ylim[2],length.out=npt)
                ktsd<-sqrt(24*n*(n-2)*(n-3)/(n+1)^2/(n+3)/(n+5))

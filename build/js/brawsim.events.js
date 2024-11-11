@@ -160,33 +160,37 @@ const events =  {
     },
     
     onChange_project1a: function(ui) {
-      ui.presetIV.setValue("RiskTaker")
-      ui.presetDV.setValue("ExamGrade")
-    },
-    
-    onChange_project1b: function(ui) {
-      ui.EffectSize1.setValue(0.3)
+      let BtnOn = ui.doProject1aBtn.value();
+      if (BtnOn==true) {
+      defaultSetUp(ui)
+      ui.demoWhich.setValue("d1")
+      ui.showHypothesisBtn.setValue(true)
+      }
     },
     
     onChange_project1c: function(ui) {
       let BtnOn = ui.doProject1cBtn.value();
       if (BtnOn==true) {
         ui.showSampleType.setValue("Compact")
-      ui.makeSampleBtn.setValue(true)
+        ui.makeSampleBtn.setValue(true)
       }
     },
     
     onChange_project1d: function(ui) {
       let BtnOn = ui.doProject1dBtn.value();
       if (BtnOn==true) {
-      ui.showJamovi.setValue(true)
+      ui.jamoviHelp.setValue(true)
       }
     },
     
     onChange_project2a: function(ui) {
+      let BtnOn = ui.doProject2aBtn.value();
+      if (BtnOn==true) {
+      defaultSetUp(ui)      
+      ui.demoWhich.setValue("d2")
       ui.presetIV.setValue("Perfectionism")
-      ui.presetDV.setValue("ExamGrade")
-      ui.EffectSize1.setValue(0.3)
+      ui.showHypothesisBtn.setValue(true)
+      }
     },
     
     onChange_project2b: function(ui) {
@@ -213,9 +217,13 @@ const events =  {
     },
     
     onChange_project3a: function(ui) {
+      let BtnOn = ui.doProject3aBtn.value();
+      if (BtnOn==true) {
+      defaultSetUp(ui)
+      ui.demoWhich.setValue("d3")
       ui.presetIV.setValue("Happiness")
-      ui.presetDV.setValue("ExamGrade")
-      ui.EffectSize1.setValue(0.3)
+      ui.showHypothesisBtn.setValue(true)
+      }
     },
     
     onChange_project3b: function(ui) {
@@ -230,6 +238,7 @@ const events =  {
       let BtnOn = ui.doProject3cBtn.value();
       if (BtnOn==true) {
         ui.SampleSize.setValue(500)
+        ui.showSampleType.setValue("Describe")
       ui.makeSampleBtn.setValue(true)
       }
     },
@@ -239,16 +248,18 @@ const events =  {
       if (BtnOn==true) {
         ui.SampleSize.setValue(42)
         ui.EffectSize1.setValue(0.0)
-      ui.makeMultipleBtn.setValue(true)
+        ui.showSampleType.setValue("Describe")
+      ui.makeSampleBtn.setValue(true)
       }
     },
     
     onChange_project4a: function(ui) {
       let BtnOn = ui.doProject4aBtn.value();
       if (BtnOn==true) {
+      defaultSetUp(ui)
+      ui.demoWhich.setValue("d4")
       ui.presetIV.setValue("RiskTaking")
-      ui.presetDV.setValue("ExamGrade")
-      ui.EffectSize1.setValue(0.3)
+      ui.showHypothesisBtn.setValue(true)
       }
     },
     
@@ -273,18 +284,25 @@ const events =  {
     onChange_project4d: function(ui) {
       let BtnOn = ui.doProject4dBtn.value();
       if (BtnOn==true) {
+        ui.showMultipleParam.setValue("Basic")
       ui.makeMultipleBtn.setValue(true)
+      }
+    },
+
+    onChange_project5s: function(ui) {
+      let BtnOn = ui.doProject5sBtn.value();
+      if (BtnOn==true) {
+      defaultSetUp(ui)
+      ui.demoWhich.setValue("d5")
+      ui.presetIV.setValue("RiskTaking")
+      ui.showHypothesisBtn.setValue(true)
       }
     },
 
     onChange_project5a: function(ui) {
       let BtnOn = ui.doProject5aBtn.value();
       if (BtnOn==true) {
-      ui.presetIV.setValue("RiskTaking")
-      ui.presetDV.setValue("ExamGrade")
-      ui.EffectSize1.setValue(0.3)
-      ui.SampleSize.setValue(42)
-        ui.showMultipleParam.setValue("p(sig")
+        ui.showMultipleParam.setValue("p(sig)")
       ui.makeMultipleBtn.setValue(true)
       }
     },
@@ -292,8 +310,15 @@ const events =  {
     onChange_project5b: function(ui) {
       let BtnOn = ui.doProject5bBtn.value();
       if (BtnOn==true) {
-        let n = ui.SampleSize.value();
-      ui.SampleSize.setValue(n+20)
+      let nVal = ui.doProject5bLst.value();
+      switch(nVal) {
+        case "n21": ui.SampleSize.setValue(21); break;
+        case "n42": ui.SampleSize.setValue(42); break;
+        case "n84": ui.SampleSize.setValue(84); break;
+        case "n168": ui.SampleSize.setValue(168); break;
+        case "n336": ui.SampleSize.setValue(336); break;
+      }
+        ui.showMultipleParam.setValue("p(sig)")
       ui.makeMultipleBtn.setValue(true)
       }
     },
@@ -302,6 +327,8 @@ const events =  {
       let BtnOn = ui.doProject5cBtn.value();
       if (BtnOn==true) {
         ui.showExploreParam.setValue("p(sig)")
+        ui.exploreMode.setValue("designExplore")
+        ui.hypothesisExploreList.setValue("n")
       ui.makeExploreBtn.setValue(true)
       }
     },
@@ -309,43 +336,76 @@ const events =  {
     onChange_project5d: function(ui) {
       let BtnOn = ui.doProject5dBtn.value();
       if (BtnOn==true) {
-      ui.EffectSize1.setValue(0.2)
+      let rVal = ui.doProject5bLst.value();
+      switch(rVal) {
+        case "r00": ui.EffectSize1.setValue(0.0); break;
+        case "r01": ui.EffectSize1.setValue(0.1); break;
+        case "r02": ui.EffectSize1.setValue(0.2); break;
+        case "r03": ui.EffectSize1.setValue(0.3); break;
+        case "r05": ui.EffectSize1.setValue(0.5); break;
+        case "r075": ui.EffectSize1.setValue(0.75); break;
+      }
         ui.showExploreParam.setValue("p(sig)")
+        ui.exploreMode.setValue("designExplore")
+        ui.hypothesisExploreList.setValue("n")
       ui.makeExploreBtn.setValue(true)
       }
     },
-    
-    onChange_project5e: function(ui) {
-      let BtnOn = ui.doProject5eBtn.value();
-      if (BtnOn==true) {
-      ui.EffectSize1.setValue(0.0)
-        ui.showExploreParam.setValue("p(sig)")
-      ui.makeExploreBtn.setValue(true)
-      }
-    },
-        
+
     onChange_project6a: function(ui) {
       let BtnOn = ui.doProject6aBtn.value();
       if (BtnOn==true) {
-      ui.presetIV2.setValue("RiskTaking")
-      ui.presetIV.setValue("IQ")
-      ui.presetDV.setValue("ExamGrade")
-      ui.SampleSize.setValue(420)
+      let hyp = ui.doProject6aLst.value();
+      defaultSetUp(ui)
+      ui.demoWhich.setValue("d6")
+      ui.presetIV2.setValue("IV2");
+      ui.IV2name.setValue("IV2"); 
+      ui.interaction.setValue("yes");
+      switch(hyp) {
+        case "iii": 
+          ui.DVtype.setValue("Interval"); 
+          ui.IVtype.setValue("Interval"); 
+          ui.IV2type.setValue("Interval"); 
+        break;
+        case "ici": 
+          ui.DVtype.setValue("Interval"); 
+          ui.IVtype.setValue("Categorical"); 
+          ui.IV2type.setValue("Interval"); 
+        break;
+        case "iic": 
+          ui.DVtype.setValue("Interval"); 
+          ui.IVtype.setValue("Interval"); 
+          ui.IV2type.setValue("Categorical"); 
+        break;
+        case "icc": 
+          ui.DVtype.setValue("Interval"); 
+          ui.IVtype.setValue("Categorical"); 
+          ui.IV2type.setValue("Categorical"); 
+        break;
+      }
       ui.EffectSize1.setValue(0.0)
       ui.EffectSize2.setValue(0.0)
       ui.EffectSize12.setValue(0.0)
-        ui.showSampleType.setValue("Describe")
-        ui.showMultipleParam.setValue("Basic")
-      ui.makeSampleBtn.setValue(true)
+      ui.SampleSize.setValue(420)
+      ui.showHypothesisBtn.setValue(true)
       }
     },
     
     onChange_project6b: function(ui) {
       let BtnOn = ui.doProject6bBtn.value();
       if (BtnOn==true) {
-      ui.EffectSize1.setValue(0.3)
+      let rVal = ui.doProject6bLst.value();
+      switch(rVal) {
+        case "r00": ui.EffectSize1.setValue(0.0); break;
+        case "r01": ui.EffectSize1.setValue(0.1); break;
+        case "r02": ui.EffectSize1.setValue(0.2); break;
+        case "r03": ui.EffectSize1.setValue(0.3); break;
+        case "r05": ui.EffectSize1.setValue(0.5); break;
+        case "r075": ui.EffectSize1.setValue(0.75); break;
+      }
       ui.EffectSize2.setValue(0.0)
       ui.EffectSize12.setValue(0.0)
+        ui.showSampleType.setValue("Describe")
       ui.makeSampleBtn.setValue(true)
       }
     },
@@ -353,9 +413,18 @@ const events =  {
     onChange_project6c: function(ui) {
       let BtnOn = ui.doProject6cBtn.value();
       if (BtnOn==true) {
+      let rVal = ui.doProject6cLst.value();
+      switch(rVal) {
+        case "r00": ui.EffectSize2.setValue(0.0); break;
+        case "r01": ui.EffectSize2.setValue(0.1); break;
+        case "r02": ui.EffectSize2.setValue(0.2); break;
+        case "r03": ui.EffectSize2.setValue(0.3); break;
+        case "r05": ui.EffectSize2.setValue(0.5); break;
+        case "r075": ui.EffectSize2.setValue(0.75); break;
+      }
       ui.EffectSize1.setValue(0.0)
-      ui.EffectSize2.setValue(0.3)
       ui.EffectSize12.setValue(0.0)
+        ui.showSampleType.setValue("Describe")
       ui.makeSampleBtn.setValue(true)
       }
     },
@@ -363,13 +432,222 @@ const events =  {
     onChange_project6d: function(ui) {
       let BtnOn = ui.doProject6dBtn.value();
       if (BtnOn==true) {
+      let rVal = ui.doProject6dLst.value();
+      switch(rVal) {
+        case "r00": ui.EffectSize12.setValue(0.0); break;
+        case "r01": ui.EffectSize12.setValue(0.1); break;
+        case "r02": ui.EffectSize12.setValue(0.2); break;
+        case "r03": ui.EffectSize12.setValue(0.3); break;
+        case "r05": ui.EffectSize12.setValue(0.5); break;
+        case "r075": ui.EffectSize12.setValue(0.75); break;
+      }
       ui.EffectSize1.setValue(0.0)
       ui.EffectSize2.setValue(0.0)
-      ui.EffectSize12.setValue(0.3)
+        ui.showSampleType.setValue("Describe")
       ui.makeSampleBtn.setValue(true)
       }
     },
 
+    onChange_project7a: function(ui) {
+      let BtnOn = ui.doProject7aBtn.value();
+      if (BtnOn==true) {
+      let hyp = ui.doProject7aLst.value();
+      defaultSetUp(ui)
+      ui.demoWhich.setValue("d7")
+      ui.presetIV2.setValue("IV2");
+      ui.IV2name.setValue("IV2"); 
+      ui.interaction.setValue("yes");
+      switch(hyp) {
+        case "iii": 
+          ui.DVtype.setValue("Interval"); 
+          ui.IVtype.setValue("Interval"); 
+          ui.IV2type.setValue("Interval"); 
+        break;
+        case "ici": 
+          ui.DVtype.setValue("Interval"); 
+          ui.IVtype.setValue("Categorical"); 
+          ui.IV2type.setValue("Interval"); 
+        break;
+        case "iic": 
+          ui.DVtype.setValue("Interval"); 
+          ui.IVtype.setValue("Interval"); 
+          ui.IV2type.setValue("Categorical"); 
+        break;
+        case "icc": 
+          ui.DVtype.setValue("Interval"); 
+          ui.IVtype.setValue("Categorical"); 
+          ui.IV2type.setValue("Categorical"); 
+        break;
+      }
+      ui.EffectSize1.setValue(0.0)
+      ui.EffectSize2.setValue(0.0)
+      ui.EffectSize12.setValue(0.0)
+      ui.SampleSize.setValue(1000)
+      ui.showHypothesisBtn.setValue(true)
+      }
+    },
+    
+    onChange_project7b: function(ui) {
+      let BtnOn = ui.doProject7bBtn.value();
+      if (BtnOn==true) {
+      let rVal = ui.doProject7bLst.value();
+      switch(rVal) {
+        case "r00": 
+          ui.EffectSize1.setValue(0.0); 
+          ui.EffectSize12.setValue(0.0); 
+          break;
+        case "r01": 
+          ui.EffectSize1.setValue(0.1); 
+          ui.EffectSize12.setValue(0.1); 
+          break;
+        case "r02": 
+          ui.EffectSize1.setValue(0.2); 
+          ui.EffectSize12.setValue(0.2); 
+          break;
+        case "r03": 
+          ui.EffectSize1.setValue(0.3); 
+          ui.EffectSize12.setValue(0.3); 
+          break;
+        case "r05": 
+          ui.EffectSize1.setValue(0.5); 
+          ui.EffectSize12.setValue(0.5); 
+          break;
+        case "r075": 
+          ui.EffectSize1.setValue(0.75); 
+          ui.EffectSize12.setValue(0.75); 
+          break;
+      }
+      ui.EffectSize2.setValue(0.0)
+        ui.showSampleType.setValue("Describe")
+      ui.makeSampleBtn.setValue(true)
+      }
+    },
+    
+    onChange_project7c: function(ui) {
+      let BtnOn = ui.doProject7cBtn.value();
+      if (BtnOn==true) {
+      let rVal = ui.doProject7cLst.value();
+      switch(rVal) {
+        case "r00": 
+          ui.EffectSize12.setValue(0.0); 
+          break;
+        case "r01": 
+          ui.EffectSize12.setValue(0.1); 
+          break;
+        case "r02": 
+          ui.EffectSize12.setValue(0.2); 
+          break;
+        case "r03": 
+          ui.EffectSize12.setValue(0.3); 
+          break;
+        case "r05": 
+          ui.EffectSize12.setValue(0.5); 
+          break;
+        case "r075": 
+          ui.EffectSize12.setValue(0.75); 
+          break;
+      }
+          ui.EffectSize1.setValue(0.0); 
+      ui.EffectSize2.setValue(0.0)
+        ui.showSampleType.setValue("Describe")
+      ui.makeSampleBtn.setValue(true)
+      }
+    },
+
+    onChange_project8a: function(ui) {
+      let BtnOn = ui.doProject8aBtn.value();
+      if (BtnOn==true) {
+      let hyp = ui.doProject8aLst.value();
+      defaultSetUp(ui)
+      ui.demoWhich.setValue("d8")
+      ui.presetIV2.setValue("IV2");
+      ui.IV2name.setValue("IV2"); 
+      ui.interaction.setValue("no");
+      switch(hyp) {
+        case "iii": 
+          ui.DVtype.setValue("Interval"); 
+          ui.IVtype.setValue("Interval"); 
+          ui.IV2type.setValue("Interval"); 
+        break;
+        case "ici": 
+          ui.DVtype.setValue("Interval"); 
+          ui.IVtype.setValue("Categorical"); 
+          ui.IV2type.setValue("Interval"); 
+        break;
+        case "iic": 
+          ui.DVtype.setValue("Interval"); 
+          ui.IVtype.setValue("Interval"); 
+          ui.IV2type.setValue("Categorical"); 
+        break;
+        case "icc": 
+          ui.DVtype.setValue("Interval"); 
+          ui.IVtype.setValue("Categorical"); 
+          ui.IV2type.setValue("Categorical"); 
+        break;
+      }
+      ui.EffectSize1.setValue(0.5)
+      ui.EffectSize2.setValue(0.5)
+      ui.EffectSize12.setValue(0.0)
+      ui.SampleSize.setValue(1000)
+      ui.showHypothesisBtn.setValue(true)
+      }
+    },
+    
+    onChange_project8b: function(ui) {
+      let BtnOn = ui.doProject8bBtn.value();
+      if (BtnOn==true) {
+      let rVal = ui.doProject8bLst.value();
+      switch(rVal) {
+        case "r00": 
+          ui.EffectSize3.setValue(0.0); 
+          break;
+        case "r01": 
+          ui.EffectSize3.setValue(0.1); 
+          break;
+        case "r02": 
+          ui.EffectSize3.setValue(0.2); 
+          break;
+        case "r03": 
+          ui.EffectSize3.setValue(0.3); 
+          break;
+        case "r05": 
+          ui.EffectSize3.setValue(0.5); 
+          break;
+        case "r075": 
+          ui.EffectSize3.setValue(0.75); 
+          break;
+      }
+        ui.showSampleType.setValue("Describe")
+      ui.makeSampleBtn.setValue(true)
+      }
+    },
+    
+    onChange_project8cLst: function(ui) {
+      let showVal = ui.doProject8cLst.value();
+      ui.whichShowMultiple.setValue(showVal)
+    },
+    
+    onChange_project8c: function(ui) {
+      let BtnOn = ui.doProject8cBtn.value();
+      if (BtnOn==true) {
+        ui.SampleSize.setValue(42)
+        let showVal = ui.doProject8cLst.value();
+        ui.whichShowMultiple.setValue(showVal)
+        ui.exploreMode.setValue("hypothesisExplore")
+        ui.hypothesisExploreList.setValue("rIVIV2")
+        ui.showExploreParam.setValue("Basic1")
+      ui.makeExploreBtn.setValue(true)
+      }
+    }
+}
+
+let defaultSetUp = function(ui) {
+        ui.presetIV.setValue("RiskTaker")
+      ui.presetIV2.setValue("none")
+      ui.presetDV.setValue("ExamGrade")
+      ui.EffectSize1.setValue(0.3)
+        ui.SampleSize.setValue(42)
+        ui.SampleMethod.setValue("Random")
 }
 
 let makeVar = function(name) {

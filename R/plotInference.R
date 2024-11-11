@@ -73,10 +73,10 @@ plotInference<-function(analysis,otheranalysis=NULL,disp="rs",orientation="vert"
           "dv.sk"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
           "dv.kt"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
           
-          "rs.mn"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
-          "rs.sd"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
-          "rs.sk"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
-          "rs.kt"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)}
+          "rd.mn"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
+          "rd.sd"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
+          "rd.sk"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
+          "rd.kt"={g<-var_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)}
   )
   return(g)
 }

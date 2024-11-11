@@ -12,7 +12,7 @@ items:
       type: Html
       visible: TRUE
       clearWith:
-      - showJamovi
+      - jamoviHelp
 
     - name: simGraphHTML
       title: ' '
