@@ -74,30 +74,46 @@ makeSampleVar<-function(design,n,MV){
               dvr1_m<-c()
               dvr1_s<-c()
               
-              nClusts<-ceil(n/method$Cluster_n/method$Contact_n)
-              Main_rad<-sqrt(1-method$Cluster_rad^2)*method$Main_rad
+              nClusts<-ceil(n/method$Cluster_n/(1+method$Contact_n))
+              Contact_rad<-method$Contact_rad # this means that long lines of contacts generate higher sds
+              if (method$Contact_n==0) Contact_rad<-0
+              Cluster_rad<-method$Cluster_rad
+              # Cluster_rad<-sqrt(1-Contact_rad^2)*method$Cluster_rad
+              if (method$Cluster_n==1) Cluster_rad<-0
+              Main_rad<-method$Main_rad
+              Main_rad<-sqrt(1-Cluster_rad^2)*Main_rad
               for (i in 1:nClusts) {
                 # location of cluster
-                rad_new<-rnorm(1,0,Main_rad)
-                dir_new<-pi+runif(1,0,2*pi)
-                x_cluster_centre<-cos(dir_new)*rad_new
-                y_cluster_centre<-sin(dir_new)*rad_new
+                # rad_new<-rnorm(1,0,Main_rad)*sqrt(2)
+                # dir_new<-pi+runif(1,0,2*pi)
+                # x_cluster_centre<-cos(dir_new)*rad_new
+                # y_cluster_centre<-sin(dir_new)*rad_new
+                x_cluster_centre<-rnorm(1,0,Main_rad)
+                y_cluster_centre<-rnorm(1,0,Main_rad)
                 
                 for (j in 1:method$Cluster_n) {
                   # location of contact group
-                  rad_new<-rnorm(1,0,method$Cluster_rad)
-                  dir_new<-pi+rnorm(1,atan2(y_cluster_centre,x_cluster_centre),pi*0.5)
-                  x_contact<-x_cluster_centre+cos(dir_new)*rad_new
-                  y_contact<-y_cluster_centre+sin(dir_new)*rad_new
+                  # rad_new<-rnorm(1,0,Cluster_rad)
+                  # # dir_new<-pi+rnorm(1,atan2(y_cluster_centre,x_cluster_centre),pi*0.5)
+                  # dir_new<-pi+runif(1,0,2*pi)*sqrt(2)
+                  # x_contact<-x_cluster_centre+cos(dir_new)*rad_new
+                  # y_contact<-y_cluster_centre+sin(dir_new)*rad_new
+                  x_contact<-x_cluster_centre+rnorm(1,0,Cluster_rad)
+                  y_contact<-y_cluster_centre+rnorm(1,0,Cluster_rad)
+                  ivr1<-c(ivr1,x_contact)
+                  dvr1_m<-c(dvr1_m,y_contact)
                   
                   # track any contacts
+                  if (method$Contact_n>0)
                   for (k in 1:method$Contact_n) {
+                    # rad_new<-rnorm(1,0,Contact_rad)
+                    # dir_new<-pi+rnorm(1,atan2(y_contact,x_contact),pi*0.5)
+                    # x_contact<-x_contact+cos(dir_new)*rad_new
+                    # y_contact<-y_contact+sin(dir_new)*rad_new
+                    x_contact<-x_contact+rnorm(1,0,Contact_rad)
+                    y_contact<-y_contact+rnorm(1,0,Contact_rad)
                     ivr1<-c(ivr1,x_contact)
                     dvr1_m<-c(dvr1_m,y_contact)
-                    rad_new<-rnorm(1,0,method$Contact_rad)
-                    dir_new<-pi+rnorm(1,atan2(y_contact,x_contact),pi*0.5)
-                    x_contact<-x_contact+cos(dir_new)*rad_new
-                    y_contact<-y_contact+sin(dir_new)*rad_new
                   }
                 }
               }

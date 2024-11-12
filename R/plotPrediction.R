@@ -41,7 +41,7 @@ getAxisPrediction<-function(hypothesis,g=NULL) {
   g<-startPlot(xlim,ylim,
                xticks=makeTicks(xticks,xlabels),xlabel=makeLabel(IV$name),
                yticks=makeTicks(yticks,ylabels),ylabel=makeLabel(DV$name),
-               top=TRUE,g=g)
+               top=FALSE,g=g)
   # g<-addG(g,xAxisTicks(xticks,xlabels),xAxisLabel(IV$name))
   # g<-addG(g,yAxisTicks(yticks,ylabels),yAxisLabel(DV$name))
   

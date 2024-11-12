@@ -66,8 +66,10 @@ showHypothesis<-function(hypothesis=braw.def$hypothesis,doWorld=TRUE,plotArea=c(
            if (doWorld) g<-showWorld(hypothesis,plotArea=c(xoff+0.15,0.35*ygain,xgain*0.9,0.3*ygain),g=g)
          },
          {
-           xgain<-plotArea[3]/2
+           xgain<-plotArea[3]/2.5
            xoff<-plotArea[1]
+           ygain<-ygain*0.8
+           yoff<-yoff+0.1
            g<-showVariable(IV,plotArea=c(xoff,yoff+0.6*ygain,xgain,0.4*ygain),g=g)
            g<-showVariable(IV2,plotArea=c(xoff+xgain,yoff+0.6*ygain,xgain,0.4*ygain),g=g)
            g<-showVariable(DV,plotArea=c(xoff+xgain/2,yoff,xgain,0.4*ygain),g=g)

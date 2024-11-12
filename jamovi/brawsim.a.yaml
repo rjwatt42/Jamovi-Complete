@@ -1214,10 +1214,10 @@ options:
       title: 'show as:'
       type: List
       options:
-        - name: Basic1
-          title: Basic1
-        - name: Basic2
-          title: Basic2
+        - name: Single
+          title: Single
+        - name: Basic
+          title: Basic
         - name: 'p(sig)'
           title: 'p(sig)'
         - name: NHST
@@ -1230,7 +1230,7 @@ options:
           title: DV
         - name: Residuals
           title: Residuals
-      default: Basic2
+      default: Basic
 
     # - name: exploreVar1
     #   title: ' show:'

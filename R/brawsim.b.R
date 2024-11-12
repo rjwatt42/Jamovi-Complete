@@ -19,7 +19,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           showInferDimension="1D",
                           showMultipleParam="Basic",
                           showMultipleDimension="1D",
-                          showExploreParam="Basic1",
+                          showExploreParam="Basic",
                           showExploreDimension="1D",
                           exploreMode="Design",
                           nrowTableLM=1,
@@ -121,10 +121,10 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       showExploreDimension<-self$options$showExploreDimension
       whichShowExploreOut<-self$options$whichShowMultiple
       
-      if (is.element(showExploreParam,c("Basic1"))) {
+      if (is.element(showExploreParam,c("Single"))) {
         showExploreParam<-self$options$inferVar1
       } 
-      if (is.element(showExploreParam,c("Basic2","Custom"))) {
+      if (is.element(showExploreParam,c("Basic","Custom"))) {
         showExploreParam<-paste0(self$options$inferVar1,";",self$options$inferVar2)
       } 
       if (is.element(showMultipleParam,c("Basic","Custom"))) {
@@ -462,7 +462,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       statusStore$showMultipleDimension<-showMultipleDimension
       statusStore$showExploreParam<-showExploreParam
       statusStore$showExploreDimension<-showExploreDimension
-      statusStore$lastOutput<-outputNow
+      if (!is.null(outputNow))  statusStore$lastOutput<-outputNow
       braw.env$statusStore<<-statusStore
       
       # now we save any results to the Jamovi spreadsheet

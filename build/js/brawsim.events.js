@@ -647,7 +647,7 @@ const events =  {
         ui.whichShowMultiple.setValue(showVal)
         ui.exploreMode.setValue("hypothesisExplore")
         ui.hypothesisExploreList.setValue("rIVIV2")
-        ui.showExploreParam.setValue("Basic1")
+        ui.showExploreParam.setValue("Single")
       ui.makeExploreBtn.setValue(true)
       }
     }

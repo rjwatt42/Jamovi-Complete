@@ -130,7 +130,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             designExploreList = NULL,
             analysisExploreList = NULL,
             moreExploreList = NULL,
-            showExploreParam = "Basic2",
+            showExploreParam = "Basic",
             showExploreDimension = "1D",
             whichShowMultiple = "all",
             jamoviHelp = FALSE,
@@ -947,15 +947,15 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "showExploreParam",
                 showExploreParam,
                 options=list(
-                    "Basic1",
-                    "Basic2",
+                    "Single",
+                    "Basic",
                     "p(sig)",
                     "NHST",
                     "Hits",
                     "Misses",
                     "DV",
                     "Residuals"),
-                default="Basic2")
+                default="Basic")
             private$..showExploreDimension <- jmvcore::OptionList$new(
                 "showExploreDimension",
                 showExploreDimension,
@@ -2229,7 +2229,7 @@ BrawSim <- function(
     designExploreList,
     analysisExploreList,
     moreExploreList,
-    showExploreParam = "Basic2",
+    showExploreParam = "Basic",
     showExploreDimension = "1D",
     whichShowMultiple = "all",
     jamoviHelp = FALSE,

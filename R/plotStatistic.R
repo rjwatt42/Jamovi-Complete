@@ -70,41 +70,40 @@ collectData<-function(analysis,whichEffect) {
 }
 
 makeFiddle<-function(y,yd,orientation="horiz"){
-  yz<-c()
-  xz<-c()
+  yz<-y[1]
+  xz<-0
   xd<-0.15
   
   d<-0.05
-  for (i in 1:length(y)){
-    found<-(abs(reRangeY(yz)-reRangeY(y[i]))<d)
-    if (any(found,na.rm=TRUE)) {
-      xdiff<-sqrt(d^2-(reRangeY(yz[found])-reRangeY(y[i]))^2)
-      xpos1<-reRangeX(xz[found])+xdiff
-      xpos2<-reRangeX(xz[found])-xdiff
-      if (all(xpos1<reRangeX(0))) usex1<-reRangeX(0) else usex1<-max(xpos1)
-      if (all(xpos2>reRangeX(0))) usex2<-reRangeX(0) else usex2<-min(xpos2)
-      if (abs(usex1-reRangeX(0))<abs(usex2-reRangeX(0))) usex<-usex1 else usex<-usex2
-      usex<-re2RangeX(usex)
-      # x_max<-max(xz[found],na.rm=TRUE)
-      # x_which<-which.max(xz[found])
-      # y_at_max<-yz[found][x_which]
-      # x_min<-min(xz[found],na.rm=TRUE)
-      # x_which<-which.min(xz[found])
-      # y_at_min<-yz[found][x_which]
-      # if (orientation=="vert" && abs(x_min)<x_max) {
-      #   x_inc<-sqrt(1-((y[i]-y_at_min)/yd)^2)
-      #   xz<-c(xz,x_min-x_inc*xd)
-      #   yz<-c(yz,y[i])
-      # } else {
-      #   x_inc<-sqrt(1-((y[i]-y_at_max)/yd)^2)
-      #   xz<-c(xz,x_max+x_inc*xd)
-      #   yz<-c(yz,y[i])
-      # }
-      xz<-c(xz,usex)
-    } else {
-      xz<-c(xz,0)
+  for (i in 2:length(y)){
+    for (possible_x in seq(0,500,by=0.01)) {
+      distances1=sqrt((yz-y[i])^2+(xz-possible_x)^2)
+      distances2=sqrt((yz-y[i])^2+(xz- (-possible_x))^2)
+      use1<-min(distances1)
+      use2<-min(distances2)
+      if (all(c(use1,use2)>d)) {
+        if (use2>use1) possible_x<- -possible_x
+        break
+      }
     }
+    xz<-c(xz,possible_x)
     yz<-c(yz,y[i])
+    
+    
+    # found<-(abs(reRangeY(yz)-reRangeY(y[i]))<d)
+    # if (any(found,na.rm=TRUE)) {
+    #   xdiff<-sqrt(d^2-(reRangeY(yz[found])-reRangeY(y[i]))^2)
+    #   xpos1<-reRangeX(xz[found])+xdiff
+    #   xpos2<-reRangeX(xz[found])-xdiff
+    #   if (all(xpos1<reRangeX(0))) usex1<-reRangeX(0) else usex1<-max(xpos1)
+    #   if (all(xpos2>reRangeX(0))) usex2<-reRangeX(0) else usex2<-min(xpos2)
+    #   if (abs(usex1-reRangeX(0))<abs(usex2-reRangeX(0))) usex<-usex1 else usex<-usex2
+    #   usex<-re2RangeX(usex)
+    #   xz<-c(xz,usex)
+    # } else {
+    #   xz<-c(xz,0)
+    # }
+    # yz<-c(yz,y[i])
   }
   if (orientation=="horz") xz<-xz/2
   return(xz)
@@ -301,8 +300,8 @@ expected_hist<-function(vals,svals,valType,ylim,histGain,histGainrange){
   sdens<-sdens$counts
   
   if (is.na(histGain)) {
-    sdens<-sdens/max(dens,na.rm=TRUE)/2
-    dens<-dens/max(dens,na.rm=TRUE)/2
+    sdens<-sdens/max(dens,na.rm=TRUE)*0.35
+    dens<-dens/max(dens,na.rm=TRUE)*0.35
   } else {
     use<- (bins>=histGainrange[1]) & (bins<=histGainrange[2])
     gain<-sum(dens[use]*c(0,diff(bins[use])),na.rm=TRUE)
@@ -317,7 +316,7 @@ expected_hist<-function(vals,svals,valType,ylim,histGain,histGainrange){
 }
 
 expected_plot<-function(g,pts,showType=NULL,analysis=NULL,IV=NULL,DV=NULL,
-                        i=1,scale=1,col="white",orientation="vert",ylim,histGain=NA,histGainrange=NA,npointsMax=200){
+                        i=1,scale=1,width=1,col="white",orientation="vert",ylim,histGain=NA,histGainrange=NA,npointsMax=200){
   se_arrow<-0.3
   se_size<-0.25
   
@@ -356,13 +355,13 @@ expected_plot<-function(g,pts,showType=NULL,analysis=NULL,IV=NULL,DV=NULL,
     if (is.logical(pts$y2)) {
       p1<-pts$y1[pts$y2]
       p2<-pts$y1[!pts$y2]
-      if (!isempty(p1) && !isempty(p2)) {
-        doSort <- any(p1<max(p2) & p1>min(p2)) || any(p2<max(p1) & p2>min(p1))
-        if (doSort) {
-          use<-rev(order(pts$y2))
-          pts<-pts[use,]
-        }
-      }
+      # if (!isempty(p1) && !isempty(p2)) {
+      #   doSort <- any(p1<max(p2) & p1>min(p2)) || any(p2<max(p1) & p2>min(p1))
+      #   if (doSort) {
+      #     use<-rev(order(pts$y2))
+      #     pts<-pts[use,]
+      #   }
+      # }
     }
     
     if (!is.null(analysis) && is.element(showType,c("rs","p")) && length(pts$y1)==1) {
@@ -394,8 +393,8 @@ expected_plot<-function(g,pts,showType=NULL,analysis=NULL,IV=NULL,DV=NULL,
       # }
     }
     
-    xr<-makeFiddle(pts$y1,2/40/braw.env$plotArea[4],orientation)*scale*scale
-    if (max(abs(xr))>0) xr<-xr/max(abs(xr))/1.5
+    xr<-makeFiddle(pts$y1,2/40/braw.env$plotArea[4],orientation)
+    if (max(abs(xr))>0) xr<-xr/max(abs(xr))*0.35
     pts$x<-pts$x+xr
     gain<-7/max(7,sqrt(length(xr)))
     colgain<-1-min(1,sqrt(max(0,(length(xr)-50))/200))
@@ -433,8 +432,8 @@ expected_plot<-function(g,pts,showType=NULL,analysis=NULL,IV=NULL,DV=NULL,
       simAlpha<-1
     }
     g<-addG(g,
-      dataPolygon(data=data.frame(y=hist1$x,x=hist1$y1*scale*scale+xoff),colour=NA, fill = c2,alpha=simAlpha),
-      dataPolygon(data=data.frame(y=hist1$x,x=hist1$y2*scale*scale+xoff),colour=NA, fill = c1,alpha=simAlpha)
+      dataPolygon(data=data.frame(y=hist1$x,x=hist1$y1+xoff),colour=NA, fill = c2,alpha=simAlpha),
+      dataPolygon(data=data.frame(y=hist1$x,x=hist1$y2+xoff),colour=NA, fill = c1,alpha=simAlpha)
     )
     if (!is.null(showType))
       if (is.element(showType,c("e1d","e2d"))) {

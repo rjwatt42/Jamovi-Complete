@@ -156,14 +156,21 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="both",top=FALSE,
   # }
   
   minGap<-0.1
-  unitGap<-1
-  labelGapx<-labelGapy<-unitGap*1.25
+  unitGap<-0.75
+  labelGapx<-labelGapy<-unitGap*1.5
   if (containsSubscript(xlabel$label) || containsSuperscript(xlabel$label)) labelGapx<-labelGapx*1.85
   if (containsSubscript(ylabel$label) || containsSuperscript(ylabel$label)) labelGapy<-labelGapy*1.85
   
-  tickGap<-unitGap
+  if (!is.null(xticks) && !is.null(xticks$labels))
+    maxtick<-max(nchar(xticks$labels))
+  else maxtick<-0
+  if (!is.null(yticks) && !is.null(yticks$labels))
+    maxtick<-max(c(maxtick,nchar(yticks$labels)))
+  tickSize<-5/max(7,maxtick)
+
+  tickGap<-unitGap*tickSize
   
-  bottomGap<-labelGapx+1.5*tickGap
+  bottomGap<-labelGapx+2*unitGap
   if (top) topGap<-unitGap*3.125 else topGap<-minGap
   leftGap<-labelGapy+4*tickGap
   rightGap<-minGap
@@ -174,9 +181,7 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="both",top=FALSE,
     if (is.null(xticks$labels))
       xticks$labels<-xticks$breaks
     if (!is.character(xticks$labels)) xticks$labels<-brawFormat(xticks$labels,digits=-2)
-    maxtick<-max(nchar(xticks$labels))
   } else {
-    maxtick<-0
     bottomGap<-minGap
   }
   if (!is.null(yticks)) {
@@ -187,13 +192,10 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="both",top=FALSE,
     if (!xmax)
       leftGap<-labelGapy+max(nchar(yticks$labels))*tickGap
     if (!is.character(yticks$labels)) yticks$labels<-brawFormat(yticks$labels,digits=-2)
-    maxtick<-max(c(maxtick,nchar(yticks$labels)))
   } else {
     leftGap<-minGap
   }
 
-  tickSize<-4/max(5,maxtick)
-  
   gaps<-c(leftGap,bottomGap,rightGap,topGap)
   plotLimits(xlim = xlim, ylim = ylim,orientation=orientation,gaps,fontScale=fontScale)
   
@@ -265,10 +267,10 @@ xAxisLabel<-function(label) {
   axis<-data.frame(x=reRangeX(mean(braw.env$plotLimits$xlim)),y=rangeY(voff))
   switch(braw.env$plotLimits$orientation,
          "vert"={
-           axisText(axis,label=label, hjust=0.5, vjust=-voff/1.5, colour="black",size=1.2,angle=90,fontface="bold")
+           axisText(axis,label=label, hjust=0.5, vjust=-voff/1.5, colour="black",size=0.75,angle=90,fontface="bold")
          },
          "horz"={
-           axisText(axis,label=label, hjust=0.5, vjust=0, colour="black",size=1.2,fontface="bold")
+           axisText(axis,label=label, hjust=0.5, vjust=0, colour="black",size=0.75,fontface="bold")
          }
   )
 }
@@ -281,7 +283,7 @@ xAxisTicks<-function(breaks=NULL,labels=NULL,logScale=FALSE,angle=0,size=NULL){
   if (logScale) breaks<-log10(breaks)
   # labels<-as.character(labels)
   
-  if (is.null(size)) size<-5/max(5,max(nchar(labels)))
+  if (is.null(size)) size<-7/max(7,max(nchar(labels)))
   
   voff<-braw.env$plotLimits$ylim[1]
   ticksBottom<-data.frame(x=reRangeX(breaks),y=reRangeY(voff))
@@ -305,10 +307,10 @@ yAxisLabel<-function(label){
   axis<-data.frame(x=rangeX(0.0),y=reRangeY(mean(braw.env$plotLimits$ylim)))
   switch(braw.env$plotLimits$orientation,
          "vert"={
-           axisText(axis,label=label, hjust=0.5, vjust=2/1.5, colour="black",size=1.2,fontface="bold")
+           axisText(axis,label=label, hjust=0.5, vjust=2/1.5, colour="black",size=0.75,fontface="bold")
          },
          "horz"={
-           axisText(axis,label=label, hjust=0.5, vjust=1, colour="black",size=1.2,angle=90,fontface="bold")
+           axisText(axis,label=label, hjust=0.5, vjust=1, colour="black",size=0.75,angle=90,fontface="bold")
          }
   )
 }

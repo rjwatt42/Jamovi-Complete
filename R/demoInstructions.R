@@ -38,9 +38,11 @@ demoInstructions <- function(HelpType="1") {
            '<ul style=margin:0px;>',
            '<li> Make a population with known rp.',
            '<li> Draw samples from it and see how much rs differs from rp.',
-           '<li> Repeat this with "convenience" sampling.',
-           '<li> And see how this differs.',
-           '</ul>'
+           '<li> Repeat this with rp set to zero.',
+           '<li> And now see what sample effect sizes are produced.',
+           '</ul>',
+           'This is the fundamental issue that statistics has to deal with.',
+           '<br>'
          )
          },
          
@@ -79,8 +81,9 @@ demoInstructions <- function(HelpType="1") {
            '<li> Change rp for the main effect (M1).',
            '<li> Change rp for the main effect (M2).',
            '<li> Change rp for the interaction effect (M1).',
-           '<li> We see that these effects behave quite independently.',
-           '</ul>'
+           '</ul>',
+           'We see that these effects behave quite independently.',
+           '<br>'
          )
          },
          
@@ -102,9 +105,11 @@ demoInstructions <- function(HelpType="1") {
            'A demo about covariation between IV2.',
            ' The basic operation is to:',
            '<ul style=margin:0px;>',
-           '<li> Make samples from a population with covariation and see whether the covariation can be seen.',
-           '<li> See how covariation affects the main effect sizes.',
-           '</ul>'
+           '<li> Make samples from a population with covariation.',
+           '<li> See what the covariation results in.',
+           '</ul>',
+           'See how covariation affects the main effect sizes.',
+           '<br>'
          )
          }
   )
