@@ -394,7 +394,7 @@ expected_plot<-function(g,pts,showType=NULL,analysis=NULL,IV=NULL,DV=NULL,
     }
     
     xr<-makeFiddle(pts$y1,2/40/braw.env$plotArea[4],orientation)
-    if (max(abs(xr))>0) xr<-xr/max(abs(xr))*0.35
+    if (max(abs(xr))>0) xr<-xr/max(abs(xr))*0.4
     pts$x<-pts$x+xr
     gain<-7/max(7,sqrt(length(xr)))
     colgain<-1-min(1,sqrt(max(0,(length(xr)-50))/200))
@@ -519,7 +519,7 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
            orient<-"vert"
          },
          "vert"={
-           xlim<-c(0,max(xoff))+c(-1,1)
+           xlim<-c(0,max(xoff))+c(-1,1)/2
            orient<-"horz"
          }
   )
@@ -834,7 +834,7 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
       }
       
       if (!is.null(xd)) {
-      distMax<-0.8
+      distMax<-0.8/2
 
       xd[is.na(xd)]<-0
       theoryGain<-1/max(xd)*distMax

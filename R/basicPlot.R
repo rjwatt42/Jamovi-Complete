@@ -375,7 +375,22 @@ dataBar<-function(data,colour="black",fill="white",alpha=1,barwidth=0.85) {
 # dataErrorbar
 # dataLegend
 # dataContour
-dataLabel<-function(data,label, hjust=0, vjust=0, angle=0, fill="white",colour="black",parser=TRUE,fontface="plain",size=1,label.size=0.25) {
+dataLabel<-function(data,label, hjust=0, vjust=0, fill="white",colour="black",size=1,angle=0,fontface="plain",background=FALSE,parser=TRUE,label.size=0.25) {
+  if (is.character(data)) 
+    switch(data,
+           "topright"={
+             data<-data.frame(x=braw.env$plotLimits$xlim[2],
+                              y=braw.env$plotLimits$ylim[2]
+                                )
+           }
+           )
+  data<-reRangeXY(data)
+  g<-axisLabel(data,label, hjust=hjust, vjust=vjust, angle=angle, 
+               fill=fill,colour=colour,parser=parser,fontface=fontface,
+               size=size,label.size=label.size)
+  return(g)  
+}
+axisLabel<-function(data,label, hjust=0, vjust=0, angle=0, fill="white",colour="black",parser=TRUE,fontface="plain",size=1,label.size=0.25) {
   if (!braw.env$graphHTML) {
     mathlabel<-grepl("['^']{1}",label) | grepl("['[']{1}",label)
   if (any(mathlabel)) {
@@ -389,14 +404,13 @@ dataLabel<-function(data,label, hjust=0, vjust=0, angle=0, fill="white",colour="
   if (braw.env$plotLimits$orientation=="vert") {
     a<-hjust; hjust<-vjust; vjust<-a
   }
-  data<-reRangeXY(data)
   g<-geom_label(data=data,aes(x = x, y = y), label=label, angle=angle,
              hjust=hjust, vjust=vjust, nudge_y=voff,
              fill=fill,color=colour,fontface=fontface,
              label.padding=unit(0.1, "lines"),label.size=label.size,
              size=reSizeFont(size),parse=parser)
   } else {
-    g<-dataText(data,label, hjust=hjust, vjust=vjust, angle=angle, colour=colour,fontface=fontface,size=size,background=TRUE,fill=fill)
+    g<-axisText(data,label, hjust=hjust, vjust=vjust, angle=angle, colour=colour,fontface=fontface,size=size,background=TRUE,fill=fill)
   }
   return(g)
 }
@@ -428,7 +442,7 @@ axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,d
     if (fontface=="plain") fontface="normal"
     valign<-' dominant-baseline="auto"' 
     if (vjust==0.5) valign<-' dominant-baseline="middle"'
-    if (vjust>0.5) valign<-' dominant-baseline="hanging"'
+    if (vjust>0.5) valign<-' dominant-baseline="text-before-edge"'
     
     if (fontface=="plain") fontface="normal"
     
@@ -523,7 +537,7 @@ dataPoint<-function(data,shape=21,colour="black",fill="white",alpha=1,size=3) {
   axisPoint(data=data,shape=shape,colour=colour,fill=fill,alpha=alpha,size=size)
 }
 axisPoint<-function(data,shape=21,colour="black",fill="white",alpha=1,size=3) {
-  size<-size*braw.env$plotArea[4]*0.75
+  size<-0.75*size*(braw.env$plotArea[4])^0.5
     if (!braw.env$graphHTML) {
       size<-size*1.5
     if (is.null(data$fill)) {

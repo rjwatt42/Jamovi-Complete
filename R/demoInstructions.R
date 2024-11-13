@@ -113,11 +113,19 @@ demoInstructions <- function(HelpType="1") {
          )
          }
   )
-    extras<-paste0('<a href=',
+    extras<-paste0('More information ',
+                    '<a href=',
                    '"https://doingpsychstats.wordpress.com/demonstration-',HelpType,'/"',
                    ' target="_blank">',
-                   'More information here',
-                   '</a>')
+                   'here',
+                   '</a>',
+                   ' and leave any comments ',
+                   '<a href=',
+                   '"https://doingpsychstats.wordpress.com/demonstration-',HelpType,'/#respond"',
+                   ' target="_blank">',
+                   'here',
+                   '</a>'
+                   )
     output<-c(output,extras)
     output<-c("<div style='border: none; padding: 4px;'>",output,"</div>")
     

@@ -19,8 +19,10 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           showInferDimension="1D",
                           showMultipleParam="Basic",
                           showMultipleDimension="1D",
+                          whichShowMultipleOut="all",
                           showExploreParam="Basic",
                           showExploreDimension="1D",
+                          whichShowExploreOut="all",
                           exploreMode="Design",
                           nrowTableLM=1,
                           nrowTableSEM=1
@@ -143,13 +145,15 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       # are we asking for a different display of the current explore?
       if (!is.null(braw.res$explore) && statusStore$lastOutput=="Explore") {
         if (showExploreParam != statusStore$showExploreParam ||
-            showExploreDimension != statusStore$showInferDimension)
+            showExploreDimension != statusStore$showInferDimension ||
+            whichShowExploreOut != statusStore$whichShowExploreOut)
           outputNow<-"Explore"
       }
       # or expected?
       if (!is.null(braw.res$expected) && statusStore$lastOutput=="Multiple") {
         if (showMultipleParam != statusStore$showMultipleParam ||
-            showMultipleDimension != statusStore$showInferDimension)
+            showMultipleDimension != statusStore$showInferDimension || 
+            whichShowMultipleOut != statusStore$whichShowMultipleOut)
           outputNow<-"Multiple"
       }
       # or result?
@@ -460,8 +464,10 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       statusStore$showInferDimension<-showInferDimension
       statusStore$showMultipleParam<-showMultipleParam
       statusStore$showMultipleDimension<-showMultipleDimension
+      statusStore$whichShowMultipleOut<-whichShowMultipleOut
       statusStore$showExploreParam<-showExploreParam
       statusStore$showExploreDimension<-showExploreDimension
+      statusStore$whichShowExploreOut<-whichShowExploreOut
       if (!is.null(outputNow))  statusStore$lastOutput<-outputNow
       braw.env$statusStore<<-statusStore
       

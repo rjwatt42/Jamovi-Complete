@@ -300,8 +300,8 @@ reportExpected<-function(expectedResult=braw.res$expected,showType="Basic",
         }
       }
       
-      if (reportQuants) ot4[1]<-paste0("\b",whichEffect)
-      else              ot5[3]<-paste0("\b",whichEffect)
+      if (reportMeans) ot1[1]<-paste0("\b",whichEffect)
+      else             ot3[1]<-paste0("\b",whichEffect)
       
       if (reportMeans) { outputText<-c(outputText,ot1,rep(" ",nc-length(ot1)),
                                        ot2,rep(" ",nc-length(ot2)))

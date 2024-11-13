@@ -103,6 +103,7 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
   }
   
   if (whichEffect=="All" && !evidence$rInteractionOn) whichEffect<-"Mains"
+  if ((whichEffect=="All" || whichEffect=="Mains") && is.null(hypothesis$IV2)) whichEffect<-"Main 1"
   
   plotYOffset<-matrix(0)
   plotHeight<-1
@@ -158,6 +159,12 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
     plotWidth<-0.45
   }
   
+  if (length(showType)==1 && whichEffect=="Mains"){
+    plotXOffset<-matrix(c(0,0.55),nrow=2,byrow=FALSE)
+    plotWidth<-0.45
+    plotYOffset<-matrix(c(0,0),nrow=1,byrow=TRUE)
+    plotHeight<-0.475
+  }
   
   if (is.null(hypothesis$IV2)) whichEffects<-1
   else
@@ -271,8 +278,12 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
     }
     if (length(whichEffects)==1)
       braw.env$plotArea<-c(plotXOffset[si,1],plotYOffset[1,si],plotWidth,plotHeight)
-    else
-      braw.env$plotArea<-c(plotXOffset[si,1],plotYOffset[1,yi],plotWidth,plotHeight)
+    else {
+      if (length(showType)==1 && length(whichEffects)==2)
+        braw.env$plotArea<-c(plotXOffset[yi,1],plotYOffset[1,yi],plotWidth,plotHeight)
+      else
+        braw.env$plotArea<-c(plotXOffset[si,1],plotYOffset[1,yi],plotWidth,plotHeight)
+    }
     if ((showType[si]=="rs") && (!is.null(hypothesis$IV2))) switch(whichEffect,ylabel<-"Main 1",ylabel<-"Main 2",ylabel<-"Interaction")
 
     g<-startPlot(xlim,ylim,
@@ -285,9 +296,14 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
     if (nchar(useLabel)>0)    g<-addG(g,plotTitle(useLabel,size=1.5))
     
     col<-darken(ycols[1],off=-0.2)
-    
+    col<-ycols[1]
       for (effectType in effectTypes) {
-      col<-darken(col,off=0.1)
+        switch(effectType,
+               "direct"={},
+               "unique"={col<-darken(desat(col,0.1),1.3)},
+               "total"={col<-darken(desat(col,0.1),0.7)}
+        )
+      # col<-darken(col,off=0.1)
     theoryVals<-NULL
     theoryUpper<-NULL
     theoryLower<-NULL

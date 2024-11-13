@@ -361,7 +361,7 @@ showDescription<-function(analysis=braw.res$result,plotArea=c(0,0,1,1),g=NULL) {
             "Ordinal"=g<-plotParDescription(analysis,g),
             "Categorical"=g<-plotCatDescription(analysis,g)
     )
-    g<-addG(g,plotTitle(paste0("r[s]=",round(analysis$rIV,3)),position="right",size=1,fontface="plain"))
+    g<-addG(g,dataLabel("topright",paste0("r[s]=",round(analysis$rIV,3)),hjust=1,vjust=1,size=0.75,fill="black",colour="white"))
   } else{
     if (analysis$evidence$rInteractionOn) {
       switch (analysis$hypothesis$IV2$type,
