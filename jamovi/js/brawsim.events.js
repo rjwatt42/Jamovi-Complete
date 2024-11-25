@@ -162,9 +162,9 @@ const events =  {
     onChange_project1s: function(ui) {
       let BtnOn = ui.doProject1sBtn.value();
       if (BtnOn==true) {
+      defaultSetUp(ui)
       ui.presetDV.setValue("ExamGrade")
       ui.presetIV.setValue("RiskTaker")
-      defaultSetUp(ui)
       ui.demoWhich.setValue("d1")
       ui.showHypothesisBtn.setValue(true)
       }
@@ -188,8 +188,12 @@ const events =  {
     onChange_project1c: function(ui) {
       let BtnOn = ui.doProject1cBtn.value();
       if (BtnOn==true) {
-        let variable = ui.doProject1cLst.value();
-        ui.presetIV.setValue(variable)
+        let variable1 = ui.doProject1cLst.value();
+        variable1 = variable1.replace("?","")
+        ui.presetIV.setValue(variable1)
+        let variable2 = ui.doProject1cLstA.value();
+        variable2 = variable2.replace("?","")
+        ui.presetDV.setValue(variable2)
         ui.showSampleType.setValue("Compact")
         ui.makeSampleBtn.setValue(true)
       }
@@ -198,8 +202,9 @@ const events =  {
     onChange_project2a: function(ui) {
       let BtnOn = ui.doProject2aBtn.value();
       if (BtnOn==true) {
-      defaultSetUp(ui)      
       ui.demoWhich.setValue("d2")
+      defaultSetUp(ui)      
+      ui.presetDV.setValue("ExamGrade")
       ui.presetIV.setValue("Perfectionism")
       ui.showHypothesisBtn.setValue(true)
       }
@@ -231,8 +236,9 @@ const events =  {
     onChange_project3a: function(ui) {
       let BtnOn = ui.doProject3aBtn.value();
       if (BtnOn==true) {
-      defaultSetUp(ui)
       ui.demoWhich.setValue("d3")
+      defaultSetUp(ui)
+      ui.presetDV.setValue("ExamGrade")
       ui.presetIV.setValue("Happiness")
       ui.showHypothesisBtn.setValue(true)
       }
@@ -258,7 +264,6 @@ const events =  {
     onChange_project3d: function(ui) {
       let BtnOn = ui.doProject3dBtn.value();
       if (BtnOn==true) {
-        ui.SampleSize.setValue(42)
         ui.EffectSize1.setValue(0.0)
         ui.showSampleType.setValue("Describe")
       ui.makeSampleBtn.setValue(true)
@@ -268,8 +273,9 @@ const events =  {
     onChange_project4a: function(ui) {
       let BtnOn = ui.doProject4aBtn.value();
       if (BtnOn==true) {
-      defaultSetUp(ui)
       ui.demoWhich.setValue("d4")
+      defaultSetUp(ui)
+      ui.presetDV.setValue("ExamGrade")
       ui.presetIV.setValue("RiskTaking")
       ui.showHypothesisBtn.setValue(true)
       }
@@ -283,46 +289,93 @@ const events =  {
       ui.makeSampleBtn.setValue(true)
       }
     },
-    
+        
     onChange_project4c: function(ui) {
       let BtnOn = ui.doProject4cBtn.value();
       if (BtnOn==true) {
+        ui.showMultipleDimension.setValue("1D")
+        ui.showMultipleParam.setValue("Basic")
+      ui.makeMultipleBtn.setValue(true)
+      }
+    },
+    
+    onChange_project4d: function(ui) {
+      let BtnOn = ui.doProject4dBtn.value();
+      if (BtnOn==true) {
+        ui.showMultipleDimension.setValue("2D")
+      ui.makeMultipleBtn.setValue(true)
+      }
+    },
+    
+    onChange_Project5s: function(ui) {
+      let BtnOn = ui.doProject5sBtn.value();
+      if (BtnOn==true) {
+      ui.demoWhich.setValue("d5")
+      defaultSetUp(ui)
+      ui.WorldOn.setValue(true)
+      ui.WorldPDF.setValue("Single")
+      ui.WorldLambda.setValue(0.3)
+      ui.WorldNullP.setValue(0.5)
+      ui.showHypothesisBtn.setValue(true)
+      }
+    },
+    
+    onChange_Project5a: function(ui) {
+      let BtnOn = ui.doProject5aBtn.value();
+      if (BtnOn==true) {
         ui.showSampleType.setValue("Infer")
-        ui.showInferDimension.setValue("2D")
       ui.makeSampleBtn.setValue(true)
       }
     },
         
-    onChange_project4d: function(ui) {
-      let BtnOn = ui.doProject4dBtn.value();
+    onChange_Project5b: function(ui) {
+      let BtnOn = ui.doProject5bBtn.value();
       if (BtnOn==true) {
         ui.showMultipleParam.setValue("Basic")
       ui.makeMultipleBtn.setValue(true)
       }
     },
-
-    onChange_project5s: function(ui) {
-      let BtnOn = ui.doProject5sBtn.value();
+    
+    onChange_Project5c: function(ui) {
+      let BtnOn = ui.doProject5cBtn.value();
       if (BtnOn==true) {
-      defaultSetUp(ui)
+        ui.showMultipleParam.setValue("NHST")
+      ui.makeMultipleBtn.setValue(true)
+      }
+    },
+    
+    onChange_Project5d: function(ui) {
+      let BtnOn = ui.doProject5dBtn.value();
+      if (BtnOn==true) {
+        ui.SampleSize.setValue(210)
+        ui.showMultipleParam.setValue("NHST")
+      ui.makeMultipleBtn.setValue(true)
+      }
+    },
+
+    onChange_project6s: function(ui) {
+      let BtnOn = ui.doproject6sBtn.value();
+      if (BtnOn==true) {
       ui.demoWhich.setValue("d5")
+      defaultSetUp(ui)
+      ui.presetDV.setValue("ExamGrade")
       ui.presetIV.setValue("RiskTaking")
       ui.showHypothesisBtn.setValue(true)
       }
     },
 
-    onChange_project5a: function(ui) {
-      let BtnOn = ui.doProject5aBtn.value();
+    onChange_project6a: function(ui) {
+      let BtnOn = ui.doproject6aBtn.value();
       if (BtnOn==true) {
         ui.showMultipleParam.setValue("p(sig)")
       ui.makeMultipleBtn.setValue(true)
       }
     },
     
-    onChange_project5b: function(ui) {
-      let BtnOn = ui.doProject5bBtn.value();
+    onChange_project6b: function(ui) {
+      let BtnOn = ui.doproject6bBtn.value();
       if (BtnOn==true) {
-      let nVal = ui.doProject5bLst.value();
+      let nVal = ui.doproject6bLst.value();
       switch(nVal) {
         case "n21": ui.SampleSize.setValue(21); break;
         case "n42": ui.SampleSize.setValue(42); break;
@@ -335,20 +388,20 @@ const events =  {
       }
     },
     
-    onChange_project5c: function(ui) {
-      let BtnOn = ui.doProject5cBtn.value();
+    onChange_project6c: function(ui) {
+      let BtnOn = ui.doproject6cBtn.value();
       if (BtnOn==true) {
         ui.showExploreParam.setValue("p(sig)")
         ui.exploreMode.setValue("designExplore")
-        ui.hypothesisExploreList.setValue("n")
+        ui.designExploreList.setValue("n")
       ui.makeExploreBtn.setValue(true)
       }
     },
     
-    onChange_project5d: function(ui) {
-      let BtnOn = ui.doProject5dBtn.value();
+    onChange_project6d: function(ui) {
+      let BtnOn = ui.doproject6dBtn.value();
       if (BtnOn==true) {
-      let rVal = ui.doProject5bLst.value();
+      let rVal = ui.doproject6dLst.value();
       switch(rVal) {
         case "r00": ui.EffectSize1.setValue(0.0); break;
         case "r01": ui.EffectSize1.setValue(0.1); break;
@@ -359,15 +412,15 @@ const events =  {
       }
         ui.showExploreParam.setValue("p(sig)")
         ui.exploreMode.setValue("designExplore")
-        ui.hypothesisExploreList.setValue("n")
+        ui.designExploreList.setValue("n")
       ui.makeExploreBtn.setValue(true)
       }
     },
 
-    onChange_project6a: function(ui) {
-      let BtnOn = ui.doProject6aBtn.value();
+    onChange_project7a: function(ui) {
+      let BtnOn = ui.doproject7aBtn.value();
       if (BtnOn==true) {
-      let hyp = ui.doProject6aLst.value();
+      let hyp = ui.doproject7aLst.value();
       defaultSetUp(ui)
       ui.demoWhich.setValue("d6")
       ui.presetIV2.setValue("IV2");
@@ -403,10 +456,10 @@ const events =  {
       }
     },
     
-    onChange_project6b: function(ui) {
-      let BtnOn = ui.doProject6bBtn.value();
+    onChange_project7b: function(ui) {
+      let BtnOn = ui.doproject7bBtn.value();
       if (BtnOn==true) {
-      let rVal = ui.doProject6bLst.value();
+      let rVal = ui.doproject7bLst.value();
       switch(rVal) {
         case "r00": ui.EffectSize1.setValue(0.0); break;
         case "r01": ui.EffectSize1.setValue(0.1); break;
@@ -422,10 +475,10 @@ const events =  {
       }
     },
     
-    onChange_project6c: function(ui) {
-      let BtnOn = ui.doProject6cBtn.value();
+    onChange_project7c: function(ui) {
+      let BtnOn = ui.doproject7cBtn.value();
       if (BtnOn==true) {
-      let rVal = ui.doProject6cLst.value();
+      let rVal = ui.doproject7cLst.value();
       switch(rVal) {
         case "r00": ui.EffectSize2.setValue(0.0); break;
         case "r01": ui.EffectSize2.setValue(0.1); break;
@@ -441,10 +494,10 @@ const events =  {
       }
     },
     
-    onChange_project6d: function(ui) {
-      let BtnOn = ui.doProject6dBtn.value();
+    onChange_project7d: function(ui) {
+      let BtnOn = ui.doproject7dBtn.value();
       if (BtnOn==true) {
-      let rVal = ui.doProject6dLst.value();
+      let rVal = ui.doproject7dLst.value();
       switch(rVal) {
         case "r00": ui.EffectSize12.setValue(0.0); break;
         case "r01": ui.EffectSize12.setValue(0.1); break;
@@ -460,10 +513,10 @@ const events =  {
       }
     },
 
-    onChange_project7a: function(ui) {
-      let BtnOn = ui.doProject7aBtn.value();
+    onChange_project8a: function(ui) {
+      let BtnOn = ui.doproject8aBtn.value();
       if (BtnOn==true) {
-      let hyp = ui.doProject7aLst.value();
+      let hyp = ui.doproject8aLst.value();
       defaultSetUp(ui)
       ui.demoWhich.setValue("d7")
       ui.presetIV2.setValue("IV2");
@@ -499,10 +552,10 @@ const events =  {
       }
     },
     
-    onChange_project7b: function(ui) {
-      let BtnOn = ui.doProject7bBtn.value();
+    onChange_project8b: function(ui) {
+      let BtnOn = ui.doproject8bBtn.value();
       if (BtnOn==true) {
-      let rVal = ui.doProject7bLst.value();
+      let rVal = ui.doproject8bLst.value();
       switch(rVal) {
         case "r00": 
           ui.EffectSize1.setValue(0.0); 
@@ -535,10 +588,10 @@ const events =  {
       }
     },
     
-    onChange_project7c: function(ui) {
-      let BtnOn = ui.doProject7cBtn.value();
+    onChange_project8c: function(ui) {
+      let BtnOn = ui.doproject8cBtn.value();
       if (BtnOn==true) {
-      let rVal = ui.doProject7cLst.value();
+      let rVal = ui.doproject8cLst.value();
       switch(rVal) {
         case "r00": 
           ui.EffectSize12.setValue(0.0); 
@@ -566,10 +619,10 @@ const events =  {
       }
     },
 
-    onChange_project8a: function(ui) {
-      let BtnOn = ui.doProject8aBtn.value();
+    onChange_project9a: function(ui) {
+      let BtnOn = ui.doproject9aBtn.value();
       if (BtnOn==true) {
-      let hyp = ui.doProject8aLst.value();
+      let hyp = ui.doproject9aLst.value();
       defaultSetUp(ui)
       ui.demoWhich.setValue("d8")
       ui.presetIV2.setValue("IV2");
@@ -605,10 +658,10 @@ const events =  {
       }
     },
     
-    onChange_project8b: function(ui) {
-      let BtnOn = ui.doProject8bBtn.value();
+    onChange_project9b: function(ui) {
+      let BtnOn = ui.doproject9bBtn.value();
       if (BtnOn==true) {
-      let rVal = ui.doProject8bLst.value();
+      let rVal = ui.doproject9bLst.value();
       switch(rVal) {
         case "r00": 
           ui.EffectSize3.setValue(0.0); 
@@ -634,16 +687,16 @@ const events =  {
       }
     },
     
-    onChange_project8cLst: function(ui) {
-      let showVal = ui.doProject8cLst.value();
+    onChange_project9cLst: function(ui) {
+      let showVal = ui.doproject9cLst.value();
       ui.whichShowMultiple.setValue(showVal)
     },
     
-    onChange_project8c: function(ui) {
-      let BtnOn = ui.doProject8cBtn.value();
+    onChange_project9c: function(ui) {
+      let BtnOn = ui.doproject9cBtn.value();
       if (BtnOn==true) {
         ui.SampleSize.setValue(42)
-        let showVal = ui.doProject8cLst.value();
+        let showVal = ui.doproject9cLst.value();
         ui.whichShowMultiple.setValue(showVal)
         ui.exploreMode.setValue("hypothesisExplore")
         ui.hypothesisExploreList.setValue("rIVIV2")
@@ -654,12 +707,17 @@ const events =  {
 }
 
 let defaultSetUp = function(ui) {
-        ui.presetIV.setValue("RiskTaker")
+        ui.DVtype.setValue("Interval")
       ui.presetIV2.setValue("none")
-      ui.presetDV.setValue("ExamGrade")
+      ui.IVtype.setValue("Interval")
       ui.EffectSize1.setValue(0.3)
+      ui.EffectSize2.setValue(0)
+      ui.EffectSize3.setValue(0)
+      ui.EffectSize12.setValue(0)
         ui.SampleSize.setValue(42)
         ui.SampleMethod.setValue("Random")
+        ui.showInferDimension.setValue("1D")
+        ui.showMultipleDimension.setValue("1D")
 }
 
 let makeVar = function(name) {
@@ -703,6 +761,11 @@ let makeVar = function(name) {
       var variable={name:"ExamGrade",type:"Interval",mu:55,sd:10,skew:-0.6,kurt:3,
       nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
+      break;
+    case "ExamPass":
+      var variable={name:"ExamPass?",type:"Categorical",mu:55,sd:10,skew:-0.6,kurt:3,
+      nlevs:7,iqr:3,
+      ncats:2,cases:"no,yes",props:"1,3"};
       break;
     case "RiskTaking":
       var variable={name:"RiskTaking",type:"Interval",mu:30,sd:6,skew:0.5,kurt:3,

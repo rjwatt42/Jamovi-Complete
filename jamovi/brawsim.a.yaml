@@ -565,6 +565,8 @@ options:
         title: Cautious
       - name: Last
         title: Last
+      - name: FirstSuccess
+        title: FirstSuccess
       - name: Median
         title: Median
       - name: SmallP
@@ -1359,6 +1361,8 @@ options:
       title: ''
       type: List
       options:
+      - name: blank
+        title: ' '
       - name: d1
         title: d1
       - name: d2
@@ -1375,12 +1379,14 @@ options:
         title: d7
       - name: d8
         title: d8
-      default: d1
+      - name: d9
+        title: d9
+      default: blank
       
     - name: showHTML
       title: HTML graphics?
       type: Bool
-      default: true
+      default: false
 
     - name: doProject1sBtn
       title: 'set up for me'
@@ -1492,12 +1498,32 @@ options:
     - name: doProject5aBtn
       title: 'do it for me'
       type: Action
-      
+
     - name: doProject5bBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject5cBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doProject5dBtn
+      title: 'do it for me'
+      type: Action
+
+    - name: doproject6sBtn
+      title: 'set up for me'
+      type: Action
+
+    - name: doproject6aBtn
+      title: 'do it for me'
+      type: Action
+      
+    - name: doproject6bBtn
       title: 'do it'
       type: Action
       
-    - name: doProject5bLst
+    - name: doproject6bLst
       title: "n:"
       type: List
       options:
@@ -1516,15 +1542,15 @@ options:
       # title: 'do it for me'
       # type: Action
 
-    - name: doProject5cBtn
+    - name: doproject6cBtn
       title: 'do it for me'
       type: Action
 
-    - name: doProject5dBtn
+    - name: doproject6dBtn
       title: 'do it'
       type: Action
 
-    - name: doProject5dLst
+    - name: doproject6dLst
       title: "rp:"
       type: List
       options:
@@ -1545,11 +1571,11 @@ options:
       # type: Action
 
 
-    - name: doProject6aBtn
+    - name: doproject7aBtn
       title: 'do it'
       type: Action
       
-    - name: doProject6aLst
+    - name: doproject7aLst
       title: "hyp:"
       type: List
       options:
@@ -1565,11 +1591,11 @@ options:
       # title: 'do it for me'
       # type: Action
 
-    - name: doProject6bBtn
+    - name: doproject7bBtn
       title: 'do it'
       type: Action
 
-    - name: doProject6bLst
+    - name: doproject7bLst
       title: "rp:"
       type: List
       options:
@@ -1588,11 +1614,11 @@ options:
       default: r03
 
 
-    - name: doProject6cBtn
+    - name: doproject7cBtn
       title: 'do it'
       type: Action
       
-    - name: doProject6cLst
+    - name: doproject7cLst
       title: "rp:"
       type: List
       options:
@@ -1610,11 +1636,11 @@ options:
         title: '0.75'
       default: r03
 
-    - name: doProject6dBtn
+    - name: doproject7dBtn
       title: 'do it'
       type: Action
       
-    - name: doProject6dLst
+    - name: doproject7dLst
       title: "rp:"
       type: List
       options:
@@ -1633,11 +1659,11 @@ options:
       default: r03
 
 
-    - name: doProject7aBtn
+    - name: doproject8aBtn
       title: 'do it'
       type: Action
 
-    - name: doProject7aLst
+    - name: doproject8aLst
       title: "hyp:"
       type: List
       options:
@@ -1651,11 +1677,11 @@ options:
         title: 'i~c*c'
       default: iii
 
-    - name: doProject7bBtn
+    - name: doproject8bBtn
       title: 'do it'
       type: Action
 
-    - name: doProject7bLst
+    - name: doproject8bLst
       title: "rp:"
       type: List
       options:
@@ -1673,11 +1699,11 @@ options:
         title: '0.75'
       default: r03
 
-    - name: doProject7cBtn
+    - name: doproject8cBtn
       title: 'do it'
       type: Action
 
-    - name: doProject7cLst
+    - name: doproject8cLst
       title: "rp:"
       type: List
       options:
@@ -1696,11 +1722,11 @@ options:
       default: r03
 
 
-    - name: doProject8aBtn
+    - name: doproject9aBtn
       title: 'do it'
       type: Action
 
-    - name: doProject8aLst
+    - name: doproject9aLst
       title: "hyp:"
       type: List
       options:
@@ -1714,11 +1740,11 @@ options:
         title: 'i~c*c'
       default: iii
 
-    - name: doProject8bBtn
+    - name: doproject9bBtn
       title: 'do it'
       type: Action
 
-    - name: doProject8bLst
+    - name: doproject9bLst
       title: "rp:"
       type: List
       options:
@@ -1736,12 +1762,12 @@ options:
         title: '0.75'
       default: r03
 
-    - name: doProject8cBtn
+    - name: doproject9cBtn
       title: 'do it'
       type: Action
 
 
-    - name: doProject8cLst
+    - name: doproject9cLst
       title: "rs:"
       type: List
       options:

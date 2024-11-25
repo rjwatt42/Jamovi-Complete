@@ -167,18 +167,18 @@ plotCatOrdPopulation<-function(IV,DV,rho,Heteroscedasticity,alpha,g){
   b2<-1:ng2
   l2=1:ng2
   
-  division<-r2CatProportions(rho,ncats1,ng2)  
-  pp<-OrdProportions(DV)
+  pp2<-OrdProportions(DV)
+  division<-r2CatProportions(rho,ncats1,ng2,pp1,pp2)  
   s<-division/max(division)
   x<-c(-1,-1,1,1)*min(diff(b1))/2*0.9
-  y<-c(-1,1,1,-1)*min(diff(b2))/2*0.99
+  y<-c(-1,1,1,-1)*min(diff(b2))/2
   
   pts=data.frame(x=c(),y=c(),value=c(),ids=c())
   idc<-0
   for (ix in 1:ncats1) {
     for (iy in 1:ng2) {
       idc<-idc+1
-      newpts<-data.frame(x=x*s[iy,ix]*pp1[ix]*pp[iy]+b1[ix], y=y+b2[iy], value=rep(s[iy,ix]*pp1[ix]*pp[iy],4),ids=idc)
+      newpts<-data.frame(x=x*s[iy,ix]+b1[ix], y=y+b2[iy], value=rep(s[iy,ix],4),ids=idc)
       pts<-rbind(pts,newpts)
     }
   }
@@ -198,10 +198,10 @@ plotOrdCatPopulation<-function(IV,DV,rho,Heteroscedasticity,alpha,g){
   b1<-1:ng1
   l1=1:ng1
   
-  division<-r2CatProportions(rho,ncats2,ng1)  
-  pp<-OrdProportions(IV)
+  pp1<-OrdProportions(IV)
+  division<-r2CatProportions(rho,ng1,ncats2,pp1,pp2)
   s<-division/max(division)
-  x<-c(-1,-1,1,1)*min(diff(b2))/2*0.999
+  x<-c(-1,-1,1,1)*min(diff(b2))/2
   y<-c(-1,1,1,-1)*min(diff(b1))/2*0.9
   
   pts=data.frame(x=c(),y=c(),value=c(),ids=c())
@@ -209,7 +209,7 @@ plotOrdCatPopulation<-function(IV,DV,rho,Heteroscedasticity,alpha,g){
   for (iy in 1:ncats2) {
     for (ix in 1:ng1) {
       idc<-idc+1
-      newpts<-data.frame(y=y*s[ix,iy]*pp[ix]*pp2[iy]+b2[iy]+1, x=x+b1[ix], value=rep(s[ix,iy]*pp[ix]*pp2[iy],4),ids=idc)
+      newpts<-data.frame(y=y*s[iy,ix]+b2[iy], x=x+b1[ix], value=rep(s[iy,ix],4),ids=idc)
       pts<-rbind(pts,newpts)
     }
   }
@@ -224,6 +224,7 @@ plotParCatPopulation<-function(IV,DV,rho,Heteroscedasticity,alpha,g){
   pp<-CatProportions(DV)
   l=DV$cases
   b<-(ncats:1)-1
+  b<-1:ncats
 
   pbreaks<-seq(0,1,1/(ncats))
   ebreaks<-qnorm(pbreaks)
@@ -233,7 +234,7 @@ plotParCatPopulation<-function(IV,DV,rho,Heteroscedasticity,alpha,g){
   pts<-data.frame(x=c(),y=c(),yoff=c(),value=c(),ids=c())
   for (id in 1:ncats) {
     y<-mv2dens(x,rho,ebreaks[id],ebreaks[id+1])*pp[id]
-    pts<-rbind(pts,plotRibbon(x,y,ncats+1-id))
+    pts<-rbind(pts,plotRibbon(x,y,id-1))
   }
   pts$value<-pts$value/max(pts$value)
   pts$y<-pts$y*pts$value*0.9+pts$yoff
@@ -250,18 +251,20 @@ plotCatCatPopulation<-function(IV,DV,rho,Heteroscedasticity,alpha,g){
   
   ncats2<-DV$ncats
   pp2<-CatProportions(DV)
-  b2<-ncats2:1
+  b2<-1:ncats2
   l2=DV$cases
   
-  division<-r2CatProportions(rho,ncats1,ncats2)
-  s<-division/max(division)
-  x<-c(-1,-1,1,1)*min(diff(b1))/2*0.9
-  y<-c(-1,1,1,-1)*min(diff(b2))/2*0.9
-  
+  division<-r2CatProportions(rho,ncats1,ncats2,pp1,pp2)
+  s<-division
+  s<-s/sum(s)
+  x<-c(-1,-1,1,1)*min(diff(b1))/2
+  y<-c(-1,1,1,-1)*min(diff(b2))/2
+
   pts=data.frame(x=x,y=y)
   for (ix in 1:ncats1) {
     for (iy in 1:ncats2) {
-      pts<-data.frame(x=x*s[iy,ix]*pp1[ix]*pp2[iy]+b1[ix], y=y*s[iy,ix]*pp1[ix]*pp2[iy]+b2[iy])
+      rad<-sqrt(s[iy,ix])
+      pts<-data.frame(x=x*rad+b1[ix], y=y*rad+b2[iy]-1)
       g<-addG(g,dataPolygon(data=pts,fill = braw.env$plotColours$sampleC,colour=NA,alpha=alpha))
     }
   }
@@ -277,7 +280,7 @@ plotOrdOrdPopulation<-function(IV,DV,rho,Heteroscedasticity,alpha,g){
   pp2<-OrdProportions(DV)
   b2<-1:nlevs2
 
-  division<-r2CatProportions(rho,nlevs1,nlevs2)
+  division<-r2CatProportions(rho,nlevs1,nlevs2,pp1,pp2)
   s<-division/max(division)
   x<-c(-1,-1,1,1)*min(diff(b1))/2
   y<-c(-1,1,1,-1)*min(diff(b2))/2
@@ -286,7 +289,7 @@ plotOrdOrdPopulation<-function(IV,DV,rho,Heteroscedasticity,alpha,g){
   for (ix in 1:nlevs1) {
     for (iy in 1:nlevs2) {
       pts<-data.frame(x=x+b1[ix], y=y+b2[iy])
-      g<-addG(g,dataPolygon(data=pts,fill = braw.env$plotColours$sampleC,colour=NA,alpha=alpha*pp1[ix]*pp2[iy]))
+      g<-addG(g,dataPolygon(data=pts,fill = braw.env$plotColours$sampleC,colour=NA,alpha=alpha*s[iy,ix]))
     }
   }
   return(g)

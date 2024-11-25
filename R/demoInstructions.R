@@ -111,6 +111,20 @@ demoInstructions <- function(HelpType="1") {
            'See how covariation affects the main effect sizes.',
            '<br>'
          )
+         },
+         
+         "9"={output<-c(
+           '<b>Demo 9</b>',
+           '<br>',
+           'A demo about covariation between IV2.',
+           ' The basic operation is to:',
+           '<ul style=margin:0px;>',
+           '<li> Make samples from a population with covariation.',
+           '<li> See what the covariation results in.',
+           '</ul>',
+           'See how covariation affects the main effect sizes.',
+           '<br>'
+         )
          }
   )
     extras<-paste0('More information ',

@@ -63,7 +63,7 @@ showHypothesis<-function(hypothesis=braw.def$hypothesis,doWorld=TRUE,plotArea=c(
            g<-showVariable(IV,plotArea=c(xoff,yoff+0.65*ygain,xgain,0.35*ygain),g=g)
            g<-showVariable(DV,plotArea=c(xoff,yoff,xgain,0.35*ygain),g=g)
            g<-showEffect(effect$rIV,showValue=!doWorld,plotArea=c(xoff,yoff+0.35*ygain,xgain,0.3*ygain),1,g)
-           if (doWorld) g<-showWorld(hypothesis,plotArea=c(xoff+0.15,0.35*ygain,xgain*0.9,0.3*ygain),g=g)
+           if (doWorld) g<-showWorld(hypothesis,plotArea=c(xoff+0.13,0.4*ygain,xgain*0.65,0.27*ygain),g=g)
          },
          {
            xgain<-plotArea[3]/2.5

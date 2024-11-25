@@ -17,7 +17,7 @@ items:
     - name: simGraphHTML
       title: ' '
       type: Html
-      visible: TRUE
+      visible: FALSE
       # clearWith:
       # - showHypothesisBtn
       # - makeSampleBtn
@@ -42,7 +42,7 @@ items:
       type: Image
       width:  550
       height: 400
-      visible: FALSE
+      visible: TRUE
       renderFun: .plotSimGraph
       clearWith:
       - showHypothesisBtn
@@ -62,13 +62,14 @@ items:
       - exploreVar1
       - exploreVar2
       - showExploreDimension
+      - whichShowMultiple
 
     - name: simReport
       title: ' '
       type: Html
       # width:  600
       # height: 200
-      visible: FALSE
+      visible: TRUE
       clearWith:
       - showHypothesisBtn
       - makeSampleBtn
@@ -89,6 +90,7 @@ items:
       - exploreVar2
       - showExploreDimension
       - reportExploreStats
+      - whichShowMultiple
       refs:
       - brawstats
       - book

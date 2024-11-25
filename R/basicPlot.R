@@ -103,8 +103,7 @@ reSizeFont<-function(size) {
 }
 
 plotLimits<-function(xlim,ylim,orientation="horz",gaps=c(1,1,0,0),fontScale=1) {
-    ez<-2
-    fS<-braw.env$labelSize*fontScale*max(0.3,min(braw.env$plotArea[3:4]))^(1/ez)
+    fS<-braw.env$labelSize*fontScale
     gaps<-gaps*fS/120/c(braw.env$plotSize[1]/braw.env$plotSize[2],1,braw.env$plotSize[1]/braw.env$plotSize[2],1)
 
   switch(orientation,
@@ -197,6 +196,13 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="both",top=FALSE,
   }
 
   gaps<-c(leftGap,bottomGap,rightGap,topGap)
+  
+  dimensions2check<-1
+  if (!is.null(xticks$labels))    dimensions2check<-c(dimensions2check,braw.env$plotArea[3])
+  if (!is.null(yticks$labels))    dimensions2check<-c(dimensions2check,braw.env$plotArea[4])
+  
+  ez<-2
+  fontScale<-fontScale*max(0.3,min(dimensions2check))^(1/ez)
   plotLimits(xlim = xlim, ylim = ylim,orientation=orientation,gaps,fontScale=fontScale)
   
   if (is.null(g)) g<-nullPlot()
@@ -381,9 +387,25 @@ dataLabel<-function(data,label, hjust=0, vjust=0, fill="white",colour="black",si
            "topright"={
              data<-data.frame(x=braw.env$plotLimits$xlim[2],
                               y=braw.env$plotLimits$ylim[2]
-                                )
+             )
+             hjust<-1
+             vjust<-1
+           },
+           "centreright"={
+             data<-data.frame(x=braw.env$plotLimits$xlim[2],
+                              y=mean(braw.env$plotLimits$ylim)
+             )
+             hjust<-1
+             vjust<-0.5
+           },
+           "bottomright"={
+             data<-data.frame(x=braw.env$plotLimits$xlim[2],
+                              y=braw.env$plotLimits$ylim[1]
+             )
+             hjust<-1
+             vjust<-0
            }
-           )
+    )
   data<-reRangeXY(data)
   g<-axisLabel(data,label, hjust=hjust, vjust=vjust, angle=angle, 
                fill=fill,colour=colour,parser=parser,fontface=fontface,
@@ -394,9 +416,9 @@ axisLabel<-function(data,label, hjust=0, vjust=0, angle=0, fill="white",colour="
   if (!braw.env$graphHTML) {
     mathlabel<-grepl("['^']{1}",label) | grepl("['[']{1}",label)
   if (any(mathlabel)) {
-    label<-deparse(label)
+    label<-gsub("=","==",label)
     parser<-TRUE
-    voff<-1
+    voff<-0
   } else {
     if (parser) label<-deparse(bquote(.(label)))
     voff<-0
@@ -408,7 +430,7 @@ axisLabel<-function(data,label, hjust=0, vjust=0, angle=0, fill="white",colour="
              hjust=hjust, vjust=vjust, nudge_y=voff,
              fill=fill,color=colour,fontface=fontface,
              label.padding=unit(0.1, "lines"),label.size=label.size,
-             size=reSizeFont(size),parse=parser)
+             size=reSizeFont(size)*0.8,parse=parser)
   } else {
     g<-axisText(data,label, hjust=hjust, vjust=vjust, angle=angle, colour=colour,fontface=fontface,size=size,background=TRUE,fill=fill)
   }

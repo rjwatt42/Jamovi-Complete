@@ -328,9 +328,9 @@ plotCatDescription<-function(analysis,g) {
   analysis$hypothesis$IV$vals<-analysis$iv
   analysis$hypothesis$DV$vals<-analysis$dv
   
-  g<-plotPoints(g,analysis$hypothesis$IV,analysis$hypothesis$DV,analysis,1)
   g<-plotPrediction(analysis$hypothesis$IV,analysis$hypothesis$IV2,analysis$hypothesis$DV,analysis,analysis$design,offset=1,g=g)
-
+  g<-plotPoints(g,analysis$hypothesis$IV,analysis$hypothesis$DV,analysis,1)
+  
   g
 }
 
@@ -347,6 +347,7 @@ showDescription<-function(analysis=braw.res$result,plotArea=c(0,0,1,1),g=NULL) {
   
   old_newSampleDisplay<-braw.env$newSampleDisplay
   if (!is.null(analysis$hypothesis$IV2)) setBrawEnv("newSampleDisplay",FALSE)
+  if (analysis$hypothesis$DV$type=="Categorical") setBrawEnv("newSampleDisplay",FALSE)
   
   if (braw.env$newSampleDisplay && braw.env$allScatter) {
     g<-showSample(analysis,marginals=FALSE)
@@ -361,7 +362,7 @@ showDescription<-function(analysis=braw.res$result,plotArea=c(0,0,1,1),g=NULL) {
             "Ordinal"=g<-plotParDescription(analysis,g),
             "Categorical"=g<-plotCatDescription(analysis,g)
     )
-    g<-addG(g,dataLabel("topright",paste0("r[s]=",round(analysis$rIV,3)),hjust=1,vjust=1,size=0.75,fill="black",colour="white"))
+    g<-addG(g,dataLabel("centreright",paste0("r[s]=",round(analysis$rIV,3)),size=0.75,fill="black",colour="white"))
   } else{
     if (analysis$evidence$rInteractionOn) {
       switch (analysis$hypothesis$IV2$type,

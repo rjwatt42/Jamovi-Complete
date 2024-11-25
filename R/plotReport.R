@@ -85,9 +85,13 @@ reportPlot<-function(outputText,nc,nr,fontSize=0.85,maxRows=14,renderAsHTML=braw
           outputText[index+(1:nc)]<-sub("!U","",outputText[index+(1:nc)])
         }
 
-        if (headerRowUsed && length(outputText)>index+nc && all(sapply(outputText[index+nc+(1:nc)],nchar)==0)) {
+        if (headerRowUsed && (length(outputText)==index+nc || (length(outputText)>index+nc && 
+                              all(sapply(outputText[index+nc+(1:nc)],nchar)==0))
+                              )
+            ){
           rowStyle<-paste0(rowStyle,"border-bottom:solid;border-bottom-color:",lineColour,";border-bottom-width:2px;")
           blankStyle<-paste0("padding-top:",gapSize,";")
+          headerRowUsed<-FALSE
         }
           
         for (i in 1:nc) {

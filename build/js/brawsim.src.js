@@ -3,7 +3,7 @@
 
 'use strict';
 
-const options = [{"name":"planOptions","title":" ","type":"List","options":[{"name":"planH","title":"Hypothesis"},{"name":"planD","title":"Design"},{"name":"planA","title":"Analysis"},{"name":"planM","title":"More"}]},{"name":"presetDV","title":"","type":"List","options":[{"name":"Blank","title":"DV"},{"name":"IQ","title":"IQ"},{"name":"Diligence","title":"Diligence"},{"name":"Perfectionism","title":"Perfectionism"},{"name":"Happiness","title":"Happiness"},{"name":"ExamGrade","title":"ExamGrade"},{"name":"ExamPass","title":"ExamPass?"},{"name":"RiskTaking","title":"RiskTaking"},{"name":"Interesting","title":"Interesting"},{"name":"Musician","title":"Musician?"},{"name":"Smoker","title":"Smoker?"},{"name":"RiskTaker","title":"RiskTaker?"},{"name":"Treatment","title":"Treatment?"},{"name":"Phase","title":"Phase"},{"name":"StudySubject","title":"StudySubject"},{"name":"BirthOrder","title":"BirthOrder"}],"default":"Blank"},{"name":"presetIV","title":"","type":"List","options":[{"name":"Blank","title":"IV"},{"name":"IQ","title":"IQ"},{"name":"Diligence","title":"Diligence"},{"name":"Perfectionism","title":"Perfectionism"},{"name":"Happiness","title":"Happiness"},{"name":"ExamGrade","title":"ExamGrade"},{"name":"RiskTaking","title":"RiskTaking"},{"name":"Interesting","title":"Interesting"},{"name":"Musician","title":"Musician?"},{"name":"Smoker","title":"Smoker?"},{"name":"RiskTaker","title":"RiskTaker?"},{"name":"Treatment","title":"Treatment?"},{"name":"Phase","title":"Phase"},{"name":"StudySubject","title":"StudySubject"},{"name":"BirthOrder","title":"BirthOrder"}],"default":"Blank"},{"name":"presetIV2","title":"","type":"List","options":[{"name":"none","title":"none"},{"name":"IV2","title":"IV2"},{"name":"IQ","title":"IQ"},{"name":"Diligence","title":"Diligence"},{"name":"Perfectionism","title":"Perfectionism"},{"name":"Happiness","title":"Happiness"},{"name":"ExamGrade","title":"ExamGrade"},{"name":"RiskTaking","title":"RiskTaking"},{"name":"Interesting","title":"Interesting"},{"name":"Musician","title":"Musician?"},{"name":"Smoker","title":"Smoker?"},{"name":"RiskTaker","title":"RiskTaker?"},{"name":"Treatment","title":"Treatment?"},{"name":"Phase","title":"Phase"},{"name":"StudySubject","title":"StudySubject"},{"name":"BirthOrder","title":"BirthOrder"}],"default":"none"},{"name":"presetWorld","title":"Presets:","type":"List","options":[{"name":"psych","title":"psychology"},{"name":"simple","title":"simple"}],"default":"simple"},{"name":"DVname","title":"Name","type":"String","default":"DV"},{"name":"DVtype","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"DVmu","title":"mean","type":"Number","default":0},{"name":"DVsd","title":"sd","type":"Number","default":1},{"name":"DVskew","title":"skew","type":"Number","default":0},{"name":"DVkurt","title":"kurtosis","type":"Number","default":0},{"name":"DVnlevs","title":"no levels","type":"Number","default":7},{"name":"DViqr","title":"iqr","type":"Number","default":4},{"name":"DVncats","title":"no cases","type":"Number","default":2},{"name":"DVcases","title":"cases","type":"String","default":"C1,C2"},{"name":"DVprops","title":"proportions","type":"String","default":"1,1"},{"name":"IVname","title":"Name","type":"String","default":"IV"},{"name":"IVtype","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"IVmu","title":"mean","type":"Number","default":0},{"name":"IVsd","title":"sd","type":"Number","default":1},{"name":"IVskew","title":"skew","type":"Number","default":0},{"name":"IVkurt","title":"kurtosis","type":"Number","default":0},{"name":"IVnlevs","title":"no levels","type":"Number","default":7},{"name":"IViqr","title":"iqr","type":"Number","default":4},{"name":"IVncats","title":"no cases","type":"Number","default":2},{"name":"IVcases","title":"cases","type":"String","default":"C1,C2"},{"name":"IVprops","title":"proportions","type":"String","default":"1,1"},{"name":"IV2name","title":"Name","type":"String","default":"IV2"},{"name":"IV2type","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"IV2mu","title":"mean","type":"Number","default":0},{"name":"IV2sd","title":"sd","type":"Number","default":1},{"name":"IV2skew","title":"skew","type":"Number","default":0},{"name":"IV2kurt","title":"kurtosis","type":"Number","default":0},{"name":"IV2nlevs","title":"no levels","type":"Number","default":7},{"name":"IV2iqr","title":"iqr","type":"Number","default":4},{"name":"IV2ncats","title":"no cases","type":"Number","default":2},{"name":"IV2cases","title":"cases","type":"String","default":"C1,C2"},{"name":"IV2props","title":"proportions","type":"String","default":"1,1"},{"name":"EffectSize1","title":"IV->DV","type":"Number","default":0},{"name":"EffectSize2","title":"IV2->DV","type":"Number","default":0},{"name":"EffectSize3","title":"IV->IV2","type":"Number","default":0},{"name":"EffectSize12","title":"IV*IV2->DV","type":"Number","default":0},{"name":"Heteroscedasticity","title":"Heteroscedasticity","type":"Number","default":0},{"name":"Residuals","title":"Residuals","type":"List","options":[{"name":"normal","title":"normal"},{"name":"skewed","title":"skewed"},{"name":"uniform","title":"uniform"},{"name":"cauchy","title":"cauchy"}],"default":"normal"},{"name":"WorldOn","title":"","type":"Bool","default":false},{"name":"WorldPDF","title":"distribution","type":"List","options":[{"name":"Single","title":"Single"},{"name":"Double","title":"Double"},{"name":"Uniform","title":"Uniform"},{"name":"Gauss","title":"Gauss"},{"name":"Exp","title":"Exp"}],"default":"Single"},{"name":"WorldRZ","title":" ","type":"List","options":[{"name":"r","title":"r"},{"name":"z","title":"z"}]},{"name":"WorldLambda","title":"lambda","type":"Number","default":0.3},{"name":"WorldNullP","title":"p(null)","type":"Number","default":0.5},{"name":"SampleSize","title":"Sample Size","type":"Number","default":42},{"name":"SampleSizeM","title":"Median n","type":"Number","default":42},{"name":"SampleSpreadOn","title":" ","type":"Bool","default":false},{"name":"SampleGamma","title":"spread","type":"Number","default":1.56},{"name":"SampleMethod","title":"Method","type":"List","options":[{"name":"Random","title":"Random"},{"name":"Stratified","title":"Stratified"},{"name":"Cluster","title":"Cluster"},{"name":"Snowball","title":"Snowball"},{"name":"Convenience","title":"Convenience"}],"default":"Random"},{"name":"SampleUsage1","title":"Usage(IV)","type":"List","options":[{"name":"Between","title":"Between"},{"name":"Within","title":"Within"}],"default":"Between"},{"name":"SampleUsage2","title":"Usage(IV2)","type":"List","options":[{"name":"Between","title":"Between"},{"name":"Within","title":"Within"}],"default":"Between"},{"name":"Dependence","title":"Dependence","type":"Number","default":0},{"name":"Outliers","title":"Outliers","type":"Number","default":0},{"name":"NonResponse","title":"NonResponse","type":"Number","default":0},{"name":"LimitRange","title":"Limit range?","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"no"},{"name":"RangeMin","title":"from","type":"Number","default":-3},{"name":"RangeMax","title":"to","type":"Number","default":3},{"name":"Cheating","title":"Cheating","type":"List","options":[{"name":"None","title":"None"},{"name":"Grow","title":"Grow"},{"name":"Prune","title":"Prune"},{"name":"Replace","title":"Replace"},{"name":"Retry","title":"Retry"}],"default":"None"},{"name":"CheatingAttempts","title":"Attempts","type":"Number","default":5},{"name":"ReplicationOn","title":"","type":"Bool","default":false},{"name":"ReplicationPower","title":"sample target power","type":"Number","default":0.8},{"name":"ReplicationPrior","title":"prior","type":"List","options":[{"name":"None","title":"None"},{"name":"World","title":"World"},{"name":"Prior","title":"Custom"}],"default":"None"},{"name":"ReplicationAttempts","title":"how many replications?","type":"Number","default":1},{"name":"ReplicationDecision","title":"decision","type":"List","options":[{"name":"Cautious","title":"Cautious"},{"name":"Last","title":"Last"},{"name":"Median","title":"Median"},{"name":"SmallP","title":"SmallP"},{"name":"LargeN","title":"LargeN"}],"default":"Cautious"},{"name":"ReplicationAlpha","title":"rep alpha","type":"Number","default":0.05},{"name":"ReplicationSign","title":"same sign","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"ReplicationSigOriginal","title":"significant original","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"alphaSig","title":"alpha","type":"Number","default":0.05},{"name":"ssq","title":"SSQ Type","type":"List","options":[{"name":"Type1","title":"Type1"},{"name":"Type2","title":"Type2"},{"name":"Type3","title":"Type3"}],"default":"Type3"},{"name":"interaction","title":"Interaction?","type":"List","options":[{"name":"no","title":"no"},{"name":"yes","title":"yes"}],"default":"no"},{"name":"equalVar","title":"Equal variance","type":"List","options":[{"name":"no","title":"no"},{"name":"yes","title":"yes"}],"default":"yes"},{"name":"Transform","title":"Transform the DV","type":"List","options":[{"name":"None","title":"None"},{"name":"Log","title":"Log"},{"name":"Exp","title":"Exp"}],"default":"None"},{"name":"likelihoodType","title":"possible","type":"List","options":[{"name":"Samples","title":"Samples"},{"name":"Populations","title":"Populations"}],"default":"Populations"},{"name":"likelihoodCutaway","title":"","type":"List","options":[{"name":"all","title":"all"},{"name":"cutaway","title":"cutaway"}],"default":"cutaway"},{"name":"likelihoodUsePrior","title":"prior","type":"List","options":[{"name":"none","title":"none"},{"name":"world","title":"world"},{"name":"prior","title":"custom"}],"default":"none"},{"name":"priorPDF","title":"PDF","type":"List","options":[{"name":"Single","title":"Single"},{"name":"Double","title":"Double"},{"name":"Uniform","title":"Uniform"},{"name":"Gauss","title":"Gauss"},{"name":"Exp","title":"Exp"}],"default":"Exp"},{"name":"priorRZ","title":" ","type":"List","options":[{"name":"r","title":"r"},{"name":"z","title":"z"}],"default":"z"},{"name":"priorLambda","title":"lambda","type":"Number","default":0.3},{"name":"priorNullP","title":"p(null)","type":"Number","default":0},{"name":"MetaAnalysisOn","title":"","type":"Bool","default":false},{"name":"MetaAnalysisType","title":" ","type":"List","options":[{"name":"random","title":"random"},{"name":"fixed","title":"fixed"}],"default":"random"},{"name":"MetaAnalysisNulls","title":"nulls","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"MetaAnalysisBias","title":"bias","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"MetaAnalysisNStudies","title":"no of studies","type":"Number","default":10},{"name":"MetaAnalysisStudiesSig","title":" ","type":"List","options":[{"name":"all","title":"all"},{"name":"sigOnly","title":"sigOnly"}],"default":"sigOnly"},{"name":"showHypothesisBtn","title":"show","type":"Action"},{"name":"makeSampleBtn","type":"Action","title":"single","default":false},{"name":"numberSamples","title":"no of samples","type":"Number","default":100},{"name":"makeMultipleBtn","title":"multiple","type":"Action"},{"name":"inferVar1","title":" show:","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"rs"},{"name":"inferVar2","title":" &","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"p"},{"name":"showSampleType","title":" show:","type":"List","options":[{"name":"Compact","title":"Compact"},{"name":"Variables","title":"Variables"},{"name":"Sample","title":"Sample"},{"name":"Describe","title":"Describe"},{"name":"Infer","title":"Infer"},{"name":"Likelihood","title":"Likelihood"}],"default":"Compact"},{"name":"showInferDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"reportInferStats","title":" ","type":"List","options":[{"name":"Means","title":"(Means)"},{"name":"Medians","title":"(Medians)"}],"default":"Medians"},{"name":"showMultipleParam","title":" show as:","type":"List","options":[{"name":"Basic","title":"Basic"},{"name":"p(sig)","title":"p(sig)"},{"name":"NHST","title":"NHST"},{"name":"Hits","title":"Hits"},{"name":"Misses","title":"Misses"},{"name":"DV","title":"DV"},{"name":"Residuals","title":"Residuals"}],"default":"Basic"},{"name":"showMultipleDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"exploreNPointsH","title":"using","type":"Number","default":13},{"name":"exploreNPointsD","title":"using","type":"Number","default":13},{"name":"exploreNPointsA","title":"using","type":"Number","default":13},{"name":"exploreNPointsM","title":"using","type":"Number","default":13},{"name":"exploreMinValH","title":"from","type":"String","default":"-0.9"},{"name":"exploreMaxValH","title":"to","type":"String","default":"0.9"},{"name":"exploreMinValD","title":"from","type":"String","default":"10"},{"name":"exploreMaxValD","title":"to","type":"String","default":"250"},{"name":"exploreMinValA","title":"from","type":"String","default":"0.001"},{"name":"exploreMaxValM","title":"to","type":"String","default":"0.5"},{"name":"exploreMinValM","title":"from","type":"String","default":"0.001"},{"name":"exploreMaxValA","title":"to","type":"String","default":"0.5"},{"name":"exploreXLogH","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogD","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogA","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogM","title":"log scale","type":"Bool","default":false},{"name":"numberExplores","title":"no of samples","type":"Number","default":10},{"name":"makeExploreBtn","title":"explore","type":"Action"},{"name":"exploreMode","title":"","type":"List","options":[{"name":"hypothesisExplore","title":"Hypothesis"},{"name":"designExplore","title":"Design"},{"name":"analysisExplore","title":"Analysis"},{"name":"moreExplore","title":"More"}],"default":"designExplore"},{"name":"hypothesisExploreList","title":"explore:","type":"List","options":[{"name":"rIV","title":"EffectSize"},{"name":"rIVIV2","title":"Covariation"},{"name":"rIVIV2DV","title":"Interaction"},{"name":"Heteroscedasticity","title":"Hscedast"},{"name":"blank0h","title":" "},{"name":"IVType","title":"IVType"},{"name":"IVskew","title":"IVskew"},{"name":"IVkurtosis","title":"IVkurtosis"},{"name":"IVlevels","title":"IVlevels"},{"name":"IVcats","title":"IVcats"},{"name":"IVprops","title":"IVprops"},{"name":"DVType","title":"DVType"},{"name":"DVskew","title":"DVskew"},{"name":"DVkurtosis","title":"DVkurtosis"},{"name":"DVcats","title":"DVcats"},{"name":"DVprops","title":"DVprops"},{"name":"blank1h","title":" "},{"name":"lambda","title":"worldLambda"},{"name":"pNull","title":"worldPNull"},{"name":"blank2h"}]},{"name":"designExploreList","title":"explore:","type":"List","options":[{"name":"n","title":"SampleSize"},{"name":"Method","title":"Method"},{"name":"Usage","title":"Usage"},{"name":"blank1d","title":" "},{"name":"Dependence","title":"Dependence"},{"name":"Outliers","title":"Outliers"},{"name":"NonResponse","title":"NonResponse"},{"name":"IVRangeC","title":"IV RangeC"},{"name":"IVRangeE","title":"IV RangeE"},{"name":"blank1e","title":" "},{"name":"Cheating","title":"CheatMethod"},{"name":"CheatingAmount","title":"CheatAmount"}]},{"name":"analysisExploreList","title":"explore:","type":"List","options":[{"name":"Alpha","title":"Alpha"},{"name":"Transform","title":"Transform"},{"name":"Welch","title":"EqualVar"},{"name":"InteractionOn","title":"InteractionOn"}]},{"name":"moreExploreList","title":"explore:","type":"List","options":[{"name":"Power","title":"ReplPower"},{"name":"Keep","title":"ReplDecision"},{"name":"Repeats","title":"ReplAttempts"}]},{"name":"showExploreParam","title":"show as:","type":"List","options":[{"name":"Single","title":"Single"},{"name":"Basic","title":"Basic"},{"name":"p(sig)","title":"p(sig)"},{"name":"NHST","title":"NHST"},{"name":"Hits","title":"Hits"},{"name":"Misses","title":"Misses"},{"name":"DV","title":"DV"},{"name":"Residuals","title":"Residuals"}],"default":"Basic"},{"name":"showExploreDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"whichShowMultiple","title":" ","type":"List","options":[{"name":"direct","title":"direct"},{"name":"unique","title":"unique"},{"name":"total","title":"total"},{"name":"all","title":"all"}],"default":"all"},{"name":"sendSample","title":"single","type":"Output","default":true},{"name":"sendMultiple","title":"multiple","type":"Output","default":false},{"name":"jamoviHelp","title":"Jamovi help?","type":"Bool","default":false},{"name":"brawHelp","title":"Main help?","type":"Bool","default":true},{"name":"demoHelp","title":"Demo help?","type":"Bool","default":true},{"name":"demoWhich","title":"","type":"List","options":[{"name":"d1","title":"d1"},{"name":"d2","title":"d2"},{"name":"d3","title":"d3"},{"name":"d4","title":"d4"},{"name":"d5","title":"d5"},{"name":"d6","title":"d6"},{"name":"d7","title":"d7"},{"name":"d8","title":"d8"}],"default":"d1"},{"name":"showHTML","title":"HTML graphics?","type":"Bool","default":true},{"name":"doProject1sBtn","title":"set up for me","type":"Action"},{"name":"doProject1aBtn","title":"do it for me","type":"Action"},{"name":"doProject1bBtn","title":"show me","type":"Action"},{"name":"doProject1cLst","title":"IV:","type":"List","options":[{"name":"IQ","title":"IQ"},{"name":"Diligence","title":"Diligence"},{"name":"Perfectionism","title":"Perfectionism"},{"name":"Happiness","title":"Happiness"},{"name":"RiskTaking","title":"RiskTaking"},{"name":"Interesting","title":"Interesting"},{"name":"Musician","title":"Musician?"},{"name":"Smoker","title":"Smoker?"},{"name":"RiskTaker","title":"RiskTaker?"},{"name":"StudySubject","title":"StudySubject"},{"name":"BirthOrder","title":"BirthOrder"}],"default":"Perfectionism"},{"name":"doProject1cLstA","title":"DV:","type":"List","options":[{"name":"ExamGrade","title":"ExamGrade"},{"name":"ExamPass","title":"ExamPass?"}],"default":"ExamGrade"},{"name":"doProject1cBtn","title":"do it","type":"Action"},{"name":"doProject2aBtn","title":"set up for me","type":"Action"},{"name":"doProject2bBtn","title":"do it for me","type":"Action"},{"name":"doProject2cBtn","title":"do it for me","type":"Action"},{"name":"doProject2dBtn","title":"do it for me","type":"Action"},{"name":"doProject3aBtn","title":"set up for me","type":"Action"},{"name":"doProject3bBtn","title":"do it for me","type":"Action"},{"name":"doProject3cBtn","title":"do it for me","type":"Action"},{"name":"doProject3dBtn","title":"do it for me","type":"Action"},{"name":"doProject4aBtn","title":"set up for me","type":"Action"},{"name":"doProject4bBtn","title":"do it for me","type":"Action"},{"name":"doProject4cBtn","title":"do it for me","type":"Action"},{"name":"doProject4dBtn","title":"do it for me","type":"Action"},{"name":"doProject5sBtn","title":"set up for me","type":"Action"},{"name":"doProject5aBtn","title":"do it for me","type":"Action"},{"name":"doProject5bBtn","title":"do it","type":"Action"},{"name":"doProject5bLst","title":"n:","type":"List","options":[{"name":"n21","title":"21"},{"name":"n42","title":"42"},{"name":"n84","title":"84"},{"name":"n168","title":"168"},{"name":"n336","title":"336"}],"default":"n42"},{"name":"doProject5cBtn","title":"do it for me","type":"Action"},{"name":"doProject5dBtn","title":"do it","type":"Action"},{"name":"doProject5dLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doProject6aBtn","title":"do it","type":"Action"},{"name":"doProject6aLst","title":"hyp:","type":"List","options":[{"name":"iii","title":"i~i*i"},{"name":"ici","title":"i~c*i"},{"name":"iic","title":"i~i*c"},{"name":"icc","title":"i~c*c"}],"default":"iii"},{"name":"doProject6bBtn","title":"do it","type":"Action"},{"name":"doProject6bLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doProject6cBtn","title":"do it","type":"Action"},{"name":"doProject6cLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doProject6dBtn","title":"do it","type":"Action"},{"name":"doProject6dLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doProject7aBtn","title":"do it","type":"Action"},{"name":"doProject7aLst","title":"hyp:","type":"List","options":[{"name":"iii","title":"i~i*i"},{"name":"ici","title":"i~c*i"},{"name":"iic","title":"i~i*c"},{"name":"icc","title":"i~c*c"}],"default":"iii"},{"name":"doProject7bBtn","title":"do it","type":"Action"},{"name":"doProject7bLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doProject7cBtn","title":"do it","type":"Action"},{"name":"doProject7cLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doProject8aBtn","title":"do it","type":"Action"},{"name":"doProject8aLst","title":"hyp:","type":"List","options":[{"name":"iii","title":"i~i*i"},{"name":"ici","title":"i~c*i"},{"name":"iic","title":"i~i*c"},{"name":"icc","title":"i~c*c"}],"default":"iii"},{"name":"doProject8bBtn","title":"do it","type":"Action"},{"name":"doProject8bLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doProject8cBtn","title":"do it","type":"Action"},{"name":"doProject8cLst","title":"rs:","type":"List","options":[{"name":"direct","title":"direct"},{"name":"unique","title":"unique"},{"name":"total","title":"total"}],"default":"direct"}];
+const options = [{"name":"planOptions","title":" ","type":"List","options":[{"name":"planH","title":"Hypothesis"},{"name":"planD","title":"Design"},{"name":"planA","title":"Analysis"},{"name":"planM","title":"More"}]},{"name":"presetDV","title":"","type":"List","options":[{"name":"Blank","title":"DV"},{"name":"IQ","title":"IQ"},{"name":"Diligence","title":"Diligence"},{"name":"Perfectionism","title":"Perfectionism"},{"name":"Happiness","title":"Happiness"},{"name":"ExamGrade","title":"ExamGrade"},{"name":"ExamPass","title":"ExamPass?"},{"name":"RiskTaking","title":"RiskTaking"},{"name":"Interesting","title":"Interesting"},{"name":"Musician","title":"Musician?"},{"name":"Smoker","title":"Smoker?"},{"name":"RiskTaker","title":"RiskTaker?"},{"name":"Treatment","title":"Treatment?"},{"name":"Phase","title":"Phase"},{"name":"StudySubject","title":"StudySubject"},{"name":"BirthOrder","title":"BirthOrder"}],"default":"Blank"},{"name":"presetIV","title":"","type":"List","options":[{"name":"Blank","title":"IV"},{"name":"IQ","title":"IQ"},{"name":"Diligence","title":"Diligence"},{"name":"Perfectionism","title":"Perfectionism"},{"name":"Happiness","title":"Happiness"},{"name":"ExamGrade","title":"ExamGrade"},{"name":"RiskTaking","title":"RiskTaking"},{"name":"Interesting","title":"Interesting"},{"name":"Musician","title":"Musician?"},{"name":"Smoker","title":"Smoker?"},{"name":"RiskTaker","title":"RiskTaker?"},{"name":"Treatment","title":"Treatment?"},{"name":"Phase","title":"Phase"},{"name":"StudySubject","title":"StudySubject"},{"name":"BirthOrder","title":"BirthOrder"}],"default":"Blank"},{"name":"presetIV2","title":"","type":"List","options":[{"name":"none","title":"none"},{"name":"IV2","title":"IV2"},{"name":"IQ","title":"IQ"},{"name":"Diligence","title":"Diligence"},{"name":"Perfectionism","title":"Perfectionism"},{"name":"Happiness","title":"Happiness"},{"name":"ExamGrade","title":"ExamGrade"},{"name":"RiskTaking","title":"RiskTaking"},{"name":"Interesting","title":"Interesting"},{"name":"Musician","title":"Musician?"},{"name":"Smoker","title":"Smoker?"},{"name":"RiskTaker","title":"RiskTaker?"},{"name":"Treatment","title":"Treatment?"},{"name":"Phase","title":"Phase"},{"name":"StudySubject","title":"StudySubject"},{"name":"BirthOrder","title":"BirthOrder"}],"default":"none"},{"name":"presetWorld","title":"Presets:","type":"List","options":[{"name":"psych","title":"psychology"},{"name":"simple","title":"simple"}],"default":"simple"},{"name":"DVname","title":"Name","type":"String","default":"DV"},{"name":"DVtype","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"DVmu","title":"mean","type":"Number","default":0},{"name":"DVsd","title":"sd","type":"Number","default":1},{"name":"DVskew","title":"skew","type":"Number","default":0},{"name":"DVkurt","title":"kurtosis","type":"Number","default":0},{"name":"DVnlevs","title":"no levels","type":"Number","default":7},{"name":"DViqr","title":"iqr","type":"Number","default":4},{"name":"DVncats","title":"no cases","type":"Number","default":2},{"name":"DVcases","title":"cases","type":"String","default":"C1,C2"},{"name":"DVprops","title":"proportions","type":"String","default":"1,1"},{"name":"IVname","title":"Name","type":"String","default":"IV"},{"name":"IVtype","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"IVmu","title":"mean","type":"Number","default":0},{"name":"IVsd","title":"sd","type":"Number","default":1},{"name":"IVskew","title":"skew","type":"Number","default":0},{"name":"IVkurt","title":"kurtosis","type":"Number","default":0},{"name":"IVnlevs","title":"no levels","type":"Number","default":7},{"name":"IViqr","title":"iqr","type":"Number","default":4},{"name":"IVncats","title":"no cases","type":"Number","default":2},{"name":"IVcases","title":"cases","type":"String","default":"C1,C2"},{"name":"IVprops","title":"proportions","type":"String","default":"1,1"},{"name":"IV2name","title":"Name","type":"String","default":"IV2"},{"name":"IV2type","title":"Type","type":"List","options":[{"name":"Interval","title":"Interval"},{"name":"Ordinal","title":"Ordinal"},{"name":"Categorical","title":"Categorical"}],"default":"Interval"},{"name":"IV2mu","title":"mean","type":"Number","default":0},{"name":"IV2sd","title":"sd","type":"Number","default":1},{"name":"IV2skew","title":"skew","type":"Number","default":0},{"name":"IV2kurt","title":"kurtosis","type":"Number","default":0},{"name":"IV2nlevs","title":"no levels","type":"Number","default":7},{"name":"IV2iqr","title":"iqr","type":"Number","default":4},{"name":"IV2ncats","title":"no cases","type":"Number","default":2},{"name":"IV2cases","title":"cases","type":"String","default":"C1,C2"},{"name":"IV2props","title":"proportions","type":"String","default":"1,1"},{"name":"EffectSize1","title":"IV->DV","type":"Number","default":0},{"name":"EffectSize2","title":"IV2->DV","type":"Number","default":0},{"name":"EffectSize3","title":"IV->IV2","type":"Number","default":0},{"name":"EffectSize12","title":"IV*IV2->DV","type":"Number","default":0},{"name":"Heteroscedasticity","title":"Heteroscedasticity","type":"Number","default":0},{"name":"Residuals","title":"Residuals","type":"List","options":[{"name":"normal","title":"normal"},{"name":"skewed","title":"skewed"},{"name":"uniform","title":"uniform"},{"name":"cauchy","title":"cauchy"}],"default":"normal"},{"name":"WorldOn","title":"","type":"Bool","default":false},{"name":"WorldPDF","title":"distribution","type":"List","options":[{"name":"Single","title":"Single"},{"name":"Double","title":"Double"},{"name":"Uniform","title":"Uniform"},{"name":"Gauss","title":"Gauss"},{"name":"Exp","title":"Exp"}],"default":"Single"},{"name":"WorldRZ","title":" ","type":"List","options":[{"name":"r","title":"r"},{"name":"z","title":"z"}]},{"name":"WorldLambda","title":"lambda","type":"Number","default":0.3},{"name":"WorldNullP","title":"p(null)","type":"Number","default":0.5},{"name":"SampleSize","title":"Sample Size","type":"Number","default":42},{"name":"SampleSizeM","title":"Median n","type":"Number","default":42},{"name":"SampleSpreadOn","title":" ","type":"Bool","default":false},{"name":"SampleGamma","title":"spread","type":"Number","default":1.56},{"name":"SampleMethod","title":"Method","type":"List","options":[{"name":"Random","title":"Random"},{"name":"Stratified","title":"Stratified"},{"name":"Cluster","title":"Cluster"},{"name":"Snowball","title":"Snowball"},{"name":"Convenience","title":"Convenience"}],"default":"Random"},{"name":"SampleUsage1","title":"Usage(IV)","type":"List","options":[{"name":"Between","title":"Between"},{"name":"Within","title":"Within"}],"default":"Between"},{"name":"SampleUsage2","title":"Usage(IV2)","type":"List","options":[{"name":"Between","title":"Between"},{"name":"Within","title":"Within"}],"default":"Between"},{"name":"Dependence","title":"Dependence","type":"Number","default":0},{"name":"Outliers","title":"Outliers","type":"Number","default":0},{"name":"NonResponse","title":"NonResponse","type":"Number","default":0},{"name":"LimitRange","title":"Limit range?","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"no"},{"name":"RangeMin","title":"from","type":"Number","default":-3},{"name":"RangeMax","title":"to","type":"Number","default":3},{"name":"Cheating","title":"Cheating","type":"List","options":[{"name":"None","title":"None"},{"name":"Grow","title":"Grow"},{"name":"Prune","title":"Prune"},{"name":"Replace","title":"Replace"},{"name":"Retry","title":"Retry"}],"default":"None"},{"name":"CheatingAttempts","title":"Attempts","type":"Number","default":5},{"name":"ReplicationOn","title":"","type":"Bool","default":false},{"name":"ReplicationPower","title":"sample target power","type":"Number","default":0.8},{"name":"ReplicationPrior","title":"prior","type":"List","options":[{"name":"None","title":"None"},{"name":"World","title":"World"},{"name":"Prior","title":"Custom"}],"default":"None"},{"name":"ReplicationAttempts","title":"how many replications?","type":"Number","default":1},{"name":"ReplicationDecision","title":"decision","type":"List","options":[{"name":"Cautious","title":"Cautious"},{"name":"Last","title":"Last"},{"name":"FirstSuccess","title":"FirstSuccess"},{"name":"Median","title":"Median"},{"name":"SmallP","title":"SmallP"},{"name":"LargeN","title":"LargeN"}],"default":"Cautious"},{"name":"ReplicationAlpha","title":"rep alpha","type":"Number","default":0.05},{"name":"ReplicationSign","title":"same sign","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"ReplicationSigOriginal","title":"significant original","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"alphaSig","title":"alpha","type":"Number","default":0.05},{"name":"ssq","title":"SSQ Type","type":"List","options":[{"name":"Type1","title":"Type1"},{"name":"Type2","title":"Type2"},{"name":"Type3","title":"Type3"}],"default":"Type3"},{"name":"interaction","title":"Interaction?","type":"List","options":[{"name":"no","title":"no"},{"name":"yes","title":"yes"}],"default":"no"},{"name":"equalVar","title":"Equal variance","type":"List","options":[{"name":"no","title":"no"},{"name":"yes","title":"yes"}],"default":"yes"},{"name":"Transform","title":"Transform the DV","type":"List","options":[{"name":"None","title":"None"},{"name":"Log","title":"Log"},{"name":"Exp","title":"Exp"}],"default":"None"},{"name":"likelihoodType","title":"possible","type":"List","options":[{"name":"Samples","title":"Samples"},{"name":"Populations","title":"Populations"}],"default":"Populations"},{"name":"likelihoodCutaway","title":"","type":"List","options":[{"name":"all","title":"all"},{"name":"cutaway","title":"cutaway"}],"default":"cutaway"},{"name":"likelihoodUsePrior","title":"prior","type":"List","options":[{"name":"none","title":"none"},{"name":"world","title":"world"},{"name":"prior","title":"custom"}],"default":"none"},{"name":"priorPDF","title":"PDF","type":"List","options":[{"name":"Single","title":"Single"},{"name":"Double","title":"Double"},{"name":"Uniform","title":"Uniform"},{"name":"Gauss","title":"Gauss"},{"name":"Exp","title":"Exp"}],"default":"Exp"},{"name":"priorRZ","title":" ","type":"List","options":[{"name":"r","title":"r"},{"name":"z","title":"z"}],"default":"z"},{"name":"priorLambda","title":"lambda","type":"Number","default":0.3},{"name":"priorNullP","title":"p(null)","type":"Number","default":0},{"name":"MetaAnalysisOn","title":"","type":"Bool","default":false},{"name":"MetaAnalysisType","title":" ","type":"List","options":[{"name":"random","title":"random"},{"name":"fixed","title":"fixed"}],"default":"random"},{"name":"MetaAnalysisNulls","title":"nulls","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"MetaAnalysisBias","title":"bias","type":"List","options":[{"name":"yes","title":"yes"},{"name":"no","title":"no"}],"default":"yes"},{"name":"MetaAnalysisNStudies","title":"no of studies","type":"Number","default":10},{"name":"MetaAnalysisStudiesSig","title":" ","type":"List","options":[{"name":"all","title":"all"},{"name":"sigOnly","title":"sigOnly"}],"default":"sigOnly"},{"name":"showHypothesisBtn","title":"show","type":"Action"},{"name":"makeSampleBtn","type":"Action","title":"single","default":false},{"name":"numberSamples","title":"no of samples","type":"Number","default":100},{"name":"makeMultipleBtn","title":"multiple","type":"Action"},{"name":"inferVar1","title":" show:","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"rs"},{"name":"inferVar2","title":" &","type":"List","options":[{"name":"rs","title":"rs"},{"name":"rp","title":"rp"},{"name":"re","title":"re"},{"name":"p","title":"p"},{"name":"n","title":"n"},{"name":"blank1","title":" "},{"name":"ws","title":"ws"},{"name":"wp","title":"wp"},{"name":"nw","title":"nw"},{"name":"blank2","title":" "},{"name":"ro","title":"ro"},{"name":"po","title":"po"},{"name":"no","title":"no"}],"default":"p"},{"name":"showSampleType","title":" show:","type":"List","options":[{"name":"Compact","title":"Compact"},{"name":"Variables","title":"Variables"},{"name":"Sample","title":"Sample"},{"name":"Describe","title":"Describe"},{"name":"Infer","title":"Infer"},{"name":"Likelihood","title":"Likelihood"}],"default":"Compact"},{"name":"showInferDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"reportInferStats","title":" ","type":"List","options":[{"name":"Means","title":"(Means)"},{"name":"Medians","title":"(Medians)"}],"default":"Medians"},{"name":"showMultipleParam","title":" show as:","type":"List","options":[{"name":"Basic","title":"Basic"},{"name":"p(sig)","title":"p(sig)"},{"name":"NHST","title":"NHST"},{"name":"Hits","title":"Hits"},{"name":"Misses","title":"Misses"},{"name":"DV","title":"DV"},{"name":"Residuals","title":"Residuals"}],"default":"Basic"},{"name":"showMultipleDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"exploreNPointsH","title":"using","type":"Number","default":13},{"name":"exploreNPointsD","title":"using","type":"Number","default":13},{"name":"exploreNPointsA","title":"using","type":"Number","default":13},{"name":"exploreNPointsM","title":"using","type":"Number","default":13},{"name":"exploreMinValH","title":"from","type":"String","default":"-0.9"},{"name":"exploreMaxValH","title":"to","type":"String","default":"0.9"},{"name":"exploreMinValD","title":"from","type":"String","default":"10"},{"name":"exploreMaxValD","title":"to","type":"String","default":"250"},{"name":"exploreMinValA","title":"from","type":"String","default":"0.001"},{"name":"exploreMaxValM","title":"to","type":"String","default":"0.5"},{"name":"exploreMinValM","title":"from","type":"String","default":"0.001"},{"name":"exploreMaxValA","title":"to","type":"String","default":"0.5"},{"name":"exploreXLogH","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogD","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogA","title":"log scale","type":"Bool","default":false},{"name":"exploreXLogM","title":"log scale","type":"Bool","default":false},{"name":"numberExplores","title":"no of samples","type":"Number","default":10},{"name":"makeExploreBtn","title":"explore","type":"Action"},{"name":"exploreMode","title":"","type":"List","options":[{"name":"hypothesisExplore","title":"Hypothesis"},{"name":"designExplore","title":"Design"},{"name":"analysisExplore","title":"Analysis"},{"name":"moreExplore","title":"More"}],"default":"designExplore"},{"name":"hypothesisExploreList","title":"explore:","type":"List","options":[{"name":"rIV","title":"EffectSize"},{"name":"rIVIV2","title":"Covariation"},{"name":"rIVIV2DV","title":"Interaction"},{"name":"Heteroscedasticity","title":"Hscedast"},{"name":"blank0h","title":" "},{"name":"IVType","title":"IVType"},{"name":"IVskew","title":"IVskew"},{"name":"IVkurtosis","title":"IVkurtosis"},{"name":"IVlevels","title":"IVlevels"},{"name":"IVcats","title":"IVcats"},{"name":"IVprops","title":"IVprops"},{"name":"DVType","title":"DVType"},{"name":"DVskew","title":"DVskew"},{"name":"DVkurtosis","title":"DVkurtosis"},{"name":"DVcats","title":"DVcats"},{"name":"DVprops","title":"DVprops"},{"name":"blank1h","title":" "},{"name":"lambda","title":"worldLambda"},{"name":"pNull","title":"worldPNull"},{"name":"blank2h"}]},{"name":"designExploreList","title":"explore:","type":"List","options":[{"name":"n","title":"SampleSize"},{"name":"Method","title":"Method"},{"name":"Usage","title":"Usage"},{"name":"blank1d","title":" "},{"name":"Dependence","title":"Dependence"},{"name":"Outliers","title":"Outliers"},{"name":"NonResponse","title":"NonResponse"},{"name":"IVRangeC","title":"IV RangeC"},{"name":"IVRangeE","title":"IV RangeE"},{"name":"blank1e","title":" "},{"name":"Cheating","title":"CheatMethod"},{"name":"CheatingAmount","title":"CheatAmount"}]},{"name":"analysisExploreList","title":"explore:","type":"List","options":[{"name":"Alpha","title":"Alpha"},{"name":"Transform","title":"Transform"},{"name":"Welch","title":"EqualVar"},{"name":"InteractionOn","title":"InteractionOn"}]},{"name":"moreExploreList","title":"explore:","type":"List","options":[{"name":"Power","title":"ReplPower"},{"name":"Keep","title":"ReplDecision"},{"name":"Repeats","title":"ReplAttempts"}]},{"name":"showExploreParam","title":"show as:","type":"List","options":[{"name":"Single","title":"Single"},{"name":"Basic","title":"Basic"},{"name":"p(sig)","title":"p(sig)"},{"name":"NHST","title":"NHST"},{"name":"Hits","title":"Hits"},{"name":"Misses","title":"Misses"},{"name":"DV","title":"DV"},{"name":"Residuals","title":"Residuals"}],"default":"Basic"},{"name":"showExploreDimension","title":"","type":"List","options":[{"name":"1D","title":"1D"},{"name":"2D","title":"2D"}],"default":"1D"},{"name":"whichShowMultiple","title":" ","type":"List","options":[{"name":"direct","title":"direct"},{"name":"unique","title":"unique"},{"name":"total","title":"total"},{"name":"all","title":"all"}],"default":"all"},{"name":"sendSample","title":"single","type":"Output","default":true},{"name":"sendMultiple","title":"multiple","type":"Output","default":false},{"name":"jamoviHelp","title":"Jamovi help?","type":"Bool","default":false},{"name":"brawHelp","title":"Main help?","type":"Bool","default":true},{"name":"demoHelp","title":"Demo help?","type":"Bool","default":true},{"name":"demoWhich","title":"","type":"List","options":[{"name":"blank","title":" "},{"name":"d1","title":"d1"},{"name":"d2","title":"d2"},{"name":"d3","title":"d3"},{"name":"d4","title":"d4"},{"name":"d5","title":"d5"},{"name":"d6","title":"d6"},{"name":"d7","title":"d7"},{"name":"d8","title":"d8"},{"name":"d9","title":"d9"}],"default":"blank"},{"name":"showHTML","title":"HTML graphics?","type":"Bool","default":false},{"name":"doProject1sBtn","title":"set up for me","type":"Action"},{"name":"doProject1aBtn","title":"do it for me","type":"Action"},{"name":"doProject1bBtn","title":"show me","type":"Action"},{"name":"doProject1cLst","title":"IV:","type":"List","options":[{"name":"IQ","title":"IQ"},{"name":"Diligence","title":"Diligence"},{"name":"Perfectionism","title":"Perfectionism"},{"name":"Happiness","title":"Happiness"},{"name":"RiskTaking","title":"RiskTaking"},{"name":"Interesting","title":"Interesting"},{"name":"Musician","title":"Musician?"},{"name":"Smoker","title":"Smoker?"},{"name":"RiskTaker","title":"RiskTaker?"},{"name":"StudySubject","title":"StudySubject"},{"name":"BirthOrder","title":"BirthOrder"}],"default":"Perfectionism"},{"name":"doProject1cLstA","title":"DV:","type":"List","options":[{"name":"ExamGrade","title":"ExamGrade"},{"name":"ExamPass","title":"ExamPass?"}],"default":"ExamGrade"},{"name":"doProject1cBtn","title":"do it","type":"Action"},{"name":"doProject2aBtn","title":"set up for me","type":"Action"},{"name":"doProject2bBtn","title":"do it for me","type":"Action"},{"name":"doProject2cBtn","title":"do it for me","type":"Action"},{"name":"doProject2dBtn","title":"do it for me","type":"Action"},{"name":"doProject3aBtn","title":"set up for me","type":"Action"},{"name":"doProject3bBtn","title":"do it for me","type":"Action"},{"name":"doProject3cBtn","title":"do it for me","type":"Action"},{"name":"doProject3dBtn","title":"do it for me","type":"Action"},{"name":"doProject4aBtn","title":"set up for me","type":"Action"},{"name":"doProject4bBtn","title":"do it for me","type":"Action"},{"name":"doProject4cBtn","title":"do it for me","type":"Action"},{"name":"doProject4dBtn","title":"do it for me","type":"Action"},{"name":"doProject5sBtn","title":"set up for me","type":"Action"},{"name":"doProject5aBtn","title":"do it for me","type":"Action"},{"name":"doProject5bBtn","title":"do it for me","type":"Action"},{"name":"doProject5cBtn","title":"do it for me","type":"Action"},{"name":"doProject5dBtn","title":"do it for me","type":"Action"},{"name":"doproject6sBtn","title":"set up for me","type":"Action"},{"name":"doproject6aBtn","title":"do it for me","type":"Action"},{"name":"doproject6bBtn","title":"do it","type":"Action"},{"name":"doproject6bLst","title":"n:","type":"List","options":[{"name":"n21","title":"21"},{"name":"n42","title":"42"},{"name":"n84","title":"84"},{"name":"n168","title":"168"},{"name":"n336","title":"336"}],"default":"n42"},{"name":"doproject6cBtn","title":"do it for me","type":"Action"},{"name":"doproject6dBtn","title":"do it","type":"Action"},{"name":"doproject6dLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doproject7aBtn","title":"do it","type":"Action"},{"name":"doproject7aLst","title":"hyp:","type":"List","options":[{"name":"iii","title":"i~i*i"},{"name":"ici","title":"i~c*i"},{"name":"iic","title":"i~i*c"},{"name":"icc","title":"i~c*c"}],"default":"iii"},{"name":"doproject7bBtn","title":"do it","type":"Action"},{"name":"doproject7bLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doproject7cBtn","title":"do it","type":"Action"},{"name":"doproject7cLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doproject7dBtn","title":"do it","type":"Action"},{"name":"doproject7dLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doproject8aBtn","title":"do it","type":"Action"},{"name":"doproject8aLst","title":"hyp:","type":"List","options":[{"name":"iii","title":"i~i*i"},{"name":"ici","title":"i~c*i"},{"name":"iic","title":"i~i*c"},{"name":"icc","title":"i~c*c"}],"default":"iii"},{"name":"doproject8bBtn","title":"do it","type":"Action"},{"name":"doproject8bLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doproject8cBtn","title":"do it","type":"Action"},{"name":"doproject8cLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doproject9aBtn","title":"do it","type":"Action"},{"name":"doproject9aLst","title":"hyp:","type":"List","options":[{"name":"iii","title":"i~i*i"},{"name":"ici","title":"i~c*i"},{"name":"iic","title":"i~i*c"},{"name":"icc","title":"i~c*c"}],"default":"iii"},{"name":"doproject9bBtn","title":"do it","type":"Action"},{"name":"doproject9bLst","title":"rp:","type":"List","options":[{"name":"r00","title":"0.0"},{"name":"r01","title":"0.1"},{"name":"r02","title":"0.2"},{"name":"r03","title":"0.3"},{"name":"r05","title":"0.5"},{"name":"r075","title":"0.75"}],"default":"r03"},{"name":"doproject9cBtn","title":"do it","type":"Action"},{"name":"doproject9cLst","title":"rs:","type":"List","options":[{"name":"direct","title":"direct"},{"name":"unique","title":"unique"},{"name":"total","title":"total"}],"default":"direct"}];
 
 const view = function() {
     
@@ -2410,7 +2410,7 @@ view.layout = ui.extend({
 									collapsed: true,
 									label: "1. Make a sample & analyse it",
 									margin: "none",
-									minWidth: 230,
+									minWidth: 255,
 									controls: [
 										{
 											type: DefaultControls.LayoutBox,
@@ -2918,7 +2918,7 @@ view.layout = ui.extend({
 									collapsed: true,
 									label: "2. Check the quality of samples",
 									margin: "none",
-									minWidth: 230,
+									minWidth: 255,
 									controls: [
 										{
 											type: DefaultControls.LayoutBox,
@@ -3295,9 +3295,9 @@ view.layout = ui.extend({
 									type: DefaultControls.CollapseBox,
 									typeName: 'CollapseBox',
 									collapsed: true,
-									label: "3. So rs does not equal rp",
+									label: "3. Sampling error: rs vs rp",
 									margin: "none",
-									minWidth: 230,
+									minWidth: 255,
 									controls: [
 										{
 											type: DefaultControls.LayoutBox,
@@ -3692,9 +3692,9 @@ view.layout = ui.extend({
 									type: DefaultControls.CollapseBox,
 									typeName: 'CollapseBox',
 									collapsed: true,
-									label: "4. The role of lucky sampling",
+									label: "4. The role of chance in sampling",
 									margin: "none",
-									minWidth: 230,
+									minWidth: 255,
 									controls: [
 										{
 											type: DefaultControls.LayoutBox,
@@ -3896,100 +3896,7 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.Label,
 																	typeName: 'Label',
-																	label: "2. repeat this with a 2D graph of the results"
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "list",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- do this several times"
-																						}
-																					]
-																				},
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "- all the results lie on the same curve"
-																						}
-																					]
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "inline",
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: " ",
-																			minWidth: 26
-																		}
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															name: "doProject4cBtn",
-															margin: "none",
-															maxWidth: 80,
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project4c }
-															]
-														}
-													]
-												},
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "list",
-															minWidth: 370,
-															controls: [
-																{
-																	type: DefaultControls.Label,
-																	typeName: 'Label',
-																	label: "4. do the same thing but with Multiple Samples"
+																	label: "2. do the same thing but with Multiple Samples"
 																},
 																{
 																	type: DefaultControls.LayoutBox,
@@ -4077,6 +3984,99 @@ view.layout = ui.extend({
 														{
 															type: DefaultControls.ActionButton,
 															typeName: 'ActionButton',
+															name: "doProject4cBtn",
+															margin: "none",
+															maxWidth: 80,
+															events: [
+																{ execute: require('./BrawSim.events').onChange_project4c }
+															]
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 370,
+															controls: [
+																{
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "3. repeat this with a 2D graph of the results"
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- do this several times"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- all the results lie on the same curve"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.Label,
+																			typeName: 'Label',
+																			label: " ",
+																			minWidth: 26
+																		}
+																	]
+																}
+															]
+														},
+														{
+															type: DefaultControls.ActionButton,
+															typeName: 'ActionButton',
 															name: "doProject4dBtn",
 															margin: "none",
 															maxWidth: 80,
@@ -4107,9 +4107,517 @@ view.layout = ui.extend({
 									type: DefaultControls.CollapseBox,
 									typeName: 'CollapseBox',
 									collapsed: true,
-									label: "5. Improving your chances",
+									label: "5. Inferential errors",
 									margin: "none",
-									minWidth: 230,
+									minWidth: 255,
+									controls: [
+										{
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "inline",
+											controls: [
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: "Set up",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															controls: [
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Choose two Interval variables"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "Build a world with equal numbers of rp=0 and rp=0.3"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												},
+												{
+													name: "doProject5sBtn",
+													type: DefaultControls.ActionButton,
+													typeName: 'ActionButton',
+													margin: "none",
+													events: [
+														{ execute: require('./BrawSim.events').onChange_Project5s }
+													],
+													maxWidth: 80
+												}
+											]
+										},
+										{
+											type: DefaultControls.Label,
+											typeName: 'Label',
+											label: "Steps",
+											controls: [
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 370,
+															controls: [
+																{
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "1. make a sample"
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- and view it as \"Infer\""
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "   - noting the statistical significance"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- can you say which population it came from?"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- do this several times"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.Label,
+																			typeName: 'Label',
+																			label: " ",
+																			minWidth: 26
+																		}
+																	]
+																}
+															]
+														},
+														{
+															name: "doProject5aBtn",
+															type: DefaultControls.ActionButton,
+															typeName: 'ActionButton',
+															margin: "none",
+															maxWidth: 80,
+															events: [
+																{ execute: require('./BrawSim.events').onChange_Project5a }
+															]
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 370,
+															controls: [
+																{
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "2. do the same thing but with Multiple Samples"
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- go to \"Multiple Samples\""
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- press \"multiple\""
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- you can do this several times"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.Label,
+																			typeName: 'Label',
+																			label: " ",
+																			minWidth: 26
+																		}
+																	]
+																}
+															]
+														},
+														{
+															type: DefaultControls.ActionButton,
+															typeName: 'ActionButton',
+															name: "doProject5bBtn",
+															margin: "none",
+															maxWidth: 80,
+															events: [
+																{ execute: require('./BrawSim.events').onChange_Project5b }
+															]
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 370,
+															controls: [
+																{
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "3. repeat this with \"NHST\" display of results"
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- do this several times"
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- all the results lie on the same curve"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.Label,
+																			typeName: 'Label',
+																			label: " ",
+																			minWidth: 26
+																		}
+																	]
+																}
+															]
+														},
+														{
+															type: DefaultControls.ActionButton,
+															typeName: 'ActionButton',
+															name: "doProject5cBtn",
+															margin: "none",
+															maxWidth: 80,
+															events: [
+																{ execute: require('./BrawSim.events').onChange_Project5c }
+															]
+														}
+													]
+												},
+												{
+													type: DefaultControls.LayoutBox,
+													typeName: 'LayoutBox',
+													style: "inline",
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "list",
+															minWidth: 370,
+															controls: [
+																{
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "4. repeat this with a larger sample size"
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 13
+																						},
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "- go back and try step 1 & 2 as well"
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.Label,
+																			typeName: 'Label',
+																			label: " ",
+																			minWidth: 26
+																		}
+																	]
+																}
+															]
+														},
+														{
+															type: DefaultControls.ActionButton,
+															typeName: 'ActionButton',
+															name: "doProject5dBtn",
+															margin: "none",
+															maxWidth: 80,
+															events: [
+																{ execute: require('./BrawSim.events').onChange_Project5d }
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							type: DefaultControls.LayoutBox,
+							typeName: 'LayoutBox',
+							style: "inline",
+							controls: [
+								{
+									type: DefaultControls.Label,
+									typeName: 'Label',
+									label: " ",
+									minWidth: 13
+								},
+								{
+									type: DefaultControls.CollapseBox,
+									typeName: 'CollapseBox',
+									collapsed: true,
+									label: "6. Design: improving your chances",
+									margin: "none",
+									minWidth: 255,
 									controls: [
 										{
 											type: DefaultControls.LayoutBox,
@@ -4170,12 +4678,12 @@ view.layout = ui.extend({
 													]
 												},
 												{
-													name: "doProject5sBtn",
+													name: "doproject6sBtn",
 													type: DefaultControls.ActionButton,
 													typeName: 'ActionButton',
 													margin: "none",
 													events: [
-														{ execute: require('./BrawSim.events').onChange_project5s }
+														{ execute: require('./BrawSim.events').onChange_project6s }
 													],
 													maxWidth: 80
 												}
@@ -4268,13 +4776,13 @@ view.layout = ui.extend({
 															]
 														},
 														{
-															name: "doProject5aBtn",
+															name: "doproject6aBtn",
 															type: DefaultControls.ActionButton,
 															typeName: 'ActionButton',
 															margin: "none",
 															maxWidth: 80,
 															events: [
-																{ execute: require('./BrawSim.events').onChange_project5a }
+																{ execute: require('./BrawSim.events').onChange_project6a }
 															]
 														}
 													]
@@ -4369,7 +4877,7 @@ view.layout = ui.extend({
 															margin: "none",
 															controls: [
 																{
-																	name: "doProject5bLst",
+																	name: "doproject6bLst",
 																	type: DefaultControls.ComboBox,
 																	typeName: 'ComboBox',
 																	margin: "none",
@@ -4379,12 +4887,12 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.ActionButton,
 																	typeName: 'ActionButton',
-																	name: "doProject5bBtn",
+																	name: "doproject6bBtn",
 																	margin: "none",
 																	minWidth: 80,
 																	maxWidth: 80,
 																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project5b }
+																		{ execute: require('./BrawSim.events').onChange_project6b }
 																	]
 																}
 															]
@@ -4493,11 +5001,11 @@ view.layout = ui.extend({
 														{
 															type: DefaultControls.ActionButton,
 															typeName: 'ActionButton',
-															name: "doProject5cBtn",
+															name: "doproject6cBtn",
 															margin: "none",
 															maxWidth: 80,
 															events: [
-																{ execute: require('./BrawSim.events').onChange_project5c }
+																{ execute: require('./BrawSim.events').onChange_project6c }
 															]
 														}
 													]
@@ -4610,7 +5118,7 @@ view.layout = ui.extend({
 															margin: "none",
 															controls: [
 																{
-																	name: "doProject5dLst",
+																	name: "doproject6dLst",
 																	type: DefaultControls.ComboBox,
 																	typeName: 'ComboBox',
 																	margin: "none",
@@ -4620,12 +5128,12 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.ActionButton,
 																	typeName: 'ActionButton',
-																	name: "doProject5dBtn",
+																	name: "doproject6dBtn",
 																	margin: "none",
 																	minWidth: 80,
 																	maxWidth: 80,
 																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project5d }
+																		{ execute: require('./BrawSim.events').onChange_project6d }
 																	]
 																}
 															]
@@ -4653,9 +5161,9 @@ view.layout = ui.extend({
 									type: DefaultControls.CollapseBox,
 									typeName: 'CollapseBox',
 									collapsed: true,
-									label: "6. More than 1 IV",
+									label: "7. More than 1 IV",
 									margin: "none",
-									minWidth: 230,
+									minWidth: 255,
 									controls: [
 										{
 											type: DefaultControls.LayoutBox,
@@ -4736,7 +5244,7 @@ view.layout = ui.extend({
 													margin: "none",
 													controls: [
 														{
-															name: "doProject6aLst",
+															name: "doproject7aLst",
 															type: DefaultControls.ComboBox,
 															typeName: 'ComboBox',
 															margin: "none",
@@ -4746,12 +5254,12 @@ view.layout = ui.extend({
 														{
 															type: DefaultControls.ActionButton,
 															typeName: 'ActionButton',
-															name: "doProject6aBtn",
+															name: "doproject7aBtn",
 															margin: "none",
 															minWidth: 80,
 															maxWidth: 80,
 															events: [
-																{ execute: require('./BrawSim.events').onChange_project6a }
+																{ execute: require('./BrawSim.events').onChange_project7a }
 															]
 														}
 													]
@@ -4889,7 +5397,7 @@ view.layout = ui.extend({
 															margin: "none",
 															controls: [
 																{
-																	name: "doProject6bLst",
+																	name: "doproject7bLst",
 																	type: DefaultControls.ComboBox,
 																	typeName: 'ComboBox',
 																	margin: "none",
@@ -4899,12 +5407,12 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.ActionButton,
 																	typeName: 'ActionButton',
-																	name: "doProject6bBtn",
+																	name: "doproject7bBtn",
 																	margin: "none",
 																	minWidth: 80,
 																	maxWidth: 80,
 																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project6b }
+																		{ execute: require('./BrawSim.events').onChange_project7b }
 																	]
 																}
 															]
@@ -5019,7 +5527,7 @@ view.layout = ui.extend({
 															margin: "none",
 															controls: [
 																{
-																	name: "doProject6cLst",
+																	name: "doproject7cLst",
 																	type: DefaultControls.ComboBox,
 																	typeName: 'ComboBox',
 																	margin: "none",
@@ -5029,12 +5537,12 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.ActionButton,
 																	typeName: 'ActionButton',
-																	name: "doProject6cBtn",
+																	name: "doproject7cBtn",
 																	margin: "none",
 																	minWidth: 80,
 																	maxWidth: 80,
 																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project6c }
+																		{ execute: require('./BrawSim.events').onChange_project7c }
 																	]
 																}
 															]
@@ -5149,7 +5657,7 @@ view.layout = ui.extend({
 															margin: "none",
 															controls: [
 																{
-																	name: "doProject6dLst",
+																	name: "doproject7dLst",
 																	type: DefaultControls.ComboBox,
 																	typeName: 'ComboBox',
 																	margin: "none",
@@ -5159,12 +5667,12 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.ActionButton,
 																	typeName: 'ActionButton',
-																	name: "doProject6dBtn",
+																	name: "doproject7dBtn",
 																	margin: "none",
 																	minWidth: 80,
 																	maxWidth: 80,
 																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project6d }
+																		{ execute: require('./BrawSim.events').onChange_project7d }
 																	]
 																}
 															]
@@ -5192,9 +5700,9 @@ view.layout = ui.extend({
 									type: DefaultControls.CollapseBox,
 									typeName: 'CollapseBox',
 									collapsed: true,
-									label: "7. Interactions as Moderators",
+									label: "8. Interactions as Moderators",
 									margin: "none",
-									minWidth: 230,
+									minWidth: 255,
 									controls: [
 										{
 											type: DefaultControls.LayoutBox,
@@ -5275,7 +5783,7 @@ view.layout = ui.extend({
 													margin: "none",
 													controls: [
 														{
-															name: "doProject7aLst",
+															name: "doproject8aLst",
 															type: DefaultControls.ComboBox,
 															typeName: 'ComboBox',
 															margin: "none",
@@ -5285,12 +5793,12 @@ view.layout = ui.extend({
 														{
 															type: DefaultControls.ActionButton,
 															typeName: 'ActionButton',
-															name: "doProject7aBtn",
+															name: "doproject8aBtn",
 															margin: "none",
 															minWidth: 80,
 															maxWidth: 80,
 															events: [
-																{ execute: require('./BrawSim.events').onChange_project7a }
+																{ execute: require('./BrawSim.events').onChange_project8a }
 															]
 														}
 													]
@@ -5446,7 +5954,7 @@ view.layout = ui.extend({
 															margin: "none",
 															controls: [
 																{
-																	name: "doProject7bLst",
+																	name: "doproject8bLst",
 																	type: DefaultControls.ComboBox,
 																	typeName: 'ComboBox',
 																	margin: "none",
@@ -5456,12 +5964,12 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.ActionButton,
 																	typeName: 'ActionButton',
-																	name: "doProject7bBtn",
+																	name: "doproject8bBtn",
 																	margin: "none",
 																	minWidth: 80,
 																	maxWidth: 80,
 																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project7b }
+																		{ execute: require('./BrawSim.events').onChange_project8b }
 																	]
 																}
 															]
@@ -5612,7 +6120,7 @@ view.layout = ui.extend({
 															margin: "none",
 															controls: [
 																{
-																	name: "doProject7cLst",
+																	name: "doproject8cLst",
 																	type: DefaultControls.ComboBox,
 																	typeName: 'ComboBox',
 																	margin: "none",
@@ -5622,12 +6130,12 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.ActionButton,
 																	typeName: 'ActionButton',
-																	name: "doProject7cBtn",
+																	name: "doproject8cBtn",
 																	margin: "none",
 																	minWidth: 80,
 																	maxWidth: 80,
 																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project7c }
+																		{ execute: require('./BrawSim.events').onChange_project8c }
 																	]
 																}
 															]
@@ -5655,9 +6163,9 @@ view.layout = ui.extend({
 									type: DefaultControls.CollapseBox,
 									typeName: 'CollapseBox',
 									collapsed: true,
-									label: "8. Covariation",
+									label: "9. Covariation",
 									margin: "none",
-									minWidth: 230,
+									minWidth: 255,
 									controls: [
 										{
 											type: DefaultControls.LayoutBox,
@@ -5738,7 +6246,7 @@ view.layout = ui.extend({
 													margin: "none",
 													controls: [
 														{
-															name: "doProject8aLst",
+															name: "doproject9aLst",
 															type: DefaultControls.ComboBox,
 															typeName: 'ComboBox',
 															margin: "none",
@@ -5748,12 +6256,12 @@ view.layout = ui.extend({
 														{
 															type: DefaultControls.ActionButton,
 															typeName: 'ActionButton',
-															name: "doProject8aBtn",
+															name: "doproject9aBtn",
 															margin: "none",
 															minWidth: 80,
 															maxWidth: 80,
 															events: [
-																{ execute: require('./BrawSim.events').onChange_project8a }
+																{ execute: require('./BrawSim.events').onChange_project9a }
 															]
 														}
 													]
@@ -5855,7 +6363,7 @@ view.layout = ui.extend({
 															margin: "none",
 															controls: [
 																{
-																	name: "doProject8bLst",
+																	name: "doproject9bLst",
 																	type: DefaultControls.ComboBox,
 																	typeName: 'ComboBox',
 																	margin: "none",
@@ -5865,12 +6373,12 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.ActionButton,
 																	typeName: 'ActionButton',
-																	name: "doProject8bBtn",
+																	name: "doproject9bBtn",
 																	margin: "none",
 																	minWidth: 80,
 																	maxWidth: 80,
 																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project8b }
+																		{ execute: require('./BrawSim.events').onChange_project9b }
 																	]
 																}
 															]
@@ -5969,23 +6477,23 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.ComboBox,
 																	typeName: 'ComboBox',
-																	name: "doProject8cLst",
+																	name: "doproject9cLst",
 																	margin: "none",
 																	minWidth: 80,
 																	maxWidth: 80,
 																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project8cLst }
+																		{ execute: require('./BrawSim.events').onChange_project9cLst }
 																	]
 																},
 																{
 																	type: DefaultControls.ActionButton,
 																	typeName: 'ActionButton',
-																	name: "doProject8cBtn",
+																	name: "doproject9cBtn",
 																	margin: "none",
 																	minWidth: 80,
 																	maxWidth: 80,
 																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project8c }
+																		{ execute: require('./BrawSim.events').onChange_project9c }
 																	]
 																}
 															]

@@ -7,11 +7,13 @@ drawNHSTBar<-function(i,npts,pts1,bwidth,col1) {
   pts<-data.frame(x=x1,y=y1)
   dataPolygon(data=pts,fill=col1)
 }
-drawNHSTLabel<-function(lb1,lb1xy,xoff,col1) {
+drawNHSTLabel<-function(lb1,lb1xy,xoff,col1,vjust=NULL) {
   if (sum(col2rgb(col1))>128*3) col<-"black" else col<-"white"
   lb1xy$x<-lb1xy$x+xoff
+  if (is.null(vjust))
+    if (lb1xy$y>0.5) vjust<-1 else vjust<-0
   dataLabel(data=lb1xy,label=lb1,
-            hjust=1,vjust=1,
+            hjust=1,vjust=vjust,
             fill=col1,colour=col)
 }
 
@@ -265,7 +267,7 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
     if (is.null(hypothesis$IV2)) {
       exploreTypeShow<-"r[p]"
     } else {
-      exploreTypeShow<-paste0("r[p]",gsub("^r","",explore$exploreType))
+      exploreTypeShow<-paste0("r[p]~",gsub("^r","",explore$exploreType))
     }
   } else exploreTypeShow<-explore$exploreType
   
@@ -774,7 +776,7 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
                 g<-addG(g,dataPolygon(data=ptsShow,fill=colShow,colour=NA))
               } else {
                   npts<-length(vals)
-                  bwidth<-0.4*(ptsShow$x[2]-pts1$x[1])
+                  bwidth<-0.4*(ptsShow$x[2]-ptsShow$x[1])
                   for (i in 1:npts) {
                     g<-addG(g,drawNHSTBar(i,npts,ptsShow,bwidth,colShow))
                   }
@@ -851,7 +853,7 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
     }
 
     lineCol<-"black"
-    if (is.element(showType[si],c("p","e1","e2","e1d","e2d"))) lineCol<-"green"
+    if (is.element(showType[si],c("p","e1p","e2p","e1d","e2d"))) lineCol<-"green"
     for (yl in ylines) {
       g<-addG(g,horzLine(yl,linetype="dotted",colour=lineCol))
     }
@@ -970,12 +972,12 @@ showExplore2D<-function(exploreResult=braw.res$explore,showType=c("rs","p"),show
   # g<-addG(g,yAxisTicks(logScale=yaxis$logScale),yAxisLabel(ylabel))
   
   lineCol<-"black"
-  if (is.element(showType[1],c("p","e1","e2","e1d","e2d"))) lineCol<-"green"
+  if (is.element(showType[1],c("p","e1p","e2p","e1d","e2d"))) lineCol<-"green"
   for (xl in xlines) {
     g<-addG(g,vertLine(xl,linetype="dotted",colour=lineCol,linewidth=0.5))
   }
   lineCol<-"black"
-  if (is.element(showType[2],c("p","e1","e2","e1d","e2d"))) lineCol<-"green"
+  if (is.element(showType[2],c("p","e1p","e2p","e1d","e2d"))) lineCol<-"green"
   for (yl in ylines) {
     g<-addG(g,horzLine(yl,linetype="dotted",colour=lineCol,linewidth=0.5))
   }

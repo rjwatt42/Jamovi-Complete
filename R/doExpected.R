@@ -93,7 +93,7 @@ resetExpected<-function(nsims=0,evidence,expectedResult=NULL){
 #' @seealso showExpected() and reportExpected())
 #' @export
 doExpected <- function(nsims=10,expectedResult=braw.res$expected,hypothesis=braw.def$hypothesis,design=braw.def$design,evidence=makeEvidence(),
-                         doingNull=FALSE,autoShow=braw.env$autoShow,showType="Basic") {
+                         doingNull=FALSE,inSteps=FALSE,autoShow=braw.env$autoShow,showType="Basic") {
 
   if (!is.null(expectedResult)) {
     hypothesis<-expectedResult$hypothesis
@@ -118,7 +118,7 @@ doExpected <- function(nsims=10,expectedResult=braw.res$expected,hypothesis=braw
     }
   }
   
-  if (autoShow) {
+  if (inSteps && autoShow) {
     min_ns<-floor(log10(nsims/100))
     min_ns<-max(0,min_ns)
     ns<-10^min_ns
