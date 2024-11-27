@@ -244,7 +244,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         demoHelp<-private$.htmlwidget$generate_tab(
           title="Demos Help:",
           # titleTab="Click on the tabs for specific help.",
-          tabs=c("1","2","3","4","5","6","7","8","9"),
+          tabs=c("1","2","3","4","5","6","7","8","9","10"),
           tabContents = c(
             demoInstructions("1"),
             demoInstructions("2"),
@@ -254,7 +254,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             demoInstructions("6"),
             demoInstructions("7"),
             demoInstructions("8"),
-            demoInstructions("9")
+            demoInstructions("9"),
+            demoInstructions("10")
           ),
           open=which(self$options$demoWhich==c("blank","d1","d2","d3","d4","d5","d6","d7","d8","d9"))-1
         )

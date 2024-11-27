@@ -115,7 +115,7 @@ demoInstructions <- function(HelpType="1") {
          "9"={output<-c(
            '<b>Demo 9</b>',
            '<br>',
-           'A demo about covariation between IV2.',
+           'A demo about covariation between IV and IV2.',
            ' The basic operation is to:',
            '<ul style=margin:0px;>',
            '<li> Make samples from a population with covariation.',
@@ -124,7 +124,22 @@ demoInstructions <- function(HelpType="1") {
            'See how covariation affects the main effect sizes.',
            '<br>'
          )
+         },
+         
+         "10"={output<-c(
+           '<b>Demo 10</b>',
+           '<br>',
+           'A demo about mediaation effects.',
+           ' The basic operation is to:',
+           '<ul style=margin:0px;>',
+           '<li> .',
+           '<li> .',
+           '</ul>',
+           'effect sizes.',
+           '<br>'
+         )
          }
+         
   )
     extras<-paste0('More information ',
                     '<a href=',

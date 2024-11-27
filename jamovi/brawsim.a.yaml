@@ -1734,20 +1734,6 @@ options:
       title: 'do it'
       type: Action
 
-    - name: doProject9sLst
-      title: "hyp:"
-      type: List
-      options:
-      - name: iii
-        title: 'i~i*i'
-      - name: ici
-        title: 'i~c*i'
-      - name: iic
-        title: 'i~i*c'
-      - name: icc
-        title: 'i~c*c'
-      default: iii
-
     - name: doproject9aBtn
       title: 'do it'
       type: Action
@@ -1779,16 +1765,38 @@ options:
       type: Action
 
 
-    - name: doproject9cLst
-      title: "rs:"
+    - name: doProject10sBtn
+      title: 'do it'
+      type: Action
+
+    - name: doproject10aBtn
+      title: 'do it'
+      type: Action
+
+    - name: doproject10bBtn
+      title: 'do it'
+      type: Action
+
+    - name: doproject10bLst
+      title: "rp:"
       type: List
       options:
-      - name: direct
-        title: direct
-      - name: unique
-        title: unique
-      - name: total
-        title: total
-      default: direct
+      - name: r00
+        title: '0.0'
+      - name: r01
+        title: '0.1'
+      - name: r02
+        title: '0.2'
+      - name: r03
+        title: '0.3'
+      - name: r05
+        title: '0.5'
+      - name: r075
+        title: '0.75'
+      default: r03
+
+    - name: doproject10cBtn
+      title: 'do it'
+      type: Action
 
 ...

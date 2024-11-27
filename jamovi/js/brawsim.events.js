@@ -622,34 +622,14 @@ const events =  {
     onChange_Project9s: function(ui) {
       let BtnOn = ui.doProject9sBtn.value();
       if (BtnOn==true) {
-      let hyp = ui.doProject9sLst.value();
       defaultSetUp(ui)
       ui.demoWhich.setValue("d9")
       ui.presetIV2.setValue("IV2");
       ui.IV2name.setValue("IV2"); 
+          ui.DVtype.setValue("Interval"); 
+          ui.IVtype.setValue("Interval"); 
+          ui.IV2type.setValue("Interval"); 
       ui.interaction.setValue("no");
-      switch(hyp) {
-        case "iii": 
-          ui.DVtype.setValue("Interval"); 
-          ui.IVtype.setValue("Interval"); 
-          ui.IV2type.setValue("Interval"); 
-        break;
-        case "ici": 
-          ui.DVtype.setValue("Interval"); 
-          ui.IVtype.setValue("Categorical"); 
-          ui.IV2type.setValue("Interval"); 
-        break;
-        case "iic": 
-          ui.DVtype.setValue("Interval"); 
-          ui.IVtype.setValue("Interval"); 
-          ui.IV2type.setValue("Categorical"); 
-        break;
-        case "icc": 
-          ui.DVtype.setValue("Interval"); 
-          ui.IVtype.setValue("Categorical"); 
-          ui.IV2type.setValue("Categorical"); 
-        break;
-      }
       ui.EffectSize1.setValue(0.5)
       ui.EffectSize2.setValue(0.5)
       ui.EffectSize3.setValue(0.3)
@@ -695,23 +675,87 @@ const events =  {
       }
     },
     
-    onChange_project9cLst: function(ui) {
-      let showVal = ui.doproject9cLst.value();
-      ui.whichShowMultiple.setValue(showVal)
-    },
-    
     onChange_project9c: function(ui) {
       let BtnOn = ui.doproject9cBtn.value();
       if (BtnOn==true) {
         ui.SampleSize.setValue(42)
-        let showVal = ui.doproject9cLst.value();
-        ui.whichShowMultiple.setValue(showVal)
+        ui.whichShowMultiple.setValue("all")
+        ui.exploreMode.setValue("hypothesisExplore")
+        ui.hypothesisExploreList.setValue("rIVIV2")
+        ui.showExploreParam.setValue("Single")
+      ui.makeExploreBtn.setValue(true)
+      }
+    },
+    
+    
+    onChange_Project10s: function(ui) {
+      let BtnOn = ui.doProject10sBtn.value();
+      if (BtnOn==true) {
+      defaultSetUp(ui)
+      ui.demoWhich.setValue("d9")
+      ui.presetIV2.setValue("IV2");
+      ui.IV2name.setValue("IV2"); 
+      ui.interaction.setValue("no");
+          ui.DVtype.setValue("Interval"); 
+          ui.IVtype.setValue("Interval"); 
+          ui.IV2type.setValue("Interval"); 
+      ui.EffectSize1.setValue(0.0)
+      ui.EffectSize2.setValue(0.7)
+      ui.EffectSize3.setValue(0.7)
+      ui.SampleSize.setValue(1000)
+      ui.showHypothesisBtn.setValue(true)
+      }
+    },
+    
+    onChange_project10a: function(ui) {
+      let BtnOn = ui.doproject10aBtn.value();
+      if (BtnOn==true) {
+        ui.showSampleType.setValue("Infer")
+      ui.makeSampleBtn.setValue(true)
+      }
+    },
+    
+    onChange_project10b: function(ui) {
+      let BtnOn = ui.doproject10bBtn.value();
+      if (BtnOn==true) {
+      let rVal = ui.doproject10bLst.value();
+      switch(rVal) {
+        case "r00": 
+          ui.EffectSize3.setValue(0.0); 
+          break;
+        case "r01": 
+          ui.EffectSize3.setValue(0.1); 
+          break;
+        case "r02": 
+          ui.EffectSize3.setValue(0.2); 
+          break;
+        case "r03": 
+          ui.EffectSize3.setValue(0.3); 
+          break;
+        case "r05": 
+          ui.EffectSize3.setValue(0.5); 
+          break;
+        case "r075": 
+          ui.EffectSize3.setValue(0.75); 
+          break;
+      }
+        ui.showSampleType.setValue("Infer")
+      ui.makeSampleBtn.setValue(true)
+      }
+    },
+
+    onChange_project10c: function(ui) {
+      let BtnOn = ui.doproject10cBtn.value();
+      if (BtnOn==true) {
+        ui.SampleSize.setValue(42)
+        ui.whichShowMultiple.setValue("all")
         ui.exploreMode.setValue("hypothesisExplore")
         ui.hypothesisExploreList.setValue("rIVIV2")
         ui.showExploreParam.setValue("Single")
       ui.makeExploreBtn.setValue(true)
       }
     }
+
 }
 
 let defaultSetUp = function(ui) {
