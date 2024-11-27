@@ -45,6 +45,8 @@ options:
         title: Perfectionism
       - name: Happiness
         title: Happiness
+      - name: SelfConfidence
+        title: SelfConfidence
       - name: ExamGrade
         title: ExamGrade
       - name: ExamPass
@@ -83,6 +85,8 @@ options:
         title: Perfectionism
       - name: Happiness
         title: Happiness
+      - name: SelfConfidence
+        title: SelfConfidence
       - name: ExamGrade
         title: ExamGrade
       - name: RiskTaking
@@ -121,6 +125,8 @@ options:
         title: Perfectionism
       - name: Happiness
         title: Happiness
+      - name: SelfConfidence
+        title: SelfConfidence
       - name: ExamGrade
         title: ExamGrade
       - name: RiskTaking
@@ -1412,6 +1418,8 @@ options:
         title: Perfectionism
       - name: Happiness
         title: Happiness
+      - name: SelfConfidence
+        title: SelfConfidence
       - name: RiskTaking
         title: RiskTaking
       - name: Interesting
@@ -1722,11 +1730,11 @@ options:
       default: r03
 
 
-    - name: doproject9aBtn
+    - name: doProject9sBtn
       title: 'do it'
       type: Action
 
-    - name: doproject9aLst
+    - name: doProject9sLst
       title: "hyp:"
       type: List
       options:
@@ -1739,6 +1747,10 @@ options:
       - name: icc
         title: 'i~c*c'
       default: iii
+
+    - name: doproject9aBtn
+      title: 'do it'
+      type: Action
 
     - name: doproject9bBtn
       title: 'do it'

@@ -619,12 +619,12 @@ const events =  {
       }
     },
 
-    onChange_project9a: function(ui) {
-      let BtnOn = ui.doproject9aBtn.value();
+    onChange_Project9s: function(ui) {
+      let BtnOn = ui.doProject9sBtn.value();
       if (BtnOn==true) {
-      let hyp = ui.doproject9aLst.value();
+      let hyp = ui.doProject9sLst.value();
       defaultSetUp(ui)
-      ui.demoWhich.setValue("d8")
+      ui.demoWhich.setValue("d9")
       ui.presetIV2.setValue("IV2");
       ui.IV2name.setValue("IV2"); 
       ui.interaction.setValue("no");
@@ -652,9 +652,17 @@ const events =  {
       }
       ui.EffectSize1.setValue(0.5)
       ui.EffectSize2.setValue(0.5)
-      ui.EffectSize12.setValue(0.0)
+      ui.EffectSize3.setValue(0.3)
       ui.SampleSize.setValue(1000)
       ui.showHypothesisBtn.setValue(true)
+      }
+    },
+    
+    onChange_project9a: function(ui) {
+      let BtnOn = ui.doproject9aBtn.value();
+      if (BtnOn==true) {
+        ui.showSampleType.setValue("Describe")
+      ui.makeSampleBtn.setValue(true)
       }
     },
     
@@ -707,16 +715,18 @@ const events =  {
 }
 
 let defaultSetUp = function(ui) {
-        ui.DVtype.setValue("Interval")
-      ui.presetIV2.setValue("none")
-      ui.IVtype.setValue("Interval")
+      ui.DVtype.setValue("Interval")
+        ui.presetIV2.setValue("none")
+        ui.IVtype.setValue("Interval")
       ui.EffectSize1.setValue(0.3)
-      ui.EffectSize2.setValue(0)
-      ui.EffectSize3.setValue(0)
-      ui.EffectSize12.setValue(0)
-        ui.SampleSize.setValue(42)
+        ui.EffectSize2.setValue(0)
+        ui.EffectSize3.setValue(0)
+        ui.EffectSize12.setValue(0)
+        ui.WorldOn.setValue(false)
+      ui.SampleSpreadOn.setValue(false)
+      ui.SampleSize.setValue(42)
         ui.SampleMethod.setValue("Random")
-        ui.showInferDimension.setValue("1D")
+      ui.showInferDimension.setValue("1D")
         ui.showMultipleDimension.setValue("1D")
 }
 
@@ -754,6 +764,11 @@ let makeVar = function(name) {
       break;
     case "Happiness":
       var variable={name:"Happiness",type:"Interval",mu:50,sd:12,skew:0,kurt:3,
+      nlevs:7,iqr:3,
+      ncats:2,cases:"C1,C2",props:"1,1"};
+      break;
+    case "SelfConfidence":
+      var variable={name:"SelfConfidence",type:"Interval",mu:50,sd:12,skew:0,kurt:3,
       nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;

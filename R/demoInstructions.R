@@ -62,6 +62,19 @@ demoInstructions <- function(HelpType="1") {
          "5"={output<-c(
            '<b>Demo 5</b>',
            '<br>',
+           'A demo about the NHST.',
+           ' The basic operation is to:',
+           '<ul style=margin:0px;>',
+           '<li> .',
+           '<li> .',
+           '<li> .',
+           '</ul>'
+         )
+         },
+         
+         "6"={output<-c(
+           '<b>Demo 6</b>',
+           '<br>',
            'A demo about the importance of design.',
            ' The basic operation is to:',
            '<ul style=margin:0px;>',
@@ -72,8 +85,8 @@ demoInstructions <- function(HelpType="1") {
          )
          },
          
-         "6"={output<-c(
-           '<b>Demo 6</b>',
+         "7"={output<-c(
+           '<b>Demo 7</b>',
            '<br>',
            'A demo about using multiple IVs.',
            ' The basic operation is to:',
@@ -87,8 +100,8 @@ demoInstructions <- function(HelpType="1") {
          )
          },
          
-         "7"={output<-c(
-           '<b>Demo 7</b>',
+         "8"={output<-c(
+           '<b>Demo 8</b>',
            '<br>',
            'A demo about interactions.',
            ' The basic operation is to:',
@@ -96,20 +109,6 @@ demoInstructions <- function(HelpType="1") {
            '<li> See how interactions can be seen as an on/off switch.',
            '<li> See how interactions can be seen as an +/- switch.',
            '</ul>'
-         )
-         },
-         
-         "8"={output<-c(
-           '<b>Demo 8</b>',
-           '<br>',
-           'A demo about covariation between IV2.',
-           ' The basic operation is to:',
-           '<ul style=margin:0px;>',
-           '<li> Make samples from a population with covariation.',
-           '<li> See what the covariation results in.',
-           '</ul>',
-           'See how covariation affects the main effect sizes.',
-           '<br>'
          )
          },
          

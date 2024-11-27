@@ -3155,6 +3155,11 @@ children:
                                         style: inline
                                         children:
                                           - type: Label
+                                            label: Set covariation effect-size to 0.3
+                                      - type: LayoutBox
+                                        style: inline
+                                        children:
+                                          - type: Label
                                             label: Set sample size to 1000
                       - type: LayoutBox
                         style: list
@@ -3162,18 +3167,18 @@ children:
                         maxWidth: 80
                         margin: none
                         children:
-                          - name: doproject9aLst
+                          - name: doProject9sLst
                             type: ComboBox
                             margin: none
                             minWidth: 80
                             maxWidth: 80
                           - type: ActionButton
-                            name: doproject9aBtn
+                            name: doProject9sBtn
                             margin: none
                             minWidth: 80
                             maxWidth: 80
                             events:
-                              change: ./BrawSim.events::onChange_project9a
+                              change: ./BrawSim.events::onChange_Project9s
                   - type: Label
                     label: Steps
                     children:
@@ -3222,6 +3227,48 @@ children:
                             maxWidth: 80
                             margin: none
                             children:
+                              - type: ActionButton
+                                name: doproject9aBtn
+                                margin: none
+                                minWidth: 80
+                                maxWidth: 80
+                                events:
+                                  change: ./BrawSim.events::onChange_project9a
+                      - type: LayoutBox
+                        style: inline
+                        children:
+                          - type: LayoutBox
+                            style: list
+                            minWidth: 370
+                            children:
+                              - type: Label
+                                label: 2. varying the amount of covariation
+                              - type: LayoutBox
+                                style: inline
+                                children:
+                                  - type: LayoutBox
+                                    style: list
+                                    children:
+                                      - type: LayoutBox
+                                        style: inline
+                                        children:
+                                          - type: Label
+                                            label: ' '
+                                            minWidth: 13
+                                          - type: Label
+                                            label: '- what happens?'
+                              - type: LayoutBox
+                                style: inline
+                                children:
+                                  - type: Label
+                                    label: ' '
+                                    minWidth: 26
+                          - type: LayoutBox
+                            style: list
+                            minWidth: 80
+                            maxWidth: 80
+                            margin: none
+                            children:
                               - name: doproject9bLst
                                 type: ComboBox
                                 margin: none
@@ -3242,7 +3289,7 @@ children:
                             minWidth: 370
                             children:
                               - type: Label
-                                label: 2. varying the amount of covariation
+                                label: 2. explore the amount of covariation
                               - type: LayoutBox
                                 style: inline
                                 children:

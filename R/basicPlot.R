@@ -103,7 +103,8 @@ reSizeFont<-function(size) {
 }
 
 plotLimits<-function(xlim,ylim,orientation="horz",gaps=c(1,1,0,0),fontScale=1) {
-    fS<-braw.env$labelSize*fontScale
+    ez<-2
+    fS<-braw.env$labelSize*fontScale*max(0.3,min(braw.env$plotArea[3:4]))^(1/ez)
     gaps<-gaps*fS/120/c(braw.env$plotSize[1]/braw.env$plotSize[2],1,braw.env$plotSize[1]/braw.env$plotSize[2],1)
 
   switch(orientation,
@@ -178,7 +179,7 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="both",top=FALSE,
     if (is.null(xticks$breaks))
       xticks$breaks<-axisTicks(usr=xlim, log=xticks$logScale, axp = NULL, nint = 5)
     if (is.null(xticks$labels))
-      xticks$labels<-xticks$breaks
+      xticks$labels<-as.character(xticks$breaks)
     if (!is.character(xticks$labels)) xticks$labels<-brawFormat(xticks$labels,digits=-2)
   } else {
     bottomGap<-minGap
@@ -187,7 +188,7 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="both",top=FALSE,
     if (is.null(yticks$breaks))
       yticks$breaks<-axisTicks(usr=ylim, log=yticks$logScale, axp = NULL, nint = 5)
     if (is.null(yticks$labels))
-      yticks$labels<-yticks$breaks
+      yticks$labels<-as.character(yticks$breaks)
     if (!xmax)
       leftGap<-labelGapy+max(nchar(yticks$labels))*tickGap
     if (!is.character(yticks$labels)) yticks$labels<-brawFormat(yticks$labels,digits=-2)
@@ -196,13 +197,6 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="both",top=FALSE,
   }
 
   gaps<-c(leftGap,bottomGap,rightGap,topGap)
-  
-  dimensions2check<-1
-  if (!is.null(xticks$labels))    dimensions2check<-c(dimensions2check,braw.env$plotArea[3])
-  if (!is.null(yticks$labels))    dimensions2check<-c(dimensions2check,braw.env$plotArea[4])
-  
-  ez<-2
-  fontScale<-fontScale*max(0.3,min(dimensions2check))^(1/ez)
   plotLimits(xlim = xlim, ylim = ylim,orientation=orientation,gaps,fontScale=fontScale)
   
   if (is.null(g)) g<-nullPlot()
