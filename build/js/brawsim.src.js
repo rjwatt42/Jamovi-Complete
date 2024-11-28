@@ -3345,7 +3345,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "Set the effect-size to 0.3"
+																							label: "Set the population effect-size to rp=0.3"
 																						}
 																					]
 																				}

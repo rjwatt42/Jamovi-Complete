@@ -36,6 +36,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     .run = function() {
       # debug information
 
+      systemAsHTML<-TRUE
+      
       statusStore<-braw.env$statusStore
       if (self$options$showHTML) {
         if (self$results$simGraph$visible) self$results$simGraph$setVisible(FALSE)
@@ -261,7 +263,25 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         )
         help<-paste0(help,demoHelp)
       }
-      if (self$options$brawHelp || self$options$jamoviHelp || self$options$demoHelp) {
+      if (systemAsHTML) {
+        assign("graphHTML",TRUE,braw.env)
+        svgBox(200)
+        systemHTML<-private$.htmlwidget$generate_tab(
+          title="Plan:",
+          tabs=c("Hypothesis","Design","Expected"),
+          tabContents = c(
+            showHypothesis(plotArea=c(0,0,1,1)),
+            showDesign(plotArea=c(0,0,1,1)),
+            showPrediction(plotArea=c(0,0,1,1))
+          ),
+          open=0
+        )
+        assign("graphHTML",self$options$showHTML,braw.env)
+        svgBox(400)
+        help<-paste0(help,systemHTML)
+      }
+      
+      if (nchar(help)>0) {
         self$results$BrawStatsInstructions$setContent(help)
         if (!self$results$BrawStatsInstructions$visible) self$results$BrawStatsInstructions$setVisible(TRUE)
       } else {
@@ -318,6 +338,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         braw.res$metaAnalysis<<-NULL
       }
 
+      if (systemAsHTML && !is.null(outputNow) && outputNow=="System") outputNow<-NULL
       # we pressed the "show" hypothesis button
       if (self$options$showHypothesisBtn) {
         outputNow<-"System"

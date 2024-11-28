@@ -113,7 +113,7 @@ showEffect<-function(r,t=1,showValue=TRUE,plotArea=NULL,g=NULL){
     }else{ 
       if (r==0) lbl<-"0.0" else lbl<-as.character(r)
     }
-    g<-addG(g,dataText(data=labelpts, label = lbl, size=size, hjust=hjust, fontface="bold"))
+    g<-addG(g,dataText(data=labelpts, label = lbl, size=size*0.6, hjust=hjust, fontface="bold"))
   }
   
   return(g)

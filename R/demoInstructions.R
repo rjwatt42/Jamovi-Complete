@@ -6,7 +6,6 @@ demoInstructions <- function(HelpType="1") {
            '<b>Demo 1</b>',
            '<br>',
            'A simple demo to show how the basic statistics is easy.',
-           ' The basic operation is to:',
            '<ul style=margin:0px;>',
            '<li> Make a sample of data.',
            '<li> Let BrawStats automatically analyse it.',
@@ -19,8 +18,7 @@ demoInstructions <- function(HelpType="1") {
          "2"={output<-c(
            '<b>Demo 2</b>',
            '<br>',
-           'A demo about samples - what they should look like.',
-           ' The basic operation is to:',
+           "A demo about samples - what they should and shouldn't look like.",
            '<ul style=margin:0px;>',
            '<li> Make samples of data.',
            '<li> Look at the distributions of values that are produced by random sampling.',
@@ -34,15 +32,13 @@ demoInstructions <- function(HelpType="1") {
            '<b>Demo 3</b>',
            '<br>',
            'A demo about variability and uncertainty - how much samples can randomly differ from the population.',
-           ' The basic operation is to:',
-           '<ul style=margin:0px;>',
-           '<li> Make a population with known rp.',
-           '<li> Draw samples from it and see how much rs differs from rp.',
-           '<li> Repeat this with rp set to zero.',
-           '<li> And now see what sample effect sizes are produced.',
-           '</ul>',
            'This is the fundamental issue that statistics has to deal with.',
-           '<br>'
+           '<ul style=margin:0px;>',
+           '<li> Make a population with known <i>r<sub>p</sub></i>.',
+           '<li> Draw samples from it and see how much <i>r<sub>s</sub></i> differs from <i>r<sub>p</sub></i>.',
+           '<li> Repeat this with <i>r<sub>p</sub></i> set to zero.',
+           '<li> And now see what sample effect sizes are produced.',
+           '</ul>'
          )
          },
          
@@ -50,11 +46,10 @@ demoInstructions <- function(HelpType="1") {
            '<b>Demo 4</b>',
            '<br>',
            'A demo to see how far getting a significant result depends on luck.',
-           ' The basic operation is to:',
            '<ul style=margin:0px;>',
            '<li> Make individual samples and see whether they are significant or not.',
            '<li> Use the "Multiple" function to make a large number of samples.',
-           '<li> And see what this shows.',
+           '<li> For any <i>n</i>, there is a fixed relationship between <i>r<sub>s</sub></i> and <i>p</i>.',
            '</ul>'
          )
          },
@@ -62,12 +57,11 @@ demoInstructions <- function(HelpType="1") {
          "5"={output<-c(
            '<b>Demo 5</b>',
            '<br>',
-           'A demo about the NHST.',
-           ' The basic operation is to:',
+           'A demo about the uncertainty in NHST - is the inference correct or an error.',
            '<ul style=margin:0px;>',
-           '<li> .',
-           '<li> .',
-           '<li> .',
+           '<li> Make a world where 50% of samples are null effects.',
+           '<li> Try and guess whether any sample has a null effect or not.',
+           '<li> See how sample size changes this.',
            '</ul>'
          )
          },
@@ -76,7 +70,6 @@ demoInstructions <- function(HelpType="1") {
            '<b>Demo 6</b>',
            '<br>',
            'A demo about the importance of design.',
-           ' The basic operation is to:',
            '<ul style=margin:0px;>',
            '<li> Use the "Multiple" function to make a large number of samples.',
            '<li> Repeat this with different sample sizes. Larger samples give more chance of a significant result.',
@@ -88,23 +81,24 @@ demoInstructions <- function(HelpType="1") {
          "7"={output<-c(
            '<b>Demo 7</b>',
            '<br>',
-           'A demo about using multiple IVs.',
-           ' The basic operation is to:',
+           'A demo about using multiple IVs. ',
+           'In linear models, these are treated as separate, additive effects.',
+           'We can see that these effects behave quite independently.',
            '<ul style=margin:0px;>',
-           '<li> Change rp for the main effect (M1).',
-           '<li> Change rp for the main effect (M2).',
-           '<li> Change rp for the interaction effect (M1).',
-           '</ul>',
-           'We see that these effects behave quite independently.',
-           '<br>'
+           '<li> Change <i>r<sub>p</sub></i> for the main effect (Main 1).',
+           '<li> Change <i>r<sub>p</sub></i> for the main effect (Main 2).',
+           '<li> Change <i>r<sub>p</sub></i> for the interaction effect (Main 12).',
+           '</ul>'
          )
          },
          
          "8"={output<-c(
            '<b>Demo 8</b>',
            '<br>',
-           'A demo about interactions.',
-           ' The basic operation is to:',
+           'A demo about interactions as moderators. ',
+           'Technically an interaction is the product (multiplication) or two variables. ',
+           'It is easier and better to think of it as a situation where one variable affects the strength of an effect between two other variables. ',
+           'An interaction or moderation is a switch that can switch effects on or off. ',
            '<ul style=margin:0px;>',
            '<li> See how interactions can be seen as an on/off switch.',
            '<li> See how interactions can be seen as an +/- switch.',
@@ -115,33 +109,35 @@ demoInstructions <- function(HelpType="1") {
          "9"={output<-c(
            '<b>Demo 9</b>',
            '<br>',
-           'A demo about covariation between IV and IV2.',
-           ' The basic operation is to:',
+           'A demo about covariation between IV and IV2. ',
+           'Covariation is when the two IVs are themselves related/correlated. ',
+           'As we will see, this has consequences for the total effect of each and the unique effect of each. ',
+           'The website has more examples. ',
            '<ul style=margin:0px;>',
            '<li> Make samples from a population with covariation.',
-           '<li> See what the covariation results in.',
-           '</ul>',
-           'See how covariation affects the main effect sizes.',
-           '<br>'
+           '<li> See what the covariation looks like in in the scatter plots.',
+           '<li> See what the covariation does to the effect sizes of the main effects.',
+           '</ul>'
          )
          },
          
          "10"={output<-c(
            '<b>Demo 10</b>',
            '<br>',
-           'A demo about mediaation effects.',
-           ' The basic operation is to:',
+           'A demo about mediation effects. ',
+           'We say that the effect of IV on DV is fully mediated by IV2, when there is no direct link from IV to DV, but instead links from IV to IV2 and IV2 to DV.',
            '<ul style=margin:0px;>',
-           '<li> .',
-           '<li> .',
-           '</ul>',
-           'effect sizes.',
-           '<br>'
+           '<li> Make a basic mediation model - with quite strong effect sizes for clarity.',
+           '<li> We can see the pattern of total effects in the data.',
+           '<li> We might also notice that the covariation and its meaning are rather hidden.',
+           '<li> Now link IV to DV directly as well and see what happens.',
+           '</ul>'
          )
          }
          
   )
-    extras<-paste0('More information ',
+    extras<-paste0('<br>',
+                   'More information ',
                     '<a href=',
                    '"https://doingpsychstats.wordpress.com/demonstration-',HelpType,'/"',
                    ' target="_blank">',
