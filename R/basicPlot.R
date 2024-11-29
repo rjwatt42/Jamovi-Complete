@@ -162,7 +162,8 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="both",top=FALSE,
   if (!is.null(yticks) || !is.null(ylabel)) 
     fontDimensions<-c(fontDimensions,braw.env$plotArea[4])
   ez<-2
-  fontScale<-fontScale*max(0.3,min(fontDimensions))^(1/ez)
+  fontShrink<-max(0.3,min(fontDimensions))^(1/ez)
+  fontScale<-fontScale*fontShrink
   
   minGap<-0.1
   unitGap<-0.75
@@ -243,12 +244,14 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="both",top=FALSE,
          )
   if (!is.null(xticks)) 
     g<-addG(g,xAxisTicks(breaks=xticks$breaks,labels=xticks$labels,logScale=xticks$logScale,angle=xticks$angle,size=tickSize))
-  if (!is.null(xlabel))
-    g<-addG(g,xAxisLabel(label=xlabel$label))
   if (!is.null(yticks)) 
     g<-addG(g,yAxisTicks(breaks=yticks$breaks,labels=yticks$labels,logScale=yticks$logScale,angle=yticks$angle,size=tickSize))
+  braw.env$plotLimits$fontScale<-braw.env$plotLimits$fontScale/fontShrink
+  if (!is.null(xlabel))
+    g<-addG(g,xAxisLabel(label=xlabel$label))
   if (!is.null(ylabel))
     g<-addG(g,yAxisLabel(label=ylabel$label))
+  braw.env$plotLimits$fontScale<-braw.env$plotLimits$fontScale*fontShrink
   return(g)  
 }
 
@@ -681,11 +684,11 @@ dataErrorBar<-function(data,colour="black",linewidth=0.25) {
   }
   return(g)
 }
-dataLegend<-function(data,title="title",fontsize=0.65) {
-  dy=0.05*fontsize
+dataLegend<-function(data,title="title",fontsize=0.6) {
+  dy=0.055*fontsize
   dx=0.025*fontsize
   names<-data$names
-  if (nchar(title)>0) tn<-1 else tn<-0
+  if (nchar(title)>0) tn<-1.2 else tn<-0
   nrows<-tn+length(names)+1
   ncols<-max(c(nchar(title),nchar(names)))+2
   g<-list(axisPolygon(data=data.frame(x=rangeX(c(1-ncols*dx,1,1,1-ncols*dx,1-ncols*dx)),
@@ -697,7 +700,7 @@ dataLegend<-function(data,title="title",fontsize=0.65) {
                       colour="black",linewidth=0.5))
   )
   if (tn>0)
-  g<-c(g,list(axisText(data=data.frame(x=rangeX(1-ncols*dx+2*dx),y=rangeY(1-dy)),label=title,size=fontsize,fontface="bold"))
+  g<-c(g,list(axisText(data=data.frame(x=rangeX(1-ncols*dx+2*dx),y=rangeY(1-dy*tn)),label=title,size=fontsize,fontface="bold"))
        )
 
   for (i in 1:length(names)) {

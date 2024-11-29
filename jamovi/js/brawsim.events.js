@@ -356,7 +356,7 @@ const events =  {
     onChange_project6s: function(ui) {
       let BtnOn = ui.doproject6sBtn.value();
       if (BtnOn==true) {
-      ui.demoWhich.setValue("d5")
+      ui.demoWhich.setValue("d6")
       defaultSetUp(ui)
       ui.presetDV.setValue("ExamGrade")
       ui.presetIV.setValue("RiskTaking")
@@ -422,10 +422,11 @@ const events =  {
       if (BtnOn==true) {
       let hyp = ui.doproject7aLst.value();
       defaultSetUp(ui)
-      ui.demoWhich.setValue("d6")
+      ui.demoWhich.setValue("d7")
       ui.presetIV2.setValue("IV2");
       ui.IV2name.setValue("IV2"); 
-      ui.interaction.setValue("yes");
+      ui.EffectConfig.setValue("normal")
+      ui.interaction.setValue("no");
       switch(hyp) {
         case "iii": 
           ui.DVtype.setValue("Interval"); 
@@ -450,8 +451,8 @@ const events =  {
       }
       ui.EffectSize1.setValue(0.0)
       ui.EffectSize2.setValue(0.0)
-      ui.EffectSize12.setValue(0.0)
-      ui.SampleSize.setValue(420)
+      ui.EffectSize3.setValue(0.0)
+      ui.SampleSize.setValue(1000)
       ui.showHypothesisBtn.setValue(true)
       }
     },
@@ -518,9 +519,10 @@ const events =  {
       if (BtnOn==true) {
       let hyp = ui.doproject8aLst.value();
       defaultSetUp(ui)
-      ui.demoWhich.setValue("d7")
+      ui.demoWhich.setValue("d8")
       ui.presetIV2.setValue("IV2");
       ui.IV2name.setValue("IV2"); 
+      ui.EffectConfig.setValue("normal")
       ui.interaction.setValue("yes");
       switch(hyp) {
         case "iii": 
@@ -548,7 +550,6 @@ const events =  {
       ui.EffectSize2.setValue(0.0)
       ui.EffectSize12.setValue(0.0)
       ui.SampleSize.setValue(1000)
-      ui.showHypothesisBtn.setValue(true)
       }
     },
     
@@ -629,6 +630,7 @@ const events =  {
           ui.DVtype.setValue("Interval"); 
           ui.IVtype.setValue("Interval"); 
           ui.IV2type.setValue("Interval"); 
+      ui.EffectConfig.setValue("normal")
       ui.interaction.setValue("no");
       ui.EffectSize1.setValue(0.5)
       ui.EffectSize2.setValue(0.5)
@@ -692,17 +694,18 @@ const events =  {
       let BtnOn = ui.doProject10sBtn.value();
       if (BtnOn==true) {
       defaultSetUp(ui)
-      ui.demoWhich.setValue("d9")
+      ui.SampleSize.setValue(1000)
+      ui.interaction.setValue("no");
+      ui.demoWhich.setValue("d10")
       ui.presetIV2.setValue("IV2");
       ui.IV2name.setValue("IV2"); 
-      ui.interaction.setValue("no");
           ui.DVtype.setValue("Interval"); 
           ui.IVtype.setValue("Interval"); 
           ui.IV2type.setValue("Interval"); 
       ui.EffectSize1.setValue(0.0)
       ui.EffectSize2.setValue(0.7)
       ui.EffectSize3.setValue(0.7)
-      ui.SampleSize.setValue(1000)
+      ui.EffectConfig.setValue("path")
       ui.showHypothesisBtn.setValue(true)
       }
     },

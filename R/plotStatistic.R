@@ -721,7 +721,7 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
   
   for (i in 1:length(xoff)){
     if (showTheory) {
-      # theory<-doExpectedTheory(showType,logScale,hypothesis,design,i)
+      # theory<-doMultipleTheory(showType,logScale,hypothesis,design,i)
       # yv<-theory$yv
       # xd<-theory$xd
       # xdsig<-theory$xdsig

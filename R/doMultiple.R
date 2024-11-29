@@ -1,7 +1,7 @@
 ##################################################################################    
 # EXPECTED    
 
-mergeExpected<-function(r1,r2) {
+mergeMultiple<-function(r1,r2) {
   newResult<-list(
     rIV=rbind(r1$rIV,r2$rIV),
     pIV=rbind(r1$pIV,r2$pIV),
@@ -43,7 +43,7 @@ mergeExpected<-function(r1,r2) {
   }
 }
 # function to clear 
-resetExpected<-function(nsims=0,evidence,expectedResult=NULL){
+resetMultiple<-function(nsims=0,evidence,multipleResult=NULL){
   
   if (nsims>0) {
     b<-matrix(NA,nsims,1)
@@ -67,11 +67,11 @@ resetExpected<-function(nsims=0,evidence,expectedResult=NULL){
   )
   newNullResult<-newResult
 
-  if (!is.null(expectedResult)) {
-    newResult<-mergeExpected(expectedResult$result,newResult)
-    count<-expectedResult$count
-    newNullResult<-mergeExpected(expectedResult$nullresult,newNullResult)
-    nullcount<-expectedResult$nullcount
+  if (!is.null(multipleResult)) {
+    newResult<-mergeMultiple(multipleResult$result,newResult)
+    count<-multipleResult$count
+    newNullResult<-mergeMultiple(multipleResult$nullresult,newNullResult)
+    nullcount<-multipleResult$nullcount
   } else {
     count<-0
     nullcount<-0
@@ -86,22 +86,22 @@ resetExpected<-function(nsims=0,evidence,expectedResult=NULL){
 
 #' make multiple samples with analysis
 #' 
-#' @returns expectedResult object
+#' @returns multipleResult object
 #' @examples
-#' expectedResult<-doExpected(nsims=100,expectedResult=NULL,hypothesis=makeHypothesis(),design=makeDesign(),evidence=makeEvidence(),
+#' multipleResult<-doMultiple(nsims=100,multipleResult=NULL,hypothesis=makeHypothesis(),design=makeDesign(),evidence=makeEvidence(),
 #'                              doingNull=FALSE,autoShow=braw.env$autoShow,showType="Basic")
-#' @seealso showExpected() and reportExpected())
+#' @seealso showMultiple() and reportMultiple())
 #' @export
-doExpected <- function(nsims=10,expectedResult=braw.res$expected,hypothesis=braw.def$hypothesis,design=braw.def$design,evidence=makeEvidence(),
+doMultiple <- function(nsims=10,multipleResult=braw.res$multiple,hypothesis=braw.def$hypothesis,design=braw.def$design,evidence=makeEvidence(),
                          doingNull=FALSE,inSteps=FALSE,autoShow=braw.env$autoShow,showType="Basic") {
 
-  if (!is.null(expectedResult)) {
-    hypothesis<-expectedResult$hypothesis
-    design<-expectedResult$design
-    evidence<-expectedResult$evidence
+  if (!is.null(multipleResult)) {
+    hypothesis<-multipleResult$hypothesis
+    design<-multipleResult$design
+    evidence<-multipleResult$evidence
   }
   if (nsims>0)
-    expectedResult<-c(resetExpected(nsims,evidence,expectedResult),
+    multipleResult<-c(resetMultiple(nsims,evidence,multipleResult),
                       list(hypothesis=hypothesis,
                            design=design,
                            evidence=evidence)
@@ -111,10 +111,10 @@ doExpected <- function(nsims=10,expectedResult=braw.res$expected,hypothesis=braw
     hypothesisNull<-hypothesis
     hypothesisNull$effect$rIV<-0
     # catch up - make enough null results to match results
-    if (expectedResult$nullcount<expectedResult$count) {
-      ns<-expectedResult$count-expectedResult$nullcount
-      expectedResult$nullresult<-multipleAnalysis(ns,hypothesisNull,design,evidence,expectedResult$nullresult)
-      expectedResult$nullcount<-expectedResult$nullcount+ns
+    if (multipleResult$nullcount<multipleResult$count) {
+      ns<-multipleResult$count-multipleResult$nullcount
+      multipleResult$nullresult<-multipleAnalysis(ns,hypothesisNull,design,evidence,multipleResult$nullresult)
+      multipleResult$nullcount<-multipleResult$nullcount+ns
     }
   }
   
@@ -125,21 +125,21 @@ doExpected <- function(nsims=10,expectedResult=braw.res$expected,hypothesis=braw
   } else
     ns<-nsims
 
-  nsims<-nsims+expectedResult$count
-  while (expectedResult$count<nsims) {
-    if (expectedResult$count/ns>=10) ns<-ns*10
-    if (expectedResult$count+ns>nsims) ns<-nsims-expectedResult$count
-    expectedResult$result<-multipleAnalysis(ns,hypothesis,design,evidence,expectedResult$result)
-    expectedResult$count<-expectedResult$count+ns
+  nsims<-nsims+multipleResult$count
+  while (multipleResult$count<nsims) {
+    if (multipleResult$count/ns>=10) ns<-ns*10
+    if (multipleResult$count+ns>nsims) ns<-nsims-multipleResult$count
+    multipleResult$result<-multipleAnalysis(ns,hypothesis,design,evidence,multipleResult$result)
+    multipleResult$count<-multipleResult$count+ns
     if (doingNull && !hypothesis$effect$world$worldOn) {
-      expectedResult$nullresult<-multipleAnalysis(ns,hypothesisNull,design,evidence,expectedResult$nullresult)
-      expectedResult$nullcount<-expectedResult$nullcount+ns
+      multipleResult$nullresult<-multipleAnalysis(ns,hypothesisNull,design,evidence,multipleResult$nullresult)
+      multipleResult$nullcount<-multipleResult$nullcount+ns
     }
-    if (autoShow) print(showExpected(expectedResult,showType=showType))
+    if (autoShow) print(showMultiple(multipleResult,showType=showType))
   }
 
-  expectedResult<-c(list(type="expected"),expectedResult)
-  setBrawRes("expected",expectedResult)
-  return(expectedResult)
+  multipleResult<-c(list(type="multiple"),multipleResult)
+  setBrawRes("multiple",multipleResult)
+  return(multipleResult)
 }
 

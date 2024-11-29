@@ -188,7 +188,7 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                  "Describe"  =outputGraph<-showDescription(),
                  "Infer"     =outputGraph<-showInference(showType=image$state[2],dimension=image$state[3]),
                  "Likelihood"=outputGraph<-showPossible(showType=image$state[2],cutaway=as.logical(image$state[3])),
-                 "Multiple"  =outputGraph<-showExpected(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),
+                 "Multiple"  =outputGraph<-showMultiple(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),
                  "MetaSingle"  =outputGraph<-showMetaSingle(),
                  "MetaMultiple"  =outputGraph<-showMetaMultiple(),
                  "Explore"   =outputGraph<-showExplore(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),

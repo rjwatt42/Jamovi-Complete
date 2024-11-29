@@ -123,7 +123,7 @@ BrawAnClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                "Describe"= self$results$anReport$setContent(reportDescription()),
                "Infer"= self$results$anReport$setContent(reportInference()),
                "Likelihood"=self$results$anReport$setContent(reportLikelihood()),
-               "Multiple"= self$results$anReport$setContent(reportExpected(showType=showMultipleParam,reportStats=self$options$reportInferStats)),
+               "Multiple"= self$results$anReport$setContent(reportMultiple(showType=showMultipleParam,reportStats=self$options$reportInferStats)),
                "Explore"= self$results$anReport$setContent(reportExplore(showType=showExploreParam,reportStats=self$options$reportInferStats)),
                self$results$anReport$setContent(NULL)
         )
@@ -145,7 +145,7 @@ BrawAnClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                "Describe"  =outputGraph<-showDescription(),
                "Infer"     =outputGraph<-showInference(showType=image$state[2],dimension=image$state[3]),
                "Likelihood"=outputGraph<-showPossible(showType=image$state[2],cutaway=as.logical(image$state[3])),
-               "Multiple"  =outputGraph<-showExpected(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),
+               "Multiple"  =outputGraph<-showMultiple(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),
                "MetaSingle"  =outputGraph<-showMetaSingle(),
                "MetaMultiple"  =outputGraph<-showMetaMultiple(),
                "Explore"   =outputGraph<-showExplore(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),

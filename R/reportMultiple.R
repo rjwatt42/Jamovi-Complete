@@ -7,20 +7,20 @@
 #'                   "ws","wp","nw", ro","po"
 #' @return ggplot2 object - and printed
 #' @export
-reportExpected<-function(expectedResult=braw.res$expected,showType="Basic",
+reportMultiple<-function(multipleResult=braw.res$multiple,showType="Basic",
                          whichEffect="All",effectType="all",reportStats="Medians"){
-  if (is.null(expectedResult)) expectedResult=doExpected(autoShow=FALSE)
+  if (is.null(multipleResult)) multipleResult=doMultiple(autoShow=FALSE)
   
   reportMeans<-(reportStats=="Means")
   reportQuants<-FALSE
   
-  IV<-expectedResult$hypothesis$IV
-  IV2<-expectedResult$hypothesis$IV2
-  DV<-expectedResult$hypothesis$DV
-  effect<-expectedResult$hypothesis$effect
-  evidence<-expectedResult$evidence
-  result<-expectedResult$result
-  nullresult<-expectedResult$nullresult
+  IV<-multipleResult$hypothesis$IV
+  IV2<-multipleResult$hypothesis$IV2
+  DV<-multipleResult$hypothesis$DV
+  effect<-multipleResult$hypothesis$effect
+  evidence<-multipleResult$evidence
+  result<-multipleResult$result
+  nullresult<-multipleResult$nullresult
   
   if (effect$world$worldOn) {
     r<-getNulls(result)
@@ -65,9 +65,9 @@ reportExpected<-function(expectedResult=braw.res$expected,showType="Basic",
   
   # header
   if (is.element(showType[1],c("NHST","Hits","Misses")) && sum(!is.na(nullresult$rIV))>0) {
-    outputText<-c("!TExpected  ",paste("nsims = ",format(sum(!is.na(result$rIV))),"+",format(sum(!is.na(nullresult$rIV))),sep=""),rep("",nc-2))
+    outputText<-c("!TMultiple  ",paste("nsims = ",format(sum(!is.na(result$rIV))),"+",format(sum(!is.na(nullresult$rIV))),sep=""),rep("",nc-2))
   } else {
-    outputText<-c("!TExpected  ",paste("nsims = ",format(sum(!is.na(result$rIV))+sum(!is.na(nullresult$rIV))),sep=""),rep("",nc-2))
+    outputText<-c("!TMultiple  ",paste("nsims = ",format(sum(!is.na(result$rIV))+sum(!is.na(nullresult$rIV))),sep=""),rep("",nc-2))
   }
   outputText<-c(outputText,rep("",nc))
   

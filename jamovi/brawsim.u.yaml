@@ -424,6 +424,12 @@ children:
                                         margin: none
                                         format: number
                                         enable: (!presetIV2:none)
+                                  - type: LayoutBox
+                                    style: list
+                                    children:
+                                      - type: ComboBox
+                                        name: EffectConfig
+                                        margin: none
                           - type: CollapseBox
                             collapsed: true
                             label: Anomalies

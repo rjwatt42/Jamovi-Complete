@@ -364,6 +364,18 @@ options:
       title: 'IV*IV2->DV'
       type: Number
       default: 0.0
+    
+    - name: EffectConfig
+      title: 'Display:'
+      type: List
+      options:
+      - name: simple
+        title: simple
+      - name: normal
+        title: normal
+      - name: path
+        title: path
+      default: normal
       
     - name: Heteroscedasticity
       title: Heteroscedasticity
@@ -1387,6 +1399,8 @@ options:
         title: d8
       - name: d9
         title: d9
+      - name: d10
+        title: d10
       default: blank
       
     - name: showHTML
