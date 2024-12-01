@@ -25,7 +25,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           showExploreDimension="1D",
                           whichShowExploreOut="all",
                           exploreMode="Design",
-                          planMode="Hypothesis",
+                          planMode=NULL,
                           nrowTableLM=1,
                           nrowTableSEM=1
         )
@@ -37,7 +37,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     .run = function() {
       # debug information
 
-      if (braw.env$statusStore$planMode!=self$options$planOptions) {
+      if (!is.null(braw.env$statusStore$planMode) && braw.env$statusStore$planMode!=self$options$planOptions) {
         braw.env$statusStore$planMode<<-self$options$planOptions
         return()
       }
@@ -218,6 +218,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       openSystem<-0
       if (changedD) openSystem<-2
       if (changedH) openSystem<-1
+      if (changedE) openSystem<-1
       # we pressed the "show" hypothesis button
       if (self$options$showHypothesisBtn) openSystem<-1
       # now deal with a request for help/instructions

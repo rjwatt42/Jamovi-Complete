@@ -42,6 +42,10 @@ items:
         type: number
       - name: r
         type: number
+      - name: k
+        type: number
+      - name: llr
+        type: number
       - name: model
         type: text
       visible: TRUE

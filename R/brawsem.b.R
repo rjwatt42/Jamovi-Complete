@@ -61,9 +61,10 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           stage<-rawStages[[ist]]
           if (!is.null(stage) && rawStagesOn[ist]) {
             stages<-c(stages,list(stage))
-            stagesString<-paste0(stagesString,paste0("{",paste(sapply(stage,substr,1,2),collapse=","),"}"))
+            stagesString<-paste0(stagesString,paste0("{",paste(sapply(stage,substr,1,3),collapse=","),"}"))
           }
         }
+        stagesString<-paste0(stagesString,"@",substr(self$options$Depth,2,2))
         
         addSource<-self$options$addSource
         addDest<-self$options$addDest
@@ -75,7 +76,7 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           for (i in 1:nAdd) {
             thisAdd<-list(c(addSource[i],addDest[i]))
             add<-c(add,thisAdd)
-            addString<-paste0(addString,"(",paste(sapply(thisAdd,substr,1,2),collapse=":"),")")
+            addString<-paste0(addString,"(",paste(sapply(thisAdd,substr,1,3),collapse=":"),")")
           }
         }
 
@@ -89,7 +90,7 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           for (i in 1:nRemove){
             thisRemove<-list(c(removeSource[i],removeDest[i]))
             remove<-c(remove,thisRemove)
-            removeString<-paste0(removeString,"(",paste(sapply(thisRemove,substr,1,2),collapse=":"),")")
+            removeString<-paste0(removeString,"(",paste(sapply(thisRemove,substr,1,3),collapse=":"),")")
           }
         }
         pathmodel<-list(path=
@@ -103,7 +104,7 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                         remove=remove
                    )
         )
-        
+
         if (length(stages)<2) {
           if (self$options$showHTML) {
             self$results$semGraphHTML$setContent(nullPlot())
@@ -138,15 +139,20 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         }
         
           tableOutput<-braw.env$tableSEM
-          tableOutput<-rbind(list(AIC=sem$eval$AIC,AICc=sem$eval$AICc,BIC=sem$eval$BIC,
-                                  Rsqr=sem$eval$Rsquared,r=sqrt(sem$eval$Rsquared),
+          tableOutput<-rbind(list(AIC=brawFormat(sem$eval$AIC,digits=1),
+                                  AICc=brawFormat(sem$eval$AICc,digits=1),
+                                  BIC=brawFormat(sem$eval$BIC,digits=1),
+                                  Rsqr=brawFormat(sem$eval$Rsquared),
+                                  r=brawFormat(sqrt(sem$eval$Rsquared)),
+                                  k=sem$eval$k,
+                                  llr=brawFormat(sem$eval$llr,digits=1),
                                   model=st
                                   ),
                              tableOutput
           )
           setBrawEnv("tableSEM",tableOutput)
           # self$results$debug$setVisible(TRUE)
-          # self$results$debug$setContent(tableOutput[,1])
+          # self$results$debug$setContent(sem$stages)
           
           ne<-nrow(tableOutput)
           if (ne>15) {
@@ -165,11 +171,15 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
           self$results$reportTableSEM$setState(tableOutput)
           
-          for (col in 1:4) {
+          for (col in 1:3) {
             a<-which.min(tableOutput[,col])
             self$results$reportTableSEM$addFormat(rowNo=a,col=col,format=Cell.NEGATIVE)
           }
-
+          a<-which.max(tableOutput[,4])
+          self$results$reportTableSEM$addFormat(rowNo=a,col=4,format=Cell.NEGATIVE)
+          a<-which.min(tableOutput[,1])
+          self$results$reportTableSEM$addFootnote(rowNo=a,col=1,note="best model")
+          
           braw.env$statusStore<<-statusStore
           
         },

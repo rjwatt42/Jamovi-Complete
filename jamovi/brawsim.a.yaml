@@ -43,6 +43,8 @@ options:
         title: Diligence
       - name: Perfectionism
         title: Perfectionism
+      - name: Anxiety
+        title: Anxiety
       - name: Happiness
         title: Happiness
       - name: SelfConfidence
@@ -83,6 +85,8 @@ options:
         title: Diligence
       - name: Perfectionism
         title: Perfectionism
+      - name: Anxiety
+        title: Anxiety
       - name: Happiness
         title: Happiness
       - name: SelfConfidence
@@ -123,6 +127,8 @@ options:
         title: Diligence
       - name: Perfectionism
         title: Perfectionism
+      - name: Anxiety
+        title: Anxiety
       - name: Happiness
         title: Happiness
       - name: SelfConfidence
@@ -1430,6 +1436,8 @@ options:
         title: Diligence
       - name: Perfectionism
         title: Perfectionism
+      - name: Anxiety
+        title: Anxiety
       - name: Happiness
         title: Happiness
       - name: SelfConfidence
@@ -1593,11 +1601,11 @@ options:
       # type: Action
 
 
-    - name: doproject7aBtn
+    - name: doproject7sBtn
       title: 'do it'
       type: Action
       
-    - name: doproject7aLst
+    - name: doproject7sLst
       title: "hyp:"
       type: List
       options:
@@ -1613,11 +1621,11 @@ options:
       # title: 'do it for me'
       # type: Action
 
-    - name: doproject7bBtn
+    - name: doproject7aBtn
       title: 'do it'
       type: Action
 
-    - name: doproject7bLst
+    - name: doproject7aLst
       title: "rp:"
       type: List
       options:
@@ -1635,6 +1643,28 @@ options:
         title: '0.75'
       default: r03
 
+
+    - name: doproject7bBtn
+      title: 'do it'
+      type: Action
+      
+    - name: doproject7bLst
+      title: "rp:"
+      type: List
+      options:
+      - name: r00
+        title: '0.0'
+      - name: r01
+        title: '0.1'
+      - name: r02
+        title: '0.2'
+      - name: r03
+        title: '0.3'
+      - name: r05
+        title: '0.5'
+      - name: r075
+        title: '0.75'
+      default: r03
 
     - name: doproject7cBtn
       title: 'do it'
@@ -1661,24 +1691,6 @@ options:
     - name: doproject7dBtn
       title: 'do it'
       type: Action
-      
-    - name: doproject7dLst
-      title: "rp:"
-      type: List
-      options:
-      - name: r00
-        title: '0.0'
-      - name: r01
-        title: '0.1'
-      - name: r02
-        title: '0.2'
-      - name: r03
-        title: '0.3'
-      - name: r05
-        title: '0.5'
-      - name: r075
-        title: '0.75'
-      default: r03
 
 
     - name: doproject8aBtn

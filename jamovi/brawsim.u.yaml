@@ -2679,18 +2679,18 @@ children:
                         maxWidth: 80
                         margin: none
                         children:
-                          - name: doproject7aLst
+                          - name: doproject7sLst
                             type: ComboBox
                             margin: none
                             minWidth: 80
                             maxWidth: 80
                           - type: ActionButton
-                            name: doproject7aBtn
+                            name: doproject7sBtn
                             margin: none
                             minWidth: 80
                             maxWidth: 80
                             events:
-                              change: ./BrawSim.events::onChange_project7a
+                              change: ./BrawSim.events::onChange_project7s
                   - type: Label
                     label: Steps
                     children:
@@ -2755,6 +2755,69 @@ children:
                             maxWidth: 80
                             margin: none
                             children:
+                              - name: doproject7aLst
+                                type: ComboBox
+                                margin: none
+                                minWidth: 80
+                                maxWidth: 80
+                              - type: ActionButton
+                                name: doproject7aBtn
+                                margin: none
+                                minWidth: 80
+                                maxWidth: 80
+                                events:
+                                  change: ./BrawSim.events::onChange_project7a
+                      - type: LayoutBox
+                        style: inline
+                        children:
+                          - type: LayoutBox
+                            style: list
+                            minWidth: 370
+                            children:
+                              - type: Label
+                                label: 2. change main effect 2
+                              - type: LayoutBox
+                                style: inline
+                                children:
+                                  - type: LayoutBox
+                                    style: list
+                                    children:
+                                      - type: LayoutBox
+                                        style: inline
+                                        children:
+                                          - type: Label
+                                            label: ' '
+                                            minWidth: 13
+                                          - type: Label
+                                            label: '- choose a value for it'
+                                      - type: LayoutBox
+                                        style: inline
+                                        children:
+                                          - type: Label
+                                            label: ' '
+                                            minWidth: 13
+                                          - type: Label
+                                            label: '- set others to zero'
+                                      - type: LayoutBox
+                                        style: inline
+                                        children:
+                                          - type: Label
+                                            label: ' '
+                                            minWidth: 13
+                                          - type: Label
+                                            label: '- make another sample'
+                              - type: LayoutBox
+                                style: inline
+                                children:
+                                  - type: Label
+                                    label: ' '
+                                    minWidth: 26
+                          - type: LayoutBox
+                            style: list
+                            minWidth: 80
+                            maxWidth: 80
+                            margin: none
+                            children:
                               - name: doproject7bLst
                                 type: ComboBox
                                 margin: none
@@ -2775,7 +2838,7 @@ children:
                             minWidth: 370
                             children:
                               - type: Label
-                                label: 2. change main effect 2
+                                label: 3. change the interaction
                               - type: LayoutBox
                                 style: inline
                                 children:
@@ -2838,7 +2901,7 @@ children:
                             minWidth: 370
                             children:
                               - type: Label
-                                label: 3. change the interaction
+                                label: 4. change all the effects
                               - type: LayoutBox
                                 style: inline
                                 children:
@@ -2852,7 +2915,7 @@ children:
                                             label: ' '
                                             minWidth: 13
                                           - type: Label
-                                            label: '- choose a value for it'
+                                            label: '- using the above drop-down menus'
                                       - type: LayoutBox
                                         style: inline
                                         children:
@@ -2860,7 +2923,7 @@ children:
                                             label: ' '
                                             minWidth: 13
                                           - type: Label
-                                            label: '- set others to zero'
+                                            label: '- and then makiong a sample'
                                       - type: LayoutBox
                                         style: inline
                                         children:
@@ -2868,7 +2931,7 @@ children:
                                             label: ' '
                                             minWidth: 13
                                           - type: Label
-                                            label: '- make another sample'
+                                            label: '- see how the different effects add'
                               - type: LayoutBox
                                 style: inline
                                 children:
@@ -2881,11 +2944,6 @@ children:
                             maxWidth: 80
                             margin: none
                             children:
-                              - name: doproject7dLst
-                                type: ComboBox
-                                margin: none
-                                minWidth: 80
-                                maxWidth: 80
                               - type: ActionButton
                                 name: doproject7dBtn
                                 margin: none

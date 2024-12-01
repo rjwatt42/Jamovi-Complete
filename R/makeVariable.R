@@ -182,6 +182,7 @@ makeDefaultVariables<-function() {
     IQ=makeVariable(name="IQ",type="Interval",mu=100,sd=15),
     Diligence=makeVariable(name="Diligence",type="Interval",mu=0,sd=2),
     Perfectionism=makeVariable(name="Perfectionism",type="Interval",mu=0,sd=2),
+    Anxiety=makeVariable(name="Anxiety",type="Interval",mu=5,sd=2),
     Happiness=makeVariable(name="Happiness",type="Interval",mu=50,sd=12),
     SelfConfidence=makeVariable(name="SelfConfidence",type="Interval",mu=50,sd=12),
     ExamGrade=makeVariable(name="ExamGrade",type="Interval",mu=65,sd=10,skew=-0.6),

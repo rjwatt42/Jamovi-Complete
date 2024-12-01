@@ -18,7 +18,7 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             Stage1On = TRUE,
             causalDirection = "down",
             Depth = "d1",
-            ShowType = NULL,
+            ShowType = "ES",
             addDest = NULL,
             addSource = NULL,
             removeDest = NULL,
@@ -89,7 +89,8 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=list(
                     "CF",
                     "ES",
-                    "cov"))
+                    "cov"),
+                default="ES")
             private$..addDest <- jmvcore::OptionVariables$new(
                 "addDest",
                 addDest)
@@ -238,6 +239,12 @@ BrawSEMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `name`="r", 
                         `type`="number"),
                     list(
+                        `name`="k", 
+                        `type`="number"),
+                    list(
+                        `name`="llr", 
+                        `type`="number"),
+                    list(
                         `name`="model", 
                         `type`="text")),
                 visible=TRUE))}))
@@ -317,7 +324,7 @@ BrawSEM <- function(
     Stage1On = TRUE,
     causalDirection = "down",
     Depth = "d1",
-    ShowType,
+    ShowType = "ES",
     addDest,
     addSource,
     removeDest,

@@ -5,7 +5,7 @@ demoInstructions <- function(HelpType="1") {
          "1"={output<-c(
            '<b>Demo 1</b>',
            '<br>',
-           'A simple demo to show how the basic statistics is easy.',
+           'A simple demo to show how basic statistics is easy.',
            '<ul style=margin:0px;>',
            '<li> Make a sample of data.',
            '<li> Let BrawStats automatically analyse it.',
@@ -85,9 +85,9 @@ demoInstructions <- function(HelpType="1") {
            'In linear models, these are treated as separate, additive effects.',
            'We can see that these effects behave quite independently.',
            '<ul style=margin:0px;>',
-           '<li> Change <i>r<sub>p</sub></i> for the main effect (Main 1).',
-           '<li> Change <i>r<sub>p</sub></i> for the main effect (Main 2).',
-           '<li> Change <i>r<sub>p</sub></i> for the interaction effect (Main 12).',
+           '<li> Change <i>r<sub>p</sub></i> for the main effect of IV on DV.',
+           '<li> Change <i>r<sub>p</sub></i> for the main effect of IV2 on DV.',
+           '<li> Change <i>r<sub>p</sub></i> for the interaction effect of IVxIV2 on DV.',
            '</ul>'
          )
          },

@@ -69,9 +69,9 @@ options:
       type: List
       options:
         - name: d1
-          title: d1
+          title: "1"
         - name: d2
-          title: d2
+          title: "2"
         - name: all
           title: all
       default: d1
@@ -86,6 +86,7 @@ options:
         title: effect sizes
       - name: cov
         title: covariance
+      default: ES
     # - name: addLinks
     #   type: Array
     #   default:

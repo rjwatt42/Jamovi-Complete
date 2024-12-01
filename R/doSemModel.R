@@ -503,6 +503,28 @@ sem_results<-function(pathmodel,sem) {
   sem$covariance<-cov(sem$data,use=nan_action)
   sem$cov_model=get_Stheta(sem);
   
+  # model coefficients
+  CF_table=cbind(sem$Bresult,sem$Lresult);
+  # use_cf=!apply(is.na(CF_table),2,all)
+  # CF_table=CF_table[,use_cf]
+  rownames(CF_table)<-sem$endo_names
+  colnames(CF_table)<-sem$varnames#[use_cf]
+  addRows<-setdiff(sem$varnames,sem$endo_names)
+  addMatrix<-matrix(NA,nrow=length(addRows),ncol=ncol(CF_table))
+  rownames(addMatrix)<-addRows
+  CF_table<-rbind(CF_table,addMatrix)
+  # CF_table<-CF_table[,order(colnames(CF_table))]
+  # CF_table<-CF_table[order(rownames(CF_table)),]
+  
+  sem$CF_table=CF_table;
+  
+  # effect sizes
+  # sem$covariance<-sem$covariance[,order(colnames(sem$covariance))]
+  # sem$covariance<-sem$covariance[order(rownames(sem$covariance)),]
+  
+  v<-matrix(diag(sem$covariance),nrow(sem$covariance),ncol(sem$covariance))
+  sem$ES_table<-CF_table/sqrt(v/t(v))
+  
   # full model stats
   
   # chi2 exact fit
@@ -542,13 +564,13 @@ sem_results<-function(pathmodel,sem) {
   error=t(Yactual-Ypredicted)
   Rsquared=1-sum(diag(var(error)))/sum(diag(var(t(Y))))
   #
-  k=(P+Q); n=n_obs;
+  k=sum(!is.na(CF_table)); n_data=n_obs*length(sem$endogenous);
   Resid2=sum(error^2);
-  AIC=k+n*(log(2*pi*sum(error^2)/(n-k))+1);
-  llr<-exp((2*k-AIC)/2)
-  AICc=AIC+(2*k*k+2*k)/(n-k-1);
-  BIC=k*log(n)+AIC-2*k;
-  CAIC=k*(log(n)+1)+AIC-2*k;
+  AIC=k+n_obs*(log(2*pi*sum(error^2)/(n_data-k))+1);
+  llr<-(2*k-AIC)/2
+  AICc=AIC+(2*k*k+2*k)/(n_data-k-1);
+  BIC=k*log(n_data)+AIC-2*k;
+  CAIC=k*(log(n_data)+1)+AIC-2*k;
   # 
   sem$stats<-list(model_chisqr=model_chisqr,
                  model_chi_df=model_chi_df,
@@ -560,7 +582,8 @@ sem_results<-function(pathmodel,sem) {
   )
   sem$eval<-list(Rsquared=Rsquared,
                  k=k,
-                 n=n,
+                 n_data=n_data,
+                 n_obs=n_obs,
                  llr=llr,
                  AIC=AIC,
                  AICc=AICc,
@@ -568,28 +591,6 @@ sem_results<-function(pathmodel,sem) {
                  CAIC=CAIC
   )
   # 
-
-  # model coefficients
-  CF_table=cbind(sem$Bresult,sem$Lresult);
-  # use_cf=!apply(is.na(CF_table),2,all)
-  # CF_table=CF_table[,use_cf]
-  rownames(CF_table)<-sem$endo_names
-  colnames(CF_table)<-sem$varnames#[use_cf]
-  addRows<-setdiff(sem$varnames,sem$endo_names)
-  addMatrix<-matrix(NA,nrow=length(addRows),ncol=ncol(CF_table))
-  rownames(addMatrix)<-addRows
-  CF_table<-rbind(CF_table,addMatrix)
-  CF_table<-CF_table[,order(colnames(CF_table))]
-  CF_table<-CF_table[order(rownames(CF_table)),]
-  
-  sem$CF_table=CF_table;
-  
-  # effect sizes
-  sem$covariance<-sem$covariance[,order(colnames(sem$covariance))]
-  sem$covariance<-sem$covariance[order(rownames(sem$covariance)),]
-  
-  v<-matrix(diag(sem$covariance),nrow(sem$covariance),ncol(sem$covariance))
-  sem$ES_table<-CF_table/sqrt(v/t(v))
   
   sem$Rtotal<-sem$covariance/sqrt(v*t(v))
   return(sem)

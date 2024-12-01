@@ -417,16 +417,20 @@ const events =  {
       }
     },
 
-    onChange_project7a: function(ui) {
-      let BtnOn = ui.doproject7aBtn.value();
+    onChange_project7s: function(ui) {
+      let BtnOn = ui.doproject7sBtn.value();
       if (BtnOn==true) {
-      let hyp = ui.doproject7aLst.value();
+      let hyp = ui.doproject7sLst.value();
       defaultSetUp(ui)
       ui.demoWhich.setValue("d7")
+      ui.presetIV.setValue("Blank");
+      ui.presetDV.setValue("Blank");
       ui.presetIV2.setValue("IV2");
+      ui.IVname.setValue("IV"); 
+      ui.DVname.setValue("DV"); 
       ui.IV2name.setValue("IV2"); 
       ui.EffectConfig.setValue("normal")
-      ui.interaction.setValue("no");
+      ui.interaction.setValue("yes");
       switch(hyp) {
         case "iii": 
           ui.DVtype.setValue("Interval"); 
@@ -457,10 +461,10 @@ const events =  {
       }
     },
     
-    onChange_project7b: function(ui) {
-      let BtnOn = ui.doproject7bBtn.value();
+    onChange_project7a: function(ui) {
+      let BtnOn = ui.doproject7aBtn.value();
       if (BtnOn==true) {
-      let rVal = ui.doproject7bLst.value();
+      let rVal = ui.doproject7aLst.value();
       switch(rVal) {
         case "r00": ui.EffectSize1.setValue(0.0); break;
         case "r01": ui.EffectSize1.setValue(0.1); break;
@@ -476,10 +480,10 @@ const events =  {
       }
     },
     
-    onChange_project7c: function(ui) {
-      let BtnOn = ui.doproject7cBtn.value();
+    onChange_project7b: function(ui) {
+      let BtnOn = ui.doproject7bBtn.value();
       if (BtnOn==true) {
-      let rVal = ui.doproject7cLst.value();
+      let rVal = ui.doproject7bLst.value();
       switch(rVal) {
         case "r00": ui.EffectSize2.setValue(0.0); break;
         case "r01": ui.EffectSize2.setValue(0.1); break;
@@ -495,10 +499,10 @@ const events =  {
       }
     },
     
-    onChange_project7d: function(ui) {
-      let BtnOn = ui.doproject7dBtn.value();
+    onChange_project7c: function(ui) {
+      let BtnOn = ui.doproject7cBtn.value();
       if (BtnOn==true) {
-      let rVal = ui.doproject7dLst.value();
+      let rVal = ui.doproject7cLst.value();
       switch(rVal) {
         case "r00": ui.EffectSize12.setValue(0.0); break;
         case "r01": ui.EffectSize12.setValue(0.1); break;
@@ -509,6 +513,41 @@ const events =  {
       }
       ui.EffectSize1.setValue(0.0)
       ui.EffectSize2.setValue(0.0)
+        ui.showSampleType.setValue("Describe")
+      ui.makeSampleBtn.setValue(true)
+      }
+    },
+    
+    onChange_project7d: function(ui) {
+      let BtnOn = ui.doproject7dBtn.value();
+      if (BtnOn==true) {
+      let rVal1 = ui.doproject7aLst.value();
+      switch(rVal1) {
+        case "r00": ui.EffectSize1.setValue(0.0); break;
+        case "r01": ui.EffectSize1.setValue(0.1); break;
+        case "r02": ui.EffectSize1.setValue(0.2); break;
+        case "r03": ui.EffectSize1.setValue(0.3); break;
+        case "r05": ui.EffectSize1.setValue(0.5); break;
+        case "r075": ui.EffectSize1.setValue(0.75); break;
+      }
+      let rVal2 = ui.doproject7bLst.value();
+      switch(rVal2) {
+        case "r00": ui.EffectSize2.setValue(0.0); break;
+        case "r01": ui.EffectSize2.setValue(0.1); break;
+        case "r02": ui.EffectSize2.setValue(0.2); break;
+        case "r03": ui.EffectSize2.setValue(0.3); break;
+        case "r05": ui.EffectSize2.setValue(0.5); break;
+        case "r075": ui.EffectSize2.setValue(0.75); break;
+      }
+      let rVal12 = ui.doproject7cLst.value();
+      switch(rVal12) {
+        case "r00": ui.EffectSize12.setValue(0.0); break;
+        case "r01": ui.EffectSize12.setValue(0.1); break;
+        case "r02": ui.EffectSize12.setValue(0.2); break;
+        case "r03": ui.EffectSize12.setValue(0.3); break;
+        case "r05": ui.EffectSize12.setValue(0.5); break;
+        case "r075": ui.EffectSize12.setValue(0.75); break;
+      }
         ui.showSampleType.setValue("Describe")
       ui.makeSampleBtn.setValue(true)
       }
@@ -625,16 +664,14 @@ const events =  {
       if (BtnOn==true) {
       defaultSetUp(ui)
       ui.demoWhich.setValue("d9")
-      ui.presetIV2.setValue("IV2");
-      ui.IV2name.setValue("IV2"); 
-          ui.DVtype.setValue("Interval"); 
-          ui.IVtype.setValue("Interval"); 
-          ui.IV2type.setValue("Interval"); 
+      ui.presetDV.setValue("ExamGrade");
+      ui.presetIV.setValue("Perfectionism");
+      ui.presetIV2.setValue("Anxiety");
       ui.EffectConfig.setValue("normal")
       ui.interaction.setValue("no");
-      ui.EffectSize1.setValue(0.5)
-      ui.EffectSize2.setValue(0.5)
-      ui.EffectSize3.setValue(0.3)
+      ui.EffectSize1.setValue(0.3)
+      ui.EffectSize2.setValue(-0.5)
+      ui.EffectSize3.setValue(0.6)
       ui.SampleSize.setValue(1000)
       ui.showHypothesisBtn.setValue(true)
       }
@@ -806,6 +843,11 @@ let makeVar = function(name) {
       break;
     case "Perfectionism":
       var variable={name:"Perfectionism",type:"Interval",mu:0,sd:2,skew:0,kurt:3,
+      nlevs:7,iqr:3,
+      ncats:2,cases:"C1,C2",props:"1,1"};
+      break;
+    case "Anxiety":
+      var variable={name:"Anxiety",type:"Interval",mu:5,sd:2,skew:0,kurt:3,
       nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;

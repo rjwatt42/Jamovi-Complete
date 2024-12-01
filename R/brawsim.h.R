@@ -169,14 +169,15 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             doproject6cBtn = NULL,
             doproject6dBtn = NULL,
             doproject6dLst = "r03",
+            doproject7sBtn = NULL,
+            doproject7sLst = "iii",
             doproject7aBtn = NULL,
-            doproject7aLst = "iii",
+            doproject7aLst = "r03",
             doproject7bBtn = NULL,
             doproject7bLst = "r03",
             doproject7cBtn = NULL,
             doproject7cLst = "r03",
             doproject7dBtn = NULL,
-            doproject7dLst = "r03",
             doproject8aBtn = NULL,
             doproject8aLst = "iii",
             doproject8bBtn = NULL,
@@ -216,6 +217,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "IQ",
                     "Diligence",
                     "Perfectionism",
+                    "Anxiety",
                     "Happiness",
                     "SelfConfidence",
                     "ExamGrade",
@@ -238,6 +240,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "IQ",
                     "Diligence",
                     "Perfectionism",
+                    "Anxiety",
                     "Happiness",
                     "SelfConfidence",
                     "ExamGrade",
@@ -260,6 +263,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "IQ",
                     "Diligence",
                     "Perfectionism",
+                    "Anxiety",
                     "Happiness",
                     "SelfConfidence",
                     "ExamGrade",
@@ -1046,6 +1050,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "IQ",
                     "Diligence",
                     "Perfectionism",
+                    "Anxiety",
                     "Happiness",
                     "SelfConfidence",
                     "RiskTaking",
@@ -1153,6 +1158,18 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "r05",
                     "r075"),
                 default="r03")
+            private$..doproject7sBtn <- jmvcore::OptionAction$new(
+                "doproject7sBtn",
+                doproject7sBtn)
+            private$..doproject7sLst <- jmvcore::OptionList$new(
+                "doproject7sLst",
+                doproject7sLst,
+                options=list(
+                    "iii",
+                    "ici",
+                    "iic",
+                    "icc"),
+                default="iii")
             private$..doproject7aBtn <- jmvcore::OptionAction$new(
                 "doproject7aBtn",
                 doproject7aBtn)
@@ -1160,11 +1177,13 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "doproject7aLst",
                 doproject7aLst,
                 options=list(
-                    "iii",
-                    "ici",
-                    "iic",
-                    "icc"),
-                default="iii")
+                    "r00",
+                    "r01",
+                    "r02",
+                    "r03",
+                    "r05",
+                    "r075"),
+                default="r03")
             private$..doproject7bBtn <- jmvcore::OptionAction$new(
                 "doproject7bBtn",
                 doproject7bBtn)
@@ -1196,17 +1215,6 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..doproject7dBtn <- jmvcore::OptionAction$new(
                 "doproject7dBtn",
                 doproject7dBtn)
-            private$..doproject7dLst <- jmvcore::OptionList$new(
-                "doproject7dLst",
-                doproject7dLst,
-                options=list(
-                    "r00",
-                    "r01",
-                    "r02",
-                    "r03",
-                    "r05",
-                    "r075"),
-                default="r03")
             private$..doproject8aBtn <- jmvcore::OptionAction$new(
                 "doproject8aBtn",
                 doproject8aBtn)
@@ -1459,6 +1467,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..doproject6cBtn)
             self$.addOption(private$..doproject6dBtn)
             self$.addOption(private$..doproject6dLst)
+            self$.addOption(private$..doproject7sBtn)
+            self$.addOption(private$..doproject7sLst)
             self$.addOption(private$..doproject7aBtn)
             self$.addOption(private$..doproject7aLst)
             self$.addOption(private$..doproject7bBtn)
@@ -1466,7 +1476,6 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..doproject7cBtn)
             self$.addOption(private$..doproject7cLst)
             self$.addOption(private$..doproject7dBtn)
-            self$.addOption(private$..doproject7dLst)
             self$.addOption(private$..doproject8aBtn)
             self$.addOption(private$..doproject8aLst)
             self$.addOption(private$..doproject8bBtn)
@@ -1650,6 +1659,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         doproject6cBtn = function() private$..doproject6cBtn$value,
         doproject6dBtn = function() private$..doproject6dBtn$value,
         doproject6dLst = function() private$..doproject6dLst$value,
+        doproject7sBtn = function() private$..doproject7sBtn$value,
+        doproject7sLst = function() private$..doproject7sLst$value,
         doproject7aBtn = function() private$..doproject7aBtn$value,
         doproject7aLst = function() private$..doproject7aLst$value,
         doproject7bBtn = function() private$..doproject7bBtn$value,
@@ -1657,7 +1668,6 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         doproject7cBtn = function() private$..doproject7cBtn$value,
         doproject7cLst = function() private$..doproject7cLst$value,
         doproject7dBtn = function() private$..doproject7dBtn$value,
-        doproject7dLst = function() private$..doproject7dLst$value,
         doproject8aBtn = function() private$..doproject8aBtn$value,
         doproject8aLst = function() private$..doproject8aLst$value,
         doproject8bBtn = function() private$..doproject8bBtn$value,
@@ -1840,6 +1850,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..doproject6cBtn = NA,
         ..doproject6dBtn = NA,
         ..doproject6dLst = NA,
+        ..doproject7sBtn = NA,
+        ..doproject7sLst = NA,
         ..doproject7aBtn = NA,
         ..doproject7aLst = NA,
         ..doproject7bBtn = NA,
@@ -1847,7 +1859,6 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..doproject7cBtn = NA,
         ..doproject7cLst = NA,
         ..doproject7dBtn = NA,
-        ..doproject7dLst = NA,
         ..doproject8aBtn = NA,
         ..doproject8aLst = NA,
         ..doproject8bBtn = NA,
@@ -2160,6 +2171,8 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param doproject6cBtn .
 #' @param doproject6dBtn .
 #' @param doproject6dLst .
+#' @param doproject7sBtn .
+#' @param doproject7sLst .
 #' @param doproject7aBtn .
 #' @param doproject7aLst .
 #' @param doproject7bBtn .
@@ -2167,7 +2180,6 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param doproject7cBtn .
 #' @param doproject7cLst .
 #' @param doproject7dBtn .
-#' @param doproject7dLst .
 #' @param doproject8aBtn .
 #' @param doproject8aLst .
 #' @param doproject8bBtn .
@@ -2360,14 +2372,15 @@ BrawSim <- function(
     doproject6cBtn,
     doproject6dBtn,
     doproject6dLst = "r03",
+    doproject7sBtn,
+    doproject7sLst = "iii",
     doproject7aBtn,
-    doproject7aLst = "iii",
+    doproject7aLst = "r03",
     doproject7bBtn,
     doproject7bLst = "r03",
     doproject7cBtn,
     doproject7cLst = "r03",
     doproject7dBtn,
-    doproject7dLst = "r03",
     doproject8aBtn,
     doproject8aLst = "iii",
     doproject8bBtn,
@@ -2553,6 +2566,8 @@ BrawSim <- function(
         doproject6cBtn = doproject6cBtn,
         doproject6dBtn = doproject6dBtn,
         doproject6dLst = doproject6dLst,
+        doproject7sBtn = doproject7sBtn,
+        doproject7sLst = doproject7sLst,
         doproject7aBtn = doproject7aBtn,
         doproject7aLst = doproject7aLst,
         doproject7bBtn = doproject7bBtn,
@@ -2560,7 +2575,6 @@ BrawSim <- function(
         doproject7cBtn = doproject7cBtn,
         doproject7cLst = doproject7cLst,
         doproject7dBtn = doproject7dBtn,
-        doproject7dLst = doproject7dLst,
         doproject8aBtn = doproject8aBtn,
         doproject8aLst = doproject8aLst,
         doproject8bBtn = doproject8bBtn,
