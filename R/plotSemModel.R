@@ -1,4 +1,4 @@
-plotPathModel<-function(pathmodel) {
+plotSEMModel<-function(pathmodel) {
   
   digits<-2
   r<-pathmodel$ES_table

@@ -186,8 +186,7 @@ BrawSEMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         semGraphHTML = function() private$.items[["semGraphHTML"]],
         semGraph = function() private$.items[["semGraph"]],
         debug = function() private$.items[["debug"]],
-        reportSEM = function() private$.items[["reportSEM"]],
-        reportTableSEM = function() private$.items[["reportTableSEM"]]),
+        reportSEM = function() private$.items[["reportSEM"]]),
     private = list(),
     public=list(
         initialize=function(options) {
@@ -216,37 +215,6 @@ BrawSEMResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="reportSEM",
                 title=" ",
-                visible=TRUE))
-            self$add(jmvcore::Table$new(
-                options=options,
-                name="reportTableSEM",
-                title=" ",
-                rows=1,
-                columns=list(
-                    list(
-                        `name`="AIC", 
-                        `type`="number"),
-                    list(
-                        `name`="AICc", 
-                        `type`="number"),
-                    list(
-                        `name`="BIC", 
-                        `type`="number"),
-                    list(
-                        `name`="Rsqr", 
-                        `type`="number"),
-                    list(
-                        `name`="r", 
-                        `type`="number"),
-                    list(
-                        `name`="k", 
-                        `type`="number"),
-                    list(
-                        `name`="llr", 
-                        `type`="number"),
-                    list(
-                        `name`="model", 
-                        `type`="text")),
                 visible=TRUE))}))
 
 BrawSEMBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -300,14 +268,7 @@ BrawSEMBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'   \code{results$semGraph} \tab \tab \tab \tab \tab an image \cr
 #'   \code{results$debug} \tab \tab \tab \tab \tab a preformatted \cr
 #'   \code{results$reportSEM} \tab \tab \tab \tab \tab a html \cr
-#'   \code{results$reportTableSEM} \tab \tab \tab \tab \tab a table \cr
 #' }
-#'
-#' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
-#'
-#' \code{results$reportTableSEM$asDF}
-#'
-#' \code{as.data.frame(results$reportTableSEM)}
 #'
 #' @export
 BrawSEM <- function(

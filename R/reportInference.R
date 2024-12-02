@@ -126,25 +126,27 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowe
         if (!is.na(df)) {df<-paste0("!j",brawFormat(df,digits=braw.env$report_precision))} else {df<-""}
         outputText<-c(outputText,"Total "," ",ssq,df,rep(" ",nc-4))
       }
-      AIC<-analysis$aic
-      k<-nrow(anova)-2
-      n_data<-analysis$nval
-      llr<-(2*k-AIC)/2
-      AICc=AIC+(2*k*k+2*k)/(n_data-k-1);
-      BIC=k*log(n_data)+AIC-2*k;
-      CAIC=k*(log(n_data)+1)+AIC-2*k;
-      outputText<-c(outputText,rep("",nc))
-      outputText<-c(outputText,"!HAIC","AICc","BIC","R^2","k","llr",rep("",nc-6))
-      outputText<-c(outputText,
-                    brawFormat(AIC,digits=1),
-                    brawFormat(AICc,digits=1),
-                    brawFormat(BIC,digits=1),
-                    brawFormat(analysis$rFull^2,digits=braw.env$report_precision),
-                    brawFormat(k),
-                    brawFormat(llr,digits=1),
-                    rep("",nc-6)
-      )
     }
+    
+    AIC<-analysis$aic
+    k<-nrow(anova)-2+2
+    n_data<-analysis$nval
+    llr<-(2*k-AIC)/2
+    AICc=AIC+(2*k*k+2*k)/(n_data-k-1);
+    BIC=AIC+k*log(n_data)-2*k;
+    CAIC=k*(log(n_data)+1)+AIC-2*k;
+    outputText<-c(outputText,rep("",nc))
+    outputText<-c(outputText,"!HAIC","AICc","BIC","R^2","k","llr",rep("",nc-6))
+    outputText<-c(outputText,
+                  brawFormat(AIC,digits=1),
+                  brawFormat(AICc,digits=1),
+                  brawFormat(BIC,digits=1),
+                  brawFormat(analysis$rFull^2,digits=braw.env$report_precision),
+                  brawFormat(k),
+                  brawFormat(llr,digits=1),
+                  rep("",nc-6)
+    )
+    
     
     if (!braw.env$reducedOutput) {
     outputText<-c(outputText,rep("",nc))

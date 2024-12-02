@@ -49,6 +49,8 @@ options:
         title: Happiness
       - name: SelfConfidence
         title: SelfConfidence
+      - name: HoursSleep
+        title: HoursSleep
       - name: ExamGrade
         title: ExamGrade
       - name: ExamPass
@@ -91,6 +93,8 @@ options:
         title: Happiness
       - name: SelfConfidence
         title: SelfConfidence
+      - name: HoursSleep
+        title: HoursSleep
       - name: ExamGrade
         title: ExamGrade
       - name: RiskTaking
@@ -133,6 +137,8 @@ options:
         title: Happiness
       - name: SelfConfidence
         title: SelfConfidence
+      - name: HoursSleep
+        title: HoursSleep
       - name: ExamGrade
         title: ExamGrade
       - name: RiskTaking

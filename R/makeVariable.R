@@ -185,6 +185,7 @@ makeDefaultVariables<-function() {
     Anxiety=makeVariable(name="Anxiety",type="Interval",mu=5,sd=2),
     Happiness=makeVariable(name="Happiness",type="Interval",mu=50,sd=12),
     SelfConfidence=makeVariable(name="SelfConfidence",type="Interval",mu=50,sd=12),
+    HoursSleep=makeVariable(name="HoursSleep",type="Interval",mu=7,sd=1,skew=-0.7),
     ExamGrade=makeVariable(name="ExamGrade",type="Interval",mu=65,sd=10,skew=-0.6),
     ExamPass=makeVariable(name="ExamPass?",type="Categorical",ncats=2,cases="no,yes",proportions="1,3"),
     "ExamPass?"=makeVariable(name="ExamPass?",type="Categorical",ncats=2,cases="no,yes",proportions="1,3"),

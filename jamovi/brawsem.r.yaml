@@ -26,28 +26,4 @@ items:
       type: Html
       visible: TRUE
 
-    - name: reportTableSEM
-      title: ' '
-      type: Table
-      rows: 1
-      columns:
-      - name: AIC
-        type: number
-      - name: AICc
-        type: number
-      - name: BIC
-        type: number
-      - name: Rsqr
-        # title: r^2
-        type: number
-      - name: r
-        type: number
-      - name: k
-        type: number
-      - name: llr
-        type: number
-      - name: model
-        type: text
-      visible: TRUE
-
 ...

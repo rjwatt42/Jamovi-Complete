@@ -463,6 +463,7 @@ path2sem<-function(pathmodel,model_data) {
     stages=stages,
     depth=depth,
     add=pathmodel$path$add,
+    remove=pathmodel$path$remove,
     
     P=P,
     Q=Q,
@@ -564,7 +565,8 @@ sem_results<-function(pathmodel,sem) {
   error=t(Yactual-Ypredicted)
   Rsquared=1-sum(diag(var(error)))/sum(diag(var(t(Y))))
   #
-  k=sum(!is.na(CF_table)); n_data=n_obs*length(sem$endogenous);
+  k=sum(!is.na(CF_table))+2**length(sem$endogenous); 
+  n_data=n_obs*length(sem$endogenous);
   Resid2=sum(error^2);
   AIC=k+n_obs*(log(2*pi*sum(error^2)/(n_data-k))+1);
   llr<-(2*k-AIC)/2

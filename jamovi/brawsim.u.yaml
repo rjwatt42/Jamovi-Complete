@@ -1321,11 +1321,17 @@ children:
                             minWidth: 50
                             enable: (showExploreParam:Basic)
   - type: Label
-    label: Extra
+    label: Demonstrations
     children:
+    - type: CollapseBox
+      collapsed: true
+      label: Demos
+      margin: none
+      minWidth: 450
+      children:
       - type: CollapseBox
         collapsed: true
-        label: Demos
+        label: 1. Samples of Data
         margin: none
         minWidth: 330
         children:
@@ -1337,7 +1343,7 @@ children:
                 minWidth: 13
               - type: CollapseBox
                 collapsed: true
-                label: 1. Make a sample & analyse it
+                label: 'a. Basics: make a sample & analyse it'
                 margin: none
                 minWidth: 255
                 children:
@@ -1578,7 +1584,7 @@ children:
                 minWidth: 13
               - type: CollapseBox
                 collapsed: true
-                label: 2. Check the quality of samples
+                label: b. Check the quality of samples
                 margin: none
                 minWidth: 255
                 children:
@@ -1756,7 +1762,7 @@ children:
                 minWidth: 13
               - type: CollapseBox
                 collapsed: true
-                label: '3. Sampling error: rs vs rp'
+                label: 'c. Sampling error: rs vs rp'
                 margin: none
                 minWidth: 255
                 children:
@@ -1934,6 +1940,12 @@ children:
                             maxWidth: 80
                             events:
                               change: ./BrawSim.events::onChange_project3d
+      - type: CollapseBox
+        collapsed: true
+        label: 2. Uncertainty & Design
+        margin: none
+        minWidth: 330
+        children:
           - type: LayoutBox
             style: inline
             children:
@@ -1942,7 +1954,7 @@ children:
                 minWidth: 13
               - type: CollapseBox
                 collapsed: true
-                label: 4. The role of chance in sampling
+                label: 'a. Basics: chance in sampling'
                 margin: none
                 minWidth: 255
                 children:
@@ -2134,7 +2146,7 @@ children:
                 minWidth: 13
               - type: CollapseBox
                 collapsed: true
-                label: 5. Inferential errors
+                label: b. Inferential errors
                 margin: none
                 minWidth: 255
                 children:
@@ -2373,7 +2385,7 @@ children:
                 minWidth: 13
               - type: CollapseBox
                 collapsed: true
-                label: '6. Design: improving your chances'
+                label: 'c. Design: improving your chances'
                 margin: none
                 minWidth: 255
                 children:
@@ -2630,6 +2642,12 @@ children:
                                 maxWidth: 80
                                 events:
                                   change: ./BrawSim.events::onChange_project6d
+      - type: CollapseBox
+        collapsed: true
+        label: 3. More than 1 IV
+        margin: none
+        minWidth: 330
+        children:
           - type: LayoutBox
             style: inline
             children:
@@ -2638,7 +2656,7 @@ children:
                 minWidth: 13
               - type: CollapseBox
                 collapsed: true
-                label: 7. More than 1 IV
+                label: 'a. Basics: 2 IVs'
                 margin: none
                 minWidth: 255
                 children:
@@ -2959,7 +2977,7 @@ children:
                 minWidth: 13
               - type: CollapseBox
                 collapsed: true
-                label: 8. Interactions as moderators
+                label: b. Interactions as moderators
                 margin: none
                 minWidth: 255
                 children:
@@ -3185,7 +3203,7 @@ children:
                 minWidth: 13
               - type: CollapseBox
                 collapsed: true
-                label: 9. Covariation
+                label: c. Covariation
                 margin: none
                 minWidth: 255
                 children:
@@ -3392,6 +3410,12 @@ children:
                                 maxWidth: 80
                                 events:
                                   change: ./BrawSim.events::onChange_project9c
+      - type: CollapseBox
+        collapsed: true
+        label: 4. Path Models
+        margin: none
+        minWidth: 330
+        children:
           - type: LayoutBox
             style: inline
             children:
@@ -3400,7 +3424,7 @@ children:
                 minWidth: 13
               - type: CollapseBox
                 collapsed: true
-                label: 10. Mediation effects
+                label: a. Mediation effects
                 margin: none
                 minWidth: 255
                 children:
@@ -3610,10 +3634,19 @@ children:
                                 maxWidth: 80
                                 events:
                                   change: ./BrawSim.events::onChange_project10c
+  - type: Label
+    label: Settings
+    children:
+    - type: CollapseBox
+      collapsed: true
+      label: Settings
+      margin: none
+      minWidth: 450
+      children:
       - type: CollapseBox
-        name: Settings
+        name: Settings1
         collapsed: true
-        label: Settings
+        label: 'Help system:'
         margin: none
         minWidth: 330
         children:
@@ -3625,7 +3658,7 @@ children:
                 label: ' '
                 minWidth: 13
               - type: Label
-                label: 'Help system:'
+                label: ' '
                 horizontalAlignment: right
                 minWidth: 90
                 maxWidth: 90
@@ -3643,6 +3676,13 @@ children:
                 minWidth: 100
               - type: ComboBox
                 name: demoWhich
+      - type: CollapseBox
+        name: Settings2
+        collapsed: true
+        label: 'Link to Jamovi:'
+        margin: none
+        minWidth: 330
+        children:
           - type: LayoutBox
             style: inline
             margin: none
@@ -3651,7 +3691,7 @@ children:
                 label: ' '
                 minWidth: 13
               - type: Label
-                label: 'Link to Jamovi:'
+                label: ' '
                 minWidth: 90
                 maxWidth: 90
                 horizontalAlignment: right
@@ -3664,6 +3704,13 @@ children:
               - type: Output
                 name: sendMultiple
                 minWidth: 100
+      - type: CollapseBox
+        name: Settings3
+        collapsed: true
+        label: 'Other Options:'
+        margin: none
+        minWidth: 330
+        children:
           - type: LayoutBox
             style: inline
             margin: none
@@ -3672,7 +3719,7 @@ children:
                 label: ' '
                 minWidth: 13
               - type: Label
-                label: 'Other Options:'
+                label: ''
                 minWidth: 90
                 maxWidth: 90
                 horizontalAlignment: right

@@ -42,7 +42,6 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         }
         
         stages<-list()
-        stagesString<-""
         rawStages<-list(self$options$Stage1,
                      self$options$Stage2,
                      self$options$Stage3,
@@ -61,36 +60,28 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           stage<-rawStages[[ist]]
           if (!is.null(stage) && rawStagesOn[ist]) {
             stages<-c(stages,list(stage))
-            stagesString<-paste0(stagesString,paste0("{",paste(sapply(stage,substr,1,3),collapse=","),"}"))
           }
         }
-        stagesString<-paste0(stagesString,"@",substr(self$options$Depth,2,2))
-        
+
         addSource<-self$options$addSource
         addDest<-self$options$addDest
         add<-list()
-        addString<-""
         nAdd<-min(length(addSource),length(addDest))
         if (nAdd>0) {
-          addString<-" + "
           for (i in 1:nAdd) {
             thisAdd<-list(c(addSource[i],addDest[i]))
             add<-c(add,thisAdd)
-            addString<-paste0(addString,"(",paste(sapply(thisAdd,substr,1,3),collapse=":"),")")
           }
         }
 
         removeSource<-self$options$removeSource
         removeDest<-self$options$removeDest
         remove<-list()
-        removeString<-""
         nRemove<-min(length(removeSource),length(removeDest))
         if (nRemove>0){
-          removeString<-" - "
           for (i in 1:nRemove){
             thisRemove<-list(c(removeSource[i],removeDest[i]))
             remove<-c(remove,thisRemove)
-            removeString<-paste0(removeString,"(",paste(sapply(thisRemove,substr,1,3),collapse=":"),")")
           }
         }
         pathmodel<-list(path=
@@ -123,63 +114,19 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                          varcat=dataFull$variables$type=="Categorical"
         )
         
-        st<-paste0(stagesString,addString,removeString)
-        
         sem<-fit_sem_model(pathmodel,model_data)
         
-        outputGraph<-plotPathModel(sem)
+        outputGraph<-plotSEMModel(sem)
         if (self$options$showHTML) {
           self$results$semGraphHTML$setContent(outputGraph)
 
-          outputReport<-reportPathModel(sem,self$options$ShowType)
+          outputReport<-reportSEMModel(sem,self$options$ShowType)
           self$results$reportSEM$setContent(outputReport)
         } else {
           assign("sem",sem,braw.res)
           self$results$semGraph$setState("SEM")
         }
         
-          tableOutput<-braw.env$tableSEM
-          tableOutput<-rbind(list(AIC=brawFormat(sem$eval$AIC,digits=1),
-                                  AICc=brawFormat(sem$eval$AICc,digits=1),
-                                  BIC=brawFormat(sem$eval$BIC,digits=1),
-                                  Rsqr=brawFormat(sem$eval$Rsquared),
-                                  r=brawFormat(sqrt(sem$eval$Rsquared)),
-                                  k=sem$eval$k,
-                                  llr=brawFormat(sem$eval$llr,digits=1),
-                                  model=st
-                                  ),
-                             tableOutput
-          )
-          setBrawEnv("tableSEM",tableOutput)
-          # self$results$debug$setVisible(TRUE)
-          # self$results$debug$setContent(sem$stages)
-          
-          ne<-nrow(tableOutput)
-          if (ne>15) {
-            use1<-which.min(tableOutput[15:ne,1])
-            use<-c(1:14,use1[1])
-          } else {
-            use<-1:ne
-          }
-          
-          for (i in 1:length(use))
-            if (i>1) {
-              self$results$reportTableSEM$addRow(i,values=tableOutput[use[i],])
-              statusStore$nrowTableSEM<-statusStore$nrowTableSEM+1
-            }
-            else  self$results$reportTableSEM$setRow(rowNo=i,values=tableOutput[use[i],])
-
-          self$results$reportTableSEM$setState(tableOutput)
-          
-          for (col in 1:3) {
-            a<-which.min(tableOutput[,col])
-            self$results$reportTableSEM$addFormat(rowNo=a,col=col,format=Cell.NEGATIVE)
-          }
-          a<-which.max(tableOutput[,4])
-          self$results$reportTableSEM$addFormat(rowNo=a,col=4,format=Cell.NEGATIVE)
-          a<-which.min(tableOutput[,1])
-          self$results$reportTableSEM$addFootnote(rowNo=a,col=1,note="best model")
-          
           braw.env$statusStore<<-statusStore
           
         },

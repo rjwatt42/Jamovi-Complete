@@ -734,11 +734,9 @@ const events =  {
       ui.SampleSize.setValue(1000)
       ui.interaction.setValue("no");
       ui.demoWhich.setValue("d10")
-      ui.presetIV2.setValue("IV2");
-      ui.IV2name.setValue("IV2"); 
-          ui.DVtype.setValue("Interval"); 
-          ui.IVtype.setValue("Interval"); 
-          ui.IV2type.setValue("Interval"); 
+          ui.presetDV.setValue("ExamGrade"); 
+          ui.presetIV.setValue("HoursSleep"); 
+          ui.presetIV2.setValue("Anxiety"); 
       ui.EffectSize1.setValue(0.0)
       ui.EffectSize2.setValue(0.7)
       ui.EffectSize3.setValue(0.7)
@@ -817,102 +815,107 @@ let defaultSetUp = function(ui) {
 let makeVar = function(name) {
   switch (name) {
     case "DV":
-      var variable={name:"DV",type:"Interval",mu:0,sd:1,skew:0,kurt:3,
+      var variable={name:"DV",type:"Interval",mu:0,sd:1,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "IV":
-      var variable={name:"IV",type:"Interval",mu:0,sd:1,skew:0,kurt:3,
+      var variable={name:"IV",type:"Interval",mu:0,sd:1,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "IV2":
-      var variable={name:"IV2",type:"Interval",mu:0,sd:1,skew:0,kurt:3,
+      var variable={name:"IV2",type:"Interval",mu:0,sd:1,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "IQ":
-      var variable={name:"IQ",type:"Interval",mu:100,sd:15,skew:0,kurt:3,
+      var variable={name:"IQ",type:"Interval",mu:100,sd:15,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "Diligence":
-      var variable={name:"Diligence",type:"Interval",mu:0,sd:2,skew:0,kurt:3,
+      var variable={name:"Diligence",type:"Interval",mu:0,sd:2,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "Perfectionism":
-      var variable={name:"Perfectionism",type:"Interval",mu:0,sd:2,skew:0,kurt:3,
+      var variable={name:"Perfectionism",type:"Interval",mu:0,sd:2,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "Anxiety":
-      var variable={name:"Anxiety",type:"Interval",mu:5,sd:2,skew:0,kurt:3,
+      var variable={name:"Anxiety",type:"Interval",mu:5,sd:2,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "Happiness":
-      var variable={name:"Happiness",type:"Interval",mu:50,sd:12,skew:0,kurt:3,
+      var variable={name:"Happiness",type:"Interval",mu:50,sd:12,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "SelfConfidence":
-      var variable={name:"SelfConfidence",type:"Interval",mu:50,sd:12,skew:0,kurt:3,
+      var variable={name:"SelfConfidence",type:"Interval",mu:50,sd:12,skew:0,kurt:0,
+      nlevs:7,iqr:3,
+      ncats:2,cases:"C1,C2",props:"1,1"};
+      break;
+    case "HoursSleep":
+      var variable={name:"HoursSleep",type:"Interval",mu:7,sd:1,skew:-0.7,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "ExamGrade":
-      var variable={name:"ExamGrade",type:"Interval",mu:55,sd:10,skew:-0.6,kurt:3,
+      var variable={name:"ExamGrade",type:"Interval",mu:55,sd:10,skew:-0.6,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "ExamPass":
-      var variable={name:"ExamPass?",type:"Categorical",mu:55,sd:10,skew:-0.6,kurt:3,
+      var variable={name:"ExamPass?",type:"Categorical",mu:55,sd:10,skew:-0.6,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"no,yes",props:"1,3"};
       break;
     case "RiskTaking":
-      var variable={name:"RiskTaking",type:"Interval",mu:30,sd:6,skew:0.5,kurt:3,
+      var variable={name:"RiskTaking",type:"Interval",mu:30,sd:6,skew:0.5,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "Interesting":
-      var variable={name:"Interesting",type:"Interval",mu:10,sd:2,skew:0,kurt:3,
+      var variable={name:"Interesting",type:"Interval",mu:10,sd:2,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"C1,C2",props:"1,1"};
       break;
     case "Musician":
-      var variable={name:"Musician?",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
+      var variable={name:"Musician?",type:"Categorical",mu:0,sd:1,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"no,yes",props:"1,1"};
       break;
     case "RiskTaker":
-      var variable={name:"RiskTaker?",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
+      var variable={name:"RiskTaker?",type:"Categorical",mu:0,sd:1,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"no,yes",props:"1,1"};
       break;
     case "Smoker":
-      var variable={name:"Smoker?",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
+      var variable={name:"Smoker?",type:"Categorical",mu:0,sd:1,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"no,yes",props:"2,1"};
       break;
     case "StudySubject":
-      var variable={name:"StudySubject",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
+      var variable={name:"StudySubject",type:"Categorical",mu:0,sd:1,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:3,cases:"psych,phil,sports",props:"1.5,1,2"};
       break;
     case "BirthOrder":
-      var variable={name:"BirthOrder",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
+      var variable={name:"BirthOrder",type:"Categorical",mu:0,sd:1,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:4,cases:"first,middle,last,only",props:"1,0.4,0.6,0.2"};
       break;
     case "Treatment":
-      var variable={name:"Treatment?",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
+      var variable={name:"Treatment?",type:"Categorical",mu:0,sd:1,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"no,yes",props:"1,1"};
       break;
     case "Phase":
-      var variable={name:"Phase",type:"Categorical",mu:0,sd:1,skew:0,kurt:3,
+      var variable={name:"Phase",type:"Categorical",mu:0,sd:1,skew:0,kurt:0,
       nlevs:7,iqr:3,
       ncats:2,cases:"before,after",props:"1,1"};
       break;
