@@ -80,7 +80,7 @@ reportSEMModel<-function(sem,showType) {
 
   outputText<-c(outputText,"!H!C","AIC","AICc","BIC","Rsqr","r","k","llr","model",rep(" ",nc-1-8))
   digitsE<-c(1,1,1,3,3,0,1)
-  prefix<-"!b!r"
+  prefix<-"!r"
   for (i in use) {
     outputText<-c(outputText," ")
     for (j in 1:8) {

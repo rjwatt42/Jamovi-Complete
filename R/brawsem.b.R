@@ -96,7 +96,7 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                    )
         )
 
-        if (length(stages)<2) {
+        if (length(stages)<1) {
           if (self$options$showHTML) {
             self$results$semGraphHTML$setContent(nullPlot())
           } else {
@@ -107,13 +107,15 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         }
         
         dataFull<-prepareSample(self$data)
+        liveData<-dataFull$data[,2:ncol(dataFull$data)]
+        if (ncol(dataFull$data)==2) liveData<-matrix(liveData,ncol=ncol(dataFull$data)-1)
 
         model_data<-list(pid=1:length(dataFull$data[,1]),
-                         data=dataFull$data[,2:ncol(dataFull$data)],
+                         data=liveData,
                          varnames=dataFull$variables$name,
                          varcat=dataFull$variables$type=="Categorical"
         )
-        
+
         sem<-fit_sem_model(pathmodel,model_data)
         
         outputGraph<-plotSEMModel(sem)

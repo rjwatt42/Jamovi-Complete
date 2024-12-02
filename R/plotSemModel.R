@@ -96,18 +96,21 @@ plotSEMModel<-function(pathmodel) {
         }
 
   # arrows first in increasing size order
-  for (ai in order(abs(ar))) {
-    g<-addG(g,drawArrow(c(ax[ai],ay[ai]),aLen[ai],direction=rdir[ai]+90,
-                        width=aWid[ai],ends="last",col=rfg[ai],fill=rcol[ai],finAngle=60))
-    
-  }
   
-  # now the effect size labels
-  for (ri in order(abs(ar))) {
-    if (ry[ri]<0) vjust=1 else vjust=0
-    g<-addG(g,dataLabel(data.frame(x=rx[ri],y=ry[ri]),label=rlabels[ri],
-                        size=0.6,hjust=0.5,vjust=0.5,# angle=rdir[ri],
-                        fill=darken(rcol[ri],1,0.2),colour=rfg[ri]))
+  if (!is.null(ar)) {
+    for (ai in order(abs(ar))) {
+      g<-addG(g,drawArrow(c(ax[ai],ay[ai]),aLen[ai],direction=rdir[ai]+90,
+                          width=aWid[ai],ends="last",col=rfg[ai],fill=rcol[ai],finAngle=60))
+      
+    }
+    
+    # now the effect size labels
+    for (ri in order(abs(ar))) {
+      if (ry[ri]<0) vjust=1 else vjust=0
+      g<-addG(g,dataLabel(data.frame(x=rx[ri],y=ry[ri]),label=rlabels[ri],
+                          size=0.6,hjust=0.5,vjust=0.5,# angle=rdir[ri],
+                          fill=darken(rcol[ri],1,0.2),colour=rfg[ri]))
+    }
   }
   
   # now draw variable names
