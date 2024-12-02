@@ -508,6 +508,8 @@ sem_results<-function(pathmodel,sem) {
   
   nan_action<-"complete.obs" # "complete.obs"
   sem$covariance<-cov(sem$data,use=nan_action)
+  rownames(sem$covariance)<-sem$varnames
+  colnames(sem$covariance)<-sem$varnames#[use_cf]
   if (Q>0) sem$cov_model=get_Stheta(sem)
   else sem$cov_model<-0
   

@@ -34,7 +34,7 @@ reportSEMModel<-function(sem,showType) {
   for (stage in sem$stages) {
       stagesString<-paste0(stagesString,paste0("{",paste(sapply(stage,substr,1,3),collapse=","),"}"))
   }
-  stagesString<-paste0(stagesString,"@",substr(sem$pathmodel$depth,2,2))
+  stagesString<-paste0(stagesString,"@",sem$depth)
   
   addString<-""
   nAdd<-length(sem$add)
