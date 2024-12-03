@@ -120,10 +120,12 @@ plotLimits<-function(xlim,ylim,orientation="horz",gaps=c(1,1,0,0),fontScale=1) {
 
 nullPlot<-function() {
   if (braw.env$graphHTML) {
+    if (braw.env$plotColours$graphC=="#FFFFFF") col<-"rgba(0,0,0,0)"
+    else col<-braw.env$plotColours$graphC
     g<-paste0(
       '<svg width=',format(svgBoxX()),' height=',format(svgBoxY()),
       ' padding:0;',
-      ' style="','background-color: white;','display: block; margin: auto;','" ',
+      ' style="','background-color: ',col,';','display: block; margin: auto;','" ',
       ' xmlns="http://www.w3.org/2000/svg">'
     )
   } else {

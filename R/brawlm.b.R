@@ -8,7 +8,7 @@ BrawLMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       .init = function() {
         # initialization code 
         if (!exists("braw.env")) {
-          BrawOpts(graphC="white",reducedOutput=TRUE,reportHTML=TRUE,autoShow=FALSE,
+          BrawOpts(graphC="transparent",reducedOutput=TRUE,reportHTML=TRUE,autoShow=FALSE,
                    height=400,fullGraphSize=0.5)
           statusStore<-list(lastOutput="System",
                             showSampleType="Sample",

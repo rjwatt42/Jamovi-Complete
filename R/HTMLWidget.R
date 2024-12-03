@@ -109,7 +109,7 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                    panels<-''
                                    buttons <- paste0(buttons,
                                                      '  <button id="tabtitle" class="tablinks" onclick="closeTabs(event,\'',title,'\')"',
-                                                        ' style="background-color:white;color:black;cursor:default;font-weight: 500;font-size:13px;width:135px;text-align: right;margin:0px;padding: 0px;">',
+                                                        ' style="background-color:rgba(0,0,0,0);color:black;cursor:default;font-weight: 500;font-size:13px;width:135px;text-align: right;margin:0px;padding: 0px;">',
                                                      title,
                                                      '</button>')
                                    if (nchar(titleTab)>0)
