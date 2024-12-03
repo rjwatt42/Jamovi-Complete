@@ -360,23 +360,31 @@ view.layout = ui.extend({
 				{
 					type: DefaultControls.LayoutBox,
 					typeName: 'LayoutBox',
-					style: "list",
+					style: "inline",
 					margin: "large",
 					controls: [
-						{
-							type: DefaultControls.ComboBox,
-							typeName: 'ComboBox',
-							name: "ShowType"
-						},
-						{
-							type: DefaultControls.CheckBox,
-							typeName: 'CheckBox',
-							name: "showHTML"
-						},
 						{
 							type: DefaultControls.ActionButton,
 							typeName: 'ActionButton',
 							name: "clearHistory"
+						},
+						{
+							type: DefaultControls.ComboBox,
+							typeName: 'ComboBox',
+							name: "ShowType"
+						}
+					]
+				},
+				{
+					type: DefaultControls.LayoutBox,
+					typeName: 'LayoutBox',
+					style: "inline",
+					margin: "large",
+					controls: [
+						{
+							type: DefaultControls.CheckBox,
+							typeName: 'CheckBox',
+							name: "showHTML"
 						}
 					]
 				}

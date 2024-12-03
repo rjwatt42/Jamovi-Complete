@@ -204,12 +204,16 @@ children:
     label: 'Show:'
     children:
     - type: LayoutBox
-      style: list
+      style: inline
       margin: large
       children:
-        - type: ComboBox
-          name: ShowType
-        - type: CheckBox
-          name: showHTML
         - type: ActionButton
           name: clearHistory
+        - type: ComboBox
+          name: ShowType
+    - type: LayoutBox
+      style: inline
+      margin: large
+      children:
+        - type: CheckBox
+          name: showHTML
