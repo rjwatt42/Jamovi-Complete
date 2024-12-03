@@ -571,7 +571,7 @@ sem_results<-function(pathmodel,sem) {
   if (Q>0) {
     X=t(sem$data[,(P+1):ncol(sem$data)]); X[is.na(X)]=0;
     Ypredicted=B%*%Y+L%*%X;
-  } else Ypredicted<-matrix(mean(sem$data),nrow=1,ncol=nrow(sem$data))
+  } else Ypredicted<-matrix(colMeans(sem$data),nrow=ncol(sem$data),ncol=nrow(sem$data))
   Yactual=Y-rowMeans(Y)
   Ypredicted=Ypredicted-rowMeans(Ypredicted)
   error=t(Yactual-Ypredicted)
@@ -580,11 +580,11 @@ sem_results<-function(pathmodel,sem) {
   k=sum(!is.na(CF_table))+2*length(sem$endogenous); 
   n_data=n_obs*length(sem$endogenous);
   Resid2=sum(error^2);
-  AIC=k+n_obs*(log(2*pi*sum(error^2)/(n_data-k))+1);
-  llr<-(2*k-AIC)/2
-  AICc=AIC+(2*k*k+2*k)/(n_data-k-1);
-  BIC=k*log(n_data)+AIC-2*k;
-  CAIC=k*(log(n_data)+1)+AIC-2*k;
+  AIC=k+n_obs*(log(2*pi*Resid2/(n_data-k))+1);
+  llr<-k-AIC/2
+  AICc=AIC+2*k*(k+1)/(n_data-k-1);
+  BIC=AIC-2*k+k*log(n_data);
+  CAIC=AIC-2*k+k*(log(n_data)+1);
   # 
   sem$stats<-list(model_chisqr=model_chisqr,
                  model_chi_df=model_chi_df,
@@ -599,6 +599,7 @@ sem_results<-function(pathmodel,sem) {
                  n_data=n_data,
                  n_obs=n_obs,
                  llr=llr,
+                 resid2=Resid2,
                  AIC=AIC,
                  AICc=AICc,
                  BIC=BIC,

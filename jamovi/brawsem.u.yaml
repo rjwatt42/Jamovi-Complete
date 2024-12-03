@@ -211,3 +211,5 @@ children:
           name: ShowType
         - type: CheckBox
           name: showHTML
+        - type: ActionButton
+          name: clearHistory

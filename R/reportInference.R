@@ -71,12 +71,12 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowe
                     mean(use1,na.rm=TRUE)*sd(analysis$dv[use1],na.rm=TRUE)^2
                   )
                 )
-        outputText<-c(outputText,"!H!Ctest-statistic","(df) ","value","p",f1,"r[s]","Cohen's d",rep("",nc-7))
-        outputText<-c(outputText,paste0("!c",t_name),df,brawFormat(tval,digits=braw.env$report_precision),pvalText,
+        outputText<-c(outputText,"!Htest-statistic","(df) ","value","p",f1,"r[s]","Cohen's d",rep("",nc-7))
+        outputText<-c(outputText,paste0("!j",t_name),df,brawFormat(tval,digits=braw.env$report_precision),pvalText,
                       f2,rvalText,brawFormat(dval,digits=braw.env$report_precision),rep("",nc-7))
       } else {
-        outputText<-c(outputText,"!H!Ctest-statistic","(df) ","value","p",f1,"r[s]",rep("",nc-6))
-        outputText<-c(outputText,paste0("!c",t_name),df,brawFormat(tval,digits=braw.env$report_precision),pvalText,
+        outputText<-c(outputText,"!Htest-statistic","(df) ","value","p",f1,"r[s]",rep("",nc-6))
+        outputText<-c(outputText,paste0("!j",t_name),df,brawFormat(tval,digits=braw.env$report_precision),pvalText,
                       f2,rvalText,rep("",nc-6))
       }
     }
@@ -136,16 +136,27 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowe
     BIC=AIC+k*log(n_data)-2*k;
     CAIC=k*(log(n_data)+1)+AIC-2*k;
     outputText<-c(outputText,rep("",nc))
-    outputText<-c(outputText,"!HAIC","AICc","BIC","R^2","k","llr",rep("",nc-6))
-    outputText<-c(outputText,
-                  brawFormat(AIC,digits=1),
-                  brawFormat(AICc,digits=1),
-                  brawFormat(BIC,digits=1),
-                  brawFormat(analysis$rFull^2,digits=braw.env$report_precision),
-                  brawFormat(k),
-                  brawFormat(llr,digits=1),
-                  rep("",nc-6)
-    )
+    if (braw.env$reducedOutput) {
+      outputText<-c(outputText,"!HAIC","R^2","k","llr",rep("",nc-4))
+      outputText<-c(outputText,
+                    brawFormat(AIC,digits=1),
+                    brawFormat(analysis$rFull^2,digits=braw.env$report_precision),
+                    brawFormat(k),
+                    brawFormat(llr,digits=1),
+                    rep("",nc-4)
+      )
+    } else {
+      outputText<-c(outputText,"!HAIC","AICc","BIC","R^2","k","llr",rep("",nc-6))
+      outputText<-c(outputText,
+                    brawFormat(AIC,digits=1),
+                    brawFormat(AICc,digits=1),
+                    brawFormat(BIC,digits=1),
+                    brawFormat(analysis$rFull^2,digits=braw.env$report_precision),
+                    brawFormat(k),
+                    brawFormat(llr,digits=1),
+                    rep("",nc-6)
+      )
+    }
     
     
     if (!braw.env$reducedOutput) {

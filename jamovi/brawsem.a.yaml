@@ -98,6 +98,10 @@ options:
     #       - name: addDest
     #         type: Variable
       
+    - name: clearHistory
+      title: clear
+      type: Action
+      
     - name: addDest
       title: Add Dest
       type: Variables

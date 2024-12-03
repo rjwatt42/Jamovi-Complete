@@ -31,6 +31,11 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
         statusStore<-braw.env$statusStore
         
+        if (self$options$clearHistory) {
+          setBrawEnv("tableSEM",NULL)
+          return()  
+        }
+        
         if (self$options$showHTML)  {
           assign("graphHTML",TRUE,braw.env)
           self$results$semGraph$setVisible(FALSE)
@@ -62,7 +67,10 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             stages<-c(stages,list(stage))
           }
         }
-
+# self$results$debug$setContent(stages)
+# self$results$debug$setVisible(TRUE)
+# return()
+        
         addSource<-self$options$addSource
         addDest<-self$options$addDest
         add<-list()

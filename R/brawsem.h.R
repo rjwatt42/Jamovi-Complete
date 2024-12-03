@@ -19,6 +19,7 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             causalDirection = "down",
             Depth = "d1",
             ShowType = "ES",
+            clearHistory = NULL,
             addDest = NULL,
             addSource = NULL,
             removeDest = NULL,
@@ -91,6 +92,9 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "ES",
                     "cov"),
                 default="ES")
+            private$..clearHistory <- jmvcore::OptionAction$new(
+                "clearHistory",
+                clearHistory)
             private$..addDest <- jmvcore::OptionVariables$new(
                 "addDest",
                 addDest)
@@ -127,6 +131,7 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..causalDirection)
             self$.addOption(private$..Depth)
             self$.addOption(private$..ShowType)
+            self$.addOption(private$..clearHistory)
             self$.addOption(private$..addDest)
             self$.addOption(private$..addSource)
             self$.addOption(private$..removeDest)
@@ -149,6 +154,7 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         causalDirection = function() private$..causalDirection$value,
         Depth = function() private$..Depth$value,
         ShowType = function() private$..ShowType$value,
+        clearHistory = function() private$..clearHistory$value,
         addDest = function() private$..addDest$value,
         addSource = function() private$..addSource$value,
         removeDest = function() private$..removeDest$value,
@@ -170,6 +176,7 @@ BrawSEMOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..causalDirection = NA,
         ..Depth = NA,
         ..ShowType = NA,
+        ..clearHistory = NA,
         ..addDest = NA,
         ..addSource = NA,
         ..removeDest = NA,
@@ -255,6 +262,7 @@ BrawSEMBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param causalDirection .
 #' @param Depth .
 #' @param ShowType .
+#' @param clearHistory .
 #' @param addDest .
 #' @param addSource .
 #' @param removeDest .
@@ -286,6 +294,7 @@ BrawSEM <- function(
     causalDirection = "down",
     Depth = "d1",
     ShowType = "ES",
+    clearHistory,
     addDest,
     addSource,
     removeDest,
@@ -338,6 +347,7 @@ BrawSEM <- function(
         causalDirection = causalDirection,
         Depth = Depth,
         ShowType = ShowType,
+        clearHistory = clearHistory,
         addDest = addDest,
         addSource = addSource,
         removeDest = removeDest,

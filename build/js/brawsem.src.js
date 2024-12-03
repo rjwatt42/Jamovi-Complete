@@ -3,7 +3,7 @@
 
 'use strict';
 
-const options = [{"name":"data","type":"Data"},{"name":"Stage5","title":"Stage 5","type":"Variables"},{"name":"Stage4","title":"Stage 4","type":"Variables"},{"name":"Stage3","title":"Stage 3","type":"Variables"},{"name":"Stage2","title":"Stage 3","type":"Variables"},{"name":"Stage1","title":"Stage 1","type":"Variables"},{"name":"Stage5On","title":"","type":"Bool","default":true},{"name":"Stage4On","title":"","type":"Bool","default":true},{"name":"Stage3On","title":"","type":"Bool","default":true},{"name":"Stage2On","title":"","type":"Bool","default":true},{"name":"Stage1On","title":"","type":"Bool","default":true},{"name":"causalDirection","title":"Direction","type":"List","options":[{"name":"up","title":"up"},{"name":"down","title":"down"}],"default":"down"},{"name":"Depth","title":"Depth","type":"List","options":[{"name":"d1","title":"1"},{"name":"d2","title":"2"},{"name":"all","title":"all"}],"default":"d1"},{"name":"ShowType","title":"","type":"List","options":[{"name":"CF","title":"coefficients"},{"name":"ES","title":"effect sizes"},{"name":"cov","title":"covariance"}],"default":"ES"},{"name":"addDest","title":"Add Dest","type":"Variables"},{"name":"addSource","title":"Add Source","type":"Variables"},{"name":"removeDest","title":"Add Dest","type":"Variables"},{"name":"removeSource","title":"Add Source","type":"Variables"},{"name":"onlySource","title":"only Source","type":"Variables"},{"name":"onlyDest","title":"only Dest","type":"Variables"},{"name":"showHTML","title":"HTML?","type":"Bool","default":true}];
+const options = [{"name":"data","type":"Data"},{"name":"Stage5","title":"Stage 5","type":"Variables"},{"name":"Stage4","title":"Stage 4","type":"Variables"},{"name":"Stage3","title":"Stage 3","type":"Variables"},{"name":"Stage2","title":"Stage 3","type":"Variables"},{"name":"Stage1","title":"Stage 1","type":"Variables"},{"name":"Stage5On","title":"","type":"Bool","default":true},{"name":"Stage4On","title":"","type":"Bool","default":true},{"name":"Stage3On","title":"","type":"Bool","default":true},{"name":"Stage2On","title":"","type":"Bool","default":true},{"name":"Stage1On","title":"","type":"Bool","default":true},{"name":"causalDirection","title":"Direction","type":"List","options":[{"name":"up","title":"up"},{"name":"down","title":"down"}],"default":"down"},{"name":"Depth","title":"Depth","type":"List","options":[{"name":"d1","title":"1"},{"name":"d2","title":"2"},{"name":"all","title":"all"}],"default":"d1"},{"name":"ShowType","title":"","type":"List","options":[{"name":"CF","title":"coefficients"},{"name":"ES","title":"effect sizes"},{"name":"cov","title":"covariance"}],"default":"ES"},{"name":"clearHistory","title":"clear","type":"Action"},{"name":"addDest","title":"Add Dest","type":"Variables"},{"name":"addSource","title":"Add Source","type":"Variables"},{"name":"removeDest","title":"Add Dest","type":"Variables"},{"name":"removeSource","title":"Add Source","type":"Variables"},{"name":"onlySource","title":"only Source","type":"Variables"},{"name":"onlyDest","title":"only Dest","type":"Variables"},{"name":"showHTML","title":"HTML?","type":"Bool","default":true}];
 
 const view = function() {
     
@@ -372,6 +372,11 @@ view.layout = ui.extend({
 							type: DefaultControls.CheckBox,
 							typeName: 'CheckBox',
 							name: "showHTML"
+						},
+						{
+							type: DefaultControls.ActionButton,
+							typeName: 'ActionButton',
+							name: "clearHistory"
 						}
 					]
 				}

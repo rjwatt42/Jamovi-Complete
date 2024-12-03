@@ -12,6 +12,8 @@ reportPlot<-function(outputText,nc,nr,fontSize=0.85,maxRows=14,renderAsHTML=braw
   rowColour="#88BBFF"
   rowColour=tableColour
   cellPadding="padding:3px;margin-top:0px;"
+  cellFilledStyle<-'padding-left:5px;padding-right:5px;'
+  cellEmptyStyle<-'padding-left:0px;padding-right:0px;'
   blankLineStyle="padding-top:20px;"
   tableStart<-paste0('<table style="margin-top:0px;">')
   if (renderAsHTML) {
@@ -153,8 +155,8 @@ reportPlot<-function(outputText,nc,nr,fontSize=0.85,maxRows=14,renderAsHTML=braw
 
             
             if (nchar(outputText[index])>0)
-                 outputFront<-paste0(outputFront,"<td ",bgcolor," style=",cellStyle,rowStyle,startStyle,">",outputText[index],"</td>")
-            else outputFront<-paste0(outputFront,"<td ",bgcolor," style=height:1px;",rowStyle,"></td>")
+                 outputFront<-paste0(outputFront,"<td ",bgcolor," style=",cellStyle,cellFilledStyle,rowStyle,startStyle,">",outputText[index],"</td>")
+            else outputFront<-paste0(outputFront,"<td ",bgcolor," style=height:1px;",cellEmptyStyle,rowStyle,"></td>")
         }
         outputFront<-paste0(outputFront,"</tr>")
         if (index+nc<=length(outputText))
