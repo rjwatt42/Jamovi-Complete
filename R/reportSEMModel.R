@@ -63,6 +63,7 @@ reportSEMModel<-function(sem,showType) {
                AIC=sem$eval$AIC,
                AICc=sem$eval$AICc,
                BIC=sem$eval$BIC,
+               AICnull=sem$eval$AICnull,
                Rsqr=sem$eval$Rsquared,
                r=sqrt(sem$eval$Rsquared),
                resid2=sem$eval$resid2,
@@ -84,20 +85,25 @@ reportSEMModel<-function(sem,showType) {
     use<-1:ne
   }
 
-  columns<-c("Model","AIC","Rsqr","r","llr","resid2","k","n","obs")
+  columns<-c("Model","AIC","llk(null)","Rsqr","r","llr","k","n","obs")
   nc1<-length(columns)
   tableText<-c(columns,rep("",nc-nc1))
   tableText[1]<-paste0("!H",tableText[1])
-  tableText[3]<-"R^2"
-  digitsE<-c(0,1,1,1,3,3,3,1,0,0,0)
+  tableText[which(columns=="Rsqr")]<-"R^2"
+  digitsE<-c(0,1,1,1,1,3,3,3,1,0,0,0)
   prefix<-"!r"
   for (i in use) {
     for (column in columns) {
-      j<-which(column==colnames(tableOutput))
-      val<-unlist(tableOutput[i,j])
-      if (is.numeric(val)) val<-brawFormat(val,digits=digitsE[j])
-      if (is.element(column,c("AIC","AICc","BIC")) && i==which.min(tableOutput[,j])) val<-paste0(prefix,val)
-      if (is.element(column,c("Rsqr")) && i==which.max(tableOutput[,j])) val<-paste0(prefix,val)
+      if (column=="llk(null)") {
+        val<-log(exp(-0.5*(unlist(tableOutput[i,2])-unlist(tableOutput[i,5]))))
+        val<-brawFormat(val,digits=3)
+      } else {
+        j<-which(column==colnames(tableOutput))
+        val<-unlist(tableOutput[i,j])
+        if (is.numeric(val)) val<-brawFormat(val,digits=digitsE[j])
+        # if (is.element(column,c("AIC","AICc","BIC")) && i==which.min(tableOutput[,j])) val<-paste0(prefix,val)
+        # if (is.element(column,c("Rsqr")) && i==which.max(tableOutput[,j])) val<-paste0(prefix,val)
+      }
       tableText<-c(tableText,val)
     }
     tableText<-c(tableText,rep("",nc-nc1))

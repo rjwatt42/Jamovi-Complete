@@ -11,7 +11,7 @@ brawFormat<-function(numbers,digits=braw.env$report_precision) {
     if (digits<0) digits<-0
   }
   if (all(abs(numbers-round(numbers))<10^(-digits))) {
-    r<-sprintf(round(numbers),fmt="%d")
+    r<-sprintf(round(numbers),fmt="%0.0f")
   } else {
     r<-sprintf(numbers,fmt=paste0("%0.",digits,"f"))
   }

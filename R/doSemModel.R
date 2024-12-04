@@ -585,6 +585,10 @@ sem_results<-function(pathmodel,sem) {
   AICc=AIC+2*k*(k+1)/(n_data-k-1);
   BIC=AIC-2*k+k*log(n_data);
   CAIC=AIC-2*k+k*(log(n_data)+1);
+  
+  k_null<-2*length(sem$endogenous)
+  Resid2_null<-sum(Yactual^2)
+  AICnull<-k_null+n_obs*(log(2*pi*Resid2_null/(n_data-k_null))+1)
   # 
   sem$stats<-list(model_chisqr=model_chisqr,
                  model_chi_df=model_chi_df,
@@ -603,7 +607,8 @@ sem_results<-function(pathmodel,sem) {
                  AIC=AIC,
                  AICc=AICc,
                  BIC=BIC,
-                 CAIC=CAIC
+                 CAIC=CAIC,
+                 AICnull=AICnull
   )
   # 
   

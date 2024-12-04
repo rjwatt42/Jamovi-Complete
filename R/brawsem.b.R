@@ -126,8 +126,8 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
         sem<-fit_sem_model(pathmodel,model_data)
         
-        outputGraph<-plotSEMModel(sem)
         if (self$options$showHTML) {
+          outputGraph<-plotSEMModel(sem)
           self$results$semGraphHTML$setContent(outputGraph)
 
           outputReport<-reportSEMModel(sem,self$options$ShowType)
@@ -160,7 +160,7 @@ BrawSEMClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                  "MetaMultiple"  =outputGraph<-showMetaMultiple(),
                  "Explore"   =outputGraph<-showExplore(showType=image$state[2],dimension=image$state[3],effectType=image$state[4]),
                  "LM" =outputGraph<-plotGLM(DV=braw.res$lm$DV,IVs=braw.res$lm$IVs,braw.res$lm$result,braw.res$lm$whichR),
-                 "SEM" =outputGraph<-plotPathModel(braw.res$sem)
+                 "SEM" =outputGraph<-plotSEMModel(braw.res$sem)
           )
           print(outputGraph)
           return(TRUE)
