@@ -2407,54 +2407,277 @@ view.layout = ui.extend({
 					minWidth: 450,
 					controls: [
 						{
-							type: DefaultControls.CollapseBox,
-							typeName: 'CollapseBox',
-							collapsed: true,
-							label: "1. Samples of Data",
-							margin: "none",
-							minWidth: 330,
+							type: DefaultControls.LayoutBox,
+							typeName: 'LayoutBox',
+							style: "inline",
 							controls: [
 								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
+									type: DefaultControls.Label,
+									typeName: 'Label',
+									label: " ",
+									minWidth: 13
+								},
+								{
+									type: DefaultControls.CollapseBox,
+									typeName: 'CollapseBox',
+									collapsed: true,
+									label: "1. Samples of Data",
+									margin: "none",
+									minWidth: 330,
 									controls: [
 										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: " ",
-											minWidth: 13
-										},
-										{
-											type: DefaultControls.CollapseBox,
-											typeName: 'CollapseBox',
-											collapsed: true,
-											label: "a. Basics: make a sample & analyse it",
-											margin: "none",
-											minWidth: 255,
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "inline",
 											controls: [
 												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "list",
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: " ",
+													minWidth: 13
+												},
+												{
+													type: DefaultControls.CollapseBox,
+													typeName: 'CollapseBox',
+													collapsed: true,
+													label: "a. Basics: make a sample & analyse it",
+													margin: "none",
+													minWidth: 255,
 													controls: [
 														{
 															type: DefaultControls.LayoutBox,
 															typeName: 'LayoutBox',
-															style: "inline",
-															margin: "none",
+															style: "list",
 															controls: [
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	margin: "none",
+																	controls: [
+																		{
+																			type: DefaultControls.Label,
+																			typeName: 'Label',
+																			label: "Set up",
+																			margin: "none",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					margin: "none",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							minWidth: 370,
+																							controls: [
+																								{
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: "Choose the variables"
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.LayoutBox,
+																											typeName: 'LayoutBox',
+																											style: "list",
+																											controls: [
+																												{
+																													type: DefaultControls.Label,
+																													typeName: 'Label',
+																													label: "- go to Plan/Hypothesis/Variables"
+																												},
+																												{
+																													type: DefaultControls.LayoutBox,
+																													typeName: 'LayoutBox',
+																													style: "inline",
+																													controls: [
+																														{
+																															type: DefaultControls.Label,
+																															typeName: 'Label',
+																															label: " ",
+																															minWidth: 13
+																														},
+																														{
+																															type: DefaultControls.Label,
+																															typeName: 'Label',
+																															label: "choose these variables from the presets:"
+																														}
+																													]
+																												},
+																												{
+																													type: DefaultControls.LayoutBox,
+																													typeName: 'LayoutBox',
+																													style: "inline",
+																													controls: [
+																														{
+																															type: DefaultControls.Label,
+																															typeName: 'Label',
+																															label: " ",
+																															minWidth: 26
+																														},
+																														{
+																															type: DefaultControls.Label,
+																															typeName: 'Label',
+																															label: "IV: RiskTaker?"
+																														}
+																													]
+																												},
+																												{
+																													type: DefaultControls.LayoutBox,
+																													typeName: 'LayoutBox',
+																													style: "inline",
+																													controls: [
+																														{
+																															type: DefaultControls.Label,
+																															typeName: 'Label',
+																															label: " ",
+																															minWidth: 26
+																														},
+																														{
+																															type: DefaultControls.Label,
+																															typeName: 'Label',
+																															label: "DV: ExamGrade"
+																														}
+																													]
+																												},
+																												{
+																													type: DefaultControls.LayoutBox,
+																													typeName: 'LayoutBox',
+																													style: "inline",
+																													controls: [
+																														{
+																															type: DefaultControls.Label,
+																															typeName: 'Label',
+																															label: " ",
+																															minWidth: 26
+																														}
+																													]
+																												}
+																											]
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							minWidth: 370,
+																							controls: [
+																								{
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: "Set the effect size"
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.LayoutBox,
+																											typeName: 'LayoutBox',
+																											style: "list",
+																											controls: [
+																												{
+																													type: DefaultControls.Label,
+																													typeName: 'Label',
+																													label: "- go to Plan/Hypothesis/Effects"
+																												},
+																												{
+																													type: DefaultControls.LayoutBox,
+																													typeName: 'LayoutBox',
+																													style: "inline",
+																													controls: [
+																														{
+																															type: DefaultControls.Label,
+																															typeName: 'Label',
+																															label: " ",
+																															minWidth: 13
+																														},
+																														{
+																															type: DefaultControls.Label,
+																															typeName: 'Label',
+																															label: "set the effect size:"
+																														}
+																													]
+																												},
+																												{
+																													type: DefaultControls.LayoutBox,
+																													typeName: 'LayoutBox',
+																													style: "inline",
+																													controls: [
+																														{
+																															type: DefaultControls.Label,
+																															typeName: 'Label',
+																															label: " ",
+																															minWidth: 26
+																														},
+																														{
+																															type: DefaultControls.Label,
+																															typeName: 'Label',
+																															label: "IV->DV: 0.3"
+																														}
+																													]
+																												}
+																											]
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			name: "doProject1sBtn",
+																			type: DefaultControls.ActionButton,
+																			typeName: 'ActionButton',
+																			margin: "none",
+																			events: [
+																				{ execute: require('./BrawSim.events').onChange_project1s }
+																			],
+																			maxWidth: 80
+																		}
+																	]
+																},
 																{
 																	type: DefaultControls.Label,
 																	typeName: 'Label',
-																	label: "Set up",
-																	margin: "none",
+																	label: "Steps",
 																	controls: [
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
 																			style: "inline",
-																			margin: "none",
 																			controls: [
 																				{
 																					type: DefaultControls.LayoutBox,
@@ -2465,7 +2688,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "Choose the variables"
+																							label: "1. go to Data - Single Sample"
 																						},
 																						{
 																							type: DefaultControls.LayoutBox,
@@ -2479,86 +2702,35 @@ view.layout = ui.extend({
 																									minWidth: 13
 																								},
 																								{
-																									type: DefaultControls.LayoutBox,
-																									typeName: 'LayoutBox',
-																									style: "list",
-																									controls: [
-																										{
-																											type: DefaultControls.Label,
-																											typeName: 'Label',
-																											label: "- go to Plan/Hypothesis/Variables"
-																										},
-																										{
-																											type: DefaultControls.LayoutBox,
-																											typeName: 'LayoutBox',
-																											style: "inline",
-																											controls: [
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: " ",
-																													minWidth: 13
-																												},
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: "choose these variables from the presets:"
-																												}
-																											]
-																										},
-																										{
-																											type: DefaultControls.LayoutBox,
-																											typeName: 'LayoutBox',
-																											style: "inline",
-																											controls: [
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: " ",
-																													minWidth: 26
-																												},
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: "IV: RiskTaker?"
-																												}
-																											]
-																										},
-																										{
-																											type: DefaultControls.LayoutBox,
-																											typeName: 'LayoutBox',
-																											style: "inline",
-																											controls: [
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: " ",
-																													minWidth: 26
-																												},
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: "DV: ExamGrade"
-																												}
-																											]
-																										},
-																										{
-																											type: DefaultControls.LayoutBox,
-																											typeName: 'LayoutBox',
-																											style: "inline",
-																											controls: [
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: " ",
-																													minWidth: 26
-																												}
-																											]
-																										}
-																									]
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: "press the \"single\" button"
+																								}
+																							]
+																						},
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "inline",
+																							controls: [
+																								{
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: " ",
+																									minWidth: 26
 																								}
 																							]
 																						}
+																					]
+																				},
+																				{
+																					name: "doProject1aBtn",
+																					type: DefaultControls.ActionButton,
+																					typeName: 'ActionButton',
+																					margin: "none",
+																					maxWidth: 80,
+																					events: [
+																						{ execute: require('./BrawSim.events').onChange_project1a }
 																					]
 																				}
 																			]
@@ -2577,7 +2749,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "Set the effect size"
+																							label: "2. analyse the data in Jamovi"
 																						},
 																						{
 																							type: DefaultControls.LayoutBox,
@@ -2591,50 +2763,242 @@ view.layout = ui.extend({
 																									minWidth: 13
 																								},
 																								{
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: "go to Jamovi Instructions"
+																								}
+																							]
+																						},
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "inline",
+																							controls: [
+																								{
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: " ",
+																									minWidth: 26
+																								},
+																								{
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: "select the \"analysis\" tab"
+																								}
+																							]
+																						},
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "inline",
+																							controls: [
+																								{
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: " ",
+																									minWidth: 13
+																								},
+																								{
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: "follow the instructions"
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					name: "doProject1bBtn",
+																					type: DefaultControls.ActionButton,
+																					typeName: 'ActionButton',
+																					margin: "none",
+																					maxWidth: 80,
+																					events: [
+																						{ execute: require('./BrawSim.events').onChange_project1b }
+																					]
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "inline",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "list",
+																					minWidth: 370,
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: "3. some others to try"
+																						},
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "inline",
+																							controls: [
+																								{
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: " ",
+																									minWidth: 13
+																								},
+																								{
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: "try some other variables"
+																								}
+																							]
+																						},
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "inline",
+																							controls: [
+																								{
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: " ",
+																									minWidth: 13
+																								},
+																								{
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: "press the \"single\" button"
+																								}
+																							]
+																						},
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "inline",
+																							controls: [
+																								{
+																									type: DefaultControls.Label,
+																									typeName: 'Label',
+																									label: " ",
+																									minWidth: 26
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "list",
+																					minWidth: 80,
+																					maxWidth: 80,
+																					margin: "none",
+																					controls: [
+																						{
+																							name: "doProject1cLst",
+																							type: DefaultControls.ComboBox,
+																							typeName: 'ComboBox',
+																							margin: "none",
+																							minWidth: 80,
+																							maxWidth: 80
+																						},
+																						{
+																							name: "doProject1cLstA",
+																							type: DefaultControls.ComboBox,
+																							typeName: 'ComboBox',
+																							margin: "none",
+																							minWidth: 80,
+																							maxWidth: 80
+																						},
+																						{
+																							type: DefaultControls.ActionButton,
+																							typeName: 'ActionButton',
+																							name: "doProject1cBtn",
+																							margin: "none",
+																							minWidth: 80,
+																							maxWidth: 80,
+																							events: [
+																								{ execute: require('./BrawSim.events').onChange_project1c }
+																							]
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												}
+											]
+										},
+										{
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "inline",
+											controls: [
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: " ",
+													minWidth: 13
+												},
+												{
+													type: DefaultControls.CollapseBox,
+													typeName: 'CollapseBox',
+													collapsed: true,
+													label: "b. Check the quality of samples",
+													margin: "none",
+													minWidth: 255,
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "inline",
+															controls: [
+																{
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "Set up",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							minWidth: 370,
+																							controls: [
+																								{
 																									type: DefaultControls.LayoutBox,
 																									typeName: 'LayoutBox',
-																									style: "list",
+																									style: "inline",
 																									controls: [
 																										{
 																											type: DefaultControls.Label,
 																											typeName: 'Label',
-																											label: "- go to Plan/Hypothesis/Effects"
-																										},
+																											label: "Choose two Interval variables"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
 																										{
-																											type: DefaultControls.LayoutBox,
-																											typeName: 'LayoutBox',
-																											style: "inline",
-																											controls: [
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: " ",
-																													minWidth: 13
-																												},
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: "set the effect size:"
-																												}
-																											]
-																										},
-																										{
-																											type: DefaultControls.LayoutBox,
-																											typeName: 'LayoutBox',
-																											style: "inline",
-																											controls: [
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: " ",
-																													minWidth: 26
-																												},
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: "IV->DV: 0.3"
-																												}
-																											]
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Set the effect-size to 0.3"
 																										}
 																									]
 																								}
@@ -2647,12 +3011,12 @@ view.layout = ui.extend({
 																	]
 																},
 																{
-																	name: "doProject1sBtn",
+																	name: "doProject2aBtn",
 																	type: DefaultControls.ActionButton,
 																	typeName: 'ActionButton',
 																	margin: "none",
 																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project1s }
+																		{ execute: require('./BrawSim.events').onChange_project2a }
 																	],
 																	maxWidth: 80
 																}
@@ -2677,7 +3041,7 @@ view.layout = ui.extend({
 																				{
 																					type: DefaultControls.Label,
 																					typeName: 'Label',
-																					label: "1. go to Data - Single Sample"
+																					label: "1. make a sample"
 																				},
 																				{
 																					type: DefaultControls.LayoutBox,
@@ -2685,15 +3049,47 @@ view.layout = ui.extend({
 																					style: "inline",
 																					controls: [
 																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "press the \"single\" button"
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- and view it as \"Variables\""
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- do this several times"
+																										}
+																									]
+																								}
+																							]
 																						}
 																					]
 																				},
@@ -2713,13 +3109,13 @@ view.layout = ui.extend({
 																			]
 																		},
 																		{
-																			name: "doProject1aBtn",
+																			name: "doProject2bBtn",
 																			type: DefaultControls.ActionButton,
 																			typeName: 'ActionButton',
 																			margin: "none",
 																			maxWidth: 80,
 																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project1a }
+																				{ execute: require('./BrawSim.events').onChange_project2b }
 																			]
 																		}
 																	]
@@ -2738,7 +3134,7 @@ view.layout = ui.extend({
 																				{
 																					type: DefaultControls.Label,
 																					typeName: 'Label',
-																					label: "2. analyse the data in Jamovi"
+																					label: "2. repeat this"
 																				},
 																				{
 																					type: DefaultControls.LayoutBox,
@@ -2746,15 +3142,47 @@ view.layout = ui.extend({
 																					style: "inline",
 																					controls: [
 																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "go to Jamovi Instructions"
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- and view it as \"Sample\""
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- do this several times"
+																										}
+																									]
+																								}
+																							]
 																						}
 																					]
 																				},
@@ -2768,42 +3196,19 @@ view.layout = ui.extend({
 																							typeName: 'Label',
 																							label: " ",
 																							minWidth: 26
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "select the \"analysis\" tab"
-																						}
-																					]
-																				},
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "inline",
-																					controls: [
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "follow the instructions"
 																						}
 																					]
 																				}
 																			]
 																		},
 																		{
-																			name: "doProject1bBtn",
 																			type: DefaultControls.ActionButton,
 																			typeName: 'ActionButton',
+																			name: "doProject2cBtn",
 																			margin: "none",
 																			maxWidth: 80,
 																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project1b }
+																				{ execute: require('./BrawSim.events').onChange_project2c }
 																			]
 																		}
 																	]
@@ -2822,7 +3227,7 @@ view.layout = ui.extend({
 																				{
 																					type: DefaultControls.Label,
 																					typeName: 'Label',
-																					label: "3. some others to try"
+																					label: "3. now set the sampling method to \"Convenience\""
 																				},
 																				{
 																					type: DefaultControls.LayoutBox,
@@ -2830,15 +3235,47 @@ view.layout = ui.extend({
 																					style: "inline",
 																					controls: [
 																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: " ",
-																							minWidth: 13
-																						},
-																						{
-																							type: DefaultControls.Label,
-																							typeName: 'Label',
-																							label: "try some other variables"
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- and repeat steps 1 & 2 again"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- can you see a difference?"
+																										}
+																									]
+																								}
+																							]
 																						}
 																					]
 																				},
@@ -2851,12 +3288,1623 @@ view.layout = ui.extend({
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
 																							label: " ",
-																							minWidth: 13
-																						},
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.ActionButton,
+																			typeName: 'ActionButton',
+																			name: "doProject2dBtn",
+																			margin: "none",
+																			maxWidth: 80,
+																			events: [
+																				{ execute: require('./BrawSim.events').onChange_project2d }
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												}
+											]
+										},
+										{
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "inline",
+											controls: [
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: " ",
+													minWidth: 13
+												},
+												{
+													type: DefaultControls.CollapseBox,
+													typeName: 'CollapseBox',
+													collapsed: true,
+													label: "c. Sampling error: rs vs rp",
+													margin: "none",
+													minWidth: 255,
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "inline",
+															controls: [
+																{
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "Set up",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							minWidth: 370,
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Choose two Interval variables"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Set the population effect-size to rp=0.3"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	name: "doProject3aBtn",
+																	type: DefaultControls.ActionButton,
+																	typeName: 'ActionButton',
+																	margin: "none",
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_project3a }
+																	],
+																	maxWidth: 80
+																}
+															]
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Steps",
+															controls: [
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "1. make a sample"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- and view it as \"Describe\""
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "   - noting rs, the sample effect size"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- do this several times"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "press the \"single\" button"
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			name: "doProject3bBtn",
+																			type: DefaultControls.ActionButton,
+																			typeName: 'ActionButton',
+																			margin: "none",
+																			maxWidth: 80,
+																			events: [
+																				{ execute: require('./BrawSim.events').onChange_project3b }
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "2. repeat with a bigger sample size"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- set the sample size to 500"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- and make some more samples"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.ActionButton,
+																			typeName: 'ActionButton',
+																			name: "doProject3cBtn",
+																			margin: "none",
+																			maxWidth: 80,
+																			events: [
+																				{ execute: require('./BrawSim.events').onChange_project3c }
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "3. set the effect size to zero:"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- and make some more samples"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- notice rs can be quite big even though rp=0"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.ActionButton,
+																			typeName: 'ActionButton',
+																			name: "doProject3dBtn",
+																			margin: "none",
+																			maxWidth: 80,
+																			events: [
+																				{ execute: require('./BrawSim.events').onChange_project3d }
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							type: DefaultControls.LayoutBox,
+							typeName: 'LayoutBox',
+							style: "inline",
+							controls: [
+								{
+									type: DefaultControls.Label,
+									typeName: 'Label',
+									label: " ",
+									minWidth: 13
+								},
+								{
+									type: DefaultControls.CollapseBox,
+									typeName: 'CollapseBox',
+									collapsed: true,
+									label: "2. Uncertainty & Design",
+									margin: "none",
+									minWidth: 330,
+									controls: [
+										{
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "inline",
+											controls: [
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: " ",
+													minWidth: 13
+												},
+												{
+													type: DefaultControls.CollapseBox,
+													typeName: 'CollapseBox',
+													collapsed: true,
+													label: "a. Basics: chance in sampling",
+													margin: "none",
+													minWidth: 255,
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "inline",
+															controls: [
+																{
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "Set up",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							minWidth: 370,
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Choose two Interval variables"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Set the effect-size to 0.3"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	name: "doProject4aBtn",
+																	type: DefaultControls.ActionButton,
+																	typeName: 'ActionButton',
+																	margin: "none",
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_project4a }
+																	],
+																	maxWidth: 80
+																}
+															]
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Steps",
+															controls: [
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "1. make a sample"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- and view it as \"Infer\""
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "   - noting the statistical significance"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- do this several times"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			name: "doProject4bBtn",
+																			type: DefaultControls.ActionButton,
+																			typeName: 'ActionButton',
+																			margin: "none",
+																			maxWidth: 80,
+																			events: [
+																				{ execute: require('./BrawSim.events').onChange_project4b }
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "2. do the same thing but with Multiple Samples"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- go to \"Multiple Samples\""
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- press \"multiple\""
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- you can do this several times"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.ActionButton,
+																			typeName: 'ActionButton',
+																			name: "doProject4cBtn",
+																			margin: "none",
+																			maxWidth: 80,
+																			events: [
+																				{ execute: require('./BrawSim.events').onChange_project4c }
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "3. repeat this with a 2D graph of the results"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- do this several times"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- all the results lie on the same curve"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.ActionButton,
+																			typeName: 'ActionButton',
+																			name: "doProject4dBtn",
+																			margin: "none",
+																			maxWidth: 80,
+																			events: [
+																				{ execute: require('./BrawSim.events').onChange_project4d }
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												}
+											]
+										},
+										{
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "inline",
+											controls: [
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: " ",
+													minWidth: 13
+												},
+												{
+													type: DefaultControls.CollapseBox,
+													typeName: 'CollapseBox',
+													collapsed: true,
+													label: "b. Inferential errors",
+													margin: "none",
+													minWidth: 255,
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "inline",
+															controls: [
+																{
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "Set up",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							minWidth: 370,
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Choose two Interval variables"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Build a world with equal numbers of rp=0 and rp=0.3"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	name: "doProject5sBtn",
+																	type: DefaultControls.ActionButton,
+																	typeName: 'ActionButton',
+																	margin: "none",
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_Project5s }
+																	],
+																	maxWidth: 80
+																}
+															]
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Steps",
+															controls: [
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "1. make a sample"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- and view it as \"Infer\""
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "   - noting the statistical significance"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- can you say which population it came from?"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- do this several times"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			name: "doProject5aBtn",
+																			type: DefaultControls.ActionButton,
+																			typeName: 'ActionButton',
+																			margin: "none",
+																			maxWidth: 80,
+																			events: [
+																				{ execute: require('./BrawSim.events').onChange_Project5a }
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "2. do the same thing but with Multiple Samples"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- go to \"Multiple Samples\""
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- press \"multiple\""
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- you can do this several times"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.ActionButton,
+																			typeName: 'ActionButton',
+																			name: "doProject5bBtn",
+																			margin: "none",
+																			maxWidth: 80,
+																			events: [
+																				{ execute: require('./BrawSim.events').onChange_Project5b }
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "3. repeat this with \"NHST\" display of results"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- do this several times"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- all the results lie on the same curve"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.ActionButton,
+																			typeName: 'ActionButton',
+																			name: "doProject5cBtn",
+																			margin: "none",
+																			maxWidth: 80,
+																			events: [
+																				{ execute: require('./BrawSim.events').onChange_Project5c }
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "4. repeat this with a larger sample size"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- go back and try step 1 & 2 as well"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.ActionButton,
+																			typeName: 'ActionButton',
+																			name: "doProject5dBtn",
+																			margin: "none",
+																			maxWidth: 80,
+																			events: [
+																				{ execute: require('./BrawSim.events').onChange_Project5d }
+																			]
+																		}
+																	]
+																}
+															]
+														}
+													]
+												}
+											]
+										},
+										{
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "inline",
+											controls: [
+												{
+													type: DefaultControls.Label,
+													typeName: 'Label',
+													label: " ",
+													minWidth: 13
+												},
+												{
+													type: DefaultControls.CollapseBox,
+													typeName: 'CollapseBox',
+													collapsed: true,
+													label: "c. Design: improving your chances",
+													margin: "none",
+													minWidth: 255,
+													controls: [
+														{
+															type: DefaultControls.LayoutBox,
+															typeName: 'LayoutBox',
+															style: "inline",
+															controls: [
+																{
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "Set up",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			controls: [
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							minWidth: 370,
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Choose two Interval variables"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Set the effect-size to 0.3"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				}
+																			]
+																		}
+																	]
+																},
+																{
+																	name: "doproject6sBtn",
+																	type: DefaultControls.ActionButton,
+																	typeName: 'ActionButton',
+																	margin: "none",
+																	events: [
+																		{ execute: require('./BrawSim.events').onChange_project6s }
+																	],
+																	maxWidth: 80
+																}
+															]
+														},
+														{
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Steps",
+															controls: [
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "1. make multiple samples"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- and view it as \"p(sig)\""
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "   - note the probability of p<0.05"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			name: "doproject6aBtn",
+																			type: DefaultControls.ActionButton,
+																			typeName: 'ActionButton',
+																			margin: "none",
+																			maxWidth: 80,
+																			events: [
+																				{ execute: require('./BrawSim.events').onChange_project6a }
+																			]
+																		}
+																	]
+																},
+																{
+																	type: DefaultControls.LayoutBox,
+																	typeName: 'LayoutBox',
+																	style: "inline",
+																	controls: [
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "2. repeat this with other sample sizes"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- try several different values for n"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- can you estimate what n would give p(sig)=0.8?"
+																										}
+																									]
+																								}
+																							]
 																						}
 																					]
 																				},
@@ -2884,15 +4932,7 @@ view.layout = ui.extend({
 																			margin: "none",
 																			controls: [
 																				{
-																					name: "doProject1cLst",
-																					type: DefaultControls.ComboBox,
-																					typeName: 'ComboBox',
-																					margin: "none",
-																					minWidth: 80,
-																					maxWidth: 80
-																				},
-																				{
-																					name: "doProject1cLstA",
+																					name: "doproject6bLst",
 																					type: DefaultControls.ComboBox,
 																					typeName: 'ComboBox',
 																					margin: "none",
@@ -2902,1998 +4942,13 @@ view.layout = ui.extend({
 																				{
 																					type: DefaultControls.ActionButton,
 																					typeName: 'ActionButton',
-																					name: "doProject1cBtn",
+																					name: "doproject6bBtn",
 																					margin: "none",
 																					minWidth: 80,
 																					maxWidth: 80,
 																					events: [
-																						{ execute: require('./BrawSim.events').onChange_project1c }
+																						{ execute: require('./BrawSim.events').onChange_project6b }
 																					]
-																				}
-																			]
-																		}
-																	]
-																}
-															]
-														}
-													]
-												}
-											]
-										}
-									]
-								},
-								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
-									controls: [
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: " ",
-											minWidth: 13
-										},
-										{
-											type: DefaultControls.CollapseBox,
-											typeName: 'CollapseBox',
-											collapsed: true,
-											label: "b. Check the quality of samples",
-											margin: "none",
-											minWidth: 255,
-											controls: [
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
-														{
-															type: DefaultControls.Label,
-															typeName: 'Label',
-															label: "Set up",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	controls: [
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					minWidth: 370,
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Choose two Interval variables"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Set the effect-size to 0.3"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		}
-																	]
-																}
-															]
-														},
-														{
-															name: "doProject2aBtn",
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															margin: "none",
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project2a }
-															],
-															maxWidth: 80
-														}
-													]
-												},
-												{
-													type: DefaultControls.Label,
-													typeName: 'Label',
-													label: "Steps",
-													controls: [
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "1. make a sample"
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- and view it as \"Variables\""
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- do this several times"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	name: "doProject2bBtn",
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	margin: "none",
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project2b }
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "2. repeat this"
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- and view it as \"Sample\""
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- do this several times"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	name: "doProject2cBtn",
-																	margin: "none",
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project2c }
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "3. now set the sampling method to \"Convenience\""
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- and repeat steps 1 & 2 again"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- can you see a difference?"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	name: "doProject2dBtn",
-																	margin: "none",
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project2d }
-																	]
-																}
-															]
-														}
-													]
-												}
-											]
-										}
-									]
-								},
-								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
-									controls: [
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: " ",
-											minWidth: 13
-										},
-										{
-											type: DefaultControls.CollapseBox,
-											typeName: 'CollapseBox',
-											collapsed: true,
-											label: "c. Sampling error: rs vs rp",
-											margin: "none",
-											minWidth: 255,
-											controls: [
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
-														{
-															type: DefaultControls.Label,
-															typeName: 'Label',
-															label: "Set up",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	controls: [
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					minWidth: 370,
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Choose two Interval variables"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Set the population effect-size to rp=0.3"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		}
-																	]
-																}
-															]
-														},
-														{
-															name: "doProject3aBtn",
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															margin: "none",
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project3a }
-															],
-															maxWidth: 80
-														}
-													]
-												},
-												{
-													type: DefaultControls.Label,
-													typeName: 'Label',
-													label: "Steps",
-													controls: [
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "1. make a sample"
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- and view it as \"Describe\""
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "   - noting rs, the sample effect size"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- do this several times"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	name: "doProject3bBtn",
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	margin: "none",
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project3b }
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "2. repeat with a bigger sample size"
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- set the sample size to 500"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- and make some more samples"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	name: "doProject3cBtn",
-																	margin: "none",
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project3c }
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "3. set the effect size to zero:"
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- and make some more samples"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- notice rs can be quite big even though rp=0"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	name: "doProject3dBtn",
-																	margin: "none",
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project3d }
-																	]
-																}
-															]
-														}
-													]
-												}
-											]
-										}
-									]
-								}
-							]
-						},
-						{
-							type: DefaultControls.CollapseBox,
-							typeName: 'CollapseBox',
-							collapsed: true,
-							label: "2. Uncertainty & Design",
-							margin: "none",
-							minWidth: 330,
-							controls: [
-								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
-									controls: [
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: " ",
-											minWidth: 13
-										},
-										{
-											type: DefaultControls.CollapseBox,
-											typeName: 'CollapseBox',
-											collapsed: true,
-											label: "a. Basics: chance in sampling",
-											margin: "none",
-											minWidth: 255,
-											controls: [
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
-														{
-															type: DefaultControls.Label,
-															typeName: 'Label',
-															label: "Set up",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	controls: [
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					minWidth: 370,
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Choose two Interval variables"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Set the effect-size to 0.3"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		}
-																	]
-																}
-															]
-														},
-														{
-															name: "doProject4aBtn",
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															margin: "none",
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project4a }
-															],
-															maxWidth: 80
-														}
-													]
-												},
-												{
-													type: DefaultControls.Label,
-													typeName: 'Label',
-													label: "Steps",
-													controls: [
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "1. make a sample"
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- and view it as \"Infer\""
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "   - noting the statistical significance"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- do this several times"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	name: "doProject4bBtn",
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	margin: "none",
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project4b }
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "2. do the same thing but with Multiple Samples"
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- go to \"Multiple Samples\""
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- press \"multiple\""
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- you can do this several times"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	name: "doProject4cBtn",
-																	margin: "none",
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project4c }
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "3. repeat this with a 2D graph of the results"
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- do this several times"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- all the results lie on the same curve"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	name: "doProject4dBtn",
-																	margin: "none",
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project4d }
-																	]
-																}
-															]
-														}
-													]
-												}
-											]
-										}
-									]
-								},
-								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
-									controls: [
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: " ",
-											minWidth: 13
-										},
-										{
-											type: DefaultControls.CollapseBox,
-											typeName: 'CollapseBox',
-											collapsed: true,
-											label: "b. Inferential errors",
-											margin: "none",
-											minWidth: 255,
-											controls: [
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
-														{
-															type: DefaultControls.Label,
-															typeName: 'Label',
-															label: "Set up",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	controls: [
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					minWidth: 370,
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Choose two Interval variables"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Build a world with equal numbers of rp=0 and rp=0.3"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		}
-																	]
-																}
-															]
-														},
-														{
-															name: "doProject5sBtn",
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															margin: "none",
-															events: [
-																{ execute: require('./BrawSim.events').onChange_Project5s }
-															],
-															maxWidth: 80
-														}
-													]
-												},
-												{
-													type: DefaultControls.Label,
-													typeName: 'Label',
-													label: "Steps",
-													controls: [
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "1. make a sample"
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- and view it as \"Infer\""
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "   - noting the statistical significance"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- can you say which population it came from?"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- do this several times"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	name: "doProject5aBtn",
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	margin: "none",
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_Project5a }
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "2. do the same thing but with Multiple Samples"
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- go to \"Multiple Samples\""
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- press \"multiple\""
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- you can do this several times"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	name: "doProject5bBtn",
-																	margin: "none",
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_Project5b }
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "3. repeat this with \"NHST\" display of results"
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- do this several times"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- all the results lie on the same curve"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	name: "doProject5cBtn",
-																	margin: "none",
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_Project5c }
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "4. repeat this with a larger sample size"
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- go back and try step 1 & 2 as well"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	name: "doProject5dBtn",
-																	margin: "none",
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_Project5d }
-																	]
-																}
-															]
-														}
-													]
-												}
-											]
-										}
-									]
-								},
-								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
-									controls: [
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: " ",
-											minWidth: 13
-										},
-										{
-											type: DefaultControls.CollapseBox,
-											typeName: 'CollapseBox',
-											collapsed: true,
-											label: "c. Design: improving your chances",
-											margin: "none",
-											minWidth: 255,
-											controls: [
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
-														{
-															type: DefaultControls.Label,
-															typeName: 'Label',
-															label: "Set up",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	controls: [
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					minWidth: 370,
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Choose two Interval variables"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Set the effect-size to 0.3"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		}
-																	]
-																}
-															]
-														},
-														{
-															name: "doproject6sBtn",
-															type: DefaultControls.ActionButton,
-															typeName: 'ActionButton',
-															margin: "none",
-															events: [
-																{ execute: require('./BrawSim.events').onChange_project6s }
-															],
-															maxWidth: 80
-														}
-													]
-												},
-												{
-													type: DefaultControls.Label,
-													typeName: 'Label',
-													label: "Steps",
-													controls: [
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "1. make multiple samples"
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- and view it as \"p(sig)\""
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "   - note the probability of p<0.05"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	name: "doproject6aBtn",
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	margin: "none",
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project6a }
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "2. repeat this with other sample sizes"
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- try several different values for n"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- can you estimate what n would give p(sig)=0.8?"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
 																				}
 																			]
 																		}
@@ -4902,113 +4957,208 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 80,
-																	maxWidth: 80,
-																	margin: "none",
+																	style: "inline",
 																	controls: [
 																		{
-																			name: "doproject6bLst",
-																			type: DefaultControls.ComboBox,
-																			typeName: 'ComboBox',
-																			margin: "none",
-																			minWidth: 80,
-																			maxWidth: 80
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "3. do the same thing but with Explore"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- go to \"Explore\" and choose the \"Design\" tab"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- press \"explore\""
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- what is n(80) the sample size to give p(sig)=0.8 ?"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
 																		},
 																		{
 																			type: DefaultControls.ActionButton,
 																			typeName: 'ActionButton',
-																			name: "doproject6bBtn",
+																			name: "doproject6cBtn",
 																			margin: "none",
-																			minWidth: 80,
 																			maxWidth: 80,
 																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project6b }
+																				{ execute: require('./BrawSim.events').onChange_project6c }
 																			]
 																		}
 																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
+																},
 																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
+																	style: "inline",
 																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "3. do the same thing but with Explore"
-																		},
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 370,
 																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "4. now change the hypothesis effect size"
+																				},
 																				{
 																					type: DefaultControls.LayoutBox,
 																					typeName: 'LayoutBox',
-																					style: "list",
+																					style: "inline",
 																					controls: [
 																						{
 																							type: DefaultControls.LayoutBox,
 																							typeName: 'LayoutBox',
-																							style: "inline",
+																							style: "list",
 																							controls: [
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- try a few different effect sizes"
+																										}
+																									]
 																								},
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- go to \"Explore\" and choose the \"Design\" tab"
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- what happens to n(80)?"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- note what happens when rp=0"
+																										}
+																									]
 																								}
 																							]
-																						},
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
 																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- press \"explore\""
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- what is n(80) the sample size to give p(sig)=0.8 ?"
-																								}
-																							]
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
 																						}
 																					]
 																				}
@@ -5017,154 +5167,30 @@ view.layout = ui.extend({
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	name: "doproject6cBtn",
-																	margin: "none",
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project6c }
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "4. now change the hypothesis effect size"
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- try a few different effect sizes"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- what happens to n(80)?"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- note what happens when rp=0"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
-																				}
-																			]
-																		}
-																	]
-																},
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 80,
-																	maxWidth: 80,
-																	margin: "none",
-																	controls: [
-																		{
-																			name: "doproject6dLst",
-																			type: DefaultControls.ComboBox,
-																			typeName: 'ComboBox',
-																			margin: "none",
-																			minWidth: 80,
-																			maxWidth: 80
-																		},
-																		{
-																			type: DefaultControls.ActionButton,
-																			typeName: 'ActionButton',
-																			name: "doproject6dBtn",
-																			margin: "none",
+																			style: "list",
 																			minWidth: 80,
 																			maxWidth: 80,
-																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project6d }
+																			margin: "none",
+																			controls: [
+																				{
+																					name: "doproject6dLst",
+																					type: DefaultControls.ComboBox,
+																					typeName: 'ComboBox',
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80
+																				},
+																				{
+																					type: DefaultControls.ActionButton,
+																					typeName: 'ActionButton',
+																					name: "doproject6dBtn",
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80,
+																					events: [
+																						{ execute: require('./BrawSim.events').onChange_project6d }
+																					]
+																				}
 																			]
 																		}
 																	]
@@ -5180,137 +5206,42 @@ view.layout = ui.extend({
 							]
 						},
 						{
-							type: DefaultControls.CollapseBox,
-							typeName: 'CollapseBox',
-							collapsed: true,
-							label: "3. More than 1 IV",
-							margin: "none",
-							minWidth: 330,
+							type: DefaultControls.LayoutBox,
+							typeName: 'LayoutBox',
+							style: "inline",
 							controls: [
 								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
+									type: DefaultControls.Label,
+									typeName: 'Label',
+									label: " ",
+									minWidth: 13
+								},
+								{
+									type: DefaultControls.CollapseBox,
+									typeName: 'CollapseBox',
+									collapsed: true,
+									label: "3. Linear Models",
+									margin: "none",
+									minWidth: 330,
 									controls: [
 										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: " ",
-											minWidth: 13
-										},
-										{
-											type: DefaultControls.CollapseBox,
-											typeName: 'CollapseBox',
-											collapsed: true,
-											label: "a. Basics: 2 IVs",
-											margin: "none",
-											minWidth: 255,
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "inline",
 											controls: [
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
-														{
-															type: DefaultControls.Label,
-															typeName: 'Label',
-															label: "Set up",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	controls: [
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					minWidth: 370,
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Choose three variables variables"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Set all effect-sizes to 0.0"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Set sample size to 1000"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		}
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "list",
-															minWidth: 80,
-															maxWidth: 80,
-															margin: "none",
-															controls: [
-																{
-																	name: "doproject7sLst",
-																	type: DefaultControls.ComboBox,
-																	typeName: 'ComboBox',
-																	margin: "none",
-																	minWidth: 80,
-																	maxWidth: 80
-																},
-																{
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	name: "doproject7sBtn",
-																	margin: "none",
-																	minWidth: 80,
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project7s }
-																	]
-																}
-															]
-														}
-													]
-												},
 												{
 													type: DefaultControls.Label,
 													typeName: 'Label',
-													label: "Steps",
+													label: " ",
+													minWidth: 13
+												},
+												{
+													type: DefaultControls.CollapseBox,
+													typeName: 'CollapseBox',
+													collapsed: true,
+													label: "a. Basics: 2 IVs",
+													margin: "none",
+													minWidth: 255,
 													controls: [
 														{
 															type: DefaultControls.LayoutBox,
@@ -5318,112 +5249,65 @@ view.layout = ui.extend({
 															style: "inline",
 															controls: [
 																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "Set up",
 																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "1. change main effect 1"
-																		},
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
 																			controls: [
 																				{
 																					type: DefaultControls.LayoutBox,
 																					typeName: 'LayoutBox',
-																					style: "list",
+																					style: "inline",
 																					controls: [
 																						{
 																							type: DefaultControls.LayoutBox,
 																							typeName: 'LayoutBox',
-																							style: "inline",
+																							style: "list",
+																							minWidth: 370,
 																							controls: [
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Choose three variables variables"
+																										}
+																									]
 																								},
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- set it to 0.3"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Set all effect-sizes to 0.0"
+																										}
+																									]
 																								},
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- make another sample"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- notice that the main effect2 and interaction"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 26
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "remain close to zero"
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Set sample size to 1000"
+																										}
+																									]
 																								}
 																							]
 																						}
 																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
 																				}
 																			]
 																		}
@@ -5438,7 +5322,7 @@ view.layout = ui.extend({
 																	margin: "none",
 																	controls: [
 																		{
-																			name: "doproject7aLst",
+																			name: "doproject7sLst",
 																			type: DefaultControls.ComboBox,
 																			typeName: 'ComboBox',
 																			margin: "none",
@@ -5448,12 +5332,12 @@ view.layout = ui.extend({
 																		{
 																			type: DefaultControls.ActionButton,
 																			typeName: 'ActionButton',
-																			name: "doproject7aBtn",
+																			name: "doproject7sBtn",
 																			margin: "none",
 																			minWidth: 80,
 																			maxWidth: 80,
 																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project7a }
+																				{ execute: require('./BrawSim.events').onChange_project7s }
 																			]
 																		}
 																	]
@@ -5461,84 +5345,122 @@ view.layout = ui.extend({
 															]
 														},
 														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Steps",
 															controls: [
 																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
+																	style: "inline",
 																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "2. change main effect 2"
-																		},
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 370,
 																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "1. change main effect 1"
+																				},
 																				{
 																					type: DefaultControls.LayoutBox,
 																					typeName: 'LayoutBox',
-																					style: "list",
+																					style: "inline",
 																					controls: [
 																						{
 																							type: DefaultControls.LayoutBox,
 																							typeName: 'LayoutBox',
-																							style: "inline",
+																							style: "list",
 																							controls: [
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- set it to 0.3"
+																										}
+																									]
 																								},
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- choose a value for it"
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- make another sample"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- notice that the main effect2 and interaction"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 26
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "remain close to zero"
+																										}
+																									]
 																								}
 																							]
-																						},
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
 																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- set others to zero"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- make another sample"
-																								}
-																							]
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
 																						}
 																					]
 																				}
@@ -5547,13 +5469,29 @@ view.layout = ui.extend({
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 80,
+																			maxWidth: 80,
+																			margin: "none",
 																			controls: [
 																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
+																					name: "doproject7aLst",
+																					type: DefaultControls.ComboBox,
+																					typeName: 'ComboBox',
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80
+																				},
+																				{
+																					type: DefaultControls.ActionButton,
+																					typeName: 'ActionButton',
+																					name: "doproject7aBtn",
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80,
+																					events: [
+																						{ execute: require('./BrawSim.events').onChange_project7a }
+																					]
 																				}
 																			]
 																		}
@@ -5562,113 +5500,97 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 80,
-																	maxWidth: 80,
-																	margin: "none",
+																	style: "inline",
 																	controls: [
-																		{
-																			name: "doproject7bLst",
-																			type: DefaultControls.ComboBox,
-																			typeName: 'ComboBox',
-																			margin: "none",
-																			minWidth: 80,
-																			maxWidth: 80
-																		},
-																		{
-																			type: DefaultControls.ActionButton,
-																			typeName: 'ActionButton',
-																			name: "doproject7bBtn",
-																			margin: "none",
-																			minWidth: 80,
-																			maxWidth: 80,
-																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project7b }
-																			]
-																		}
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "3. change the interaction"
-																		},
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 370,
 																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "2. change main effect 2"
+																				},
 																				{
 																					type: DefaultControls.LayoutBox,
 																					typeName: 'LayoutBox',
-																					style: "list",
+																					style: "inline",
 																					controls: [
 																						{
 																							type: DefaultControls.LayoutBox,
 																							typeName: 'LayoutBox',
-																							style: "inline",
+																							style: "list",
 																							controls: [
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- choose a value for it"
+																										}
+																									]
 																								},
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- choose a value for it"
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- set others to zero"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- make another sample"
+																										}
+																									]
 																								}
 																							]
-																						},
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
 																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- set others to zero"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- make another sample"
-																								}
-																							]
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
 																						}
 																					]
 																				}
@@ -5677,13 +5599,29 @@ view.layout = ui.extend({
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 80,
+																			maxWidth: 80,
+																			margin: "none",
 																			controls: [
 																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
+																					name: "doproject7bLst",
+																					type: DefaultControls.ComboBox,
+																					typeName: 'ComboBox',
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80
+																				},
+																				{
+																					type: DefaultControls.ActionButton,
+																					typeName: 'ActionButton',
+																					name: "doproject7bBtn",
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80,
+																					events: [
+																						{ execute: require('./BrawSim.events').onChange_project7b }
+																					]
 																				}
 																			]
 																		}
@@ -5692,113 +5630,97 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 80,
-																	maxWidth: 80,
-																	margin: "none",
+																	style: "inline",
 																	controls: [
-																		{
-																			name: "doproject7cLst",
-																			type: DefaultControls.ComboBox,
-																			typeName: 'ComboBox',
-																			margin: "none",
-																			minWidth: 80,
-																			maxWidth: 80
-																		},
-																		{
-																			type: DefaultControls.ActionButton,
-																			typeName: 'ActionButton',
-																			name: "doproject7cBtn",
-																			margin: "none",
-																			minWidth: 80,
-																			maxWidth: 80,
-																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project7c }
-																			]
-																		}
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "4. change all the effects"
-																		},
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 370,
 																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "3. change the interaction"
+																				},
 																				{
 																					type: DefaultControls.LayoutBox,
 																					typeName: 'LayoutBox',
-																					style: "list",
+																					style: "inline",
 																					controls: [
 																						{
 																							type: DefaultControls.LayoutBox,
 																							typeName: 'LayoutBox',
-																							style: "inline",
+																							style: "list",
 																							controls: [
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- choose a value for it"
+																										}
+																									]
 																								},
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- using the above drop-down menus"
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- set others to zero"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- make another sample"
+																										}
+																									]
 																								}
 																							]
-																						},
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
 																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- and then makiong a sample"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- see how the different effects add"
-																								}
-																							]
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
 																						}
 																					]
 																				}
@@ -5807,13 +5729,29 @@ view.layout = ui.extend({
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 80,
+																			maxWidth: 80,
+																			margin: "none",
 																			controls: [
 																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
+																					name: "doproject7cLst",
+																					type: DefaultControls.ComboBox,
+																					typeName: 'ComboBox',
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80
+																				},
+																				{
+																					type: DefaultControls.ActionButton,
+																					typeName: 'ActionButton',
+																					name: "doproject7cBtn",
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80,
+																					events: [
+																						{ execute: require('./BrawSim.events').onChange_project7c }
+																					]
 																				}
 																			]
 																		}
@@ -5822,20 +5760,121 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 80,
-																	maxWidth: 80,
-																	margin: "none",
+																	style: "inline",
 																	controls: [
 																		{
-																			type: DefaultControls.ActionButton,
-																			typeName: 'ActionButton',
-																			name: "doproject7dBtn",
-																			margin: "none",
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "4. change all the effects"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- using the above drop-down menus"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- and then makiong a sample"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- see how the different effects add"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
 																			minWidth: 80,
 																			maxWidth: 80,
-																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project7d }
+																			margin: "none",
+																			controls: [
+																				{
+																					type: DefaultControls.ActionButton,
+																					typeName: 'ActionButton',
+																					name: "doproject7dBtn",
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80,
+																					events: [
+																						{ execute: require('./BrawSim.events').onChange_project7d }
+																					]
+																				}
 																			]
 																		}
 																	]
@@ -5845,133 +5884,25 @@ view.layout = ui.extend({
 													]
 												}
 											]
-										}
-									]
-								},
-								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
-									controls: [
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: " ",
-											minWidth: 13
 										},
 										{
-											type: DefaultControls.CollapseBox,
-											typeName: 'CollapseBox',
-											collapsed: true,
-											label: "b. Interactions as moderators",
-											margin: "none",
-											minWidth: 255,
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "inline",
 											controls: [
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
-														{
-															type: DefaultControls.Label,
-															typeName: 'Label',
-															label: "Set up",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	controls: [
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					minWidth: 370,
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Choose three variables variables"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Set all effect-sizes to 0.0"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Set sample size to 1000"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		}
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "list",
-															minWidth: 80,
-															maxWidth: 80,
-															margin: "none",
-															controls: [
-																{
-																	name: "doproject8aLst",
-																	type: DefaultControls.ComboBox,
-																	typeName: 'ComboBox',
-																	margin: "none",
-																	minWidth: 80,
-																	maxWidth: 80
-																},
-																{
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	name: "doproject8aBtn",
-																	margin: "none",
-																	minWidth: 80,
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_project8a }
-																	]
-																}
-															]
-														}
-													]
-												},
 												{
 													type: DefaultControls.Label,
 													typeName: 'Label',
-													label: "Steps",
+													label: " ",
+													minWidth: 13
+												},
+												{
+													type: DefaultControls.CollapseBox,
+													typeName: 'CollapseBox',
+													collapsed: true,
+													label: "b. Interactions as moderators",
+													margin: "none",
+													minWidth: 255,
 													controls: [
 														{
 															type: DefaultControls.LayoutBox,
@@ -5979,130 +5910,65 @@ view.layout = ui.extend({
 															style: "inline",
 															controls: [
 																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "Set up",
 																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "1. set up the interaction as on/off"
-																		},
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
 																			controls: [
 																				{
 																					type: DefaultControls.LayoutBox,
 																					typeName: 'LayoutBox',
-																					style: "list",
+																					style: "inline",
 																					controls: [
 																						{
 																							type: DefaultControls.LayoutBox,
 																							typeName: 'LayoutBox',
-																							style: "inline",
+																							style: "list",
+																							minWidth: 370,
 																							controls: [
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Choose three variables variables"
+																										}
+																									]
 																								},
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- set Interaction effect size"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Set all effect-sizes to 0.0"
+																										}
+																									]
 																								},
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- set M1 to same value"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- make a sample"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- notice how the effect of M1 is on for some and off for others"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 26
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "remain close to zero"
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Set sample size to 1000"
+																										}
+																									]
 																								}
 																							]
 																						}
 																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
 																				}
 																			]
 																		}
@@ -6117,7 +5983,7 @@ view.layout = ui.extend({
 																	margin: "none",
 																	controls: [
 																		{
-																			name: "doproject8bLst",
+																			name: "doproject8aLst",
 																			type: DefaultControls.ComboBox,
 																			typeName: 'ComboBox',
 																			margin: "none",
@@ -6127,12 +5993,12 @@ view.layout = ui.extend({
 																		{
 																			type: DefaultControls.ActionButton,
 																			typeName: 'ActionButton',
-																			name: "doproject8bBtn",
+																			name: "doproject8aBtn",
 																			margin: "none",
 																			minWidth: 80,
 																			maxWidth: 80,
 																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project8b }
+																				{ execute: require('./BrawSim.events').onChange_project8a }
 																			]
 																		}
 																	]
@@ -6140,120 +6006,140 @@ view.layout = ui.extend({
 															]
 														},
 														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Steps",
 															controls: [
 																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
+																	style: "inline",
 																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "2. set up the interaction as +/- switch"
-																		},
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 370,
 																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "1. set up the interaction as on/off"
+																				},
 																				{
 																					type: DefaultControls.LayoutBox,
 																					typeName: 'LayoutBox',
-																					style: "list",
+																					style: "inline",
 																					controls: [
 																						{
 																							type: DefaultControls.LayoutBox,
 																							typeName: 'LayoutBox',
-																							style: "inline",
+																							style: "list",
 																							controls: [
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- set Interaction effect size"
+																										}
+																									]
 																								},
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- set Interaction effect size"
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- set M1 to same value"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- make a sample"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- notice how the effect of M1 is on for some and off for others"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 26
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "remain close to zero"
+																										}
+																									]
 																								}
 																							]
-																						},
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
 																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- set M1 & M2 to zero"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- make a sample"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- notice how the effect of M1 is +ve for some and -ve for others"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 26
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "remain close to zero"
-																								}
-																							]
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
 																						}
 																					]
 																				}
@@ -6262,13 +6148,29 @@ view.layout = ui.extend({
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 80,
+																			maxWidth: 80,
+																			margin: "none",
 																			controls: [
 																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
+																					name: "doproject8bLst",
+																					type: DefaultControls.ComboBox,
+																					typeName: 'ComboBox',
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80
+																				},
+																				{
+																					type: DefaultControls.ActionButton,
+																					typeName: 'ActionButton',
+																					name: "doproject8bBtn",
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80,
+																					events: [
+																						{ execute: require('./BrawSim.events').onChange_project8b }
+																					]
 																				}
 																			]
 																		}
@@ -6277,28 +6179,165 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 80,
-																	maxWidth: 80,
-																	margin: "none",
+																	style: "inline",
 																	controls: [
 																		{
-																			name: "doproject8cLst",
-																			type: DefaultControls.ComboBox,
-																			typeName: 'ComboBox',
-																			margin: "none",
-																			minWidth: 80,
-																			maxWidth: 80
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "2. set up the interaction as +/- switch"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- set Interaction effect size"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- set M1 & M2 to zero"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- make a sample"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- notice how the effect of M1 is +ve for some and -ve for others"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 26
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "remain close to zero"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
 																		},
 																		{
-																			type: DefaultControls.ActionButton,
-																			typeName: 'ActionButton',
-																			name: "doproject8cBtn",
-																			margin: "none",
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
 																			minWidth: 80,
 																			maxWidth: 80,
-																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project8c }
+																			margin: "none",
+																			controls: [
+																				{
+																					name: "doproject8cLst",
+																					type: DefaultControls.ComboBox,
+																					typeName: 'ComboBox',
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80
+																				},
+																				{
+																					type: DefaultControls.ActionButton,
+																					typeName: 'ActionButton',
+																					name: "doproject8cBtn",
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80,
+																					events: [
+																						{ execute: require('./BrawSim.events').onChange_project8c }
+																					]
+																				}
 																			]
 																		}
 																	]
@@ -6308,137 +6347,25 @@ view.layout = ui.extend({
 													]
 												}
 											]
-										}
-									]
-								},
-								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
-									controls: [
-										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: " ",
-											minWidth: 13
 										},
 										{
-											type: DefaultControls.CollapseBox,
-											typeName: 'CollapseBox',
-											collapsed: true,
-											label: "c. Covariation",
-											margin: "none",
-											minWidth: 255,
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "inline",
 											controls: [
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
-														{
-															type: DefaultControls.Label,
-															typeName: 'Label',
-															label: "Set up",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	controls: [
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					minWidth: 370,
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Choose three interval variables"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Set M1 & M2 effect-sizes to 0.5"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Set covariation effect-size to 0.3"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Set sample size to 1000"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		}
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "list",
-															minWidth: 80,
-															maxWidth: 80,
-															margin: "none",
-															controls: [
-																{
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	name: "doProject9sBtn",
-																	margin: "none",
-																	minWidth: 80,
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_Project9s }
-																	]
-																}
-															]
-														}
-													]
-												},
 												{
 													type: DefaultControls.Label,
 													typeName: 'Label',
-													label: "Steps",
+													label: " ",
+													minWidth: 13
+												},
+												{
+													type: DefaultControls.CollapseBox,
+													typeName: 'CollapseBox',
+													collapsed: true,
+													label: "c. Covariation",
+													margin: "none",
+													minWidth: 255,
 													controls: [
 														{
 															type: DefaultControls.LayoutBox,
@@ -6446,76 +6373,77 @@ view.layout = ui.extend({
 															style: "inline",
 															controls: [
 																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "Set up",
 																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "1. the result of covariation"
-																		},
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
 																			controls: [
 																				{
 																					type: DefaultControls.LayoutBox,
 																					typeName: 'LayoutBox',
-																					style: "list",
+																					style: "inline",
 																					controls: [
 																						{
 																							type: DefaultControls.LayoutBox,
 																							typeName: 'LayoutBox',
-																							style: "inline",
+																							style: "list",
+																							minWidth: 370,
 																							controls: [
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Choose three interval variables"
+																										}
+																									]
 																								},
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- make a sample"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Set M1 & M2 effect-sizes to 0.5"
+																										}
+																									]
 																								},
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "'- can you see any indication of the covariation?'"
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Set covariation effect-size to 0.3"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Set sample size to 1000"
+																										}
+																									]
 																								}
 																							]
 																						}
 																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
 																				}
 																			]
 																		}
@@ -6532,12 +6460,12 @@ view.layout = ui.extend({
 																		{
 																			type: DefaultControls.ActionButton,
 																			typeName: 'ActionButton',
-																			name: "doproject9aBtn",
+																			name: "doProject9sBtn",
 																			margin: "none",
 																			minWidth: 80,
 																			maxWidth: 80,
 																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project9a }
+																				{ execute: require('./BrawSim.events').onChange_Project9s }
 																			]
 																		}
 																	]
@@ -6545,48 +6473,86 @@ view.layout = ui.extend({
 															]
 														},
 														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Steps",
 															controls: [
 																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
+																	style: "inline",
 																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "2. varying the amount of covariation"
-																		},
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 370,
 																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "1. the result of covariation"
+																				},
 																				{
 																					type: DefaultControls.LayoutBox,
 																					typeName: 'LayoutBox',
-																					style: "list",
+																					style: "inline",
 																					controls: [
 																						{
 																							type: DefaultControls.LayoutBox,
 																							typeName: 'LayoutBox',
-																							style: "inline",
+																							style: "list",
 																							controls: [
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- make a sample"
+																										}
+																									]
 																								},
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- what happens?"
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "'- can you see any indication of the covariation?'"
+																										}
+																									]
 																								}
 																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
 																						}
 																					]
 																				}
@@ -6595,13 +6561,21 @@ view.layout = ui.extend({
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 80,
+																			maxWidth: 80,
+																			margin: "none",
 																			controls: [
 																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
+																					type: DefaultControls.ActionButton,
+																					typeName: 'ActionButton',
+																					name: "doproject9aBtn",
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80,
+																					events: [
+																						{ execute: require('./BrawSim.events').onChange_project9a }
+																					]
 																				}
 																			]
 																		}
@@ -6610,95 +6584,61 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 80,
-																	maxWidth: 80,
-																	margin: "none",
+																	style: "inline",
 																	controls: [
-																		{
-																			name: "doproject9bLst",
-																			type: DefaultControls.ComboBox,
-																			typeName: 'ComboBox',
-																			margin: "none",
-																			minWidth: 80,
-																			maxWidth: 80
-																		},
-																		{
-																			type: DefaultControls.ActionButton,
-																			typeName: 'ActionButton',
-																			name: "doproject9bBtn",
-																			margin: "none",
-																			minWidth: 80,
-																			maxWidth: 80,
-																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project9b }
-																			]
-																		}
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "2. explore the amount of covariation"
-																		},
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 370,
 																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "2. varying the amount of covariation"
+																				},
 																				{
 																					type: DefaultControls.LayoutBox,
 																					typeName: 'LayoutBox',
-																					style: "list",
+																					style: "inline",
 																					controls: [
 																						{
 																							type: DefaultControls.LayoutBox,
 																							typeName: 'LayoutBox',
-																							style: "inline",
+																							style: "list",
 																							controls: [
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- use the \"Explore\" function"
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- what happens?"
+																										}
+																									]
 																								}
 																							]
-																						},
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
 																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- look at direct, unique and total effect sizes"
-																								}
-																							]
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
 																						}
 																					]
 																				}
@@ -6707,13 +6647,29 @@ view.layout = ui.extend({
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 80,
+																			maxWidth: 80,
+																			margin: "none",
 																			controls: [
 																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
+																					name: "doproject9bLst",
+																					type: DefaultControls.ComboBox,
+																					typeName: 'ComboBox',
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80
+																				},
+																				{
+																					type: DefaultControls.ActionButton,
+																					typeName: 'ActionButton',
+																					name: "doproject9bBtn",
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80,
+																					events: [
+																						{ execute: require('./BrawSim.events').onChange_project9b }
+																					]
 																				}
 																			]
 																		}
@@ -6722,20 +6678,103 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 80,
-																	maxWidth: 80,
-																	margin: "none",
+																	style: "inline",
 																	controls: [
 																		{
-																			type: DefaultControls.ActionButton,
-																			typeName: 'ActionButton',
-																			name: "doproject9cBtn",
-																			margin: "none",
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "2. explore the amount of covariation"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- use the \"Explore\" function"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- look at direct, unique and total effect sizes"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
 																			minWidth: 80,
 																			maxWidth: 80,
-																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project9c }
+																			margin: "none",
+																			controls: [
+																				{
+																					type: DefaultControls.ActionButton,
+																					typeName: 'ActionButton',
+																					name: "doproject9cBtn",
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80,
+																					events: [
+																						{ execute: require('./BrawSim.events').onChange_project9c }
+																					]
+																				}
 																			]
 																		}
 																	]
@@ -6751,153 +6790,42 @@ view.layout = ui.extend({
 							]
 						},
 						{
-							type: DefaultControls.CollapseBox,
-							typeName: 'CollapseBox',
-							collapsed: true,
-							label: "4. Path Models",
-							margin: "none",
-							minWidth: 330,
+							type: DefaultControls.LayoutBox,
+							typeName: 'LayoutBox',
+							style: "inline",
 							controls: [
 								{
-									type: DefaultControls.LayoutBox,
-									typeName: 'LayoutBox',
-									style: "inline",
+									type: DefaultControls.Label,
+									typeName: 'Label',
+									label: " ",
+									minWidth: 13
+								},
+								{
+									type: DefaultControls.CollapseBox,
+									typeName: 'CollapseBox',
+									collapsed: true,
+									label: "4. Path Models",
+									margin: "none",
+									minWidth: 330,
 									controls: [
 										{
-											type: DefaultControls.Label,
-											typeName: 'Label',
-											label: " ",
-											minWidth: 13
-										},
-										{
-											type: DefaultControls.CollapseBox,
-											typeName: 'CollapseBox',
-											collapsed: true,
-											label: "a. Mediation effects",
-											margin: "none",
-											minWidth: 255,
+											type: DefaultControls.LayoutBox,
+											typeName: 'LayoutBox',
+											style: "inline",
 											controls: [
-												{
-													type: DefaultControls.LayoutBox,
-													typeName: 'LayoutBox',
-													style: "inline",
-													controls: [
-														{
-															type: DefaultControls.Label,
-															typeName: 'Label',
-															label: "Set up",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	controls: [
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.LayoutBox,
-																					typeName: 'LayoutBox',
-																					style: "list",
-																					minWidth: 370,
-																					controls: [
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Choose three interval variables"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Set M1 effect-size to 0.0"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Set M2 effect-size to 0.7"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Set covariation effect-size to 0.7"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "Set sample size to 1000"
-																								}
-																							]
-																						}
-																					]
-																				}
-																			]
-																		}
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "list",
-															minWidth: 80,
-															maxWidth: 80,
-															margin: "none",
-															controls: [
-																{
-																	type: DefaultControls.ActionButton,
-																	typeName: 'ActionButton',
-																	name: "doProject10sBtn",
-																	margin: "none",
-																	minWidth: 80,
-																	maxWidth: 80,
-																	events: [
-																		{ execute: require('./BrawSim.events').onChange_Project10s }
-																	]
-																}
-															]
-														}
-													]
-												},
 												{
 													type: DefaultControls.Label,
 													typeName: 'Label',
-													label: "Steps",
+													label: " ",
+													minWidth: 13
+												},
+												{
+													type: DefaultControls.CollapseBox,
+													typeName: 'CollapseBox',
+													collapsed: true,
+													label: "a. Mediation effects",
+													margin: "none",
+													minWidth: 255,
 													controls: [
 														{
 															type: DefaultControls.LayoutBox,
@@ -6905,76 +6833,89 @@ view.layout = ui.extend({
 															style: "inline",
 															controls: [
 																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
+																	type: DefaultControls.Label,
+																	typeName: 'Label',
+																	label: "Set up",
 																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "1. the result of mediation"
-																		},
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
 																			controls: [
 																				{
 																					type: DefaultControls.LayoutBox,
 																					typeName: 'LayoutBox',
-																					style: "list",
+																					style: "inline",
 																					controls: [
 																						{
 																							type: DefaultControls.LayoutBox,
 																							typeName: 'LayoutBox',
-																							style: "inline",
+																							style: "list",
+																							minWidth: 370,
 																							controls: [
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Choose three interval variables"
+																										}
+																									]
 																								},
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- make a sample"
-																								}
-																							]
-																						},
-																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Set M1 effect-size to 0.0"
+																										}
+																									]
 																								},
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- show the result as \"Infer\""
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Set M2 effect-size to 0.7"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Set covariation effect-size to 0.7"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "Set sample size to 1000"
+																										}
+																									]
 																								}
 																							]
 																						}
 																					]
-																				}
-																			]
-																		},
-																		{
-																			type: DefaultControls.LayoutBox,
-																			typeName: 'LayoutBox',
-																			style: "inline",
-																			controls: [
-																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
 																				}
 																			]
 																		}
@@ -6991,12 +6932,12 @@ view.layout = ui.extend({
 																		{
 																			type: DefaultControls.ActionButton,
 																			typeName: 'ActionButton',
-																			name: "doproject10aBtn",
+																			name: "doProject10sBtn",
 																			margin: "none",
 																			minWidth: 80,
 																			maxWidth: 80,
 																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project10a }
+																				{ execute: require('./BrawSim.events').onChange_Project10s }
 																			]
 																		}
 																	]
@@ -7004,48 +6945,86 @@ view.layout = ui.extend({
 															]
 														},
 														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
+															type: DefaultControls.Label,
+															typeName: 'Label',
+															label: "Steps",
 															controls: [
 																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
+																	style: "inline",
 																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "2. varying the amount of covariation"
-																		},
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 370,
 																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "1. the result of mediation"
+																				},
 																				{
 																					type: DefaultControls.LayoutBox,
 																					typeName: 'LayoutBox',
-																					style: "list",
+																					style: "inline",
 																					controls: [
 																						{
 																							type: DefaultControls.LayoutBox,
 																							typeName: 'LayoutBox',
-																							style: "inline",
+																							style: "list",
 																							controls: [
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- make a sample"
+																										}
+																									]
 																								},
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- what happens?"
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- show the result as \"Infer\""
+																										}
+																									]
 																								}
 																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
 																						}
 																					]
 																				}
@@ -7054,13 +7033,21 @@ view.layout = ui.extend({
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 80,
+																			maxWidth: 80,
+																			margin: "none",
 																			controls: [
 																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
+																					type: DefaultControls.ActionButton,
+																					typeName: 'ActionButton',
+																					name: "doproject10aBtn",
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80,
+																					events: [
+																						{ execute: require('./BrawSim.events').onChange_project10a }
+																					]
 																				}
 																			]
 																		}
@@ -7069,95 +7056,61 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 80,
-																	maxWidth: 80,
-																	margin: "none",
+																	style: "inline",
 																	controls: [
-																		{
-																			name: "doproject10bLst",
-																			type: DefaultControls.ComboBox,
-																			typeName: 'ComboBox',
-																			margin: "none",
-																			minWidth: 80,
-																			maxWidth: 80
-																		},
-																		{
-																			type: DefaultControls.ActionButton,
-																			typeName: 'ActionButton',
-																			name: "doproject10bBtn",
-																			margin: "none",
-																			minWidth: 80,
-																			maxWidth: 80,
-																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project10b }
-																			]
-																		}
-																	]
-																}
-															]
-														},
-														{
-															type: DefaultControls.LayoutBox,
-															typeName: 'LayoutBox',
-															style: "inline",
-															controls: [
-																{
-																	type: DefaultControls.LayoutBox,
-																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 370,
-																	controls: [
-																		{
-																			type: DefaultControls.Label,
-																			typeName: 'Label',
-																			label: "2. explore the amount of covariation"
-																		},
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 370,
 																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "2. varying the amount of covariation"
+																				},
 																				{
 																					type: DefaultControls.LayoutBox,
 																					typeName: 'LayoutBox',
-																					style: "list",
+																					style: "inline",
 																					controls: [
 																						{
 																							type: DefaultControls.LayoutBox,
 																							typeName: 'LayoutBox',
-																							style: "inline",
+																							style: "list",
 																							controls: [
 																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- use the \"Explore\" function"
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- what happens?"
+																										}
+																									]
 																								}
 																							]
-																						},
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
 																						{
-																							type: DefaultControls.LayoutBox,
-																							typeName: 'LayoutBox',
-																							style: "inline",
-																							controls: [
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: " ",
-																									minWidth: 13
-																								},
-																								{
-																									type: DefaultControls.Label,
-																									typeName: 'Label',
-																									label: "- look at direct, unique and total effect sizes"
-																								}
-																							]
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
 																						}
 																					]
 																				}
@@ -7166,13 +7119,29 @@ view.layout = ui.extend({
 																		{
 																			type: DefaultControls.LayoutBox,
 																			typeName: 'LayoutBox',
-																			style: "inline",
+																			style: "list",
+																			minWidth: 80,
+																			maxWidth: 80,
+																			margin: "none",
 																			controls: [
 																				{
-																					type: DefaultControls.Label,
-																					typeName: 'Label',
-																					label: " ",
-																					minWidth: 26
+																					name: "doproject10bLst",
+																					type: DefaultControls.ComboBox,
+																					typeName: 'ComboBox',
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80
+																				},
+																				{
+																					type: DefaultControls.ActionButton,
+																					typeName: 'ActionButton',
+																					name: "doproject10bBtn",
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80,
+																					events: [
+																						{ execute: require('./BrawSim.events').onChange_project10b }
+																					]
 																				}
 																			]
 																		}
@@ -7181,20 +7150,103 @@ view.layout = ui.extend({
 																{
 																	type: DefaultControls.LayoutBox,
 																	typeName: 'LayoutBox',
-																	style: "list",
-																	minWidth: 80,
-																	maxWidth: 80,
-																	margin: "none",
+																	style: "inline",
 																	controls: [
 																		{
-																			type: DefaultControls.ActionButton,
-																			typeName: 'ActionButton',
-																			name: "doproject10cBtn",
-																			margin: "none",
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
+																			minWidth: 370,
+																			controls: [
+																				{
+																					type: DefaultControls.Label,
+																					typeName: 'Label',
+																					label: "2. explore the amount of covariation"
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.LayoutBox,
+																							typeName: 'LayoutBox',
+																							style: "list",
+																							controls: [
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- use the \"Explore\" function"
+																										}
+																									]
+																								},
+																								{
+																									type: DefaultControls.LayoutBox,
+																									typeName: 'LayoutBox',
+																									style: "inline",
+																									controls: [
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: " ",
+																											minWidth: 13
+																										},
+																										{
+																											type: DefaultControls.Label,
+																											typeName: 'Label',
+																											label: "- look at direct, unique and total effect sizes"
+																										}
+																									]
+																								}
+																							]
+																						}
+																					]
+																				},
+																				{
+																					type: DefaultControls.LayoutBox,
+																					typeName: 'LayoutBox',
+																					style: "inline",
+																					controls: [
+																						{
+																							type: DefaultControls.Label,
+																							typeName: 'Label',
+																							label: " ",
+																							minWidth: 26
+																						}
+																					]
+																				}
+																			]
+																		},
+																		{
+																			type: DefaultControls.LayoutBox,
+																			typeName: 'LayoutBox',
+																			style: "list",
 																			minWidth: 80,
 																			maxWidth: 80,
-																			events: [
-																				{ execute: require('./BrawSim.events').onChange_project10c }
+																			margin: "none",
+																			controls: [
+																				{
+																					type: DefaultControls.ActionButton,
+																					typeName: 'ActionButton',
+																					name: "doproject10cBtn",
+																					margin: "none",
+																					minWidth: 80,
+																					maxWidth: 80,
+																					events: [
+																						{ execute: require('./BrawSim.events').onChange_project10c }
+																					]
+																				}
 																			]
 																		}
 																	]

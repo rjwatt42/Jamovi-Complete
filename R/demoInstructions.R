@@ -3,7 +3,7 @@ demoInstructions <- function(HelpType="1") {
 
   switch(HelpType,
          "1"={output<-c(
-           '<b>Demo 1</b>',
+           '<b>Demo 1a</b>',
            '<br>',
            'A simple demo to show how basic statistics is easy.',
            '<ul style=margin:0px;>',
@@ -16,7 +16,7 @@ demoInstructions <- function(HelpType="1") {
          },
          
          "2"={output<-c(
-           '<b>Demo 2</b>',
+           '<b>Demo 1b</b>',
            '<br>',
            "A demo about samples - what they should and shouldn't look like.",
            '<ul style=margin:0px;>',
@@ -29,7 +29,7 @@ demoInstructions <- function(HelpType="1") {
          },
          
          "3"={output<-c(
-           '<b>Demo 3</b>',
+           '<b>Demo 1c</b>',
            '<br>',
            'A demo about variability and uncertainty - how much samples can randomly differ from the population.',
            'This is the fundamental issue that statistics has to deal with.',
@@ -43,7 +43,7 @@ demoInstructions <- function(HelpType="1") {
          },
          
          "4"={output<-c(
-           '<b>Demo 4</b>',
+           '<b>Demo 2a</b>',
            '<br>',
            'A demo to see how far getting a significant result depends on luck.',
            '<ul style=margin:0px;>',
@@ -55,7 +55,7 @@ demoInstructions <- function(HelpType="1") {
          },
          
          "5"={output<-c(
-           '<b>Demo 5</b>',
+           '<b>Demo 2b</b>',
            '<br>',
            'A demo about the uncertainty in NHST - is the inference correct or an error.',
            '<ul style=margin:0px;>',
@@ -67,7 +67,7 @@ demoInstructions <- function(HelpType="1") {
          },
          
          "6"={output<-c(
-           '<b>Demo 6</b>',
+           '<b>Demo 2c</b>',
            '<br>',
            'A demo about the importance of design.',
            '<ul style=margin:0px;>',
@@ -79,7 +79,7 @@ demoInstructions <- function(HelpType="1") {
          },
          
          "7"={output<-c(
-           '<b>Demo 7</b>',
+           '<b>Demo 3a</b>',
            '<br>',
            'A demo about using multiple IVs. ',
            'In linear models, these are treated as separate, additive effects.',
@@ -93,7 +93,7 @@ demoInstructions <- function(HelpType="1") {
          },
          
          "8"={output<-c(
-           '<b>Demo 8</b>',
+           '<b>Demo 3b</b>',
            '<br>',
            'A demo about interactions as moderators. ',
            'Technically an interaction is the product (multiplication) or two variables. ',
@@ -107,7 +107,7 @@ demoInstructions <- function(HelpType="1") {
          },
          
          "9"={output<-c(
-           '<b>Demo 9</b>',
+           '<b>Demo 3c</b>',
            '<br>',
            'A demo about covariation between IV and IV2. ',
            'Covariation is when the two IVs are themselves related/correlated. ',
@@ -122,7 +122,7 @@ demoInstructions <- function(HelpType="1") {
          },
          
          "10"={output<-c(
-           '<b>Demo 10</b>',
+           '<b>Demo 4a</b>',
            '<br>',
            'A demo about mediation effects. ',
            'We say that the effect of IV on DV is fully mediated by IV2, when there is no direct link from IV to DV, but instead links from IV to IV2 and IV2 to DV.',

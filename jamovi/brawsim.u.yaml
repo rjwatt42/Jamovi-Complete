@@ -1329,12 +1329,18 @@ children:
       margin: none
       minWidth: 450
       children:
-      - type: CollapseBox
-        collapsed: true
-        label: 1. Samples of Data
-        margin: none
-        minWidth: 330
+      - type: LayoutBox
+        style: inline
         children:
+        - type: Label
+          label: ' '
+          minWidth: 13
+        - type: CollapseBox
+          collapsed: true
+          label: 1. Samples of Data
+          margin: none
+          minWidth: 330
+          children:
           - type: LayoutBox
             style: inline
             children:
@@ -1940,12 +1946,18 @@ children:
                             maxWidth: 80
                             events:
                               change: ./BrawSim.events::onChange_project3d
-      - type: CollapseBox
-        collapsed: true
-        label: 2. Uncertainty & Design
-        margin: none
-        minWidth: 330
+      - type: LayoutBox
+        style: inline
         children:
+        - type: Label
+          label: ' '
+          minWidth: 13
+        - type: CollapseBox
+          collapsed: true
+          label: 2. Uncertainty & Design
+          margin: none
+          minWidth: 330
+          children:
           - type: LayoutBox
             style: inline
             children:
@@ -2642,12 +2654,18 @@ children:
                                 maxWidth: 80
                                 events:
                                   change: ./BrawSim.events::onChange_project6d
-      - type: CollapseBox
-        collapsed: true
-        label: 3. More than 1 IV
-        margin: none
-        minWidth: 330
+      - type: LayoutBox
+        style: inline
         children:
+        - type: Label
+          label: ' '
+          minWidth: 13
+        - type: CollapseBox
+          collapsed: true
+          label: 3. Linear Models
+          margin: none
+          minWidth: 330
+          children:
           - type: LayoutBox
             style: inline
             children:
@@ -3410,12 +3428,18 @@ children:
                                 maxWidth: 80
                                 events:
                                   change: ./BrawSim.events::onChange_project9c
-      - type: CollapseBox
-        collapsed: true
-        label: 4. Path Models
-        margin: none
-        minWidth: 330
+      - type: LayoutBox
+        style: inline
         children:
+        - type: Label
+          label: ' '
+          minWidth: 13
+        - type: CollapseBox
+          collapsed: true
+          label: 4. Path Models
+          margin: none
+          minWidth: 330
+          children:
           - type: LayoutBox
             style: inline
             children:
