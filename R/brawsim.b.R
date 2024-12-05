@@ -254,24 +254,82 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         )
         help<-paste0(help,jamoviHelp)
       }
+      switch(self$options$demoWhich,
+             "blank"={open1<-0;open2<-0},
+             "d1"={open1<-1;open2<-1},
+             "d2"={open1<-1;open2<-2},
+             "d3"={open1<-1;open2<-3},
+             "d4"={open1<-2;open2<-1},
+             "d5"={open1<-2;open2<-2},
+             "d6"={open1<-2;open2<-3},
+             "d7"={open1<-3;open2<-1},
+             "d8"={open1<-3;open2<-2},
+             "d9"={open1<-3;open2<-3},
+             "d10"={open1<-4;open2<-1}
+      )
       if (self$options$demoHelp) {
         demoHelp<-private$.htmlwidget$generate_tab(
           title="Demos Help:",
-          # titleTab="Click on the tabs for specific help.",
-          tabs=c("1","2","3","4","5","6","7","8","9","10"),
+          plainTabs=TRUE,
+          tabs=c("Data","Uncertainty","Linear Models","Path Models"),
           tabContents = c(
-            demoInstructions("1"),
-            demoInstructions("2"),
-            demoInstructions("3"),
-            demoInstructions("4"),
-            demoInstructions("5"),
-            demoInstructions("6"),
-            demoInstructions("7"),
-            demoInstructions("8"),
-            demoInstructions("9"),
-            demoInstructions("10")
+            private$.htmlwidget$generate_tab(
+              title="Samples of Data:",
+              tabs=c("a","b","c"),
+              indent='50',
+              tabContents=c(
+                demoInstructions("1"),
+                demoInstructions("2"),
+                demoInstructions("3")
+              ),
+              open=open1
+            ),
+            private$.htmlwidget$generate_tab(
+              title="Uncertainty & Design:",
+              tabs=c("a","b","c"),
+              indent='50',
+              tabContents=c(
+                demoInstructions("4"),
+                demoInstructions("5"),
+                demoInstructions("6")
+              ),
+              open=open2
+            ),
+            private$.htmlwidget$generate_tab(
+              title="Linear Models:",
+              tabs=c("a","b","c"),
+              indent='50',
+              tabContents=c(
+                demoInstructions("7"),
+                demoInstructions("8"),
+                demoInstructions("9")
+              ),
+              open=open2
+            ),
+            private$.htmlwidget$generate_tab(
+              title="Path Models:",
+              tabs=c("a"),
+              indent='50',
+              tabContents=c(
+                demoInstructions("10")
+              ),
+              open=open2
+            )
           ),
-          open=which(self$options$demoWhich==c("blank","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10"))-1
+          # tabs=c("1","2","3","4","5","6","7","8","9","10"),
+          # tabContents = c(
+          #   demoInstructions("1"),
+          #   demoInstructions("2"),
+          #   demoInstructions("3"),
+          #   demoInstructions("4"),
+          #   demoInstructions("5"),
+          #   demoInstructions("6"),
+          #   demoInstructions("7"),
+          #   demoInstructions("8"),
+          #   demoInstructions("9"),
+          #   demoInstructions("10")
+          # ),
+          # open=which(self$options$demoWhich==c("blank","d1","d2","d3","d4","d5","d6","d7","d8","d9","d10"))-1
         )
         help<-paste0(help,demoHelp)
       }
@@ -280,6 +338,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         svgBox(200)
         systemHTML<-private$.htmlwidget$generate_tab(
           title="Plan:",
+          topMargin=15,
           tabs=c("Hypothesis","Design","Expected"),
           tabContents = c(
             showHypothesis(),

@@ -4,13 +4,17 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                  },
 
                                  generate_tab = function(title="Tab",tabs=c("1","2","3"),tabContents=c("a","b","c"),
-                                                         titleTab="",
+                                                         titleTab="",plainTabs=FALSE,indent=0,topMargin=5,
                                                          colours=c("#3498db","#888","#888"),fontSize="12px",plain=FALSE,width=550,height=NULL,open=0) {
                                    if (is.null(height)) ht<-'' else ht<-paste0('height: ',height,'px;')
                                    if (open==0) openCode<-''
                                    else openCode<-paste0(
                                      'document.getElementById("',title,'||',tabs[open],'").style.display = "block";'
                                    )
+                                   
+                                   if (!plainTabs) 
+                                     tabBorders<-''
+                                   else tabBorders<-paste0('border: none;')
                                    script<-paste0(
                                      '<script>',
                                      'function openTab(evt, tabName) {',
@@ -45,8 +49,8 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                      '<style>',
                                      # Style the tab 
                                        '.tab {overflow: hidden;',
-                                       'margin: 5px 0px 0px 0px;',
-                                       'padding: 0px;',
+                                       'margin: 0px 0px 0px 0px;',
+                                       'padding: 5px 0px 0px 0px;',
                                        'border: none;',
                                        'background-color: inherit;',
                                      'border-bottom: solid ',colours[3],' 1px;',
@@ -86,8 +90,7 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                      'display: none;',
                                      'padding: 0px 0px;',
                                      'margin: 0px;',
-                                     'border: 1px solid ',colours[3],';',
-                                     'border-top: none;',
+                                     'border: 1px solid ',colours[3],';','border-top: none;',
                                      'width: ',width,'px;',
                                      'height: 0px;',
                                      '}',
@@ -97,8 +100,7 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                      'display: none;',
                                      'padding: 0px 0px;',
                                      'margin: 0px;',
-                                     'border: 1px solid ',colours[3],';',
-                                     'border-top: none;',
+                                     'border: 1px solid ',colours[3],';','border-top: none;',
                                      'width: ',width,'px;',
                                      ht,
                                      '}',
@@ -135,11 +137,12 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                                          '</button>')
                                      }
                                      panels <- paste0(panels,
-                                                      '  <div id="',panelID,'" class="tabcontent">',
+                                                      '  <div id="',panelID,'" class="tabcontent" style="',tabBorders,';margin-left:',indent,'px;">',
                                                       tabContents[itab],
                                                       '</div>')
                                    }
-                                   buttons<-paste0('<div class="tab" width=',width,'px>',buttons,'</div>')
+                                   
+                                   buttons<-paste0('<div class="tab" width=',width,'px; style="margin-left:',indent,'px;padding-top:',topMargin,'px;">',buttons,'</div>')
                                    if (plain)
                                      html_content <- paste0(
                                        buttons,
