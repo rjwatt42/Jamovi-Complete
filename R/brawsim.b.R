@@ -61,8 +61,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       showSampleType<-self$options$showSampleType
       showInferParam<-paste0(self$options$inferVar1,";",self$options$inferVar2)
       showInferDimension<-self$options$showInferDimension
-      self$results$debug$setContent(showInferParam)
-      self$results$debug$setVisible(TRUE)
+      # self$results$debug$setContent(showInferParam)
+      # self$results$debug$setVisible(TRUE)
       
       # multiple samples
       makeMultipleNow<-self$options$makeMultipleBtn
@@ -346,7 +346,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           title="Plan:",
           plain=(nchar(help)>0),
           topMargin=15,
-          titleWidth=30,
+          # titleWidth=30,
           tabs=c("Hypothesis","Design","Expected"),
           tabContents = c(
             showHypothesis(),
