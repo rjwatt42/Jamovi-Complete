@@ -838,6 +838,10 @@ options:
           title: p
         - name: n
           title: n
+        - name: sLLR
+          title: sLLR
+        - name: llknull
+          title: 'llk(~null)'
         - name: blank1
           title: " "
         - name: ws
@@ -870,6 +874,10 @@ options:
           title: p
         - name: n
           title: n
+        - name: sLLR
+          title: sLLR
+        - name: llknull
+          title: 'llk(~null)'
         - name: blank1
           title: " "
         - name: ws

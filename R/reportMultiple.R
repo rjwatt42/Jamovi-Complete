@@ -258,6 +258,8 @@ reportMultiple<-function(multipleResult=braw.res$multiple,showType="Basic",
                     if (braw.env$RZ=="z") a<-atanh(a)
                   },
                   "po"={a<-result$poIV},
+                  "llknull"={a<-(-0.5*(result$aic-result$aicNull))},
+                  "sLLR"={a<-res2llr(result,"sLLR")},
                   "log(lrs)"={a<-res2llr(result,"sLLR")},
                   "log(lrd)"={a<-res2llr(result,"dLLR")},
                   "n"={a<-result$nval},

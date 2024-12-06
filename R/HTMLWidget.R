@@ -4,8 +4,10 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                  },
 
                                  generate_tab = function(title="Tab",tabs=c("1","2","3"),tabContents=c("a","b","c"),
-                                                         titleTab="",plainTabs=FALSE,indent=0,topMargin=5,
-                                                         colours=c("#3498db","#888","#888"),fontSize="12px",plain=FALSE,width=550,height=NULL,open=0) {
+                                                         titleTab="",titleWidth=135,
+                                                         plainTabs=FALSE,indent=0,topMargin=5,
+                                                         colours=c("#3498db","#888","#888"),fontSize="12px",
+                                                         plain=FALSE,width=550,height=NULL,open=0) {
                                    if (is.null(height)) ht<-'' else ht<-paste0('height: ',height,'px;')
                                    if (open==0) openCode<-''
                                    else openCode<-paste0(
@@ -117,7 +119,9 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                    panels<-''
                                    buttons <- paste0(buttons,
                                                      '  <button id="tabtitle',title,'" class="tablinks" onclick="closeTabs(event,\'',title,'\')"',
-                                                        ' style="background-color:rgba(0,0,0,0);color:black;cursor:default;font-weight: 500;font-size:13px;width:135px;text-align: right;margin:0px;padding: 0px;">',
+                                                        ' style="background-color:rgba(0,0,0,0);color:black;cursor:default;',
+                                                        'font-weight: 500;font-size:13px;width:',titleWidth,'px;text-align: right;',
+                                                        'margin:0px;padding: 0px;">',
                                                      title,
                                                      '</button>')
                                    if (nchar(titleTab)>0)
@@ -127,7 +131,7 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                                       '</div>')
                                    else
                                      panels <- paste0(panels,
-                                                      '  <div id="',title,'" class="tabcontent" style="display:none">',
+                                                      '  <div id="',title,'" class="tabcontent" style="display:none;"','width:',width-indent,'px;','>',
                                                       '</div>')
                                    for (itab in 1:length(tabs)) {
                                      panelID<-paste0(title,'||',tabs[itab])
@@ -137,7 +141,8 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                                          tabs[itab],
                                                          '</button>')
                                        panels <- paste0(panels,
-                                                        '  <div id="',panelID,'" class="tabcontent" style="',tabBorders,';margin-left:',indent,'px;display:block;">',
+                                                        '  <div id="',panelID,'" class="tabcontent" style="',tabBorders,';',
+                                                        'width:',width-indent,'px;',';margin-left:',indent,'px;','display:block;">',
                                                         tabContents[itab],
                                                         '</div>')
                                      } else {
@@ -146,13 +151,14 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                                          tabs[itab],
                                                          '</button>')
                                        panels <- paste0(panels,
-                                                        '  <div id="',panelID,'" class="tabcontent" style="',tabBorders,';margin-left:',indent,'px;">',
+                                                        '  <div id="',panelID,'" class="tabcontent" style="',tabBorders,';',
+                                                        'width:',width-indent,'px;',';margin-left:',indent,'px;','">',
                                                         tabContents[itab],
                                                         '</div>')
                                      }
                                    }
                                    
-                                   buttons<-paste0('<div class="tab" width=',width,'px; style="margin-left:',indent,'px;padding-top:',topMargin,'px;">',buttons,'</div>')
+                                   buttons<-paste0('<div class="tab" style="margin-left:',indent,'px;','width:',width-indent+2,'px;','padding-top:',topMargin,'px;">',buttons,'</div>')
                                    if (plain)
                                      html_content <- paste0(
                                        buttons,

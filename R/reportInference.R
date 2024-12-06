@@ -19,7 +19,7 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowe
           "Model"= {anova<-analysis$model}
   )
   nc<-ncol(anova)+2
-  if (nc<7) nc<-7
+  if (nc<8) nc<-8
   
   an_name<-analysis$an_name
     outputText<-rep(" ",nc)
@@ -129,6 +129,7 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowe
     }
     
     AIC<-analysis$aic
+    llkNull<-exp(-0.5*(analysis$aic-analysis$aicNull))
     k<-nrow(anova)-2+2
     n_data<-analysis$nval
     llr<-(2*k-AIC)/2
@@ -137,24 +138,27 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowe
     CAIC=k*(log(n_data)+1)+AIC-2*k;
     outputText<-c(outputText,rep("",nc))
     if (braw.env$reducedOutput) {
-      outputText<-c(outputText,"!HAIC","R^2","k","llr",rep("",nc-4))
+      outputText<-c(outputText,"!HAIC","AICnull","llk(~null)","R^2","k","llr",rep("",nc-6))
       outputText<-c(outputText,
-                    brawFormat(AIC,digits=1),
+                    brawFormat(analysis$aic,digits=1),
+                    brawFormat(analysis$aicNull,digits=1),
+                    brawFormat(log(llkNull),digits=3),
                     brawFormat(analysis$rFull^2,digits=braw.env$report_precision),
                     brawFormat(k),
                     brawFormat(llr,digits=1),
-                    rep("",nc-4)
+                    rep("",nc-6)
       )
     } else {
-      outputText<-c(outputText,"!HAIC","AICc","BIC","R^2","k","llr",rep("",nc-6))
+      outputText<-c(outputText,"!HAIC","llk(~null)","AICc","BIC","R^2","k","llr",rep("",nc-7))
       outputText<-c(outputText,
-                    brawFormat(AIC,digits=1),
+                    brawFormat(analysis$aic,digits=1),
+                    brawFormat(log(llkNull),digits=3),
                     brawFormat(AICc,digits=1),
                     brawFormat(BIC,digits=1),
                     brawFormat(analysis$rFull^2,digits=braw.env$report_precision),
                     brawFormat(k),
                     brawFormat(llr,digits=1),
-                    rep("",nc-6)
+                    rep("",nc-7)
       )
     }
     

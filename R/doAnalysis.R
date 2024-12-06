@@ -345,6 +345,8 @@ multipleAnalysis<-function(nsims=1,hypothesis,design,evidence,newResult=c()){
       newResult$nval[j]<-res$nval
       newResult$noval[j]<-res$noval
       newResult$df1[j]<-res$df1
+      newResult$aic[j]<-res$aic
+      newResult$aicNull[j]<-res$aicNull
       if (!is.null(hypothesis$IV2)) {
         newResult$rIV2[j]<-res$rIV2
         newResult$pIV2[j]<-res$pIV2
@@ -512,6 +514,9 @@ generalAnalysis<-function(allData,InteractionOn,withins=FALSE,ssqType="Type3",ca
   }
   r.full<-matrix(model2fulleffect(lmNormC,anNormC),nrow=1)
   aic<-AIC(lmNormC)
+  resid2<-sum((analysisRawData$dv-mean(analysisRawData$dv))^2)
+  aicNull<-2+n*(log(2*pi*resid2/(n-2))+1)
+  
   # if (length(r.direct)<3) {
   #   r.direct<-c(r.direct,0)
   #   r.unique<-c(r.unique,0)
@@ -528,6 +533,7 @@ generalAnalysis<-function(allData,InteractionOn,withins=FALSE,ssqType="Type3",ca
               r.total=r.total,
               r.full=r.full,
               aic=aic,
+              aicNull=aicNull,
               
               p.direct=p.direct,
               p.unique=p.unique,
@@ -611,6 +617,7 @@ doAnalysis<-function(sample=doSample(autoShow=FALSE),evidence=braw.def$evidence,
   analysis$rIVIV2<-0
   
   analysis$aic<-anResult$aic
+  analysis$aicNull<-anResult$aicNull
   analysis$rFull<-anResult$r.full
   analysis$rFullse<-r2se(analysis$rFull,n)
   analysis$rFullCI<-r2ci(analysis$rFull,n)

@@ -140,6 +140,16 @@ plotAxis<-function(showType,hypothesis,design=NULL) {
             ylabel<-polabel
             use_cols<-c(hsv(base_hue_r,1,1),hsv(base_hue_p+hue_diff,1,1),hsv(base_hue_p+hue_diff*2,1,1))
           },
+          "llknull"={
+            ylim<-c(-1, 5)
+            ylabel<-'llk(~null)'
+            use_cols<-c(hsv(base_hue_r,1,1),hsv(base_hue_r+hue_diff,1,1),hsv(base_hue_r+hue_diff*2,1,1))
+          },
+          "sLLR"={
+            ylim<-c(0, braw.env$lrRange)
+            ylabel<-'log[e](lr[s])'
+            use_cols<-c(hsv(base_hue_r,1,1),hsv(base_hue_r+hue_diff,1,1),hsv(base_hue_r+hue_diff*2,1,1))
+          },
           "log(lrs)"={
             ylim<-c(0, braw.env$lrRange)
             ylabel<-'log[e](lr[s])'

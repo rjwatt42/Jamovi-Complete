@@ -85,7 +85,7 @@ reportSEMModel<-function(sem,showType) {
     use<-1:ne
   }
 
-  columns<-c("Model","AIC","llk(null)","Rsqr","r","llr","k","n","obs")
+  columns<-c("Model","AIC","AICnull","llk(~null)","Rsqr","r","llr","k","n","obs")
   nc1<-length(columns)
   tableText<-c(columns,rep("",nc-nc1))
   tableText[1]<-paste0("!H",tableText[1])
@@ -94,7 +94,7 @@ reportSEMModel<-function(sem,showType) {
   prefix<-"!r"
   for (i in use) {
     for (column in columns) {
-      if (column=="llk(null)") {
+      if (column=="llk(~null)") {
         val<-log(exp(-0.5*(unlist(tableOutput[i,2])-unlist(tableOutput[i,5]))))
         val<-brawFormat(val,digits=3)
       } else {

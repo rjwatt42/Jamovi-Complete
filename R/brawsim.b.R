@@ -61,6 +61,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       showSampleType<-self$options$showSampleType
       showInferParam<-paste0(self$options$inferVar1,";",self$options$inferVar2)
       showInferDimension<-self$options$showInferDimension
+      self$results$debug$setContent(showInferParam)
+      self$results$debug$setVisible(TRUE)
       
       # multiple samples
       makeMultipleNow<-self$options$makeMultipleBtn
@@ -279,7 +281,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             private$.htmlwidget$generate_tab(
               title="Samples of Data:",
               tabs=c("1a","1b","1c"),
-              indent='50',
+              # indent=50,
               tabContents=c(
                 demoInstructions("1"),
                 demoInstructions("2"),
@@ -290,7 +292,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             private$.htmlwidget$generate_tab(
               title="Uncertainty & Design:",
               tabs=c("2a","2b","2c"),
-              indent='50',
+              indent=50,
               tabContents=c(
                 demoInstructions("4"),
                 demoInstructions("5"),
@@ -301,7 +303,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             private$.htmlwidget$generate_tab(
               title="Linear Models:",
               tabs=c("3a","3b","3c"),
-              indent='50',
+              indent=50,
               tabContents=c(
                 demoInstructions("7"),
                 demoInstructions("8"),
@@ -312,7 +314,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             private$.htmlwidget$generate_tab(
               title="Path Models:",
               tabs=c("4a"),
-              indent='50',
+              indent=50,
               tabContents=c(
                 demoInstructions("10")
               ),
@@ -344,6 +346,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           title="Plan:",
           plain=(nchar(help)>0),
           topMargin=15,
+          titleWidth=30,
           tabs=c("Hypothesis","Design","Expected"),
           tabContents = c(
             showHypothesis(),
