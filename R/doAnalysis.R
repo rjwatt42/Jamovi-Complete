@@ -514,8 +514,12 @@ generalAnalysis<-function(allData,InteractionOn,withins=FALSE,ssqType="Type3",ca
   }
   r.full<-matrix(model2fulleffect(lmNormC,anNormC),nrow=1)
   aic<-AIC(lmNormC)
+
+  k<-2
+  n_obs<-n
+  n_data<-n
   resid2<-sum((analysisRawData$dv-mean(analysisRawData$dv))^2)
-  aicNull<-2+n*(log(2*pi*resid2/(n-2))+1)
+  aicNull<-2*k+n_obs*(log(2*pi*resid2/n_data)+1)
   
   # if (length(r.direct)<3) {
   #   r.direct<-c(r.direct,0)

@@ -580,7 +580,7 @@ sem_results<-function(pathmodel,sem) {
   k=sum(!is.na(CF_table))+2*length(sem$endogenous); 
   n_data=n_obs*length(sem$endogenous);
   Resid2=sum(error^2);
-  AIC=k+n_obs*(log(2*pi*Resid2/(n_data-k))+1);
+  AIC=2*k+n_obs*(log(2*pi*Resid2/n_data)+1);
   llr<-k-AIC/2
   AICc=AIC+2*k*(k+1)/(n_data-k-1);
   BIC=AIC-2*k+k*log(n_data);
@@ -588,7 +588,7 @@ sem_results<-function(pathmodel,sem) {
   
   k_null<-2*length(sem$endogenous)
   Resid2_null<-sum(Yactual^2)
-  AICnull<-k_null+n_obs*(log(2*pi*Resid2_null/(n_data-k_null))+1)
+  AICnull<-2*k_null+n_obs*(log(2*pi*Resid2_null/n_data)+1)
   # 
   sem$stats<-list(model_chisqr=model_chisqr,
                  model_chi_df=model_chi_df,
