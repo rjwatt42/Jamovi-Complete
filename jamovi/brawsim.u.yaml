@@ -2130,14 +2130,6 @@ children:
                                             minWidth: 13
                                           - type: Label
                                             label: '- do this several times'
-                                      - type: LayoutBox
-                                        style: inline
-                                        children:
-                                          - type: Label
-                                            label: ' '
-                                            minWidth: 13
-                                          - type: Label
-                                            label: '- all the results lie on the same curve'
                               - type: LayoutBox
                                 style: inline
                                 children:

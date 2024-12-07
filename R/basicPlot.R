@@ -163,7 +163,7 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="both",top=FALSE,
     fontDimensions<-c(fontDimensions,braw.env$plotArea[3])
   if (!is.null(yticks) || !is.null(ylabel)) 
     fontDimensions<-c(fontDimensions,braw.env$plotArea[4])
-  ez<-2
+  ez<-1
   fontShrink<-max(0.3,min(fontDimensions))^(1/ez)
   fontScale<-fontScale*fontShrink
   
@@ -248,12 +248,12 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="both",top=FALSE,
     g<-addG(g,xAxisTicks(breaks=xticks$breaks,labels=xticks$labels,logScale=xticks$logScale,angle=xticks$angle,size=tickSize))
   if (!is.null(yticks)) 
     g<-addG(g,yAxisTicks(breaks=yticks$breaks,labels=yticks$labels,logScale=yticks$logScale,angle=yticks$angle,size=tickSize))
-  braw.env$plotLimits$fontScale<-braw.env$plotLimits$fontScale/fontShrink
+  # braw.env$plotLimits$fontScale<-braw.env$plotLimits$fontScale/fontShrink
   if (!is.null(xlabel))
-    g<-addG(g,xAxisLabel(label=xlabel$label))
+    g<-addG(g,xAxisLabel(label=xlabel$label,size=tickSize*1.5))
   if (!is.null(ylabel))
-    g<-addG(g,yAxisLabel(label=ylabel$label))
-  braw.env$plotLimits$fontScale<-braw.env$plotLimits$fontScale*fontShrink
+    g<-addG(g,yAxisLabel(label=ylabel$label,size=tickSize*1.5))
+  # braw.env$plotLimits$fontScale<-braw.env$plotLimits$fontScale*fontShrink
   return(g)  
 }
 
@@ -276,16 +276,16 @@ plotTitle<-function(label,position="centre",size=1.25,fontface="bold") {
   axisText(rangeXY(data),label,hjust=hjust,vjust=0.0,size=size,fontface=fontface)
 }
 
-xAxisLabel<-function(label) {
+xAxisLabel<-function(label,size=0.75) {
   voff<-0+braw.env$plotLimits$gap[2]*0.25
   
   axis<-data.frame(x=reRangeX(mean(braw.env$plotLimits$xlim)),y=rangeY(voff))
   switch(braw.env$plotLimits$orientation,
          "vert"={
-           axisText(axis,label=label, hjust=0.5, vjust=-voff/1.5, colour="black",size=0.75,angle=90,fontface="bold")
+           axisText(axis,label=label, hjust=0.5, vjust=-voff/1.5, colour="black",size=size,angle=90,fontface="bold")
          },
          "horz"={
-           axisText(axis,label=label, hjust=0.5, vjust=0, colour="black",size=0.75,fontface="bold")
+           axisText(axis,label=label, hjust=0.5, vjust=0, colour="black",size=size,fontface="bold")
          }
   )
 }
@@ -317,15 +317,15 @@ xAxisTicks<-function(breaks=NULL,labels=NULL,logScale=FALSE,angle=0,size=NULL){
          }
   )
 }
-yAxisLabel<-function(label){
+yAxisLabel<-function(label,size=0.75){
 
   axis<-data.frame(x=rangeX(0.0),y=reRangeY(mean(braw.env$plotLimits$ylim)))
   switch(braw.env$plotLimits$orientation,
          "vert"={
-           axisText(axis,label=label, hjust=0.5, vjust=2/1.5, colour="black",size=0.75,fontface="bold")
+           axisText(axis,label=label, hjust=0.5, vjust=2/1.5, colour="black",size=size,fontface="bold")
          },
          "horz"={
-           axisText(axis,label=label, hjust=0.5, vjust=1, colour="black",size=0.75,angle=90,fontface="bold")
+           axisText(axis,label=label, hjust=0.5, vjust=1, colour="black",size=size,angle=90,fontface="bold")
          }
   )
 }

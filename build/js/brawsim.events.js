@@ -377,11 +377,11 @@ const events =  {
       if (BtnOn==true) {
       let nVal = ui.doproject6bLst.value();
       switch(nVal) {
-        case "n21": ui.SampleSize.setValue(21); break;
-        case "n42": ui.SampleSize.setValue(42); break;
-        case "n84": ui.SampleSize.setValue(84); break;
-        case "n168": ui.SampleSize.setValue(168); break;
-        case "n336": ui.SampleSize.setValue(336); break;
+        case "n20": ui.SampleSize.setValue(20); break;
+        case "n40": ui.SampleSize.setValue(40); break;
+        case "n60": ui.SampleSize.setValue(60); break;
+        case "n80": ui.SampleSize.setValue(80); break;
+        case "n100": ui.SampleSize.setValue(100); break;
       }
         ui.showMultipleParam.setValue("p(sig)")
       ui.makeMultipleBtn.setValue(true)
@@ -423,13 +423,8 @@ const events =  {
       let hyp = ui.doproject7sLst.value();
       defaultSetUp(ui)
       ui.demoWhich.setValue("d7")
-      ui.presetIV.setValue("Blank");
-      ui.presetDV.setValue("Blank");
       ui.presetIV2.setValue("IV2");
-      ui.IVname.setValue("IV"); 
-      ui.DVname.setValue("DV"); 
       ui.IV2name.setValue("IV2"); 
-      ui.EffectConfig.setValue("normal")
       ui.interaction.setValue("yes");
       switch(hyp) {
         case "iii": 
@@ -589,6 +584,7 @@ const events =  {
       ui.EffectSize2.setValue(0.0)
       ui.EffectSize12.setValue(0.0)
       ui.SampleSize.setValue(1000)
+      ui.showHypothesisBtn.setValue(true)
       }
     },
     
@@ -667,7 +663,6 @@ const events =  {
       ui.presetDV.setValue("ExamGrade");
       ui.presetIV.setValue("Perfectionism");
       ui.presetIV2.setValue("Anxiety");
-      ui.EffectConfig.setValue("normal")
       ui.interaction.setValue("no");
       ui.EffectSize1.setValue(0.3)
       ui.EffectSize2.setValue(-0.5)
@@ -805,6 +800,7 @@ let defaultSetUp = function(ui) {
         ui.EffectSize3.setValue(0)
         ui.EffectSize12.setValue(0)
         ui.WorldOn.setValue(false)
+      ui.EffectConfig.setValue("normal")
       ui.SampleSpreadOn.setValue(false)
       ui.SampleSize.setValue(42)
         ui.SampleMethod.setValue("Random")

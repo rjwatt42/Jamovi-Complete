@@ -82,7 +82,8 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowe
     }
     
     if (!(braw.env$reducedOutput && is.null(IV2))) {
-      outputText<-c(outputText,"!H!C ","r",paste0(sub("Pr\\(","p\\(",sub("^","",colnames(anova)))),"")
+      nc1<-length(colnames(anova))+1
+      outputText<-c(outputText,"!H!C ","r",paste0(sub("Pr\\(","p\\(",sub("^","",colnames(anova)))),rep("",nc-1-nc1))
       total_done<-FALSE
       
       for (i in 1:nrow(anova)){
@@ -115,7 +116,7 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowe
               outputText<-c(outputText,paste0("!j",brawFormat(anova[i,j],digits=braw.env$report_precision)))
             }
           }
-          outputText<-c(outputText,"")
+          outputText<-c(outputText,rep("",nc-1-nc1))
         }
       }
       if (!total_done && analysisType=="Anova") {
@@ -126,6 +127,7 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowe
         if (!is.na(df)) {df<-paste0("!j",brawFormat(df,digits=braw.env$report_precision))} else {df<-""}
         outputText<-c(outputText,"Total "," ",ssq,df,rep(" ",nc-4))
       }
+      outputText<-c(outputText,rep("",nc))
     }
     
     AIC<-analysis$aic

@@ -14,10 +14,15 @@ items:
       clearWith:
       - jamoviHelp
 
+    - name: SystemHTML
+      title: ' '
+      type: Html
+      visible: TRUE
+
     - name: simGraphHTML
       title: ' '
       type: Html
-      visible: FALSE
+      visible: TRUE
       # clearWith:
       # - showHypothesisBtn
       # - makeSampleBtn

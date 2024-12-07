@@ -1292,7 +1292,6 @@ ps_plot<-function(analysis,disp,showTheory=TRUE,g=NULL){
       g<-startPlot(xlim=c(-1,1),ylim=c(0,1),
                    yticks=makeTicks(),ylabel=makeLabel("Outcomes"),
                    top=FALSE,orientation="horz",g=g)
-      y<-1
       col0<-braw.env$plotColours$infer_nsigNonNull
       col2<-braw.env$plotColours$infer_sigNonNull
       col3<-braw.env$plotColours$infer_sigNull
@@ -1302,17 +1301,23 @@ ps_plot<-function(analysis,disp,showTheory=TRUE,g=NULL){
       lb3<-braw.env$nullNS
       lb5<-braw.env$nullSig
       
+      y<-1
+      y1<-y-mean(!nulls & !sigs)/2
       g<-addG(g,dataBar(data=data.frame(x=0,y=y),fill=col0,barwidth=0.4))
-      g<-addG(g,drawNHSTLabel(lb0,data.frame(x=1,y=y-mean(!nulls & !sigs)/2),0,col0,vjust=0.5))
       y<-y-mean(!nulls & !sigs)
+      y2<-y-mean(!nulls & sigs)/2
       g<-addG(g,dataBar(data=data.frame(x=0,y=y),fill=col2,barwidth=0.4))
-      g<-addG(g,drawNHSTLabel(lb2,data.frame(x=1,y=y-mean(!nulls & sigs)/2),0,col2,vjust=0.5))
       y<-y-mean(!nulls & sigs)
+      y3<-y-mean(nulls & sigs)/2
       g<-addG(g,dataBar(data=data.frame(x=0,y=y),fill=col3,barwidth=0.4))
-      g<-addG(g,drawNHSTLabel(lb3,data.frame(x=1,y=y-mean(nulls & sigs)/2),0,col3,vjust=0.5))
       y<-y-mean(nulls & sigs)
+      y4<-mean(nulls & !sigs)/2
       g<-addG(g,dataBar(data=data.frame(x=0,y=y),fill=col5,barwidth=0.4))
-      g<-addG(g,drawNHSTLabel(lb5,data.frame(x=1,y=mean(nulls & !sigs)/2),0,col5,vjust=0.5))
+      
+      g<-addG(g,drawNHSTLabel(lb0,data.frame(x=1,y=y1/2),0,col0,vjust=0.5))
+      g<-addG(g,drawNHSTLabel(lb2,data.frame(x=1,y=y2/2),0,col2,vjust=0.5))
+      g<-addG(g,drawNHSTLabel(lb3,data.frame(x=1,y=y3/2),0,col3,vjust=0.5))
+      g<-addG(g,drawNHSTLabel(lb5,data.frame(x=1,y=y4/2),0,col5,vjust=0.5))
 
       
     }

@@ -112,8 +112,8 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
   if (!is.null(hypothesis$IV2)) {
     switch(whichEffect,
            "All"={
-             plotYOffset<-matrix(c(0.666,0.333,0),nrow=1,byrow=TRUE)
-             plotHeight<-0.32
+             plotYOffset<-matrix(c(0.5,0.5,0),nrow=1,byrow=TRUE)
+             plotHeight<-0.47
            },
            "Mains"={
              plotYOffset<-matrix(c(0.5,0),nrow=1,byrow=TRUE)
@@ -159,6 +159,13 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
   if (length(showType)==4) {
     plotXOffset<-matrix(c(0,  0.55, 0, 0.55),nrow=4,byrow=FALSE)
     plotWidth<-0.45
+  }
+  
+  if (length(showType)==1 && whichEffect=="All"){
+    plotXOffset<-matrix(c(0.0,0.5,0.25),nrow=3,byrow=FALSE)
+    plotWidth<-0.45
+    plotYOffset<-matrix(c(0.5,0.5,0),nrow=1,byrow=TRUE)
+    plotHeight<-0.475
   }
   
   if (length(showType)==1 && whichEffect=="Mains"){
@@ -281,7 +288,7 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
     if (length(whichEffects)==1)
       braw.env$plotArea<-c(plotXOffset[si,1],plotYOffset[1,si],plotWidth,plotHeight)
     else {
-      if (length(showType)==1 && length(whichEffects)==2)
+      if (length(showType)==1 && is.element(length(whichEffects),c(2,3)))
         braw.env$plotArea<-c(plotXOffset[yi,1],plotYOffset[1,yi],plotWidth,plotHeight)
       else
         braw.env$plotArea<-c(plotXOffset[si,1],plotYOffset[1,yi],plotWidth,plotHeight)

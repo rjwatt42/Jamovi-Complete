@@ -117,12 +117,14 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                    
                                    buttons<-''
                                    panels<-''
+                                   if (titleWidth==0) titleShow<-''
+                                   else titleShow<-title
                                    buttons <- paste0(buttons,
                                                      '  <button id="tabtitle',title,'" class="tablinks" onclick="closeTabs(event,\'',title,'\')"',
                                                         ' style="background-color:rgba(0,0,0,0);color:black;cursor:default;',
                                                         'font-weight: 500;font-size:13px;width:',titleWidth,'px;text-align: right;',
                                                         'margin:0px;padding: 0px;">',
-                                                     title,
+                                                     titleShow,
                                                      '</button>')
                                    if (nchar(titleTab)>0)
                                      panels <- paste0(panels,
@@ -158,7 +160,7 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                      }
                                    }
                                    
-                                   buttons<-paste0('<div class="tab" style="margin-left:',indent,'px;','width:',width-indent+2,'px;','padding-top:',topMargin,'px;">',buttons,'</div>')
+                                   buttons<-paste0('<div class="tab" style="margin-left:',indent,'px;','width:',width-indent+2,'px;','padding:0px;margin:0px;','margin-left:',indent,'px;','padding-top:',topMargin,'px;">',buttons,'</div>')
                                    if (plain)
                                      html_content <- paste0(
                                        buttons,

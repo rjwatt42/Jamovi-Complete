@@ -1383,7 +1383,7 @@ options:
     - name: jamoviHelp
       title: Jamovi help?
       type: Bool
-      default: false
+      default: true
       
     - name: brawHelp
       title: Main help?
@@ -1426,7 +1426,7 @@ options:
     - name: showHTML
       title: HTML graphics?
       type: Bool
-      default: false
+      default: true
 
     - name: doProject1sBtn
       title: 'set up for me'
@@ -1571,17 +1571,17 @@ options:
       title: "n:"
       type: List
       options:
-      - name: n21
-        title: '21'
-      - name: n42
-        title: '42'
-      - name: n84
-        title: '84'
-      - name: n168
-        title: '168'
-      - name: n336
-        title: '336'
-      default: n42
+      - name: n20
+        title: '20'
+      - name: n40
+        title: '40'
+      - name: n60
+        title: '60'
+      - name: n80
+        title: '80'
+      - name: n100
+        title: '100'
+      default: n40
       #   
       # title: 'do it for me'
       # type: Action
