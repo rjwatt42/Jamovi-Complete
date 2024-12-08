@@ -160,7 +160,10 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                      }
                                    }
                                    
-                                   buttons<-paste0('<div class="tab" style="margin-left:',indent,'px;','width:',width-indent+2,'px;','padding:0px;margin:0px;','margin-left:',indent,'px;','padding-top:',topMargin,'px;">',buttons,'</div>')
+                                   buttons<-paste0('<div class="tab" style="','width:',width-indent+2,'px;',
+                                                   'padding:0px;margin:0px;','margin-left:',indent,'px;','padding-top:',topMargin,'px;',
+                                                   # 'border:solid;',
+                                                   '">',buttons,'</div>')
                                    if (plain)
                                      html_content <- paste0(
                                        buttons,

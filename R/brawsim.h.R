@@ -1907,18 +1907,14 @@ BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$add(jmvcore::Html$new(
                 options=options,
                 name="BrawStatsInstructions",
-                visible=TRUE,
-                clearWith=list(
-                    "jamoviHelp")))
+                visible=TRUE))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="SystemHTML",
-                title=" ",
                 visible=TRUE))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="simGraphHTML",
-                title=" ",
                 visible=TRUE))
             self$add(jmvcore::Image$new(
                 options=options,
@@ -1950,7 +1946,6 @@ BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$add(jmvcore::Html$new(
                 options=options,
                 name="simReport",
-                title=" ",
                 visible=TRUE,
                 clearWith=list(
                     "showHypothesisBtn",

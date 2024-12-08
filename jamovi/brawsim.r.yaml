@@ -11,36 +11,14 @@ items:
     - name: BrawStatsInstructions 
       type: Html
       visible: TRUE
-      clearWith:
-      - jamoviHelp
 
     - name: SystemHTML
-      title: ' '
       type: Html
       visible: TRUE
 
     - name: simGraphHTML
-      title: ' '
       type: Html
       visible: TRUE
-      # clearWith:
-      # - showHypothesisBtn
-      # - makeSampleBtn
-      # - showSampleType
-      # - showInferParam
-      # - singleVar1
-      # - singleVar2
-      # - showInferDimension
-      # - makeMultipleBtn
-      # - showMultipleParam
-      # - multipleVar1
-      # - multipleVar2
-      # - showMultipleDimension
-      # - makeExploreBtn
-      # - showExploreParam
-      # - exploreVar1
-      # - exploreVar2
-      # - showExploreDimension
 
     - name: simGraph
       title: ' '
@@ -70,7 +48,7 @@ items:
       - whichShowMultiple
 
     - name: simReport
-      title: ' '
+      # title: ' '
       type: Html
       # width:  600
       # height: 200

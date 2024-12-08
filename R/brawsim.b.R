@@ -45,6 +45,9 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       
       systemAsHTML<-TRUE
       nestedHelp<-TRUE
+      joinSystem<-TRUE
+      
+      if (joinSystem) self$results$SystemHTML$setVisible(FALSE)
       
       statusStore<-braw.env$statusStore
       if (self$options$showHTML) {
@@ -357,7 +360,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         svgBox(200)
         systemHTML<-private$.htmlwidget$generate_tab(
           titleWidth=50,
-          title="View:",
+          title="Plan:",
           plain=(nchar(help)>0),
           # topMargin=15,
           # titleWidth=30,
@@ -371,7 +374,11 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         )
         assign("graphHTML",self$options$showHTML,braw.env)
         svgBox(400)
-        self$results$SystemHTML$setContent(systemHTML)
+        if (joinSystem) {
+          help<-paste0(help,systemHTML)
+        } else {
+          self$results$SystemHTML$setContent(systemHTML)
+        }
       }
 
       if (nchar(help)>0) {
