@@ -14,7 +14,7 @@ items:
 
     - name: SystemHTML
       type: Html
-      visible: FALSE
+      visible: TRUE
 
     - name: simGraphHTML
       type: Html
