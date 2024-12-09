@@ -2348,7 +2348,7 @@ children:
     label: Learning Stats by Experiment
     children:
       - type: Label
-        label: Controls to run simulations of different research situations
+        label: Run simulations of different research situations to see how they work
       - type: CollapseBox
         collapsed: true
         label: Simulation

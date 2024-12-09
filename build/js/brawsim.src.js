@@ -4897,7 +4897,7 @@ view.layout = ui.extend({
 				{
 					type: DefaultControls.Label,
 					typeName: 'Label',
-					label: "Controls to run simulations of different research situations"
+					label: "Run simulations of different research situations to see how they work"
 				},
 				{
 					type: DefaultControls.CollapseBox,
