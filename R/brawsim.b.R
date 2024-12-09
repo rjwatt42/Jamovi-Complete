@@ -25,6 +25,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           showExploreDimension="1D",
                           whichShowExploreOut="all",
                           exploreMode="Design",
+                          demoWhich="blank",
                           planMode=NULL,
                           nrowTableLM=1,
                           nrowTableSEM=1
@@ -60,6 +61,17 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         if (!self$results$simGraph$visible) self$results$simGraph$setVisible(TRUE)
         if (!self$results$simReport$visible) self$results$simReport$setVisible(TRUE)
       }
+      
+      if (self$options$doProject1sBtn) statusStore$demoWhich<-'d1'
+      if (self$options$doProject2aBtn) statusStore$demoWhich<-'d2'
+      if (self$options$doProject3aBtn) statusStore$demoWhich<-'d3'
+      if (self$options$doProject4aBtn) statusStore$demoWhich<-'d4'
+      if (self$options$doProject5sBtn) statusStore$demoWhich<-'d5'
+      if (self$options$doProject6sBtn) statusStore$demoWhich<-'d6'
+      if (self$options$doProject7sBtn) statusStore$demoWhich<-'d7'
+      if (self$options$doProject8sBtn) statusStore$demoWhich<-'d8'
+      if (self$options$doProject9sBtn) statusStore$demoWhich<-'d9'
+      if (self$options$doProject10sBtn) statusStore$demoWhich<-'d10'
       
       # get some display parameters for later
       # single sample
@@ -270,7 +282,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         help<-paste0(help,jamoviHelp)
       }
       open0<-0; open1<-0; open2<-0
-      switch(self$options$demoWhich,
+      switch(statusStore$demoWhich,
              "blank"={open0<-0;open1<-0;open2<-0},
              "d1"={open0<-2;open1<-1;open2<-1},
              "d2"={open0<-2;open1<-1;open2<-2},

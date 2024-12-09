@@ -2419,7 +2419,7 @@ children:
                                         children:
                                           - type: Label
                                             label: Set the effect-size to 0.3
-                      - name: doproject6sBtn
+                      - name: doProject6sBtn
                         type: ActionButton
                         margin: none
                         events:
@@ -2465,7 +2465,7 @@ children:
                                   - type: Label
                                     label: ' '
                                     minWidth: 26
-                          - name: doproject6aBtn
+                          - name: doProject6aBtn
                             type: ActionButton
                             margin: none
                             maxWidth: 80
@@ -2516,13 +2516,13 @@ children:
                             maxWidth: 80
                             margin: none
                             children:
-                              - name: doproject6bLst
+                              - name: doProject6bLst
                                 type: ComboBox
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
                               - type: ActionButton
-                                name: doproject6bBtn
+                                name: doProject6bBtn
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
@@ -2578,7 +2578,7 @@ children:
                                     label: ' '
                                     minWidth: 26
                           - type: ActionButton
-                            name: doproject6cBtn
+                            name: doProject6cBtn
                             margin: none
                             maxWidth: 80
                             events:
@@ -2634,13 +2634,13 @@ children:
                             maxWidth: 80
                             margin: none
                             children:
-                              - name: doproject6dLst
+                              - name: doProject6dLst
                                 type: ComboBox
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
                               - type: ActionButton
-                                name: doproject6dBtn
+                                name: doProject6dBtn
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
@@ -2707,13 +2707,13 @@ children:
                         maxWidth: 80
                         margin: none
                         children:
-                          - name: doproject7sLst
+                          - name: doProject7sLst
                             type: ComboBox
                             margin: none
                             minWidth: 80
                             maxWidth: 80
                           - type: ActionButton
-                            name: doproject7sBtn
+                            name: doProject7sBtn
                             margin: none
                             minWidth: 80
                             maxWidth: 80
@@ -2783,13 +2783,13 @@ children:
                             maxWidth: 80
                             margin: none
                             children:
-                              - name: doproject7aLst
+                              - name: doProject7aLst
                                 type: ComboBox
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
                               - type: ActionButton
-                                name: doproject7aBtn
+                                name: doProject7aBtn
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
@@ -2846,13 +2846,13 @@ children:
                             maxWidth: 80
                             margin: none
                             children:
-                              - name: doproject7bLst
+                              - name: doProject7bLst
                                 type: ComboBox
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
                               - type: ActionButton
-                                name: doproject7bBtn
+                                name: doProject7bBtn
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
@@ -2909,13 +2909,13 @@ children:
                             maxWidth: 80
                             margin: none
                             children:
-                              - name: doproject7cLst
+                              - name: doProject7cLst
                                 type: ComboBox
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
                               - type: ActionButton
-                                name: doproject7cBtn
+                                name: doProject7cBtn
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
@@ -2973,7 +2973,7 @@ children:
                             margin: none
                             children:
                               - type: ActionButton
-                                name: doproject7dBtn
+                                name: doProject7dBtn
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
@@ -3028,13 +3028,13 @@ children:
                         maxWidth: 80
                         margin: none
                         children:
-                          - name: doproject8sLst
+                          - name: doProject8sLst
                             type: ComboBox
                             margin: none
                             minWidth: 80
                             maxWidth: 80
                           - type: ActionButton
-                            name: doproject8sBtn
+                            name: doProject8sBtn
                             margin: none
                             minWidth: 80
                             maxWidth: 80
@@ -3112,13 +3112,13 @@ children:
                             maxWidth: 80
                             margin: none
                             children:
-                              - name: doproject8bLst
+                              - name: doProject8bLst
                                 type: ComboBox
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
                               - type: ActionButton
-                                name: doproject8bBtn
+                                name: doProject8bBtn
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
@@ -3193,13 +3193,13 @@ children:
                             maxWidth: 80
                             margin: none
                             children:
-                              - name: doproject8cLst
+                              - name: doProject8cLst
                                 type: ComboBox
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
                               - type: ActionButton
-                                name: doproject8cBtn
+                                name: doProject8cBtn
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
@@ -3315,7 +3315,7 @@ children:
                             margin: none
                             children:
                               - type: ActionButton
-                                name: doproject9aBtn
+                                name: doProject9aBtn
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
@@ -3356,13 +3356,13 @@ children:
                             maxWidth: 80
                             margin: none
                             children:
-                              - name: doproject9bLst
+                              - name: doProject9bLst
                                 type: ComboBox
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
                               - type: ActionButton
-                                name: doproject9bBtn
+                                name: doProject9bBtn
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
@@ -3414,7 +3414,7 @@ children:
                             margin: none
                             children:
                               - type: ActionButton
-                                name: doproject9cBtn
+                                name: doProject9cBtn
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
@@ -3545,7 +3545,7 @@ children:
                             margin: none
                             children:
                               - type: ActionButton
-                                name: doproject10aBtn
+                                name: doProject10aBtn
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
@@ -3586,13 +3586,13 @@ children:
                             maxWidth: 80
                             margin: none
                             children:
-                              - name: doproject10bLst
+                              - name: doProject10bLst
                                 type: ComboBox
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
                               - type: ActionButton
-                                name: doproject10bBtn
+                                name: doProject10bBtn
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
@@ -3644,7 +3644,7 @@ children:
                             margin: none
                             children:
                               - type: ActionButton
-                                name: doproject10cBtn
+                                name: doProject10cBtn
                                 margin: none
                                 minWidth: 80
                                 maxWidth: 80
