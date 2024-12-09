@@ -264,7 +264,8 @@ const events =  {
     onChange_project3d: function(ui) {
       let BtnOn = ui.doProject3dBtn.value();
       if (BtnOn==true) {
-        ui.EffectSize1.setValue(0.0)
+        ui.SampleSize.setValue(42)
+        ui.SampleMethod.setValue("Convenience")
         ui.showSampleType.setValue("Describe")
       ui.makeSampleBtn.setValue(true)
       }
@@ -424,7 +425,6 @@ const events =  {
       defaultSetUp(ui)
       ui.demoWhich.setValue("d7")
       ui.presetIV2.setValue("IV2");
-      ui.IV2name.setValue("IV2"); 
       ui.interaction.setValue("yes");
       switch(hyp) {
         case "iii": 
@@ -548,14 +548,13 @@ const events =  {
       }
     },
 
-    onChange_project8a: function(ui) {
-      let BtnOn = ui.doproject8aBtn.value();
+    onChange_project8s: function(ui) {
+      let BtnOn = ui.doproject8sBtn.value();
       if (BtnOn==true) {
-      let hyp = ui.doproject8aLst.value();
+      let hyp = ui.doproject8sLst.value();
       defaultSetUp(ui)
       ui.demoWhich.setValue("d8")
       ui.presetIV2.setValue("IV2");
-      ui.IV2name.setValue("IV2"); 
       ui.EffectConfig.setValue("normal")
       ui.interaction.setValue("yes");
       switch(hyp) {
@@ -727,15 +726,15 @@ const events =  {
       if (BtnOn==true) {
       defaultSetUp(ui)
       ui.SampleSize.setValue(1000)
-      ui.interaction.setValue("no");
-      ui.demoWhich.setValue("d10")
           ui.presetDV.setValue("ExamGrade"); 
           ui.presetIV.setValue("HoursSleep"); 
-          ui.presetIV2.setValue("Anxiety"); 
       ui.EffectSize1.setValue(0.0)
+          ui.presetIV2.setValue("Anxiety"); 
       ui.EffectSize2.setValue(0.7)
       ui.EffectSize3.setValue(0.7)
+      ui.interaction.setValue("no");
       ui.EffectConfig.setValue("path")
+      ui.demoWhich.setValue("d10")
       ui.showHypothesisBtn.setValue(true)
       }
     },

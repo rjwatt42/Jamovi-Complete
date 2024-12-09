@@ -1426,7 +1426,7 @@ options:
     - name: showHTML
       title: HTML graphics?
       type: Bool
-      default: true
+      default: false
 
     - name: doProject1sBtn
       title: 'set up for me'
@@ -1616,7 +1616,7 @@ options:
 
 
     - name: doproject7sBtn
-      title: 'do it'
+      title: 'set up'
       type: Action
       
     - name: doproject7sLst
@@ -1707,11 +1707,11 @@ options:
       type: Action
 
 
-    - name: doproject8aBtn
-      title: 'do it'
+    - name: doproject8sBtn
+      title: 'set up'
       type: Action
 
-    - name: doproject8aLst
+    - name: doproject8sLst
       title: "hyp:"
       type: List
       options:
@@ -1771,7 +1771,7 @@ options:
 
 
     - name: doProject9sBtn
-      title: 'do it'
+      title: 'set up'
       type: Action
 
     - name: doproject9aBtn
@@ -1806,7 +1806,7 @@ options:
 
 
     - name: doProject10sBtn
-      title: 'do it'
+      title: 'set up'
       type: Action
 
     - name: doproject10aBtn

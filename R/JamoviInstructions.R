@@ -158,7 +158,7 @@ JamoviInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$de
              else                                   IVgoes="Covariates"
              if (hypothesis$IV2$type=="Categorical") IV2goes="Factors"
              else                                    IV2goes="Covariates"
-             if (HelpType=="Graph") menu=c()
+             if (HelpType=="Graph") menu=NULL
            },
            "generalizedLinear"={
              ribbon="Regression"
@@ -168,7 +168,7 @@ JamoviInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$de
              else                                   IVgoes="Covariates"
              if (hypothesis$IV2$type=="Categorical") IV2goes="Factors"
              else                                    IV2goes="Covariates"
-             if (HelpType=="Graph") menu=c()
+             if (HelpType=="Graph") menu=NULL
            }
     )
     DVgoes="Dependent Variable"
@@ -180,12 +180,12 @@ JamoviInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$de
   
   if (HelpType=="EffectSize") {
       if (hypothesis$DV$type=="Categorical") {
-        menu="2 Outcomes"
+        # menu="2 Outcomes"
         optionsGroup="Model Fit"
         options=c(paste("<b>McFadden's R<sup>2</sup></b>",in_char,"<b>Pseudo R<sup>2</sup></b>"))
         warningLogistic="Take the square root of the R<sup>2</sup> effect size."
       } else {
-        menu="Linear Regression"
+        # menu="Linear Regression"
         optionsGroup="Model Fit"
         options=c(paste("<b>R</b>",in_char,"<b>Fit Measures</b>"))
         warningLogistic=""
@@ -193,13 +193,14 @@ JamoviInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$de
     }
   
   output<-c("<div style='border: none; padding: 4px;'>")
-  output<-c(output,paste0("At the top of the Jamovi app, you will see a set of icons for the different possible analyses:",
+  if (!is.null(menu)) {
+    output<-c(output,paste0("At the top of the Jamovi app, you will see a set of icons for the different possible analyses:",
                           " Exploration, T-Tests, ANOVA etc."
-  )
-  )
-  
-  output<-c(output,paste0("<ol><li>Press the <b>",ribbon,"</b> icon",
-                          "<br> & choose <b>",menu,"</b> from the drop down menu</li>"))
+                  )
+            )
+    output<-c(output,paste0("<ol><li>Press the <b>",ribbon,"</b> icon",
+                            "<br> & choose <b>",menu,"</b> from the drop down menu</li>"))
+  } 
   
   switch(HelpType,
          "Analysis"={
@@ -229,6 +230,7 @@ JamoviInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$de
          "Graph"={
            if (is.null(menu)) {
              output<-c(output,"Equivalent graphs not available")
+             output<-c(output,paste0("</div>"))
            } else {
            list1<-paste0("<ul><li><b style=color:red>",hypothesis$DV$name,"</b> to <b>",DVGraph,"</b></li>")
            list1<-paste0(list1,"<li><b style=color:red>",hypothesis$IV$name,"</b> to <b>",IVGraph,"</b></li>")
@@ -255,14 +257,14 @@ JamoviInstructions <- function(hypothesis=braw.def$hypothesis,design=braw.def$de
            DVgoes="Dependent Variable"
            if (hypothesis$IV$type=="Categorical") IVgoes="Factors"
            else                                   IVgoes="Covariates"
+           
+           list1<-paste0("<ul><li><b style=color:red>",hypothesis$DV$name,"</b> to <b>",DVgoes,"</b></li>")
+           list1<-paste0(list1,"<li><b style=color:red>",hypothesis$IV$name,"</b> to <b>",IVgoes,"</b></li>")
            if (!is.null(hypothesis$IV2)) {
              if (hypothesis$IV2$type=="Categorical") IV2goes="Factors"
              else                                   IV2goes="Covariates"
-           }
-           list1<-paste0("<ul><li><b style=color:red>",hypothesis$DV$name,"</b> to <b>",DVgoes,"</b></li>")
-           list1<-paste0(list1,"<li><b style=color:red>",hypothesis$IV$name,"</b> to <b>",IVgoes,"</b></li>")
-           if (!is.null(hypothesis$IV2))
              list1<-paste0(list1,"<li><b style=color:red>",hypothesis$IV2$name,"</b> to <b>",IV2goes,"</b></li>")
+           }
            list1<-paste0(list1,"</ul>")
            output<-c(output,paste0("<li>Now move",list1,"</li>"))
            

@@ -7,9 +7,12 @@ children:
 - type: Label
   label: Learning Stats by Demonstration
   children:
+  - type: Label
+    label: 'A sequence of demos to work through that will cover the main principles of statistics'
   - type: CollapseBox
     collapsed: true
     label: Demos
+    maxWidth: 343
     children:
     - type: Label
       label: 1. Data
@@ -18,9 +21,9 @@ children:
       - type: LayoutBox
         style: inline
         children:
-        - type: Label
-          label: ' '
-          minWidth: 13
+        # - type: Label
+        #   label: ' '
+        #   minWidth: 13
         - type: CollapseBox
           collapsed: true
           label: Working with Samples
@@ -595,7 +598,7 @@ children:
                             minWidth: 370
                             children:
                               - type: Label
-                                label: '3. set the effect size to zero:'
+                                label: '3. repeat with convenience sampling:'
                               - type: LayoutBox
                                 style: inline
                                 children:
@@ -618,8 +621,7 @@ children:
                                             minWidth: 13
                                           - type: Label
                                             label: >-
-                                              - notice rs can be quite big even though
-                                              rp=0
+                                              - notice rs spreads wider now
                               - type: LayoutBox
                                 style: inline
                                 children:
@@ -638,9 +640,9 @@ children:
       - type: LayoutBox
         style: inline
         children:
-        - type: Label
-          label: ' '
-          minWidth: 13
+        # - type: Label
+        #   label: ' '
+        #   minWidth: 13
         - type: CollapseBox
           collapsed: true
           label: Uncertainty & Design
@@ -1341,9 +1343,9 @@ children:
       - type: LayoutBox
         style: inline
         children:
-        - type: Label
-          label: ' '
-          minWidth: 13
+        # - type: Label
+        #   label: ' '
+        #   minWidth: 13
         - type: CollapseBox
           collapsed: true
           label: Linear Models
@@ -1720,18 +1722,18 @@ children:
                         maxWidth: 80
                         margin: none
                         children:
-                          - name: doproject8aLst
+                          - name: doproject8sLst
                             type: ComboBox
                             margin: none
                             minWidth: 80
                             maxWidth: 80
                           - type: ActionButton
-                            name: doproject8aBtn
+                            name: doproject8sBtn
                             margin: none
                             minWidth: 80
                             maxWidth: 80
                             events:
-                              change: ./BrawSim.events::onChange_project8a
+                              change: ./BrawSim.events::onChange_project8s
                   - type: Label
                     label: Steps
                     children:
@@ -2118,9 +2120,9 @@ children:
       - type: LayoutBox
         style: inline
         children:
-        - type: Label
-          label: ' '
-          minWidth: 13
+        # - type: Label
+        #   label: ' '
+        #   minWidth: 13
         - type: CollapseBox
           collapsed: true
           label: Path Models
@@ -2346,11 +2348,14 @@ children:
                                 events:
                                   change: ./BrawSim.events::onChange_project10c
 - type: Label
-  label: Learning Stats by Simulation
+  label: Learning Stats by Experiment
   children:
+  - type: Label
+    label: 'Controls to run simulations of different research situations'
   - type: CollapseBox
     collapsed: true
     label: Simulation
+    maxWidth: 343
     children:
     - type: Label
       label: '1. Make a Plan: hypothesis, design & analysis'
@@ -2360,7 +2365,7 @@ children:
         collapsed: true
         label: Plan
         margin: none
-        minWidth: 450
+        minWidth: 330
         children:
           - name: planOptions
             type: ModeSelector
@@ -3316,7 +3321,7 @@ children:
       - type: CollapseBox
         label: Single Sample
         collapsed: true
-        minWidth: 450
+        minWidth: 330
         margin: none
         children:
           - type: Label
@@ -3349,7 +3354,7 @@ children:
         label: Multiple Samples
         collapsed: true
         margin: none
-        minWidth: 450
+        minWidth: 330
         children:
           - type: Label
             label: >-
@@ -3393,7 +3398,7 @@ children:
         label: Explore
         collapsed: true
         margin: none
-        minWidth: 450
+        minWidth: 330
         children:
           - type: Label
             label: Explore will automatically vary decisions in the plan
@@ -3669,11 +3674,13 @@ children:
                             name: showExploreDimension
                             minWidth: 50
                             enable: (showExploreParam:Basic)
+- type: Label
+  label: ' '
 - type: CollapseBox
   collapsed: true
   label: Settings
   margin: none
-  minWidth: 450
+  maxWidth: 356
   children:
   - type: LayoutBox
     style: inline

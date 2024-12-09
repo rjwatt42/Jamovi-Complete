@@ -12,9 +12,6 @@ import(abind)
 export(BrawSimClass)
 export(BrawSimOptions)
 
-export(BrawAnClass)
-export(BrawAnOptions)
-
 export(BrawLMClass)
 export(BrawLMOptions)
 

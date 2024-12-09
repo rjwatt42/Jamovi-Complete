@@ -163,7 +163,7 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="both",top=FALSE,
     fontDimensions<-c(fontDimensions,braw.env$plotArea[3])
   if (!is.null(yticks) || !is.null(ylabel)) 
     fontDimensions<-c(fontDimensions,braw.env$plotArea[4])
-  ez<-1
+  ez<-2
   fontShrink<-max(0.3,min(fontDimensions))^(1/ez)
   fontScale<-fontScale*fontShrink
   
@@ -464,7 +464,7 @@ axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,d
     }
     g<-geom_text(data=data,aes(x = x, y = y), label=label, hjust=hjust, vjust=vjust, 
               color=colour,fontface=fontface,angle=angle,
-              size=reSizeFont(size),parse=parse)
+              size=reSizeFont(size)*0.8,parse=parse)
   } else {
     halign<-' text-anchor="start"' 
     if (hjust==0.5) halign<-' text-anchor="middle"' 

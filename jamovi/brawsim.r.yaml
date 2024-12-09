@@ -14,11 +14,11 @@ items:
 
     - name: SystemHTML
       type: Html
-      visible: TRUE
+      visible: FALSE
 
     - name: simGraphHTML
       type: Html
-      visible: TRUE
+      visible: FALSE
 
     - name: simGraph
       title: ' '

@@ -1,7 +1,7 @@
 ---
 title: Effect Size Analysis
 name: BrawStats
-version: 1.1.3
+version: 1.1.4
 jms: '1.0'
 authors:
   - Roger Watt
@@ -10,8 +10,7 @@ date: '2024-10-05'
 type: R
 description: |-
   BrawStats functions:
-    i.   data simulation
-    ii.  data analysis
+    i.   learning by data simulation
     iii. linear model tool
     iv.  path model tool
 analyses:
@@ -20,11 +19,6 @@ analyses:
     ns: BrawStats
     menuGroup: BrawStats
     menuTitle: BrawStats:Simulate Data
-  - name: BrawAn
-    ns: BrawStats
-    menuGroup: BrawStats
-    menuTitle: BrawStats:Analyze Data
-    title: BrawStats:Analyze Data
   - name: BrawLM
     ns: BrawStats
     menuGroup: BrawStats

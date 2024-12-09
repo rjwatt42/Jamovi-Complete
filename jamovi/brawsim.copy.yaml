@@ -3028,18 +3028,18 @@ children:
                         maxWidth: 80
                         margin: none
                         children:
-                          - name: doproject8aLst
+                          - name: doproject8sLst
                             type: ComboBox
                             margin: none
                             minWidth: 80
                             maxWidth: 80
                           - type: ActionButton
-                            name: doproject8aBtn
+                            name: doproject8sBtn
                             margin: none
                             minWidth: 80
                             maxWidth: 80
                             events:
-                              change: ./BrawSim.events::onChange_project8a
+                              change: ./BrawSim.events::onChange_project8s
                   - type: Label
                     label: Steps
                     children:
