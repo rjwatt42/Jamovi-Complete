@@ -12,6 +12,14 @@ svgY<-function(y) {return((1-y)*(svgBoxY()-20)+10)}
 # svgX<-function(x) {return(x*(svgBoxX()))}
 # svgY<-function(y) {return((1-y)*(svgBoxY()))}
 
+joinHTML<-function(p1,p2) {
+  paste0('<div style="display: inline-block; float left;"> ',
+         p1,
+         '</div><div style="display: inline-block;">',
+         p2,
+         '</div>')
+}
+
 addG<-function(g,...) {
   if (braw.env$graphHTML) {
     for (i in list(...)) 
@@ -390,7 +398,7 @@ dataBar<-function(data,colour="black",fill="white",alpha=1,barwidth=0.85) {
 # dataErrorbar
 # dataLegend
 # dataContour
-dataLabel<-function(data,label, hjust=0, vjust=0, fill="white",colour="black",size=1,angle=0,fontface="plain",background=FALSE,parser=TRUE,label.size=0.25) {
+dataLabel<-function(data,label, hjust=0, vjust=0, fill="white",colour="black",size=0.8,angle=0,fontface="plain",background=FALSE,parser=TRUE,label.size=0.25) {
   if (is.character(data)) 
     switch(data,
            "topright"={
@@ -421,10 +429,11 @@ dataLabel<-function(data,label, hjust=0, vjust=0, fill="white",colour="black",si
                size=size,label.size=label.size)
   return(g)  
 }
-axisLabel<-function(data,label, hjust=0, vjust=0, angle=0, fill="white",colour="black",parser=TRUE,fontface="plain",size=1,label.size=0.25) {
+axisLabel<-function(data,label, hjust=0, vjust=0, angle=0, fill="white",colour="black",parser=TRUE,fontface="plain",size=0.8,label.size=0.25) {
   if (!braw.env$graphHTML) {
     mathlabel<-grepl("['^']{1}",label) | grepl("['[']{1}",label)
   if (any(mathlabel)) {
+    label<-gsub("\\[([^ ]*)\\]","\\['\\1'\\]",label)
     label<-gsub("=","==",label)
     parser<-TRUE
     voff<-0
@@ -722,10 +731,10 @@ dataContour<-function(data,colour="black",breaks=c(0.1,0.3,0.5,0.7,0.9),linewidt
 }
 
 desat <- function(col,gain=1) {
-  col<-(col2rgb(col)/255-0.5)*gain+0.5
-  col[col<0]<-0
-  col[col>1]<-1
-  rgb(col[1],col[2],col[3])
+    col<-(col2rgb(col)/255-0.5)*gain+0.5
+    col[col<0]<-0
+    col[col>1]<-1
+    rgb(col[1],col[2],col[3])
 }
 
 darken <- function(col,gain=1,off=0) {
@@ -738,4 +747,17 @@ darken <- function(col,gain=1,off=0) {
 addTransparency <- function(col,alpha) {
   col<-col2rgb(col)/255
   rgb(col[1],col[2],col[3],alpha)
+}
+
+blend <- function(col1,col2,mix) {
+  col1<-col2rgb(col1)/255
+  col2<-col2rgb(col2)/255
+  col<-col1*mix+col2*(1-mix)
+  rgb(col[1],col[2],col[3])
+}
+
+complementary <- function(col1) {
+  col1<-col2rgb(col1)/255
+  col<-1-col1
+  rgb(col[1],col[2],col[3])
 }

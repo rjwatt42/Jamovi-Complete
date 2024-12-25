@@ -418,9 +418,10 @@ path2sem<-function(pathmodel,model_data) {
     if (within_stage==1){
       for (iso1 in 1:length(dests)){
         iQ1=which(sources[iso1]==endo_names);
+        if (!isempty(iQ1))
         for (iso2 in (iso1+1):length(dests)){
           iQ2=which(dests[iso2]==endo_names);
-          if (iQ2>0){
+          if (!isempty(iQ2)){
             Bdesign[iQ2,iQ1]=1;
             Bresult[iQ2,iQ1]=1;
           }

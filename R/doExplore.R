@@ -59,6 +59,7 @@ getExploreRange<-function(explore) {
          "Repeats"=range<-list(minVal=0,maxVal=8,logScale=FALSE,np=9),
          "pNull"=range<-list(minVal=0,maxVal=1,logScale=FALSE,np=13),
          "Lambda"=range<-list(minVal=0.1,maxVal=1,logScale=FALSE,np=13),
+         "PoorSamplingAmount"=range<-list(minVal=0, maxVal=0.2,logScale=FALSE,np=13),
          "CheatingAmount"=range<-list(minVal=0, maxVal=0.8,logScale=FALSE,np=13),
          "ClusterRad"=range<-list(minVal=0, maxVal=1,logScale=FALSE,np=13),
          "SampleGamma"=range<-list(minVal=1, maxVal=10,logScale=FALSE,np=13),
@@ -78,6 +79,7 @@ resetExploreResult<-function(nsims,n_vals,oldResult=NULL) {
   }
   
   result<-list(rval=b,pval=b,rpval=b,raval=b,roval=b,poval=b,nval=b,df1=b,
+               sem=b,
                iv=list(mn=b,sd=b,sk=b,kt=b),
                dv=list(mn=b,sd=b,sk=b,kt=b),
                rd=list(mn=b,sd=b,sk=b,kt=b),
@@ -98,6 +100,9 @@ storeExploreResult<-function(result,res,ri,vi) {
   result$poval[ri,vi]<-res$poIV
   result$nval[ri,vi]<-res$nval
   result$df1[ri,vi]<-res$df1
+  
+  if (!is.null(res$sem))
+    result$sem[ri,vi]<-res$sem[1,8]
   
   result$iv$mn[ri,vi]<-res$iv.mn
   result$iv$sd[ri,vi]<-res$iv.sd
@@ -142,6 +147,10 @@ mergeExploreResult<-function(res1,res2) {
   result$poval<-rbind(res1$poval,res2$poval)
   result$nval<-rbind(res1$nval,res2$nval)
   result$df1<-rbind(res1$df1,res2$df1)
+  if (!is.null(res1$sem))
+    result$sem<-rbind(res1$sem,res2$sem)
+  else 
+    result$sem<-NULL
   
   result$iv$mn<-rbind(res1$iv$mn,res2$iv$mn)
   result$iv$sd<-rbind(res1$iv$sd,res2$iv$sd)
@@ -312,6 +321,7 @@ runExplore <- function(nsims,exploreResult,doingNull=FALSE,
           "Usage"={vals<-c("Between","Within")},
           "WithinCorr"={vals<-seq(minVal,maxVal,length.out=npoints)},
           "SampleGamma"={vals<-seq(minVal,maxVal,length.out=npoints)},
+          "PoorSamplingAmount"=vals<-{seq(minVal,maxVal,length.out=npoints)},
           "Dependence"={vals<-seq(minVal,maxVal,length.out=npoints)},
           "Outliers"={vals<-seq(minVal,maxVal,length.out=npoints)},
           "NonResponse"={vals<-seq(minVal,maxVal,length.out=npoints)},
@@ -320,7 +330,7 @@ runExplore <- function(nsims,exploreResult,doingNull=FALSE,
           "IVRangeC"={vals<-seq(minVal,maxVal,length.out=npoints)},
           "IVRangeE"={vals<-seq(minVal,maxVal,length.out=npoints)},
           "DVRange"={vals<-seq(minVal,maxVal,length.out=npoints)},
-          "Cheating"={vals<-c("None","Grow","Prune","Replace","Retry","Add")},
+          "Cheating"={vals<-c("None","Grow","Prune","Replace","Retry")},
           "CheatingAmount"={vals<-seq(minVal*design$sN,maxVal*design$sN,length.out=npoints)},
           "Alpha"={vals<-vals<-seq(minVal,maxVal,length.out=npoints)},
           "Transform"={vals<-c("None","Log","Exp")},
@@ -657,6 +667,7 @@ runExplore <- function(nsims,exploreResult,doingNull=FALSE,
                   design$sNRand<-TRUE
                   design$sNRandK<-vals[vi]
                 },
+                "PoorSamplingAmount"={design$sMethodSeverity<-vals[vi]},
                 "Dependence"={design$sDependence<-vals[vi]},
                 "Outliers"={design$sOutliers<-vals[vi]},
                 "NonResponse"={design$sNonResponse<-vals[vi]},

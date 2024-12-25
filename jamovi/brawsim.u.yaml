@@ -41,235 +41,177 @@ children:
                             margin: none
                             minWidth: 255
                             children:
-                              - type: LayoutBox
-                                style: list
+                              - type: Label
+                                label: Set up
+                                margin: none
                                 children:
                                   - type: LayoutBox
                                     style: inline
                                     margin: none
                                     children:
-                                      - type: Label
-                                        label: Set up
-                                        margin: none
+                                      - type: LayoutBox
+                                        style: list
+                                        minWidth: 301
                                         children:
+                                          - type: Label
+                                            label: Choose these variables
                                           - type: LayoutBox
                                             style: inline
-                                            margin: none
                                             children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 13
                                               - type: LayoutBox
                                                 style: list
-                                                minWidth: 370
                                                 children:
                                                   - type: Label
-                                                    label: Choose the variables
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: ' '
-                                                        minWidth: 13
-                                                      - type: LayoutBox
-                                                        style: list
-                                                        children:
-                                                          - type: Label
-                                                            label: '- go to Plan/Hypothesis/Variables'
-                                                          - type: LayoutBox
-                                                            style: inline
-                                                            children:
-                                                              - type: Label
-                                                                label: ' '
-                                                                minWidth: 13
-                                                              - type: Label
-                                                                label: 'choose these variables from the presets:'
-                                                          - type: LayoutBox
-                                                            style: inline
-                                                            children:
-                                                              - type: Label
-                                                                label: ' '
-                                                                minWidth: 26
-                                                              - type: Label
-                                                                label: 'IV: RiskTaker?'
-                                                          - type: LayoutBox
-                                                            style: inline
-                                                            children:
-                                                              - type: Label
-                                                                label: ' '
-                                                                minWidth: 26
-                                                              - type: Label
-                                                                label: 'DV: ExamGrade'
-                                                          - type: LayoutBox
-                                                            style: inline
-                                                            children:
-                                                              - type: Label
-                                                                label: ' '
-                                                                minWidth: 26
+                                                    label: 'IV: RiskTaker?'
+                                                  - type: Label
+                                                    label: 'DV: ExamGrade'
                                           - type: LayoutBox
                                             style: inline
                                             children:
                                               - type: LayoutBox
                                                 style: list
-                                                minWidth: 370
+                                                minWidth: 301
                                                 children:
                                                   - type: Label
-                                                    label: Set the effect size
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: ' '
-                                                        minWidth: 13
-                                                      - type: LayoutBox
-                                                        style: list
-                                                        children:
-                                                          - type: Label
-                                                            label: '- go to Plan/Hypothesis/Effects'
-                                                          - type: LayoutBox
-                                                            style: inline
-                                                            children:
-                                                              - type: Label
-                                                                label: ' '
-                                                                minWidth: 13
-                                                              - type: Label
-                                                                label: 'set the effect size:'
-                                                          - type: LayoutBox
-                                                            style: inline
-                                                            children:
-                                                              - type: Label
-                                                                label: ' '
-                                                                minWidth: 26
-                                                              - type: Label
-                                                                label: 'IV->DV: 0.3'
-                                      - name: doProject1sBtn
+                                                    label: Set the effect size IV->DV to 0.3
+                                      - name: doProject1AsBtn
                                         type: ActionButton
                                         margin: none
                                         events:
-                                          change: ./BrawSim.events::onChange_project1s
+                                          change: ./BrawSim.events::onChange_Project1As
                                         maxWidth: 80
-                                  - type: Label
-                                    label: Steps
+                              - type: Label
+                                label: Steps
+                                children:
+                                  - type: LayoutBox
+                                    style: inline
                                     children:
                                       - type: LayoutBox
-                                        style: inline
+                                        style: list
+                                        minWidth: 301
                                         children:
+                                          - type: Label
+                                            label: 1. go to Data - Single Sample
                                           - type: LayoutBox
-                                            style: list
-                                            minWidth: 370
+                                            style: inline
                                             children:
                                               - type: Label
-                                                label: 1. go to Data - Single Sample
-                                              - type: LayoutBox
-                                                style: inline
-                                                children:
-                                                  - type: Label
-                                                    label: ' '
-                                                    minWidth: 13
-                                                  - type: Label
-                                                    label: press the "single" button
-                                              - type: LayoutBox
-                                                style: inline
-                                                children:
-                                                  - type: Label
-                                                    label: ' '
-                                                    minWidth: 26
-                                          - name: doProject1aBtn
-                                            type: ActionButton
-                                            margin: none
-                                            maxWidth: 80
-                                            events:
-                                              change: ./BrawSim.events::onChange_project1a
+                                                label: ' '
+                                                minWidth: 13
+                                              - type: Label
+                                                label: press the "single" button
+                                          - type: LayoutBox
+                                            style: inline
+                                            children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 26
+                                      - name: doProject1A1Btn
+                                        type: ActionButton
+                                        margin: none
+                                        maxWidth: 80
+                                        events:
+                                          change: ./BrawSim.events::onChange_project1A1
+                                  - type: LayoutBox
+                                    style: inline
+                                    children:
                                       - type: LayoutBox
-                                        style: inline
+                                        style: list
+                                        minWidth: 301
                                         children:
+                                          - type: Label
+                                            label: 2. analyse the data in Jamovi
                                           - type: LayoutBox
-                                            style: list
-                                            minWidth: 370
+                                            style: inline
                                             children:
                                               - type: Label
-                                                label: 2. analyse the data in Jamovi
-                                              - type: LayoutBox
-                                                style: inline
-                                                children:
-                                                  - type: Label
-                                                    label: ' '
-                                                    minWidth: 13
-                                                  - type: Label
-                                                    label: go to Jamovi Instructions
-                                              - type: LayoutBox
-                                                style: inline
-                                                children:
-                                                  - type: Label
-                                                    label: ' '
-                                                    minWidth: 26
-                                                  - type: Label
-                                                    label: select the "analysis" tab
-                                              - type: LayoutBox
-                                                style: inline
-                                                children:
-                                                  - type: Label
-                                                    label: ' '
-                                                    minWidth: 13
-                                                  - type: Label
-                                                    label: follow the instructions
-                                          - name: doProject1bBtn
-                                            type: ActionButton
-                                            margin: none
-                                            maxWidth: 80
-                                            events:
-                                              change: ./BrawSim.events::onChange_project1b
+                                                label: ' '
+                                                minWidth: 13
+                                              - type: Label
+                                                label: get the Jamovi Instructions
+                                          - type: LayoutBox
+                                            style: inline
+                                            children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 26
+                                              - type: Label
+                                                label: select the "analysis" tab
+                                          - type: LayoutBox
+                                            style: inline
+                                            children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 13
+                                      - name: doProject1A2Btn
+                                        type: ActionButton
+                                        margin: none
+                                        maxWidth: 80
+                                        events:
+                                          change: ./BrawSim.events::onChange_project1A2
+                                  - type: LayoutBox
+                                    style: inline
+                                    children:
                                       - type: LayoutBox
-                                        style: inline
+                                        style: list
+                                        minWidth: 301
                                         children:
+                                          - type: Label
+                                            label: 3. some other tests to try
                                           - type: LayoutBox
-                                            style: list
-                                            minWidth: 370
+                                            style: inline
                                             children:
                                               - type: Label
-                                                label: 3. some others to try
-                                              - type: LayoutBox
-                                                style: inline
-                                                children:
-                                                  - type: Label
-                                                    label: ' '
-                                                    minWidth: 13
-                                                  - type: Label
-                                                    label: try some other variables
-                                              - type: LayoutBox
-                                                style: inline
-                                                children:
-                                                  - type: Label
-                                                    label: ' '
-                                                    minWidth: 13
-                                                  - type: Label
-                                                    label: press the "single" button
-                                              - type: LayoutBox
-                                                style: inline
-                                                children:
-                                                  - type: Label
-                                                    label: ' '
-                                                    minWidth: 26
+                                                label: ' '
+                                                minWidth: 13
+                                              - type: Label
+                                                label: try some other variables
                                           - type: LayoutBox
-                                            style: list
+                                            style: inline
+                                            children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 13
+                                              - type: Label
+                                                label: press the "single" button
+                                          - type: LayoutBox
+                                            style: inline
+                                            children:
+                                              - type: Label
+                                                label: ' '
+                                                minWidth: 26
+                                      - type: LayoutBox
+                                        style: list
+                                        minWidth: 80
+                                        maxWidth: 80
+                                        margin: none
+                                        children:
+                                          - name: doProject1A3Lst
+                                            type: ComboBox
+                                            margin: none
                                             minWidth: 80
                                             maxWidth: 80
+                                          - name: doProject1A3LstA
+                                            type: ComboBox
                                             margin: none
-                                            children:
-                                              - name: doProject1cLst
-                                                type: ComboBox
-                                                margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
-                                              - name: doProject1cLstA
-                                                type: ComboBox
-                                                margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
-                                              - type: ActionButton
-                                                name: doProject1cBtn
-                                                margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
-                                                events:
-                                                  change: ./BrawSim.events::onChange_project1c
+                                            minWidth: 80
+                                            maxWidth: 80
+                                          - type: ActionButton
+                                            name: doProject1A3Btn
+                                            margin: none
+                                            minWidth: 80
+                                            maxWidth: 80
+                                            events:
+                                              change: ./BrawSim.events::onChange_project1A3
+                          - type: ActionButton
+                            name: doProject1AhBtn
+                            margin: none
+                            minWidth: 10
+                            maxWidth: 10
+                            maxHeight: 24
                       - type: LayoutBox
                         style: inline
                         children:
@@ -282,38 +224,26 @@ children:
                             margin: none
                             minWidth: 255
                             children:
-                              - type: LayoutBox
-                                style: inline
+                              - type: Label
+                                label: Set up
                                 children:
-                                  - type: Label
-                                    label: Set up
+                                  - type: LayoutBox
+                                    style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
+                                        minWidth: 301
                                         children:
-                                          - type: LayoutBox
-                                            style: inline
-                                            children:
-                                              - type: LayoutBox
-                                                style: list
-                                                minWidth: 370
-                                                children:
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Choose two Interval variables
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Set the effect-size to 0.3
-                                  - name: doProject2aBtn
-                                    type: ActionButton
-                                    margin: none
-                                    events:
-                                      change: ./BrawSim.events::onChange_project2a
-                                    maxWidth: 80
+                                          - type: Label
+                                            label: Choose two Interval variables
+                                          - type: Label
+                                            label: Set the effect-size to 0.3
+                                      - name: doProject1BsBtn
+                                        type: ActionButton
+                                        margin: none
+                                        events:
+                                          change: ./BrawSim.events::onChange_project1Bs
+                                        maxWidth: 80
                               - type: Label
                                 label: Steps
                                 children:
@@ -322,7 +252,7 @@ children:
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 1. make a sample
@@ -354,18 +284,18 @@ children:
                                               - type: Label
                                                 label: ' '
                                                 minWidth: 26
-                                      - name: doProject2bBtn
+                                      - name: doProject1B1Btn
                                         type: ActionButton
                                         margin: none
                                         maxWidth: 80
                                         events:
-                                          change: ./BrawSim.events::onChange_project2b
+                                          change: ./BrawSim.events::onChange_project1B1
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 2. repeat this
@@ -398,17 +328,17 @@ children:
                                                 label: ' '
                                                 minWidth: 26
                                       - type: ActionButton
-                                        name: doProject2cBtn
+                                        name: doProject1B2Btn
                                         margin: none
                                         maxWidth: 80
                                         events:
-                                          change: ./BrawSim.events::onChange_project2c
+                                          change: ./BrawSim.events::onChange_project1B2
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: >-
@@ -443,11 +373,17 @@ children:
                                                 label: ' '
                                                 minWidth: 26
                                       - type: ActionButton
-                                        name: doProject2dBtn
+                                        name: doProject1B3Btn
                                         margin: none
                                         maxWidth: 80
                                         events:
-                                          change: ./BrawSim.events::onChange_project2d
+                                          change: ./BrawSim.events::onChange_project1B3
+                          - type: ActionButton
+                            name: doProject1BhBtn
+                            margin: none
+                            minWidth: 10
+                            maxWidth: 10
+                            maxHeight: 24
                       - type: LayoutBox
                         style: inline
                         children:
@@ -460,38 +396,26 @@ children:
                             margin: none
                             minWidth: 255
                             children:
-                              - type: LayoutBox
-                                style: inline
+                              - type: Label
+                                label: Set up
                                 children:
-                                  - type: Label
-                                    label: Set up
+                                  - type: LayoutBox
+                                    style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
+                                        minWidth: 301
                                         children:
-                                          - type: LayoutBox
-                                            style: inline
-                                            children:
-                                              - type: LayoutBox
-                                                style: list
-                                                minWidth: 370
-                                                children:
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Choose two Interval variables
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Set the population effect-size to rp=0.3
-                                  - name: doProject3aBtn
-                                    type: ActionButton
-                                    margin: none
-                                    events:
-                                      change: ./BrawSim.events::onChange_project3a
-                                    maxWidth: 80
+                                          - type: Label
+                                            label: Choose two Interval variables
+                                          - type: Label
+                                            label: Set the population effect-size to rp=0.3
+                                      - name: doProject1CsBtn
+                                        type: ActionButton
+                                        margin: none
+                                        events:
+                                          change: ./BrawSim.events::onChange_project1Cs
+                                        maxWidth: 80
                               - type: Label
                                 label: Steps
                                 children:
@@ -500,7 +424,7 @@ children:
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 1. make a sample
@@ -540,18 +464,18 @@ children:
                                               - type: Label
                                                 label: ' '
                                                 minWidth: 26
-                                      - name: doProject3bBtn
+                                      - name: doProject1C1Btn
                                         type: ActionButton
                                         margin: none
                                         maxWidth: 80
                                         events:
-                                          change: ./BrawSim.events::onChange_project3b
+                                          change: ./BrawSim.events::onChange_project1C1
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 2. repeat with a bigger sample size
@@ -584,17 +508,17 @@ children:
                                                 label: ' '
                                                 minWidth: 26
                                       - type: ActionButton
-                                        name: doProject3cBtn
+                                        name: doProject1C2Btn
                                         margin: none
                                         maxWidth: 80
                                         events:
-                                          change: ./BrawSim.events::onChange_project3c
+                                          change: ./BrawSim.events::onChange_project1C2
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: '3. repeat with convenience sampling:'
@@ -627,11 +551,17 @@ children:
                                                 label: ' '
                                                 minWidth: 26
                                       - type: ActionButton
-                                        name: doProject3dBtn
+                                        name: doProject1C3Btn
                                         margin: none
                                         maxWidth: 80
                                         events:
-                                          change: ./BrawSim.events::onChange_project3d
+                                          change: ./BrawSim.events::onChange_project1C3
+                          - type: ActionButton
+                            name: doProject1ChBtn
+                            margin: none
+                            minWidth: 10
+                            maxWidth: 10
+                            maxHeight: 24
           - type: Label
             label: 2. Uncertainty
             children:
@@ -656,38 +586,26 @@ children:
                             margin: none
                             minWidth: 255
                             children:
-                              - type: LayoutBox
-                                style: inline
+                              - type: Label
+                                label: Set up
                                 children:
-                                  - type: Label
-                                    label: Set up
+                                  - type: LayoutBox
+                                    style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
+                                        minWidth: 301
                                         children:
-                                          - type: LayoutBox
-                                            style: inline
-                                            children:
-                                              - type: LayoutBox
-                                                style: list
-                                                minWidth: 370
-                                                children:
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Choose two Interval variables
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Set the effect-size to 0.3
-                                  - name: doProject4aBtn
-                                    type: ActionButton
-                                    margin: none
-                                    events:
-                                      change: ./BrawSim.events::onChange_project4a
-                                    maxWidth: 80
+                                          - type: Label
+                                            label: Choose two Interval variables
+                                          - type: Label
+                                            label: Set the effect-size to 0.3
+                                      - name: doProject2AsBtn
+                                        type: ActionButton
+                                        margin: none
+                                        events:
+                                          change: ./BrawSim.events::onChange_project2As
+                                        maxWidth: 80
                               - type: Label
                                 label: Steps
                                 children:
@@ -696,7 +614,7 @@ children:
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 1. make a sample
@@ -736,18 +654,18 @@ children:
                                               - type: Label
                                                 label: ' '
                                                 minWidth: 26
-                                      - name: doProject4bBtn
+                                      - name: doProject2A1Btn
                                         type: ActionButton
                                         margin: none
                                         maxWidth: 80
                                         events:
-                                          change: ./BrawSim.events::onChange_project4b
+                                          change: ./BrawSim.events::onChange_project2A1
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: >-
@@ -782,30 +700,37 @@ children:
                                                         label: ' '
                                                         minWidth: 13
                                                       - type: Label
-                                                        label: '- you can do this several times'
+                                                        label: >-
+                                                          - also look at the results in a 2D
+                                                          display
                                           - type: LayoutBox
                                             style: inline
                                             children:
                                               - type: Label
                                                 label: ' '
                                                 minWidth: 26
-                                      - type: ActionButton
-                                        name: doProject4cBtn
-                                        margin: none
-                                        maxWidth: 80
-                                        events:
-                                          change: ./BrawSim.events::onChange_project4c
+                                      - type: LayoutBox
+                                        style: list
+                                        children:
+                                          - type: ComboBox
+                                            name: doProject2A2Lst
+                                            events:
+                                              change: ./BrawSim.events::onChange_project2A2Lst
+                                          - type: ActionButton
+                                            name: doProject2A2Btn
+                                            margin: none
+                                            maxWidth: 80
+                                            events:
+                                              change: ./BrawSim.events::onChange_project2A2
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
-                                            label: >-
-                                              3. repeat this with a 2D graph of the
-                                              results
+                                            label: 3. repeat this with convenience sampling
                                           - type: LayoutBox
                                             style: inline
                                             children:
@@ -819,7 +744,7 @@ children:
                                                         label: ' '
                                                         minWidth: 13
                                                       - type: Label
-                                                        label: '- do this several times'
+                                                        label: '- using the 1D display'
                                           - type: LayoutBox
                                             style: inline
                                             children:
@@ -827,11 +752,17 @@ children:
                                                 label: ' '
                                                 minWidth: 26
                                       - type: ActionButton
-                                        name: doProject4dBtn
+                                        name: doProject2A3Btn
                                         margin: none
                                         maxWidth: 80
                                         events:
-                                          change: ./BrawSim.events::onChange_project4d
+                                          change: ./BrawSim.events::onChange_project2A3
+                          - type: ActionButton
+                            name: doProject2AhBtn
+                            margin: none
+                            minWidth: 10
+                            maxWidth: 10
+                            maxHeight: 24
                       - type: LayoutBox
                         style: inline
                         children:
@@ -844,40 +775,28 @@ children:
                             margin: none
                             minWidth: 255
                             children:
-                              - type: LayoutBox
-                                style: inline
+                              - type: Label
+                                label: Set up
                                 children:
-                                  - type: Label
-                                    label: Set up
+                                  - type: LayoutBox
+                                    style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
+                                        minWidth: 301
                                         children:
-                                          - type: LayoutBox
-                                            style: inline
-                                            children:
-                                              - type: LayoutBox
-                                                style: list
-                                                minWidth: 370
-                                                children:
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Choose two Interval variables
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: >-
-                                                          Build a world with equal numbers of rp=0
-                                                          and rp=0.3
-                                  - name: doProject5sBtn
-                                    type: ActionButton
-                                    margin: none
-                                    events:
-                                      change: ./BrawSim.events::onChange_Project5s
-                                    maxWidth: 80
+                                          - type: Label
+                                            label: Choose two Interval variables
+                                          - type: Label
+                                            label: >-
+                                              Build a world with equal numbers of rp=0
+                                              and rp=0.3
+                                      - name: doProject2BsBtn
+                                        type: ActionButton
+                                        margin: none
+                                        events:
+                                          change: ./BrawSim.events::onChange_Project2Bs
+                                        maxWidth: 80
                               - type: Label
                                 label: Steps
                                 children:
@@ -886,7 +805,7 @@ children:
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 1. make a sample
@@ -936,18 +855,18 @@ children:
                                               - type: Label
                                                 label: ' '
                                                 minWidth: 26
-                                      - name: doProject5aBtn
+                                      - name: doProject2B1Btn
                                         type: ActionButton
                                         margin: none
                                         maxWidth: 80
                                         events:
-                                          change: ./BrawSim.events::onChange_Project5a
+                                          change: ./BrawSim.events::onChange_Project2B1
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: >-
@@ -990,17 +909,17 @@ children:
                                                 label: ' '
                                                 minWidth: 26
                                       - type: ActionButton
-                                        name: doProject5bBtn
+                                        name: doProject2B2Btn
                                         margin: none
                                         maxWidth: 80
                                         events:
-                                          change: ./BrawSim.events::onChange_Project5b
+                                          change: ./BrawSim.events::onChange_Project2B2
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: >-
@@ -1035,17 +954,17 @@ children:
                                                 label: ' '
                                                 minWidth: 26
                                       - type: ActionButton
-                                        name: doProject5cBtn
+                                        name: doProject2B3Btn
                                         margin: none
                                         maxWidth: 80
                                         events:
-                                          change: ./BrawSim.events::onChange_Project5c
+                                          change: ./BrawSim.events::onChange_Project2B3
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 4. repeat this with a larger sample size
@@ -1070,11 +989,17 @@ children:
                                                 label: ' '
                                                 minWidth: 26
                                       - type: ActionButton
-                                        name: doProject5dBtn
+                                        name: doProject2B4Btn
                                         margin: none
                                         maxWidth: 80
                                         events:
-                                          change: ./BrawSim.events::onChange_Project5d
+                                          change: ./BrawSim.events::onChange_Project2B4
+                          - type: ActionButton
+                            name: doProject2BhBtn
+                            margin: none
+                            minWidth: 10
+                            maxWidth: 10
+                            maxHeight: 24
                       - type: LayoutBox
                         style: inline
                         children:
@@ -1087,38 +1012,26 @@ children:
                             margin: none
                             minWidth: 255
                             children:
-                              - type: LayoutBox
-                                style: inline
+                              - type: Label
+                                label: Set up
                                 children:
-                                  - type: Label
-                                    label: Set up
+                                  - type: LayoutBox
+                                    style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
+                                        minWidth: 301
                                         children:
-                                          - type: LayoutBox
-                                            style: inline
-                                            children:
-                                              - type: LayoutBox
-                                                style: list
-                                                minWidth: 370
-                                                children:
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Choose two Interval variables
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Set the effect-size to 0.3
-                                  - name: doProject6sBtn
-                                    type: ActionButton
-                                    margin: none
-                                    events:
-                                      change: ./BrawSim.events::onChange_project6s
-                                    maxWidth: 80
+                                          - type: Label
+                                            label: Choose two Interval variables
+                                          - type: Label
+                                            label: Set the effect-size to 0.3
+                                      - name: doProject2CsBtn
+                                        type: ActionButton
+                                        margin: none
+                                        events:
+                                          change: ./BrawSim.events::onChange_project2Cs
+                                        maxWidth: 80
                               - type: Label
                                 label: Steps
                                 children:
@@ -1127,7 +1040,7 @@ children:
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 1. make multiple samples
@@ -1159,18 +1072,18 @@ children:
                                               - type: Label
                                                 label: ' '
                                                 minWidth: 26
-                                      - name: doProject6aBtn
+                                      - name: doProject2C1Btn
                                         type: ActionButton
                                         margin: none
                                         maxWidth: 80
                                         events:
-                                          change: ./BrawSim.events::onChange_project6a
+                                          change: ./BrawSim.events::onChange_project2C1
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 2. repeat this with other sample sizes
@@ -1210,24 +1123,24 @@ children:
                                         maxWidth: 80
                                         margin: none
                                         children:
-                                          - name: doProject6bLst
+                                          - name: doProject2C2Lst
                                             type: ComboBox
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                           - type: ActionButton
-                                            name: doProject6bBtn
+                                            name: doProject2C2Btn
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                             events:
-                                              change: ./BrawSim.events::onChange_project6b
+                                              change: ./BrawSim.events::onChange_project2C2
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 3. do the same thing but with Explore
@@ -1272,17 +1185,17 @@ children:
                                                 label: ' '
                                                 minWidth: 26
                                       - type: ActionButton
-                                        name: doProject6cBtn
+                                        name: doProject2C3Btn
                                         margin: none
                                         maxWidth: 80
                                         events:
-                                          change: ./BrawSim.events::onChange_project6c
+                                          change: ./BrawSim.events::onChange_project2C3
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 4. now change the hypothesis effect size
@@ -1328,18 +1241,24 @@ children:
                                         maxWidth: 80
                                         margin: none
                                         children:
-                                          - name: doProject6dLst
+                                          - name: doProject2C4Lst
                                             type: ComboBox
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                           - type: ActionButton
-                                            name: doProject6dBtn
+                                            name: doProject2C4Btn
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                             events:
-                                              change: ./BrawSim.events::onChange_project6d
+                                              change: ./BrawSim.events::onChange_project2C4
+                          - type: ActionButton
+                            name: doProject2ChBtn
+                            margin: none
+                            minWidth: 10
+                            maxWidth: 10
+                            maxHeight: 24
           - type: Label
             label: 3. Linear Models
             children:
@@ -1364,55 +1283,40 @@ children:
                             margin: none
                             minWidth: 255
                             children:
-                              - type: LayoutBox
-                                style: inline
+                              - type: Label
+                                label: Set up
                                 children:
-                                  - type: Label
-                                    label: Set up
+                                  - type: LayoutBox
+                                    style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
+                                        minWidth: 301
                                         children:
-                                          - type: LayoutBox
-                                            style: inline
-                                            children:
-                                              - type: LayoutBox
-                                                style: list
-                                                minWidth: 370
-                                                children:
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Choose three variables variables
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Set all effect-sizes to 0.0
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Set sample size to 1000
-                                  - type: LayoutBox
-                                    style: list
-                                    minWidth: 80
-                                    maxWidth: 80
-                                    margin: none
-                                    children:
-                                      - name: doProject7sLst
-                                        type: ComboBox
-                                        margin: none
+                                          - type: Label
+                                            label: Choose three variables variables
+                                          - type: Label
+                                            label: Set all effect-sizes to 0.0
+                                          - type: Label
+                                            label: Set sample size to 1000
+                                      - type: LayoutBox
+                                        style: list
                                         minWidth: 80
                                         maxWidth: 80
-                                      - type: ActionButton
-                                        name: doProject7sBtn
                                         margin: none
-                                        minWidth: 80
-                                        maxWidth: 80
-                                        events:
-                                          change: ./BrawSim.events::onChange_project7s
+                                        children:
+                                          - name: doProject3AsLst
+                                            type: ComboBox
+                                            margin: none
+                                            minWidth: 80
+                                            maxWidth: 80
+                                          - type: ActionButton
+                                            name: doProject3AsBtn
+                                            margin: none
+                                            minWidth: 80
+                                            maxWidth: 80
+                                            events:
+                                              change: ./BrawSim.events::onChange_project3As
                               - type: Label
                                 label: Steps
                                 children:
@@ -1421,7 +1325,7 @@ children:
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 1. change main effect 1
@@ -1438,7 +1342,7 @@ children:
                                                         label: ' '
                                                         minWidth: 13
                                                       - type: Label
-                                                        label: '- set it to 0.3'
+                                                        label: '- choose a value for it'
                                                   - type: LayoutBox
                                                     style: inline
                                                     children:
@@ -1477,24 +1381,24 @@ children:
                                         maxWidth: 80
                                         margin: none
                                         children:
-                                          - name: doProject7aLst
+                                          - name: doProject3A1Lst
                                             type: ComboBox
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                           - type: ActionButton
-                                            name: doProject7aBtn
+                                            name: doProject3A1Btn
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                             events:
-                                              change: ./BrawSim.events::onChange_project7a
+                                              change: ./BrawSim.events::onChange_project3A1
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 2. change main effect 2
@@ -1540,24 +1444,24 @@ children:
                                         maxWidth: 80
                                         margin: none
                                         children:
-                                          - name: doProject7bLst
+                                          - name: doProject3A2Lst
                                             type: ComboBox
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                           - type: ActionButton
-                                            name: doProject7bBtn
+                                            name: doProject3A2Btn
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                             events:
-                                              change: ./BrawSim.events::onChange_project7b
+                                              change: ./BrawSim.events::onChange_project3A2
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 3. change the interaction
@@ -1603,24 +1507,24 @@ children:
                                         maxWidth: 80
                                         margin: none
                                         children:
-                                          - name: doProject7cLst
+                                          - name: doProject3A3Lst
                                             type: ComboBox
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                           - type: ActionButton
-                                            name: doProject7cBtn
+                                            name: doProject3A3Btn
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                             events:
-                                              change: ./BrawSim.events::onChange_project7c
+                                              change: ./BrawSim.events::onChange_project3A3
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 4. change all the effects
@@ -1667,12 +1571,18 @@ children:
                                         margin: none
                                         children:
                                           - type: ActionButton
-                                            name: doProject7dBtn
+                                            name: doProject3A4Btn
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                             events:
-                                              change: ./BrawSim.events::onChange_project7d
+                                              change: ./BrawSim.events::onChange_project3A4
+                          - type: ActionButton
+                            name: doProject3AhBtn
+                            margin: none
+                            minWidth: 10
+                            maxWidth: 10
+                            maxHeight: 24
                       - type: LayoutBox
                         style: inline
                         children:
@@ -1685,55 +1595,41 @@ children:
                             margin: none
                             minWidth: 255
                             children:
-                              - type: LayoutBox
-                                style: inline
+                              - type: Label
+                                label: Set up
                                 children:
-                                  - type: Label
-                                    label: Set up
+                                  - type: LayoutBox
+                                    style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
+                                        minWidth: 301
+                                        margin: none
                                         children:
-                                          - type: LayoutBox
-                                            style: inline
-                                            children:
-                                              - type: LayoutBox
-                                                style: list
-                                                minWidth: 370
-                                                children:
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Choose three variables variables
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Set all effect-sizes to 0.0
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Set sample size to 1000
-                                  - type: LayoutBox
-                                    style: list
-                                    minWidth: 80
-                                    maxWidth: 80
-                                    margin: none
-                                    children:
-                                      - name: doProject8sLst
-                                        type: ComboBox
-                                        margin: none
+                                          - type: Label
+                                            label: Choose three variables variables
+                                          - type: Label
+                                            label: Set all effect-sizes to 0.0
+                                          - type: Label
+                                            label: Set sample size to 1000
+                                      - type: LayoutBox
+                                        style: list
                                         minWidth: 80
                                         maxWidth: 80
-                                      - type: ActionButton
-                                        name: doProject8sBtn
                                         margin: none
-                                        minWidth: 80
-                                        maxWidth: 80
-                                        events:
-                                          change: ./BrawSim.events::onChange_project8s
+                                        children:
+                                          - name: doProject3BsLst
+                                            type: ComboBox
+                                            margin: none
+                                            minWidth: 80
+                                            maxWidth: 80
+                                          - type: ActionButton
+                                            name: doProject3BsBtn
+                                            margin: none
+                                            minWidth: 80
+                                            maxWidth: 80
+                                            events:
+                                              change: ./BrawSim.events::onChange_project3Bs
                               - type: Label
                                 label: Steps
                                 children:
@@ -1742,7 +1638,7 @@ children:
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 1. set up the interaction as on/off
@@ -1783,9 +1679,7 @@ children:
                                                         label: ' '
                                                         minWidth: 13
                                                       - type: Label
-                                                        label: >-
-                                                          - notice how the effect of M1 is on for
-                                                          some and off for others
+                                                        label: '- notice how the effect of M1'
                                                   - type: LayoutBox
                                                     style: inline
                                                     children:
@@ -1793,7 +1687,7 @@ children:
                                                         label: ' '
                                                         minWidth: 26
                                                       - type: Label
-                                                        label: remain close to zero
+                                                        label: depends on M2
                                           - type: LayoutBox
                                             style: inline
                                             children:
@@ -1806,24 +1700,24 @@ children:
                                         maxWidth: 80
                                         margin: none
                                         children:
-                                          - name: doProject8bLst
+                                          - name: doProject3B1Lst
                                             type: ComboBox
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                           - type: ActionButton
-                                            name: doProject8bBtn
+                                            name: doProject3B1Btn
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                             events:
-                                              change: ./BrawSim.events::onChange_project8b
+                                              change: ./BrawSim.events::onChange_project3B1
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 2. set up the interaction as +/- switch
@@ -1865,8 +1759,8 @@ children:
                                                         minWidth: 13
                                                       - type: Label
                                                         label: >-
-                                                          - notice how the effect of M1 is +ve for
-                                                          some and -ve for others
+                                                          - notice how the sign of the effect of
+                                                          M1
                                                   - type: LayoutBox
                                                     style: inline
                                                     children:
@@ -1874,7 +1768,7 @@ children:
                                                         label: ' '
                                                         minWidth: 26
                                                       - type: Label
-                                                        label: remain close to zero
+                                                        label: depends on M2
                                           - type: LayoutBox
                                             style: inline
                                             children:
@@ -1887,18 +1781,24 @@ children:
                                         maxWidth: 80
                                         margin: none
                                         children:
-                                          - name: doProject8cLst
+                                          - name: doProject3B2Lst
                                             type: ComboBox
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                           - type: ActionButton
-                                            name: doProject8cBtn
+                                            name: doProject3B2Btn
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                             events:
-                                              change: ./BrawSim.events::onChange_project8c
+                                              change: ./BrawSim.events::onChange_project3B2
+                          - type: ActionButton
+                            name: doProject3BhBtn
+                            margin: none
+                            minWidth: 10
+                            maxWidth: 10
+                            maxHeight: 24
                       - type: LayoutBox
                         style: inline
                         children:
@@ -1911,55 +1811,37 @@ children:
                             margin: none
                             minWidth: 255
                             children:
-                              - type: LayoutBox
-                                style: inline
+                              - type: Label
+                                label: Set up
                                 children:
-                                  - type: Label
-                                    label: Set up
+                                  - type: LayoutBox
+                                    style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
+                                        minWidth: 301
                                         children:
-                                          - type: LayoutBox
-                                            style: inline
-                                            children:
-                                              - type: LayoutBox
-                                                style: list
-                                                minWidth: 370
-                                                children:
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Choose three interval variables
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Set M1 & M2 effect-sizes to 0.5
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Set covariation effect-size to 0.3
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Set sample size to 1000
-                                  - type: LayoutBox
-                                    style: list
-                                    minWidth: 80
-                                    maxWidth: 80
-                                    margin: none
-                                    children:
-                                      - type: ActionButton
-                                        name: doProject9sBtn
-                                        margin: none
+                                          - type: Label
+                                            label: Choose three interval variables
+                                          - type: Label
+                                            label: Set M1 & M2 effect-sizes to 0.5
+                                          - type: Label
+                                            label: Set covariation effect-size to 0.3
+                                          - type: Label
+                                            label: Set sample size to 1000
+                                      - type: LayoutBox
+                                        style: list
                                         minWidth: 80
                                         maxWidth: 80
-                                        events:
-                                          change: ./BrawSim.events::onChange_Project9s
+                                        margin: none
+                                        children:
+                                          - type: ActionButton
+                                            name: doProject3CsBtn
+                                            margin: none
+                                            minWidth: 80
+                                            maxWidth: 80
+                                            events:
+                                              change: ./BrawSim.events::onChange_Project3Cs
                               - type: Label
                                 label: Steps
                                 children:
@@ -1968,7 +1850,7 @@ children:
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 1. the result of covariation
@@ -2009,18 +1891,18 @@ children:
                                         margin: none
                                         children:
                                           - type: ActionButton
-                                            name: doProject9aBtn
+                                            name: doProject3C1Btn
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                             events:
-                                              change: ./BrawSim.events::onChange_project9a
+                                              change: ./BrawSim.events::onChange_project3C1
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 2. varying the amount of covariation
@@ -2050,24 +1932,24 @@ children:
                                         maxWidth: 80
                                         margin: none
                                         children:
-                                          - name: doProject9bLst
+                                          - name: doProject3C2Lst
                                             type: ComboBox
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                           - type: ActionButton
-                                            name: doProject9bBtn
+                                            name: doProject3C2Btn
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                             events:
-                                              change: ./BrawSim.events::onChange_project9b
+                                              change: ./BrawSim.events::onChange_project3C2
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 2. explore the amount of covariation
@@ -2108,12 +1990,18 @@ children:
                                         margin: none
                                         children:
                                           - type: ActionButton
-                                            name: doProject9cBtn
+                                            name: doProject3C3Btn
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                             events:
-                                              change: ./BrawSim.events::onChange_project9c
+                                              change: ./BrawSim.events::onChange_project3C3
+                          - type: ActionButton
+                            name: doProject3ChBtn
+                            margin: none
+                            minWidth: 10
+                            maxWidth: 10
+                            maxHeight: 24
           - type: Label
             label: 4. Path Models
             children:
@@ -2138,47 +2026,44 @@ children:
                             margin: none
                             minWidth: 255
                             children:
-                              - type: LayoutBox
-                                style: inline
+                              - type: Label
+                                label: Set up
                                 children:
-                                  - type: Label
-                                    label: Set up
+                                  - type: LayoutBox
+                                    style: list
+                                    minWidth: 301
                                     children:
                                       - type: LayoutBox
-                                        style: list
+                                        style: inline
                                         children:
                                           - type: LayoutBox
-                                            style: inline
+                                            style: list
                                             children:
                                               - type: LayoutBox
-                                                style: list
-                                                minWidth: 370
+                                                style: inline
                                                 children:
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Choose three interval variables
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Set M1 effect-size to 0.0
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Set M2 effect-size to 0.7
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Set covariation effect-size to 0.7
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: Set sample size to 1000
+                                                  - type: Label
+                                                    label: Choose three interval variables
+                                              - type: LayoutBox
+                                                style: inline
+                                                children:
+                                                  - type: Label
+                                                    label: Set M1 effect-size to 0.0
+                                              - type: LayoutBox
+                                                style: inline
+                                                children:
+                                                  - type: Label
+                                                    label: Set M2 effect-size to 0.7
+                                              - type: LayoutBox
+                                                style: inline
+                                                children:
+                                                  - type: Label
+                                                    label: Set covariation effect-size to 0.7
+                                              - type: LayoutBox
+                                                style: inline
+                                                children:
+                                                  - type: Label
+                                                    label: Set sample size to 1000
                                   - type: LayoutBox
                                     style: list
                                     minWidth: 80
@@ -2186,12 +2071,12 @@ children:
                                     margin: none
                                     children:
                                       - type: ActionButton
-                                        name: doProject10sBtn
+                                        name: doProject4AsBtn
                                         margin: none
                                         minWidth: 80
                                         maxWidth: 80
                                         events:
-                                          change: ./BrawSim.events::onChange_Project10s
+                                          change: ./BrawSim.events::onChange_Project4As
                               - type: Label
                                 label: Steps
                                 children:
@@ -2200,7 +2085,7 @@ children:
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 1. the result of mediation
@@ -2239,18 +2124,18 @@ children:
                                         margin: none
                                         children:
                                           - type: ActionButton
-                                            name: doProject10aBtn
+                                            name: doProject4A1Btn
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                             events:
-                                              change: ./BrawSim.events::onChange_project10a
+                                              change: ./BrawSim.events::onChange_project4A1
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 2. varying the amount of covariation
@@ -2280,24 +2165,24 @@ children:
                                         maxWidth: 80
                                         margin: none
                                         children:
-                                          - name: doProject10bLst
+                                          - name: doProject4A2Lst
                                             type: ComboBox
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                           - type: ActionButton
-                                            name: doProject10bBtn
+                                            name: doProject4A2Btn
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                             events:
-                                              change: ./BrawSim.events::onChange_project10b
+                                              change: ./BrawSim.events::onChange_project4A2
                                   - type: LayoutBox
                                     style: inline
                                     children:
                                       - type: LayoutBox
                                         style: list
-                                        minWidth: 370
+                                        minWidth: 301
                                         children:
                                           - type: Label
                                             label: 2. explore the amount of covariation
@@ -2338,12 +2223,18 @@ children:
                                         margin: none
                                         children:
                                           - type: ActionButton
-                                            name: doProject10cBtn
+                                            name: doProject4A3Btn
                                             margin: none
                                             minWidth: 80
                                             maxWidth: 80
                                             events:
-                                              change: ./BrawSim.events::onChange_project10c
+                                              change: ./BrawSim.events::onChange_project4A3
+                          - type: ActionButton
+                            name: doProject4AhBtn
+                            margin: none
+                            minWidth: 10
+                            maxWidth: 10
+                            maxHeight: 24
   - type: Label
     label: Learning Stats by Experiment
     children:
@@ -2854,6 +2745,10 @@ children:
                                               - type: ComboBox
                                                 name: SampleMethod
                                                 margin: none
+                                              - type: TextBox
+                                                name: PoorSamplingAmount
+                                                format: number
+                                                margin: none
                                           - type: LayoutBox
                                             style: inline
                                             margin: none
@@ -2928,9 +2823,12 @@ children:
                                                 name: Cheating
                                                 margin: none
                                               - type: TextBox
-                                                name: CheatingAttempts
+                                                name: CheatingBudget
                                                 margin: none
                                                 format: number
+                                              - type: Label
+                                                label: x SampleSize
+                                                margin: none
                       - type: Content
                         name: planA
                         children:
@@ -2963,6 +2861,8 @@ children:
                                           - type: ComboBox
                                             name: interaction
                                             enable: (!presetIV2:none)
+                                          - type: CheckBox
+                                            name: doSEM
                                       - type: Label
                                         label: Display
                                         children:

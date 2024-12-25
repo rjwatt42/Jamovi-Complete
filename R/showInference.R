@@ -78,7 +78,7 @@ showInference<-function(analysis=braw.res$result,showType="Basic",dimension="1D"
   if (length(showType)==1) {
     switch(showType,
            "Basic"=     {showType<-c("rs","p")},
-           "p(sig)"= {showType<-"ps"},
+           "p(sig)"=    {showType<-"ps"},
            "Power"=     {showType<-c("ws","wp")},
            "CILimits"=  {showType<-c("ci1","ci2")},
            "NHST"={
@@ -122,7 +122,7 @@ showInference<-function(analysis=braw.res$result,showType="Basic",dimension="1D"
   } else {
     area.off<-0
     area.y<-1
-    if (!is.null(analysis$hypothesis$IV2)) {
+    if (!is.null(analysis$hypothesis$IV2) && showType[1]!="SEM") {
       if (whichEffect=="All" && !analysis$evidence$rInteractionOn) whichEffect<-"Mains"
       if (whichEffect=="All") {
         whichEffect<-c("Main 1","Main 2","Interaction")

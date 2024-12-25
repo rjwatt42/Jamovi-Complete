@@ -145,6 +145,42 @@ plotAxis<-function(showType,hypothesis,design=NULL) {
             ylabel<-'llk(~null)'
             use_cols<-c(hsv(base_hue_r,1,1),hsv(base_hue_r+hue_diff,1,1),hsv(base_hue_r+hue_diff*2,1,1))
           },
+          "SEM"={
+            ylim<-c(1.5*design$sN,3.5*design$sN)
+            ylabel<-'sem'
+            use_cols<-c(rep("white",7))
+            if (is.null(hypothesis$IV2) && effect$rIV==0) {
+              use_cols[1]<-braw.env$plotColours$infer_nsigNull
+              use_cols[2]<-braw.env$plotColours$infer_sigNull
+            }
+            if (is.null(hypothesis$IV2) && effect$rIV!=0) {
+              use_cols[1]<-braw.env$plotColours$infer_nsigNonNull
+              use_cols[2]<-braw.env$plotColours$infer_sigNonNull
+            }
+            if (!is.null(hypothesis$IV2)) {
+              if (effect$rIV==0 && effect$rIV2==0 && effect$rIVIV2==0 ) {
+                use_cols[1]<-braw.env$plotColours$infer_nsigNull
+                use_cols[2:7]<-braw.env$plotColours$infer_sigNull
+              } else {
+                use_cols[1]<-braw.env$plotColours$infer_nsigNonNull
+                use_cols[2:7]<-darken(
+                  blend(braw.env$plotColours$infer_nsigNonNull,braw.env$plotColours$infer_sigNonNull,0.7),
+                  off=0.5)
+                if (effect$rIV!=0 && effect$rIV2!=0 && effect$rIVIV2!=0 )
+                  use_cols[7]<-braw.env$plotColours$infer_sigNonNull
+                if (effect$rIV!=0 && effect$rIV2!=0 && effect$rIVIV2==0 )
+                  use_cols[6]<-braw.env$plotColours$infer_sigNonNull
+                if (effect$rIV==0 && effect$rIV2!=0 && effect$rIVIV2!=0 )
+                  use_cols[5]<-braw.env$plotColours$infer_sigNonNull
+                if (effect$rIV!=0 && effect$rIV2==0 && effect$rIVIV2!=0 )
+                  use_cols[4]<-braw.env$plotColours$infer_sigNonNull
+                if (effect$rIV==0 && effect$rIV2!=0 && effect$rIVIV2==0 )
+                  use_cols[3]<-braw.env$plotColours$infer_sigNonNull
+                if (effect$rIV!=0 && effect$rIV2==0 && effect$rIVIV2==0 )
+                  use_cols[2]<-braw.env$plotColours$infer_sigNonNull
+              }
+            }
+          },
           "sLLR"={
             ylim<-c(0, braw.env$lrRange)
             ylabel<-'log[e](lr[s])'

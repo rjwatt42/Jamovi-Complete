@@ -14,6 +14,7 @@ drawNHSTLabel<-function(lb1,lb1xy,xoff,col1,vjust=NULL) {
     if (lb1xy$y>0.5) vjust<-1 else vjust<-0
   dataLabel(data=lb1xy,label=lb1,
             hjust=1,vjust=vjust,
+            size=0.6,
             fill=col1,colour=col)
 }
 
@@ -84,6 +85,8 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
                      effectType=effectType,whichEffect=whichEffect)
     return(g)
   }
+  
+  if (showType[1]=="SEM") whichEffect<-"Main 1"
   
   quants<-(1-quantileShow)/2
   showPower<-TRUE # show power calculations?
@@ -222,6 +225,7 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
   ylines<-yaxis$lines
   ySecond<-NULL
   
+  if (showType[si]=="SEM") ylim<-c(0,1)
   if (showType[si]=="p" && braw.env$pPlotScale=="log10" && any(exploreResult$result$pval>0)) 
     while (mean(log10(exploreResult$result$pval)>ylim[1])<0.75) ylim[1]<-ylim[1]-1
   
@@ -230,14 +234,14 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
   col5<-braw.env$plotColours$infer_sigNull
   switch (braw.env$STMethod,
           "NHST"={
-            col1<-NULL
+            col1<-NA
             col0<-braw.env$plotColours$infer_sigNonNull
-            col4<-NULL
+            col4<-NA
           },
           "sLLR"={
-            col1<-NULL
+            col1<-NA
             col0<-braw.env$plotColours$infer_nsigNonNull
-            col4<-NULL
+            col4<-NA
           },
           "dLLR"={
             col1<-braw.env$plotColours$infer_isigNonNull
@@ -255,19 +259,6 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
     lb0<-braw.env$nonNullSig
     lb5<-braw.env$nullSig
   }
-  
-  yn<-0.5
-  lb2xy<-data.frame(x=max(xlim),y=1-yn/10)
-  yn<-yn+1
-  lb0xy<-data.frame(x=max(xlim),y=1-yn/10)
-  yn<-yn+1
-  lb1xy<-data.frame(x=max(xlim),y=1-yn/10)
-  yn<-0.5
-  lb3xy<-data.frame(x=max(xlim),y=0+yn/10)
-  yn<-yn+1
-  lb5xy<-data.frame(x=max(xlim),y=0+yn/10)
-  yn<-yn+1
-  lb4xy<-data.frame(x=max(xlim),y=0+yn/10)
   
   exploreTypeShow<-explore$exploreType
   if (is.element(explore$exploreType,c("rIV","rIV2","rIVIV2","rIVIV2DV"))) {
@@ -545,6 +536,24 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
               "likelihood"={
                 showVals<-result$likes
               },
+              "SEM"={
+                semProps<-c()
+                if (is.null(hypothesis$IV2)) ng<-2 else ng<-7
+                for (ig in ng:1) semProps<-rbind(semProps,colMeans(result$sem==ig))
+                showVals<-semProps
+                showCols<-rev(plotAxis("SEM",hypothesis,design)$cols[1:ng])
+                rarrow<-'\u2192'
+                barrow<-'\u2190\u2192'
+                showLabels<-rev(c("DV",
+                              paste0("IV",rarrow,"DV"),
+                              paste0("IV2",rarrow,"DV"),
+                              paste0("IV",rarrow,"IV2",rarrow,"DV"),
+                              paste0("IV2",rarrow,"IV",rarrow,"DV"),
+                              paste0("(IV + IV2)",rarrow,"DV"),
+                              paste0("(IV" ,barrow, "IV2)",rarrow,"DV")
+                )[1:ng])
+                showSplit<-0
+              },
               "log(lrs)"={
                 ns<-result$nval
                 df1<-result$df1
@@ -642,7 +651,12 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
                 isigNulls<-   colSums( sigs & d<0 & nulls,na.rm=TRUE)/np 
                 sigNulls<-    colSums( sigs & d>0 & nulls,na.rm=TRUE)/np 
                 nsigNulls<-   colSums(!sigs &       nulls,na.rm=TRUE)/np 
-                
+                showVals<-rbind()
+                showVals<-rbind(isigNonNulls,nsigNonNulls,sigNonNulls,sigNulls,nsigNulls,isigNulls)
+                rownames(showVals)<-c("isigNonNulls","nsigNonNulls","sigNonNulls","sigNulls","nsigNulls","isigNulls")
+                showCols<-c(col1,col2,col0,col5,col3,col4)
+                showLabels<-c(lb1,lb2,lb0,lb5,lb3,lb4)
+                showSplit<-3
                 lines<-c(0.05)
               },
               "PDF"={
@@ -688,7 +702,7 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
               }
       )
       
-      if (!is.element(showType[si],c("NHST"))) {
+      if (!is.element(showType[si],c("NHST","SEM"))) {
         # draw the basic line and point data
         if (is.element(showType[si],c("p(sig)","Hits","Misses"))) {
           y50<-showMeans
@@ -752,19 +766,13 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
         }
       } else {
         # now the NHST filled areas
-        ytop<-1-sigNonNulls*0
-        showSequence<-c("isigNonNulls","nsigNonNulls","sigNonNulls","sigNulls","nsigNulls","isigNulls")
-        splitSequence<-c("sigNonNulls")
+        ytop<-rep(1,ncol(showVals))
+        if (doLine) xoff<-0
+        else        xoff<-bwidth
         
-        for (use in showSequence) {
-          switch(use,
-                 "isigNulls"={valsD<-isigNulls;colShow<-col4},
-                 "nsigNulls"={valsD<-nsigNulls;colShow<-col3},
-                 "sigNulls"={valsD<-sigNulls;colShow<-col5},
-                 "sigNonNulls"={valsD<-sigNonNulls;colShow<-col0},
-                 "nsigNonNulls"={valsD<-nsigNonNulls;colShow<-col2},
-                 "isigNonNulls"={valsD<-isigNonNulls;colShow<-col1}
-                 )
+        for (use in 1:nrow(showVals)) {
+          colShow<-showCols[use]
+          valsD<-showVals[use,]
           if (any(valsD!=0)) {
             ybottom<-ytop-valsD
             ybottom[ybottom<0]<-0
@@ -775,12 +783,12 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
             ybottom<-ytop
             ptsShow<-NULL
           }
-          if (!is.null(colShow) && !is.null(ptsShow)) {
+          if (!is.na(colShow) && !is.null(ptsShow)) {
             if (showTheory) {
               g<-addG(g,dataPoint(data=ptsShow,fill=colShow))
             } else {
               if (doLine) {
-                g<-addG(g,dataPolygon(data=ptsShow,fill=colShow,colour=NA))
+                g<-addG(g,dataPolygon(data=ptsShow,fill=colShow,colour="black"))
               } else {
                   npts<-length(vals)
                   bwidth<-0.4*(ptsShow$x[2]-ptsShow$x[1])
@@ -789,10 +797,21 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
                   }
               }
             }
+            if (is.element(use,showSplit)) g<-addG(g,dataLine(data.frame(x=vals,y=ybottom),linewidth=1))
           }
-          if (is.element(use,splitSequence)) g<-addG(g,dataLine(data.frame(x=vals,y=ybottom),linewidth=1))
+        }
+          
+          for (use in 1:nrow(showVals)) {
+            if (!is.na(showCols[use])) {
+              if (use<=nrow(showVals)/2)
+              position<-data.frame(x=max(xlim),y=1-(use-1)/10)
+            else
+              position<-data.frame(x=max(xlim),y=(nrow(showVals)-use)/10)
+            g<-addG(g,drawNHSTLabel(showLabels[use],position,xoff,showCols[use]))
+          }
         }
       }
+
       
       # find n80
       if (is.null(hypothesis$IV2) && showType[si]=="p(sig)" && explore$exploreType=="n" && effect$world$populationPDF=="Single" && showPower){
@@ -813,8 +832,8 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
         if (sum(n<n80$minimum)>=2 && sum(n>n80$minimum)>=2){
           label<-paste("n80 =",format(round(n80$minimum),digits=2))
         } else {
-          if (sum(n<n80$minimum)<2) label<-paste("Unsafe result - decrease range")
-          if (sum(n>n80$minimum)<2) label<-paste("Unsafe result - increase range")
+          if (sum(n<n80$minimum)<2) label<-paste("Unsafe result")
+          if (sum(n>n80$minimum)<2) label<-paste("Unsafe result")
         }
         if (braw.env$nPlotScale=="log10") lpts<-data.frame(x=log10(min(n)),y=0.8,label=label)
         else lpts<-data.frame(x=min(n),y=0.8,label=label)
@@ -839,26 +858,14 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
         if (sum(r<n80$minimum)>=2 && sum(r>n80$minimum)>=2){
           label<-paste("r80 =",brawFormat(n80$minimum,digits=2))
         } else {
-          if (sum(r<n80$minimum)<2) label<-paste("Unsafe result - decrease range")
-          if (sum(r>n80$minimum)<2) label<-paste("Unsafe result - increase range")
+          if (sum(r<n80$minimum)<2) label<-paste("Unsafe result")
+          if (sum(r>n80$minimum)<2) label<-paste("Unsafe result")
         }
         lpts<-data.frame(x=0,y=0.8)
         g<-addG(g,dataLabel(data=lpts,label = label))
       }
     }
     
-    if (showType[si]=="NHST") {
-      if (doLine) xoff<-0
-      else        xoff<-bwidth
-      
-      if (!is.null(col0)) g<-addG(g,drawNHSTLabel(lb0,lb0xy,xoff,col0))
-      if (!is.null(col1)) g<-addG(g,drawNHSTLabel(lb1,lb1xy,xoff,col1))
-      if (!is.null(col2)) g<-addG(g,drawNHSTLabel(lb2,lb2xy,xoff,col2))
-      if (!is.null(col3)) g<-addG(g,drawNHSTLabel(lb3,lb3xy,xoff,col3))
-      if (!is.null(col4)) g<-addG(g,drawNHSTLabel(lb4,lb4xy,xoff,col4))
-      if (!is.null(col5)) g<-addG(g,drawNHSTLabel(lb5,lb5xy,xoff,col5))
-    }
-
     lineCol<-"black"
     if (is.element(showType[si],c("p","e1p","e2p","e1d","e2d"))) lineCol<-"green"
     for (yl in ylines) {

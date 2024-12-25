@@ -159,8 +159,8 @@ const events =  {
       ui.whichGraph.setValue("Single")
     },
     
-    onChange_project1s: function(ui) {
-      let BtnOn = ui.doProject1sBtn.value();
+    onChange_Project1As: function(ui) {
+      let BtnOn = ui.doProject1AsBtn.value();
       if (BtnOn==true) {
       defaultSetUp(ui)
       ui.presetDV.setValue("ExamGrade")
@@ -169,28 +169,28 @@ const events =  {
       }
     },
     
-    onChange_project1a: function(ui) {
-      let BtnOn = ui.doProject1aBtn.value();
+    onChange_project1A1: function(ui) {
+      let BtnOn = ui.doProject1A1Btn.value();
       if (BtnOn==true) {
         ui.showSampleType.setValue("Compact")
         ui.makeSampleBtn.setValue(true)
       }
     },
     
-    onChange_project1b: function(ui) {
-      let BtnOn = ui.doProject1bBtn.value();
+    onChange_project1A2: function(ui) {
+      let BtnOn = ui.doProject1A2Btn.value();
       if (BtnOn==true) {
       ui.jamoviHelp.setValue(true)
       }
     },
     
-    onChange_project1c: function(ui) {
-      let BtnOn = ui.doProject1cBtn.value();
+    onChange_project1A3: function(ui) {
+      let BtnOn = ui.doProject1A3Btn.value();
       if (BtnOn==true) {
-        let variable1 = ui.doProject1cLst.value();
+        let variable1 = ui.doProject1A3Lst.value();
         variable1 = variable1.replace("?","")
         ui.presetIV.setValue(variable1)
-        let variable2 = ui.doProject1cLstA.value();
+        let variable2 = ui.doProject1A3LstA.value();
         variable2 = variable2.replace("?","")
         ui.presetDV.setValue(variable2)
         ui.showSampleType.setValue("Compact")
@@ -198,8 +198,8 @@ const events =  {
       }
     },
     
-    onChange_project2a: function(ui) {
-      let BtnOn = ui.doProject2aBtn.value();
+    onChange_project1Bs: function(ui) {
+      let BtnOn = ui.doProject1BsBtn.value();
       if (BtnOn==true) {
       defaultSetUp(ui)      
       ui.presetDV.setValue("ExamGrade")
@@ -208,31 +208,31 @@ const events =  {
       }
     },
     
-    onChange_project2b: function(ui) {
-      let BtnOn = ui.doProject2bBtn.value();
+    onChange_project1B1: function(ui) {
+      let BtnOn = ui.doProject1B1Btn.value();
       if (BtnOn==true) {
         ui.showSampleType.setValue("Variables")
       ui.makeSampleBtn.setValue(true)
       }
     },
     
-    onChange_project2c: function(ui) {
-      let BtnOn = ui.doProject2cBtn.value();
+    onChange_project1B2: function(ui) {
+      let BtnOn = ui.doProject1B2Btn.value();
       if (BtnOn==true) {
         ui.showSampleType.setValue("Sample")
       ui.makeSampleBtn.setValue(true)
       }
     },
     
-    onChange_project2d: function(ui) {
-      let BtnOn = ui.doProject2dBtn.value();
+    onChange_project1B3: function(ui) {
+      let BtnOn = ui.doProject1B3Btn.value();
       if (BtnOn==true) {
         ui.SampleMethod.setValue("Convenience")
       }
     },
     
-    onChange_project3a: function(ui) {
-      let BtnOn = ui.doProject3aBtn.value();
+    onChange_project1Cs: function(ui) {
+      let BtnOn = ui.doProject1CsBtn.value();
       if (BtnOn==true) {
       defaultSetUp(ui)
       ui.presetDV.setValue("ExamGrade")
@@ -241,16 +241,16 @@ const events =  {
       }
     },
     
-    onChange_project3b: function(ui) {
-      let BtnOn = ui.doProject3bBtn.value();
+    onChange_project1C1: function(ui) {
+      let BtnOn = ui.doProject1C1Btn.value();
       if (BtnOn==true) {
         ui.showSampleType.setValue("Describe")
       ui.makeSampleBtn.setValue(true)
       }
     },
     
-    onChange_project3c: function(ui) {
-      let BtnOn = ui.doProject3cBtn.value();
+    onChange_project1C2: function(ui) {
+      let BtnOn = ui.doProject1C2Btn.value();
       if (BtnOn==true) {
         ui.SampleSize.setValue(500)
         ui.showSampleType.setValue("Describe")
@@ -258,8 +258,8 @@ const events =  {
       }
     },
     
-    onChange_project3d: function(ui) {
-      let BtnOn = ui.doProject3dBtn.value();
+    onChange_project1C3: function(ui) {
+      let BtnOn = ui.doProject1C3Btn.value();
       if (BtnOn==true) {
         ui.SampleSize.setValue(42)
         ui.SampleMethod.setValue("Convenience")
@@ -268,8 +268,8 @@ const events =  {
       }
     },
     
-    onChange_project4a: function(ui) {
-      let BtnOn = ui.doProject4aBtn.value();
+    onChange_project2As: function(ui) {
+      let BtnOn = ui.doProject2AsBtn.value();
       if (BtnOn==true) {
       defaultSetUp(ui)
       ui.presetDV.setValue("ExamGrade")
@@ -278,8 +278,8 @@ const events =  {
       }
     },
     
-    onChange_project4b: function(ui) {
-      let BtnOn = ui.doProject4bBtn.value();
+    onChange_project2A1: function(ui) {
+      let BtnOn = ui.doProject2A1Btn.value();
       if (BtnOn==true) {
         ui.showSampleType.setValue("Infer")
         ui.showInferDimension.setValue("1D")
@@ -287,25 +287,30 @@ const events =  {
       }
     },
         
-    onChange_project4c: function(ui) {
-      let BtnOn = ui.doProject4cBtn.value();
+    onChange_project2A2Lst: function(ui) {
+        let dimension = ui.doProject2A2Lst.value()
+        ui.showMultipleDimension.setValue(dimension)
+    },
+    
+    onChange_project2A2: function(ui) {
+      let BtnOn = ui.doProject2A2Btn.value();
+      if (BtnOn==true) {
+        ui.SampleMethod.setValue("Random")
+      ui.makeMultipleBtn.setValue(true)
+      }
+    },
+    
+    onChange_project2A3: function(ui) {
+      let BtnOn = ui.doProject2A3Btn.value();
       if (BtnOn==true) {
         ui.showMultipleDimension.setValue("1D")
-        ui.showMultipleParam.setValue("Basic")
+        ui.SampleMethod.setValue("Convenience")
       ui.makeMultipleBtn.setValue(true)
       }
     },
     
-    onChange_project4d: function(ui) {
-      let BtnOn = ui.doProject4dBtn.value();
-      if (BtnOn==true) {
-        ui.showMultipleDimension.setValue("2D")
-      ui.makeMultipleBtn.setValue(true)
-      }
-    },
-    
-    onChange_Project5s: function(ui) {
-      let BtnOn = ui.doProject5sBtn.value();
+    onChange_Project2Bs: function(ui) {
+      let BtnOn = ui.doProject2BsBtn.value();
       if (BtnOn==true) {
       defaultSetUp(ui)
       ui.WorldOn.setValue(true)
@@ -316,32 +321,32 @@ const events =  {
       }
     },
     
-    onChange_Project5a: function(ui) {
-      let BtnOn = ui.doProject5aBtn.value();
+    onChange_Project2B1: function(ui) {
+      let BtnOn = ui.doProject2B1Btn.value();
       if (BtnOn==true) {
         ui.showSampleType.setValue("Infer")
       ui.makeSampleBtn.setValue(true)
       }
     },
         
-    onChange_Project5b: function(ui) {
-      let BtnOn = ui.doProject5bBtn.value();
+    onChange_Project2B2: function(ui) {
+      let BtnOn = ui.doProject2B2Btn.value();
       if (BtnOn==true) {
         ui.showMultipleParam.setValue("Basic")
       ui.makeMultipleBtn.setValue(true)
       }
     },
     
-    onChange_Project5c: function(ui) {
-      let BtnOn = ui.doProject5cBtn.value();
+    onChange_Project2B3: function(ui) {
+      let BtnOn = ui.doProject2B3Btn.value();
       if (BtnOn==true) {
         ui.showMultipleParam.setValue("NHST")
       ui.makeMultipleBtn.setValue(true)
       }
     },
     
-    onChange_Project5d: function(ui) {
-      let BtnOn = ui.doProject5dBtn.value();
+    onChange_Project2B4: function(ui) {
+      let BtnOn = ui.doProject2B4Btn.value();
       if (BtnOn==true) {
         ui.SampleSize.setValue(210)
         ui.showMultipleParam.setValue("NHST")
@@ -349,8 +354,8 @@ const events =  {
       }
     },
 
-    onChange_project6s: function(ui) {
-      let BtnOn = ui.doProject6sBtn.value();
+    onChange_project2Cs: function(ui) {
+      let BtnOn = ui.doProject2CsBtn.value();
       if (BtnOn==true) {
       defaultSetUp(ui)
       ui.presetDV.setValue("ExamGrade")
@@ -359,18 +364,18 @@ const events =  {
       }
     },
 
-    onChange_project6a: function(ui) {
-      let BtnOn = ui.doProject6aBtn.value();
+    onChange_project2C1: function(ui) {
+      let BtnOn = ui.doProject2C1Btn.value();
       if (BtnOn==true) {
         ui.showMultipleParam.setValue("p(sig)")
       ui.makeMultipleBtn.setValue(true)
       }
     },
     
-    onChange_project6b: function(ui) {
-      let BtnOn = ui.doProject6bBtn.value();
+    onChange_project2C2: function(ui) {
+      let BtnOn = ui.doProject2C2Btn.value();
       if (BtnOn==true) {
-      let nVal = ui.doProject6bLst.value();
+      let nVal = ui.doProject2C2Lst.value();
       switch(nVal) {
         case "n20": ui.SampleSize.setValue(20); break;
         case "n40": ui.SampleSize.setValue(40); break;
@@ -383,8 +388,8 @@ const events =  {
       }
     },
     
-    onChange_project6c: function(ui) {
-      let BtnOn = ui.doProject6cBtn.value();
+    onChange_project2C3: function(ui) {
+      let BtnOn = ui.doProject2C3Btn.value();
       if (BtnOn==true) {
         ui.showExploreParam.setValue("p(sig)")
         ui.exploreMode.setValue("designExplore")
@@ -393,10 +398,10 @@ const events =  {
       }
     },
     
-    onChange_project6d: function(ui) {
-      let BtnOn = ui.doProject6dBtn.value();
+    onChange_project2C4: function(ui) {
+      let BtnOn = ui.doProject2C4Btn.value();
       if (BtnOn==true) {
-      let rVal = ui.doProject6dLst.value();
+      let rVal = ui.doProject2C4Lst.value();
       switch(rVal) {
         case "r00": ui.EffectSize1.setValue(0.0); break;
         case "r01": ui.EffectSize1.setValue(0.1); break;
@@ -412,10 +417,10 @@ const events =  {
       }
     },
 
-    onChange_project7s: function(ui) {
-      let BtnOn = ui.doProject7sBtn.value();
+    onChange_project3As: function(ui) {
+      let BtnOn = ui.doProject3AsBtn.value();
       if (BtnOn==true) {
-      let hyp = ui.doProject7sLst.value();
+      let hyp = ui.doProject3AsLst.value();
       defaultSetUp(ui)
       ui.presetIV2.setValue("IV2");
       ui.interaction.setValue("yes");
@@ -449,10 +454,10 @@ const events =  {
       }
     },
     
-    onChange_project7a: function(ui) {
-      let BtnOn = ui.doProject7aBtn.value();
+    onChange_project3A1: function(ui) {
+      let BtnOn = ui.doProject3A1Btn.value();
       if (BtnOn==true) {
-      let rVal = ui.doProject7aLst.value();
+      let rVal = ui.doProject3A1Lst.value();
       switch(rVal) {
         case "r00": ui.EffectSize1.setValue(0.0); break;
         case "r01": ui.EffectSize1.setValue(0.1); break;
@@ -468,10 +473,10 @@ const events =  {
       }
     },
     
-    onChange_project7b: function(ui) {
-      let BtnOn = ui.doProject7bBtn.value();
+    onChange_project3A2: function(ui) {
+      let BtnOn = ui.doProject3A2Btn.value();
       if (BtnOn==true) {
-      let rVal = ui.doProject7bLst.value();
+      let rVal = ui.doProject3A2Lst.value();
       switch(rVal) {
         case "r00": ui.EffectSize2.setValue(0.0); break;
         case "r01": ui.EffectSize2.setValue(0.1); break;
@@ -487,10 +492,10 @@ const events =  {
       }
     },
     
-    onChange_project7c: function(ui) {
-      let BtnOn = ui.doProject7cBtn.value();
+    onChange_project3A3: function(ui) {
+      let BtnOn = ui.doProject3A3Btn.value();
       if (BtnOn==true) {
-      let rVal = ui.doProject7cLst.value();
+      let rVal = ui.doProject3A3Lst.value();
       switch(rVal) {
         case "r00": ui.EffectSize12.setValue(0.0); break;
         case "r01": ui.EffectSize12.setValue(0.1); break;
@@ -506,10 +511,10 @@ const events =  {
       }
     },
     
-    onChange_project7d: function(ui) {
-      let BtnOn = ui.doProject7dBtn.value();
+    onChange_project3A4: function(ui) {
+      let BtnOn = ui.doProject3A4Btn.value();
       if (BtnOn==true) {
-      let rVal1 = ui.doProject7aLst.value();
+      let rVal1 = ui.doProject3A1Lst.value();
       switch(rVal1) {
         case "r00": ui.EffectSize1.setValue(0.0); break;
         case "r01": ui.EffectSize1.setValue(0.1); break;
@@ -518,7 +523,7 @@ const events =  {
         case "r05": ui.EffectSize1.setValue(0.5); break;
         case "r075": ui.EffectSize1.setValue(0.75); break;
       }
-      let rVal2 = ui.doProject7bLst.value();
+      let rVal2 = ui.doProject3A2Lst.value();
       switch(rVal2) {
         case "r00": ui.EffectSize2.setValue(0.0); break;
         case "r01": ui.EffectSize2.setValue(0.1); break;
@@ -527,7 +532,7 @@ const events =  {
         case "r05": ui.EffectSize2.setValue(0.5); break;
         case "r075": ui.EffectSize2.setValue(0.75); break;
       }
-      let rVal12 = ui.doProject7cLst.value();
+      let rVal12 = ui.doProject3A3Lst.value();
       switch(rVal12) {
         case "r00": ui.EffectSize12.setValue(0.0); break;
         case "r01": ui.EffectSize12.setValue(0.1); break;
@@ -541,10 +546,10 @@ const events =  {
       }
     },
 
-    onChange_project8s: function(ui) {
-      let BtnOn = ui.doProject8sBtn.value();
+    onChange_project3Bs: function(ui) {
+      let BtnOn = ui.doProject3BsBtn.value();
       if (BtnOn==true) {
-      let hyp = ui.doProject8sLst.value();
+      let hyp = ui.doProject3BsLst.value();
       defaultSetUp(ui)
       ui.presetIV2.setValue("IV2");
       ui.EffectConfig.setValue("normal")
@@ -579,10 +584,10 @@ const events =  {
       }
     },
     
-    onChange_project8b: function(ui) {
-      let BtnOn = ui.doProject8bBtn.value();
+    onChange_project3B1: function(ui) {
+      let BtnOn = ui.doProject3B1Btn.value();
       if (BtnOn==true) {
-      let rVal = ui.doProject8bLst.value();
+      let rVal = ui.doProject3B1Lst.value();
       switch(rVal) {
         case "r00": 
           ui.EffectSize1.setValue(0.0); 
@@ -615,10 +620,10 @@ const events =  {
       }
     },
     
-    onChange_project8c: function(ui) {
-      let BtnOn = ui.doProject8cBtn.value();
+    onChange_project3B2: function(ui) {
+      let BtnOn = ui.doProject3B2Btn.value();
       if (BtnOn==true) {
-      let rVal = ui.doProject8cLst.value();
+      let rVal = ui.doProject3B2Lst.value();
       switch(rVal) {
         case "r00": 
           ui.EffectSize12.setValue(0.0); 
@@ -646,8 +651,8 @@ const events =  {
       }
     },
 
-    onChange_Project9s: function(ui) {
-      let BtnOn = ui.doProject9sBtn.value();
+    onChange_Project3Cs: function(ui) {
+      let BtnOn = ui.doProject3CsBtn.value();
       if (BtnOn==true) {
       defaultSetUp(ui)
       ui.presetDV.setValue("ExamGrade");
@@ -662,18 +667,18 @@ const events =  {
       }
     },
     
-    onChange_project9a: function(ui) {
-      let BtnOn = ui.doProject9aBtn.value();
+    onChange_project3C1: function(ui) {
+      let BtnOn = ui.doProject3C1Btn.value();
       if (BtnOn==true) {
         ui.showSampleType.setValue("Describe")
       ui.makeSampleBtn.setValue(true)
       }
     },
     
-    onChange_project9b: function(ui) {
-      let BtnOn = ui.doProject9bBtn.value();
+    onChange_project3C2: function(ui) {
+      let BtnOn = ui.doProject3C2Btn.value();
       if (BtnOn==true) {
-      let rVal = ui.doProject9bLst.value();
+      let rVal = ui.doProject3C2Lst.value();
       switch(rVal) {
         case "r00": 
           ui.EffectSize3.setValue(0.0); 
@@ -699,8 +704,8 @@ const events =  {
       }
     },
     
-    onChange_project9c: function(ui) {
-      let BtnOn = ui.doProject9cBtn.value();
+    onChange_project3C3: function(ui) {
+      let BtnOn = ui.doProject3C3Btn.value();
       if (BtnOn==true) {
         ui.SampleSize.setValue(42)
         ui.whichShowMultiple.setValue("all")
@@ -712,8 +717,8 @@ const events =  {
     },
     
     
-    onChange_Project10s: function(ui) {
-      let BtnOn = ui.doProject10sBtn.value();
+    onChange_Project4As: function(ui) {
+      let BtnOn = ui.doProject4AsBtn.value();
       if (BtnOn==true) {
       defaultSetUp(ui)
       ui.SampleSize.setValue(1000)
@@ -729,36 +734,40 @@ const events =  {
       }
     },
     
-    onChange_project10a: function(ui) {
-      let BtnOn = ui.doProject10aBtn.value();
+    onChange_project4A1: function(ui) {
+      let BtnOn = ui.doProject4A1Btn.value();
       if (BtnOn==true) {
+          ui.EffectSize3.setValue(0.7); 
         ui.showSampleType.setValue("Infer")
       ui.makeSampleBtn.setValue(true)
       }
     },
     
-    onChange_project10b: function(ui) {
-      let BtnOn = ui.doProject10bBtn.value();
+    onChange_project4A2: function(ui) {
+      let BtnOn = ui.doProject4A2Btn.value();
       if (BtnOn==true) {
-      let rVal = ui.doProject10bLst.value();
+      let rVal = ui.doProject4A2Lst.value();
       switch(rVal) {
+        case "rn07": 
+          ui.EffectSize3.setValue(-0.7); 
+          break;
+        case "rn03": 
+          ui.EffectSize3.setValue(-0.3); 
+          break;
+        case "rn01": 
+          ui.EffectSize3.setValue(-0.1); 
+          break;
         case "r00": 
           ui.EffectSize3.setValue(0.0); 
           break;
         case "r01": 
           ui.EffectSize3.setValue(0.1); 
           break;
-        case "r02": 
-          ui.EffectSize3.setValue(0.2); 
-          break;
         case "r03": 
           ui.EffectSize3.setValue(0.3); 
           break;
-        case "r05": 
-          ui.EffectSize3.setValue(0.5); 
-          break;
-        case "r075": 
-          ui.EffectSize3.setValue(0.75); 
+        case "r07": 
+          ui.EffectSize3.setValue(0.7); 
           break;
       }
         ui.showSampleType.setValue("Infer")
@@ -766,8 +775,8 @@ const events =  {
       }
     },
 
-    onChange_project10c: function(ui) {
-      let BtnOn = ui.doProject10cBtn.value();
+    onChange_project4A3: function(ui) {
+      let BtnOn = ui.doProject4A3Btn.value();
       if (BtnOn==true) {
         ui.SampleSize.setValue(42)
         ui.whichShowMultiple.setValue("all")
@@ -793,7 +802,10 @@ let defaultSetUp = function(ui) {
       ui.SampleSpreadOn.setValue(false)
       ui.SampleSize.setValue(42)
         ui.SampleMethod.setValue("Random")
+      ui.inferVar1.setValue("rs")
+      ui.inferVar2.setValue("p")
       ui.showInferDimension.setValue("1D")
+        ui.showMultipleParam.setValue("Basic")
         ui.showMultipleDimension.setValue("1D")
 }
 
@@ -968,6 +980,9 @@ let makeRange = function(min,max,xlog,np) {
           break;
         case "lambda":
              var range={min:0.1,max:1,xlog:false,np:13};
+          break;
+        case "PoorSamplingAmount":
+             var range={min:0,max:0.8,xlog:false,np:13};
           break;
         case "CheatingAmount":
              var range={min:0,max:0.8,xlog:false,np:13};

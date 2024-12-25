@@ -61,9 +61,9 @@ reportExplore<-function(exploreResult=braw.res$explore,showType="rs",
 
   outputText<-rep("",nc)
   if (is.element(showType[1],c("NHST","Hits","Misses")) && sum(!is.na(exploreResult$nullresult$rval[,1]))>0) {
-    outputText[1:2]<-c("!TExplore  ",paste("nsims = ",format(sum(!is.na(exploreResult$result$rval[,1]))),"+",format(sum(!is.na(exploreResult$nullresult$rval[,1]))),sep=""),rep("",nc-2))
+    outputText[1:2]<-c("!TExplore  ",paste("nsims = ",format(sum(!is.na(exploreResult$result$rval[,1]))),"+",format(sum(!is.na(exploreResult$nullresult$rval[,1]))),sep=""))
   } else {
-    outputText[1:2]<-c("!TExplore  ",paste("nsims = ",format(sum(!is.na(exploreResult$result$rval[,1]))),sep=""),rep("",nc-2))
+    outputText[1:2]<-c("!TExplore  ",paste("nsims = ",format(sum(!is.na(exploreResult$result$rval[,1]))),sep=""))
   }
   outputText<-c(outputText,rep("",nc))
   
@@ -82,12 +82,16 @@ reportExplore<-function(exploreResult=braw.res$explore,showType="rs",
     if (whichEffect=="rIV2") {whichEffects<-"Main 2"}
     if (whichEffect=="rIVIV2DV") {whichEffects<-"Interaction"}
   }
+  if (showType[1]=="SEM") {
+    whichEffects<-"Main 1"
+    effectTypes<-"direct"
+  }
 
   tableHeader<-FALSE
   for (whichEffect in whichEffects)  {
     for (effectType in effectTypes) {
       if (!tableHeader) {
-        outputText<-c(outputText,rep(" ",2),paste0("!T",exploreTypeShow),rep(" ",nc-3))
+        outputText<-c(outputText,paste0("!T",exploreTypeShow),rep(" ",2),rep(" ",nc-3))
         headerText<-c(paste0("!H"),"!D ")
         if (explore$exploreType=="rIV" && braw.env$RZ=="z")  vals<-atanh(vals)
         for (i in 1:length(useVals)) {
@@ -99,9 +103,7 @@ reportExplore<-function(exploreResult=braw.res$explore,showType="rs",
         outputText<-c(outputText,headerText)
         tableHeader<-TRUE
       }
-      
-      # if (!is.null(hypothesis$IV2))  outputText<-c(outputText,y_label2,rep("",nc-1))
-  
+
       if (is.null(hypothesis$IV2)) y_label2<-" "
       else y_label2<-effectType
       
@@ -346,6 +348,22 @@ reportExplore<-function(exploreResult=braw.res$explore,showType="rs",
               }
               y_label<-"Misses"
             },
+            "SEM"={
+              semProps<-c()
+              if (is.null(exploreResult$hypothesis$IV2)) ng<-2 else ng<-7
+              for (ig in ng:1) semProps<-rbind(semProps,colMeans(exploreResult$result$sem==ig))
+              showVals<-semProps
+              rarrow<-'\u2192'
+              barrow<-'\u2190\u2192'
+              showLabels<-rev(c("DV",
+                                paste0("IV",rarrow,"DV"),
+                                paste0("IV2",rarrow,"DV"),
+                                paste0("IV",rarrow,"IV2",rarrow,"DV"),
+                                paste0("IV2",rarrow,"IV",rarrow,"DV"),
+                                paste0("(IV + IV2)",rarrow,"DV"),
+                                paste0("(IV" ,barrow, "IV2)",rarrow,"DV")
+              )[1:ng])
+            },
             "log(lrs)"={
               ns<-exploreResult$result$nval
               df1<-exploreResult$result$df1
@@ -533,6 +551,12 @@ reportExplore<-function(exploreResult=braw.res$explore,showType="rs",
         }
       }
     }
+    if (showType[1]=="SEM") {
+      for (ig in 1:nrow(showVals)) {
+        outputText<-c(outputText,paste0("!j",showLabels[ig])," ")
+        for (i in useVals)  outputText<-c(outputText,paste0(brawFormat(100*showVals[ig,i],digits=1),"%"))
+      }
+      }
     }
   }
   }

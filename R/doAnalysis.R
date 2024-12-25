@@ -360,6 +360,10 @@ multipleAnalysis<-function(nsims=1,hypothesis,design,evidence,newResult=c()){
         newResult$p$unique[j,]<-res$p$unique
         newResult$p$total[j,]<-res$p$total
       }
+      if (!is.null(res$sem)){
+      newResult$sem[j,]<-res$sem
+      colnames(newResult$sem)<-colnames(res$sem)
+      }
       newResult$iv.mn[j]<-res$iv.mn
       newResult$iv.sd[j]<-res$iv.sd
       newResult$iv.sk[j]<-res$iv.sk
@@ -560,6 +564,7 @@ generalAnalysis<-function(allData,InteractionOn,withins=FALSE,ssqType="Type3",ca
 #' analysis<-doAnalysis(sample=doSample(),evidence=makeEvidence(),autoShow=braw.env$autoShow)#' make a multiple samples
 #' @export
 doAnalysis<-function(sample=doSample(autoShow=FALSE),evidence=braw.def$evidence,autoShow=FALSE){
+
   design<-sample$design
   hypothesis<-sample$hypothesis
   IV<-hypothesis$IV
@@ -619,6 +624,86 @@ doAnalysis<-function(sample=doSample(autoShow=FALSE),evidence=braw.def$evidence,
     }
   }
   analysis$rIVIV2<-0
+  
+  if (evidence$doSEM) {
+    stages<-list(c(IV$name,IV2$name),c(DV$name))
+    pathmodel<-list(path=
+                      list(
+                        stages=stages,
+                        depth=2,
+                        only_ivs=NULL,
+                        only_dvs=NULL,
+                        within_stage=FALSE,
+                        add=NULL,
+                        remove=NULL
+                      )
+    )
+    model_data<-list(pid=allData[,1],
+                     data=allData[,2:ncol(allData)],
+                     varnames=c(DV$name,IV$name,IV2$name),
+                     varcat=c(DV$type=="Categorical",IV$type=="Categorical",IV2$type=="Categorical")
+    )
+    if (!is.null(IV2)) {
+      pathmodel$path$stages<-list(DV$name)
+      sem0<-fit_sem_model(pathmodel,model_data)
+      
+      pathmodel$path$stages<-list(IV$name,IV2$name,DV$name)
+      pathmodel$path$depth<-2
+      sem6a<-fit_sem_model(pathmodel,model_data)
+      pathmodel$path$stages<-list(IV2$name,IV$name,DV$name)
+      sem6b<-fit_sem_model(pathmodel,model_data)
+      if (sem6a$eval$AIC<sem6b$eval$AIC) sem6<-sem6a else sem6<-sem6b
+      
+      pathmodel$path$stages<-list(c(IV$name,IV2$name),DV$name)
+      pathmodel$path$depth<-1
+      sem5<-fit_sem_model(pathmodel,model_data)
+      
+      pathmodel$path$stages<-list(IV$name,IV2$name,DV$name)
+      pathmodel$path$depth<-1
+      sem4<-fit_sem_model(pathmodel,model_data)
+      
+      pathmodel$path$stages<-list(IV2$name,IV$name,DV$name)
+      pathmodel$path$depth<-1
+      sem3<-fit_sem_model(pathmodel,model_data)
+      
+      pathmodel$path$stages<-list(IV2$name,DV$name)
+      sem2<-fit_sem_model(pathmodel,model_data)
+      pathmodel$path$stages<-list(IV$name,DV$name)
+      sem1<-fit_sem_model(pathmodel,model_data)
+      
+      modelSEMs<-c(sem0$eval[[evidence$useAIC]],
+                   sem1$eval[[evidence$useAIC]],
+                   sem2$eval[[evidence$useAIC]],
+                   sem3$eval[[evidence$useAIC]],
+                   sem4$eval[[evidence$useAIC]],
+                   sem5$eval[[evidence$useAIC]],
+                   sem6$eval[[evidence$useAIC]]
+                   )
+    } else {
+      pathmodel$path$stages<-list(DV$name)
+      sem0<-fit_sem_model(pathmodel,model_data)
+      
+      pathmodel$path$stages<-list(IV$name,DV$name)
+      sem1<-fit_sem_model(pathmodel,model_data)
+      
+      modelSEMs<-c(sem0$eval[[evidence$useAIC]],
+                   sem1$eval[[evidence$useAIC]],
+                   NA,NA,NA,NA,NA
+                   )
+    }
+    rarrow<-'\u2192'
+    barrow<-'\u2190\u2192'
+    analysis$sem<-matrix(c(modelSEMs,which.min(modelSEMs)),nrow=1)
+    colnames(analysis$sem)<-c("DV",
+                              paste0("IV",rarrow,"DV"),
+                              paste0("IV2",rarrow,"DV"),
+                              paste0("IV",rarrow,"IV2",rarrow,"DV"),
+                              paste0("IV2",rarrow,"IV",rarrow,"DV"),
+                              paste0("(IV + IV2)",rarrow,"DV"),
+                              paste0("(IV" ,barrow, "IV2)",rarrow,"DV"),
+                              "Best"
+    )
+  } else analysis$sem<-NULL
   
   analysis$aic<-anResult$aic
   analysis$aicNull<-anResult$aicNull

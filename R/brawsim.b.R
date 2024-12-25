@@ -26,6 +26,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           whichShowExploreOut="all",
                           exploreMode="Design",
                           demoWhich="blank",
+                          openJamovi=0,
                           planMode=NULL,
                           nrowTableLM=1,
                           nrowTableSEM=1
@@ -46,7 +47,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       
       systemAsHTML<-TRUE
       nestedHelp<-TRUE
-      joinSystem<-FALSE
+      joinSystem<-TRUE
       
       if (joinSystem) self$results$SystemHTML$setVisible(FALSE)
       else self$results$SystemHTML$setVisible(TRUE)
@@ -55,23 +56,26 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       if (self$options$showHTML) {
         if (self$results$simGraph$visible) self$results$simGraph$setVisible(FALSE)
         if (self$results$simReport$visible) self$results$simReport$setVisible(FALSE)
-        # if (!self$results$simGraphHTML$visible) self$results$simGraphHTML$setVisible(TRUE)
+        if (!self$results$simGraphHTML$visible) self$results$simGraphHTML$setVisible(TRUE)
       } else {
-        # if (self$results$simGraphHTML$visible) self$results$simGraphHTML$setVisible(FALSE)
+        if (self$results$simGraphHTML$visible) self$results$simGraphHTML$setVisible(FALSE)
         if (!self$results$simGraph$visible) self$results$simGraph$setVisible(TRUE)
         if (!self$results$simReport$visible) self$results$simReport$setVisible(TRUE)
       }
       
-      if (self$options$doProject1sBtn) statusStore$demoWhich<-'d1'
-      if (self$options$doProject2aBtn) statusStore$demoWhich<-'d2'
-      if (self$options$doProject3aBtn) statusStore$demoWhich<-'d3'
-      if (self$options$doProject4aBtn) statusStore$demoWhich<-'d4'
-      if (self$options$doProject5sBtn) statusStore$demoWhich<-'d5'
-      if (self$options$doProject6sBtn) statusStore$demoWhich<-'d6'
-      if (self$options$doProject7sBtn) statusStore$demoWhich<-'d7'
-      if (self$options$doProject8sBtn) statusStore$demoWhich<-'d8'
-      if (self$options$doProject9sBtn) statusStore$demoWhich<-'d9'
-      if (self$options$doProject10sBtn) statusStore$demoWhich<-'d10'
+      statusStore$demoWhich<-'blank'
+      if (self$options$doProject1AhBtn) statusStore$demoWhich<-'d1'
+      if (self$options$doProject1BhBtn) statusStore$demoWhich<-'d2'
+      if (self$options$doProject1ChBtn) statusStore$demoWhich<-'d3'
+      if (self$options$doProject2AhBtn) statusStore$demoWhich<-'d4'
+      if (self$options$doProject2BhBtn) statusStore$demoWhich<-'d5'
+      if (self$options$doProject2ChBtn) statusStore$demoWhich<-'d6'
+      if (self$options$doProject3AhBtn) statusStore$demoWhich<-'d7'
+      if (self$options$doProject3BhBtn) statusStore$demoWhich<-'d8'
+      if (self$options$doProject3ChBtn) statusStore$demoWhich<-'d9'
+      if (self$options$doProject4AhBtn) statusStore$demoWhich<-'d10'
+      statusStore$openJamovi<-0
+      if (self$options$doProject1A2Btn || self$options$doProject1A3Btn) statusStore$openJamovi<-1
       
       # get some display parameters for later
       # single sample
@@ -147,6 +151,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       design<-makeDesign(sN=self$options$SampleSize,
                          sNRand=self$options$SampleSpreadOn,sNRandK=self$options$SampleGamma,
                          sMethod=makeSampling(self$options$SampleMethod),
+                         sMethodSeverity=self$options$PoorSamplingAmount,
                                 sIV1Use=self$options$SampleUsage1,
                                 sIV2Use=self$options$SampleUsage2,
                                 sDependence=self$options$Dependence,
@@ -154,7 +159,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                                 sNonResponse=self$options$NonResponse,
                                 sRangeOn=self$options$LimitRange=="yes", 
                                 sIVRange=(c(self$options$RangeMin,self$options$RangeMax)-hypothesis$IV$mu)/hypothesis$IV$sd, 
-                                sCheating=self$options$Cheating,sCheatingAttempts=self$options$CheatingAttempts,
+                                sCheating=self$options$Cheating,sCheatingLimit="Budget",sCheatingBudget=self$options$CheatingBudget,
                          Replication=makeReplication(On=self$options$ReplicationOn,
                                                      Power=self$options$ReplicationPower,
                                                      Repeats=self$options$ReplicationAttempts,
@@ -173,7 +178,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       evidence<-makeEvidence(rInteractionOn=self$options$interaction=="yes",
                              ssqType=self$options$ssq,
                              Welch=self$options$equalVar=="no",
-                             Transform=self$options$Transform
+                             Transform=self$options$Transform,
+                             doSEM=self$options$doSEM
       )
       changedE<- !identical(oldE,evidence)
       braw.env$alphaSig<<-self$options$alphaSig
@@ -236,6 +242,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       braw.def$metaAnalysis<<-metaAnalysis
 
       # we pressed the "show" hypothesis button
+      openSystem<-0
       if (self$options$showHypothesisBtn) openSystem<-1
       # now deal with a request for help/instructions
       # after we have set up the hypothesis
@@ -277,7 +284,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             JamoviInstructions(hypothesis,design,HelpType="EffectSize")
           ),
           plain=(nchar(help)>0),
-          open=0
+          open=statusStore$openJamovi
         )
         help<-paste0(help,jamoviHelp)
       }
@@ -295,7 +302,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
              "d9"={open0<-2;open1<-3;open2<-3},
              "d10"={open0<-2;open1<-4;open2<-1}
       )
-      open0<-0
+      open0<-statusStore$openJamovi*2
       if (self$options$demoHelp || nestedHelp) {
         demoHelp<-private$.htmlwidget$generate_tab(
           title="Demos:",
@@ -368,12 +375,15 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       help<-paste0(help,demoHelp)
       
       if (systemAsHTML) {
-        openSystem<-0
         if (changedD) openSystem<-2
         if (changedH) openSystem<-1
         if (changedE) openSystem<-1
         assign("graphHTML",TRUE,braw.env)
         svgBox(200)
+        h<-showHypothesis()
+        e<-showPrediction()
+        svgBox(180)
+        d<-joinHTML(showDesign(),reportDesign())
         systemHTML<-private$.htmlwidget$generate_tab(
           titleWidth=50,
           title="Plan:",
@@ -382,9 +392,9 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           # titleWidth=30,
           tabs=c("Hypothesis","Design","Expected"),
           tabContents = c(
-            showHypothesis(),
-            showDesign(),
-            showPrediction()
+            h,
+            d,
+            e
           ),
           open=openSystem
         )

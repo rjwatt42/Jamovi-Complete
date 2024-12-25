@@ -1157,13 +1157,13 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
       )
       lpts1<-data.frame(y = ylim[2]-diff(ylim)/50, x = xoff[i]+xlim[2])
       if (labelSig && is.null(analysis$hypothesis$IV2))
-        g<-addG(g,dataLabel(data=lpts1,label = labelPt1,hjust=1,vjust=0.5,size=0.9,label.size=0))
+        g<-addG(g,dataLabel(data=lpts1,label = labelPt1,hjust=1,vjust=0.5,size=0.8,label.size=0))
       lpts1a<-data.frame(y = ylim[1]+diff(ylim)/50, x = xoff[i]+xlim[2])
       if (labelNSig)
-        g<-addG(g,dataLabel(data=lpts1a,label = labelPt1a,hjust=1,vjust=0.5,size=0.9,label.size=0))
+        g<-addG(g,dataLabel(data=lpts1a,label = labelPt1a,hjust=1,vjust=0.5,size=0.8,label.size=0))
       if (is.element(showType,c("e1d","e2d"))) {
         lpts1<-data.frame(y = mean(ylim), x = xoff[i]+xlim[2])
-        g<-addG(g,dataLabel(data=lpts1,label = labelPt1b,hjust=1,vjust=0.5,size=0.9,label.size=0))
+        g<-addG(g,dataLabel(data=lpts1,label = labelPt1b,hjust=1,vjust=0.5,size=0.8,label.size=0))
       }
     }
   }
@@ -1314,11 +1314,10 @@ ps_plot<-function(analysis,disp,showTheory=TRUE,g=NULL){
       y4<-mean(nulls & !sigs)/2
       g<-addG(g,dataBar(data=data.frame(x=0,y=y),fill=col5,barwidth=0.4))
       
-      g<-addG(g,drawNHSTLabel(lb0,data.frame(x=1,y=y1/2),0,col0,vjust=0.5))
-      g<-addG(g,drawNHSTLabel(lb2,data.frame(x=1,y=y2/2),0,col2,vjust=0.5))
-      g<-addG(g,drawNHSTLabel(lb3,data.frame(x=1,y=y3/2),0,col3,vjust=0.5))
-      g<-addG(g,drawNHSTLabel(lb5,data.frame(x=1,y=y4/2),0,col5,vjust=0.5))
-
+      g<-addG(g,drawNHSTLabel(lb0,data.frame(x=1,y=y1),0,col0,vjust=0.5))
+      g<-addG(g,drawNHSTLabel(lb2,data.frame(x=1,y=y2),0,col2,vjust=0.5))
+      g<-addG(g,drawNHSTLabel(lb3,data.frame(x=1,y=y3),0,col3,vjust=0.5))
+      g<-addG(g,drawNHSTLabel(lb5,data.frame(x=1,y=y4),0,col5,vjust=0.5))
       
     }
   } else {
@@ -1336,6 +1335,130 @@ ps_plot<-function(analysis,disp,showTheory=TRUE,g=NULL){
     psig<-mean(isSignificant(braw.env$STMethod,analysis$pIVIV2,analysis$rIVIV2,analysis$nval,analysis$df1,analysis$evidence))
     g<-addG(g,dataBar(data=data.frame(x=2,y=psig),fill=braw.env$plotColours$infer_sigC,barwidth=0.4))
     
+  }
+  return(g)
+}
+
+sem_plot<-function(analysis,disp,showTheory=TRUE,g=NULL){
+  
+  hypothesis<-analysis$hypothesis
+  effect<-hypothesis$effect
+  design<-analysis$design
+  yaxis<-plotAxis("SEM",hypothesis,design)
+  # 
+  # cols<-c(rep("white",7))
+  # if (is.null(hypothesis$IV2) && effect$rIV==0) {
+  #   cols[1]<-braw.env$plotColours$infer_nsigNull
+  #   cols[2]<-braw.env$plotColours$infer_sigNull
+  # }
+  # if (is.null(hypothesis$IV2) && effect$rIV!=0) {
+  #   cols[1]<-braw.env$plotColours$infer_nsigNonNull
+  #   cols[2]<-braw.env$plotColours$infer_sigNonNull
+  # }
+  # if (!is.null(hypothesis$IV2)) {
+  #   if (effect$rIV==0 && effect$rIV2==0 && effect$rIVIV2==0 ) {
+  #     cols[1]<-braw.env$plotColours$infer_nsigNull
+  #     cols[2:7]<-braw.env$plotColours$infer_sigNull
+  #   } else {
+  #     cols[1]<-braw.env$plotColours$infer_nsigNonNull
+  #     cols[2:7]<-darken(
+  #                 blend(braw.env$plotColours$infer_nsigNonNull,braw.env$plotColours$infer_sigNonNull,0.7),
+  #                 off=0.5)
+  #     if (effect$rIV!=0 && effect$rIV2!=0 && effect$rIVIV2!=0 )
+  #       cols[7]<-braw.env$plotColours$infer_sigNonNull
+  #     if (effect$rIV!=0 && effect$rIV2!=0 && effect$rIVIV2==0 )
+  #       cols[6]<-braw.env$plotColours$infer_sigNonNull
+  #     if (effect$rIV==0 && effect$rIV2!=0 && effect$rIVIV2!=0 )
+  #       cols[5]<-braw.env$plotColours$infer_sigNonNull
+  #     if (effect$rIV!=0 && effect$rIV2==0 && effect$rIVIV2!=0 )
+  #       cols[4]<-braw.env$plotColours$infer_sigNonNull
+  #     if (effect$rIV==0 && effect$rIV2!=0 && effect$rIVIV2==0 )
+  #       cols[3]<-braw.env$plotColours$infer_sigNonNull
+  #     if (effect$rIV!=0 && effect$rIV2==0 && effect$rIVIV2==0 )
+  #       cols[2]<-braw.env$plotColours$infer_sigNonNull
+  #   }
+  # }
+  cols<-yaxis$cols
+  
+  if (is.null(analysis$sem)) analysis$sem<-analysis$result$sem
+  if (nrow(analysis$sem)==1) {
+    nbar<-sum(!is.na(analysis$sem[1,1:7]))
+    range<-(max(analysis$sem[,1:nbar])-min(analysis$sem[,1:nbar]))
+    lowY<-min(min(analysis$sem[,1:nbar])-range*0.5,1.5*analysis$design$sN)
+    highY<-max(max(analysis$sem[,1:nbar])+range*0.25,3.5*analysis$design$sN)
+    g<-startPlot(xlim=c(0,nbar+1),ylim=c(lowY,highY),
+                 yticks=makeTicks(),ylabel=makeLabel("AIC"),
+                 xticks=makeTicks(breaks=1:nbar,labels=rep("",nbar)),
+                 top=FALSE,orientation="horz",g=g)
+    
+    if (nrow(analysis$sem)>1) {
+      size<-2
+      shape<-21
+    } else {
+      size<-6
+      shape<-22
+    }
+    for (ig in 1:nbar) {
+      xvals<-makeFiddle(analysis$sem[,ig])
+      if (any(xvals!=0))    xvals<-xvals/max(abs(xvals))*0.4
+      use<-analysis$sem[,8]==ig
+      g<-addG(g,dataPoint(data.frame(x=ig+xvals[!use],y=analysis$sem[!use,ig]),shape=shape,size=size,fill="white"))
+      g<-addG(g,dataPoint(data.frame(x=ig+xvals[use],y=analysis$sem[use,ig]),shape=shape,size=size,fill=cols[ig]))
+      g<-addG(g,dataText(data.frame(x=ig,y=min(analysis$sem[,ig])-(highY-lowY)/30),label=colnames(analysis$sem)[ig],
+                         hjust=1,vjust=0.5,angle=90,size=0.85))   
+    }
+  } else {
+  nulls<-analysis$rp==0
+  labels<-colnames(analysis$sem)
+  if (!is.null(hypothesis$IV2) || (all(nulls) || all(!nulls))) {
+      g<-startPlot(xlim=c(-2,1),ylim=c(0,1),
+                   yticks=makeTicks(),ylabel=makeLabel("SEM"),
+                   top=FALSE,orientation="horz",g=g)
+      nbars<-sum(!is.na(analysis$sem[1,]))-1
+      proportions<-hist(analysis$sem[,8],breaks=(0:nbars)+0.5,plot=FALSE)$density
+      plots<-cumsum(proportions)
+      for (ig in nbars:1) {
+        g<-addG(g,dataBar(data=data.frame(x=0,y=plots[ig]),fill=cols[ig],barwidth=0.4))
+      if (proportions[ig]>0.02) 
+        g<-addG(g,dataText(data=data.frame(x=-0.45,y=plots[ig]-proportions[ig]/2),labels[ig],
+                           hjust=1,vjust=0.5,size=0.5,colour='white'))
+    }
+    } else {
+      g<-startPlot(xlim=c(-2,1),ylim=c(0,1.1),
+                   yticks=makeTicks(),ylabel=makeLabel("SEM"),
+                   top=FALSE,orientation="horz",g=g)
+      nbars<-sum(!is.na(analysis$sem[1,]))-1
+      
+      use<-nulls
+      cols<-c(
+        braw.env$plotColours$infer_nsigNull,
+        braw.env$plotColours$infer_sigNull
+      )
+      proportions<-hist(analysis$sem[use,8],breaks=(0:nbars)+0.5,plot=FALSE)$density
+      plots<-cumsum(proportions)
+      for (ig in nbars:1) {
+        g<-addG(g,dataBar(data=data.frame(x=0,y=plots[ig]),fill=cols[ig],barwidth=0.4))
+        if (proportions[ig]>0.02) 
+          g<-addG(g,dataText(data=data.frame(x=-0.45,y=plots[ig]-proportions[ig]/2),labels[ig],
+                             hjust=1,vjust=0.5,size=0.5,colour='white'))
+      }
+      g<-addG(g,dataText(data=data.frame(x=0+0.4,y=1.02),label="Nulls",hjust=1))
+
+      use<-!nulls
+      cols<-c(
+        braw.env$plotColours$infer_nsigNonNull,
+        braw.env$plotColours$infer_sigNonNull
+      )
+      proportions<-hist(analysis$sem[use,8],breaks=(0:nbars)+0.5,plot=FALSE)$density
+      plots<-cumsum(proportions)
+      for (ig in nbars:1) {
+        g<-addG(g,dataBar(data=data.frame(x=1,y=plots[ig]),fill=cols[ig],barwidth=0.4))
+        if (proportions[ig]>0.02) 
+          g<-addG(g,dataText(data=data.frame(x=1.45,y=plots[ig]-proportions[ig]/2),labels[ig],
+                             hjust=0,vjust=0.5,size=0.5,colour='white'))
+      }
+      g<-addG(g,dataText(data=data.frame(x=1-0.4,y=1.02),label="Non-Nulls",hjust=0))
+    }
   }
   return(g)
 }

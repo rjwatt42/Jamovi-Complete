@@ -484,6 +484,11 @@ options:
           title: Convenience
       default: Random
     
+    - name: PoorSamplingAmount
+      title: PoorSamplingAmount
+      type: Number
+      default: 0.65
+      
     - name: SampleUsage1
       title: 'Usage(IV)'
       type: List
@@ -555,10 +560,10 @@ options:
          title: Retry
       default: None
       
-    - name: CheatingAttempts
-      title: Attempts
+    - name: CheatingBudget
+      title: Budget 
       type: Number
-      default: 5
+      default: 0.5
       
     - name: ReplicationOn
       title: ''
@@ -747,6 +752,11 @@ options:
       type: Number
       default: 0.0
       
+    - name: doSEM
+      title: 'SEM analysis'
+      type: Bool
+      default: false
+      
     - name: MetaAnalysisOn
       title: ''
       type: Bool
@@ -842,6 +852,8 @@ options:
           title: sLLR
         - name: llknull
           title: 'llk(~null)'
+        - name: SEM
+          title: SEM
         - name: blank1
           title: " "
         - name: ws
@@ -1034,6 +1046,8 @@ options:
           title: Hits
         - name: Misses
           title: Misses
+        - name: SEM
+          title: SEM
         - name: DV
           title: DV
         - name: Residuals
@@ -1209,6 +1223,8 @@ options:
           title: Usage
         - name: blank1d
           title: ' '
+        - name: PoorSamplingAmount
+          title: PoorSamplingAmount
         - name: Dependence
           title: Dependence
         - name: Outliers
@@ -1266,6 +1282,8 @@ options:
           title: Hits
         - name: Misses
           title: Misses
+        - name: SEM
+          title: SEM
         - name: DV
           title: DV
         - name: Residuals
@@ -1400,19 +1418,23 @@ options:
       type: Bool
       default: false
 
-    - name: doProject1sBtn
+    - name: doProject1AhBtn
+      title: '?'
+      type: Action
+      
+    - name: doProject1AsBtn
       title: 'set up for me'
       type: Action
 
-    - name: doProject1aBtn
+    - name: doProject1A1Btn
       title: 'do it for me'
       type: Action
 
-    - name: doProject1bBtn
+    - name: doProject1A2Btn
       title: 'show me'
       type: Action
 
-    - name: doProject1cLst
+    - name: doProject1A3Lst
       title: 'IV:'
       type: List
       options:
@@ -1444,7 +1466,7 @@ options:
         title: BirthOrder
       default: Perfectionism
 
-    - name: doProject1cLstA
+    - name: doProject1A3LstA
       title: 'DV:'
       type: List
       options:
@@ -1454,92 +1476,126 @@ options:
         title: ExamPass?
       default: ExamGrade
 
-    - name: doProject1cBtn
+    - name: doProject1A3Btn
       title: 'do it'
       type: Action
 
 
-    - name: doProject2aBtn
+    - name: doProject1BhBtn
+      title: '?'
+      type: Action
+
+    - name: doProject1BsBtn
       title: 'set up for me'
       type: Action
 
-    - name: doProject2bBtn
+    - name: doProject1B1Btn
       title: 'do it for me'
       type: Action
 
-    - name: doProject2cBtn
+    - name: doProject1B2Btn
       title: 'do it for me'
       type: Action
 
-    - name: doProject2dBtn
+    - name: doProject1B3Btn
       title: 'do it for me'
       type: Action
 
-    - name: doProject3aBtn
+
+    - name: doProject1ChBtn
+      title: '?'
+      type: Action
+
+    - name: doProject1CsBtn
       title: 'set up for me'
       type: Action
 
-    - name: doProject3bBtn
+    - name: doProject1C1Btn
       title: 'do it for me'
       type: Action
 
-    - name: doProject3cBtn
+    - name: doProject1C2Btn
       title: 'do it for me'
       type: Action
 
-    - name: doProject3dBtn
+    - name: doProject1C3Btn
       title: 'do it for me'
       type: Action
 
-    - name: doProject4aBtn
+
+    - name: doProject2AhBtn
+      title: '?'
+      type: Action
+
+    - name: doProject2AsBtn
       title: 'set up for me'
       type: Action
 
-    - name: doProject4bBtn
+    - name: doProject2A1Btn
       title: 'do it for me'
       type: Action
 
-    - name: doProject4cBtn
+    - name: doProject2A2Lst
+      title: ''
+      type: List
+      options:
+      - name: 1D
+        title: '1D'
+      - name: 2D
+        title: '2D'
+      default: 1D
+
+    - name: doProject2A2Btn
       title: 'do it for me'
       type: Action
 
-    - name: doProject4dBtn
+    - name: doProject2A3Btn
       title: 'do it for me'
       type: Action
 
-    - name: doProject5sBtn
+
+    - name: doProject2BhBtn
+      title: '?'
+      type: Action
+
+    - name: doProject2BsBtn
       title: 'set up for me'
       type: Action
 
-    - name: doProject5aBtn
+    - name: doProject2B1Btn
       title: 'do it for me'
       type: Action
 
-    - name: doProject5bBtn
+    - name: doProject2B2Btn
       title: 'do it for me'
       type: Action
 
-    - name: doProject5cBtn
+    - name: doProject2B3Btn
       title: 'do it for me'
       type: Action
 
-    - name: doProject5dBtn
+    - name: doProject2B4Btn
       title: 'do it for me'
       type: Action
 
-    - name: doProject6sBtn
+
+    - name: doProject2ChBtn
+      title: '?'
+      type: Action
+
+    - name: doProject2CsBtn
       title: 'set up for me'
       type: Action
 
-    - name: doProject6aBtn
+    - name: doProject2C1Btn
       title: 'do it for me'
       type: Action
       
-    - name: doProject6bBtn
+    - name: doProject2C2Btn
       title: 'do it'
       type: Action
       
-    - name: doProject6bLst
+    - name: doProject2C2Lst
       title: "n:"
       type: List
       options:
@@ -1558,15 +1614,15 @@ options:
       # title: 'do it for me'
       # type: Action
 
-    - name: doProject6cBtn
+    - name: doProject2C3Btn
       title: 'do it for me'
       type: Action
 
-    - name: doProject6dBtn
+    - name: doProject2C4Btn
       title: 'do it'
       type: Action
 
-    - name: doProject6dLst
+    - name: doProject2C4Lst
       title: "rp:"
       type: List
       options:
@@ -1587,11 +1643,15 @@ options:
       # type: Action
 
 
-    - name: doProject7sBtn
+    - name: doProject3AhBtn
+      title: '?'
+      type: Action
+
+    - name: doProject3AsBtn
       title: 'set up'
       type: Action
       
-    - name: doProject7sLst
+    - name: doProject3AsLst
       title: "hyp:"
       type: List
       options:
@@ -1607,11 +1667,11 @@ options:
       # title: 'do it for me'
       # type: Action
 
-    - name: doProject7aBtn
+    - name: doProject3A1Btn
       title: 'do it'
       type: Action
 
-    - name: doProject7aLst
+    - name: doProject3A1Lst
       title: "rp:"
       type: List
       options:
@@ -1630,11 +1690,11 @@ options:
       default: r03
 
 
-    - name: doProject7bBtn
+    - name: doProject3A2Btn
       title: 'do it'
       type: Action
       
-    - name: doProject7bLst
+    - name: doProject3A2Lst
       title: "rp:"
       type: List
       options:
@@ -1652,11 +1712,11 @@ options:
         title: '0.75'
       default: r03
 
-    - name: doProject7cBtn
+    - name: doProject3A3Btn
       title: 'do it'
       type: Action
       
-    - name: doProject7cLst
+    - name: doProject3A3Lst
       title: "rp:"
       type: List
       options:
@@ -1674,16 +1734,20 @@ options:
         title: '0.75'
       default: r03
 
-    - name: doProject7dBtn
+    - name: doProject3A4Btn
       title: 'do it'
       type: Action
 
 
-    - name: doProject8sBtn
+    - name: doProject3BhBtn
+      title: '?'
+      type: Action
+
+    - name: doProject3BsBtn
       title: 'set up'
       type: Action
 
-    - name: doProject8sLst
+    - name: doProject3BsLst
       title: "hyp:"
       type: List
       options:
@@ -1697,11 +1761,11 @@ options:
         title: 'i~c*c'
       default: iii
 
-    - name: doProject8bBtn
+    - name: doProject3B1Btn
       title: 'do it'
       type: Action
 
-    - name: doProject8bLst
+    - name: doProject3B1Lst
       title: "rp:"
       type: List
       options:
@@ -1719,11 +1783,11 @@ options:
         title: '0.75'
       default: r03
 
-    - name: doProject8cBtn
+    - name: doProject3B2Btn
       title: 'do it'
       type: Action
 
-    - name: doProject8cLst
+    - name: doProject3B2Lst
       title: "rp:"
       type: List
       options:
@@ -1742,19 +1806,23 @@ options:
       default: r03
 
 
-    - name: doProject9sBtn
+    - name: doProject3ChBtn
+      title: '?'
+      type: Action
+
+    - name: doProject3CsBtn
       title: 'set up'
       type: Action
 
-    - name: doProject9aBtn
+    - name: doProject3C1Btn
       title: 'do it'
       type: Action
 
-    - name: doProject9bBtn
+    - name: doProject3C2Btn
       title: 'do it'
       type: Action
 
-    - name: doProject9bLst
+    - name: doProject3C2Lst
       title: "rp:"
       type: List
       options:
@@ -1772,42 +1840,48 @@ options:
         title: '0.75'
       default: r03
 
-    - name: doProject9cBtn
+    - name: doProject3C3Btn
       title: 'do it'
       type: Action
 
 
-    - name: doProject10sBtn
-      title: 'set up'
+    - name: doProject4AhBtn
+      title: '?'
       type: Action
 
-    - name: doProject10aBtn
+    - name: doProject4AsBtn
+      title: 'set up for me'
+      type: Action
+
+    - name: doProject4A1Btn
       title: 'do it'
       type: Action
 
-    - name: doProject10bBtn
+    - name: doProject4A2Btn
       title: 'do it'
       type: Action
 
-    - name: doProject10bLst
+    - name: doProject4A2Lst
       title: "rp:"
       type: List
       options:
+      - name: rn07
+        title: '-0.7'
+      - name: rn03
+        title: '-0.3'
+      - name: rn01
+        title: '-0.1'
       - name: r00
         title: '0.0'
       - name: r01
         title: '0.1'
-      - name: r02
-        title: '0.2'
       - name: r03
         title: '0.3'
-      - name: r05
-        title: '0.5'
-      - name: r075
-        title: '0.75'
-      default: r03
+      - name: r07
+        title: '0.7'
+      default: r07
 
-    - name: doProject10cBtn
+    - name: doProject4A3Btn
       title: 'do it'
       type: Action
 

@@ -21,7 +21,7 @@ reportPlot<-function(outputText,nc,nr,fontSize=0.85,maxRows=14,renderAsHTML=braw
     mainStyle<-paste0("font-size:",format(fontSize) ,"px;font-weight:normal;text-align: left;")
     
     preText<-""
-    outputFront<-paste0('<div style="padding:10px;margin-left:50px;',mainStyle,'">')
+    outputFront<-paste0('<div style="padding:',fontSize,'px;margin-left:',fontSize*2,'px;',mainStyle,'">')
     outputBack<-'</div>'
     if (!is.null(outputText)) {
       outputFront<-paste0(outputFront,'<div style=padding:0px;>',tableStart)
