@@ -104,7 +104,8 @@ reportMultiple<-function(multipleResult=braw.res$multiple,showType="Basic",
       outputText1<-c("!H ","!H!CErrors:","I","II",rep("",nc-4))
     else 
       if (is.element(showType,c("SEM"))) {
-        outputText1<-c("!HModel","!H!C%","mean(AIC)","sd(AIC)",rep("",nc-4))
+        outputText1<-c("!HModel","!H!C%",paste0("mean(",evidence$useAIC,")"),
+                                         paste0("sd(",evidence$useAIC,")"),rep("",nc-4))
       } else {
       if (!is.null(IV2)){
         if (effectTypes==1) outputText<-c(outputText,"!H!C ","!C ",effectType,rep(" ",nc-3))

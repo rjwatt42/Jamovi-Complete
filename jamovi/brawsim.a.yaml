@@ -756,6 +756,19 @@ options:
       title: 'SEM analysis'
       type: Bool
       default: false
+
+    - name: useAIC
+      type: List
+      options: 
+      - name: AIC
+        title: AIC
+      - name: BIC
+        title: BIC
+      - name: CAIC
+        title: CAIC
+      - name: AICc
+        title: AICc
+      default: AIC
       
     - name: MetaAnalysisOn
       title: ''

@@ -93,6 +93,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             priorLambda = 0.3,
             priorNullP = 0,
             doSEM = FALSE,
+            useAIC = "AIC",
             MetaAnalysisOn = FALSE,
             MetaAnalysisType = "random",
             MetaAnalysisNulls = "yes",
@@ -727,6 +728,15 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "doSEM",
                 doSEM,
                 default=FALSE)
+            private$..useAIC <- jmvcore::OptionList$new(
+                "useAIC",
+                useAIC,
+                options=list(
+                    "AIC",
+                    "BIC",
+                    "CAIC",
+                    "AICc"),
+                default="AIC")
             private$..MetaAnalysisOn <- jmvcore::OptionBool$new(
                 "MetaAnalysisOn",
                 MetaAnalysisOn,
@@ -1442,6 +1452,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..priorLambda)
             self$.addOption(private$..priorNullP)
             self$.addOption(private$..doSEM)
+            self$.addOption(private$..useAIC)
             self$.addOption(private$..MetaAnalysisOn)
             self$.addOption(private$..MetaAnalysisType)
             self$.addOption(private$..MetaAnalysisNulls)
@@ -1646,6 +1657,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         priorLambda = function() private$..priorLambda$value,
         priorNullP = function() private$..priorNullP$value,
         doSEM = function() private$..doSEM$value,
+        useAIC = function() private$..useAIC$value,
         MetaAnalysisOn = function() private$..MetaAnalysisOn$value,
         MetaAnalysisType = function() private$..MetaAnalysisType$value,
         MetaAnalysisNulls = function() private$..MetaAnalysisNulls$value,
@@ -1849,6 +1861,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..priorLambda = NA,
         ..priorNullP = NA,
         ..doSEM = NA,
+        ..useAIC = NA,
         ..MetaAnalysisOn = NA,
         ..MetaAnalysisType = NA,
         ..MetaAnalysisNulls = NA,
@@ -2185,6 +2198,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param priorLambda .
 #' @param priorNullP .
 #' @param doSEM .
+#' @param useAIC .
 #' @param MetaAnalysisOn .
 #' @param MetaAnalysisType .
 #' @param MetaAnalysisNulls .
@@ -2399,6 +2413,7 @@ BrawSim <- function(
     priorLambda = 0.3,
     priorNullP = 0,
     doSEM = FALSE,
+    useAIC = "AIC",
     MetaAnalysisOn = FALSE,
     MetaAnalysisType = "random",
     MetaAnalysisNulls = "yes",
@@ -2605,6 +2620,7 @@ BrawSim <- function(
         priorLambda = priorLambda,
         priorNullP = priorNullP,
         doSEM = doSEM,
+        useAIC = useAIC,
         MetaAnalysisOn = MetaAnalysisOn,
         MetaAnalysisType = MetaAnalysisType,
         MetaAnalysisNulls = MetaAnalysisNulls,

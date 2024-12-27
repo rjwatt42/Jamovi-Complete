@@ -179,7 +179,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                              ssqType=self$options$ssq,
                              Welch=self$options$equalVar=="no",
                              Transform=self$options$Transform,
-                             doSEM=self$options$doSEM
+                             doSEM=self$options$doSEM,useAIC=self$options$useAIC
       )
       changedE<- !identical(oldE,evidence)
       braw.env$alphaSig<<-self$options$alphaSig
