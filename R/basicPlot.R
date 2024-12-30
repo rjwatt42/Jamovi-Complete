@@ -462,12 +462,20 @@ dataText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,f
 axisText<-function(data,label, hjust=0, vjust=0, colour="black",size=1,angle=0,dx=0,dy=0,fontface="plain",background=FALSE,fill="white") {
   if (!braw.env$graphHTML) {
     parse<-FALSE
-    mathlabel<-grepl("['[']{1}",label) #| grepl("[\\^]{1}",label)
+    mathlabel<-grepl("['^']{1}",label) | grepl("['[']{1}",label)
     if (any(mathlabel)) {
+      label<-gsub("\\[([^ ]*)\\]","\\['\\1'\\]",label)
       label<-gsub("=","==",label)
       parse=TRUE
       if (fontface=="bold") label<-paste0('bold(',label,')')
     }
+    
+    #   mathlabel<-grepl("['[']{1}",label) #| grepl("[\\^]{1}",label)
+    # if (any(mathlabel)) {
+    #   label<-gsub("=","==",label)
+    #   parse=TRUE
+    #   if (fontface=="bold") label<-paste0('bold(',label,')')
+    # }
     if (braw.env$plotLimits$orientation=="vert") {
       a<-hjust; hjust<-vjust; vjust<-a
     }
@@ -695,9 +703,9 @@ dataErrorBar<-function(data,colour="black",linewidth=0.25) {
   }
   return(g)
 }
-dataLegend<-function(data,title="title",fontsize=0.6) {
-  dy=0.055*fontsize
-  dx=0.025*fontsize
+dataLegend<-function(data,title="title",fontsize=0.6,shape=21) {
+  dy=0.055*fontsize/braw.env$plotArea[4]
+  dx=0.025*fontsize/braw.env$plotArea[3]
   names<-data$names
   if (nchar(title)>0) tn<-1.2 else tn<-0
   nrows<-tn+length(names)+1
@@ -716,7 +724,7 @@ dataLegend<-function(data,title="title",fontsize=0.6) {
 
   for (i in 1:length(names)) {
     g<-c(g,
-        list(axisPoint(data=data.frame(x=rangeX(1-ncols*dx+dx),y=rangeY(1-dy*(i+tn))),fill=data$colours[i]))
+        list(axisPoint(data=data.frame(x=rangeX(1-ncols*dx+dx),y=rangeY(1-dy*(i+tn))),fill=data$colours[i],shape=shape))
     )
     g<-c(g,
          list(axisText(data=data.frame(x=rangeX(1-ncols*dx+2*dx),y=rangeY(1-dy*(i+tn))),label=data$names[i],vjust=0.5,size=fontsize))

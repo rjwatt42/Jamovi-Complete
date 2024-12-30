@@ -105,6 +105,9 @@ showInference<-function(analysis=braw.res$result,showType="Basic",dimension="1D"
              other1<-analysis2
              other2<-analysis1
            },
+           "SEM"= {
+             showType<-c("rse","SEM")
+           },
            "DV"= {
              showType=c("dv.mn","dv.sd","dv.sk","dv.kt")
            },

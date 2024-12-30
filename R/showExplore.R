@@ -13,7 +13,7 @@ drawNHSTLabel<-function(lb1,lb1xy,xoff,col1,vjust=NULL) {
   if (is.null(vjust))
     if (lb1xy$y>0.5) vjust<-1 else vjust<-0
   dataLabel(data=lb1xy,label=lb1,
-            hjust=1,vjust=vjust,
+            hjust=0,vjust=vjust,
             size=0.6,
             fill=col1,colour=col)
 }
@@ -537,22 +537,34 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
                 showVals<-result$likes
               },
               "SEM"={
-                semProps<-c()
-                if (is.null(hypothesis$IV2)) ng<-2 else ng<-7
-                for (ig in ng:1) semProps<-rbind(semProps,colMeans(result$sem==ig))
-                showVals<-semProps
-                showCols<-rev(plotAxis("SEM",hypothesis,design)$cols[1:ng])
                 rarrow<-'\u2192'
                 barrow<-'\u2190\u2192'
-                showLabels<-rev(c("DV",
-                              paste0("IV",rarrow,"DV"),
-                              paste0("IV2",rarrow,"DV"),
-                              paste0("IV",rarrow,"IV2",rarrow,"DV"),
-                              paste0("IV2",rarrow,"IV",rarrow,"DV"),
-                              paste0("(IV + IV2)",rarrow,"DV"),
-                              paste0("(IV" ,barrow, "IV2)",rarrow,"DV")
-                )[1:ng])
-                showSplit<-0
+                showLabels<-c("DV",
+                                  paste0("IV",rarrow,"DV"),
+                                  paste0("IV2",rarrow,"DV"),
+                                  paste0("IV",rarrow,"IV2",rarrow,"DV"),
+                                  paste0("IV2",rarrow,"IV",rarrow,"DV"),
+                                  paste0("(IV + IV2)",rarrow,"DV"),
+                                  paste0("(IV" ,barrow, "IV2)",rarrow,"DV")
+                )
+                nulls<-rpVals==0
+                semProps<-c()
+                semPropsNull<-c()
+                if (is.null(hypothesis$IV2)) ng<-2 else ng<-7
+                if (all(nulls) || all(!nulls)) {
+                  for (ig in ng:1) semProps<-rbind(semProps,colMeans(result$sem==ig))
+                  showVals<-semProps
+                  showLabels<-showLabels[ng:1]
+                  showSplit<-0
+                } else {
+                  for (ig in ng:1) semPropsNull<-rbind(semPropsNull,colSums((result$sem==ig)*nulls)/colSums(nulls | !nulls))
+                  for (ig in 1:ng) semProps<-rbind(semProps,colSums((result$sem==ig)*(!nulls))/colSums(nulls | !nulls))
+                  showVals<-rbind(semProps,semPropsNull)
+                  showLabels<-c(paste0("H[+]('",showLabels[1:ng],"')"),paste0("H[0]('",showLabels[ng:1],"')"))
+                  showSplit<-ng
+                  ng<-ng*2
+                }
+                showCols<-rev(plotAxis("SEM",hypothesis,design)$cols[1:ng])
               },
               "log(lrs)"={
                 ns<-result$nval
@@ -788,7 +800,7 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
               g<-addG(g,dataPoint(data=ptsShow,fill=colShow))
             } else {
               if (doLine) {
-                g<-addG(g,dataPolygon(data=ptsShow,fill=colShow,colour="black"))
+                g<-addG(g,dataPolygon(data=ptsShow,fill=colShow,colour=colShow))
               } else {
                   npts<-length(vals)
                   bwidth<-0.4*(ptsShow$x[2]-ptsShow$x[1])
@@ -801,15 +813,15 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
           }
         }
           
-          for (use in 1:nrow(showVals)) {
-            if (!is.na(showCols[use])) {
-              if (use<=nrow(showVals)/2)
-              position<-data.frame(x=max(xlim),y=1-(use-1)/10)
-            else
-              position<-data.frame(x=max(xlim),y=(nrow(showVals)-use)/10)
-            g<-addG(g,drawNHSTLabel(showLabels[use],position,xoff,showCols[use]))
-          }
-        }
+        g<-addG(g,dataLegend(data.frame(colours=showCols[!is.na(showCols)],names=showLabels[!is.na(showCols)]),title="",shape=22))
+        # yoff<-1
+        #   for (use in 1:nrow(showVals)) {
+        #     if (!is.na(showCols[use])) {
+        #       position<-data.frame(x=max(vals),y=yoff)
+        #       g<-addG(g,drawNHSTLabel(showLabels[use],position,xoff,showCols[use]))
+        #       yoff<-yoff-1/10
+        #     }
+        # }
       }
 
       

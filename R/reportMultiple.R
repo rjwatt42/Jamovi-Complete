@@ -60,7 +60,8 @@ reportMultiple<-function(multipleResult=braw.res$multiple,showType="Basic",
     if (is.null(IV2) || effectType!="all") {nc=4+length(pars)}
     else { nc=4+length(pars)*3 }
     
-    if (is.element(showType,c("NHST","Hits","Misses","SEM"))) {nc=4}
+    if (is.element(showType,c("NHST","SEM"))) {nc=6}
+    if (is.element(showType,c("Hits","Misses"))) {nc=4}
     nc<-nc+1
     
     # header
@@ -100,12 +101,14 @@ reportMultiple<-function(multipleResult=braw.res$multiple,showType="Basic",
     }
     
     # column labels
-    if (is.element(showType,c("NHST","tDR","Hits","Misses"))) 
+    if (is.element(showType,c("tDR","Hits","Misses"))) 
       outputText1<-c("!H ","!H!CErrors:","I","II",rep("",nc-4))
     else 
-      if (is.element(showType,c("SEM"))) {
-        outputText1<-c("!HModel","!H!C%",paste0("mean(",evidence$useAIC,")"),
-                                         paste0("sd(",evidence$useAIC,")"),rep("",nc-4))
+      if (is.element(showType,c("NHST","SEM"))) {
+        if (showType=="SEM") use<-evidence$useAIC else use<-"r[s]"
+        outputText1<-c("","!HResult","!H!C%","",paste0("mean(",use,")"),
+                                         paste0("sd(",use,")"),rep("",nc-6))
+        if (showType=="SEM") outputText1[2]<-"!HModel"
       } else {
       if (!is.null(IV2)){
         if (effectTypes==1) outputText<-c(outputText,"!H!C ","!C ",effectType,rep(" ",nc-3))
@@ -137,7 +140,7 @@ reportMultiple<-function(multipleResult=braw.res$multiple,showType="Basic",
     
     for (whichEffect in whichEffects)  {
       
-      if (is.element(showType,c("NHST","Hits","Misses"))){
+      if (is.element(showType,c("Hits","Misses"))){
         nullSig<-isSignificant(braw.env$STMethod,nullresult$pIV,nullresult$rIV,nullresult$nval,nullresult$df1,nullresult$evidence)
         resSig<-isSignificant(braw.env$STMethod,result$pIV,result$rIV,result$nval,result$df1,result$evidence)
         if (braw.env$STMethod=="dLLR") {
@@ -209,16 +212,66 @@ reportMultiple<-function(multipleResult=braw.res$multiple,showType="Basic",
         }
         
       } else 
-        if (showType=="SEM") {
-          sem<-multipleResult$result$sem
-          nbar<-sum(!is.na(sem[1,1:7]))
+        if (is.element(showType,c("NHST","SEM"))) {
+          nulls<-multipleResult$result$rp==0
+          sigs<-isSignificant(braw.env$STMethod,
+                              multipleResult$result$pIV,multipleResult$result$rIV,
+                              multipleResult$result$nval,multipleResult$result$df1,
+                              multipleResult$result$evidence)
+          switch(showType,
+                 "NHST"={
+                   outcomes<-sigs+1
+                   data<-matrix(c(multipleResult$result$rIV,
+                                  multipleResult$result$rIV),
+                                ncol=2,byrow=FALSE)
+                   colnames(data)<-c("nsig","sig")
+                   data[sigs,1]<-NA
+                   data[!sigs,2]<-NA
+                   digits=3
+                   nbar<-2
+                 },
+                 "SEM"={
+                   outcomes<-multipleResult$result$sem[,8]
+                   data<-multipleResult$result$sem[,1:7]
+                   digits=1
+                   nbar<-sum(!is.na(data[1,]))
+                 })
           
-          for (ig in 1:nbar) {
-            nextLine<-c(colnames(sem)[ig],paste0(100*mean(sem[,8]==ig),"%"),
-                        brawFormat(mean(sem[,ig],na.rm=TRUE),digits=1),
-                        brawFormat(sd(sem[,ig],na.rm=TRUE),digits=1),
-                        rep("",nc-4))
-            outputText<-c(outputText,nextLine)
+          if (!all(nulls) && !all(!nulls)) {
+            for (ig in nbar:1) {
+              nextLine<-c("",colnames(data)[ig],
+                          paste0(brawFormat(100*sum(outcomes[!nulls]==ig)/sum(!nulls | nulls),digits=1),"%"),
+                          paste0("(",brawFormat(100*sum(outcomes[!nulls]==ig)/sum(!nulls),digits=1),"%",")"),
+                          brawFormat(mean(abs(data[!nulls,ig]),na.rm=TRUE),digits=digits),
+                          brawFormat(sd(abs(data[!nulls,ig]),na.rm=TRUE),digits=digits),
+                          rep("",nc-6))
+              if (ig==nbar) nextLine[1]<-paste0("!jNon-Nulls(",
+                                                brawFormat(100*sum(!nulls)/sum(!nulls | nulls),digits=1),"%)",
+                                                ": ",nextLine[1])
+              outputText<-c(outputText,nextLine)
+            }
+            for (ig in nbar:1) {
+              nextLine<-c("",colnames(data)[ig],
+                          paste0(brawFormat(100*sum(outcomes[nulls]==ig)/sum(!nulls | nulls),digits=1),"%"),
+                          paste0("(",brawFormat(100*sum(outcomes[nulls]==ig)/sum(nulls),digits=1),"%",")"),
+                          brawFormat(mean(abs(data[nulls,ig]),na.rm=TRUE),digits=digits),
+                          brawFormat(sd(abs(data[nulls,ig]),na.rm=TRUE),digits=digits),
+                          rep("",nc-6))
+              if (ig==nbar) nextLine[1]<-paste0("!jNulls(",
+                                                brawFormat(100*sum(nulls)/sum(!nulls | nulls),digits=1),"%)",
+                                                ": ",nextLine[1])
+              outputText<-c(outputText,nextLine)
+            }
+          } else {
+            for (ig in nbar:1) {
+              nextLine<-c("",
+                          colnames(data)[ig],paste0(brawFormat(100*mean(outcomes==ig),digits=1),"%"),
+                          "",
+                          brawFormat(mean(data[,ig],na.rm=TRUE),digits=1),
+                          brawFormat(sd(data[,ig],na.rm=TRUE),digits=1),
+                          rep("",nc-6))
+              outputText<-c(outputText,nextLine)
+            }
           }
           } else {
         
