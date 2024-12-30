@@ -638,12 +638,13 @@ doAnalysis<-function(sample=doSample(autoShow=FALSE),evidence=braw.def$evidence,
                         remove=NULL
                       )
     )
+    use<-1:(ncol(allData)-1)
     model_data<-list(pid=allData[,1],
-                     data=allData[,2:ncol(allData)],
-                     varnames=c(DV$name,IV$name,IV2$name),
-                     varcat=c(DV$type=="Categorical",IV$type=="Categorical",IV2$type=="Categorical")
+                     data=allData[,use+1],
+                     varnames=c(DV$name,IV$name,IV2$name)[use],
+                     varcat=c(DV$type=="Categorical",IV$type=="Categorical",IV2$type=="Categorical")[use]
     )
-    if (!is.null(IV2)) {
+    if (!is.null(IV2) && ncol(allData)>3) {
       pathmodel$path$stages<-list(DV$name)
       sem0<-fit_sem_model(pathmodel,model_data)
       

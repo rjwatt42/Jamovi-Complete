@@ -37,7 +37,7 @@ demoInstructions <- function(HelpType="1") {
            '<li> Make a population with known <i>r<sub>p</sub></i>.',
            '<li> Draw samples from it and see how much <i>r<sub>s</sub></i> differs from <i>r<sub>p</sub></i>.',
            '<li> Repeat this with <i>r<sub>p</sub></i> set to zero.',
-           '<li> And now see what sample effect sizes are produced.',
+           '<li> Notice that we can get quite large values for <i>r<sub>s</sub></i> .',
            '</ul>'
          )
          },
@@ -45,7 +45,7 @@ demoInstructions <- function(HelpType="1") {
          "4"={output<-c(
            '<b>Demo 2a</b>',
            '<br>',
-           'A demo to see how far getting a significant result depends on luck.',
+           'A demo to see how far getting a significant result depends on chance.',
            '<ul style=margin:0px;>',
            '<li> Make individual samples and see whether they are significant or not.',
            '<li> Use the "Multiple" function to make a large number of samples.',
@@ -57,9 +57,9 @@ demoInstructions <- function(HelpType="1") {
          "5"={output<-c(
            '<b>Demo 2b</b>',
            '<br>',
-           'A demo about the uncertainty in NHST - is the inference correct or an error.',
+           'A demo about the uncertainty in NHST - is the inference correct or an error?',
            '<ul style=margin:0px;>',
-           '<li> Make a world where 50% of samples are null effects.',
+           '<li> Make a world where 50% of samples come from null effects.',
            '<li> Try and guess whether any sample has a null effect or not.',
            '<li> See how sample size changes this.',
            '</ul>'
@@ -69,7 +69,7 @@ demoInstructions <- function(HelpType="1") {
          "6"={output<-c(
            '<b>Demo 2c</b>',
            '<br>',
-           'A demo about the importance of design.',
+           'A demo about the importance of design - larger samples have lower uncertainty.',
            '<ul style=margin:0px;>',
            '<li> Use the "Multiple" function to make a large number of samples.',
            '<li> Repeat this with different sample sizes. Larger samples give more chance of a significant result.',

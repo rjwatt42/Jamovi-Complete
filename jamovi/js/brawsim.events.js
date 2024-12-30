@@ -802,6 +802,7 @@ let defaultSetUp = function(ui) {
       ui.SampleSpreadOn.setValue(false)
       ui.SampleSize.setValue(42)
         ui.SampleMethod.setValue("Random")
+      ui.doSEM.setValue(false)
       ui.inferVar1.setValue("rs")
       ui.inferVar2.setValue("p")
       ui.showInferDimension.setValue("1D")

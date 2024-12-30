@@ -358,14 +358,6 @@ children:
                                                         minWidth: 13
                                                       - type: Label
                                                         label: '- and repeat steps 1 & 2 again'
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: ' '
-                                                        minWidth: 13
-                                                      - type: Label
-                                                        label: '- can you see a difference?'
                                           - type: LayoutBox
                                             style: inline
                                             children:
@@ -409,7 +401,7 @@ children:
                                           - type: Label
                                             label: Choose two Interval variables
                                           - type: Label
-                                            label: Set the population effect-size to rp=0.3
+                                            label: Set the effect size (rp) IV->DV to 0.3
                                       - name: doProject1CsBtn
                                         type: ActionButton
                                         margin: none
@@ -449,7 +441,7 @@ children:
                                                         label: ' '
                                                         minWidth: 13
                                                       - type: Label
-                                                        label: '   - noting rs, the sample effect size'
+                                                        label: '   - compare rs, the sample effect size, to rp (0.3)'
                                                   - type: LayoutBox
                                                     style: inline
                                                     children:
@@ -830,14 +822,6 @@ children:
                                                         label: ' '
                                                         minWidth: 13
                                                       - type: Label
-                                                        label: '   - noting the statistical significance'
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: ' '
-                                                        minWidth: 13
-                                                      - type: Label
                                                         label: >-
                                                           - can you say which population it came
                                                           from?
@@ -938,7 +922,7 @@ children:
                                                         label: ' '
                                                         minWidth: 13
                                                       - type: Label
-                                                        label: '- do this several times'
+                                                        label: '- you can see the inferential errors'
                                                   - type: LayoutBox
                                                     style: inline
                                                     children:
@@ -946,7 +930,7 @@ children:
                                                         label: ' '
                                                         minWidth: 13
                                                       - type: Label
-                                                        label: '- all the results lie on the same curve'
+                                                        label: '- do this several times'
                                           - type: LayoutBox
                                             style: inline
                                             children:
@@ -1058,14 +1042,6 @@ children:
                                                         minWidth: 13
                                                       - type: Label
                                                         label: '- and view it as "p(sig)"'
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: ' '
-                                                        minWidth: 13
-                                                      - type: Label
-                                                        label: '   - note the probability of p<0.05'
                                           - type: LayoutBox
                                             style: inline
                                             children:
@@ -1100,7 +1076,7 @@ children:
                                                         label: ' '
                                                         minWidth: 13
                                                       - type: Label
-                                                        label: '- try several different values for n'
+                                                        label: '- how does p(sig) vary with n?'
                                                   - type: LayoutBox
                                                     style: inline
                                                     children:
@@ -1176,8 +1152,8 @@ children:
                                                         minWidth: 13
                                                       - type: Label
                                                         label: >-
-                                                          - what is n(80) the sample size to give
-                                                          p(sig)=0.8 ?
+                                                          - n80 is the sample size to give
+                                                          p(sig)=0.8?
                                           - type: LayoutBox
                                             style: inline
                                             children:
@@ -1220,7 +1196,7 @@ children:
                                                         label: ' '
                                                         minWidth: 13
                                                       - type: Label
-                                                        label: '- what happens to n(80)?'
+                                                        label: '- what happens to n80?'
                                                   - type: LayoutBox
                                                     style: inline
                                                     children:
@@ -1294,9 +1270,9 @@ children:
                                         minWidth: 301
                                         children:
                                           - type: Label
-                                            label: Choose three variables variables
+                                            label: Choose a hypothesis with three variables
                                           - type: Label
-                                            label: Set all effect-sizes to 0.0
+                                            label: Set all effect sizes to 0.0
                                           - type: Label
                                             label: Set sample size to 1000
                                       - type: LayoutBox
@@ -1342,15 +1318,7 @@ children:
                                                         label: ' '
                                                         minWidth: 13
                                                       - type: Label
-                                                        label: '- choose a value for it'
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: ' '
-                                                        minWidth: 13
-                                                      - type: Label
-                                                        label: '- make another sample'
+                                                        label: '- make a sample'
                                                   - type: LayoutBox
                                                     style: inline
                                                     children:
@@ -1359,16 +1327,7 @@ children:
                                                         minWidth: 13
                                                       - type: Label
                                                         label: >-
-                                                          - notice that the main effect2 and
-                                                          interaction
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: ' '
-                                                        minWidth: 26
-                                                      - type: Label
-                                                        label: remain close to zero
+                                                          - notice the other effect sizes 
                                           - type: LayoutBox
                                             style: inline
                                             children:
@@ -1408,14 +1367,6 @@ children:
                                               - type: LayoutBox
                                                 style: list
                                                 children:
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: ' '
-                                                        minWidth: 13
-                                                      - type: Label
-                                                        label: '- choose a value for it'
                                                   - type: LayoutBox
                                                     style: inline
                                                     children:
@@ -1471,14 +1422,6 @@ children:
                                               - type: LayoutBox
                                                 style: list
                                                 children:
-                                                  - type: LayoutBox
-                                                    style: inline
-                                                    children:
-                                                      - type: Label
-                                                        label: ' '
-                                                        minWidth: 13
-                                                      - type: Label
-                                                        label: '- choose a value for it'
                                                   - type: LayoutBox
                                                     style: inline
                                                     children:
@@ -1549,7 +1492,7 @@ children:
                                                         label: ' '
                                                         minWidth: 13
                                                       - type: Label
-                                                        label: '- and then makiong a sample'
+                                                        label: '- make a sample'
                                                   - type: LayoutBox
                                                     style: inline
                                                     children:
@@ -1607,7 +1550,7 @@ children:
                                         margin: none
                                         children:
                                           - type: Label
-                                            label: Choose three variables variables
+                                            label: Choose a hypothesis with three variables
                                           - type: Label
                                             label: Set all effect-sizes to 0.0
                                           - type: Label
@@ -1875,9 +1818,7 @@ children:
                                                         label: ' '
                                                         minWidth: 13
                                                       - type: Label
-                                                        label: >-
-                                                          '- can you see any indication of the
-                                                          covariation?'
+                                                        label: '- can you see any indication of the covariation?'
                                           - type: LayoutBox
                                             style: inline
                                             children:
@@ -1952,7 +1893,7 @@ children:
                                         minWidth: 301
                                         children:
                                           - type: Label
-                                            label: 2. explore the amount of covariation
+                                            label: 3. explore the amount of covariation
                                           - type: LayoutBox
                                             style: inline
                                             children:

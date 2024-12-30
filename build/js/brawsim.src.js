@@ -731,24 +731,6 @@ view.layout = ui.extend({
 																													label: "- and repeat steps 1 & 2 again"
 																												}
 																											]
-																										},
-																										{
-																											type: DefaultControls.LayoutBox,
-																											typeName: 'LayoutBox',
-																											style: "inline",
-																											controls: [
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: " ",
-																													minWidth: 13
-																												},
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: "- can you see a difference?"
-																												}
-																											]
 																										}
 																									]
 																								}
@@ -839,7 +821,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "Set the population effect-size to rp=0.3"
+																							label: "Set the effect size (rp) IV->DV to 0.3"
 																						}
 																					]
 																				},
@@ -920,7 +902,7 @@ view.layout = ui.extend({
 																												{
 																													type: DefaultControls.Label,
 																													typeName: 'Label',
-																													label: "   - noting rs, the sample effect size"
+																													label: "   - compare rs, the sample effect size, to rp (0.3)"
 																												}
 																											]
 																										},
@@ -1715,24 +1697,6 @@ view.layout = ui.extend({
 																												{
 																													type: DefaultControls.Label,
 																													typeName: 'Label',
-																													label: "   - noting the statistical significance"
-																												}
-																											]
-																										},
-																										{
-																											type: DefaultControls.LayoutBox,
-																											typeName: 'LayoutBox',
-																											style: "inline",
-																											controls: [
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: " ",
-																													minWidth: 13
-																												},
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
 																													label: "- can you say which population it came from?"
 																												}
 																											]
@@ -1937,7 +1901,7 @@ view.layout = ui.extend({
 																												{
 																													type: DefaultControls.Label,
 																													typeName: 'Label',
-																													label: "- do this several times"
+																													label: "- you can see the inferential errors"
 																												}
 																											]
 																										},
@@ -1955,7 +1919,7 @@ view.layout = ui.extend({
 																												{
 																													type: DefaultControls.Label,
 																													typeName: 'Label',
-																													label: "- all the results lie on the same curve"
+																													label: "- do this several times"
 																												}
 																											]
 																										}
@@ -2189,24 +2153,6 @@ view.layout = ui.extend({
 																													label: "- and view it as \"p(sig)\""
 																												}
 																											]
-																										},
-																										{
-																											type: DefaultControls.LayoutBox,
-																											typeName: 'LayoutBox',
-																											style: "inline",
-																											controls: [
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: " ",
-																													minWidth: 13
-																												},
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: "   - note the probability of p<0.05"
-																												}
-																											]
 																										}
 																									]
 																								}
@@ -2279,7 +2225,7 @@ view.layout = ui.extend({
 																												{
 																													type: DefaultControls.Label,
 																													typeName: 'Label',
-																													label: "- try several different values for n"
+																													label: "- how does p(sig) vary with n?"
 																												}
 																											]
 																										},
@@ -2427,7 +2373,7 @@ view.layout = ui.extend({
 																												{
 																													type: DefaultControls.Label,
 																													typeName: 'Label',
-																													label: "- what is n(80) the sample size to give p(sig)=0.8 ?"
+																													label: "- n80 is the sample size to give p(sig)=0.8?"
 																												}
 																											]
 																										}
@@ -2520,7 +2466,7 @@ view.layout = ui.extend({
 																												{
 																													type: DefaultControls.Label,
 																													typeName: 'Label',
-																													label: "- what happens to n(80)?"
+																													label: "- what happens to n80?"
 																												}
 																											]
 																										},
@@ -2669,12 +2615,12 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "Choose three variables variables"
+																							label: "Choose a hypothesis with three variables"
 																						},
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "Set all effect-sizes to 0.0"
+																							label: "Set all effect sizes to 0.0"
 																						},
 																						{
 																							type: DefaultControls.Label,
@@ -2761,7 +2707,7 @@ view.layout = ui.extend({
 																												{
 																													type: DefaultControls.Label,
 																													typeName: 'Label',
-																													label: "- choose a value for it"
+																													label: "- make a sample"
 																												}
 																											]
 																										},
@@ -2779,43 +2725,7 @@ view.layout = ui.extend({
 																												{
 																													type: DefaultControls.Label,
 																													typeName: 'Label',
-																													label: "- make another sample"
-																												}
-																											]
-																										},
-																										{
-																											type: DefaultControls.LayoutBox,
-																											typeName: 'LayoutBox',
-																											style: "inline",
-																											controls: [
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: " ",
-																													minWidth: 13
-																												},
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: "- notice that the main effect2 and interaction"
-																												}
-																											]
-																										},
-																										{
-																											type: DefaultControls.LayoutBox,
-																											typeName: 'LayoutBox',
-																											style: "inline",
-																											controls: [
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: " ",
-																													minWidth: 26
-																												},
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: "remain close to zero"
+																													label: "- notice the other effect sizes "
 																												}
 																											]
 																										}
@@ -2895,24 +2805,6 @@ view.layout = ui.extend({
 																									typeName: 'LayoutBox',
 																									style: "list",
 																									controls: [
-																										{
-																											type: DefaultControls.LayoutBox,
-																											typeName: 'LayoutBox',
-																											style: "inline",
-																											controls: [
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: " ",
-																													minWidth: 13
-																												},
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: "- choose a value for it"
-																												}
-																											]
-																										},
 																										{
 																											type: DefaultControls.LayoutBox,
 																											typeName: 'LayoutBox',
@@ -3025,24 +2917,6 @@ view.layout = ui.extend({
 																									typeName: 'LayoutBox',
 																									style: "list",
 																									controls: [
-																										{
-																											type: DefaultControls.LayoutBox,
-																											typeName: 'LayoutBox',
-																											style: "inline",
-																											controls: [
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: " ",
-																													minWidth: 13
-																												},
-																												{
-																													type: DefaultControls.Label,
-																													typeName: 'Label',
-																													label: "- choose a value for it"
-																												}
-																											]
-																										},
 																										{
 																											type: DefaultControls.LayoutBox,
 																											typeName: 'LayoutBox',
@@ -3187,7 +3061,7 @@ view.layout = ui.extend({
 																												{
 																													type: DefaultControls.Label,
 																													typeName: 'Label',
-																													label: "- and then makiong a sample"
+																													label: "- make a sample"
 																												}
 																											]
 																										},
@@ -3305,7 +3179,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "Choose three variables variables"
+																							label: "Choose a hypothesis with three variables"
 																						},
 																						{
 																							type: DefaultControls.Label,
@@ -3849,7 +3723,7 @@ view.layout = ui.extend({
 																												{
 																													type: DefaultControls.Label,
 																													typeName: 'Label',
-																													label: "'- can you see any indication of the covariation?'"
+																													label: "- can you see any indication of the covariation?"
 																												}
 																											]
 																										}
@@ -4003,7 +3877,7 @@ view.layout = ui.extend({
 																						{
 																							type: DefaultControls.Label,
 																							typeName: 'Label',
-																							label: "2. explore the amount of covariation"
+																							label: "3. explore the amount of covariation"
 																						},
 																						{
 																							type: DefaultControls.LayoutBox,
