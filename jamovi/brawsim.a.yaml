@@ -10,10 +10,22 @@ options:
       type: Action
       title: '?'
       
-    - name: simHelp
+    - name: demo1Help
       type: Action
       title: '?'
       
+    - name: demo2Help
+      type: Action
+      title: '?'
+      
+    - name: demo3Help
+      type: Action
+      title: '?'
+      
+    - name: simHelp
+      type: Action
+      title: '?'
+    
     - name: simPlanHelp
       type: Action
       title: '?'
@@ -1362,22 +1374,12 @@ options:
       title: multiple
       type: Output
       default: FALSE
-      
-    - name: jamoviHelp
-      title: Jamovi help?
-      type: Bool
-      default: true
-      
+
     - name: brawHelp
       title: Main help?
       type: Bool
       default: true
-      
-    - name: demoHelp
-      title: Demo help?
-      type: Bool
-      default: true
- 
+
     - name: showHTML
       title: HTML graphics?
       type: Bool

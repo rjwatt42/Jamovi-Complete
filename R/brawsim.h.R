@@ -7,6 +7,9 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     public = list(
         initialize = function(
             demosHelp = NULL,
+            demo1Help = NULL,
+            demo2Help = NULL,
+            demo3Help = NULL,
             simHelp = NULL,
             simPlanHelp = NULL,
             simSingleHelp = NULL,
@@ -143,9 +146,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             showExploreParam = "Basic",
             showExploreDimension = "1D",
             whichShowMultiple = "all",
-            jamoviHelp = TRUE,
             brawHelp = TRUE,
-            demoHelp = TRUE,
             showHTML = FALSE,
             doProject1AhBtn = NULL,
             doProject1AsBtn = NULL,
@@ -217,6 +218,15 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..demosHelp <- jmvcore::OptionAction$new(
                 "demosHelp",
                 demosHelp)
+            private$..demo1Help <- jmvcore::OptionAction$new(
+                "demo1Help",
+                demo1Help)
+            private$..demo2Help <- jmvcore::OptionAction$new(
+                "demo2Help",
+                demo2Help)
+            private$..demo3Help <- jmvcore::OptionAction$new(
+                "demo3Help",
+                demo3Help)
             private$..simHelp <- jmvcore::OptionAction$new(
                 "simHelp",
                 simHelp)
@@ -1074,17 +1084,9 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "sendSample")
             private$..sendMultiple <- jmvcore::OptionOutput$new(
                 "sendMultiple")
-            private$..jamoviHelp <- jmvcore::OptionBool$new(
-                "jamoviHelp",
-                jamoviHelp,
-                default=TRUE)
             private$..brawHelp <- jmvcore::OptionBool$new(
                 "brawHelp",
                 brawHelp,
-                default=TRUE)
-            private$..demoHelp <- jmvcore::OptionBool$new(
-                "demoHelp",
-                demoHelp,
                 default=TRUE)
             private$..showHTML <- jmvcore::OptionBool$new(
                 "showHTML",
@@ -1370,6 +1372,9 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 doProject3C3Btn)
 
             self$.addOption(private$..demosHelp)
+            self$.addOption(private$..demo1Help)
+            self$.addOption(private$..demo2Help)
+            self$.addOption(private$..demo3Help)
             self$.addOption(private$..simHelp)
             self$.addOption(private$..simPlanHelp)
             self$.addOption(private$..simSingleHelp)
@@ -1508,9 +1513,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..whichShowMultiple)
             self$.addOption(private$..sendSample)
             self$.addOption(private$..sendMultiple)
-            self$.addOption(private$..jamoviHelp)
             self$.addOption(private$..brawHelp)
-            self$.addOption(private$..demoHelp)
             self$.addOption(private$..showHTML)
             self$.addOption(private$..doProject1AhBtn)
             self$.addOption(private$..doProject1AsBtn)
@@ -1575,6 +1578,9 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         }),
     active = list(
         demosHelp = function() private$..demosHelp$value,
+        demo1Help = function() private$..demo1Help$value,
+        demo2Help = function() private$..demo2Help$value,
+        demo3Help = function() private$..demo3Help$value,
         simHelp = function() private$..simHelp$value,
         simPlanHelp = function() private$..simPlanHelp$value,
         simSingleHelp = function() private$..simSingleHelp$value,
@@ -1713,9 +1719,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         whichShowMultiple = function() private$..whichShowMultiple$value,
         sendSample = function() private$..sendSample$value,
         sendMultiple = function() private$..sendMultiple$value,
-        jamoviHelp = function() private$..jamoviHelp$value,
         brawHelp = function() private$..brawHelp$value,
-        demoHelp = function() private$..demoHelp$value,
         showHTML = function() private$..showHTML$value,
         doProject1AhBtn = function() private$..doProject1AhBtn$value,
         doProject1AsBtn = function() private$..doProject1AsBtn$value,
@@ -1779,6 +1783,9 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         doProject3C3Btn = function() private$..doProject3C3Btn$value),
     private = list(
         ..demosHelp = NA,
+        ..demo1Help = NA,
+        ..demo2Help = NA,
+        ..demo3Help = NA,
         ..simHelp = NA,
         ..simPlanHelp = NA,
         ..simSingleHelp = NA,
@@ -1917,9 +1924,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..whichShowMultiple = NA,
         ..sendSample = NA,
         ..sendMultiple = NA,
-        ..jamoviHelp = NA,
         ..brawHelp = NA,
-        ..demoHelp = NA,
         ..showHTML = NA,
         ..doProject1AhBtn = NA,
         ..doProject1AsBtn = NA,
@@ -2109,6 +2114,9 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' 
 #' @param demosHelp .
+#' @param demo1Help .
+#' @param demo2Help .
+#' @param demo3Help .
 #' @param simHelp .
 #' @param simPlanHelp .
 #' @param simSingleHelp .
@@ -2245,9 +2253,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param showExploreParam .
 #' @param showExploreDimension .
 #' @param whichShowMultiple .
-#' @param jamoviHelp .
 #' @param brawHelp .
-#' @param demoHelp .
 #' @param showHTML .
 #' @param doProject1AhBtn .
 #' @param doProject1AsBtn .
@@ -2324,6 +2330,9 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @export
 BrawSim <- function(
     demosHelp,
+    demo1Help,
+    demo2Help,
+    demo3Help,
     simHelp,
     simPlanHelp,
     simSingleHelp,
@@ -2460,9 +2469,7 @@ BrawSim <- function(
     showExploreParam = "Basic",
     showExploreDimension = "1D",
     whichShowMultiple = "all",
-    jamoviHelp = TRUE,
     brawHelp = TRUE,
-    demoHelp = TRUE,
     showHTML = FALSE,
     doProject1AhBtn,
     doProject1AsBtn,
@@ -2531,6 +2538,9 @@ BrawSim <- function(
 
     options <- BrawSimOptions$new(
         demosHelp = demosHelp,
+        demo1Help = demo1Help,
+        demo2Help = demo2Help,
+        demo3Help = demo3Help,
         simHelp = simHelp,
         simPlanHelp = simPlanHelp,
         simSingleHelp = simSingleHelp,
@@ -2667,9 +2677,7 @@ BrawSim <- function(
         showExploreParam = showExploreParam,
         showExploreDimension = showExploreDimension,
         whichShowMultiple = whichShowMultiple,
-        jamoviHelp = jamoviHelp,
         brawHelp = brawHelp,
-        demoHelp = demoHelp,
         showHTML = showHTML,
         doProject1AhBtn = doProject1AhBtn,
         doProject1AsBtn = doProject1AsBtn,

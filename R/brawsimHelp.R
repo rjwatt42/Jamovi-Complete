@@ -43,21 +43,22 @@ brawDemosHelp<-function(open,indent,titleWidth,demos) {
     demoInstructions("start"),
     generate_tab(
       title="Samples of Data:",
-      tabs=c("start","1a","1b","1c"),
-      indent=50,
-      titleWidth=0,
+      tabs=c("Overview","1a","1b","1c"),
+      indent=0,
+      titleWidth=titleWidth,
       tabContents=c(
         demoInstructions("1"),
         demoInstructions("1a"),
         demoInstructions("1b"),
         demoInstructions("1c")
       ),
+      plain=1,
       open=open[2]
     ),
     generate_tab(
       title="Uncertainty & Design:",
-      tabs=c("start","2a","2b","2c"),
-      indent=50,
+      tabs=c("Overview","2a","2b","2c"),
+      indent=0,
       titleWidth=0,
       tabContents=c(
         demoInstructions("2"),
@@ -69,8 +70,8 @@ brawDemosHelp<-function(open,indent,titleWidth,demos) {
     ),
     generate_tab(
       title="Linear Models:",
-      tabs=c("start","3a","3b","3c"),
-      indent=50,
+      tabs=c("Overview","3a","3b","3c"),
+      indent=0,
       titleWidth=0,
       tabContents=c(
         demoInstructions("3"),
@@ -82,8 +83,8 @@ brawDemosHelp<-function(open,indent,titleWidth,demos) {
     ),
     generate_tab(
       title="Path Models:",
-      tabs=c("start","4a","4b","4c"),
-      indent=50,
+      tabs=c("Overview","4a","4b","4c"),
+      indent=0,
       titleWidth=0,
       tabContents=c(
         demoInstructions("4"),
@@ -99,8 +100,8 @@ brawDemosHelp<-function(open,indent,titleWidth,demos) {
 
     return( generate_tab(
       title="Demos:",
-      indent=0,
-      titleWidth=50,
+      indent=indent,
+      titleWidth=titleWidth,
       plainTabs=TRUE,
       plain=1,
       tabs=demoTabNames,
