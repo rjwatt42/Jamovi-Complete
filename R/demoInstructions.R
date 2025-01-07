@@ -2,6 +2,22 @@ demoInstructions <- function(HelpType="1") {
   
 
   switch(HelpType,
+         "start"={
+           output<-c(
+             '<b>Getting started</b>',
+             '<br>',
+             'These demos show how basic statistics works.',
+             'If you work through them in sequence, you will be exploring the range of statistical principles that lie behind most analysis.',
+             '<ul style=margin:0px;>',
+             '<li> Data: some basic characteristics of data',
+             '<li> Uncertainty: why samples are never the same as the population',
+             '<li> Linear models: puting several variables to work simultaneously',
+             '<li> Path models: doing more complex, imaginative analysis <i>(to follow)</i>',
+             '<li> Replication: repeating a result to check it <i>(to follow)</i>',
+             '<li> Meta-analysis: combining many different results <i>(to follow)</i>',
+             '</ul>'
+           )
+         },
          "1a"={output<-c(
            '<b>Demo 1a</b>',
            '<br>',

@@ -7,13 +7,15 @@ children:
   - type: Label
     label: Learning Stats by Demonstration
     children:
-      - type: Label
-        label: >-
-          A sequence of demos to work through that will cover the main
-          principles of statistics
+    - type: Label
+      label: A sequence of demos to work through that cover the main principles of statistics
+    - type: LayoutBox
+      style: inline
+      children:
       - type: CollapseBox
         collapsed: true
         label: Demos
+        minWidth: 343
         maxWidth: 343
         children:
           - type: Label
@@ -2158,14 +2160,25 @@ children:
                             minWidth: 10
                             maxWidth: 10
                             maxHeight: 24
+      - type: ActionButton
+        name: demosHelp
+        margin: none
+        minWidth: 10
+        maxWidth: 10
+        maxHeight: 24
+
   - type: Label
     label: Learning Stats by Experiment
     children:
-      - type: Label
-        label: Run simulations of different research situations to see how they work
+    - type: Label
+      label: Run simulations of different research situations to see how they work
+    - type: LayoutBox
+      style: inline
+      children:
       - type: CollapseBox
         collapsed: true
         label: Simulation
+        minWidth: 343
         maxWidth: 343
         children:
           - type: Label
@@ -3547,6 +3560,12 @@ children:
                                     name: showExploreDimension
                                     minWidth: 50
                                     enable: (showExploreParam:Basic && !MetaAnalysisOn)
+      - type: ActionButton
+        name: simHelp
+        margin: none
+        minWidth: 10
+        maxWidth: 10
+        maxHeight: 24
   - type: Label
     label: ' '
   - type: CollapseBox

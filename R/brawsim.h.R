@@ -6,6 +6,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
+            demosHelp = NULL,
+            simHelp = NULL,
             planOptions = NULL,
             presetDV = "Blank",
             presetIV = "Blank",
@@ -214,6 +216,12 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 requiresData=FALSE,
                 ...)
 
+            private$..demosHelp <- jmvcore::OptionAction$new(
+                "demosHelp",
+                demosHelp)
+            private$..simHelp <- jmvcore::OptionAction$new(
+                "simHelp",
+                simHelp)
             private$..planOptions <- jmvcore::OptionList$new(
                 "planOptions",
                 planOptions,
@@ -1378,6 +1386,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "doProject4A3Btn",
                 doProject4A3Btn)
 
+            self$.addOption(private$..demosHelp)
+            self$.addOption(private$..simHelp)
             self$.addOption(private$..planOptions)
             self$.addOption(private$..presetDV)
             self$.addOption(private$..presetIV)
@@ -1583,6 +1593,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..doProject4A3Btn)
         }),
     active = list(
+        demosHelp = function() private$..demosHelp$value,
+        simHelp = function() private$..simHelp$value,
         planOptions = function() private$..planOptions$value,
         presetDV = function() private$..presetDV$value,
         presetIV = function() private$..presetIV$value,
@@ -1787,6 +1799,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         doProject4A2Lst = function() private$..doProject4A2Lst$value,
         doProject4A3Btn = function() private$..doProject4A3Btn$value),
     private = list(
+        ..demosHelp = NA,
+        ..simHelp = NA,
         ..planOptions = NA,
         ..presetDV = NA,
         ..presetIV = NA,
@@ -2120,6 +2134,8 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' BrawStats:Simulate Data
 #'
 #' 
+#' @param demosHelp .
+#' @param simHelp .
 #' @param planOptions .
 #' @param presetDV .
 #' @param presetIV .
@@ -2335,6 +2351,8 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 BrawSim <- function(
+    demosHelp,
+    simHelp,
     planOptions,
     presetDV = "Blank",
     presetIV = "Blank",
@@ -2542,6 +2560,8 @@ BrawSim <- function(
 
 
     options <- BrawSimOptions$new(
+        demosHelp = demosHelp,
+        simHelp = simHelp,
         planOptions = planOptions,
         presetDV = presetDV,
         presetIV = presetIV,

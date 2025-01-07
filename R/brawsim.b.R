@@ -26,6 +26,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           whichShowExploreOut="all",
                           exploreMode="Design",
                           demoWhich="blank",
+                          brawHelpWhich<-0,
                           openJamovi=0,
                           planMode=NULL,
                           nrowTableLM=1,
@@ -62,8 +63,12 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         if (!self$results$simGraph$visible) self$results$simGraph$setVisible(TRUE)
         if (!self$results$simReport$visible) self$results$simReport$setVisible(TRUE)
       }
+
+      statusStore$brawHelpWhich<-0
+      if (self$options$simHelp) statusStore$brawHelpWhich<-1
       
       statusStore$demoWhich<-'blank'
+      if (self$options$demosHelp) statusStore$demoWhich<-'start'
       if (self$options$doProject1AhBtn) statusStore$demoWhich<-'d1'
       if (self$options$doProject1BhBtn) statusStore$demoWhich<-'d2'
       if (self$options$doProject1ChBtn) statusStore$demoWhich<-'d3'
@@ -268,7 +273,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             BrawInstructions("Explore"),
             BrawInstructions("Key")
           ),
-          open=0
+          open=statusStore$brawHelpWhich
         )
         help<-paste0(help,brawHelp)
       }
@@ -291,18 +296,19 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       open0<-0; open1<-0; open2<-0
       switch(statusStore$demoWhich,
              "blank"={open0<-0;open1<-0;open2<-0},
-             "d1"={open0<-2;open1<-1;open2<-1},
-             "d2"={open0<-2;open1<-1;open2<-2},
-             "d3"={open0<-2;open1<-1;open2<-3},
-             "d4"={open0<-2;open1<-2;open2<-1},
-             "d5"={open0<-2;open1<-2;open2<-2},
-             "d6"={open0<-2;open1<-2;open2<-3},
-             "d7"={open0<-2;open1<-3;open2<-1},
-             "d8"={open0<-2;open1<-3;open2<-2},
-             "d9"={open0<-2;open1<-3;open2<-3},
-             "d10"={open0<-2;open1<-4;open2<-1}
+             "start"={open0<-2;open1<-1;open2<-0},
+             "d1"={open0<-2;open1<-2;open2<-1},
+             "d2"={open0<-2;open1<-2;open2<-2},
+             "d3"={open0<-2;open1<-2;open2<-3},
+             "d4"={open0<-2;open1<-3;open2<-1},
+             "d5"={open0<-2;open1<-3;open2<-2},
+             "d6"={open0<-2;open1<-3;open2<-3},
+             "d7"={open0<-2;open1<-4;open2<-1},
+             "d8"={open0<-2;open1<-4;open2<-2},
+             "d9"={open0<-2;open1<-4;open2<-3},
+             "d10"={open0<-2;open1<-5;open2<-1}
       )
-      open0<-statusStore$openJamovi*2
+      open0<-max(0,statusStore$brawHelpWhich,statusStore$openJamovi*2)
       if (self$options$demoHelp || nestedHelp) {
         demoHelp<-private$.htmlwidget$generate_tab(
           title="Demos:",
@@ -310,8 +316,9 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           titleWidth=50,
           plainTabs=TRUE,
           plain=(nchar(help)>0),
-          tabs=c("Data","Uncertainty","Linear Models","Path Models"),
+          tabs=c("Start","Data","Uncertainty","Linear Models","Path Models"),
           tabContents = c(
+            demoInstructions("start"),
             private$.htmlwidget$generate_tab(
               title="Samples of Data:",
               tabs=c("1a","1b","1c"),

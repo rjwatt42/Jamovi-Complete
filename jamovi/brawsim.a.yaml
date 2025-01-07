@@ -6,6 +6,14 @@ version: '1.0.0'
 jas: '1.2'
 
 options:
+    - name: demosHelp
+      type: Action
+      title: '?'
+      
+    - name: simHelp
+      type: Action
+      title: '?'
+      
     - name: planOptions
       title: ' '
       type: List
