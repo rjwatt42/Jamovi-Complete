@@ -40,7 +40,7 @@ view.layout = ui.extend({
 							type: DefaultControls.Label,
 							typeName: 'Label',
 							label: "A sequence of demos to work through that cover the main principles of statistics",
-							minWidth: 500
+							minWidth: 490
 						},
 						{
 							type: DefaultControls.ActionButton,
@@ -63,8 +63,8 @@ view.layout = ui.extend({
 							typeName: 'CollapseBox',
 							collapsed: true,
 							label: "Demos",
-							minWidth: 500,
-							maxWidth: 500,
+							minWidth: 540,
+							maxWidth: 540,
 							controls: [
 								{
 									type: DefaultControls.Label,
@@ -4070,7 +4070,7 @@ view.layout = ui.extend({
 							type: DefaultControls.Label,
 							typeName: 'Label',
 							label: "Simulate different research situations to see how they work",
-							minWidth: 500
+							minWidth: 490
 						},
 						{
 							type: DefaultControls.ActionButton,
@@ -4093,8 +4093,8 @@ view.layout = ui.extend({
 							typeName: 'CollapseBox',
 							collapsed: true,
 							label: "Simulations",
-							minWidth: 500,
-							maxWidth: 500,
+							minWidth: 540,
+							maxWidth: 540,
 							controls: [
 								{
 									type: DefaultControls.Label,

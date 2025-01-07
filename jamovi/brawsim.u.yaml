@@ -14,7 +14,7 @@ children:
             label: >-
               A sequence of demos to work through that cover the main principles
               of statistics
-            minWidth: 500
+            minWidth: 490
           - type: ActionButton
             name: demosHelp
             margin: none
@@ -27,8 +27,8 @@ children:
           - type: CollapseBox
             collapsed: true
             label: Demos
-            minWidth: 500
-            maxWidth: 500
+            minWidth: 540
+            maxWidth: 540
             children:
               - type: Label
                 label: 1. Data
@@ -1994,7 +1994,7 @@ children:
         children:
           - type: Label
             label: Simulate different research situations to see how they work
-            minWidth: 500
+            minWidth: 490
           - type: ActionButton
             name: simHelp
             margin: none
@@ -2007,8 +2007,8 @@ children:
           - type: CollapseBox
             collapsed: true
             label: Simulations
-            minWidth: 500
-            maxWidth: 500
+            minWidth: 540
+            maxWidth: 540
             children:
               - type: Label
                 label: '1. Make a Plan: hypothesis, design & analysis'
