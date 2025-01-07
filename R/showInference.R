@@ -106,7 +106,7 @@ showInference<-function(analysis=braw.res$result,showType="Basic",dimension="1D"
              other2<-analysis1
            },
            "SEM"= {
-             showType<-c("rse","SEM")
+             showType<-c("rss","SEM")
            },
            "DV"= {
              showType=c("dv.mn","dv.sd","dv.sk","dv.kt")
@@ -125,7 +125,7 @@ showInference<-function(analysis=braw.res$result,showType="Basic",dimension="1D"
   } else {
     area.off<-0
     area.y<-1
-    if (!is.null(analysis$hypothesis$IV2) && showType[1]!="SEM") {
+    if (!is.null(analysis$hypothesis$IV2)) {
       if (whichEffect=="All" && !analysis$evidence$rInteractionOn) whichEffect<-"Mains"
       if (whichEffect=="All") {
         whichEffect<-c("Main 1","Main 2","Interaction")
@@ -152,14 +152,17 @@ showInference<-function(analysis=braw.res$result,showType="Basic",dimension="1D"
           g1<-plotInference(analysis2,otheranalysis=other2,disp=showType[2],
                             whichEffect=whichEffect[fi],effectType=effectType,
                             orientation=orientation,showTheory=showTheory,g=g1)
-        braw.env$plotArea<-c(0.55,0.5,0.45,0.5)
+          if (showType[3]=="SEM") braw.env$plotArea<-c(0.55,0,0.45,1)
+          else                    braw.env$plotArea<-c(0.55,0.5,0.45,0.5)
         g1<-plotInference(analysis1,otheranalysis=other1,disp=showType[3],
                           whichEffect=whichEffect[fi],effectType=effectType,
                           orientation=orientation,showTheory=showTheory,g=g1)
+        if (showType[4]!="SEM") {
           braw.env$plotArea<-c(0.55,0,0.45,0.5)
           g1<-plotInference(analysis2,otheranalysis=other2,disp=showType[4],
                             whichEffect=whichEffect[fi],effectType=effectType,
                             orientation=orientation,showTheory=showTheory,g=g1)
+        }
       }
     } else {
       if (orientation=="vert") nplots<-2
@@ -169,7 +172,8 @@ showInference<-function(analysis=braw.res$result,showType="Basic",dimension="1D"
                           whichEffect=whichEffect[fi],effectType=effectType,
                           orientation=orientation,showTheory=showTheory,g=g1)
         if (!is.na(showType[2])) {
-          braw.env$plotArea<-c(0.55,area.off[fi],0.45,area.y[fi])
+          if (showType[2]=="SEM") braw.env$plotArea<-c(0.55,0,0.45,1)
+          else braw.env$plotArea<-c(0.55,area.off[fi],0.45,area.y[fi])
           g1<-plotInference(analysis2,otheranalysis=other2,disp=showType[2],
                             whichEffect=whichEffect[fi],effectType=effectType,
                             orientation=orientation,showTheory=showTheory,g=g1)

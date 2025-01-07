@@ -2672,6 +2672,7 @@ children:
                                                 name: PoorSamplingAmount
                                                 format: number
                                                 margin: none
+                                                enable: (!SampleMethod:Random && !SampleMethod:Stratified)
                                           - type: LayoutBox
                                             style: inline
                                             margin: none
@@ -2749,6 +2750,7 @@ children:
                                                 name: CheatingBudget
                                                 margin: none
                                                 format: number
+                                                enable: (!Cheating:None)
                                               - type: Label
                                                 label: x SampleSize
                                                 margin: none
@@ -2784,14 +2786,6 @@ children:
                                           - type: ComboBox
                                             name: interaction
                                             enable: (!presetIV2:none)
-                                          - type: LayoutBox
-                                            style: inline
-                                            children:
-                                            - type: CheckBox
-                                              name: doSEM
-                                            - type: ComboBox
-                                              name: useAIC
-                                              enable: (doSEM)
                                       - type: Label
                                         label: Display
                                         children:
@@ -2843,6 +2837,14 @@ children:
                                                 name: ssq
                                                 format: number
                                                 enable: (!presetIV2:none)
+                                          - type: LayoutBox
+                                            style: inline
+                                            children:
+                                            - type: CheckBox
+                                              name: doSEM
+                                            - type: ComboBox
+                                              name: useAIC
+                                              enable: (doSEM)
                                       - type: Label
                                         label: Display
                                         children:
@@ -3176,10 +3178,11 @@ children:
                         maxWidth: 75
                       - type: ComboBox
                         name: showSampleType
+                        enable: (!MetaAnalysisOn)
                       - type: ComboBox
                         name: showInferDimension
                         minWidth: 50
-                        enable: (showSampleType:Infer)
+                        enable: (showSampleType:Infer && !MetaAnalysisOn)
               - type: CollapseBox
                 label: Multiple Samples
                 collapsed: true
@@ -3217,10 +3220,11 @@ children:
                             children:
                               - name: showMultipleParam
                                 type: ComboBox
+                                enable: (!MetaAnalysisOn)
                               - type: ComboBox
                                 name: showMultipleDimension
                                 minWidth: 50
-                                enable: (showMultipleParam:Basic)
+                                enable: (showMultipleParam:Basic && !MetaAnalysisOn)
           - type: Label
             label: 3. Explore plan decisions
             children:
@@ -3538,10 +3542,11 @@ children:
                                 children:
                                   - name: showExploreParam
                                     type: ComboBox
+                                    enable: (!MetaAnalysisOn)
                                   - type: ComboBox
                                     name: showExploreDimension
                                     minWidth: 50
-                                    enable: (showExploreParam:Basic)
+                                    enable: (showExploreParam:Basic && !MetaAnalysisOn)
   - type: Label
     label: ' '
   - type: CollapseBox

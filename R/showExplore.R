@@ -61,6 +61,13 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
 
   if (is.null(exploreResult)) exploreResult=doExplore()
 
+  explore<-exploreResult$explore
+  hypothesis<-exploreResult$hypothesis
+  effect<-hypothesis$effect
+  design<-exploreResult$design
+  evidence<-exploreResult$evidence
+  
+  
   showType<-strsplit(showType,";")[[1]]
   if (length(showType)==1) {
     switch(showType,
@@ -72,6 +79,8 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
            {}
     )
   }
+  if (is.element(explore$exploreType,c("NoStudies","MetaType"))) showType<-c("Lambda","pNull")
+  
   if (length(showType)>1 && showType[2]==" ") showType<-showType[1]
   
   if (!exploreResult$hypothesis$effect$world$worldOn && is.element(showType[1],c("NHST","Hits","Misses"))) {
@@ -90,13 +99,6 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
   
   quants<-(1-quantileShow)/2
   showPower<-TRUE # show power calculations?
-  
-  explore<-exploreResult$explore
-  hypothesis<-exploreResult$hypothesis
-  effect<-hypothesis$effect
-  design<-exploreResult$design
-  evidence<-exploreResult$evidence
-  
   
   oldAlpha<-braw.env$alphaSig
   on.exit(braw.env$alphaSig<-oldAlpha)
@@ -226,6 +228,12 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
   ySecond<-NULL
   
   if (showType[si]=="SEM") ylim<-c(0,1)
+  if (showType[si]=="AIC") {
+    ylim<-c(-1,0.1)*design$sN*hypothesis$DV$sd
+    ylabel<-"diff(AIC)"
+  }
+  # if (showType[si]=="AIC" && explore$exploreType=="n") 
+  #     ylim<-c(-1.5*explore$minVal,1.5*explore$maxVal)*hypothesis$DV$sd
   if (showType[si]=="p" && braw.env$pPlotScale=="log10" && any(exploreResult$result$pval>0)) 
     while (mean(log10(exploreResult$result$pval)>ylim[1])<0.75) ylim[1]<-ylim[1]-1
   
@@ -271,7 +279,7 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
   
   for (whichEffect in whichEffects) {
     yi<-which(whichEffect == whichEffects)
-    if (length(showType)==1 && !is.null(hypothesis$IV2))  {
+    if (length(showType)==1 && !is.null(hypothesis$IV2) && showType[1]!="SEM")  {
       useLabel<-c("Main 1","Main 2","Interaction")[whichEffect]
     } else {
       useLabel<-""
@@ -536,21 +544,27 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
               "likelihood"={
                 showVals<-result$likes
               },
+              "llknull"={
+                showVals<-log10(exp(-0.5*(result$aic-result$aicNull)))
+              },
+              "AIC"={
+                showVals<-result$aic-result$aicNull
+              },
               "SEM"={
                 rarrow<-'\u2192'
                 barrow<-'\u2190\u2192'
                 showLabels<-c("DV",
                                   paste0("IV",rarrow,"DV"),
                                   paste0("IV2",rarrow,"DV"),
-                                  paste0("IV",rarrow,"IV2",rarrow,"DV"),
                                   paste0("IV2",rarrow,"IV",rarrow,"DV"),
+                                  paste0("IV",rarrow,"IV2",rarrow,"DV"),
                                   paste0("(IV + IV2)",rarrow,"DV"),
                                   paste0("(IV" ,barrow, "IV2)",rarrow,"DV")
                 )
+                if (is.null(hypothesis$IV2)) ng<-2 else ng<-7
                 nulls<-rpVals==0
                 semProps<-c()
                 semPropsNull<-c()
-                if (is.null(hypothesis$IV2)) ng<-2 else ng<-7
                 if (all(nulls) || all(!nulls)) {
                   for (ig in ng:1) semProps<-rbind(semProps,colMeans(result$sem==ig))
                   showVals<-semProps
@@ -565,6 +579,7 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
                   ng<-ng*2
                 }
                 showCols<-rev(plotAxis("SEM",hypothesis,design)$cols[1:ng])
+                showCols[rowSums(showVals)==0]<-NA
               },
               "log(lrs)"={
                 ns<-result$nval
@@ -800,7 +815,7 @@ showExplore<-function(exploreResult=braw.res$explore,showType="Basic",dimension=
               g<-addG(g,dataPoint(data=ptsShow,fill=colShow))
             } else {
               if (doLine) {
-                g<-addG(g,dataPolygon(data=ptsShow,fill=colShow,colour=colShow))
+                g<-addG(g,dataPolygon(data=ptsShow,fill=colShow,colour="black",linewidth=0.1))
               } else {
                   npts<-length(vals)
                   bwidth<-0.4*(ptsShow$x[2]-ptsShow$x[1])
@@ -986,7 +1001,7 @@ showExplore2D<-function(exploreResult=braw.res$explore,showType=c("rs","p"),show
   ycols<-yaxis$cols
   ylines<-yaxis$lines
   ySecond<-NULL
-  
+
   if ((showType[2]=="rs") && (!is.null(IV2))) switch(whichEffect,ylabel<-"Main 1",ylabel<-"Main 2",ylabel<-"Interaction")
   if (showType[1]=="p" && braw.env$pPlotScale=="log10" && any(exploreResult$result$pval>0)) 
     while (mean(log10(exploreResult$result$pval)>xlim[1])<0.75) xlim[1]<-xlim[1]-1

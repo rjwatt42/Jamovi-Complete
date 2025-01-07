@@ -387,6 +387,8 @@ options:
         title: normal
       - name: path
         title: path
+      - name: lpath
+        title: lpath
       default: normal
       
     - name: Heteroscedasticity
@@ -861,13 +863,15 @@ options:
           title: p
         - name: n
           title: n
+        - name: blank1
+          title: ' '
         - name: sLLR
           title: sLLR
         - name: llknull
           title: 'llk(~null)'
-        - name: SEM
-          title: SEM
-        - name: blank1
+        - name: AIC
+          title: AIC
+        - name: blank2
           title: " "
         - name: ws
           title: ws
@@ -875,7 +879,7 @@ options:
           title: wp
         - name: nw
           title: nw
-        - name: blank2
+        - name: blank3
           title: " "
         - name: ro
           title: ro
@@ -899,11 +903,15 @@ options:
           title: p
         - name: n
           title: n
+        - name: blank1
+          title: ' '
         - name: sLLR
           title: sLLR
         - name: llknull
           title: 'llk(~null)'
-        - name: blank1
+        - name: AIC
+          title: AIC
+        - name: blank2
           title: " "
         - name: ws
           title: ws
@@ -911,7 +919,7 @@ options:
           title: wp
         - name: nw
           title: nw
-        - name: blank2
+        - name: blank3
           title: " "
         - name: ro
           title: ro
@@ -921,92 +929,6 @@ options:
           title: no
       default: p
 
-    # - name: multipleVar1
-    #   title: ' show:'
-    #   type: List
-    #   options:
-    #     - name: rs
-    #       title: rs
-    #     - name: rp
-    #       title: rp
-    #     - name: re
-    #       title: re
-    #     - name: p
-    #       title: p
-    #     - name: n
-    #       title: n
-    #     - name: blank1
-    #       title: " "
-    #     - name: ws
-    #       title: ws
-    #     - name: wp
-    #       title: wp
-    #     - name: nw
-    #       title: nw
-    #     - name: blank2
-    #       title: " "
-    #     - name: ro
-    #       title: ro
-    #     - name: po
-    #       title: po
-    #     - name: no
-    #       title: no
-    #   default: rs
-    # 
-    # - name: multipleVar2
-    #   title: ' &'
-    #   type: List
-    #   options:
-    #     - name: rs
-    #       title: rs
-    #     - name: rp
-    #       title: rp
-    #     - name: re
-    #       title: re
-    #     - name: p
-    #       title: p
-    #     - name: n
-    #       title: n
-    #     - name: blank1
-    #       title: " "
-    #     - name: ws
-    #       title: ws
-    #     - name: wp
-    #       title: wp
-    #     - name: nw
-    #       title: nw
-    #     - name: blank2
-    #       title: " "
-    #     - name: ro
-    #       title: ro
-    #     - name: po
-    #       title: po
-    #     - name: no
-    #       title: no
-    #   default: p
-    # 
-    # - name: reportMultipleStats
-    #   title: ' '
-    #   type: List
-    #   options:
-    #   - name: Means
-    #     title: (Means)
-    #   - name: Medians
-    #     title: (Medians)
-    #   default: Medians
-    #   
-    # - name: showSample
-    #   title: 'samples as:'
-    #   type: List
-    #   options: 
-    #   - name: unsorted
-    #     title: unsorted
-    #   - name: sorted
-    #     title: sorted
-    #   - name: piled
-    #     title: piled
-    #   default: piled
-      
     - name: showSampleType
       title: ' show:'
       type: List
@@ -1051,6 +973,8 @@ options:
       options:
         - name: Basic
           title: Basic
+        - name: blank1
+          title: ' '
         - name: 'p(sig)'
           title: 'p(sig)'
         - name: NHST
@@ -1059,8 +983,12 @@ options:
           title: Hits
         - name: Misses
           title: Misses
+        - name: blank2
+          title: ' '
         - name: SEM
           title: SEM
+        - name: blank3
+          title: ' '
         - name: DV
           title: DV
         - name: Residuals
@@ -1278,6 +1206,12 @@ options:
           title: ReplDecision
         - name: Repeats
           title: ReplAttempts
+        - name: blank1
+          title: ' '
+        - name: NoStudies
+          title: 'No studies'
+        - name: MetaType
+          title: 'Meta Type'
 
     - name: showExploreParam
       title: 'show as:'
@@ -1287,6 +1221,8 @@ options:
           title: Single
         - name: Basic
           title: Basic
+        - name: blank1
+          title: " "
         - name: 'p(sig)'
           title: 'p(sig)'
         - name: NHST
@@ -1295,8 +1231,12 @@ options:
           title: Hits
         - name: Misses
           title: Misses
+        - name: blank2
+          title: " "
         - name: SEM
           title: SEM
+        - name: blank3
+          title: " "
         - name: DV
           title: DV
         - name: Residuals

@@ -626,7 +626,7 @@ doAnalysis<-function(sample=doSample(autoShow=FALSE),evidence=braw.def$evidence,
   analysis$rIVIV2<-0
   
   if (evidence$doSEM) {
-    stages<-list(c(IV$name,IV2$name),c(DV$name))
+    stages<-list(IV$name,IV2$name,DV$name)
     pathmodel<-list(path=
                       list(
                         stages=stages,
@@ -645,33 +645,21 @@ doAnalysis<-function(sample=doSample(autoShow=FALSE),evidence=braw.def$evidence,
                      varcat=c(DV$type=="Categorical",IV$type=="Categorical",IV2$type=="Categorical")[use]
     )
     if (!is.null(IV2) && ncol(allData)>3) {
-      pathmodel$path$stages<-list(DV$name)
-      sem0<-fit_sem_model(pathmodel,model_data)
-      
       pathmodel$path$stages<-list(IV$name,IV2$name,DV$name)
       pathmodel$path$depth<-2
-      sem6a<-fit_sem_model(pathmodel,model_data)
-      pathmodel$path$stages<-list(IV2$name,IV$name,DV$name)
-      sem6b<-fit_sem_model(pathmodel,model_data)
-      if (sem6a$eval$AIC<sem6b$eval$AIC) sem6<-sem6a else sem6<-sem6b
-      
-      pathmodel$path$stages<-list(c(IV$name,IV2$name),DV$name)
-      pathmodel$path$depth<-1
-      sem5<-fit_sem_model(pathmodel,model_data)
-      
-      pathmodel$path$stages<-list(IV$name,IV2$name,DV$name)
-      pathmodel$path$depth<-1
-      sem4<-fit_sem_model(pathmodel,model_data)
+      sem6<-fit_sem_model(pathmodel,model_data)
+      sem5<-fit_sem_model(pathmodel,model_data,fixedCoeffs=data.frame(v1=IV$name,v2=IV2$name))
+      sem4<-fit_sem_model(pathmodel,model_data,fixedCoeffs=data.frame(v1=IV$name,v2=DV$name))
+      sem2<-fit_sem_model(pathmodel,model_data,
+                          fixedCoeffs=data.frame(v1=c(IV$name,IV$name),v2=c(IV2$name,DV$name)))
       
       pathmodel$path$stages<-list(IV2$name,IV$name,DV$name)
-      pathmodel$path$depth<-1
-      sem3<-fit_sem_model(pathmodel,model_data)
-      
-      pathmodel$path$stages<-list(IV2$name,DV$name)
-      sem2<-fit_sem_model(pathmodel,model_data)
-      pathmodel$path$stages<-list(IV$name,DV$name)
-      sem1<-fit_sem_model(pathmodel,model_data)
-      
+      sem3<-fit_sem_model(pathmodel,model_data,fixedCoeffs=data.frame(v1=IV2$name,v2=DV$name))
+      sem1<-fit_sem_model(pathmodel,model_data,
+                          fixedCoeffs=data.frame(v1=c(IV2$name,IV2$name),v2=c(IV$name,DV$name)))
+      sem0<-fit_sem_model(pathmodel,model_data,
+                          fixedCoeffs=data.frame(v1=c(IV2$name,IV2$name,IV$name),v2=c(IV$name,DV$name,DV$name)))
+                          
       modelSEMs<-c(sem0$eval[[evidence$useAIC]],
                    sem1$eval[[evidence$useAIC]],
                    sem2$eval[[evidence$useAIC]],
@@ -698,12 +686,13 @@ doAnalysis<-function(sample=doSample(autoShow=FALSE),evidence=braw.def$evidence,
     colnames(analysis$sem)<-c("DV",
                               paste0("IV",rarrow,"DV"),
                               paste0("IV2",rarrow,"DV"),
-                              paste0("IV",rarrow,"IV2",rarrow,"DV"),
                               paste0("IV2",rarrow,"IV",rarrow,"DV"),
+                              paste0("IV",rarrow,"IV2",rarrow,"DV"),
                               paste0("(IV + IV2)",rarrow,"DV"),
                               paste0("(IV" ,barrow, "IV2)",rarrow,"DV"),
                               "Best"
     )
+    analysis$semRs<-sem6$ES_table
   } else analysis$sem<-NULL
   
   analysis$aic<-anResult$aic

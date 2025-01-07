@@ -466,7 +466,8 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=list(
                     "simple",
                     "normal",
-                    "path"),
+                    "path",
+                    "lpath"),
                 default="normal")
             private$..Heteroscedasticity <- jmvcore::OptionNumber$new(
                 "Heteroscedasticity",
@@ -796,14 +797,15 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "re",
                     "p",
                     "n",
+                    "blank1",
                     "sLLR",
                     "llknull",
-                    "SEM",
-                    "blank1",
+                    "AIC",
+                    "blank2",
                     "ws",
                     "wp",
                     "nw",
-                    "blank2",
+                    "blank3",
                     "ro",
                     "po",
                     "no"),
@@ -817,13 +819,15 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "re",
                     "p",
                     "n",
+                    "blank1",
                     "sLLR",
                     "llknull",
-                    "blank1",
+                    "AIC",
+                    "blank2",
                     "ws",
                     "wp",
                     "nw",
-                    "blank2",
+                    "blank3",
                     "ro",
                     "po",
                     "no"),
@@ -858,11 +862,14 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 showMultipleParam,
                 options=list(
                     "Basic",
+                    "blank1",
                     "p(sig)",
                     "NHST",
                     "Hits",
                     "Misses",
+                    "blank2",
                     "SEM",
+                    "blank3",
                     "DV",
                     "Residuals"),
                 default="Basic")
@@ -1008,18 +1015,24 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=list(
                     "Power",
                     "Keep",
-                    "Repeats"))
+                    "Repeats",
+                    "blank1",
+                    "NoStudies",
+                    "MetaType"))
             private$..showExploreParam <- jmvcore::OptionList$new(
                 "showExploreParam",
                 showExploreParam,
                 options=list(
                     "Single",
                     "Basic",
+                    "blank1",
                     "p(sig)",
                     "NHST",
                     "Hits",
                     "Misses",
+                    "blank2",
                     "SEM",
+                    "blank3",
                     "DV",
                     "Residuals"),
                 default="Basic")
@@ -2006,7 +2019,7 @@ BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$add(jmvcore::Html$new(
                 options=options,
                 name="SystemHTML",
-                visible=TRUE))
+                visible=FALSE))
             self$add(jmvcore::Html$new(
                 options=options,
                 name="simGraphHTML",
@@ -2024,18 +2037,14 @@ BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "makeSampleBtn",
                     "showSampleType",
                     "showInferParam",
-                    "singleVar1",
-                    "singleVar2",
+                    "inferVar1",
+                    "inferVar2",
                     "showInferDimension",
                     "makeMultipleBtn",
                     "showMultipleParam",
-                    "multipleVar1",
-                    "multipleVar2",
                     "showMultipleDimension",
                     "makeExploreBtn",
                     "showExploreParam",
-                    "exploreVar1",
-                    "exploreVar2",
                     "showExploreDimension",
                     "whichShowMultiple")))
             self$add(jmvcore::Html$new(

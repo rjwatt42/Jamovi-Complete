@@ -318,9 +318,9 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
               indent=50,
               titleWidth=0,
               tabContents=c(
-                demoInstructions("1"),
-                demoInstructions("2"),
-                demoInstructions("3")
+                demoInstructions("1a"),
+                demoInstructions("1b"),
+                demoInstructions("1c")
               ),
               open=open2
             ),
@@ -330,9 +330,9 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
               indent=50,
               titleWidth=0,
               tabContents=c(
-                demoInstructions("4"),
-                demoInstructions("5"),
-                demoInstructions("6")
+                demoInstructions("2a"),
+                demoInstructions("2b"),
+                demoInstructions("2c")
               ),
               open=open2
             ),
@@ -342,19 +342,21 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
               indent=50,
               titleWidth=0,
               tabContents=c(
-                demoInstructions("7"),
-                demoInstructions("8"),
-                demoInstructions("9")
+                demoInstructions("3a"),
+                demoInstructions("3b"),
+                demoInstructions("3c")
               ),
               open=open2
             ),
             private$.htmlwidget$generate_tab(
               title="Path Models:",
-              tabs=c("4a"),
+              tabs=c("4a","4b","4c"),
               indent=50,
               titleWidth=0,
               tabContents=c(
-                demoInstructions("10")
+                demoInstructions("4a"),
+                demoInstructions("4b"),
+                demoInstructions("4c")
               ),
               open=open2
             )

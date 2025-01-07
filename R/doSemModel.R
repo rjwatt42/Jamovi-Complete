@@ -1,6 +1,17 @@
-fit_sem_model<-function(pathmodel,model_data) {
-
-  nloop<-1
+fit_sem_model<-function(pathmodel,model_data,fixedCoeffs=NULL) {
+# this follows the notation in 
+  # Flora D.B. (2018) Statistical Methods for the Social and Behavioural Sciences
+#  
+#  Q,P = no of exogenous, endogenous variables
+#  S = sample covariance matrix 
+#  Stheta = predicted covariance matrix
+#  the process is to optimize the match S & Stheta
+  # the ML for a given estimate of Stheta
+  # is given by log(abs(Stheta)) - trace(S%/%Stheta) - log(abs(S)) -(P+Q)
+#
+#  Stheta is obtained from a given set of possible model coefficients
+  
+  nloop<-1 # how many attempts?
 
   stages<-pathmodel$path$stages
   stages<-stages[!sapply(stages,isempty)]
@@ -25,7 +36,18 @@ fit_sem_model<-function(pathmodel,model_data) {
   sem$data<-matrix(sem$data[useRow,],ncol=ncol(sem$data))
   n_obs<-nrow(sem$data)
   
-  if (n_stages>1) {
+  if (!is.null(fixedCoeffs)) {
+    for (i in 1:length(fixedCoeffs$v1)) {
+      if (is.element(fixedCoeffs$v2[i],rownames(sem$Ldesign)) &&
+          is.element(fixedCoeffs$v1[i],colnames(sem$Ldesign)))
+      sem$Ldesign[fixedCoeffs$v2[i],fixedCoeffs$v1[i]]<-0
+     else 
+      sem$Bdesign[fixedCoeffs$v2[i],fixedCoeffs$v1[i]]<-0
+    }
+  }
+  sem$fixedCoeffs<-fixedCoeffs
+  
+  if (n_stages>1) { 
   Lstart<-zeros(1,sum(sem$Ldesign!=0))
   Bstart<-zeros(1,sum(sem$Bdesign!=0))
   LBstart<-c(Lstart, Bstart)
@@ -40,7 +62,8 @@ fit_sem_model<-function(pathmodel,model_data) {
 
     S<-cov(use_data[,c(sem$endogenous, sem$exogenous)],use=nan_action)
 
-    if (length(sem$exogenous)>1) phi<-cov(use_data[,sem$exogenous],use=nan_action)
+    if (length(sem$exogenous)>1) 
+         phi<-cov(use_data[,sem$exogenous],use=nan_action)
     else phi<-matrix(var(use_data[,sem$exogenous]))
     if (length(sem$endogenous)>1) {
       psy<-cov(use_data[,sem$endogenous],use=nan_action)
@@ -167,7 +190,6 @@ fit_sem_model<-function(pathmodel,model_data) {
   # return(sem)
   
   sem<-sem_results(pathmodel,sem)
-
   return(sem)
 }
 
@@ -579,7 +601,8 @@ sem_results<-function(pathmodel,sem) {
   Rsquared=1-sum(diag(var(error)))/sum(diag(var(t(Y))))
   #
   k=sum(!is.na(CF_table))+2*length(sem$endogenous); 
-  n_data=n_obs*length(sem$endogenous);
+  # if (!is.null(sem$fixedCoeffs)) k<-k+nrow(sem$fixedCoeffs)
+  n_data=n_obs
   Resid2=sum(error^2);
   AIC=2*k+n_obs*(log(2*pi*Resid2/n_data)+1);
   llr<-k-AIC/2

@@ -226,7 +226,7 @@ expected_hist<-function(pts,valType,ylim,histGain,histGainrange){
   svals<-pts$y1[pts$y2]
   
   if (is.null(valType)) valType<-"rs"
-  if (is.element(valType,c("ro","ci1","ci2"))) valType<-"rs"
+  if (is.element(valType,c("rse","rss","ro","ci1","ci2","llknull"))) valType<-"rs"
   if (is.element(valType,c("e1p","e2p","po"))) valType<-"p"
   if (is.element(valType,c("wp","ws"))) valType<-"ws"
   if (is.element(valType,c("iv.mn","iv.sd","iv.sk","iv.kt",
@@ -405,9 +405,9 @@ expected_plot<-function(g,pts,showType=NULL,analysis=NULL,IV=NULL,DV=NULL,
       p2<-pts$y1[!pts$y2]
     }
     
-    if (!is.null(analysis) && is.element(showType,c("rs","p")) && length(pts$y1)==1) {
+    if (!is.null(analysis) && is.element(showType,c("rs","rse","rss","p")) && length(pts$y1)==1) {
       # if (is.null(analysis$hypothesis$IV2)) {
-        if (showType=="rs"){
+        if (is.element(showType,c("rs","rse","rss"))){
           n<-pts$n
           r<-pts$y1
           rCI<-r2ci(r,n)
@@ -533,7 +533,9 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
   showSig<-TRUE
   labelSig<-TRUE
   labelNSig<-TRUE
-  top<-FALSE
+  top<-1
+  if (is.element(showType,c("e1d","e2d"))) top<-1.5
+  if (is.element(showType,c("rse","rss"))) top<-1.5
   
   if (is.element(showType,c("iv.mn","iv.sd","iv.sk","iv.kt",
                             "dv.mn","dv.sd","dv.sk","dv.kt",
@@ -543,63 +545,58 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
     labelNSig<-FALSE
   }
 
-  useWorldCols<-FALSE
-  if (showType=="rse") {
-    showType<-"rs"
-    useWorldCols<-TRUE
-  }
   if (showType=="e1p") {
     labelSig<-TRUE
     labelNSig<-TRUE
-    top<-TRUE
+    # top<-TRUE
   }
   
   if (showType=="e2p") {
     labelSig<-TRUE
     labelNSig<-TRUE
-    top<-TRUE
+    # top<-TRUE
   }
   
   if (showType=="e1r") {
     # showType<-"rs"
     labelSig<-TRUE
     labelNSig<-TRUE
-    top<-TRUE
+    # top<-TRUE
   }
   
   if (showType=="e2r") {
     # showType<-"rs"
     labelSig<-TRUE
     labelNSig<-TRUE
-    top<-TRUE
+    # top<-TRUE
   }
   
   if (showType=="e1a") {
     # showType<-"rs"
     labelSig<-FALSE
     labelNSig<-TRUE
-    top<-TRUE
+    # top<-TRUE
   }
   
   if (showType=="e2a") {
     # showType<-"rs"
     labelSig<-FALSE
     labelNSig<-TRUE
-    top<-TRUE
+    # top<-TRUE
   }
   
   if (showType=="e1b") {
     # showType<-"rs"
     labelSig<-TRUE
     labelNSig<-FALSE
-    top<-TRUE
+    # top<-TRUE
   }
   
   if (showType=="e2b") {
     # showType<-"rs"
     labelSig<-TRUE
     labelNSig<-FALSE
-    top<-TRUE
+    # top<-TRUE
   }
   
   hypothesis<-analysis$hypothesis
@@ -643,7 +640,8 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
   ylim<-yaxis$lim
   ylabel<-yaxis$label
   ylines<-yaxis$lines
-  if ((showType=="rs") && (!is.null(hypothesis$IV2))) 
+  logScale<-yaxis$logScale
+  if (is.element(showType,c("rs","rse","rss")) && (!is.null(hypothesis$IV2))) 
     switch(whichEffect,"Main 1"=ylabel<-"Main 1",
                        "Main 2"=ylabel<-"Main 2",
                        "Interaction"=ylabel<-"Interaction"
@@ -668,7 +666,11 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
                box=box,top=top,orientation=orient,g=g)
   # g<-addG(g,yAxisTicks(logScale=yaxis$logScale),yAxisLabel(ylabel))
     # g<-addG(g,xAxisTicks(breaks=c(0,2,4),c("direct","unique","total")))
- 
+  lineCol<-"black"
+  if (is.element(showType,c("p","e1p","e2p","e1d","e2d"))) lineCol<-"green"
+  for (yl in ylines)
+    g<-addG(g,horzLine(intercept=yl,linewidth=0.25,linetype="dashed",colour=lineCol))
+  
   if (!all(is.na(analysis$rIV))) {
     data<-collectData(analysis,whichEffect)
     if (braw.env$RZ=="z") {
@@ -678,12 +680,14 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
     }
     switch (showType,
             "rs"={showVals<-data$rs},
+            "rse"={showVals<-data$rs},
+            "rss"={showVals<-data$rs},
             "rp"={showVals<-data$rp},
             "ro"={showVals<-data$ro},
             "re"={showVals<-data$rs-data$rp},
             "p"={showVals<-data$ps},
             "po"={showVals<-data$po},
-            "llknull"={showVals<-cbind(-0.5*(analysis$aic-analysis$aicNull))},
+            "llknull"={showVals<-exp(cbind(-0.5*(analysis$aic-analysis$aicNull)))},
             "sLLR"={showVals<-cbind(res2llr(analysis,"sLLR"))},
             "log(lrs)"={showVals<-cbind(res2llr(analysis,"sLLR"))},
             "log(lrd)"={showVals<-cbind(res2llr(analysis,"dLLR"))},
@@ -762,7 +766,7 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
         effectTheory<-oldEffect
       }
       
-      if (is.element(showType,c("rs","re","ro","ci1","ci2","e1r","e2r"))) {
+      if (is.element(showType,c("rs","rse","rss","re","ro","ci1","ci2","e1r","e2r"))) {
         npt<-101
         if (showType=="e1r") effectTheory$world$populationNullp<-1
         if (showType=="e2r") effectTheory$world$populationNullp<-0
@@ -969,7 +973,7 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
       histGain<-abs(sum(xd*c(0,diff(yv))))
       histGainrange<-sort(c(yv[1],yv[length(yv)]))
       ptsp<-data.frame(y=c(yv,rev(yv)),x=c(xd,-rev(xd))+xoff[i])
-      if (is.element(showType,c("rs","n","p","e1r","e2r","e1p","e2p"))) {
+      if (is.element(showType,c("rs","rse","rss","n","p","e1r","e2r","e1p","e2p"))) {
         xdsig<-xdsig*theoryGain
         xdsig[is.na(xdsig)]<-0
         if (!all(xd==xdsig))
@@ -1000,14 +1004,17 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
       pvals<-data$ps[,i]
       nvals<-data$ns
       if (showSig)
+        if (showType=="rss") 
+          resSig<-(analysis$sem[,8]==2)
+      else 
         resSig<-isSignificant(braw.env$STMethod,pvals,rvals,nvals,data$df1,evidence)
       else
         resSig<-rep(FALSE,length(rvals))
-      if (useWorldCols && ((hypothesis$effect$world$worldOn && hypothesis$effect$world$populationNullp>0)
+      if (is.element(showType,c("rse","rss")) && ((hypothesis$effect$world$worldOn && hypothesis$effect$world$populationNullp>0)
           || (!all(data$rp!=0) && !all(data$rp==0))))
-        resNull<-data$rp!=0
+        resNotNull<-data$rp!=0
       else
-        resNull<-rep(NA,length(data$rp))
+        resNotNull<-rep(NA,length(data$rp))
       
       if (sigOnly) {
         shvals<-shvals[resSig]
@@ -1015,7 +1022,7 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
         pvals<-pvals[resSig]
         nvals<-nvals[resSig]
         resSig<-resSig[resSig]
-        resNull<-resNull[resSig]
+        resNotNull<-resNotNull[resSig]
       }
       if (effectType=="all") {
         ysc<-1/3
@@ -1025,9 +1032,9 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
         d<-res2llr(analysis,braw.env$STMethod)
         err<-(d<0 & data$rp!=0) | (d>0 & data$rp==0)
         resWSig<-resSig & err
-        pts<-data.frame(x=rvals*0+xoff[i],y1=shvals,y2=resSig,y3=resWSig,y0=resNull,n=nvals)
+        pts<-data.frame(x=rvals*0+xoff[i],y1=shvals,y2=resSig,y3=resWSig,y0=resNotNull,n=nvals)
       } else {
-        pts<-data.frame(x=rvals*0+xoff[i],y1=shvals,y2=resSig,y0=resNull,n=nvals)
+        pts<-data.frame(x=rvals*0+xoff[i],y1=shvals,y2=resSig,y0=resNotNull,n=nvals)
       }
       
       g<-expected_plot(g,pts,showType,analysis,IV,DV,i,orientation=orientation,
@@ -1035,11 +1042,18 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
       
       ns<-c()
       s<-c()
-      if (length(rvals)>1 && is.element(showType,c("rs","p","e1r","e2r","e1p","e2p","e1d","e2d"))) {
+      if (length(rvals)>1 && is.element(showType,c("rs","rse","rss","p","e1r","e2r","e1p","e2p","e1d","e2d"))) {
         n<-length(pvals)
         if (!is.null(otheranalysis) && effect$world$worldOn) n<-n+length(otheranalysis$pIV)
-        ns<-sum(!resSig,na.rm=TRUE)/n
-        s<-sum(resSig,na.rm=TRUE)/n
+        if (is.element(showType,c("rse","rss"))) {
+          sc<-sum((resSig)&(resNotNull))/n
+          nse<-sum((!resSig)&(resNotNull))/n
+          se<-sum((resSig)&(!resNotNull))/n
+          nsc<-sum((!resSig)&(!resNotNull))/n
+        } else {
+          ns<-sum(!resSig,na.rm=TRUE)/n
+          s<-sum(resSig,na.rm=TRUE)/n
+        }
         if (is.element(showType,c("e1d","e2d"))) {
           s2<-sum(resSig & shvals<0,na.rm=TRUE)/n
           s1<-sum(resSig & shvals>0,na.rm=TRUE)/n
@@ -1096,75 +1110,84 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
       )
     }
     
-    lineCol<-"black"
-    if (is.element(showType,c("p","e1p","e2p","e1d","e2d"))) lineCol<-"green"
-    for (yl in ylines)
-      g<-addG(g,horzLine(intercept=yl,linetype="dotted",colour=lineCol))
-    
-    if (!isempty(ns) && !isempty(s))
-    if (is.element(showType,c("rs","p","e1r","e2r","e1p","e2p","e1d","e2d"))) {
+    if (length(rvals)>1)
+    if (is.element(showType,c("rs","rse","rss","p","e1r","e2r","e1p","e2p","e1d","e2d"))) {
+      lb1<-"p("
+      lb2<-") = "
+      lb1<-"("
+      lb2<-")="
+      npad<-function(a) {if (nchar(a)<2) return(paste0("  ",a)) else return(a)}
       switch (showType,
               "rs"={
-                if (!is.null(hypothesis$IV2) && effectType=="all") {
-                  labelPt1<-paste0(brawFormat(ns*100,digits=npct),"% ")
-                  labelPt1a<-paste0(brawFormat(s*100,digits=npct),"% ")
-                } else {
-                  labelPt1<-paste0("p(ns) = ",brawFormat(ns*100,digits=npct),"% ")
-                  labelPt1a<-paste0("p(sig) = ",brawFormat(s*100,digits=npct),"% ")
-                }
+                  labels<-c(paste0(lb1,"sig",lb2,brawFormat(s*100,digits=npct),"%"),
+                            paste0(lb1,"ns",lb2,brawFormat(ns*100,digits=npct),"%"))
+                  colours<-c(braw.env$plotColours$infer_sigC,braw.env$plotColours$infer_nsigC)
               },
+              "rse"={
+                labels<-c(paste0(npad(brawFormat(nse*100,digits=npct)),"%"," error"),
+                          paste0(npad(brawFormat(sc*100,digits=npct)),"%"," correct"),
+                          paste0(npad(brawFormat(se*100,digits=npct)),"%"," error"),
+                          paste0(npad(brawFormat(nsc*100,digits=npct)),"%"," correct")
+                )
+                colours<-c(braw.env$plotColours$infer_nsigNonNull,
+                           braw.env$plotColours$infer_sigNonNull,
+                           braw.env$plotColours$infer_sigNull,
+                           braw.env$plotColours$infer_nsigNull
+                )
+              },
+                "rss"={
+                  labels<-c(paste0(npad(brawFormat(nse*100,digits=npct)),"%"," error"),
+                            paste0(npad(brawFormat(sc*100,digits=npct)),"%"," correct"),
+                            paste0(npad(brawFormat(se*100,digits=npct)),"%"," error"),
+                            paste0(npad(brawFormat(nsc*100,digits=npct)),"%"," correct")
+                  )
+                  colours<-c(braw.env$plotColours$infer_nsigNonNull,
+                             braw.env$plotColours$infer_sigNonNull,
+                             braw.env$plotColours$infer_sigNull,
+                             braw.env$plotColours$infer_nsigNull
+                  )
+                },
               "p"={
-                if (!is.null(hypothesis$IV2) && effectType=="all") {
-                  labelPt1<-paste0(brawFormat(ns*100,digits=npct),"% ")
-                  labelPt1a<-paste0(brawFormat(s*100,digits=npct),"% ")
-                } else {
-                  labelPt1<-paste0("p(ns) = ",brawFormat(ns*100,digits=npct),"% ")
-                  labelPt1a<-paste0("p(sig) = ",brawFormat(s*100,digits=npct),"% ")
-                }
+                labels<-c(paste0(lb1,"sig",lb2,brawFormat(s*100,digits=npct),"% "),
+                          paste0(lb1,"ns",lb2,brawFormat(ns*100,digits=npct),"% "))
+                colours<-c(braw.env$plotColours$infer_sigC,braw.env$plotColours$infer_nsigC)
               },
               "e1r"={
-                labelPt1<-paste0("p(ns correct) = ",brawFormat(ns*100,digits=npct),"% ")
-                labelPt1a<-paste0("p(sig error) = ",brawFormat(s*100,digits=npct),"% ")
+                labels<-c(paste0(lb1,"sig error",lb2,brawFormat(s*100,digits=npct),"% "),
+                          paste0(lb1,"ns correct",lb2,brawFormat(ns*100,digits=npct),"% "))
+                colours<-c(braw.env$plotColours$infer_sigC,braw.env$plotColours$infer_nsigC)
               },
               "e2r"={
-                labelPt1<-paste0("p(ns error) = ",brawFormat(ns*100,digits=npct),"% ")
-                labelPt1a<-paste0("p(sig correct) = ",brawFormat(s*100,digits=npct),"% ")
+                labels<-c(paste0(lb1,"sig correct",lb2,brawFormat(s*100,digits=npct),"% "),
+                          paste0(lb1,"ns error",lb2,brawFormat(ns*100,digits=npct),"% "))
+                colours<-c(braw.env$plotColours$infer_sigC,braw.env$plotColours$infer_nsigC)
               },
               "e1p"={
-                labelPt1<-paste0("p(ns correct) = ",brawFormat(ns*100,digits=npct),"% ")
-                labelPt1a<-paste0("p(sig error) = ",brawFormat(s*100,digits=npct),"% ")
+                labels<-c(paste0(lb1,"sig error",lb2,brawFormat(s*100,digits=npct),"% "),
+                          paste0(lb1,"ns correct",lb2,brawFormat(ns*100,digits=npct),"% "))
+                colours<-c(braw.env$plotColours$infer_sigC,braw.env$plotColours$infer_nsigC)
               },
               "e2p"={
-                labelPt1<-paste0("p(ns error) = ",brawFormat(ns*100,digits=npct),"% ")
-                labelPt1a<-paste0("p(sig correct) = ",brawFormat(s*100,digits=npct),"% ")
+                labels<-c(paste0(lb1,"sig correct",lb2,brawFormat(s*100,digits=npct),"% "),
+                          paste0(lb1,"ns error",lb2,brawFormat(ns*100,digits=npct),"% "))
+                colours<-c(braw.env$plotColours$infer_sigC,braw.env$plotColours$infer_nsigC)
               },
               "e1d"={
-                labelPt1b<-paste0("p(ns) = ",brawFormat(ns/n*100,digits=npct),"% ")
-                labelPt1a<-paste0("p(sig correct) = ",brawFormat(s2/n*100,digits=npct),"% ")
-                labelPt1<-paste0("p(sig error) = ",brawFormat(s1/n*100,digits=npct),"% ")
-                labelPt1b<-paste0("p(ns) = ",brawFormat(ns/n*100,digits=npct),"%")
-                labelPt1a<-paste0("p(sig correct) = ",brawFormat(s2/n*100,digits=npct),"%")
-                labelPt1<-paste0("p(sig error) = ",brawFormat(s1/n*100,digits=npct),"%")
+                labels<-c(paste0(lb1,"sig error",lb2,brawFormat(s1/n*100,digits=npct),"% "),
+                          paste0(lb1,"sig correct",lb2,brawFormat(s2/n*100,digits=npct),"%"),
+                          paste0(lb1,"ns",lb2,brawFormat(ns/n*100,digits=npct),"% ")
+                          )
+                colours<-c(braw.env$plotColours$infer_sigC,braw.env$plotColours$infer_sigC,braw.env$plotColours$infer_nsigC)
               },
               "e2d"={
-                labelPt1b<-paste0("p(ns) = ",brawFormat(ns/n*100,digits=npct),"% ")
-                labelPt1a<-paste0("p(sig error) = ",brawFormat(s2/n*100,digits=npct),"% ")
-                labelPt1<-paste0("p(sig correct) = ",brawFormat(s1/n*100,digits=npct),"% ")
-                labelPt1b<-paste0("p(ns) = ",brawFormat(ns/n*100,digits=npct),"%")
-                labelPt1a<-paste0("p(sig error) = ",brawFormat(s2/n*100,digits=npct),"%")
-                labelPt1<-paste0("p(sig correct) = ",brawFormat(s1/n*100,digits=npct),"%")
+                labels<-c(paste0(lb1,"sig correct",lb2,brawFormat(s1/n*100,digits=npct),"% "),
+                          paste0(lb1,"sig error",lb2,brawFormat(s2/n*100,digits=npct),"%"),
+                          paste0(lb1,"ns",lb2,brawFormat(ns/n*100,digits=npct),"% ")
+                )
+                colours<-c(braw.env$plotColours$infer_sigC,braw.env$plotColours$infer_sigC,braw.env$plotColours$infer_nsigC)
               }
       )
-      lpts1<-data.frame(y = ylim[2]-diff(ylim)/50, x = xoff[i]+xlim[2])
-      if (labelSig && is.null(analysis$hypothesis$IV2))
-        g<-addG(g,dataLabel(data=lpts1,label = labelPt1,hjust=1,vjust=0.5,size=0.8,label.size=0))
-      lpts1a<-data.frame(y = ylim[1]+diff(ylim)/50, x = xoff[i]+xlim[2])
-      if (labelNSig)
-        g<-addG(g,dataLabel(data=lpts1a,label = labelPt1a,hjust=1,vjust=0.5,size=0.8,label.size=0))
-      if (is.element(showType,c("e1d","e2d"))) {
-        lpts1<-data.frame(y = mean(ylim), x = xoff[i]+xlim[2])
-        g<-addG(g,dataLabel(data=lpts1,label = labelPt1b,hjust=1,vjust=0.5,size=0.8,label.size=0))
-      }
+      if (length(labels)>0) g<-addG(g,dataLegend(data.frame(names=labels,colours=colours),title="",shape=22))
     }
   }
   
@@ -1286,12 +1309,12 @@ ps_plot<-function(analysis,disp,showTheory=TRUE,g=NULL){
     if ((all(nulls) || all(!nulls)) && disp=="ps") {
       g<-startPlot(xlim=c(-1,1),ylim=c(0,1),
                    yticks=makeTicks(),ylabel=makeLabel("p(sig)"),
-                   top=FALSE,orientation="horz",g=g)
+                   top=1.5,orientation="horz",g=g)
       g<-addG(g,dataBar(data=data.frame(x=0,y=mean(sigs)),fill=braw.env$plotColours$infer_sigC,barwidth=0.4))
     } else {
       g<-startPlot(xlim=c(-1,1),ylim=c(0,1),
                    yticks=makeTicks(),ylabel=makeLabel("Outcomes"),
-                   top=FALSE,orientation="horz",g=g)
+                   top=1.5,orientation="horz",g=g)
       col0<-braw.env$plotColours$infer_nsigNonNull
       col2<-braw.env$plotColours$infer_sigNonNull
       col3<-braw.env$plotColours$infer_sigNull
@@ -1325,7 +1348,7 @@ ps_plot<-function(analysis,disp,showTheory=TRUE,g=NULL){
     g<-startPlot(xlim=c(-1,3),ylim=c(0,1),
                  xticks=makeTicks(breaks=c(0,1,2),labels=c("DV~IV","DV~IV2","DV~IVxIV2")),
                  yticks=makeTicks(),ylabel=makeLabel("p(sig)"),
-                 top=FALSE,orientation="horz",g=g)
+                 top=0,orientation="horz",g=g)
     
     psig<-mean(isSignificant(braw.env$STMethod,analysis$pIV,analysis$rIV,analysis$nval,analysis$df1,analysis$evidence))
     g<-addG(g,dataBar(data=data.frame(x=0,y=psig),fill=braw.env$plotColours$infer_sigC,barwidth=0.4))
@@ -1340,6 +1363,77 @@ ps_plot<-function(analysis,disp,showTheory=TRUE,g=NULL){
   return(g)
 }
 
+aic_plot<-function(analysis,disp,showTheory=TRUE,g=NULL) {
+  # plotting a single result:
+  
+  hypothesis<-analysis$hypothesis
+  effect<-hypothesis$effect
+  design<-analysis$design
+  n<-analysis$result$nval
+  DVsd<-sd(analysis$result$dv)
+  
+  yaxis<-plotAxis("SEM",hypothesis,design)
+  cols<-yaxis$cols
+  
+  if (is.null(analysis$sem)) analysis$sem<-analysis$result$sem
+  
+  nbar<-sum(!is.na(analysis$sem[1,1:7]))
+  if (nbar==2) 
+    if (analysis$hypothesis$effect$rIV!=0) correct<-2 else correct<-1
+  else {
+    if (analysis$hypothesis$effect$rIV!=0 && analysis$hypothesis$effect$rIV2!=0 && analysis$hypothesis$effect$rIVIV2!=0) correct<-7
+    if (analysis$hypothesis$effect$rIV!=0 && analysis$hypothesis$effect$rIV2!=0 && analysis$hypothesis$effect$rIVIV2==0) correct<-6
+    if (analysis$hypothesis$effect$rIV==0 && analysis$hypothesis$effect$rIV2!=0 && analysis$hypothesis$effect$rIVIV2!=0) correct<-5
+    if (analysis$hypothesis$effect$rIV!=0 && analysis$hypothesis$effect$rIV2==0 && analysis$hypothesis$effect$rIVIV2!=0) correct<-4
+    if (analysis$hypothesis$effect$rIV==0 && analysis$hypothesis$effect$rIV2!=0 && analysis$hypothesis$effect$rIVIV2==0) correct<-3
+    if (analysis$hypothesis$effect$rIV!=0 && analysis$hypothesis$effect$rIV2==0 && analysis$hypothesis$effect$rIVIV2==0) correct<-2
+    if (analysis$hypothesis$effect$rIV==0 && analysis$hypothesis$effect$rIV2==0 && analysis$hypothesis$effect$rIVIV2==0) correct<-1
+  }
+  if (nrow(analysis$sem)==1) {
+    range<-(max(analysis$sem[,1:nbar])-min(analysis$sem[,1:nbar]))
+    lowY<-min(min(analysis$sem[,1:nbar])-range*0.5,1.5*n*DVsd)
+    highY<-max(max(analysis$sem[,1:nbar])+range*0.25,3.5*n*DVsd)
+    lowY<-lowY-(highY-lowY)/2
+    g<-startPlot(xlim=c(0,nbar+1),ylim=c(lowY,highY),
+                 yticks=makeTicks(),ylabel=makeLabel("AIC"),
+                 top=FALSE,orientation="horz",g=g)
+    startBar<-1
+  } else {
+    analysis$sem<-cbind(analysis$sem[,1:7]-analysis$sem[,1],analysis$sem[,8])
+    lowY<- -1.0*analysis$design$sN*hypothesis$DV$sd
+    highY<- 0.1*analysis$design$sN*hypothesis$DV$sd
+    g<-startPlot(xlim=c(0,nbar),ylim=c(lowY,highY),
+                 yticks=makeTicks(),ylabel=makeLabel("diff(AIC)"),
+                 top=FALSE,orientation="horz",g=g)
+    if (nbar==2) cols<-c(braw.env$plotColours$infer_nsigNull,braw.env$plotColours$infer_sigNonNull)
+    startBar<-2
+  }
+  if (nrow(analysis$sem)>1) {
+    size<-2
+    shape<-22
+  } else {
+    size<-6
+    shape<-21
+  }
+  for (ig in startBar:nbar) {
+    if (ig==correct) fontface<-"bold" else fontface="plain"
+    xvals<-makeFiddle(analysis$sem[,ig])
+    if (any(xvals!=0))    xvals<-xvals/max(abs(xvals))*0.4
+    use<-analysis$sem[,ncol(analysis$sem)]==ig
+    if (startBar==2) {
+      use1<-analysis$sem[,ncol(analysis$sem)]==1
+      g<-addG(g,dataPoint(data.frame(x=ig-startBar+1+xvals[use1],y=analysis$sem[use1,ig]),shape=shape,size=size,fill=cols[1]))
+    } else {
+      g<-addG(g,dataPoint(data.frame(x=ig-startBar+1+xvals[!use],y=analysis$sem[!use,ig]),shape=shape,size=size,fill="white"))
+    }
+    g<-addG(g,dataPoint(data.frame(x=ig-startBar+1+xvals[use],y=analysis$sem[use,ig]),shape=shape,size=size,fill=cols[ig]))
+    if (nrow(analysis$sem)==1)
+    g<-addG(g,dataText(data.frame(x=ig-startBar+1,y=min(analysis$sem[,ig])-(highY-lowY)/30),label=colnames(analysis$sem)[ig],
+                       fontface=fontface,hjust=1,vjust=0.5,angle=90,size=0.85))   
+  }
+  return(g)
+}
+
 sem_plot<-function(analysis,disp,showTheory=TRUE,g=NULL){
   
   hypothesis<-analysis$hypothesis
@@ -1349,39 +1443,11 @@ sem_plot<-function(analysis,disp,showTheory=TRUE,g=NULL){
   cols<-yaxis$cols
   
   if (is.null(analysis$sem)) analysis$sem<-analysis$result$sem
-  # plotting a single result:
-  if (nrow(analysis$sem)==1) {
-    nbar<-sum(!is.na(analysis$sem[1,1:7]))
-    range<-(max(analysis$sem[,1:nbar])-min(analysis$sem[,1:nbar]))
-    lowY<-min(min(analysis$sem[,1:nbar])-range*0.5,1.5*analysis$design$sN)
-    highY<-max(max(analysis$sem[,1:nbar])+range*0.25,3.5*analysis$design$sN)
-    g<-startPlot(xlim=c(0,nbar+1),ylim=c(lowY,highY),
-                 yticks=makeTicks(),ylabel=makeLabel("AIC"),
-                 xticks=makeTicks(breaks=1:nbar,labels=rep("",nbar)),
-                 top=FALSE,orientation="horz",g=g)
-    
-    if (nrow(analysis$sem)>1) {
-      size<-2
-      shape<-21
-    } else {
-      size<-6
-      shape<-22
-    }
-    for (ig in 1:nbar) {
-      xvals<-makeFiddle(analysis$sem[,ig])
-      if (any(xvals!=0))    xvals<-xvals/max(abs(xvals))*0.4
-      use<-analysis$sem[,8]==ig
-      g<-addG(g,dataPoint(data.frame(x=ig+xvals[!use],y=analysis$sem[!use,ig]),shape=shape,size=size,fill="white"))
-      g<-addG(g,dataPoint(data.frame(x=ig+xvals[use],y=analysis$sem[use,ig]),shape=shape,size=size,fill=cols[ig]))
-      g<-addG(g,dataText(data.frame(x=ig,y=min(analysis$sem[,ig])-(highY-lowY)/30),label=colnames(analysis$sem)[ig],
-                         hjust=1,vjust=0.5,angle=90,size=0.85))   
-    }
-  } else { # plotting multiple results
   nulls<-analysis$rp==0
   if (all(nulls) || all(!nulls)) {
       g<-startPlot(xlim=c(-2,1),ylim=c(0,1),
                    yticks=makeTicks(),ylabel=makeLabel("SEM"),
-                   top=FALSE,orientation="horz",g=g)
+                   top=1.5,orientation="horz",g=g)
       nbars<-sum(!is.na(analysis$sem[1,]))-1
       labels<-colnames(analysis$sem)
       proportions<-hist(analysis$sem[,8],breaks=(0:nbars)+0.5,plot=FALSE)$density
@@ -1395,11 +1461,11 @@ sem_plot<-function(analysis,disp,showTheory=TRUE,g=NULL){
     } else {
       g<-startPlot(xlim=c(-1,1),ylim=c(0,1),
                    yticks=makeTicks(),ylabel=makeLabel("SEM"),
-                   top=FALSE,orientation="horz",g=g)
+                   top=1.5,orientation="horz",g=g)
       nbars<-sum(!is.na(analysis$sem[1,]))-1
       labels<-c(
-        paste0("H[0]('",colnames(analysis$sem)[1:2],"')"),
-        paste0("H[+]('",colnames(analysis$sem)[2:1],"')")
+        paste0(braw.env$Null,"('",colnames(analysis$sem)[1:2],"')"),
+        paste0(braw.env$nonNull,"('",colnames(analysis$sem)[2:1],"')")
         )
       proportions<-c(
         hist(analysis$sem[nulls,8],breaks=(0:nbars)+0.5,plot=FALSE)$counts,
@@ -1436,7 +1502,6 @@ sem_plot<-function(analysis,disp,showTheory=TRUE,g=NULL){
       # }
       # g<-addG(g,dataText(data=data.frame(x=1-0.4,y=1.02),label="Non-Nulls",hjust=0))
     }
-  }
   return(g)
 }
 

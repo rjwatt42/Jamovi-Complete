@@ -1,7 +1,7 @@
 Package: BrawStats
 Type: Package
 Title: Some BrawStats functions
-Version: 1.1.4
+Version: 1.2.0
 Author: Roger Watt
 Maintainer: Roger Watt <r.j.watt@stir.ac.uk>
 Description: This is designed to teachn the basic principles of statistics.
@@ -10,4 +10,4 @@ Encoding: UTF-8
 LazyData: true
 Imports: jmvcore (>= 2.3.4), R6, car, ggplot2, mnormt, pracma, lme4,
         grDevices, stringr, NlcOptim, abind
-Built: R 4.4.1; ; 2024-12-30 15:07:01 UTC; unix
+Built: R 4.4.1; ; 2025-01-07 11:04:41 UTC; unix

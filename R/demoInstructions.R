@@ -2,7 +2,7 @@ demoInstructions <- function(HelpType="1") {
   
 
   switch(HelpType,
-         "1"={output<-c(
+         "1a"={output<-c(
            '<b>Demo 1a</b>',
            '<br>',
            'A simple demo to show how basic statistics is easy.',
@@ -15,7 +15,7 @@ demoInstructions <- function(HelpType="1") {
          )
          },
          
-         "2"={output<-c(
+         "1b"={output<-c(
            '<b>Demo 1b</b>',
            '<br>',
            "A demo about samples - what they should and shouldn't look like.",
@@ -28,7 +28,7 @@ demoInstructions <- function(HelpType="1") {
          )
          },
          
-         "3"={output<-c(
+         "1c"={output<-c(
            '<b>Demo 1c</b>',
            '<br>',
            'A demo about variability and uncertainty - how much samples can randomly differ from the population.',
@@ -42,7 +42,7 @@ demoInstructions <- function(HelpType="1") {
          )
          },
          
-         "4"={output<-c(
+         "2a"={output<-c(
            '<b>Demo 2a</b>',
            '<br>',
            'A demo to see how far getting a significant result depends on chance.',
@@ -54,19 +54,19 @@ demoInstructions <- function(HelpType="1") {
          )
          },
          
-         "5"={output<-c(
+         "2b"={output<-c(
            '<b>Demo 2b</b>',
            '<br>',
            'A demo about the uncertainty in NHST - is the inference correct or an error?',
            '<ul style=margin:0px;>',
            '<li> Make a world where 50% of samples come from null effects.',
-           '<li> Try and guess whether any sample has a null effect or not.',
+           '<li> Try and guess whether any sample has a real effect or not.',
            '<li> See how sample size changes this.',
            '</ul>'
          )
          },
          
-         "6"={output<-c(
+         "2c"={output<-c(
            '<b>Demo 2c</b>',
            '<br>',
            'A demo about the importance of design - larger samples have lower uncertainty.',
@@ -78,7 +78,7 @@ demoInstructions <- function(HelpType="1") {
          )
          },
          
-         "7"={output<-c(
+         "3a"={output<-c(
            '<b>Demo 3a</b>',
            '<br>',
            'A demo about using multiple IVs. ',
@@ -92,7 +92,7 @@ demoInstructions <- function(HelpType="1") {
          )
          },
          
-         "8"={output<-c(
+         "3b"={output<-c(
            '<b>Demo 3b</b>',
            '<br>',
            'A demo about interactions as moderators. ',
@@ -106,7 +106,7 @@ demoInstructions <- function(HelpType="1") {
          )
          },
          
-         "9"={output<-c(
+         "3c"={output<-c(
            '<b>Demo 3c</b>',
            '<br>',
            'A demo about covariation between IV and IV2. ',
@@ -121,10 +121,38 @@ demoInstructions <- function(HelpType="1") {
          )
          },
          
-         "10"={output<-c(
+         "4a"={output<-c(
            '<b>Demo 4a</b>',
            '<br>',
            'A demo about mediation effects. ',
+           'We say that the effect of IV on DV is fully mediated by IV2, when there is no direct link from IV to DV, but instead links from IV to IV2 and IV2 to DV.',
+           '<ul style=margin:0px;>',
+           '<li> Make a basic mediation model - with quite strong effect sizes for clarity.',
+           '<li> We can see the pattern of total effects in the data.',
+           '<li> We might also notice that the covariation and its meaning are rather hidden.',
+           '<li> Now link IV to DV directly as well and see what happens.',
+           '</ul>'
+         )
+         },
+         
+         "4b"={output<-c(
+           '<b>Demo 4b</b>',
+           '<br>',
+           'A demo comparing models. ',
+           'We say that the effect of IV on DV is fully mediated by IV2, when there is no direct link from IV to DV, but instead links from IV to IV2 and IV2 to DV.',
+           '<ul style=margin:0px;>',
+           '<li> Make a basic mediation model - with quite strong effect sizes for clarity.',
+           '<li> We can see the pattern of total effects in the data.',
+           '<li> We might also notice that the covariation and its meaning are rather hidden.',
+           '<li> Now link IV to DV directly as well and see what happens.',
+           '</ul>'
+         )
+         },
+         
+         "4c"={output<-c(
+           '<b>Demo 4c</b>',
+           '<br>',
+           'A demo about causation. ',
            'We say that the effect of IV on DV is fully mediated by IV2, when there is no direct link from IV to DV, but instead links from IV to IV2 and IV2 to DV.',
            '<ul style=margin:0px;>',
            '<li> Make a basic mediation model - with quite strong effect sizes for clarity.',

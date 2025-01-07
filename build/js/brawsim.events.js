@@ -1027,6 +1027,12 @@ let makeRange = function(min,max,xlog,np) {
         case "Keep":
              var range={min:"",max:"",xlog:false,np:5};
           break;
+        case "NoStudies":
+             var range={min:2,max:100,xlog:true,np:13};
+          break;
+        case "MetaType":
+             var range={min:"",max:"",xlog:false,np:4};
+          break;
         default: 
              var range={min:0,max:1,xlog:false,np:13};
           break;

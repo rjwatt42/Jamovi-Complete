@@ -190,6 +190,10 @@ reportExplore<-function(exploreResult=braw.res$explore,showType="rs",
                   y75<-y75*max(nVals)/colMeans(nVals)
                   yiqr<-sqrt(ps*(1-ps)/nrow(pVals))*max(nVals)/colMeans(nVals)
                 },
+                "AIC"={
+                  showVals<-exploreResult$result$aic-exploreResult$result$aicNull
+                  y_label<-"diff(AIC)"
+                },
                 "NHST"={
                   ng<-2
                   showLabels<-c("sig","ns")
@@ -334,8 +338,8 @@ reportExplore<-function(exploreResult=braw.res$explore,showType="rs",
                   showLabels<-c("DV",
                                 paste0("IV",rarrow,"DV"),
                                 paste0("IV2",rarrow,"DV"),
-                                paste0("IV",rarrow,"IV2",rarrow,"DV"),
                                 paste0("IV2",rarrow,"IV",rarrow,"DV"),
+                                paste0("IV",rarrow,"IV2",rarrow,"DV"),
                                 paste0("(IV + IV2)",rarrow,"DV"),
                                 paste0("(IV" ,barrow, "IV2)",rarrow,"DV")
                   )
@@ -419,7 +423,7 @@ reportExplore<-function(exploreResult=braw.res$explore,showType="rs",
                   showVals<-exploreResult$result$rs$kt
                 }
         )
-        if (is.element(showType,c("rs","p","ws","n","log(lrs)","log(lrd)","Lambda","pNull","S",
+        if (is.element(showType,c("rs","p","ws","n","AIC","log(lrs)","log(lrd)","Lambda","pNull","S",
                                   "iv.mn","iv.sd","iv.sk","iv.kt","dv.mn","dv.sd","dv.sk","dv.kt",
                                   "rd.mn","rd.sd","rd.sk","rd.kt"))) {
           quants=(1-quantileShow)/2

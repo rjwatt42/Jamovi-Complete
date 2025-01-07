@@ -127,6 +127,7 @@ reportMultiple<-function(multipleResult=braw.res$multiple,showType="Basic",
           )
         }
         par<-gsub("^([rz]{1})([spoe]{1})$","\\1\\[\\2\\]",par)
+        if (par=="AIC") par<-"diff(AIC)"
         if (!is.na(par))
           outputText1<-c(outputText1,par)
         else 
@@ -328,6 +329,7 @@ reportMultiple<-function(multipleResult=braw.res$multiple,showType="Basic",
                     },
                     "po"={a<-result$poIV},
                     "llknull"={a<-(-0.5*(result$aic-result$aicNull))},
+                    "AIC"={a<-result$aic-result$aicNull},
                     "sLLR"={a<-res2llr(result,"sLLR")},
                     "log(lrs)"={a<-res2llr(result,"sLLR")},
                     "log(lrd)"={a<-res2llr(result,"dLLR")},

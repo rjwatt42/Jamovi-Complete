@@ -151,7 +151,7 @@ makeTicks<-function(breaks=NULL,labels=NULL,logScale=FALSE,angle=0) {
 makeLabel<-function(label=NULL) {
     return(list(label=label))
 }
-startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="both",top=FALSE,
+startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="both",top=0,
                     xticks=NULL,xlabel=NULL,xmax=FALSE,yticks=NULL,ylabel=NULL,ymax=FALSE,
                     backC=braw.env$plotColours$graphBack,orientation="horz",fontScale=1,
                     fullSize="full",g=NULL) {
@@ -192,7 +192,7 @@ startPlot<-function(xlim=c(0,1),ylim=c(0,1),gaps=NULL,box="both",top=FALSE,
   tickGap<-unitGap*tickSize
   
   bottomGap<-labelGapx+2*unitGap
-  if (top) topGap<-unitGap*3.125 else topGap<-minGap
+  if (top>0) topGap<-top*unitGap*3.125 else topGap<-minGap
   leftGap<-labelGapy+4*tickGap
   rightGap<-minGap
   
@@ -555,11 +555,12 @@ dataPath<-function(data,arrow=NULL,colour="black",linetype="solid",linewidth=0.2
   }
 axisPath<-function(data,arrow=NULL,colour="black",linetype="solid",linewidth=0.25,alpha=1) {
   if (!braw.env$graphHTML) {
-    g<-geom_path(data=data,aes(x=x,y=y),arrow=arrow,colour=colour,alpha=alpha,
+    g<-geom_path(data=data,aes(x=x,y=y),arrow=arrow,color=colour,alpha=alpha,
                  linetype=linetype,linewidth=linewidth)
   } else {
     ls<-''
     if (linetype=="dotted") ls<-' stroke-dasharray="2,2"'
+    if (linetype=="dashed") ls<-' stroke-dasharray="4,1"'
     linestyle<-paste0(' fill="none" stroke="',colour,'"',
                       ls,
                       ' stroke-width="',linewidth,'"',
@@ -704,7 +705,7 @@ dataErrorBar<-function(data,colour="black",linewidth=0.25) {
   return(g)
 }
 dataLegend<-function(data,title="title",fontsize=0.6,shape=21) {
-  dy=0.055*fontsize/braw.env$plotArea[4]
+  dy=0.055*fontsize
   dx=0.025*fontsize/braw.env$plotArea[3]
   names<-data$names
   if (nchar(title)>0) tn<-1.2 else tn<-0
@@ -722,9 +723,11 @@ dataLegend<-function(data,title="title",fontsize=0.6,shape=21) {
   g<-c(g,list(axisText(data=data.frame(x=rangeX(1-ncols*dx+2*dx),y=rangeY(1-dy*tn)),label=title,size=fontsize,fontface="bold"))
        )
 
+  if (length(shape)<length(names)) shape<-rep(shape,length(names))
   for (i in 1:length(names)) {
+    if (!is.na(data$colours[i]))
     g<-c(g,
-        list(axisPoint(data=data.frame(x=rangeX(1-ncols*dx+dx),y=rangeY(1-dy*(i+tn))),fill=data$colours[i],shape=shape))
+        list(axisPoint(data=data.frame(x=rangeX(1-ncols*dx+dx),y=rangeY(1-dy*(i+tn))),fill=data$colours[i],shape=shape[i]))
     )
     g<-c(g,
          list(axisText(data=data.frame(x=rangeX(1-ncols*dx+2*dx),y=rangeY(1-dy*(i+tn))),label=data$names[i],vjust=0.5,size=fontsize))

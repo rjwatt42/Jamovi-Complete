@@ -48,6 +48,7 @@ plotInference<-function(analysis,otheranalysis=NULL,disp="rs",orientation="vert"
           "po"= {g<-p_plot(analysis,disp,orientation=orientation,whichEffect=whichEffect,effectType=effectType,showTheory=showTheory,g=g)},
           
           "llknull"={g<-r_plot(analysis,disp,orientation=orientation,showTheory=showTheory,g=g)},
+          "AIC"={g<-aic_plot(analysis,disp,showTheory=showTheory,g=g)},
           "SEM"={g<-sem_plot(analysis,disp,showTheory=showTheory,g=g)},
           "sLLR"={g<-l_plot(analysis,disp,orientation=orientation,showTheory=showTheory,g=g)},
           "log(lrs)"={g<-l_plot(analysis,disp,orientation=orientation,showTheory=showTheory,g=g)},
@@ -60,6 +61,7 @@ plotInference<-function(analysis,otheranalysis=NULL,disp="rs",orientation="vert"
           "n"= {g<-n_plot(analysis,disp,orientation=orientation,showTheory=showTheory,g=g)},
           
           "rse"= {g<-r_plot(analysis,disp,orientation=orientation,whichEffect=whichEffect,effectType=effectType,showTheory=showTheory,g=g)},
+          "rss"= {g<-r_plot(analysis,disp,orientation=orientation,whichEffect=whichEffect,effectType=effectType,showTheory=showTheory,g=g)},
           "e1r"={g<-e1_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
           "e2r"={g<-e2_plot(analysis,disp,otheranalysis,orientation=orientation,showTheory=showTheory,g=g)},
           "ps1"= {g<-ps_plot(analysis,disp,showTheory=showTheory,g=g)},
