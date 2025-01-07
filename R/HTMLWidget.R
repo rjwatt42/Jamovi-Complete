@@ -1,8 +1,8 @@
-HTMLWidget <- R6::R6Class("HTMLWidget",
-                             public = list(
-                                 initialize = function() {
-                                 },
-
+# HTMLWidget <- R6::R6Class("HTMLWidget",
+#                              public = list(
+#                                  initialize = function() {
+#                                  },
+# 
                                  generate_tab = function(title="Tab",tabs=c("1","2","3"),tabContents=c("a","b","c"),
                                                          titleTab="",titleWidth=135,
                                                          plainTabs=FALSE,indent=0,topMargin=5,
@@ -179,6 +179,6 @@ HTMLWidget <- R6::R6Class("HTMLWidget",
                                    return(html_content)
                                  }
                                  
-                             )
-)
-
+#                              )
+# )
+# 

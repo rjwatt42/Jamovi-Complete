@@ -5,10 +5,10 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
   "BrawSimClass",
   inherit = BrawSimBase,
   private = list(
-    .htmlwidget = NULL,  # Add instance for HTMLWidget
+    # .htmlwidget = NULL,  # Add instance for HTMLWidget
     
     .init = function() {
-      private$.htmlwidget <- HTMLWidget$new() # Initialize the HTMLWidget instance 
+      # private$.htmlwidget <- HTMLWidget$new() # Initialize the HTMLWidget instance 
       
       # initialization code 
       if (!exists("braw.env")) {
@@ -46,6 +46,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         return()
       }
       
+      doDemos<-4 # set to 5 to include path demos
       systemAsHTML<-TRUE
       nestedHelp<-TRUE
       joinSystem<-TRUE
@@ -66,6 +67,10 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
       statusStore$brawHelpWhich<-0
       if (self$options$simHelp) statusStore$brawHelpWhich<-1
+      if (self$options$simPlanHelp) statusStore$brawHelpWhich<-2
+      if (self$options$simSingleHelp) statusStore$brawHelpWhich<-3
+      if (self$options$simMultipleHelp) statusStore$brawHelpWhich<-4
+      if (self$options$simExploreHelp) statusStore$brawHelpWhich<-5
       
       statusStore$demoWhich<-'blank'
       if (self$options$demosHelp) statusStore$demoWhich<-'start'
@@ -78,7 +83,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       if (self$options$doProject3AhBtn) statusStore$demoWhich<-'d7'
       if (self$options$doProject3BhBtn) statusStore$demoWhich<-'d8'
       if (self$options$doProject3ChBtn) statusStore$demoWhich<-'d9'
-      if (self$options$doProject4AhBtn) statusStore$demoWhich<-'d10'
+      if (doDemos>4 && self$options$doProject4AhBtn) statusStore$demoWhich<-'d10'
       statusStore$openJamovi<-0
       if (self$options$doProject1A2Btn || self$options$doProject1A3Btn) statusStore$openJamovi<-1
       
@@ -251,137 +256,52 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       if (self$options$showHypothesisBtn) openSystem<-1
       # now deal with a request for help/instructions
       # after we have set up the hypothesis
-      help<-""
       indent<-0
       titleWidth<-135
       if (nestedHelp) {
         indent<-50
         titleWidth<-0
       }
+      brawHelp<-''
+      jamoviHelp<-''
       if (self$options$brawHelp || nestedHelp) {
-        brawHelp<-private$.htmlwidget$generate_tab(
-          title="BrawStats help:",
-          indent=indent,
-          titleWidth=titleWidth,
-          # titleTab="Click on the tabs for specific help.",
-          tabs=c("Start","Plan","Single Sample","Multiple Samples","Explore","Key"),
-          tabContents = c(
-            BrawInstructions("Overview"),
-            BrawInstructions("Plan"),
-            BrawInstructions("Single"),
-            BrawInstructions("Multiple"),
-            BrawInstructions("Explore"),
-            BrawInstructions("Key")
-          ),
-          open=statusStore$brawHelpWhich
-        )
-        help<-paste0(help,brawHelp)
+        brawHelp<-brawsimHelp(open=statusStore$brawHelpWhich,indent,titleWidth)
       }
       if (self$options$jamoviHelp || nestedHelp) {
-        jamoviHelp<-private$.htmlwidget$generate_tab(
-          title="Jamovi equivalent:",
-          indent=indent,
-          titleWidth=titleWidth,
-          tabs=c("Analysis","Graph","EffectSize"),
-          tabContents = c(
-            JamoviInstructions(hypothesis,design,HelpType="Analysis"),
-            JamoviInstructions(hypothesis,design,HelpType="Graph"),
-            JamoviInstructions(hypothesis,design,HelpType="EffectSize")
-          ),
-          plain=(nchar(help)>0),
-          open=statusStore$openJamovi
-        )
-        help<-paste0(help,jamoviHelp)
+        jamoviHelp<-brawJamoviHelp(open=statusStore$openJamovi,indent,titleWidth,
+                                   hypothesis,design)
       }
-      open0<-0; open1<-0; open2<-0
-      switch(statusStore$demoWhich,
-             "blank"={open0<-0;open1<-0;open2<-0},
-             "start"={open0<-2;open1<-1;open2<-0},
-             "d1"={open0<-2;open1<-2;open2<-1},
-             "d2"={open0<-2;open1<-2;open2<-2},
-             "d3"={open0<-2;open1<-2;open2<-3},
-             "d4"={open0<-2;open1<-3;open2<-1},
-             "d5"={open0<-2;open1<-3;open2<-2},
-             "d6"={open0<-2;open1<-3;open2<-3},
-             "d7"={open0<-2;open1<-4;open2<-1},
-             "d8"={open0<-2;open1<-4;open2<-2},
-             "d9"={open0<-2;open1<-4;open2<-3},
-             "d10"={open0<-2;open1<-5;open2<-1}
-      )
-      open0<-max(0,statusStore$brawHelpWhich,statusStore$openJamovi*2)
-      if (self$options$demoHelp || nestedHelp) {
-        demoHelp<-private$.htmlwidget$generate_tab(
-          title="Demos:",
-          indent=0,
-          titleWidth=50,
+      if (nestedHelp) {
+        open0<-max(0,statusStore$brawHelpWhich>0,statusStore$openJamovi*2)
+        help<-generate_tab(
+          title="Help:",
           plainTabs=TRUE,
-          plain=(nchar(help)>0),
-          tabs=c("Start","Data","Uncertainty","Linear Models","Path Models"),
-          tabContents = c(
-            demoInstructions("start"),
-            private$.htmlwidget$generate_tab(
-              title="Samples of Data:",
-              tabs=c("1a","1b","1c"),
-              indent=50,
-              titleWidth=0,
-              tabContents=c(
-                demoInstructions("1a"),
-                demoInstructions("1b"),
-                demoInstructions("1c")
-              ),
-              open=open2
-            ),
-            private$.htmlwidget$generate_tab(
-              title="Uncertainty & Design:",
-              tabs=c("2a","2b","2c"),
-              indent=50,
-              titleWidth=0,
-              tabContents=c(
-                demoInstructions("2a"),
-                demoInstructions("2b"),
-                demoInstructions("2c")
-              ),
-              open=open2
-            ),
-            private$.htmlwidget$generate_tab(
-              title="Linear Models:",
-              tabs=c("3a","3b","3c"),
-              indent=50,
-              titleWidth=0,
-              tabContents=c(
-                demoInstructions("3a"),
-                demoInstructions("3b"),
-                demoInstructions("3c")
-              ),
-              open=open2
-            ),
-            private$.htmlwidget$generate_tab(
-              title="Path Models:",
-              tabs=c("4a","4b","4c"),
-              indent=50,
-              titleWidth=0,
-              tabContents=c(
-                demoInstructions("4a"),
-                demoInstructions("4b"),
-                demoInstructions("4c")
-              ),
-              open=open2
-            )
-          ),
-          open=open1
+          titleWidth=50,
+          tabs=c("BrawStats","Jamovi"),
+          tabContents=c(brawHelp,jamoviHelp),
+          open=open0
         )
+      } else help<-paste0(brawHelp,jamoviHelp) 
+
+      open1<-0; open2<-0
+      switch(statusStore$demoWhich,
+             "blank"={open1<-0;open2<-0},
+             "start"={open1<-1;open2<-0},
+             "d1"={open1<-2;open2<-1},
+             "d2"={open1<-2;open2<-2},
+             "d3"={open1<-2;open2<-3},
+             "d4"={open1<-3;open2<-1},
+             "d5"={open1<-3;open2<-2},
+             "d6"={open1<-3;open2<-3},
+             "d7"={open1<-4;open2<-1},
+             "d8"={open1<-4;open2<-2},
+             "d9"={open1<-4;open2<-3},
+             "d10"={open1<-5;open2<-1}
+      )
+      if (self$options$demoHelp) {
+        demoHelp<-brawDemosHelp(c(open1,open2),indent,titleWidth,doDemos)
         help<-paste0(help,demoHelp)
       }
-      if (nestedHelp)
-      help<-private$.htmlwidget$generate_tab(
-        title="Help:",
-        plainTabs=TRUE,
-        titleWidth=50,
-        tabs=c("BrawStats","Jamovi"),
-        tabContents=c(brawHelp,jamoviHelp),
-        open=open0
-      )
-      help<-paste0(help,demoHelp)
       
       if (systemAsHTML) {
         if (changedD) openSystem<-2
@@ -393,7 +313,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         e<-showPrediction()
         svgBox(180)
         d<-joinHTML(showDesign(),reportDesign())
-        systemHTML<-private$.htmlwidget$generate_tab(
+        systemHTML<-generate_tab(
           titleWidth=50,
           title="Plan:",
           plain=(nchar(help)>0),
@@ -410,7 +330,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         assign("graphHTML",self$options$showHTML,braw.env)
         svgBox(400)
         if (joinSystem) {
-          help<-paste0(help,systemHTML)
+          help<-paste0(help,'<div><br></div>',systemHTML)
         } else {
           self$results$SystemHTML$setContent(systemHTML)
         }
@@ -578,7 +498,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                    {open<-0}
             )
       if (systemAsHTML) {
-        brawResults<-private$.htmlwidget$generate_tab(
+        brawResults<-generate_tab(
           title="Results:",
           titleWidth=50,
           tabs=c("Single Sample","Multiple Samples","Explore"),
@@ -590,7 +510,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           open=open
         )
       } else {
-        brawResults<-private$.htmlwidget$generate_tab(
+        brawResults<-generate_tab(
           title="BrawStats Results:",
           tabs=c("Plan","Single Sample","Multiple Samples","Explore"),
           tabContents = c(

@@ -8,6 +8,10 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         initialize = function(
             demosHelp = NULL,
             simHelp = NULL,
+            simPlanHelp = NULL,
+            simSingleHelp = NULL,
+            simMultipleHelp = NULL,
+            simExploreHelp = NULL,
             planOptions = NULL,
             presetDV = "Blank",
             presetIV = "Blank",
@@ -202,13 +206,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             doProject3C1Btn = NULL,
             doProject3C2Btn = NULL,
             doProject3C2Lst = "r03",
-            doProject3C3Btn = NULL,
-            doProject4AhBtn = NULL,
-            doProject4AsBtn = NULL,
-            doProject4A1Btn = NULL,
-            doProject4A2Btn = NULL,
-            doProject4A2Lst = "r07",
-            doProject4A3Btn = NULL, ...) {
+            doProject3C3Btn = NULL, ...) {
 
             super$initialize(
                 package="BrawStats",
@@ -222,6 +220,18 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..simHelp <- jmvcore::OptionAction$new(
                 "simHelp",
                 simHelp)
+            private$..simPlanHelp <- jmvcore::OptionAction$new(
+                "simPlanHelp",
+                simPlanHelp)
+            private$..simSingleHelp <- jmvcore::OptionAction$new(
+                "simSingleHelp",
+                simSingleHelp)
+            private$..simMultipleHelp <- jmvcore::OptionAction$new(
+                "simMultipleHelp",
+                simMultipleHelp)
+            private$..simExploreHelp <- jmvcore::OptionAction$new(
+                "simExploreHelp",
+                simExploreHelp)
             private$..planOptions <- jmvcore::OptionList$new(
                 "planOptions",
                 planOptions,
@@ -1358,36 +1368,13 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             private$..doProject3C3Btn <- jmvcore::OptionAction$new(
                 "doProject3C3Btn",
                 doProject3C3Btn)
-            private$..doProject4AhBtn <- jmvcore::OptionAction$new(
-                "doProject4AhBtn",
-                doProject4AhBtn)
-            private$..doProject4AsBtn <- jmvcore::OptionAction$new(
-                "doProject4AsBtn",
-                doProject4AsBtn)
-            private$..doProject4A1Btn <- jmvcore::OptionAction$new(
-                "doProject4A1Btn",
-                doProject4A1Btn)
-            private$..doProject4A2Btn <- jmvcore::OptionAction$new(
-                "doProject4A2Btn",
-                doProject4A2Btn)
-            private$..doProject4A2Lst <- jmvcore::OptionList$new(
-                "doProject4A2Lst",
-                doProject4A2Lst,
-                options=list(
-                    "rn07",
-                    "rn03",
-                    "rn01",
-                    "r00",
-                    "r01",
-                    "r03",
-                    "r07"),
-                default="r07")
-            private$..doProject4A3Btn <- jmvcore::OptionAction$new(
-                "doProject4A3Btn",
-                doProject4A3Btn)
 
             self$.addOption(private$..demosHelp)
             self$.addOption(private$..simHelp)
+            self$.addOption(private$..simPlanHelp)
+            self$.addOption(private$..simSingleHelp)
+            self$.addOption(private$..simMultipleHelp)
+            self$.addOption(private$..simExploreHelp)
             self$.addOption(private$..planOptions)
             self$.addOption(private$..presetDV)
             self$.addOption(private$..presetIV)
@@ -1585,16 +1572,14 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..doProject3C2Btn)
             self$.addOption(private$..doProject3C2Lst)
             self$.addOption(private$..doProject3C3Btn)
-            self$.addOption(private$..doProject4AhBtn)
-            self$.addOption(private$..doProject4AsBtn)
-            self$.addOption(private$..doProject4A1Btn)
-            self$.addOption(private$..doProject4A2Btn)
-            self$.addOption(private$..doProject4A2Lst)
-            self$.addOption(private$..doProject4A3Btn)
         }),
     active = list(
         demosHelp = function() private$..demosHelp$value,
         simHelp = function() private$..simHelp$value,
+        simPlanHelp = function() private$..simPlanHelp$value,
+        simSingleHelp = function() private$..simSingleHelp$value,
+        simMultipleHelp = function() private$..simMultipleHelp$value,
+        simExploreHelp = function() private$..simExploreHelp$value,
         planOptions = function() private$..planOptions$value,
         presetDV = function() private$..presetDV$value,
         presetIV = function() private$..presetIV$value,
@@ -1791,16 +1776,14 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         doProject3C1Btn = function() private$..doProject3C1Btn$value,
         doProject3C2Btn = function() private$..doProject3C2Btn$value,
         doProject3C2Lst = function() private$..doProject3C2Lst$value,
-        doProject3C3Btn = function() private$..doProject3C3Btn$value,
-        doProject4AhBtn = function() private$..doProject4AhBtn$value,
-        doProject4AsBtn = function() private$..doProject4AsBtn$value,
-        doProject4A1Btn = function() private$..doProject4A1Btn$value,
-        doProject4A2Btn = function() private$..doProject4A2Btn$value,
-        doProject4A2Lst = function() private$..doProject4A2Lst$value,
-        doProject4A3Btn = function() private$..doProject4A3Btn$value),
+        doProject3C3Btn = function() private$..doProject3C3Btn$value),
     private = list(
         ..demosHelp = NA,
         ..simHelp = NA,
+        ..simPlanHelp = NA,
+        ..simSingleHelp = NA,
+        ..simMultipleHelp = NA,
+        ..simExploreHelp = NA,
         ..planOptions = NA,
         ..presetDV = NA,
         ..presetIV = NA,
@@ -1997,13 +1980,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..doProject3C1Btn = NA,
         ..doProject3C2Btn = NA,
         ..doProject3C2Lst = NA,
-        ..doProject3C3Btn = NA,
-        ..doProject4AhBtn = NA,
-        ..doProject4AsBtn = NA,
-        ..doProject4A1Btn = NA,
-        ..doProject4A2Btn = NA,
-        ..doProject4A2Lst = NA,
-        ..doProject4A3Btn = NA)
+        ..doProject3C3Btn = NA)
 )
 
 BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
@@ -2136,6 +2113,10 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' 
 #' @param demosHelp .
 #' @param simHelp .
+#' @param simPlanHelp .
+#' @param simSingleHelp .
+#' @param simMultipleHelp .
+#' @param simExploreHelp .
 #' @param planOptions .
 #' @param presetDV .
 #' @param presetIV .
@@ -2331,12 +2312,6 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param doProject3C2Btn .
 #' @param doProject3C2Lst .
 #' @param doProject3C3Btn .
-#' @param doProject4AhBtn .
-#' @param doProject4AsBtn .
-#' @param doProject4A1Btn .
-#' @param doProject4A2Btn .
-#' @param doProject4A2Lst .
-#' @param doProject4A3Btn .
 #' @return A results object containing:
 #' \tabular{llllll}{
 #'   \code{results$BrawStatsInstructions} \tab \tab \tab \tab \tab a html \cr
@@ -2353,6 +2328,10 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 BrawSim <- function(
     demosHelp,
     simHelp,
+    simPlanHelp,
+    simSingleHelp,
+    simMultipleHelp,
+    simExploreHelp,
     planOptions,
     presetDV = "Blank",
     presetIV = "Blank",
@@ -2547,13 +2526,7 @@ BrawSim <- function(
     doProject3C1Btn,
     doProject3C2Btn,
     doProject3C2Lst = "r03",
-    doProject3C3Btn,
-    doProject4AhBtn,
-    doProject4AsBtn,
-    doProject4A1Btn,
-    doProject4A2Btn,
-    doProject4A2Lst = "r07",
-    doProject4A3Btn) {
+    doProject3C3Btn) {
 
     if ( ! requireNamespace("jmvcore", quietly=TRUE))
         stop("BrawSim requires jmvcore to be installed (restart may be required)")
@@ -2562,6 +2535,10 @@ BrawSim <- function(
     options <- BrawSimOptions$new(
         demosHelp = demosHelp,
         simHelp = simHelp,
+        simPlanHelp = simPlanHelp,
+        simSingleHelp = simSingleHelp,
+        simMultipleHelp = simMultipleHelp,
+        simExploreHelp = simExploreHelp,
         planOptions = planOptions,
         presetDV = presetDV,
         presetIV = presetIV,
@@ -2756,13 +2733,7 @@ BrawSim <- function(
         doProject3C1Btn = doProject3C1Btn,
         doProject3C2Btn = doProject3C2Btn,
         doProject3C2Lst = doProject3C2Lst,
-        doProject3C3Btn = doProject3C3Btn,
-        doProject4AhBtn = doProject4AhBtn,
-        doProject4AsBtn = doProject4AsBtn,
-        doProject4A1Btn = doProject4A1Btn,
-        doProject4A2Btn = doProject4A2Btn,
-        doProject4A2Lst = doProject4A2Lst,
-        doProject4A3Btn = doProject4A3Btn)
+        doProject3C3Btn = doProject3C3Btn)
 
     analysis <- BrawSimClass$new(
         options = options,

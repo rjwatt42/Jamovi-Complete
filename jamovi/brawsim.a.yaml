@@ -14,6 +14,22 @@ options:
       type: Action
       title: '?'
       
+    - name: simPlanHelp
+      type: Action
+      title: '?'
+      
+    - name: simSingleHelp
+      type: Action
+      title: '?'
+      
+    - name: simMultipleHelp
+      type: Action
+      title: '?'
+      
+    - name: simExploreHelp
+      type: Action
+      title: '?'
+      
     - name: planOptions
       title: ' '
       type: List
@@ -26,19 +42,7 @@ options:
         title: Analysis
       - name: planM
         title: More
-# 
-# - name: varOptions
-#   title: ' '
-#   type: List
-#   options:
-#   - name: DV
-#     title: DV
-#   - name: IV
-#     title: IV
-#   - name: IV2
-#     title: IV2
-#   default: DV
-            
+
     - name: presetDV
       title: ''
       type: List
@@ -1805,45 +1809,45 @@ options:
       title: 'do it'
       type: Action
 
-
-    - name: doProject4AhBtn
-      title: '?'
-      type: Action
-
-    - name: doProject4AsBtn
-      title: 'set up for me'
-      type: Action
-
-    - name: doProject4A1Btn
-      title: 'do it'
-      type: Action
-
-    - name: doProject4A2Btn
-      title: 'do it'
-      type: Action
-
-    - name: doProject4A2Lst
-      title: "rp:"
-      type: List
-      options:
-      - name: rn07
-        title: '-0.7'
-      - name: rn03
-        title: '-0.3'
-      - name: rn01
-        title: '-0.1'
-      - name: r00
-        title: '0.0'
-      - name: r01
-        title: '0.1'
-      - name: r03
-        title: '0.3'
-      - name: r07
-        title: '0.7'
-      default: r07
-
-    - name: doProject4A3Btn
-      title: 'do it'
-      type: Action
+# 
+#     - name: doProject4AhBtn
+#       title: '?'
+#       type: Action
+# 
+#     - name: doProject4AsBtn
+#       title: 'set up for me'
+#       type: Action
+# 
+#     - name: doProject4A1Btn
+#       title: 'do it'
+#       type: Action
+# 
+#     - name: doProject4A2Btn
+#       title: 'do it'
+#       type: Action
+# 
+#     - name: doProject4A2Lst
+#       title: "rp:"
+#       type: List
+#       options:
+#       - name: rn07
+#         title: '-0.7'
+#       - name: rn03
+#         title: '-0.3'
+#       - name: rn01
+#         title: '-0.1'
+#       - name: r00
+#         title: '0.0'
+#       - name: r01
+#         title: '0.1'
+#       - name: r03
+#         title: '0.3'
+#       - name: r07
+#         title: '0.7'
+#       default: r07
+# 
+#     - name: doProject4A3Btn
+#       title: 'do it'
+#       type: Action
 
 ...
