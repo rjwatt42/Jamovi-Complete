@@ -26,7 +26,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           whichShowExploreOut="all",
                           exploreMode="Design",
                           demoWhich="blank",
-                          brawHelpWhich<-0,
+                          brawHelpWhich=0,
                           openJamovi=0,
                           planMode=NULL,
                           nrowTableLM=1,
@@ -65,25 +65,31 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         if (!self$results$simReport$visible) self$results$simReport$setVisible(TRUE)
       }
 
-      statusStore$brawHelpWhich<-0
-      if (self$options$simHelp) statusStore$brawHelpWhich<-1
-      if (self$options$simPlanHelp) statusStore$brawHelpWhich<-2
-      if (self$options$simSingleHelp) statusStore$brawHelpWhich<-3
-      if (self$options$simMultipleHelp) statusStore$brawHelpWhich<-4
-      if (self$options$simExploreHelp) statusStore$brawHelpWhich<-5
+      # old_brawHelpWhich<-statusStore$brawHelpWhich
+      # if (self$options$simHelp) statusStore$brawHelpWhich<-1
+      # if (self$options$simPlanHelp) statusStore$brawHelpWhich<-2
+      # if (self$options$simSingleHelp) statusStore$brawHelpWhich<-3
+      # if (self$options$simMultipleHelp) statusStore$brawHelpWhich<-4
+      # if (self$options$simExploreHelp) statusStore$brawHelpWhich<-5
+      # if (statusStore$brawHelpWhich==old_brawHelpWhich) statusStore$brawHelpWhich<-0
+      # 
+      # old_demoWhich<-statusStore$demoWhich
+      # if (self$options$demo1Help) statusStore$demoWhich<-"1"
+      # if (self$options$demo2Help) statusStore$demoWhich<-"2"
+      # if (self$options$demo3Help) statusStore$demoWhich<-"3"
+      # if (self$options$demosHelp) statusStore$demoWhich<-'start'
+      # if (self$options$doProject1AhBtn) statusStore$demoWhich<-'d1'
+      # if (self$options$doProject1BhBtn) statusStore$demoWhich<-'d2'
+      # if (self$options$doProject1ChBtn) statusStore$demoWhich<-'d3'
+      # if (self$options$doProject2AhBtn) statusStore$demoWhich<-'d4'
+      # if (self$options$doProject2BhBtn) statusStore$demoWhich<-'d5'
+      # if (self$options$doProject2ChBtn) statusStore$demoWhich<-'d6'
+      # if (self$options$doProject3AhBtn) statusStore$demoWhich<-'d7'
+      # if (self$options$doProject3BhBtn) statusStore$demoWhich<-'d8'
+      # if (self$options$doProject3ChBtn) statusStore$demoWhich<-'d9'
+      # if (doDemos>4 && self$options$doProject4AhBtn) statusStore$demoWhich<-'d10'
+      # if (statusStore$demoWhich==old_demoWhich)statusStore$demoWhich<-'blank'
       
-      statusStore$demoWhich<-'blank'
-      if (self$options$demosHelp) statusStore$demoWhich<-'start'
-      if (self$options$doProject1AhBtn) statusStore$demoWhich<-'d1'
-      if (self$options$doProject1BhBtn) statusStore$demoWhich<-'d2'
-      if (self$options$doProject1ChBtn) statusStore$demoWhich<-'d3'
-      if (self$options$doProject2AhBtn) statusStore$demoWhich<-'d4'
-      if (self$options$doProject2BhBtn) statusStore$demoWhich<-'d5'
-      if (self$options$doProject2ChBtn) statusStore$demoWhich<-'d6'
-      if (self$options$doProject3AhBtn) statusStore$demoWhich<-'d7'
-      if (self$options$doProject3BhBtn) statusStore$demoWhich<-'d8'
-      if (self$options$doProject3ChBtn) statusStore$demoWhich<-'d9'
-      if (doDemos>4 && self$options$doProject4AhBtn) statusStore$demoWhich<-'d10'
       statusStore$openJamovi<-0
       if (self$options$doProject1A2Btn || self$options$doProject1A3Btn) statusStore$openJamovi<-1
       
@@ -287,16 +293,19 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       switch(statusStore$demoWhich,
              "blank"={open1<-0;open2<-0},
              "start"={open1<-1;open2<-0},
-             "d1"={open1<-2;open2<-1},
-             "d2"={open1<-2;open2<-2},
-             "d3"={open1<-2;open2<-3},
-             "d4"={open1<-3;open2<-1},
-             "d5"={open1<-3;open2<-2},
-             "d6"={open1<-3;open2<-3},
-             "d7"={open1<-4;open2<-1},
-             "d8"={open1<-4;open2<-2},
-             "d9"={open1<-4;open2<-3},
-             "d10"={open1<-5;open2<-1}
+             "1"={open1<-2;open2<-1},
+             "d1"={open1<-2;open2<-2},
+             "d2"={open1<-2;open2<-3},
+             "d3"={open1<-2;open2<-4},
+             "2"={open1<-3;open2<-1},
+             "d4"={open1<-3;open2<-2},
+             "d5"={open1<-3;open2<-3},
+             "d6"={open1<-3;open2<-4},
+             "3"={open1<-4;open2<-1},
+             "d7"={open1<-4;open2<-2},
+             "d8"={open1<-4;open2<-3},
+             "d9"={open1<-4;open2<-4},
+             "d10"={open1<-5;open2<-2}
       )
       if (self$options$demoHelp) {
         demoHelp<-brawDemosHelp(c(open1,open2),indent,titleWidth,doDemos)

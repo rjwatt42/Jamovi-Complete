@@ -908,7 +908,7 @@ view.layout = ui.extend({
 																														{
 																															type: DefaultControls.Label,
 																															typeName: 'Label',
-																															label: "   - compare rs, the sample effect size, to rp (0.3)"
+																															label: "   - compare sample rs with population rp (0.3)"
 																														}
 																													]
 																												},
@@ -2249,7 +2249,7 @@ view.layout = ui.extend({
 																														{
 																															type: DefaultControls.Label,
 																															typeName: 'Label',
-																															label: "- can you estimate what n would give p(sig)=0.8?"
+																															label: "- estimate what n would give p(sig)=0.8?"
 																														}
 																													]
 																												}

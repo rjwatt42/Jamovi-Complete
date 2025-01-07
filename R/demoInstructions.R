@@ -18,6 +18,17 @@ demoInstructions <- function(HelpType="1") {
              '</ul>'
            )
          },
+         "1"={output<-c(
+           '<b>Data: working with samples</b>',
+           '<br>',
+           'We begin with just dealing with data. Data is the link between the reality and the inference. ',
+           'Data usually comes as a sample taken a population. That sample is usually a very small proportion of the whole population.',
+           '<ul style=margin:0px;>',
+           '<li> Data analysis is usually not difficult.',
+           '<li> A sample of data can be good or bad.',
+           '<li> There is always sampling error.',
+           '</ul>'
+         )},
          "1a"={output<-c(
            '<b>Demo 1a</b>',
            '<br>',
@@ -58,6 +69,18 @@ demoInstructions <- function(HelpType="1") {
          )
          },
          
+         "2"={output<-c(
+           '<b>Uncertainty and Design</b>',
+           '<br>',
+           'A sample is always different from the population. ',
+           'But we can never know how it is different. That means that the sample is an uncertain guide to the population.',
+           'We can, however, set a limit on how much the uncertainty is.',
+           '<ul style=margin:0px;>',
+           '<li> We start by just looking at the range of sample effect sizes.',
+           '<li> We then go on to see how these convert into inferential errors.',
+           '<li> Finally we consider how careful design can minimize these errors.',
+           '</ul>'
+         )},
          "2a"={output<-c(
            '<b>Demo 2a</b>',
            '<br>',
@@ -94,6 +117,18 @@ demoInstructions <- function(HelpType="1") {
          )
          },
          
+         "3"={output<-c(
+           '<b>Linear models with more than 1 IV</b>',
+           '<br>',
+           'Statistical analysis is simple provided there is just one effect (one IV and 1 DV). ',
+           'But often it is much more interesting and useful to consider more than one IV.',
+           'This introduces some extra considerations.',
+           '<ul style=margin:0px;>',
+           '<li> Linear models are those where the different effects simply add together.',
+           '<li> Linear models can have interactions (aka moderations).',
+           '<li> Covariation occurs when the IVs are themselves inter-related.',
+           '</ul>'
+         )},
          "3a"={output<-c(
            '<b>Demo 3a</b>',
            '<br>',
@@ -136,7 +171,13 @@ demoInstructions <- function(HelpType="1") {
            '</ul>'
          )
          },
-         
+         "4"={output<-c(
+           '<b>Path models</b>',
+           '<br>',
+           'Path models can have a sequence of effects linked into a chain - or path. ',
+           ''
+         )
+         },
          "4a"={output<-c(
            '<b>Demo 4a</b>',
            '<br>',
@@ -194,6 +235,7 @@ demoInstructions <- function(HelpType="1") {
                    'here',
                    '</a>'
                    )
+#    if (!is.element(HelpType,c("1","2","3","4")))
     output<-c(output,extras)
     output<-c("<div style='border: none; padding: 4px;'>",output,"</div>")
     

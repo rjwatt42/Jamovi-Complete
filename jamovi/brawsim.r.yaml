@@ -4,17 +4,13 @@ title: BrawStats:Simulate Data
 jrs:   '1.1'
 
 items:
-    # - name: testHTML
-    #   type: Html
-    #   visible: FALSE
-      
     - name: BrawStatsInstructions 
       type: Html
       visible: TRUE
 
     - name: SystemHTML
       type: Html
-      visible: FALSE
+      visible: TRUE
 
     - name: simGraphHTML
       type: Html
@@ -70,15 +66,7 @@ items:
       - showExploreDimension
       - reportExploreStats
       - whichShowMultiple
-      refs:
-      - brawstats
-      - book
-      # renderFun: .plotReport
-
-    # - name: JamoviInstructions
-    #   type: Html
-    #   visible: FALSE
-    # 
+     
     - name: debug
       type: Preformatted
       visible: FALSE

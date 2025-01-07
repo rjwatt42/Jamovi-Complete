@@ -403,12 +403,12 @@ const events =  {
       if (BtnOn==true) {
       let rVal = ui.doProject2C4Lst.value();
       switch(rVal) {
-        case "r00": ui.EffectSize1.setValue(0.0); break;
-        case "r01": ui.EffectSize1.setValue(0.1); break;
+        case "r00": ui.EffectSize1.setValue(0.0); ui.exploreMaxValD.setValue(500); break;
+        case "r01": ui.EffectSize1.setValue(0.1); ui.exploreMaxValD.setValue(500); break;
         case "r02": ui.EffectSize1.setValue(0.2); break;
         case "r03": ui.EffectSize1.setValue(0.3); break;
-        case "r05": ui.EffectSize1.setValue(0.5); break;
-        case "r075": ui.EffectSize1.setValue(0.75); break;
+        case "r05": ui.EffectSize1.setValue(0.5); ui.exploreMaxValD.setValue(100); break;
+        case "r075": ui.EffectSize1.setValue(0.75); ui.exploreMaxValD.setValue(100); break;
       }
         ui.showExploreParam.setValue("p(sig)")
         ui.exploreMode.setValue("designExplore")
@@ -464,7 +464,7 @@ const events =  {
         case "r02": ui.EffectSize1.setValue(0.2); break;
         case "r03": ui.EffectSize1.setValue(0.3); break;
         case "r05": ui.EffectSize1.setValue(0.5); break;
-        case "r075": ui.EffectSize1.setValue(0.75); break;
+        case "r06": ui.EffectSize1.setValue(0.6); break;
       }
       ui.EffectSize2.setValue(0.0)
       ui.EffectSize12.setValue(0.0)
@@ -483,7 +483,7 @@ const events =  {
         case "r02": ui.EffectSize2.setValue(0.2); break;
         case "r03": ui.EffectSize2.setValue(0.3); break;
         case "r05": ui.EffectSize2.setValue(0.5); break;
-        case "r075": ui.EffectSize2.setValue(0.75); break;
+        case "r06": ui.EffectSize2.setValue(0.6); break;
       }
       ui.EffectSize1.setValue(0.0)
       ui.EffectSize12.setValue(0.0)
