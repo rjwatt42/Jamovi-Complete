@@ -9,7 +9,7 @@
 #' @examples
 #' doMetaAnalysis<-function(nsims=50,metaAnalysis=makeMetaAnalysis(),
 #'                          hypothesis=braw.def$hypothesis,design=braw.def$design,evidence=braw.def$evidence,
-#'                          metaResult=NULL) {
+#'                          metaResult=NULL)
 #' @export
 doMetaAnalysis<-function(nsims=100,metaResult=braw.res$metaMultiple,metaAnalysis=braw.def$metaAnalysis,
                          hypothesis=braw.def$hypothesis,design=braw.def$design,evidence=braw.def$evidence
