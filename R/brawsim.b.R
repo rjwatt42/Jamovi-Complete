@@ -25,8 +25,9 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                           showExploreDimension="1D",
                           whichShowExploreOut="all",
                           exploreMode="Design",
-                          demoWhich="blank",
-                          brawHelpWhich=0,
+                          basicHelpWhich=1,
+                          demoHelpWhich=c(0,0),
+                          simHelpWhich=0,
                           openJamovi=0,
                           planMode=NULL,
                           nrowTableLM=1,
@@ -65,30 +66,30 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         if (!self$results$simReport$visible) self$results$simReport$setVisible(TRUE)
       }
 
-      old_brawHelpWhich<-statusStore$brawHelpWhich
-      if (self$options$simHelp) statusStore$brawHelpWhich<-1
-      if (self$options$simPlanHelp) statusStore$brawHelpWhich<-2
-      if (self$options$simSingleHelp) statusStore$brawHelpWhich<-3
-      if (self$options$simMultipleHelp) statusStore$brawHelpWhich<-4
-      if (self$options$simExploreHelp) statusStore$brawHelpWhich<-5
-      if (statusStore$brawHelpWhich==old_brawHelpWhich) statusStore$brawHelpWhich<-0
+      old_simHelpWhich<-statusStore$simHelpWhich
+      if (self$options$simHelp) statusStore$simHelpWhich<-1
+      if (self$options$simPlanHelp) statusStore$simHelpWhich<-2
+      if (self$options$simSingleHelp) statusStore$simHelpWhich<-3
+      if (self$options$simMultipleHelp) statusStore$simHelpWhich<-4
+      if (self$options$simExploreHelp) statusStore$simHelpWhich<-5
+      if (statusStore$simHelpWhich==old_simHelpWhich) statusStore$simHelpWhich<-0
 
-      old_demoWhich<-statusStore$demoWhich
-      if (self$options$demo1Help) statusStore$demoWhich<-"1"
-      if (self$options$demo2Help) statusStore$demoWhich<-"2"
-      if (self$options$demo3Help) statusStore$demoWhich<-"3"
-      if (self$options$demosHelp) statusStore$demoWhich<-'start'
-      if (self$options$doProject1AhBtn) statusStore$demoWhich<-'d1'
-      if (self$options$doProject1BhBtn) statusStore$demoWhich<-'d2'
-      if (self$options$doProject1ChBtn) statusStore$demoWhich<-'d3'
-      if (self$options$doProject2AhBtn) statusStore$demoWhich<-'d4'
-      if (self$options$doProject2BhBtn) statusStore$demoWhich<-'d5'
-      if (self$options$doProject2ChBtn) statusStore$demoWhich<-'d6'
-      if (self$options$doProject3AhBtn) statusStore$demoWhich<-'d7'
-      if (self$options$doProject3BhBtn) statusStore$demoWhich<-'d8'
-      if (self$options$doProject3ChBtn) statusStore$demoWhich<-'d9'
-      if (doDemos>4 && self$options$doProject4AhBtn) statusStore$demoWhich<-'d10'
-      if (statusStore$demoWhich==old_demoWhich)statusStore$demoWhich<-'blank'
+      old_demoHelpWhich<-statusStore$demoHelpWhich
+      if (self$options$demosHelp) statusStore$demoHelpWhich<-c(1,0)
+      if (self$options$demo1Help) statusStore$demoHelpWhich<-c(2,1)
+      if (self$options$demo2Help) statusStore$demoHelpWhich<-c(3,1)
+      if (self$options$demo3Help) statusStore$demoHelpWhich<-c(4,1)
+      if (self$options$doProject1AhBtn) statusStore$demoHelpWhich<-c(2,2)
+      if (self$options$doProject1BhBtn) statusStore$demoHelpWhich<-c(2,3)
+      if (self$options$doProject1ChBtn) statusStore$demoHelpWhich<-c(2,4)
+      if (self$options$doProject2AhBtn) statusStore$demoHelpWhich<-c(3,2)
+      if (self$options$doProject2BhBtn) statusStore$demoHelpWhich<-c(3,3)
+      if (self$options$doProject2ChBtn) statusStore$demoHelpWhich<-c(3,4)
+      if (self$options$doProject3AhBtn) statusStore$demoHelpWhich<-c(4,2)
+      if (self$options$doProject3BhBtn) statusStore$demoHelpWhich<-c(4,3)
+      if (self$options$doProject3ChBtn) statusStore$demoHelpWhich<-c(4,4)
+      if (doDemos>4 && self$options$doProject4AhBtn) statusStore$demoHelpWhich<-c(5,2)
+      if (all(statusStore$demoHelpWhich==old_demoHelpWhich))statusStore$demoHelpWhich<-c(0,0)
       
       statusStore$openJamovi<-0
       if (self$options$doProject1A2Btn || self$options$doProject1A3Btn) statusStore$openJamovi<-1
@@ -269,41 +270,25 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         titleWidth<-0
       }
       if (self$options$brawHelp) {
-        brawHelp<-brawsimHelp(open=statusStore$brawHelpWhich,indent,titleWidth)
+        basicHelp<-brawbasicHelp(open=statusStore$basicHelpWhich,indent,titleWidth)
+        simHelp<-brawsimHelp(open=statusStore$simHelpWhich,indent,titleWidth)
         jamoviHelp<-brawJamoviHelp(open=statusStore$openJamovi,indent,titleWidth,
                                    hypothesis,design)
 
-        open1<-0; open2<-0
-        switch(statusStore$demoWhich,
-               "blank"={open1<-0;open2<-0},
-               "start"={open1<-1;open2<-0},
-               "1"={open1<-2;open2<-1},
-               "d1"={open1<-2;open2<-2},
-               "d2"={open1<-2;open2<-3},
-               "d3"={open1<-2;open2<-4},
-               "2"={open1<-3;open2<-1},
-               "d4"={open1<-3;open2<-2},
-               "d5"={open1<-3;open2<-3},
-               "d6"={open1<-3;open2<-4},
-               "3"={open1<-4;open2<-1},
-               "d7"={open1<-4;open2<-2},
-               "d8"={open1<-4;open2<-3},
-               "d9"={open1<-4;open2<-4},
-               "d10"={open1<-5;open2<-2}
-        )
-        demoHelp<-brawDemosHelp(c(open1,open2),indent,titleWidth,doDemos)
+        demoHelp<-brawDemosHelp(statusStore$demoHelpWhich,indent,titleWidth,doDemos)
 
         if (nestedHelp) {
-          open0<-max(0,open1>0,(statusStore$brawHelpWhich>0)*2,statusStore$openJamovi*3)
+          open0<-max(0,statusStore$basicHelpWhich,any(statusStore$demoHelpWhich>0)*2,(statusStore$simHelpWhich>0)*3,statusStore$openJamovi*4)
           help<-generate_tab(
             title="Help:",
             plainTabs=TRUE,
             titleWidth=50,
-            tabs=c("Demos","Simulations","Jamovi"),
-            tabContents=c(demoHelp,brawHelp,jamoviHelp),
+            tabs=c("Basic","Demos","Simulations","Jamovi"),
+            tabContents=c(basicHelp,demoHelp,simHelp,jamoviHelp),
             open=open0
           )
-        } else help<-paste0(brawHelp,jamoviHelp,demoHelp) 
+        } else help<-paste0(basicHelp,demoHelp,simHelp,jamoviHelp) 
+        statusStore$basicHelpWhich<-0 # so closed next time round
       } else help<-''
       
       if (systemAsHTML) {

@@ -1,21 +1,36 @@
+brawbasicHelp<-function(open=0,indent,titleWidth) {
+  return(paste0(
+    '<b>Help Tabs</b>',
+    '<br>The help system contains useful information about BrawStats.',
+    '<br>Use the grey tabs to open up the topics. ',
+    "To close a tab, click the same grey tab. To close all tabs, click the white 'Help:' label.",
+    '<br>',
+    '<b>Plan Tabs</b>',
+    '<br>The basic parameters of a research plan are shown graphically in the Plan Tabs.</b>',
+    '<br>These show the current plan for simulations. The tabs operate in the same way as for the Help Tabs.',
+    '<br>When the plan is changed, the relevant part is shown here.'
+  )
+  )
+}
+
 brawsimHelp<-function(open=0,indent,titleWidth) {
   return(
-  generate_tab(
-    title="BrawStats help:",
-    indent=indent,
-    titleWidth=titleWidth,
-    # titleTab="Click on the tabs for specific help.",
-    tabs=c("Start","Plan","Single Sample","Multiple Samples","Explore","Key"),
-    tabContents = c(
-      BrawInstructions("Overview"),
-      BrawInstructions("Plan"),
-      BrawInstructions("Single"),
-      BrawInstructions("Multiple"),
-      BrawInstructions("Explore"),
-      BrawInstructions("Key")
-    ),
-    open=open
-  )
+    generate_tab(
+      title="BrawStats help:",
+      indent=indent,
+      titleWidth=titleWidth,
+      # titleTab="Click on the tabs for specific help.",
+      tabs=c("Start","Plan","Single Sample","Multiple Samples","Explore","Key"),
+      tabContents = c(
+        BrawInstructions("Overview"),
+        BrawInstructions("Plan"),
+        BrawInstructions("Single"),
+        BrawInstructions("Multiple"),
+        BrawInstructions("Explore"),
+        BrawInstructions("Key")
+      ),
+      open=open
+    )
   )
 }
 
