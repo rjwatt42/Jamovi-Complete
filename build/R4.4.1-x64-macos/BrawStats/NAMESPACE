@@ -11,9 +11,3 @@ import(NlcOptim)
 import(abind)
 export(BrawSimClass)
 export(BrawSimOptions)
-
-export(BrawLMClass)
-export(BrawLMOptions)
-
-export(BrawSEMClass)
-export(BrawSEMOptions)

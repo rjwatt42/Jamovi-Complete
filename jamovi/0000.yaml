@@ -11,24 +11,12 @@ type: R
 description: |-
   BrawStats functions:
     i.   learning by data simulation
-    iii. linear model tool
-    iv.  path model tool
 analyses:
   - title: BrawStats:Simulate Data
     name: BrawSim
     ns: BrawStats
     menuGroup: BrawStats
     menuTitle: BrawStats:Simulate Data
-  - name: BrawLM
-    ns: BrawStats
-    menuGroup: BrawStats
-    menuTitle: BrawStats:Linear Models
-    title: BrawStats:Linear Models
-  - name: BrawSEM
-    ns: BrawStats
-    menuGroup: BrawStats
-    menuTitle: BrawStats:Path Models
-    title: BrawStats:Path Models
 usesNative: true
 minApp: 1.0.8
 
