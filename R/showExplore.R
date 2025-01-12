@@ -1014,9 +1014,7 @@ showExplore2D<-function(exploreResult=braw.res$explore,showType=c("rs","p"),show
                yticks=makeTicks(logScale=xaxis$logScale),ylabel=makeLabel(ylabel),
                box="both",top=TRUE,g=g)
   g<-addG(g,plotTitle(paste0("explore: ",explore$exploreType),size=1,fontface="plain",position="left"))
-  # g<-addG(g,xAxisTicks(logScale=xaxis$logScale),xAxisLabel(xlabel))
-  # g<-addG(g,yAxisTicks(logScale=yaxis$logScale),yAxisLabel(ylabel))
-  
+
   lineCol<-"black"
   if (is.element(showType[1],c("p","e1p","e2p","e1d","e2d"))) lineCol<-"green"
   for (xl in xlines) {

@@ -9,7 +9,13 @@
 #' @export
 reportMultiple<-function(multipleResult=braw.res$multiple,showType="Basic",
                          whichEffect="All",effectType="all",reportStats="Medians"){
+  
   if (is.null(multipleResult)) multipleResult=doMultiple(autoShow=FALSE)
+  if (!multipleResult$hypothesis$effect$world$worldOn && is.element(showType[1],c("NHST","Hits","Misses"))) {
+    if (multipleResult$nullcount<multipleResult$count) {
+      multipleResult<-doMultiple(0,multipleResult,doingNull=TRUE)
+    }
+  }
   
     reportMeans<-(reportStats=="Means")
     reportQuants<-FALSE
@@ -72,6 +78,15 @@ reportMultiple<-function(multipleResult=braw.res$multiple,showType="Basic",
     }
     outputText<-c(outputText,rep("",nc))
     
+    if (multipleResult$nullcount>0) {
+      result$rp[result$rp==0]<-0.00000000001
+      result$rIV<-rbind(result$rIV,nullresult$rIV)
+      result$rp<-rbind(result$rp,nullresult$rp)
+      result$pIV<-rbind(result$pIV,nullresult$pIV)
+      result$nval<-rbind(result$nval,nullresult$nval)
+      result$df1<-rbind(result$df1,nullresult$df1)
+    }
+    
     effectTypes<-1
     if (is.null(IV2)) {
       rs<-matrix(result$rIV,ncol=1)
@@ -127,6 +142,7 @@ reportMultiple<-function(multipleResult=braw.res$multiple,showType="Basic",
           )
         }
         par<-gsub("^([rz]{1})([spoe]{1})$","\\1\\[\\2\\]",par)
+        if (par=="llknull") par<-"llr[+]"
         if (par=="AIC") par<-"diff(AIC)"
         if (!is.na(par))
           outputText1<-c(outputText1,par)
@@ -214,16 +230,16 @@ reportMultiple<-function(multipleResult=braw.res$multiple,showType="Basic",
         
       } else 
         if (is.element(showType,c("NHST","SEM"))) {
-          nulls<-multipleResult$result$rp==0
+          nulls<-result$rp==0
           sigs<-isSignificant(braw.env$STMethod,
-                              multipleResult$result$pIV,multipleResult$result$rIV,
-                              multipleResult$result$nval,multipleResult$result$df1,
-                              multipleResult$result$evidence)
+                              result$pIV,result$rIV,
+                              result$nval,result$df1,
+                              result$evidence)
           switch(showType,
                  "NHST"={
                    outcomes<-sigs+1
-                   data<-matrix(c(multipleResult$result$rIV,
-                                  multipleResult$result$rIV),
+                   data<-matrix(c(result$rIV,
+                                  result$rIV),
                                 ncol=2,byrow=FALSE)
                    colnames(data)<-c("nsig","sig")
                    data[sigs,1]<-NA
@@ -388,7 +404,7 @@ reportMultiple<-function(multipleResult=braw.res$multiple,showType="Basic",
         if (pars[1]=="p" || pars[2]=="p") {
           if (is.null(IV2)) {
             outputText<-c(outputText,rep("",nc),
-                          paste0("!j\bp(sig) = ",brawFormat(mean(p<braw.env$alphaSig)*100,digits=1),"%"),rep(" ",nc-1))
+                          paste0("!j\bp(sig) = ",brawFormat(sum(p<braw.env$alphaSig,na.rm=TRUE)/sum(!is.na(p))*100,digits=1),"%"),rep(" ",nc-1))
           }
         }
       }

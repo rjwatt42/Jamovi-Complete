@@ -158,7 +158,7 @@ plotAxis<-function(showType,hypothesis,design=NULL) {
           },
           "llknull"={
             ylim<-log10(c(0.1, 100000))
-            ylabel<-'llk(~null)'
+            ylabel<-'llr[+]'
             ylines<-log10(c(1))
             use_cols<-c(hsv(base_hue_r,1,1),hsv(base_hue_r+hue_diff,1,1),hsv(base_hue_r+hue_diff*2,1,1))
           },

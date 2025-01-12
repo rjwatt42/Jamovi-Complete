@@ -668,6 +668,23 @@ doAnalysis<-function(sample=doSample(autoShow=FALSE),evidence=braw.def$evidence,
                    sem5$eval[[evidence$useAIC]],
                    sem6$eval[[evidence$useAIC]]
                    )
+      analysis$semRs<-t(rbind(
+        c(sem0$ES_table[DV$name,IV$name],sem0$ES_table[DV$name,IV2$name],sem0$ES_table[IV$name,IV2$name]),
+        c(sem1$ES_table[DV$name,IV$name],sem1$ES_table[DV$name,IV2$name],sem1$ES_table[IV$name,IV2$name]),
+        c(sem2$ES_table[DV$name,IV$name],sem2$ES_table[DV$name,IV2$name],sem2$ES_table[IV$name,IV2$name]),
+        c(sem3$ES_table[DV$name,IV$name],sem3$ES_table[DV$name,IV2$name],sem3$ES_table[IV$name,IV2$name]),
+        c(sem4$ES_table[DV$name,IV$name],sem4$ES_table[DV$name,IV2$name],sem4$ES_table[IV2$name,IV$name]),
+        c(sem5$ES_table[DV$name,IV$name],sem5$ES_table[DV$name,IV2$name],sem5$ES_table[IV2$name,IV$name]),
+        c(sem6$ES_table[DV$name,IV$name],sem6$ES_table[DV$name,IV2$name],sem6$ES_table[IV2$name,IV$name])
+      ))
+      analysis$semSRMR<-c(sem0$stats$model_srmr,sem1$stats$model_srmr,sem2$stats$model_srmr,
+                           sem3$stats$model_srmr,sem4$stats$model_srmr,sem5$stats$model_srmr,sem6$stats$model_srmr)
+      analysis$semRMSEA<-c(sem0$stats$rmsea,sem1$stats$rmsea,sem2$stats$rmsea,
+                           sem3$stats$rmsea,sem4$stats$rmsea,sem5$stats$rmsea,sem6$stats$rmsea)
+      analysis$semCHI2<-c(sem0$stats$model_chisqr,sem1$stats$model_chisqr,sem2$stats$model_chisqr,
+                          sem3$stats$model_chisqr,sem4$stats$model_chisqr,sem5$stats$model_chisqr,sem6$stats$model_chisqr)
+      analysis$semDF<-c(sem0$stats$model_chi_df,sem1$stats$model_chi_df,sem2$stats$model_chi_df,
+                          sem3$stats$model_chi_df,sem4$stats$model_chi_df,sem5$stats$model_chi_df,sem6$stats$model_chi_df)
     } else {
       pathmodel$path$stages<-list(DV$name)
       sem0<-fit_sem_model(pathmodel,model_data)
@@ -679,6 +696,11 @@ doAnalysis<-function(sample=doSample(autoShow=FALSE),evidence=braw.def$evidence,
                    sem1$eval[[evidence$useAIC]],
                    NA,NA,NA,NA,NA
                    )
+      analysis$semRs<-t(rbind(c(NA,NA,NA),c(sem1$ES_table[1,2],NA,NA)))
+      analysis$semSRMR<-c(sem0$stats$model_srmr,sem1$stats$model_srmr,rep(NA,5))
+      analysis$semRMSEA<-c(sem0$stats$rmsea,sem1$stats$rmsea,rep(NA,5))
+      analysis$semCHI2<-c(sem0$stats$model_chisqr,sem1$stats$model_chisqr,rep(NA,5))
+      analysis$semDF<-c(sem0$stats$model_chi_df,sem1$stats$model_chi_df,rep(NA,5))
     }
     rarrow<-'\u2192'
     barrow<-'\u2190\u2192'
@@ -692,7 +714,6 @@ doAnalysis<-function(sample=doSample(autoShow=FALSE),evidence=braw.def$evidence,
                               paste0("(IV" ,barrow, "IV2)",rarrow,"DV"),
                               "Best"
     )
-    analysis$semRs<-sem6$ES_table
   } else analysis$sem<-NULL
   
   analysis$aic<-anResult$aic

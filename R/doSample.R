@@ -171,6 +171,32 @@ doSample<-function(hypothesis=braw.def$hypothesis,design=braw.def$design,autoSho
   IV2<-hypothesis$IV2
   DV<-hypothesis$DV
   effect<-hypothesis$effect
+  if (effect$rSD>0 && effect$rIV!=0) effect$rIV<-tanh(atanh(effect$rIV)+rnorm(1,0,atanh(effect$rSD)))
+  
+  # check effect sizes before going any further
+  fullES<-effect$rIV^2+effect$rIV2^2+2*effect$rIV*effect$rIV2*effect$rIVIV2+effect$rIVIV2DV^2
+  while (fullES>=1) {
+    effect$rIV<-effect$rIV*0.9
+    effect$rIV2<-effect$rIV2*0.9
+    effect$rIVIV2<-effect$rIVIV2*0.9
+    effect$rIVIV2DV<-effect$rIVIV2DV*0.9
+    fullES<-effect$rIV^2+effect$rIV2^2+2*effect$rIV*effect$rIV2*effect$rIVIV2+effect$rIVIV2DV^2
+  }
+  
+  total1<-effect$rIV+effect$rIV2*effect$rIVIV2
+  while (total1>=1) {
+    effect$rIV<-effect$rIV*0.9
+    effect$rIV2<-effect$rIV2*0.9
+    effect$rIVIV2<-effect$rIVIV2*0.9
+    total1<-effect$rIV+effect$rIV2*effect$rIVIV2
+  }
+  total2<-effect$rIV2+effect$rIV*effect$rIVIV2
+  while (total2>=1) {
+    effect$rIV<-effect$rIV*0.9
+    effect$rIV2<-effect$rIV2*0.9
+    effect$rIVIV2<-effect$rIVIV2*0.9
+    total1<-effect$rIV2+effect$rIV*effect$rIVIV2
+  }
   
   rho<-effect$rIV
   
@@ -371,30 +397,6 @@ doSample<-function(hypothesis=braw.def$hypothesis,design=braw.def$design,autoSho
       braw.env$lastSample<-list(participant=id, iv=iv, iv2=iv2, dv=dv)
       
     } else {
-      # check effect sizes before going any further
-      fullES<-effect$rIV^2+effect$rIV2^2+2*effect$rIV*effect$rIV2*effect$rIVIV2+effect$rIVIV2DV^2
-      while (fullES>=1) {
-        effect$rIV<-effect$rIV*0.9
-        effect$rIV2<-effect$rIV2*0.9
-        effect$rIVIV2<-effect$rIVIV2*0.9
-        effect$rIVIV2DV<-effect$rIVIV2DV*0.9
-        fullES<-effect$rIV^2+effect$rIV2^2+2*effect$rIV*effect$rIV2*effect$rIVIV2+effect$rIVIV2DV^2
-      }
-      
-      total1<-effect$rIV+effect$rIV2*effect$rIVIV2
-      while (total1>=1) {
-        effect$rIV<-effect$rIV*0.9
-        effect$rIV2<-effect$rIV2*0.9
-        effect$rIVIV2<-effect$rIVIV2*0.9
-        total1<-effect$rIV+effect$rIV2*effect$rIVIV2
-      }
-      total2<-effect$rIV2+effect$rIV*effect$rIVIV2
-      while (total2>=1) {
-        effect$rIV<-effect$rIV*0.9
-        effect$rIV2<-effect$rIV2*0.9
-        effect$rIVIV2<-effect$rIVIV2*0.9
-        total1<-effect$rIV2+effect$rIV*effect$rIVIV2
-      }
       
       # make id
       id<-factor(1:n)

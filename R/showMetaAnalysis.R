@@ -282,9 +282,16 @@ drawMeta<-function(metaResult=doMetaAnalysis(),whichMeta="Single",showType="n-k"
 
 }
 
-makeWorldDist<-function(design,world,x,y,sigOnly=FALSE) {
-  lambda<-world$populationPDFk
-  nullP<-world$populationNullp
+makeWorldDist<-function(metaResult,design,world,x,y,sigOnly=FALSE) {
+  if (metaResult$metaAnalysis$analysisType=="random") {
+    lambda<-metaResult$bestK
+    shape<-metaResult$bestNull
+    nullP<-0
+  } else {
+    lambda<-world$populationPDFk
+    shape<-0
+    nullP<-world$populationNullp
+  }
   sigma<-1/sqrt(y-3)
   gain<-dgamma(y-braw.env$minN,shape=design$sNRandK,scale=(design$sN-braw.env$minN)/design$sNRandK)
   
@@ -292,7 +299,7 @@ makeWorldDist<-function(design,world,x,y,sigOnly=FALSE) {
   switch (world$populationPDF,
           "Single"={
             for (i in 1:length(y)) {
-              z1<-SingleSamplingPDF(atanh(x),lambda,sigma[i])$pdf*(1-nullP)+
+              z1<-SingleSamplingPDF(atanh(x),lambda,sigma[i],shape)$pdf*(1-nullP)+
                 SingleSamplingPDF(atanh(x),0,sigma[i])$pdf*nullP
               if (sigOnly) {
                 zcrit<-qnorm(1-braw.env$alphaSig/2,0,sigma[i])
@@ -337,12 +344,12 @@ drawWorld<-function(hypothesis,design,metaResult,g,colour="white",showTheory=FAL
   x<-seq(-1,1,length.out=101)*braw.env$r_range
   y<-seq(5,braw.env$maxN,length.out=101)
 
-  za<-makeWorldDist(design,world,x,y)
+  za<-makeWorldDist(metaResult,design,world,x,y)
 
   world$populationPDF<-metaResult$bestDist
   world$populationPDFk<-metaResult$bestK
   world$populationNullp<-metaResult$bestNull
-  zb<-makeWorldDist(design,world,x,y)
+  zb<-makeWorldDist(metaResult,design,world,x,y)
   
   if (braw.env$nPlotScale=="log10") {y<-log10(y)}
   

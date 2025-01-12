@@ -30,10 +30,10 @@ makeWorld<-function(worldOn=FALSE,populationPDF="Single",populationRZ="r",
 #'            ResidDistr="normal",world=makeWorld()
 #' )
 #' @export
-makeEffect<-function(rIV=0,rIV2=0,rIVIV2=0,rIVIV2DV=0,Heteroscedasticity=0,
+makeEffect<-function(rIV=0,rIV2=0,rIVIV2=0,rIVIV2DV=0,rSD=0,Heteroscedasticity=0,
                      ResidDistr="normal",world=braw.def$world){
 
-  effect<-list(rIV=rIV,rIV2=rIV2,rIVIV2=rIVIV2,rIVIV2DV=rIVIV2DV,
+  effect<-list(rIV=rIV,rIV2=rIV2,rIVIV2=rIVIV2,rIVIV2DV=rIVIV2DV,rSD=rSD,
                Heteroscedasticity=Heteroscedasticity,ResidDistr=ResidDistr,
                world=world
   )

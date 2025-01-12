@@ -50,6 +50,7 @@ drawArrow<-function(start,len,direction,ends,col="black",fill="white",alpha=1, w
 showEffect<-function(r,t=1,showValue=TRUE,plotArea=NULL,g=NULL){
 
   if (!is.null(plotArea)) braw.env$plotArea<-plotArea
+  if (length(r)>1) {rSD<-r[2]; r<-r[1]} else {rSD<-NULL}
   
   g<-startPlot(xlim=c(-1,1),ylim=c(0,1),back="transparent",box="none",g=g)
   
@@ -177,7 +178,8 @@ showEffect<-function(r,t=1,showValue=TRUE,plotArea=NULL,g=NULL){
   
   if (showValue && braw.env$simData && !is.null(r)) {
     if (t==1){
-      lbl=paste("r[p]=",as.character(r),sep="")
+      lbl=paste("r[p]=",brawFormat(r,digits=2),sep="")
+      if (!is.null(rSD) && rSD!=0) lbl<-paste0(lbl,"\u00B1",brawFormat(rSD,digits=1))
     }else{ 
       if (r==0) lbl<-"0.0" else lbl<-as.character(r)
     }

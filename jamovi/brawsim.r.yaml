@@ -83,7 +83,7 @@ items:
       type: Output
       measureType: continuous
       varTitle: "Mult"
-      items: 3
+      items: 4
       clearWith:
        - makeMultipleBtn
 

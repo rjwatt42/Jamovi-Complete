@@ -269,7 +269,8 @@ reportPlot<-function(outputText,nc,nr,fontSize=0.85,maxRows=14,renderAsHTML=braw
     if (largelabels[i]) sz<-1.2 
     
     mathlabel<-grepl("['^']{1}",label) || grepl("['[']{1}",label)
-    if (any(mathlabel)) parse<-TRUE
+    if (any(mathlabel)) parse<-TRUE else parse<-FALSE
+    label<-gsub("\\+","'+'",label)
     pts<-data.frame(x=x,y=top+1-y)
     g<-g+geom_label(data=pts,aes(x=x, y=y), label=label,fontface=fontface, 
                                          hjust=hjust, vjust=0, 

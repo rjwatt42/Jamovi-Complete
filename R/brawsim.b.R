@@ -147,8 +147,9 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       
       effect<-makeEffect(rIV=self$options$EffectSize1,
                          rIV2=self$options$EffectSize2,
-                         rIVIV2<-self$options$EffectSize3,
-                         rIVIV2DV<-self$options$EffectSize12,
+                         rIVIV2=self$options$EffectSize3,
+                         rIVIV2DV=self$options$EffectSize12,
+                         rSD=self$options$rSD,
                          Heteroscedasticity=self$options$Heteroscedasticity,
                          ResidDistr=self$options$Residuals,
                          world=makeWorld(worldOn=self$options$WorldOn,
@@ -193,7 +194,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       oldE<-braw.def$evidence
       #
       evidence<-makeEvidence(rInteractionOn=self$options$interaction=="yes",
-                             ssqType=self$options$ssq,
+                             ssqType=self$options$ssq,sigOnly=FALSE,
                              Welch=self$options$equalVar=="no",
                              Transform=self$options$Transform,
                              doSEM=self$options$doSEM,useAIC=self$options$useAIC
@@ -283,8 +284,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             title="Help:",
             plainTabs=TRUE,
             titleWidth=50,
-            tabs=c("Basic","Demos","Simulations","Jamovi"),
-            tabContents=c(basicHelp,demoHelp,simHelp,jamoviHelp),
+            tabs=c("Basic","Demos","Simulations","Jamovi","Key"),
+            tabContents=c(basicHelp,demoHelp,simHelp,jamoviHelp,BrawInstructions("Key")),
             open=open0
           )
         } else help<-paste0(basicHelp,demoHelp,simHelp,jamoviHelp) 
@@ -386,14 +387,16 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
       # now we start doing things
       # did we ask for a new sample?
       if (makeSampleNow) {
+        # make a sample - either striaght sample or single metaAnalysis
         if (self$options$MetaAnalysisOn) {
-          if (statusStore$lastOutput=="MetaSingle") 
-            metaResult<-doMetaAnalysis(1,NULL)
+          # do we need to do this, or are we just returning to the existing one?
+          if (is.null(braw.res$metaSingle) || statusStore$lastOutput=="MetaSingle") 
+            doMetaAnalysis(1,NULL)
           outputNow<-"MetaSingle"
         } else {
-          # make a sample
           # do we need to do this, or are we just returning to the existing one?
-          if (is.null(braw.res$result) || statusStore$lastOutput==showSampleType) doResult()
+          if (is.null(braw.res$result) || statusStore$lastOutput==showSampleType) 
+            doResult()
           outputNow<-showSampleType
         }
       }
@@ -403,7 +406,7 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         numberSamples<-self$options$numberSamples
         if (self$options$MetaAnalysisOn) {
           if (statusStore$lastOutput=="MetaMultiple") 
-            metaResult<-doMetaAnalysis(numberSamples,braw.res$metaAnalysis)
+            metaMultipleResult<-doMetaAnalysis(numberSamples,braw.res$metaAnalysis)
           outputNow<-"MetaMultiple"
         } else {
           # do we need to do this, or are we just returning to the existing one?
@@ -535,6 +538,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                  "Likelihood"= self$results$simGraph$setState(c(outputNow,self$options$likelihoodType,likelihoodCutaway)),
                  "Multiple"= self$results$simGraph$setState(c(outputNow,showMultipleParam,showMultipleDimension,whichShowMultipleOut)),
                  "Explore"= self$results$simGraph$setState(c(outputNow,showExploreParam,showExploreDimension,whichShowExploreOut)),
+                 "MetaSingle"  =self$results$simGraph$setState(outputNow),
+                 "MetaMultiple"  =self$results$simGraph$setState(outputNow),
                  self$results$simGraph$setState(outputNow)
           )
             
@@ -548,6 +553,8 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
                    "Likelihood"=self$results$simReport$setContent(reportLikelihood()),
                    "Multiple"= self$results$simReport$setContent(reportMultiple(showType=showMultipleParam,reportStats=self$options$reportInferStats)),
                    "Explore"= self$results$simReport$setContent(reportExplore(showType=showExploreParam,reportStats=self$options$reportInferStats)),
+                   "MetaSingle"  =self$results$simReport$setContent(reportMetaAnalysis()),
+                   "MetaMultiple"  =self$results$simReport$setContent(reportMetaAnalysis()),
                    self$results$simReport$setContent(reportPlot(NULL))
             )
           }
@@ -592,21 +599,26 @@ BrawSimClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         self$results$sendSample$setValues(newVariables)
       }
       # then multiple result
-      if (!is.null(braw.res$multiple)) {
+      q<-NULL
+      if (!is.null(outputNow) && outputNow=="MetaSingle") {
+          q<-braw.res$metaSingle$result
+      } 
+      if (!is.null(outputNow) && outputNow=="Multiple") {
         q<-mergeMultiple(braw.res$multiple$result,braw.res$multiple$nullresult)
-          newMultiple<-data.frame(q$rIV,q$nval,q$pIV)
-          newMultiple<-newMultiple[!is.na(newMultiple$q.rIV),]
-          names(newMultiple)<-c("rs","n","p")
-        nvars<-length(newMultiple)
+      }
+      if (!is.null(q)) {
+        newMultiple<-data.frame(q$rIV,q$nval+0.0,q$pIV)
+        newMultiple<-newMultiple[!is.na(q$rIV),]
+        names(newMultiple)<-c("rs","n","p")
+        nvars<-ncol(newMultiple)
         
         keys<-1:nvars
         self$results$sendMultiple$set(keys=keys,titles=names(newMultiple),
-                                    descriptions=rep("simulated",nvars),
-                                    measureTypes=rep("Continuous",nvars)
+                                      descriptions=rep("simulated",nvars),
+                                      measureTypes=rep("Continuous",nvars)
         )
         self$results$sendMultiple$setValues(newMultiple)
       }
-      
       # end of .run()
     },
     

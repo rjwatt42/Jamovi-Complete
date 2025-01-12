@@ -382,22 +382,22 @@ options:
       default: "1,1"
 
     - name: EffectSize1
-      title: IV->DV
+      title: 'IV&rarr;DV'
       type: Number
       default: 0.0
     
     - name: EffectSize2
-      title: IV2->DV
+      title: 'IV2&rarr;DV'
       type: Number
       default: 0.0
     
     - name: EffectSize3
-      title: IV->IV2
+      title: 'IV&rarr;IV2'
       type: Number
       default: 0.0
     
     - name: EffectSize12
-      title: 'IV*IV2->DV'
+      title: 'IV&times;IV2&rarr;DV'
       type: Number
       default: 0.0
     
@@ -415,6 +415,11 @@ options:
         title: lpath
       default: normal
       
+    - name: rSD
+      title: '&plusmn'
+      type: Number
+      default: 0.0
+
     - name: Heteroscedasticity
       title: Heteroscedasticity
       type: Number
@@ -637,7 +642,7 @@ options:
       default: Cautious
       
     - name: ReplicationAlpha
-      title: 'rep alpha'
+      title: 'rep &alpha;'
       type: Number
       default: 0.05
 
@@ -662,7 +667,7 @@ options:
       default: yes
       
     - name: alphaSig
-      title: 'alpha'
+      title: '&alpha;'
       type: Number
       default: 0.05
 
@@ -805,10 +810,12 @@ options:
       title: ' '
       type: List
       options:
-      - name: random
-        title: random
       - name: fixed
         title: fixed
+      - name: random
+        title: random
+      - name: world
+        title: world
       default: random
 
     - name: MetaAnalysisNulls
@@ -878,39 +885,39 @@ options:
       type: List
       options:
         - name: rs
-          title: rs
+          title: 'r&#x209b;'
         - name: rp
-          title: rp
+          title: 'r&#x209a;'
         - name: re
-          title: re
+          title: 'r&#x2091;'
         - name: p
           title: p
         - name: n
           title: n
         - name: blank1
-          title: ' '
+          title: '-'
         - name: sLLR
           title: sLLR
         - name: llknull
-          title: 'llk(~null)'
+          title: 'llr&#x208a;'
         - name: AIC
           title: AIC
         - name: blank2
-          title: " "
+          title: "-"
         - name: ws
-          title: ws
+          title: 'w&#x209b;'
         - name: wp
-          title: wp
+          title: 'w&#x209a;'
         - name: nw
           title: nw
         - name: blank3
-          title: " "
+          title: "-"
         - name: ro
-          title: ro
+          title: 'r&#x2092;'
         - name: po
-          title: po
+          title: 'p&#x2092;'
         - name: no
-          title: no
+          title: 'n&#x2092;'
       default: rs
 
     - name: inferVar2
@@ -918,39 +925,39 @@ options:
       type: List
       options:
         - name: rs
-          title: rs
+          title: 'r&#x209b;'
         - name: rp
-          title: rp
+          title: 'r&#x209a;'
         - name: re
-          title: re
+          title: 'r&#x2091;'
         - name: p
           title: p
         - name: n
           title: n
         - name: blank1
-          title: ' '
+          title: '-'
         - name: sLLR
           title: sLLR
         - name: llknull
-          title: 'llk(~null)'
+          title: 'llr&#x208a;'
         - name: AIC
           title: AIC
         - name: blank2
-          title: " "
+          title: "-"
         - name: ws
-          title: ws
+          title: 'w&#x209b;'
         - name: wp
-          title: wp
+          title: 'w&#x209a;'
         - name: nw
           title: nw
         - name: blank3
-          title: " "
+          title: "-"
         - name: ro
-          title: ro
+          title: 'r&#x2092;'
         - name: po
-          title: po
+          title: 'p&#x2092;'
         - name: no
-          title: no
+          title: 'n&#x2092;'
       default: p
 
     - name: showSampleType
@@ -998,7 +1005,7 @@ options:
         - name: Basic
           title: Basic
         - name: blank1
-          title: ' '
+          title: '-'
         - name: 'p(sig)'
           title: 'p(sig)'
         - name: NHST
@@ -1008,11 +1015,11 @@ options:
         - name: Misses
           title: Misses
         - name: blank2
-          title: ' '
+          title: '-'
         - name: SEM
           title: SEM
         - name: blank3
-          title: ' '
+          title: '-'
         - name: DV
           title: DV
         - name: Residuals
@@ -1145,7 +1152,7 @@ options:
         - name: Heteroscedasticity
           title: Hscedast
         - name: blank0h
-          title: ' '
+          title: '-'
         - name: IVType
           title: IVType
         - name: IVskew
@@ -1169,12 +1176,11 @@ options:
         - name: DVprops
           title: DVprops
         - name: blank1h
-          title: ' '
+          title: '-'
         - name: lambda
           title: worldLambda
         - name: pNull
           title: worldPNull
-        - name: blank2h
 
     - name: designExploreList
       title: 'explore:'
@@ -1187,7 +1193,7 @@ options:
         - name: Usage
           title: Usage
         - name: blank1d
-          title: ' '
+          title: '-'
         - name: PoorSamplingAmount
           title: PoorSamplingAmount
         - name: Dependence
@@ -1201,7 +1207,7 @@ options:
         - name: IVRangeE
           title: IV RangeE
         - name: blank1e
-          title: ' '
+          title: '-'
         - name: Cheating
           title: CheatMethod
         - name: CheatingAmount
@@ -1212,7 +1218,7 @@ options:
       type: List
       options:
         - name: Alpha
-          title: Alpha
+          title: '&alpha;'
         - name: Transform
           title: Transform
         - name: Welch
@@ -1231,7 +1237,7 @@ options:
         - name: Repeats
           title: ReplAttempts
         - name: blank1
-          title: ' '
+          title: '-'
         - name: NoStudies
           title: 'No studies'
         - name: MetaType
@@ -1246,7 +1252,7 @@ options:
         - name: Basic
           title: Basic
         - name: blank1
-          title: " "
+          title: "-"
         - name: 'p(sig)'
           title: 'p(sig)'
         - name: NHST
@@ -1256,11 +1262,11 @@ options:
         - name: Misses
           title: Misses
         - name: blank2
-          title: " "
+          title: "-"
         - name: SEM
           title: SEM
         - name: blank3
-          title: " "
+          title: "-"
         - name: DV
           title: DV
         - name: Residuals
@@ -1390,15 +1396,15 @@ options:
       type: Action
       
     - name: doProject1AsBtn
-      title: 'set up for me'
+      title: 'set'
       type: Action
 
     - name: doProject1A1Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
 
     - name: doProject1A2Btn
-      title: 'show me'
+      title: 'get'
       type: Action
 
     - name: doProject1A3Lst
@@ -1444,7 +1450,7 @@ options:
       default: ExamGrade
 
     - name: doProject1A3Btn
-      title: 'do it'
+      title: 'do'
       type: Action
 
 
@@ -1453,19 +1459,19 @@ options:
       type: Action
 
     - name: doProject1BsBtn
-      title: 'set up for me'
+      title: 'set'
       type: Action
 
     - name: doProject1B1Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
 
     - name: doProject1B2Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
 
     - name: doProject1B3Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
 
 
@@ -1474,19 +1480,19 @@ options:
       type: Action
 
     - name: doProject1CsBtn
-      title: 'set up for me'
+      title: 'set'
       type: Action
 
     - name: doProject1C1Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
 
     - name: doProject1C2Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
 
     - name: doProject1C3Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
 
 
@@ -1495,11 +1501,11 @@ options:
       type: Action
 
     - name: doProject2AsBtn
-      title: 'set up for me'
+      title: 'set'
       type: Action
 
     - name: doProject2A1Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
 
     - name: doProject2A2Lst
@@ -1513,11 +1519,11 @@ options:
       default: 1D
 
     - name: doProject2A2Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
 
     - name: doProject2A3Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
 
 
@@ -1526,23 +1532,23 @@ options:
       type: Action
 
     - name: doProject2BsBtn
-      title: 'set up for me'
+      title: 'set'
       type: Action
 
     - name: doProject2B1Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
 
     - name: doProject2B2Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
 
     - name: doProject2B3Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
 
     - name: doProject2B4Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
 
 
@@ -1551,15 +1557,15 @@ options:
       type: Action
 
     - name: doProject2CsBtn
-      title: 'set up for me'
+      title: 'set'
       type: Action
 
     - name: doProject2C1Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
       
     - name: doProject2C2Btn
-      title: 'do it'
+      title: 'do'
       type: Action
       
     - name: doProject2C2Lst
@@ -1578,15 +1584,15 @@ options:
         title: '100'
       default: n40
       #   
-      # title: 'do it for me'
+      # title: 'do'
       # type: Action
 
     - name: doProject2C3Btn
-      title: 'do it for me'
+      title: 'do'
       type: Action
 
     - name: doProject2C4Btn
-      title: 'do it'
+      title: 'do'
       type: Action
 
     - name: doProject2C4Lst
@@ -1606,7 +1612,7 @@ options:
       - name: r075
         title: '0.75'
       default: r03
-      # title: 'do it for me'
+      # title: 'do'
       # type: Action
 
 
@@ -1615,7 +1621,7 @@ options:
       type: Action
 
     - name: doProject3AsBtn
-      title: 'set up'
+      title: 'set'
       type: Action
       
     - name: doProject3AsLst
@@ -1631,11 +1637,11 @@ options:
       - name: icc
         title: 'i~c*c'
       default: iii
-      # title: 'do it for me'
+      # title: 'do'
       # type: Action
 
     - name: doProject3A1Btn
-      title: 'do it'
+      title: 'do'
       type: Action
 
     - name: doProject3A1Lst
@@ -1658,7 +1664,7 @@ options:
 
 
     - name: doProject3A2Btn
-      title: 'do it'
+      title: 'do'
       type: Action
       
     - name: doProject3A2Lst
@@ -1680,7 +1686,7 @@ options:
       default: r03
 
     - name: doProject3A3Btn
-      title: 'do it'
+      title: 'do'
       type: Action
       
     - name: doProject3A3Lst
@@ -1702,7 +1708,7 @@ options:
       default: r03
 
     - name: doProject3A4Btn
-      title: 'do it'
+      title: 'do'
       type: Action
 
 
@@ -1711,7 +1717,7 @@ options:
       type: Action
 
     - name: doProject3BsBtn
-      title: 'set up'
+      title: 'set'
       type: Action
 
     - name: doProject3BsLst
@@ -1729,7 +1735,7 @@ options:
       default: iii
 
     - name: doProject3B1Btn
-      title: 'do it'
+      title: 'do'
       type: Action
 
     - name: doProject3B1Lst
@@ -1751,7 +1757,7 @@ options:
       default: r03
 
     - name: doProject3B2Btn
-      title: 'do it'
+      title: 'do'
       type: Action
 
     - name: doProject3B2Lst
@@ -1778,15 +1784,15 @@ options:
       type: Action
 
     - name: doProject3CsBtn
-      title: 'set up'
+      title: 'set'
       type: Action
 
     - name: doProject3C1Btn
-      title: 'do it'
+      title: 'do'
       type: Action
 
     - name: doProject3C2Btn
-      title: 'do it'
+      title: 'do'
       type: Action
 
     - name: doProject3C2Lst
@@ -1808,7 +1814,7 @@ options:
       default: r03
 
     - name: doProject3C3Btn
-      title: 'do it'
+      title: 'do'
       type: Action
 
 # 
@@ -1817,15 +1823,15 @@ options:
 #       type: Action
 # 
 #     - name: doProject4AsBtn
-#       title: 'set up for me'
+#       title: 'set'
 #       type: Action
 # 
 #     - name: doProject4A1Btn
-#       title: 'do it'
+#       title: 'do'
 #       type: Action
 # 
 #     - name: doProject4A2Btn
-#       title: 'do it'
+#       title: 'do'
 #       type: Action
 # 
 #     - name: doProject4A2Lst
@@ -1849,7 +1855,7 @@ options:
 #       default: r07
 # 
 #     - name: doProject4A3Btn
-#       title: 'do it'
+#       title: 'do'
 #       type: Action
 
 ...

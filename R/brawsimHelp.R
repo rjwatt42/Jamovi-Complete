@@ -20,14 +20,13 @@ brawsimHelp<-function(open=0,indent,titleWidth) {
       indent=indent,
       titleWidth=titleWidth,
       # titleTab="Click on the tabs for specific help.",
-      tabs=c("Start","Plan","Single Sample","Multiple Samples","Explore","Key"),
+      tabs=c("Start","Plan","Single Sample","Multiple Samples","Explore"),
       tabContents = c(
         BrawInstructions("Overview"),
         BrawInstructions("Plan"),
         BrawInstructions("Single"),
         BrawInstructions("Multiple"),
-        BrawInstructions("Explore"),
-        BrawInstructions("Key")
+        BrawInstructions("Explore")
       ),
       open=open
     )

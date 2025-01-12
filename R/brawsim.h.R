@@ -58,6 +58,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             EffectSize3 = 0,
             EffectSize12 = 0,
             EffectConfig = "normal",
+            rSD = 0,
             Heteroscedasticity = 0,
             Residuals = "normal",
             WorldOn = FALSE,
@@ -497,6 +498,10 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "path",
                     "lpath"),
                 default="normal")
+            private$..rSD <- jmvcore::OptionNumber$new(
+                "rSD",
+                rSD,
+                default=0)
             private$..Heteroscedasticity <- jmvcore::OptionNumber$new(
                 "Heteroscedasticity",
                 Heteroscedasticity,
@@ -774,8 +779,9 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "MetaAnalysisType",
                 MetaAnalysisType,
                 options=list(
+                    "fixed",
                     "random",
-                    "fixed"),
+                    "world"),
                 default="random")
             private$..MetaAnalysisNulls <- jmvcore::OptionList$new(
                 "MetaAnalysisNulls",
@@ -1010,8 +1016,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "DVprops",
                     "blank1h",
                     "lambda",
-                    "pNull",
-                    "blank2h"))
+                    "pNull"))
             private$..designExploreList <- jmvcore::OptionList$new(
                 "designExploreList",
                 designExploreList,
@@ -1423,6 +1428,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..EffectSize3)
             self$.addOption(private$..EffectSize12)
             self$.addOption(private$..EffectConfig)
+            self$.addOption(private$..rSD)
             self$.addOption(private$..Heteroscedasticity)
             self$.addOption(private$..Residuals)
             self$.addOption(private$..WorldOn)
@@ -1629,6 +1635,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         EffectSize3 = function() private$..EffectSize3$value,
         EffectSize12 = function() private$..EffectSize12$value,
         EffectConfig = function() private$..EffectConfig$value,
+        rSD = function() private$..rSD$value,
         Heteroscedasticity = function() private$..Heteroscedasticity$value,
         Residuals = function() private$..Residuals$value,
         WorldOn = function() private$..WorldOn$value,
@@ -1834,6 +1841,7 @@ BrawSimOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..EffectSize3 = NA,
         ..EffectSize12 = NA,
         ..EffectConfig = NA,
+        ..rSD = NA,
         ..Heteroscedasticity = NA,
         ..Residuals = NA,
         ..WorldOn = NA,
@@ -2085,7 +2093,7 @@ BrawSimResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 name="sendMultiple",
                 measureType="continuous",
                 varTitle="Mult",
-                items=3,
+                items=4,
                 clearWith=list(
                     "makeMultipleBtn")))}))
 
@@ -2165,6 +2173,7 @@ BrawSimBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param EffectSize3 .
 #' @param EffectSize12 .
 #' @param EffectConfig .
+#' @param rSD .
 #' @param Heteroscedasticity .
 #' @param Residuals .
 #' @param WorldOn .
@@ -2381,6 +2390,7 @@ BrawSim <- function(
     EffectSize3 = 0,
     EffectSize12 = 0,
     EffectConfig = "normal",
+    rSD = 0,
     Heteroscedasticity = 0,
     Residuals = "normal",
     WorldOn = FALSE,
@@ -2589,6 +2599,7 @@ BrawSim <- function(
         EffectSize3 = EffectSize3,
         EffectSize12 = EffectSize12,
         EffectConfig = EffectConfig,
+        rSD = rSD,
         Heteroscedasticity = Heteroscedasticity,
         Residuals = Residuals,
         WorldOn = WorldOn,

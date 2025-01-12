@@ -19,6 +19,7 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowe
           "Model"= {anova<-analysis$model}
   )
   nc<-ncol(anova)+2
+  if (evidence$doSEM) nc<-10
   if (nc<8) nc<-8
   
   an_name<-analysis$an_name
@@ -81,7 +82,7 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowe
       }
     }
     
-    if (!(braw.env$reducedOutput && is.null(IV2))) {
+    if (!braw.env$reducedOutput && !is.null(IV2)) {
       nc1<-length(colnames(anova))+1
       outputText<-c(outputText,"!H!C ","r",paste0(sub("Pr\\(","p\\(",sub("^","",colnames(anova)))),rep("",nc-1-nc1))
       total_done<-FALSE
@@ -140,7 +141,7 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowe
     CAIC=k*(log(n_data)+1)+AIC-2*k;
     outputText<-c(outputText,rep("",nc))
     if (braw.env$reducedOutput) {
-      outputText<-c(outputText,"!HAIC","AICnull","llk(~null)","R^2","k","llr",rep("",nc-6))
+      outputText<-c(outputText,"!HAIC","AICnull","llr[+]","R^2","k","llr",rep("",nc-6))
       outputText<-c(outputText,
                     brawFormat(analysis$aic,digits=1),
                     brawFormat(analysis$aicNull,digits=1),
@@ -151,7 +152,7 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowe
                     rep("",nc-6)
       )
     } else {
-      outputText<-c(outputText,"!HAIC","llk(~null)","AICc","BIC","R^2","k","llr",rep("",nc-7))
+      outputText<-c(outputText,"!HAIC","llr[+]","AICc","BIC","R^2","k","llr",rep("",nc-7))
       outputText<-c(outputText,
                     brawFormat(analysis$aic,digits=1),
                     brawFormat(log(llkNull),digits=3),
@@ -172,7 +173,28 @@ reportInference<-function(analysis=braw.res$result,analysisType="Anova",showPowe
       outputText<-c(outputText," ",brawFormat(rn2w(analysis$rIV,analysis$nval),digits=3),
                     brawFormat(rn2w(effect$rIV,analysis$nval),digits=3),
                     paste0("!j",brawFormat(ceil(rw2n(analysis$rIV,0.8,2)))),
-                    rep("",nc-3))
+                    rep("",nc-4))
+    }
+    
+    if (evidence$doSEM) {
+      outputText<-c(outputText,rep("",nc))
+      outputText<-c(outputText,"!TNested Paths",rep("",nc-1))
+      outputText<-c(outputText,"!H!CModel", "rIV","rIV2","rIVIV2","AIC","srmr","rmsea","Chi^2","df",rep("",nc-9))
+      for (ig in 1:(ncol(analysis$sem)-1))
+        if (!is.na(analysis$sem[1,ig])) {
+        outputText<-c(outputText,
+                      colnames(analysis$sem)[ig],
+                      brawFormat(analysis$semRs[1,ig],digits=2,na.rm=TRUE),
+                      brawFormat(analysis$semRs[2,ig],digits=2,na.rm=TRUE),
+                      brawFormat(analysis$semRs[3,ig],digits=2,na.rm=TRUE),
+                      brawFormat(analysis$sem[1,ig],digits=1,na.rm=TRUE),
+                      brawFormat(analysis$semSRMR[ig],digits=3,na.rm=TRUE),
+                      brawFormat(analysis$semRMSEA[ig],digits=3,na.rm=TRUE),
+                      brawFormat(analysis$semCHI2[ig],digits=3,na.rm=TRUE),
+                      brawFormat(analysis$semDF[ig],digits=0,na.rm=TRUE),
+                      rep("",nc-9)
+        )
+        }
     }
     
     nr=length(outputText)/nc

@@ -967,7 +967,7 @@ let makeRange = function(min,max,xlog,np) {
         case "WithinCorr":
              var range={min:0,max:1,xlog:false,np:13};
           break;
-        case "Alpha":
+        case "&alpha;":
              var range={min:0.001,max:0.5,xlog:true,np:13};
           break;
         case "Power":

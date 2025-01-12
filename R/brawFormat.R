@@ -1,7 +1,8 @@
-brawFormat<-function(numbers,digits=braw.env$report_precision) {
+brawFormat<-function(numbers,digits=braw.env$report_precision,na.rm=FALSE) {
 
   if (any(is.infinite(numbers))) return(format(numbers))
-  if (is.null(numbers) || any(is.na(numbers))) return("NULL")
+  if (is.null(numbers) || any(is.na(numbers))) 
+    if (na.rm) return(" ") else return("NULL")
   
   pad<-function(x) if(x>=0) paste0(" ",x) else x
   trim<-function(x) sub(".0+$", "", x) 
@@ -11,7 +12,7 @@ brawFormat<-function(numbers,digits=braw.env$report_precision) {
     if (digits<0) digits<-0
   }
   if (all(abs(numbers-round(numbers))<10^(-digits))) {
-    r<-sprintf(round(numbers),fmt="%0.0f")
+    r<-sprintf(round(numbers),fmt="%d")
   } else {
     r<-sprintf(numbers,fmt=paste0("%0.",digits,"f"))
   }

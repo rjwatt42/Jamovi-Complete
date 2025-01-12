@@ -573,6 +573,7 @@ sem_results<-function(pathmodel,sem) {
   # %     model_chi_df=num_obs_pars - num_est_pars;
   df=cbind(numweights, numcovs, numvariances, nummeans, numintercepts)
   model_chi_df=sum(sum(df)-df[nrow(df),]);
+  model_chi_df=1
   model_chi_p=1-pchisq(abs(model_chisqr), model_chi_df);
   # non-central chi2
   model_chi_noncentrality=max(model_chisqr-model_chi_df,0)/(n_obs-1);

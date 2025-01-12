@@ -1116,36 +1116,55 @@ r_plot<-function(analysis,showType="rs",logScale=FALSE,otheranalysis=NULL,
       lb2<-") = "
       lb1<-"("
       lb2<-")="
+      labels<-c()
+      colours<-c()
       npad<-function(a) {if (nchar(a)<2) return(paste0("  ",a)) else return(a)}
       switch (showType,
               "rs"={
-                  labels<-c(paste0(lb1,"sig",lb2,brawFormat(s*100,digits=npct),"%"),
-                            paste0(lb1,"ns",lb2,brawFormat(ns*100,digits=npct),"%"))
-                  colours<-c(braw.env$plotColours$infer_sigC,braw.env$plotColours$infer_nsigC)
+                if (!is.null(s)) {
+                  labels<-c(labels,paste0(lb1,"sig",lb2,brawFormat(s*100,digits=npct),"%"))
+                  colours<-c(colours,braw.env$plotColours$infer_sigC)
+                }
+                if (!is.null(ns)) {
+                  labels<-c(labels,paste0(lb1,"ns",lb2,brawFormat(ns*100,digits=npct),"%"))
+                  colours<-c(colours,braw.env$plotColours$infer_nsigC)
+                }
               },
               "rse"={
-                labels<-c(paste0(npad(brawFormat(nse*100,digits=npct)),"%"," error"),
-                          paste0(npad(brawFormat(sc*100,digits=npct)),"%"," correct"),
-                          paste0(npad(brawFormat(se*100,digits=npct)),"%"," error"),
-                          paste0(npad(brawFormat(nsc*100,digits=npct)),"%"," correct")
-                )
-                colours<-c(braw.env$plotColours$infer_nsigNonNull,
-                           braw.env$plotColours$infer_sigNonNull,
-                           braw.env$plotColours$infer_sigNull,
-                           braw.env$plotColours$infer_nsigNull
-                )
+                if (!is.null(nse)) {
+                  labels<-c(labels,paste0(npad(brawFormat(nse*100,digits=npct)),"%"," error"))
+                  colours<-c(colours,braw.env$plotColours$infer_nsigNonNull)
+                }
+                if (!is.null(sc)) {
+                  labels<-c(labels,paste0(npad(brawFormat(sc*100,digits=npct)),"%"," correct"))
+                  colours<-c(colours,braw.env$plotColours$infer_sigNonNull)
+                }
+                if (!is.null(se)) {
+                  labels<-c(labels,paste0(npad(brawFormat(se*100,digits=npct)),"%"," error"))
+                  colours<-c(colours,braw.env$plotColours$infer_sigNull)
+                }
+                if (!is.null(nsc)) {
+                  labels<-c(labels,paste0(npad(brawFormat(nsc*100,digits=npct)),"%"," correct"))
+                  colours<-c(colours,braw.env$plotColours$infer_nsigNull)
+                }
               },
                 "rss"={
-                  labels<-c(paste0(npad(brawFormat(nse*100,digits=npct)),"%"," error"),
-                            paste0(npad(brawFormat(sc*100,digits=npct)),"%"," correct"),
-                            paste0(npad(brawFormat(se*100,digits=npct)),"%"," error"),
-                            paste0(npad(brawFormat(nsc*100,digits=npct)),"%"," correct")
-                  )
-                  colours<-c(braw.env$plotColours$infer_nsigNonNull,
-                             braw.env$plotColours$infer_sigNonNull,
-                             braw.env$plotColours$infer_sigNull,
-                             braw.env$plotColours$infer_nsigNull
-                  )
+                  if (!is.null(nse)) {
+                    labels<-c(labels,paste0(npad(brawFormat(nse*100,digits=npct)),"%"," error"))
+                    colours<-c(colours,braw.env$plotColours$infer_nsigNonNull)
+                  }
+                  if (!is.null(sc)) {
+                    labels<-c(labels,paste0(npad(brawFormat(sc*100,digits=npct)),"%"," correct"))
+                    colours<-c(colours,braw.env$plotColours$infer_sigNonNull)
+                  }
+                  if (!is.null(se)) {
+                    labels<-c(labels,paste0(npad(brawFormat(se*100,digits=npct)),"%"," error"))
+                    colours<-c(colours,braw.env$plotColours$infer_sigNull)
+                  }
+                  if (!is.null(nsc)) {
+                    labels<-c(labels,paste0(npad(brawFormat(nsc*100,digits=npct)),"%"," correct"))
+                    colours<-c(colours,braw.env$plotColours$infer_nsigNull)
+                  }
                 },
               "p"={
                 labels<-c(paste0(lb1,"sig",lb2,brawFormat(s*100,digits=npct),"% "),
@@ -1338,11 +1357,7 @@ ps_plot<-function(analysis,disp,showTheory=TRUE,g=NULL){
       g<-addG(g,dataBar(data=data.frame(x=0,y=y),fill=col5,barwidth=0.4))
       
       g<-addG(g,dataLegend(data.frame(colours=c(col0,col2,col3,col5),names=c(lb0,lb2,lb3,lb5)),title="",shape=22))
-      # g<-addG(g,drawNHSTLabel(lb0,data.frame(x=1,y=y1),0,col0,vjust=0.5))
-      # g<-addG(g,drawNHSTLabel(lb2,data.frame(x=1,y=y2),0,col2,vjust=0.5))
-      # g<-addG(g,drawNHSTLabel(lb3,data.frame(x=1,y=y3),0,col3,vjust=0.5))
-      # g<-addG(g,drawNHSTLabel(lb5,data.frame(x=1,y=y4),0,col5,vjust=0.5))
-      
+
     }
   } else {
     g<-startPlot(xlim=c(-1,3),ylim=c(0,1),
@@ -1482,25 +1497,8 @@ sem_plot<-function(analysis,disp,showTheory=TRUE,g=NULL){
       )
       for (ig in length(plots):1) {
         g<-addG(g,dataBar(data=data.frame(x=0,y=plots[ig]),fill=cols[ig],barwidth=0.4))
-        # if (proportions[ig]>0.02) 
-          # g<-addG(g,dataText(data=data.frame(x=-0.45,y=plots[ig]-proportions[ig]/2),labels[ig],
-          #                    hjust=1,vjust=0.5,size=0.5,colour='white'))
       }
       g<-addG(g,dataLegend(data.frame(colours=rev(cols),names=rev(labels)),title="",shape=22))
-      # g<-addG(g,dataText(data=data.frame(x=0+0.4,y=1.02),label="Nulls",hjust=1))
-
-      # use<-!nulls
-      # cols<-c(
-      # )
-      # proportions<-hist(analysis$sem[use,8],breaks=(0:nbars)+0.5,plot=FALSE)$density
-      # plots<-cumsum(proportions)
-      # for (ig in nbars:1) {
-      #   g<-addG(g,dataBar(data=data.frame(x=1,y=plots[ig]),fill=cols[ig],barwidth=0.4))
-      #   if (proportions[ig]>0.02) 
-      #     g<-addG(g,dataText(data=data.frame(x=1.45,y=plots[ig]-proportions[ig]/2),labels[ig],
-      #                        hjust=0,vjust=0.5,size=0.5,colour='white'))
-      # }
-      # g<-addG(g,dataText(data=data.frame(x=1-0.4,y=1.02),label="Non-Nulls",hjust=0))
     }
   return(g)
 }

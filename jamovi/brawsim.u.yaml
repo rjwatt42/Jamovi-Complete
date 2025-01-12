@@ -52,7 +52,7 @@ children:
                                 minWidth: 13
                               - type: CollapseBox
                                 collapsed: true
-                                label: 'a. Basics: make a sample & analyse it'
+                                label: 'a. Make a sample and analyse it'
                                 margin: none
                                 minWidth: 400
                                 maxWidth: 400
@@ -92,13 +92,13 @@ children:
                                                     minWidth: 301
                                                     children:
                                                       - type: Label
-                                                        label: Set the effect size IV->DV to 0.3
+                                                        label: 'Set the effect size IV&rarr;DV to 0.3'
                                           - name: doProject1AsBtn
                                             type: ActionButton
                                             margin: none
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_Project1As
-                                            maxWidth: 80
                                   - type: Label
                                     label: Steps
                                     children:
@@ -128,7 +128,7 @@ children:
                                           - name: doProject1A1Btn
                                             type: ActionButton
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project1A1
                                       - type: LayoutBox
@@ -165,7 +165,7 @@ children:
                                           - name: doProject1A2Btn
                                             type: ActionButton
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project1A2
                                       - type: LayoutBox
@@ -213,13 +213,13 @@ children:
                                               - name: doProject1A3LstA
                                                 type: ComboBox
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                               - type: ActionButton
                                                 name: doProject1A3Btn
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_project1A3
                               - type: ActionButton
@@ -258,9 +258,9 @@ children:
                                           - name: doProject1BsBtn
                                             type: ActionButton
                                             margin: none
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project1Bs
-                                            maxWidth: 80
                                   - type: Label
                                     label: Steps
                                     children:
@@ -304,7 +304,7 @@ children:
                                           - name: doProject1B1Btn
                                             type: ActionButton
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project1B1
                                       - type: LayoutBox
@@ -347,7 +347,7 @@ children:
                                           - type: ActionButton
                                             name: doProject1B2Btn
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project1B2
                                       - type: LayoutBox
@@ -384,7 +384,7 @@ children:
                                           - type: ActionButton
                                             name: doProject1B3Btn
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project1B3
                               - type: ActionButton
@@ -401,7 +401,7 @@ children:
                                 minWidth: 13
                               - type: CollapseBox
                                 collapsed: true
-                                label: 'c. Sampling error: rs vs rp'
+                                label: 'c. Samples vs populations'
                                 margin: none
                                 minWidth: 400
                                 maxWidth: 400
@@ -419,13 +419,13 @@ children:
                                               - type: Label
                                                 label: Choose two Interval variables
                                               - type: Label
-                                                label: Set the effect size (rp) IV->DV to 0.3
+                                                label: 'Set the effect size (r&#x209a;) IV&rarr;DV to 0.3'
                                           - name: doProject1CsBtn
                                             type: ActionButton
                                             margin: none
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project1Cs
-                                            maxWidth: 80
                                   - type: Label
                                     label: Steps
                                     children:
@@ -459,7 +459,7 @@ children:
                                                             label: ' '
                                                             minWidth: 13
                                                           - type: Label
-                                                            label: '   - compare sample rs with population rp (0.3)'
+                                                            label: '   - compare sample r&#x209b; with population r&#x209a; (0.3)'
                                                       - type: LayoutBox
                                                         style: inline
                                                         children:
@@ -477,7 +477,7 @@ children:
                                           - name: doProject1C1Btn
                                             type: ActionButton
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project1C1
                                       - type: LayoutBox
@@ -520,7 +520,7 @@ children:
                                           - type: ActionButton
                                             name: doProject1C2Btn
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project1C2
                                       - type: LayoutBox
@@ -553,7 +553,7 @@ children:
                                                             label: ' '
                                                             minWidth: 13
                                                           - type: Label
-                                                            label: '- notice rs spreads wider now'
+                                                            label: '- notice r&#x209b; spreads wider now'
                                               - type: LayoutBox
                                                 style: inline
                                                 children:
@@ -563,7 +563,7 @@ children:
                                           - type: ActionButton
                                             name: doProject1C3Btn
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project1C3
                               - type: ActionButton
@@ -586,7 +586,7 @@ children:
                     children:
                       - type: CollapseBox
                         collapsed: true
-                        label: Uncertainty & Design
+                        label: Uncertainty and Design
                         margin: none
                         minWidth: 470
                         maxWidth: 470
@@ -599,7 +599,7 @@ children:
                                 minWidth: 13
                               - type: CollapseBox
                                 collapsed: true
-                                label: 'a. Basics: chance in sampling'
+                                label: 'a. Chance in sampling'
                                 margin: none
                                 minWidth: 400
                                 maxWidth: 400
@@ -621,9 +621,9 @@ children:
                                           - name: doProject2AsBtn
                                             type: ActionButton
                                             margin: none
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project2As
-                                            maxWidth: 80
                                   - type: Label
                                     label: Steps
                                     children:
@@ -675,7 +675,7 @@ children:
                                           - name: doProject2A1Btn
                                             type: ActionButton
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project2A1
                                       - type: LayoutBox
@@ -737,7 +737,7 @@ children:
                                               - type: ActionButton
                                                 name: doProject2A2Btn
                                                 margin: none
-                                                maxWidth: 80
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_project2A2
                                       - type: LayoutBox
@@ -772,7 +772,7 @@ children:
                                           - type: ActionButton
                                             name: doProject2A3Btn
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project2A3
                               - type: ActionButton
@@ -807,15 +807,13 @@ children:
                                               - type: Label
                                                 label: Choose two Interval variables
                                               - type: Label
-                                                label: >-
-                                                  Build a world with equal numbers of rp=0
-                                                  and rp=0.3
+                                                label: 'Build a world with equal numbers of r&#x209a;=0 and r&#x209a;=0.3'
                                           - name: doProject2BsBtn
                                             type: ActionButton
                                             margin: none
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_Project2Bs
-                                            maxWidth: 80
                                   - type: Label
                                     label: Steps
                                     children:
@@ -869,7 +867,7 @@ children:
                                           - name: doProject2B1Btn
                                             type: ActionButton
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_Project2B1
                                       - type: LayoutBox
@@ -922,7 +920,7 @@ children:
                                           - type: ActionButton
                                             name: doProject2B2Btn
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_Project2B2
                                       - type: LayoutBox
@@ -967,7 +965,7 @@ children:
                                           - type: ActionButton
                                             name: doProject2B3Btn
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_Project2B3
                                       - type: LayoutBox
@@ -1002,7 +1000,7 @@ children:
                                           - type: ActionButton
                                             name: doProject2B4Btn
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_Project2B4
                               - type: ActionButton
@@ -1019,7 +1017,7 @@ children:
                                 minWidth: 13
                               - type: CollapseBox
                                 collapsed: true
-                                label: 'c. Design: improving your chances'
+                                label: 'c. Design to improve your chances'
                                 margin: none
                                 minWidth: 400
                                 maxWidth: 400
@@ -1041,9 +1039,9 @@ children:
                                           - name: doProject2CsBtn
                                             type: ActionButton
                                             margin: none
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project2Cs
-                                            maxWidth: 80
                                   - type: Label
                                     label: Steps
                                     children:
@@ -1079,7 +1077,7 @@ children:
                                           - name: doProject2C1Btn
                                             type: ActionButton
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project2C1
                                       - type: LayoutBox
@@ -1133,8 +1131,8 @@ children:
                                               - type: ActionButton
                                                 name: doProject2C2Btn
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_project2C2
                                       - type: LayoutBox
@@ -1189,7 +1187,7 @@ children:
                                           - type: ActionButton
                                             name: doProject2C3Btn
                                             margin: none
-                                            maxWidth: 80
+                                            maxWidth: 57
                                             events:
                                               change: ./BrawSim.events::onChange_project2C3
                                       - type: LayoutBox
@@ -1230,7 +1228,7 @@ children:
                                                             label: ' '
                                                             minWidth: 13
                                                           - type: Label
-                                                            label: '- note what happens when rp=0'
+                                                            label: '- note what happens when r&#x209a;=0'
                                               - type: LayoutBox
                                                 style: inline
                                                 children:
@@ -1251,8 +1249,8 @@ children:
                                               - type: ActionButton
                                                 name: doProject2C4Btn
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_project2C4
                               - type: ActionButton
@@ -1288,7 +1286,7 @@ children:
                                 minWidth: 13
                               - type: CollapseBox
                                 collapsed: true
-                                label: 'a. Basics: 2 IVs'
+                                label: 'a. Using 2 IVs'
                                 margin: none
                                 minWidth: 400
                                 maxWidth: 400
@@ -1323,8 +1321,8 @@ children:
                                               - type: ActionButton
                                                 name: doProject3AsBtn
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_project3As
                                   - type: Label
@@ -1381,8 +1379,8 @@ children:
                                               - type: ActionButton
                                                 name: doProject3A1Btn
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_project3A1
                                       - type: LayoutBox
@@ -1436,8 +1434,8 @@ children:
                                               - type: ActionButton
                                                 name: doProject3A2Btn
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_project3A2
                                       - type: LayoutBox
@@ -1491,8 +1489,8 @@ children:
                                               - type: ActionButton
                                                 name: doProject3A3Btn
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_project3A3
                                       - type: LayoutBox
@@ -1549,8 +1547,8 @@ children:
                                               - type: ActionButton
                                                 name: doProject3A4Btn
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_project3A4
                               - type: ActionButton
@@ -1603,8 +1601,8 @@ children:
                                               - type: ActionButton
                                                 name: doProject3BsBtn
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_project3Bs
                                   - type: Label
@@ -1685,8 +1683,8 @@ children:
                                               - type: ActionButton
                                                 name: doProject3B1Btn
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_project3B1
                                       - type: LayoutBox
@@ -1766,8 +1764,8 @@ children:
                                               - type: ActionButton
                                                 name: doProject3B2Btn
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_project3B2
                               - type: ActionButton
@@ -1816,8 +1814,8 @@ children:
                                               - type: ActionButton
                                                 name: doProject3CsBtn
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_Project3Cs
                                   - type: Label
@@ -1871,8 +1869,8 @@ children:
                                               - type: ActionButton
                                                 name: doProject3C1Btn
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_project3C1
                                       - type: LayoutBox
@@ -1918,8 +1916,8 @@ children:
                                               - type: ActionButton
                                                 name: doProject3C2Btn
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_project3C2
                                       - type: LayoutBox
@@ -1970,8 +1968,8 @@ children:
                                               - type: ActionButton
                                                 name: doProject3C3Btn
                                                 margin: none
-                                                minWidth: 80
-                                                maxWidth: 80
+                                                minWidth: 57
+                                                maxWidth: 57
                                                 events:
                                                   change: ./BrawSim.events::onChange_project3C3
                               - type: ActionButton
@@ -2421,6 +2419,12 @@ children:
                                                         name: EffectSize1
                                                         margin: none
                                                         format: number
+                                                        horizontalAlignment: right
+                                                      - type: TextBox
+                                                        name: rSD
+                                                        margin: none
+                                                        format: number
+                                                        horizontalAlignment: right
                                                   - type: LayoutBox
                                                     style: list
                                                     children:
@@ -2652,8 +2656,8 @@ children:
                                             children:
                                               - type: Label
                                                 label: >-
-                                                  Decide alpha, some analysis options and
-                                                  some assumptions
+                                                  'Decide &alpha;, some analysis options and
+                                                  some assumptions'
                                               - type: Label
                                                 label: Process
                                                 children:
@@ -2821,7 +2825,7 @@ children:
                                                         margin: none
                                                         children:
                                                           - type: Label
-                                                            label: Vary effect sizes?
+                                                            label: Vary effect sizes
                                                             margin: none
                                                           - type: CheckBox
                                                             name: WorldOn
@@ -2860,7 +2864,7 @@ children:
                                                         margin: none
                                                         children:
                                                           - type: Label
-                                                            label: Vary sample sizes?
+                                                            label: Vary sample sizes
                                                             margin: none
                                                           - type: CheckBox
                                                             name: SampleSpreadOn
@@ -2892,7 +2896,7 @@ children:
                                                     margin: none
                                                     children:
                                                       - type: Label
-                                                        label: on?
+                                                        label: on
                                                         margin: none
                                                       - type: CheckBox
                                                         name: ReplicationOn
@@ -2953,7 +2957,7 @@ children:
                                                     margin: none
                                                     children:
                                                       - type: Label
-                                                        label: on?
+                                                        label: on
                                                         margin: none
                                                       - type: CheckBox
                                                         name: MetaAnalysisOn
